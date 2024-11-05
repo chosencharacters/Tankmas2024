@@ -1,0 +1,33 @@
+{
+    "defs": [
+        {
+            "room_id": 1,
+            "room_name": "Outside",
+            "maps": [
+                "intro"
+            ]
+        },
+        {
+            "room_id": 2,
+            "room_name": "Lobby",
+            "maps": [
+                "lobby_entrance",
+                "lobby_left",
+                "lobby_right",
+                "lobby_concourse"
+            ]
+        },
+        {
+            "room_id": 3,
+            "room_name": "O'Fulpy's Bar and Grill",
+            "maps": [
+                "restaurant"
+            ]
+        },
+        {
+            "room_id": 999,
+            "room_name": "Nothin'",
+            "maps": []
+        }
+    ]
+}
