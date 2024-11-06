@@ -1,4 +1,4 @@
-package entities;
+package entities.base;
 
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.SpriteAnimationDef;

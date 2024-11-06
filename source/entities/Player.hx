@@ -3,19 +3,12 @@ package entities;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.Costumes;
 import data.types.TankmasEnums.PlayerAnimation;
-import entities.NGSprite;
+import entities.base.BaseUser;
 
-class Player extends NGSprite
+class Player extends BaseUser
 {
-	public var costume:CostumeDef = Costumes.TANKMAN;
-
-	var move_acl:Int = 60;
-	var move_speed:Int = 500;
 	var move_no_input_drag:Float = 0.9;
-
 	var move_reverse_mod:Float = 3;
-
-	var shadow:FlxSpriteExt;
 
 	static var debug_costume_rotation:Array<CostumeDef> = [
 		Costumes.TANKMAN,
@@ -34,21 +27,9 @@ class Player extends NGSprite
 	{
 		super(X, Y);
 
+		PlayState.self.player = this;
+
 		sprite_anim.anim(PlayerAnimation.MOVING);
-
-		PlayState.self.players.add(this);
-
-		PlayState.self.player_shadows.add(shadow = new FlxSpriteExt(Paths.get("player-shadow.png")));
-
-		new_costume(costume);
-
-		maxVelocity.set(move_speed, move_speed);
-
-		original_size.set(width, height);
-
-		sprite_anim.anim(PlayerAnimation.IDLE);
-
-		drag.set(300, 300);
 
 		sstate(NEUTRAL);
 
@@ -65,27 +46,10 @@ class Player extends NGSprite
 		new_costume(costume);
 	}
 
-	function new_costume(costume:CostumeDef)
+	override function new_costume(costume:CostumeDef)
 	{
 		trace('New Costume: ${costume}');
-		loadGraphic(Paths.get('${costume.name}.png'));
-	}
-
-	override function updateMotion(elapsed:Float)
-	{
-		super.updateMotion(elapsed);
-
-		shadow.center_on_bottom(this);
-		shadow.offset.x = offset.x;
-		shadow.updateMotion(elapsed);
-		// shadow.x = shadow.x + (flipX ? -12 : 16);
-	}
-	
-	override function kill()
-	{
-		PlayState.self.players.remove(this, true);
-
-		super.kill();
+		super.new_costume(costume);
 	}
 
 	override function update(elapsed:Float)
@@ -106,6 +70,7 @@ class Player extends NGSprite
 			case JUMPING:
 			case EMOTING:
 		}
+
 
 	function general_movement()
 	{
@@ -135,33 +100,11 @@ class Player extends NGSprite
 		if (!UP && !DOWN)
 			velocity.y = velocity.y * move_no_input_drag;
 
-		final MOVING:Bool = velocity.x.abs() + velocity.y.abs() > 10;
-		// final DO_MOVE_ANIMATION:Bool = MOVING && !NO_KEYS;
+		move_animation_handler(!NO_KEYS);
 
-		final DO_MOVE_ANIMATION:Bool = !NO_KEYS;
-
-		switch (sprite_anim.name)
-		{
-			default:
-			case "idle":
-				if (DO_MOVE_ANIMATION)
-					sprite_anim.anim(PlayerAnimation.MOVING);
-			case "moving":
-				if (!DO_MOVE_ANIMATION)
-					sprite_anim.anim(PlayerAnimation.IDLE);
-		}
-		/*
-				switch (sprite_anim.name){
-					default:
-				case "idle":
-					if (DO_MOVE_ANIMATION)
-						sprite_anim.anim(PlayerAnimation.START_STOP, post_start_stop);
-				case "moving":
-					if (!DO_MOVE_ANIMATION)
-						sprite_anim.anim(PlayerAnimation.START_STOP, post_start_stop);
-			}
-		 */
+		// move_animation_handler(velocity.x.abs() + velocity.y.abs() > 10);
 	}
+
 
 	function post_start_stop()
 	{
@@ -180,7 +123,11 @@ class Player extends NGSprite
 
 		present.mark_target(true);
 	}
-	function move_animation() {}
+	override function kill()
+	{
+		PlayState.self.player = null;
+		super.kill();
+	}
 }
 
 private enum abstract State(String) from String to String

@@ -1,5 +1,7 @@
 package entities;
 
+import entities.base.NGSprite;
+
 class Present extends NGSprite
 {
 	public var detect_range:Int = 300;

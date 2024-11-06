@@ -3,6 +3,7 @@ class Wombo extends FlxSpriteExt
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y);
+		sstate(IDLE);
 	}
 
 	override function kill()
@@ -23,4 +24,7 @@ class Wombo extends FlxSpriteExt
 		}
 }
 
-private enum abstract State(String) from String to String {}
+private enum abstract State(String) from String to String
+{
+	var IDLE;
+}
