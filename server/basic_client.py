@@ -4,7 +4,7 @@ import requests
 url = "http://127.0.0.1:5000/rooms/1/update"
 
 # Data to be sent
-data = {"name": "tomfulp", "x": 69, "y": 420, "costume": "thomas"}
+data = {"name": "paco from pacos school", "x": 69, "y": 420, "costume": "paco"}
 
 # A POST request to the API
 response = requests.post(url, json=data)

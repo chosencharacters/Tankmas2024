@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 room_init = open
 
-user_timeout = 5
+user_timeout = 99999
 
 interval = 1
 
