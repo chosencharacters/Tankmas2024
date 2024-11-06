@@ -6,7 +6,7 @@ import data.types.TankmasDefs.SpriteAnimationDef;
 /**
  * Enum of costume defs, these are just examples
  */
-enum abstract Costumes(CostumeDef)
+class Costumes
 {
 	/**The problems of the future, today!**/
 	public static final TANKMAN = {name: "tankman"};
@@ -43,6 +43,28 @@ enum abstract Costumes(CostumeDef)
 
 	/**It's the guy! Unlocks on 12/25/2024 at exactly 00:00:00 unix time**/
 	public static final SANTA = {name: "santa", unlock: UnlockCondition.DATE, data: 1735102800};
+
+	public static function string_to_costume(name:String):CostumeDef
+	{
+		var janky_hard_coded_array:Array<CostumeDef> = [
+			TANKMAN,
+			PACO,
+			KNIGHT_RED,
+			KNIGHT_BLUE,
+			KNIGHT_GREEN,
+			KNIGHT_ORANGE,
+			KNIGHT_PINK,
+			BOYFRIEND,
+			MADNESS_GRUNT,
+			ALIEN_HOMINID,
+			THOMAS,
+			SANTA
+		];
+		for (jank in janky_hard_coded_array)
+			if (jank.name == name)
+				return jank;
+		return null;
+	}
 }
 
 enum abstract UnlockCondition(String) from String to String

@@ -47,8 +47,6 @@ class BaseUser extends NGSprite
 
 	function new_costume(costume:CostumeDef)
 	{
-		if (this.costume != null && this.costume.name == costume.name)
-			return;
 		loadGraphic(Paths.get('${costume.name}.png'));
 		original_size.set(width, height);
 	}

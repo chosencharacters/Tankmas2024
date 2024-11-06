@@ -1,6 +1,9 @@
 package net.tankmas;
 
+import data.types.TankmasEnums.Costumes;
+import entities.NetUser;
 import entities.Player;
+import haxe.Json;
 import net.tankmas.TankmasClient.NetUserDef;
 import net.tankmas.TankmasClient;
 
@@ -32,7 +35,15 @@ class OnlineLoop
 
 	public static function update_user_visuals(data:String)
 	{
-		var o = haxe.Json.parse(data);
-		trace(o);
+		data = data.replace('\\\"', '\"').replace('\"{', '{').replace('}\"', '}');
+		trace(data);
+
+		var users = haxe.Json.parse(data);
+
+		for (username in Reflect.fields(users))
+		{
+			var user:NetUserDef = Reflect.field(users, username);
+			new NetUser(user.x, user.y, Costumes.string_to_costume(user.costume));
+		}
 	}
 }
