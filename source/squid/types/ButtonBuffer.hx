@@ -27,7 +27,7 @@ class ButtonBuffer
 	}
 
 	/**
-	 * Manages attack buffers
+	 * Manages action buffers
 	 */
 	public function buffer_update()
 	{
@@ -38,7 +38,7 @@ class ButtonBuffer
 		if (charge_opposites == null)
 		{
 			charge_opposites = new Map<String, String>();
-			for (key in ["jump", "attack", "special", "use"])
+			for (key in ["jump", "action", "special", "use"])
 				charge_opposites.set(key + "_hold", key + "_release");
 		}
 
@@ -50,8 +50,8 @@ class ButtonBuffer
 			if (key.indexOf("_hold") > -1 && exists(charge_opposites.get(key)))
 				switch (key)
 				{
-					case "attack_hold":
-						!Ctrl.attack[team] ? set(key, 2) : "pass";
+					case "action_hold":
+						!Ctrl.action[team] ? set(key, 2) : "pass";
 					case "jump_hold":
 						!Ctrl.jump[team] ? set(key, 2) : "pass";
 					case "special_hold":
@@ -61,18 +61,18 @@ class ButtonBuffer
 				}
 		}
 
-		buffer_input(Ctrl.jattack[team], "attack");
+		buffer_input(Ctrl.jaction[team], "action");
 		buffer_input(Ctrl.jjump[team], "jump");
 		buffer_input(Ctrl.jspecial[team], "special");
 		buffer_input(Ctrl.juse[team], "use");
 
-		buffer_input(Ctrl.rattack[team], "attack_release");
+		buffer_input(Ctrl.raction[team], "action_release");
 		buffer_input(Ctrl.rjump[team], "jump_release");
 		buffer_input(Ctrl.rspecial[team], "special_release");
 		buffer_input(Ctrl.ruse[team], "use_release");
 
 		buffer_input(Ctrl.down[team], "down_hold");
-		buffer_input(Ctrl.attack[team], "attack_hold");
+		buffer_input(Ctrl.action[team], "action_hold");
 		buffer_input(Ctrl.jump[team], "jump_hold");
 		buffer_input(Ctrl.special[team], "special_hold");
 		buffer_input(Ctrl.use[team], "use_hold");
@@ -104,7 +104,7 @@ class ButtonBuffer
 	public function get_int(key:String):Int
 	{
 		// for (key_2 in keys())
-		// if (key == "attack")
+		// if (key == "action")
 		// trace(key == key_2, key, key_2, exists(key), get(key), this, exists(key) ? get(key) : -1);
 		return exists(key) ? get(key) : -1;
 	}

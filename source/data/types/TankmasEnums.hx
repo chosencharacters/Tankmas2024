@@ -14,6 +14,30 @@ enum abstract Costumes(CostumeDef)
 	/**The most popular school shooter hero of 1999**/
 	public static final PACO = {name: "paco"};
 
+	/**Castle Crasher video game but red**/
+	public static final KNIGHT_RED = {name: "knight-red"};
+
+	/**Castle Crasher video game but blue**/
+	public static final KNIGHT_BLUE = {name: "knight-blue"};
+
+	/**Castle Crasher video game but green**/
+	public static final KNIGHT_GREEN = {name: "knight-green"};
+
+	/**Castle Crasher video game but orange**/
+	public static final KNIGHT_ORANGE = {name: "knight-orange"};
+
+	/**Castle Crasher video game but pink uwu**/
+	public static final KNIGHT_PINK = {name: "knight-pink"};
+
+	/**BEEP BEEP BEEP ⬆️⬇️⬅️➡️ BEEP BEEP BEEP**/
+	public static final BOYFRIEND = {name: "boyfriend"};
+
+	/**as seen on addicting games dot com**/
+	public static final MADNESS_GRUNT = {name: "madness-grunt"};
+
+	/**It's an absolute invasion!**/
+	public static final ALIEN_HOMINID = {name: "alien-hominid"};
+
 	/**"I'm gonna go watch hentai cartoons and play dating sims on newgrounds"**/
 	public static final THOMAS = {name: "thomas", unlock: UnlockCondition.ANGRY_FAIC};
 

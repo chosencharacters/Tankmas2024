@@ -98,7 +98,7 @@ abstract AnimSet(AnimSetData) from AnimSetData
 }
 
 /**
- * An key in an attack with whether it's charged/hold
+ * An key in an action with whether it's charged/hold
  */
 typedef AttackInputDef =
 {
@@ -160,7 +160,7 @@ abstract AttackInput(AttackInputDef) from AttackInputDef
 
 		// trace('What is the value of \'${key}\' in Map? The value is \'${buffer.get(key)}\'', buffer);
 
-		// this handles charge attacks and non charge attacks
+		// this handles charge actions and non charge actions
 		return buffer.get_int(key) >= this.charge_time && (this.key_release == "" || buffer.exists(this.key_release));
 	}
 

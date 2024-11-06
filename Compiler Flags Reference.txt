@@ -1,0 +1,5 @@
+dev - main dev flag, turns on the Main.DEV and enables a whole bunch of hotkeys
+
+trace_animation - enables animation tracing
+
+gif - enables gif recording with the "G" key, it is retroactive 10 seconds, this probably will lag and SEEM like you're crashing when you activate it but you're not, make sure you have ffmpeg and gifsicle installed AND added to your system PATH

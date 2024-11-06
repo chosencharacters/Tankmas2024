@@ -6,6 +6,7 @@ import openfl.display.Sprite;
 
 class Main extends Sprite
 {
+	public static var DEV:Bool = #if dev true #else false #end;
 
 	public function new()
 	{

@@ -17,6 +17,19 @@ class Player extends NGSprite
 
 	var shadow:FlxSpriteExt;
 
+	static var debug_costume_rotation:Array<CostumeDef> = [
+		Costumes.TANKMAN,
+		Costumes.PACO,
+		Costumes.ALIEN_HOMINID,
+		Costumes.BOYFRIEND,
+		Costumes.MADNESS_GRUNT,
+		Costumes.KNIGHT_RED,
+		Costumes.KNIGHT_BLUE,
+		Costumes.KNIGHT_GREEN,
+		Costumes.KNIGHT_ORANGE,
+		Costumes.KNIGHT_PINK
+	];
+
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y);
@@ -27,8 +40,9 @@ class Player extends NGSprite
 
 		PlayState.self.player_shadows.add(shadow = new FlxSpriteExt(Paths.get("player-shadow.png")));
 
-		maxVelocity.set(move_speed, move_speed);
 		new_costume(costume);
+
+		maxVelocity.set(move_speed, move_speed);
 
 		original_size.set(width, height);
 
@@ -39,14 +53,16 @@ class Player extends NGSprite
 		sstate(NEUTRAL);
 
 		screenCenter();
+		debug_rotate_costumes();
 	}
 
-	function debug_switch_costume()
+	function debug_rotate_costumes()
 	{
-		if (FlxG.keys.anyJustPressed(["ONE"]))
-			new_costume(Costumes.TANKMAN);
-		if (FlxG.keys.anyJustPressed(["TWO"]))
-			new_costume(Costumes.PACO);
+		if (!Main.DEV)
+			return;
+		costume = debug_costume_rotation[0];
+		debug_costume_rotation.push(debug_costume_rotation.shift());
+		new_costume(costume);
 	}
 
 	function new_costume(costume:CostumeDef)
@@ -74,7 +90,9 @@ class Player extends NGSprite
 
 	override function update(elapsed:Float)
 	{
-		debug_switch_costume();
+		if (Main.DEV && Ctrl.any(Ctrl.jaction))
+			debug_rotate_costumes();
+
 		fsm();
 		super.update(elapsed);
 	}

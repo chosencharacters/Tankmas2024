@@ -8,6 +8,7 @@ typedef CostumeDef =
 	var ?unlock:UnlockCondition;
 	var ?data:Dynamic;
 }
+
 typedef SpriteAnimationDef =
 {
 	var name:String;

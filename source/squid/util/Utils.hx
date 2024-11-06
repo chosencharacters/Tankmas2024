@@ -301,7 +301,7 @@ class Utils
 				force = false;
 			case "groundpound-2":
 				FlxG.camera.shake(0.05, 0.3, true, FlxAxes.Y);
-			case "airship-attack":
+			case "airship-action":
 				FlxG.camera.shake(0.01, 0.75, true);
 			case "ruins-collapse":
 				FlxG.camera.shake(0.0075, 0.5, true);

@@ -50,7 +50,9 @@ class SpriteAnimationController
 		if (this.animation != null && this.animation.name == animation.name)
 			return;
 
-		trace(name + " -> " + animation.name);
+		#if trace_animation
+		trace('${sprite.type}: $name -> ${animation.name}');
+		#end
 
 		this.on_complete = on_complete;
 		this.animation = animation;

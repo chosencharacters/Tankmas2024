@@ -16,22 +16,22 @@ class Ctrl
 
 	// controls are handled as an array of bools
 	public static var anyB:Array<Bool> = [false];
-	// jump/attack
+	// jump/action
 	public static var jump:Array<Bool> = [false];
-	public static var attack:Array<Bool> = [false];
+	public static var action:Array<Bool> = [false];
 	public static var special:Array<Bool> = [false];
 	public static var use:Array<Bool> = [false];
 
 	// just pressed
 	public static var jjump:Array<Bool> = [false];
-	public static var jattack:Array<Bool> = [false];
+	public static var jaction:Array<Bool> = [false];
 	public static var jspecial:Array<Bool> = [false];
 	public static var juse:Array<Bool> = [false];
 	public static var jroll:Array<Bool> = [false];
 
 	// just released
 	public static var rjump:Array<Bool> = [false];
-	public static var rattack:Array<Bool> = [false];
+	public static var raction:Array<Bool> = [false];
 	public static var rspecial:Array<Bool> = [false];
 	public static var ruse:Array<Bool> = [false];
 
@@ -122,9 +122,9 @@ class Ctrl
 			jump[c] = FlxG.keys.anyPressed([controls[c][4]]);
 			jjump[c] = FlxG.keys.anyJustPressed([controls[c][4]]);
 			rjump[c] = FlxG.keys.anyJustReleased([controls[c][4]]);
-			attack[c] = FlxG.keys.anyPressed([controls[c][5]]);
-			jattack[c] = FlxG.keys.anyJustPressed([controls[c][5]]);
-			rattack[c] = FlxG.keys.anyJustReleased([controls[c][5]]);
+			action[c] = FlxG.keys.anyPressed([controls[c][5]]);
+			jaction[c] = FlxG.keys.anyJustPressed([controls[c][5]]);
+			raction[c] = FlxG.keys.anyJustReleased([controls[c][5]]);
 			special[c] = FlxG.keys.anyPressed([controls[c][6]]);
 			jspecial[c] = FlxG.keys.anyJustPressed([controls[c][6]]);
 			rspecial[c] = FlxG.keys.anyJustReleased([controls[c][6]]);
@@ -140,7 +140,7 @@ class Ctrl
 			menuConfirm[c] = jjump[c] && !REVERSE_MENU_CONTROLS || jspecial[c] && REVERSE_MENU_CONTROLS;
 			menuBack[c] = jjump[c] && REVERSE_MENU_CONTROLS || jspecial[c] && !REVERSE_MENU_CONTROLS;
 
-			anyB[c] = up[c] || down[c] || left[c] || right[c] || jump[c] || attack[c] || special[c] || use[c] || pause[c] || map[c] || reset[c] || jroll[c];
+			anyB[c] = up[c] || down[c] || left[c] || right[c] || jump[c] || action[c] || special[c] || use[c] || pause[c] || map[c] || reset[c] || jroll[c];
 
 			if (anyB[c])
 				model = "keyboard";
@@ -183,9 +183,9 @@ class Ctrl
 				jjump[p] = jjump[p] || gp.anyJustPressed([FlxGamepadInputID.A]);
 				rjump[p] = rjump[p] || gp.anyJustReleased([FlxGamepadInputID.A]);
 
-				attack[p] = attack[p] || gp.anyPressed([FlxGamepadInputID.X]);
-				jattack[p] = jattack[p] || gp.anyJustPressed([FlxGamepadInputID.X]);
-				rattack[p] = rattack[p] || gp.anyJustReleased([FlxGamepadInputID.X]);
+				action[p] = action[p] || gp.anyPressed([FlxGamepadInputID.X]);
+				jaction[p] = jaction[p] || gp.anyJustPressed([FlxGamepadInputID.X]);
+				raction[p] = raction[p] || gp.anyJustReleased([FlxGamepadInputID.X]);
 
 				special[p] = special[p] || gp.anyPressed([FlxGamepadInputID.B]);
 				jspecial[p] = jspecial[p] || gp.anyJustPressed([FlxGamepadInputID.B]);
@@ -202,12 +202,12 @@ class Ctrl
 					|| gp.anyJustPressed([FlxGamepadInputID.RIGHT_SHOULDER]);
 
 				menuConfirm[p] = jjump[p] && !REVERSE_MENU_CONTROLS || jspecial[p] && REVERSE_MENU_CONTROLS;
-				menuBack[p] = jjump[p] && REVERSE_MENU_CONTROLS || jattack[p] && !REVERSE_MENU_CONTROLS;
+				menuBack[p] = jjump[p] && REVERSE_MENU_CONTROLS || jaction[p] && !REVERSE_MENU_CONTROLS;
 
 				menuLeft[p] = menuLeft[p] || gp.anyJustPressed([FlxGamepadInputID.LEFT_SHOULDER]);
 				menuRight[p] = menuRight[p] || gp.anyJustPressed([FlxGamepadInputID.RIGHT_SHOULDER]);
 
-				anyB[p] = up[p] || down[p] || left[p] || right[p] || jump[p] || attack[p] || special[p] || use[p] || pause[p] || map[p] || reset[p] || jroll[p];
+				anyB[p] = up[p] || down[p] || left[p] || right[p] || jump[p] || action[p] || special[p] || use[p] || pause[p] || map[p] || reset[p] || jroll[p];
 
 				if (gp.anyInput())
 				{
@@ -286,9 +286,9 @@ class Ctrl
 		jump[c] = false;
 		jjump[c] = false;
 		rjump[c] = false;
-		attack[c] = false;
-		jattack[c] = false;
-		rattack[c] = false;
+		action[c] = false;
+		jaction[c] = false;
+		raction[c] = false;
 		special[c] = false;
 		jspecial[c] = false;
 		rspecial[c] = false;
