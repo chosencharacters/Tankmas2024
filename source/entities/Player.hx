@@ -7,7 +7,7 @@ import entities.NGSprite;
 
 class Player extends NGSprite
 {
-	var costume:CostumeDef = Costumes.TANKMAN;
+	public var costume:CostumeDef = Costumes.TANKMAN;
 
 	var move_acl:Int = 60;
 	var move_speed:Int = 500;

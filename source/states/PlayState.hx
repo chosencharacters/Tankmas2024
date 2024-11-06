@@ -4,6 +4,8 @@ import entities.Player;
 import entities.Present;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import net.tankmas.OnlineLoop;
+import net.tankmas.TankmasClient;
 
 class PlayState extends BaseState
 {
@@ -35,6 +37,7 @@ class PlayState extends BaseState
 		FlxG.camera.target = players.getFirstAlive();
 
 		FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
+		OnlineLoop.post_player("1", players.getFirstAlive());
 	}
 
 	override public function update(elapsed:Float)

@@ -51,12 +51,11 @@ def write_user_to_room(room_id, user):
 
 
 # Endpoint to join/update position in a room
-@app.route("/rooms/<room_id>/update", methods=["POST"])
+@app.route("/rooms/<room_id>/users", methods=["POST"])
 def update_room(room_id):
-    # TODO: Implement this endpoint
+    print(request.json)
     room_json = write_user_to_room(room_id, request.json)
-    print(room_json)
-    return jsonify(json.dumps(room_json["users"])), 501
+    return jsonify(json.dumps(room_json["users"])), 200
 
 
 @app.route("/rooms/<room_id>", methods=["GET"])
@@ -65,7 +64,13 @@ def get_room(room_id):
     return json.load(file)
 
 
-def myPeriodicFunction():
+@app.route("/rooms/<room_id>/users", methods=["GET"])
+def get_room_users(room_id):
+    file = open(f"data/rooms/{room_id}.json", "r")
+    return json.load(file)
+
+
+def remove_old_users():
     for room_id in ["1", "2", "3"]:
         room_file = open(f"data/rooms/{room_id}.json", "r")
         room_data = json.load(room_file)
@@ -92,12 +97,12 @@ def myPeriodicFunction():
         room_file.write(json.dumps(room_data, indent=4))
 
 
-def startTimer():
-    threading.Timer(interval, startTimer).start()
-    myPeriodicFunction()
+def start_server_timer():
+    threading.Timer(interval, start_server_timer).start()
+    remove_old_users()
 
 
-startTimer()
+start_server_timer()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
