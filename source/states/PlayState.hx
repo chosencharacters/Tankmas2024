@@ -41,11 +41,13 @@ class PlayState extends BaseState
 		FlxG.camera.target = player;
 
 		FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
-		OnlineLoop.post_player("1", player);
+		OnlineLoop.iterate();
 	}
 
 	override public function update(elapsed:Float)
 	{
+		OnlineLoop.iterate();
+
 		super.update(elapsed);
 
 		if (FlxG.keys.anyJustPressed(["R"]))

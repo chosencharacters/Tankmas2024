@@ -3,21 +3,37 @@ package net.tankmas;
 import data.types.TankmasEnums.Costumes;
 import entities.NetUser;
 import entities.Player;
+import entities.base.BaseUser;
 import haxe.Json;
 import net.tankmas.TankmasClient.NetUserDef;
 import net.tankmas.TankmasClient;
+import openfl.net.dns.AAAARecord;
 
 /**
  * The main game online update loop, yea!
  */
 class OnlineLoop
 {
-	final BASE_TICK_RATE:Int = 100;
+	static var tick_rate:Float = 0;
 
-	var last_update_timestamp:Int = 0;
+	static var last_update_timestamp:Float;
+	static var current_timestamp(get, default):Float;
 
+	static function get_current_timestamp():Float
+		return haxe.Timer.stamp();
 
-	public static function post_player(room_id:String, user:Player)
+	public static function iterate()
+	{
+		var time_diff:Float = current_timestamp - last_update_timestamp;
+
+		if (time_diff > tick_rate * .001)
+		{
+			last_update_timestamp = current_timestamp;
+			OnlineLoop.update_player_position("1", PlayState.self.player);
+		}
+	}
+
+	public static function update_player_position(room_id:String, user:Player)
 	{
 		TankmasClient.post_user(room_id, {
 			name: Main.username,
@@ -35,14 +51,20 @@ class OnlineLoop
 	public static function update_user_visuals(data:String)
 	{
 		data = data.replace('\\\"', '\"').replace('\"{', '{').replace('}\"', '}');
-		trace(data);
 
-		var users = haxe.Json.parse(data);
+		var pack = haxe.Json.parse(data);
+		var users = pack.data;
 
 		for (username in Reflect.fields(users))
 		{
-			var user:NetUserDef = Reflect.field(users, username);
-			new NetUser(user.x, user.y, Costumes.string_to_costume(user.costume));
+			var def:NetUserDef = Reflect.field(users, username);
+			var user:BaseUser = BaseUser.get_user(username, function()
+			{
+				return new NetUser(0, 0, username, Costumes.string_to_costume(def.costume));
+			});
+			user.setPosition(def.x, def.y);
 		}
+		tick_rate = pack.tick_rate;
+		trace(tick_rate);
 	}
 }

@@ -14,9 +14,13 @@ class BaseUser extends NGSprite
 
 	var shadow:FlxSpriteExt;
 
-	public function new(?X:Float, ?Y:Float)
+	public var username:String;
+
+	public function new(?X:Float, ?Y:Float, username:String)
 	{
 		super(X, Y);
+
+		this.username = username;
 
 		new_costume(Costumes.TANKMAN);
 		sprite_anim.anim(PlayerAnimation.MOVING);
@@ -66,6 +70,11 @@ class BaseUser extends NGSprite
 		super.kill();
 	}
 
-	override function update(elapsed:Float)
-		super.update(elapsed);
+	public static function get_user(username:String, make_user_function:Void->BaseUser):BaseUser
+	{
+		for (user in PlayState.self.users)
+			if (user.username == username)
+				return user;
+		return make_user_function == null ? null : make_user_function();
+	}
 }

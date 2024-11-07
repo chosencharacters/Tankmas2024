@@ -3,15 +3,22 @@ from threading import Lock
 import json
 import time
 import threading
+import math
 
 app = Flask(__name__)
 
 room_init = open
 
-user_timeout = 9999999999999
+user_max_idle_time = 9999999999999
+base_client_tick_rate = 100
+current_client_tick_rate = base_client_tick_rate
 
-interval = 1
+hits = 0
+hits_attrition_rate = 5
+hits_interval = 1
+last_hits_update_time = 0
 
+server_background_update_interval = 1
 
 with open("./init/rooms.json", "r") as file:
     defs = json.load(file)["defs"]
@@ -23,7 +30,6 @@ with open("./init/rooms.json", "r") as file:
             "maps": room["maps"],
             "users": {},
         }
-        print(base_room_data)
         room_file.write(json.dumps(base_room_data, indent=4))
 
 # Room data structure with a thread lock for concurrency safety
@@ -53,24 +59,42 @@ def write_user_to_room(room_id, user):
 # Endpoint to join/update position in a room
 @app.route("/rooms/<room_id>/users", methods=["POST"])
 def update_room(room_id):
-    print(request.json)
     room_json = write_user_to_room(room_id, request.json)
-    return jsonify(json.dumps(room_json["users"])), 200
+
+    global hits
+    hits = hits + 1
+
+    package = {
+        "tick_rate": current_client_tick_rate,
+        "data": room_json["users"],
+    }
+
+    return jsonify(package), 200
 
 
 @app.route("/rooms/<room_id>", methods=["GET"])
 def get_room(room_id):
     file = open(f"data/rooms/{room_id}.json", "r")
-    return json.load(file)
+
+    global hits
+    hits = hits + 1
+
+    package = {"tick_rate": current_client_tick_rate, "data": json.load(file)}
+    return jsonify(package), 200
 
 
 @app.route("/rooms/<room_id>/users", methods=["GET"])
 def get_room_users(room_id):
     file = open(f"data/rooms/{room_id}.json", "r")
-    return json.load(file)
+
+    global hits
+    hits = hits + 1
+
+    package = {"tick_rate": current_client_tick_rate, "data": json.load(file)}
+    return jsonify(package), 200
 
 
-def remove_old_users():
+def cleanup_old_users():
     for room_id in ["1", "2", "3"]:
         room_file = open(f"data/rooms/{room_id}.json", "r")
         room_data = json.load(room_file)
@@ -81,8 +105,7 @@ def remove_old_users():
 
         for user_name in room_data["users"]:
             diff = current_timestamp - room_data["users"][user_name]["timestamp"]
-            if diff >= user_timeout:
-                print(diff)
+            if diff >= user_max_idle_time:
                 shitlist.append(user_name)
 
         if len(shitlist) > 0:
@@ -97,12 +120,31 @@ def remove_old_users():
         room_file.write(json.dumps(room_data, indent=4))
 
 
-def start_server_timer():
-    threading.Timer(interval, start_server_timer).start()
-    remove_old_users()
+def server_background_tasks():
+    threading.Timer(server_background_update_interval, server_background_tasks).start()
+    cleanup_old_users()
+
+    global last_hits_update_time
+    global hits
+
+    current_time = time.time()
+
+    if current_time - last_hits_update_time >= hits_interval:
+        attrition = math.floor(hits / hits_attrition_rate)
+        if attrition < 1:
+            attrition = 1
+        current_client_tick_rate = base_client_tick_rate * attrition
+        print(
+            hits,
+            current_client_tick_rate,
+            math.floor(hits / hits_attrition_rate),
+            attrition,
+        )
+        hits = 0
+        last_hits_update_time = time.time()
 
 
-start_server_timer()
+server_background_tasks()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

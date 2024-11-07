@@ -25,7 +25,7 @@ class Player extends BaseUser
 
 	public function new(?X:Float, ?Y:Float)
 	{
-		super(X, Y);
+		super(X, Y, Main.username);
 
 		PlayState.self.player = this;
 
