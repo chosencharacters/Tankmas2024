@@ -40,79 +40,6 @@ using Utils.Inflect;
  */
 class Utils
 {
-	public function new() {}
-
-	public static function recolor(o:FlxSprite, p:Int, colorToReplace:Int = FlxColor.WHITE)
-		if (colorToReplace != 0xff999999)
-			o.replaceColor(colorToReplace, getColor(p));
-		else
-			o.replaceColor(colorToReplace, getColor2(p));
-
-	public static function getColor(p:Int):Int
-	{
-		var color:Int = 0;
-		switch (p)
-		{
-			case -4:
-				color = FlxColor.CYAN;
-			case -3:
-				color = FlxColor.GRAY;
-			case -2:
-				color = FlxColor.WHITE;
-			case -1:
-				color = FlxColor.RED;
-			case 1:
-				color = FlxColor.ORANGE;
-			case 2:
-				color = 0xff3299FF;
-			case 3:
-				color = FlxColor.YELLOW;
-			case 4:
-				color = FlxColor.GREEN;
-		}
-		return color;
-	}
-
-	public static function getColor2(p:Int):Int
-	{
-		var color:Int = 0;
-		switch (p)
-		{
-			case -4:
-				color = FlxColor.CYAN;
-			case -3:
-				color = FlxColor.GRAY;
-			case -2:
-				color = FlxColor.WHITE;
-			case -1:
-				color = FlxColor.RED;
-			case 1:
-				color = 0xffFF6600;
-			case 2:
-				color = 0xff3299FF;
-			case 3:
-				color = FlxColor.YELLOW;
-			case 4:
-				color = FlxColor.GREEN;
-		}
-		return color;
-	}
-
-	/*returns a multiplier based on direction*/
-	public static function dirMod(a:FlxSprite, b:FlxSprite):Int
-		return a.getMidpoint().x < b.getMidpoint().x ? -1 : 1;
-
-	/*returns a multiplier based on whether v is flipped*/
-	public static function flipMod(sprite:FlxSprite):Int
-		return sprite.flipX ? -1 : 1;
-
-	public static function turnMod(s:FlxSprite, v:Float, mult:Float = 2):Int
-	{
-		if (s.velocity.x < 0 && v < 0 || s.velocity.x > 0 && v > 0)
-			return 1;
-		return Math.floor(mult);
-	}
-
 	/**
 	 * Short hand for overlaps and then pixelPerfectOverlaps which hopefully makes things more efficient
 	 * @param a 
@@ -123,7 +50,7 @@ class Utils
 		return a != null && b != null && a.overlaps(b) && FlxG.pixelPerfectOverlap(a, b, alpha_tolerance);
 
 	/**return total distance between two points**/
-	public static inline function getDistance(P1:FlxPoint, P2:FlxPoint):Float // distance two points
+	public static inline function distance(P1:FlxPoint, P2:FlxPoint):Float // distance two points
 	{
 		var XX:Float = P2.x - P1.x;
 		var YY:Float = P2.y - P1.y;
@@ -131,21 +58,21 @@ class Utils
 	}
 
 	/**return x distance between two points**/
-	public static inline function getDistanceX(P1:FlxPoint, P2:FlxPoint):Float // x distance between two points
+	public static inline function distance_x(P1:FlxPoint, P2:FlxPoint):Float // x distance between two points
 	{
 		var XX:Float = P2.x - P1.x;
 		return Math.sqrt(XX * XX);
 	}
 
 	/**return y distance between two points**/
-	public static inline function getDistanceY(P1:FlxPoint, P2:FlxPoint):Float // x distance between two points
+	public static inline function distance_y(P1:FlxPoint, P2:FlxPoint):Float // x distance between two points
 	{
 		var XX:Float = P2.y - P1.y;
 		return Math.sqrt(XX * XX);
 	}
 
 	/**distance two points using floats**/
-	public static inline function getDistanceNoPoint(P1X:Float, P1Y:Float, P2X:Float, P2Y:Float):Float
+	public static inline function distance_no_point(P1X:Float, P1Y:Float, P2X:Float, P2Y:Float):Float
 	{
 		var XX:Float = P2X - P1X;
 		var YY:Float = P2Y - P1Y;
@@ -261,61 +188,26 @@ class Utils
 	public static function toIndex(x:Int, y:Int, w:Int = 16):Int
 		return y * w + x;
 
-	public static function shake(preset:String = "damage", force_override:Bool = false)
-	{
-		var intensity:Float = 0;
-		var time:Float = 0;
-		var force:Bool = true;
-
-		switch (preset)
+	public static function shake(preset:ShakePreset, force:Bool = false)
+		switch (cast(preset, ShakePreset))
 		{
-			case "damage":
-				intensity = 0.025;
-				time = 0.1;
-			case "damagelight" | "light":
-				intensity = 0.01;
-				time = 0.05;
-				force = false;
-			case "groundpound":
-				intensity = 0.03;
-				time = 0.2;
-			case "light-long":
-				intensity = 0.01;
-				time = 0.2;
-			case "rumble":
-				intensity = 0.0025;
-				time = 0.5;
-			case "train-rumble":
-				intensity = 0.0025;
-				time = 0.15;
-			case "explosion":
-				intensity = 0.025;
-				time = 0.225;
-			case "lightest":
-				intensity = 0.0025;
-				time = 0.05;
-				force = false;
-			case "lighter":
-				intensity = 0.005;
-				time = 0.05;
-				force = false;
-			case "groundpound-2":
-				FlxG.camera.shake(0.05, 0.3, true, FlxAxes.Y);
-			case "airship-action":
-				FlxG.camera.shake(0.01, 0.75, true);
-			case "ruins-collapse":
-				FlxG.camera.shake(0.0075, 0.5, true);
-			case "ruins-collapse-long":
-				FlxG.camera.shake(0.0075, 2, true);
-			case "ruins-collapse-hard":
-				FlxG.camera.shake(0.01, 0.5, true);
-			case "ruins-collapse-really-hard":
-				FlxG.camera.shake(0.02, 0.5, true);
+			case DAMAGE:
+				FlxG.camera.shake(0.025, 0.1, force, FlxAxes.XY);
+			case LIGHT:
+				FlxG.camera.shake(0.01, 0.05, force, FlxAxes.XY);
+			case LIGHTER:
+				FlxG.camera.shake(0.005, 0.05, force, FlxAxes.XY);
+			case LIGHTEST:
+				FlxG.camera.shake(0.0025, 0.05, force, FlxAxes.XY);
+			case LIGHT_LONG:
+				FlxG.camera.shake(0.01, 0.2, force, FlxAxes.XY);
+			case RUMBLE:
+				FlxG.camera.shake(0.0025, 0.5, force, FlxAxes.XY);
+			case EXPLOSION:
+				FlxG.camera.shake(0.05, 0.3, force, FlxAxes.XY);
+			case GROUNDPOUND:
+				FlxG.camera.shake(0.03, 0.2, force, FlxAxes.XY);
 		}
-
-		if (intensity != 0 && time != 0)
-			FlxG.camera.shake(intensity, time, null, force_override ? force_override : force);
-	}
 
 	public static inline function simpleHitbox(S:FlxSprite, W:Float = -1, H:Float = -1, marginX:Int = 1, marginY:Int = 1):FlxSprite
 	{
@@ -341,7 +233,6 @@ class Utils
 	 */
 	public static function formatInt(num:Int):String
 	{
-		// TODO: Format for other languages via `Main.lang`
 		var str = Std.string(num);
 		var commas = Std.int((str.length - 1) / 3);
 		var index = str.length % 3;
@@ -515,15 +406,15 @@ class Utils
 		return Assets.getText(Paths.get(file_name));
 
 	/**Mask for Std.parseInt that also handles hex*/
-	inline public static function to_int_hex_safe(string:String):Int
-		return string.is_hex() ? '0x$string'.to_int() : string.to_int();
+	inline public static function hex_safe_int(string:String):Int
+		return string.is_hex() ? '0x$string'.int() : string.int();
 
-	/**Mask for Std.parseInt*/
-	inline public static function to_int(string:String):Int
+	/**Mask for Std.parseInt()*/
+	inline public static function int(string:String):Int
 		return Std.parseInt(string);
 
-	/**Mask for Std.parseInt*/
-	inline public static function to_float(string:String):Float
+	/**Mask for Std.parseFloat()*/
+	inline public static function float(string:String):Float
 		return Std.parseFloat(string);
 
 	/**
@@ -535,18 +426,11 @@ class Utils
 		return regexp.match(string);
 	}
 
-	public static function newRan(seed:Int = -999):FlxRandom
-	{
-		if (seed == -999)
-			return new FlxRandom();
-		return new FlxRandom(seed);
-	}
-
 	/***moves anything! Put it in Update() code. Remember to turn on Debug to see trace outputs!***/
-	public static function moveAdjust(target:FlxSpriteExt, name:String = "", addString:String = "")
+	public static function move_and_adjust(target:FlxSpriteExt, name:String = "", addString:String = "")
 	{
-		if (target.moveAdjustOrg == null)
-			target.moveAdjustOrg = new FlxPoint(target.x, target.y);
+		if (target.move_and_adjust_org == null)
+			target.move_and_adjust_org = new FlxPoint(target.x, target.y);
 
 		if (FlxG.keys.anyJustPressed(["LEFT"]))
 			target.x--;
@@ -564,12 +448,12 @@ class Utils
 		{
 			if (addString != "")
 				addString += "\n";
-			trace('${addString}${name}}\nsetPosition(${target.x}, ${target.y});\ndiff(${target.moveAdjustOrg.x - target.x}, ${target.moveAdjustOrg.y - target.y})');
+			trace('${addString}${name}}\nsetPosition(${target.x}, ${target.y});\ndiff(${target.move_and_adjust_org.x - target.x}, ${target.move_and_adjust_org.y - target.y})');
 		}
 	}
 
-	/***gets the line at the maximum of the flxpoint***/
-	public static function getMaxLine(p1:FlxPoint, p2:FlxPoint, rect:FlxRect):FlxPoint
+	/***Gets the line at the maximum of the FlxPoint***/
+	public static function max_line(p1:FlxPoint, p2:FlxPoint, rect:FlxRect):FlxPoint
 	{
 		if (p1.x == p2.x)
 			p1.x = p1.x + .1; // simple div 0 chance remover
@@ -584,30 +468,14 @@ class Utils
 			targetY = rect.height;
 		var xx:Float = (-yIntercept + targetY) / slope;
 
-		// debug(p1, p2, slope, yIntercept, rect.y, rect.y, xx);
 		return FlxPoint.weak(xx, targetY);
 	}
 
 	/**
-		Finds an object of type, make sure to have the package in the string
+		Finds all objects of type and returns, make sure to have the package in the string like 'example.whatever.Object'
 		@return the object found, if any
 	**/
-	public static function findObjectInGroup<T:FlxObject>(type:String, group:FlxTypedGroup<T>):T
-	{
-		// debug(group.length);
-		for (sprite in group)
-		{
-			if (Type.getClassName(Type.getClass(sprite)) == type)
-				return sprite;
-		}
-		return null;
-	}
-
-	/**
-		Finds an object of type, make sure to have the package in the string
-		@return the object found, if any
-	**/
-	public static function findObjectsInGroup<T:FlxObject>(type:String, group:FlxTypedGroup<T>):Array<T>
+	public inline function get_objects_of_type<T:FlxObject>(group:FlxTypedGroup<T>, type:String):Array<T>
 	{
 		var list:Array<T> = [];
 		for (sprite in group)
@@ -646,94 +514,6 @@ class Utils
 
 	public static inline function last<T>(a:Array<T>):T
 		return a[a.length - 1];
-
-	public static inline function concat_one(arr:Array<String>, add):Array<String>
-		return arr.concat([add]);
-
-	public static inline function mystery_text(text:String, mystery_mask_char:String = "?")
-	{
-		for (i in 0...text.length)
-		{
-			var char:String = text.charAt(i);
-			if (char != " " && char != "-" && char != mystery_mask_char)
-				text = text.replace(char, mystery_mask_char);
-		}
-		return text;
-	}
-
-	public static inline function parseIntDefault(input:String, default_val:Int):Int
-	{
-		var result:Int = default_val;
-
-		if (input != null && input.length > 0)
-			result = Std.parseInt(input);
-
-		return result;
-	}
-
-	#if black_scan
-	public static function scanForOffBlackPixels(threshold:FlxColor = 0xff202020)
-	{
-		// threshhold = 0xff010101;
-
-		final tred = threshold.red;
-		final tgreen = threshold.green;
-		final tblue = threshold.blue;
-
-		#if sys
-		final encoderOptions = new PNGEncoderOptions();
-		#end
-
-		trace('~~~~ Checking all Images for Off-Black pixels with threshold color $threshold.. This may take a moment... ~~~~');
-
-		final images = Assets.list(IMAGE);
-		for (image in images)
-		{
-			if (image.indexOf("assets/") <= -1)
-				continue;
-
-			trace('Checking "${image}" (${images.indexOf(image)}/${images.length})...');
-
-			var png = Assets.getBitmapData(image, false);
-			if (png != null)
-			{
-				var count = 0;
-				var clone = png.clone();
-				for (x in 0...Std.int(clone.rect.width))
-				{
-					for (y in 0...Std.int(clone.rect.height))
-					{
-						final pixel:FlxColor = clone.getPixel32(x, y);
-						final pred = pixel.red;
-						final pgreen = pixel.green;
-						final pblue = pixel.blue;
-						if ((pred < tred && pgreen < tgreen && pblue < tblue) && (pred > 0 || pgreen > 0 || pblue > 0))
-						{
-							clone.setPixel32(x, y, 0xff000000);
-							count++;
-						}
-					}
-				}
-				if (count > 0)
-				{
-					trace('Image "${image}" has $count Off-Black Pixels');
-					#if sys
-					var assets_path:String = "../../../";
-					var path = '${assets_path}/${image}';
-
-					trace('Saving fixed version to "$path"');
-
-					sys.io.File.saveBytes(path, clone.encode(clone.rect, encoderOptions));
-					#end
-				}
-
-				clone.dispose();
-			}
-		}
-
-		trace('~~~~ All Images scanned ~~~~');
-	}
-	#end
 
 	/**
 	 * Gets a random key for a given map that's not been assigned yet
@@ -780,21 +560,6 @@ class Utils
 			}
 	}
 
-	public static function tweenCamOffset(?x:Float, ?y:Float, duration:Float = 2.0, ?ease:EaseFunction)
-	{
-		var offset = FlxG.camera.targetOffset;
-		if (x == null)
-			x = offset.x;
-
-		if (y == null)
-			y = offset.y;
-
-		if (ease == null)
-			ease = FlxEase.cubeInOut;
-
-		FlxTween.tween(offset, {x: x, y: y}, duration, {ease: ease});
-	}
-
 	static var kebab_cache:Map<String, String> = new Map<String, String>();
 
 	public static inline function kebab(string:String):String
@@ -810,19 +575,13 @@ class Utils
 		return post_string;
 	}
 
-	public static inline function flip_towards(source:FlxSpriteExt, actor_to_flip_towards:FlxSpriteExt)
-		source.flipX = Utils.dirMod(source, actor_to_flip_towards) < 0;
-
 	/**
 	 * Returns all entities in a FlxTypedGroup, usually used for locating all listeners 
 	 * @param group TypedGroup to check in
 	 * @param entity_ids group of entity ids
 	 * @return Similarly type *Array* with iids
 	 */
-	inline function get_listening_entities<T:FlxSpriteExt>(group:FlxTypedGroup<T>, entity_ids:Array<String>):Array<T>
-		return group.members.filter(entity -> entity_ids.contains(entity.iid));
-
-	public static function get_listening_entities_static<T:FlxSpriteExt>(group:FlxTypedGroup<T>, entity_ids:Array<String>):Array<T>
+	public inline function get_listening_entities<T:FlxSpriteExt>(group:FlxTypedGroup<T>, entity_ids:Array<String>):Array<T>
 		return group.members.filter(entity -> entity_ids.contains(entity.iid));
 
 	public static function string_to_point(input:String):FlxPoint
@@ -831,36 +590,6 @@ class Utils
 		if (split.length == 1)
 			return FlxPoint.get(Std.parseFloat(split[0]), 0);
 		return FlxPoint.get(Std.parseFloat(split[0]), Std.parseFloat(split[1]));
-	}
-
-	/**
-	 * Credits to zsolardev
-	 * @param default_frames Base frame count
-	 * @param minimum_frames Minimum frame count
-	 * @param dist_from_target Dist from target
-	 * @param max_dist Over this value, and result will be default_frames
-	 * @return Int
-	 */
-	public static function time_adjusted_frames(default_frames:Int, minimum_frames:Int = 10, dist_from_target:Float, max_dist:Float):Int
-	{
-		var max_time:Int = default_frames.frames_to_ms();
-		var minimum_time:Int = minimum_frames.frames_to_ms();
-
-		var time:Int = max_time;
-
-		if (minimum_time > max_time)
-			minimum_time = max_time;
-
-		// Is the player in range of the enemy?
-		if (dist_from_target < max_dist)
-		{
-			time = Std.int((time / max_dist) * (max_time - minimum_time) + minimum_time);
-			// linearly scaling frames into a 50-10 range
-		}
-
-		trace(max_time, minimum_time, time, (time / max_dist), (max_time - minimum_time), (time / max_dist) * (max_time - minimum_time));
-
-		return time;
 	}
 
 	public static inline function ms_to_frames(ms:Float):Int
@@ -1361,4 +1090,16 @@ enum InflectCase
 	ScreamingSnakeCase; // UnderUpper
 	OxfordCase; // UnderProper
 	// Custom(sep:String, wordFn:String->String, phraseFn:String->String)
+}
+
+enum abstract ShakePreset(String) from String to String
+{
+	final DAMAGE = "damage";
+	final LIGHT = "light";
+	final LIGHTER = "lighter";
+	final LIGHTEST = "lightest";
+	final LIGHT_LONG = "light-long";
+	final RUMBLE = "rumble";
+	final EXPLOSION = "explosion";
+	final GROUNDPOUND = "groundpound";
 }

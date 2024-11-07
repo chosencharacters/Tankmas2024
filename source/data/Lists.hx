@@ -343,10 +343,10 @@ class Lists
 			data.default_bg = xml.get("bg");
 
 		if (xml.get("main_color") != null)
-			data.main_color = xml.get("main_color").to_int_hex_safe() + 0xFF000000;
+			data.main_color = xml.get("main_color").hex_safe_int() + 0xFF000000;
 
 		if (xml.get("sub_color") != null)
-			data.sub_color = '0xff${xml.get("sub_color")}'.to_int_hex_safe() + 0xFF000000;
+			data.sub_color = '0xff${xml.get("sub_color")}'.hex_safe_int() + 0xFF000000;
 
 		var maxFrame:Int = 0;
 

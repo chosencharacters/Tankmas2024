@@ -45,7 +45,7 @@ class FlxSpriteExt extends FlxSprite
 	public var ran:FlxRandom = new FlxRandom();
 
 	/**Sprite this is tracking*/
-	public var tracking_sprite:FlxSpriteExt;
+	public var tracking_target:FlxSpriteExt;
 
 	public var always_on_screen:Bool = false;
 
@@ -54,9 +54,6 @@ class FlxSpriteExt extends FlxSprite
 
 	/**Sprite should be flipped? Only used by NPCs so far*/
 	var reverse_mod:Bool = false;
-
-	/**an attached hitbox */
-	var hbox:FlxSpriteExt;
 
 	public var on(default, set):Bool = true;
 	public var off(get, set):Bool;
@@ -72,9 +69,7 @@ class FlxSpriteExt extends FlxSprite
 
 	public var level_id:String = "";
 
-	public var moves_override(get, default):Bool = false;
-
-	public var moveAdjustOrg:FlxPoint;
+	public var move_and_adjust_org:FlxPoint;
 
 	public var on_update:Void->Void;
 
@@ -105,6 +100,9 @@ class FlxSpriteExt extends FlxSprite
 
 	var trace_on_off_flags:Bool = false;
 
+	/**Midpoint, shorthand for getMidpoint(FlxPoint.weak())*/
+	public var mp(get, default):FlxPoint;
+
 	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset)
 	{
 		super(X, Y, SimpleGraphic);
@@ -119,24 +117,13 @@ class FlxSpriteExt extends FlxSprite
 
 	override function updateMotion(elapsed:Float)
 	{
-		if (moves_override)
-			return;
-		if (tracking_sprite != null && track_sprite_options != null && track_sprite_options.hard_track)
+		if (tracking_target != null)
 		{
-			setPosition(tracking_sprite.x - tracking_sprite.offset.x, tracking_sprite.y - tracking_sprite.offset.y);
+			setPosition(tracking_target.x - tracking_target.offset.x, tracking_target.y - tracking_target.offset.y);
 			return;
 		}
 		super.updateMotion(elapsed);
 	}
-
-	function get_moves_override()
-		return false;
-
-	/**
-	 * Non-complicated source version of FlxSprite.isOnScreen()
-	 */
-	public function simpleIsOnScreen(?camera:FlxCamera):Bool
-		return super.isOnScreen(camera);
 
 	/*
 	 * Shorthand for animation
@@ -153,10 +140,7 @@ class FlxSpriteExt extends FlxSprite
 			trace('[${type}] New Animation: ${get_cur_anim_name()} -> ${new_anim} [a: $alpha] [v: $visible]');
 		#end
 
-		if (hbox != null)
-			hbox.anim(new_anim);
-
-		animation.play(new_anim);
+		actually_play_the_animation(new_anim);
 
 		if (animation_switching)
 		{
@@ -167,6 +151,10 @@ class FlxSpriteExt extends FlxSprite
 		return this;
 	}
 
+	@:noCompletion
+	function actually_play_the_animation(new_anim:String)
+		animation.play(new_anim);
+
 	/*Would this be a new animation?*/
 	public function new_animation_check(new_anim:String)
 		return new_anim != last_anim;
@@ -174,7 +162,7 @@ class FlxSpriteExt extends FlxSprite
 	function get_cur_anim_name():String
 		return animation.name;
 
-	var last_anim(get, never):String;
+	public var last_anim(get, never):String;
 
 	function get_last_anim():String
 		return anim_history.last();
@@ -198,8 +186,8 @@ class FlxSpriteExt extends FlxSprite
 
 		elapsedSave = elapsed;
 
-		if (tracking_sprite != null)
-			update_tracking_sprite();
+		if (tracking_target != null)
+			update_tracking_target();
 
 		is_on_new_frame = false;
 
@@ -585,36 +573,30 @@ class FlxSpriteExt extends FlxSprite
 	 * @param object the sprite or object
 	 * @return Float the distance
 	 */
-	public function getDistanceSprite(object:FlxObject):Float
-	{
-		return Utils.getDistance(mp(), object.getMidpoint(FlxPoint.weak()));
-	}
+	public function distance_to_sprite(object:FlxObject):Float
+		return mp.distance(object.getMidpoint(FlxPoint.weak()));
 
 	/**
 	 * Shorthand for getting X distance to a sprite (well, object, but who uses FlxObject anyways)
 	 * @param object the sprite or object
 	 * @return Float the distance
 	 */
-	public function getDistanceSpriteX(object:FlxObject):Float
-		return Utils.getDistanceX(mp(), object.getMidpoint(FlxPoint.weak()));
+	public function distance_to_sprite_x(object:FlxObject):Float
+		return mp.distance_x(object.getMidpoint(FlxPoint.weak()));
 
 	/**
 	 * Shorthand for getting Y distance to a sprite (well, object, but who uses FlxObject anyways)
 	 * @param object the sprite or object
 	 * @return Float the distance
 	 */
-	public function getDistanceSpriteY(object:FlxObject):Float
-		return Utils.getDistanceY(mp(), object.getMidpoint(FlxPoint.weak()));
+	public function distance_to_sprite_y(object:FlxObject):Float
+		return mp.distance_y(object.getMidpoint(FlxPoint.weak()));
 
 	/**return total distance between this sprite's midpoint and another point**/
-	public function getDistanceTo(P2:FlxPoint):Float // distance two points
-		return Utils.getDistance(mp(), P2);
+	public function distance(P2:FlxPoint):Float // distance two points
+		return mp.distance(P2);
 
-	/**
-	 * Shorthand for getMidpoint(FlxPoint.weak())
-	 * @return FlxPoint
-	 */
-	public function mp():FlxPoint
+	public function get_mp():FlxPoint
 		return getMidpoint(FlxPoint.weak());
 
 	var track_sprite_options:TrackSpriteOptions;
@@ -625,46 +607,39 @@ class FlxSpriteExt extends FlxSprite
 	 */
 	public function track_sprite(target_sprite:FlxSpriteExt, ?options:TrackSpriteOptions)
 	{
-		tracking_sprite = target_sprite;
+		tracking_target = target_sprite;
 		track_sprite_options = options;
-		update_tracking_sprite();
+		update_tracking_target();
 	}
 
-	/**
-	 * Shortcut for track_sprite(new_sprite, {hard_track: true, track_offset: true});
-	 * @param new_sprite the sprite to follow
-	 */
-	public function full_track_sprite(target_sprite:FlxSpriteExt)
-		track_sprite(this, {hard_track: true, track_offset: false});
-
-	public function update_tracking_sprite()
+	public function update_tracking_target()
 	{
-		if (tracking_sprite == null || tracking_sprite.velocity == null)
+		if (tracking_target == null || tracking_target.velocity == null)
 			return;
 		try
 		{
-			flipX = tracking_sprite.flipX;
-			velocity.copyFrom(tracking_sprite.velocity);
-			drag.copyFrom(tracking_sprite.drag);
-			acceleration.copyFrom(tracking_sprite.acceleration);
-			flipX = tracking_sprite.flipX;
-			x = tracking_sprite.x - tracking_sprite.offset.x;
-			y = tracking_sprite.y - tracking_sprite.offset.y;
+			flipX = tracking_target.flipX;
+			velocity.copyFrom(tracking_target.velocity);
+			drag.copyFrom(tracking_target.drag);
+			acceleration.copyFrom(tracking_target.acceleration);
+			flipX = tracking_target.flipX;
+			x = tracking_target.x - tracking_target.offset.x;
+			y = tracking_target.y - tracking_target.offset.y;
 
 			if (track_sprite_options != null)
 			{
 				if (track_sprite_options.track_offset)
-					offset.copyFrom(tracking_sprite.offset);
+					offset.copyFrom(tracking_target.offset);
 
 				if (track_sprite_options.reverse_flip)
-					flipX = !tracking_sprite.flipX;
+					flipX = !tracking_target.flipX;
 			}
 		}
 		catch (e)
 		{
 			#if dev_trace
 			trace(e);
-			trace(tracking_sprite.type, velocity);
+			trace(tracking_target.type, velocity);
 			#end
 		}
 	}
@@ -703,17 +678,6 @@ class FlxSpriteExt extends FlxSprite
 		return false;
 	}
 
-	function return_hitbox_clone(?set_visible:Bool = true):FlxSpriteExt
-	{
-		hbox = new FlxSpriteExt(x, y);
-
-		hbox.loadAllFromAnimationSet(type + "-hitbox");
-		hbox.loadAnimsFromAnimationSet(type);
-		hbox.track_sprite(this);
-		hbox.visible = set_visible;
-
-		return hbox;
-	}
 
 	public function get_iid():String
 	{
@@ -770,7 +734,7 @@ class FlxSpriteExt extends FlxSprite
 
 	override function kill()
 	{
-		tracking_sprite = null;
+		tracking_target = null;
 		super.kill();
 	}
 
@@ -1041,8 +1005,6 @@ typedef TrackSpriteOptions =
 	/**Reverse the flip (useful for some enemies)*/
 	var ?reverse_flip:Bool;
 
-	/**Overrides UpdateMotion to copy positions of sprite*/
-	var ?hard_track:Bool;
 }
 
 typedef AnimationSoundFrame =

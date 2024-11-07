@@ -51,10 +51,10 @@ class Present extends NGSprite
 	public static function find_present_in_detect_range(player:Player):Present
 	{
 		var presents_in_range:Array<{present:Present, distance:Float}>=[];
-		var mp_player:FlxPoint= player.mp();
+		var mp_player:FlxPoint = player.mp;
 
 		for(present in PlayState.self.presents){
-			var distance:Float=Utils.getDistance(present.mp(),player.mp());
+			var distance:Float = present.mp.distance(player.mp);
 			if(distance<=present.detect_range)
 				presents_in_range.push({present:present, distance:distance});
 		}
