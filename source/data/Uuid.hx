@@ -1,4 +1,4 @@
-package;
+package data;
 
 import haxe.Int64;
 import haxe.crypto.Md5;

@@ -5,11 +5,14 @@ import haxe.http.HttpStatus;
 
 class Client
 {
-	public static function basic_request(url:String, ?on_data:String->Void):Http
+	public static function basic_request(url:String, ?trace_error:Bool = true, ?trace_status:Bool = true, ?on_data:String->Void):Http
 	{
 		var request:Http = new haxe.Http(url);
-		request.onError = on_error;
-		request.onStatus = on_status;
+
+		if (trace_error)
+			request.onError = on_error;
+		if (trace_status)
+			request.onStatus = on_status;
 
 		if (on_data != null)
 			request.onData = on_data;
@@ -17,6 +20,11 @@ class Client
 		return request;
 	}
 
+	/**
+	 * GET function
+	 * @param url target url
+	 * @param on_data return function on success
+	 */
 	public static function get(url:String, ?on_data:String->Void)
 	{
 		var request:Http = basic_request(url, on_data);
@@ -26,6 +34,12 @@ class Client
 		request.request(false);
 	}
 
+	/**
+	 * POST a JSON object
+	 * @param url target url
+	 * @param data JSON object as String
+	 * @param on_data return function on success
+	 */
 	public static function post(url:String, data:String, ?on_data:String->Void)
 	{
 		var request:Http = basic_request(url, on_data);

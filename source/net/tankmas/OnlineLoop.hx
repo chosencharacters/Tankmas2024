@@ -16,12 +16,11 @@ class OnlineLoop
 
 	var last_update_timestamp:Int = 0;
 
-	static var username:String = "squidly";
 
 	public static function post_player(room_id:String, user:Player)
 	{
 		TankmasClient.post_user(room_id, {
-			name: username,
+			name: Main.username,
 			x: user.x.floor(),
 			y: user.y.floor(),
 			costume: user.costume.name
