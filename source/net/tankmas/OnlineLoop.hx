@@ -4,10 +4,7 @@ import data.types.TankmasEnums.Costumes;
 import entities.NetUser;
 import entities.Player;
 import entities.base.BaseUser;
-import haxe.Json;
-import net.tankmas.TankmasClient.NetUserDef;
 import net.tankmas.TankmasClient;
-import openfl.net.dns.AAAARecord;
 
 /**
  * The main game online update loop, yea!
