@@ -13,7 +13,7 @@ typedef NetUserDef =
 
 class TankmasClient
 {
-	static var address:String = 'http://127.0.0.1:5000';
+	static var address:String = #if test_local 'http://127.0.0.1:5000' #else "http://78.108.218.30:25567" #end;
 
 	public static function get_users_in_room(room_id:String, ?on_complete:String->Void)
 	{

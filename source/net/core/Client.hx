@@ -9,10 +9,12 @@ class Client
 	{
 		var request:Http = new haxe.Http(url);
 
+		#if trace_net
 		if (trace_error)
 			request.onError = on_error;
 		if (trace_status)
 			request.onStatus = on_status;
+		#end
 
 		if (on_data != null)
 			request.onData = on_data;
@@ -29,7 +31,9 @@ class Client
 	{
 		var request:Http = basic_request(url, on_data);
 
+		#if trace_net
 		trace('GET <- $url');
+		#end
 
 		request.request(false);
 	}
@@ -44,7 +48,9 @@ class Client
 	{
 		var request:Http = basic_request(url, on_data);
 
+		#if trace_net
 		trace('POST -> $url>>\tdata = $data');
+		#end
 
 		request.setPostData(data);
 
