@@ -1,3 +1,4 @@
+#if http_client
 package net.tankmas;
 
 import data.Costumes;
@@ -6,12 +7,12 @@ import entities.NetUser;
 import entities.Player;
 import entities.base.BaseUser;
 import net.tankmas.OnlineDefs;
-import net.tankmas.TankmasClient;
+import net.tankmas.deprecated.TankmasClientHttp;
 
 /**
  * The main game online update loop, yea!
  */
-class OnlineLoop
+class OnlineLoopHttp
 {
 	public static var post_tick_rate:Float = 0;
 	public static var get_tick_rate:Float = 0;
@@ -36,8 +37,6 @@ class OnlineLoop
 	{
 		#if offline return; #end
 
-		TankmasClient.login();
-		
 		force_send_full_user = true;
 
 		post_tick_rate = 0;
@@ -76,7 +75,7 @@ class OnlineLoop
 		if (json.x != null || json.y != null || json.costume != null || json.sticker != null)
 		{
 			trace(json);
-			TankmasClient.post_user(room_id, json, after_post_player);
+			TankmasClientHttp.post_user(room_id, json, after_post_player);
 		}
 	}
 
@@ -84,7 +83,7 @@ class OnlineLoop
 	public static function get_room(room_id:String)
 	{
 		get_tick_rate = 999;
-		TankmasClient.get_users_in_room(room_id, update_user_visuals);
+		TankmasClientHttp.get_users_in_room(room_id, update_user_visuals);
 	}
 
 	public static function after_post_player(data:Dynamic)
@@ -130,3 +129,4 @@ class OnlineLoop
 		#end
 	}
 }
+#end

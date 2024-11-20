@@ -1,21 +1,35 @@
 package net.core;
 
-import haxe.Http;
-import haxe.http.HttpStatus;
-import http.HttpClient;
-import http.HttpError;
+import haxe.io.Bytes;
+import hx.ws.Log;
+import hx.ws.WebSocket;
 
 class Client
 {
-	static var client(get, default):HttpClient;
+	static var client(get, default):WebSocket;
 
-	public static function get_client():HttpClient
+	public static function login(url:String)
 	{
 		if (client == null)
 		{
-			client = new HttpClient();
-			client.defaultRequestHeaders = ["Content-Type" => "application/json"];
+			Log.mask = Log.INFO | Log.DEBUG | Log.DATA;
+			client = new WebSocket("ws://localhost:5000");
+			client.additionalHeaders.set("Content-Type", "application/json");
+			client.onopen = logged_in;
+			client.onerror = on_error;
+			#if sys
+			Sys.getChar(true);
+			#end
 		}
+	}
+
+	static function logged_in()
+		message("LOGGED IN!");
+
+	public static function get_client():WebSocket
+	{
+		// if (client == null)
+		// throw "client is null! probably not logged in!";
 		return client;
 	}
 
@@ -26,18 +40,7 @@ class Client
 	 */
 	public static function get(url:String, ?on_data:Dynamic->Void)
 	{
-		#if trace_net
-		trace('GET <- $url');
-		#end
-
-		client.get(url).then(response ->
-		{
-			#if trace_net trace('STATUS: ${response.httpStatus}'); #end
-			on_data(response.bodyAsJson);
-		}, (error:HttpError) ->
-			{
-				on_error(error);
-			});
+		throw "not implemented";
 	}
 
 	/**
@@ -48,23 +51,20 @@ class Client
 	 */
 	public static function post(url:String, data:Dynamic, ?on_data:Dynamic->Void)
 	{
-		#if trace_net
-		trace('POST -> $url>>\tdata = $data');
-		#end
-
-		client.post(url, data).then(response ->
-		{
-			#if trace_net trace('STATUS: ${response.httpStatus}'); #end
-			on_data(response.bodyAsJson);
-		}, (error:HttpError) ->
-			{
-				on_error(error);
-			});
+		throw "not implemented";
 	}
 
-	static function on_error(error:HttpError)
+	public static function send(type:String, data:Dynamic)
+	{
+		client.send({type: String, data: data});
+	}
+
+	public static function message(text:String)
+		send("message", {message: text});
+
+	static function on_error(error:Dynamic)
 		#if trace_net
-		trace('ERROR ${error.httpStatus}: ${error.message}');
+		trace('CLIENT ERROR: ${error}');
 		#else
 		false;
 		#end

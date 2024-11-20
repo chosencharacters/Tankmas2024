@@ -4,8 +4,8 @@ import data.Costumes;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.PlayerAnimation;
 import entities.base.BaseUser;
+import net.tankmas.OnlineDefs;
 import net.tankmas.OnlineLoop;
-import net.tankmas.TankmasClient.NetUserDef;
 
 class Player extends BaseUser
 {
@@ -154,7 +154,6 @@ class Player extends BaseUser
 		if (last_update_json.costume != costume.name || force_send_full_user)
 			def.costume = costume.name;
 
-		trace(queued_online_sticker);
 		if (queued_online_sticker != null)
 		{
 			def.sticker = {timestamp: OnlineLoop.current_timestamp, name: queued_online_sticker};
