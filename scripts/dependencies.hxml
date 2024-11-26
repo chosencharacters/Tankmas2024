@@ -20,4 +20,4 @@
 -lib unifill:0.4.1
 -lib zerolib:0.8.1
 -lib zerolib-flixel:0.8.1
--lib git:git:https://github.com/snowkit/gif
+-lib gif:git:https://github.com/snowkit/gif

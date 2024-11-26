@@ -1,0 +1,36 @@
+# @format
+
+name: CI
+
+on: [push, pull_request, workflow_dispatch, repository_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - run: sudo apt-get update
+      - uses: lix-pm/setup-lix@master
+      - uses: HaxeFlixel/setup-flixel@master
+        with:
+          haxe-version: stable
+          flixel-versions: release
+          target: html5
+      - run: haxelib install ldtk-haxe-api 1.5.3-rc.1
+      - run: haxelib git gif https://github.com/snowkit/gif
+      - run: haxelib install deepnightLibs
+      - run: haxelib install json2object
+      - run: haxelib install git http C:\HaxeToolkit\haxe\lib\core-haxe\core-haxe\comms\http
+      - run: haxelib install git rest C:\HaxeToolkit\haxe\lib\core-haxe\core-haxe\comms\rest
+      - run: haxelib install flixel-addons
+      - name: Build
+        run: haxelib run lime build html5 -final
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          publish_dir: ./export/html5/bin
+          force_orphan: true
+        if: github.ref == 'refs/heads/master'

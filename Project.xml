@@ -36,7 +36,7 @@
 		<assets path="assets" embed="false" exclude="*.gif"/>
 	</section>
 
-	<section if="js">
+	<section if="js||html5">
 		<assets path="assets" embed="true" exclude="*.gif"/>
 	</section>
 
