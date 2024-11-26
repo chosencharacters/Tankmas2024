@@ -22,9 +22,10 @@ jobs:
       - run: haxelib git gif https://github.com/snowkit/gif
       - run: haxelib install deepnightLibs
       - run: haxelib install json2object
-      - run: haxelib install git http C:\HaxeToolkit\haxe\lib\core-haxe\core-haxe\comms\http
-      - run: haxelib install git rest C:\HaxeToolkit\haxe\lib\core-haxe\core-haxe\comms\rest
+      - run: haxelib install git http https://github.com/core-haxe/http
+      - run: haxelib install git rest https://github.com/core-haxe/rest
       - run: haxelib install flixel-addons
+      - run: haxelib install ase
       - name: Build
         run: haxelib run lime build html5 -final
       - name: Deploy
