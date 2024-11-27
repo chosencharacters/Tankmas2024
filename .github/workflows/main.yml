@@ -27,7 +27,7 @@ jobs:
       - run: haxelib install json2object
       - run: haxelib install ase
       - name: Build
-        run: haxelib run lime build html5 -final
+        run: haxelib run lime build html5 -final -Ddev -Drandom_username -Dtest_local
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
