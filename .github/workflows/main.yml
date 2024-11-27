@@ -18,13 +18,13 @@ jobs:
           haxe-version: stable
           flixel-versions: release
           target: html5
-      - run: haxelib install ldtk-haxe-api 1.5.3-rc.1
-      - run: haxelib git gif https://github.com/snowkit/gif
-      - run: haxelib install deepnightLibs
-      - run: haxelib install json2object
-      - run: haxelib install git http https://github.com/core-haxe/http
-      - run: haxelib install git rest https://github.com/core-haxe/rest
       - run: haxelib install flixel-addons
+      - run: haxelib git http https://github.com/core-haxe/http
+      - run: haxelib git rest https://github.com/core-haxe/rest
+      - run: haxelib install ldtk-haxe-api 1.5.3-rc.1
+      - run: haxelib install deepnightLibs
+      - run: haxelib git gif https://github.com/snowkit/gif
+      - run: haxelib install json2object
       - run: haxelib install ase
       - name: Build
         run: haxelib run lime build html5 -final
