@@ -19,9 +19,9 @@ jobs:
           flixel-versions: release
           target: html5
       - run: haxelib install flixel-addons
-      - run: haxelib git logging https://github.com/core-haxe/logging
-      - run: haxelib git queues-core https://github.com/core-haxe/queues-core
-      - run: haxelib git promises https://github.com/core-haxe/promises
+      - run: haxelib git logging https://github.com/core-haxe/logging --skip-dependencies
+      - run: haxelib git queues-core https://github.com/core-haxe/queues-core --skip-dependencies
+      - run: haxelib git promises https://github.com/core-haxe/promises --skip-dependencies
       - run: haxelib git http https://github.com/core-haxe/http --skip-dependencies
       - run: haxelib install ldtk-haxe-api 1.5.3-rc.1
       - run: haxelib install deepnightLibs
