@@ -220,7 +220,6 @@ class BaseSelectSheet extends FlxGroupExt<FlxSprite>
 			current_sheet = current_sheet - 1;
 		if (FlxG.mouse.overlaps(backTab))
 		{
-			trace(type, backTab);
 			if (backTab.y != 110)
 				backTab.y = 110;
 			if (FlxG.mouse.justPressed)
