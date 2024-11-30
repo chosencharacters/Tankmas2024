@@ -9,10 +9,10 @@ import flixel.addons.effects.chainable.FlxOutlineEffect;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxTimer;
-import squid.ext.FlxGroupExt;
+import squid.ext.FlxTypedGroupExt;
 import ui.sheets.defs.SheetDefs;
 
-class BaseSelectSheet extends FlxGroupExt<FlxSprite>
+class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 {
 	var type:SheetType;
 

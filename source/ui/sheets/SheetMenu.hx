@@ -1,6 +1,6 @@
 package ui.sheets;
 
-import squid.ext.FlxGroupExt;
+import squid.ext.FlxTypedGroupExt;
 import states.substates.SheetSubstate;
 
 enum SheetTab
@@ -9,7 +9,7 @@ enum SheetTab
 	STICKERS;
 }
 
-class SheetMenu extends FlxGroupExt<BaseSelectSheet>
+class SheetMenu extends FlxTypedGroupExt<BaseSelectSheet>
 {
 	var costumes:CostumeSelectSheet;
 	var stickers:StickerSelectSheet;

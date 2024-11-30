@@ -16,6 +16,7 @@ import levels.TankmasLevel;
 import minigames.MinigameHandler;
 import net.tankmas.OnlineLoop;
 import ui.DialogueBox;
+import ui.MainGameOverlay;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
 import zones.Door;
@@ -52,7 +53,7 @@ class PlayState extends BaseState
 
 	public var doors:FlxTypedGroup<Door> = new FlxTypedGroup<Door>();
 
-	public var ui:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
+	public var ui_overlay:MainGameOverlay;
 
 	public var sheet_menu:SheetMenu;
 
@@ -98,7 +99,7 @@ class PlayState extends BaseState
 
 		add(doors);
 
-		add(ui);
+		add(ui_overlay);
 
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
@@ -144,75 +145,6 @@ class PlayState extends BaseState
 			if (Ctrl.jmenu[1])
 				sheet_menu.open();
 
-		for (mem in ui.members)
-			switch (ui.members.indexOf(mem))
-			{
-				case 2:
-					var twen:FlxTween = null;
-					if (FlxG.mouse.overlaps(mem))
-					{
-						if (mem.y == 1030 && twen == null)
-							twen = FlxTween.tween(mem, {y: 880}, 0.3, {
-								onComplete: function(twn:FlxTween)
-								{
-									twen = null;
-									mem.loadGraphic(Paths.get('charselect-mini-full.png'));
-								}
-							});
-						if (FlxG.mouse.justReleased)
-						{
-							if (twen != null)
-								twen.cancel();
-							twen = FlxTween.tween(mem, {y: 1180}, 0.3, {
-								onComplete: (twn:FlxTween) ->
-								{
-									new SheetMenu();
-									twen = null;
-								}
-							});
-						}
-						if (FlxG.mouse.pressed && mem.scale.x != 0.8)
-							mem.scale.set(0.8, 0.8);
-					}
-					else
-					{
-						if (mem.scale.x != 1)
-							mem.scale.set(1, 1);
-						if ((mem.y == 880 || mem.y == 1180) && twen == null)
-							twen = FlxTween.tween(mem, {y: 1030}, 0.3, {
-								onComplete: function(twn:FlxTween)
-								{
-									twen = null;
-									mem.loadGraphic(Paths.get('charselect-mini-bg.png'));
-								}
-							});
-					}
-
-				case 1:
-					if (FlxG.mouse.overlaps(mem))
-					{
-						// if(FlxG.mouse.justReleased) openSubState(new OptionsSubState());
-						if (FlxG.mouse.pressed && mem.scale.x != 0.8)
-							mem.scale.set(0.8, 0.8)
-						else if (!FlxG.mouse.pressed && mem.scale.x != 1.1)
-							mem.scale.set(1.1, 1.1);
-					}
-					else if (mem.scale.x != 1)
-						mem.scale.set(1, 1);
-
-				case 0:
-					if (FlxG.mouse.overlaps(mem))
-					{
-						if (FlxG.mouse.justReleased)
-							player.use_sticker(player.sticker);
-						if (FlxG.mouse.pressed && mem.scale.x != 0.8)
-							mem.scale.set(0.8, 0.8)
-						else if (!FlxG.mouse.pressed && mem.scale.x != 1.1)
-							mem.scale.set(1.1, 1.1);
-					}
-					else if (mem.scale.x != 1)
-						mem.scale.set(1, 1);
-			}
 		handle_collisions();
 
 		if (tags.members[0].visible != BaseState.showUsers)
@@ -238,12 +170,6 @@ class PlayState extends BaseState
 
 	function make_ui()
 	{
-		ui.add(new FlxSpriteExt(20, 20, Paths.get('heart.png')));
-		ui.add(new FlxSpriteExt(1708, 20, Paths.get('settings.png')));
-		ui.add(new FlxSpriteExt(1520, 1030, Paths.get('charselect-mini-bg.png')));
-		ui.forEach((spr:FlxSpriteExt) ->
-		{
-			spr.scrollFactor.set(0, 0);
-		});
+		ui_overlay = new MainGameOverlay();
 	}
 }

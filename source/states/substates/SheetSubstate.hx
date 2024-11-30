@@ -51,6 +51,7 @@ class SheetSubstate extends FlxSubStateExt
 	{
 		sheet_menu.kill();
 		self = null;
+		PlayState.self.ui_overlay.reveal_top_ui();
 		super.close();
 	}
 }

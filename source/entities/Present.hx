@@ -76,7 +76,6 @@ class Present extends Interactable
 			sprite_anim.anim(PresentAnimation.OPENED);
 			sstate(OPENED);
 		}
-		trace(state);
 	}
 
 	override function update(elapsed:Float)

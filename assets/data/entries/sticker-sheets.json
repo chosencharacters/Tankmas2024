@@ -1,7 +1,7 @@
 {
     "sheets": [
         {
-            "graphic": "stickersheet-emotes-1",
+            "graphic": "emotes-back-red",
             "items": [
                 {
                     "name": "toasty-warm"
@@ -30,6 +30,7 @@
                 }
             ]
          }, {
+            "graphic": "emotes-back-blue",
             "items": [
                 {
                     "name": "cashy-peace"

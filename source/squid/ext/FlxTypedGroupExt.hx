@@ -2,7 +2,7 @@ package squid.ext;
 
 import flixel.FlxBasic;
 
-class FlxGroupExt<T:FlxBasic> extends FlxTypedGroup<T>
+class FlxTypedGroupExt<T:FlxBasic> extends FlxTypedGroup<T>
 {
 	var state:String = "";
 	var tick:Int = 0;

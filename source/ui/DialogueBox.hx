@@ -4,10 +4,10 @@ import data.loaders.NPCLoader;
 import data.types.TankmasFontTypes;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
-import squid.ext.FlxGroupExt;
+import squid.ext.FlxTypedGroupExt;
 import squid.ui.FlxTextBMP;
 
-class DialogueBox extends FlxGroupExt<FlxSprite>
+class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 {
 	#if ttf
 	var text:FlxText;

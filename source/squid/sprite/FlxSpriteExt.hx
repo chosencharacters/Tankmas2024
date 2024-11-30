@@ -100,6 +100,8 @@ class FlxSpriteExt extends FlxSprite
 
 	var trace_on_off_flags:Bool = false;
 
+	public var tween(default, set):FlxTween;
+
 	/**Midpoint, shorthand for getMidpoint(FlxPoint.weak())*/
 	public var mp(get, default):FlxPoint;
 
@@ -548,8 +550,8 @@ class FlxSpriteExt extends FlxSprite
 			return false;
 
 		tick = reset_tick ? tick : 0;
-			state = new_state;
-			state_history.push(new_state);
+		state = new_state;
+		state_history.push(new_state);
 		on_state_change != null ? on_state_change() : null;
 		return true;
 	}
@@ -677,7 +679,6 @@ class FlxSpriteExt extends FlxSprite
 		return false;
 	}
 
-
 	public function get_iid():String
 	{
 		if (iid == null)
@@ -733,6 +734,11 @@ class FlxSpriteExt extends FlxSprite
 
 	override function kill()
 	{
+		if (tween != null)
+		{
+			tween.cancel();
+			tween.destroy();
+		}
 		tracking_target = null;
 		super.kill();
 	}
@@ -994,6 +1000,16 @@ class FlxSpriteExt extends FlxSprite
 
 	function get_right_x():Float
 		return x + width;
+
+	function set_tween(new_tween:FlxTween):FlxTween
+	{
+		if (tween != null)
+		{
+			tween.cancel();
+			tween.destroy();
+		}
+		return tween = new_tween;
+	}
 }
 
 typedef TrackSpriteOptions =
@@ -1003,7 +1019,6 @@ typedef TrackSpriteOptions =
 
 	/**Reverse the flip (useful for some enemies)*/
 	var ?reverse_flip:Bool;
-
 }
 
 typedef AnimationSoundFrame =
