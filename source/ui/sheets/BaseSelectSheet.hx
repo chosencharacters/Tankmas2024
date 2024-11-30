@@ -2,10 +2,8 @@ package ui.sheets;
 
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.StickerDef;
-import entities.base.NGSprite;
 import flixel.FlxBasic;
 import flixel.addons.effects.chainable.FlxEffectSprite;
-import flixel.addons.effects.chainable.FlxOutlineEffect;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxTimer;
@@ -56,7 +54,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 		add(descGroup);
 
-		final notepad:FlxSpriteExt = new FlxSpriteExt(1490, 300, Paths.get("stickersheet-note.png"));
+		final notepad:FlxSpriteExt = new FlxSpriteExt(1490, 300, Paths.get("sticker-sheet-note.png"));
 		descGroup.add(notepad);
 
 		description = new FlxText(1500, 325, 420, '');

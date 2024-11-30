@@ -2,7 +2,6 @@ package ui;
 
 import data.loaders.NPCLoader;
 import data.types.TankmasFontTypes;
-import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 import squid.ui.FlxTextBMP;

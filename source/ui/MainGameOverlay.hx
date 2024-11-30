@@ -11,8 +11,8 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 	var settings:FlxSpriteExt;
 	var sticker_menu:FlxSpriteExt;
 
-	var hide_speed:Float = 0.5;
-	var reveal_speed:Float = 0.5;
+	var hide_speed:Float = 0.35;
+	var reveal_speed:Float = 0.35;
 
 	var player(get, default):Player;
 
@@ -42,7 +42,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 	public function hide_top_ui(?on_complete:FlxTween->Void)
 	{
 		for (sprite in [emote, settings])
-			sprite.tween = FlxTween.tween(sprite.offset, {y: -emote.height}, hide_speed, {ease: FlxEase.quadInOut});
+			sprite.tween = FlxTween.tween(sprite.offset, {y: sprite.height}, hide_speed, {ease: FlxEase.quadInOut});
 		emote.tween.onComplete = on_complete;
 	}
 

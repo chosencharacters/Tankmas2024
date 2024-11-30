@@ -1,7 +1,7 @@
 #if newgrounds
 package ng;
 
-import io.newgrounds.swf.MedalPopup;
+import io.newgrounds.Call.CallError;
 import io.newgrounds.Call.CallError;
 import io.newgrounds.NG;
 import io.newgrounds.NGLite;
@@ -10,9 +10,9 @@ import io.newgrounds.objects.Medal;
 import io.newgrounds.objects.ScoreBoard;
 import io.newgrounds.objects.events.Outcome;
 import io.newgrounds.objects.events.Result.MedalListData;
+import io.newgrounds.swf.MedalPopup;
 import io.newgrounds.swf.ScoreBrowser;
 import lime.tools.GUID;
-import io.newgrounds.Call.CallError;
 
 class NewgroundsHandler
 {
