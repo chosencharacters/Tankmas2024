@@ -22,3 +22,4 @@ server
 assets/data/config/ng/ng-secrets.json
 .vscode
 /scripts/openssl
+/dump

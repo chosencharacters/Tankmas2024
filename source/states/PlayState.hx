@@ -17,8 +17,8 @@ import minigames.MinigameHandler;
 import net.tankmas.OnlineLoop;
 import ui.DialogueBox;
 import ui.sheets.*;
-import zones.Door;
 import ui.sheets.SheetMenu;
+import zones.Door;
 
 class PlayState extends BaseState
 {
@@ -79,8 +79,6 @@ class PlayState extends BaseState
 		make_world();
 		make_ui();
 
-		sheet_menu = new SheetMenu();
-
 		add(level_backgrounds);
 		add(levels);
 		add(level_collision);
@@ -97,8 +95,6 @@ class PlayState extends BaseState
 		add(dialogues);
 
 		add(doors);
-
-		add(sheet_menu);
 
 		add(ui);
 
@@ -138,12 +134,8 @@ class PlayState extends BaseState
 		#end
 
 		if (Ctrl.mode.can_open_menus)
-		{
 			if (Ctrl.jmenu[1])
-				new CostumeSelectSheet();
-			if (Ctrl.jemote[1])
-				new StickerSelectSheet();
-		}
+				sheet_menu.open();
 
 		for (mem in ui.members)
 			switch (ui.members.indexOf(mem))
@@ -167,7 +159,7 @@ class PlayState extends BaseState
 							twen = FlxTween.tween(mem, {y: 1180}, 0.3, {
 								onComplete: (twn:FlxTween) ->
 								{
-									new CostumeSelectSheet();
+									new SheetMenu();
 									twen = null;
 								}
 							});

@@ -1,53 +1,62 @@
 package states.substates;
 
 import flixel.FlxBasic;
+import flixel.FlxSubState;
 import flixel.util.FlxTimer;
-import ui.sheets.BaseSelectSheet;
-import ui.sheets.CostumeSelectSheet;
-import ui.sheets.StickerSelectSheet;
+import squid.ext.FlxSubstateExt;
+import ui.sheets.SheetMenu;
 
-class SheetSubstate extends flixel.FlxSubState
+class SheetSubstate extends FlxSubStateExt
 {
-	var sheet_ui:BaseSelectSheet;
+	var sheet_menu:SheetMenu;
 
-	public static var instance:SheetSubstate;
+	public static var self:SheetSubstate;
 
-	override public function new(sheet_ui:BaseSelectSheet)
+	override public function new(sheet_menu:SheetMenu)
 	{
 		super();
 
-		this.sheet_ui = sheet_ui;
+		self = this;
 
-		instance = this;
+		add(this.sheet_menu = sheet_menu);
 
-		add(sheet_ui);
+		sstate(ACTIVE);
 
 		trace("substate exists");
 	}
 
 	override function update(elapsed:Float)
 	{
+		fsm();
+
 		super.update(elapsed);
-		if (Ctrl.jinteract[1] && sheet_ui.canSelect)
-		{
-			sheet_ui.transOut();
-			new FlxTimer().start(1.2, function(tmr:FlxTimer)
-			{
-				close();
-			});
-		}
 	}
 
-	public function reload(type:String)
-	{
-		remove(sheet_ui);
-		sheet_ui = type == "COSTUME" ? new CostumeSelectSheet(false) : new StickerSelectSheet(false);
-		add(sheet_ui);
-	}
+	function fsm()
+		switch (cast(state, State))
+		{
+			default:
+			case ACTIVE:
+				Ctrl.update();
+				if (Ctrl.jinteract[1])
+				{
+					sheet_menu.start_closing();
+					sstate(CLOSING);
+				}
+			case CLOSING:
+				return;
+		}
 
 	override function close()
 	{
-		sheet_ui.kill();
+		sheet_menu.kill();
+		self = null;
 		super.close();
 	}
+}
+
+private enum abstract State(String) from String to String
+{
+	var ACTIVE;
+	var CLOSING;
 }

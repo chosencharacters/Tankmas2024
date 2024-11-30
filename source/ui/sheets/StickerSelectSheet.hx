@@ -11,8 +11,9 @@ class StickerSelectSheet extends BaseSelectSheet
 	public static var saved_selection:Int = 0;
 	public static var seenStickers:Array<String> = [];
 
-	public function new(?forceState:Bool = true) {
-		super(saved_sheet, saved_selection, STICKER, forceState);
+	public function new(menu:SheetMenu, ?forceState:Bool = true)
+	{
+		super(menu, saved_sheet, saved_selection, STICKER);
 		seen = seenStickers;
 	}
 
