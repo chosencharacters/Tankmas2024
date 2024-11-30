@@ -5,7 +5,7 @@ import flixel.system.FlxAssets.FlxSoundAsset;
 class SoundPlayer
 {
 	public static var MUSIC_ALREADY_PLAYING:String = "";
-	public static var MUSIC_VOLUME:Float = .6;
+	public static var MUSIC_VOLUME:Float = 1;
 	public static var SOUND_VOLUME:Float = 1;
 
 	static var ran:FlxRandom;
@@ -17,6 +17,13 @@ class SoundPlayer
 		sound_asset = sound_asset.replace(".ogg", "");
 		var return_sound:FlxSound = FlxG.sound.play(Paths.get('${sound_asset}.ogg'), SOUND_VOLUME * vol);
 		return return_sound;
+	}
+
+	public static function music(music_asset:String, vol:Float = 1)
+	{
+		music_asset = music_asset.replace(".ogg", "");
+		FlxG.sound.playMusic(Paths.get('${music_asset}.ogg'), MUSIC_VOLUME * vol);
+		return FlxG.sound.music;
 	}
 
 	static var slots:Array<Array<String>> = [];

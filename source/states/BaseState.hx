@@ -27,8 +27,12 @@ class BaseState extends FlxState
 			FlxG.game.stage.quality = openfl.display.StageQuality.LOW;
 			// FlxG.stage.window.borderless = true;
 			FIRST_RUN = false;
-			//radio = new RadioManager();
-			FlxG.sound.playMusic(Paths.get('christmasohyeah_stixdevs.ogg'));
+
+			#if !no_radio
+			radio = new RadioManager();
+			#end
+
+			SoundPlayer.music(Paths.get('christmasohyeah-stixdevs.ogg'));
 			SaveManager.init();
 		}
 		else

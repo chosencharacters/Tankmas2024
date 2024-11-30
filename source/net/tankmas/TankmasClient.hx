@@ -3,7 +3,6 @@ package net.tankmas;
 import net.core.Client;
 import net.tankmas.NetDefs;
 
-
 class TankmasClient
 {
 	static var address:String = #if test_local 'http://127.0.0.1:5000' #else "http://78.108.218.30:25567" #end;
@@ -21,6 +20,7 @@ class TankmasClient
 
 		Client.post(url, user, on_complete);
 	}
+
 	public static function get_events(room_id:String, ?on_complete:Dynamic->Void)
 	{
 		var url:String = '$address/rooms/$room_id/events/get';

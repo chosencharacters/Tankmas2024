@@ -21,3 +21,4 @@ server
 .ldtk-backups
 assets/data/config/ng/ng-secrets.json
 .vscode
+/scripts/openssl
