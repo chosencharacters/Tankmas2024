@@ -9,6 +9,8 @@ class Minigame extends Interactable
 {
 	var minigame_id:String;
 
+	var ready_to_play:Bool = false;
+
 	public function new(?X:Float, ?Y:Float, width:Int, height:Int, minigame_id:String)
 	{
 		super(X, Y);
@@ -27,17 +29,18 @@ class Minigame extends Interactable
 		alpha = 0.5;
 	}
 
-	public override function mark_target(mark:Bool)
+	public override function mark_target(mark:Bool):Void
 	{
-		if (mark)
+		ready_to_play = mark;
+	}
+
+	public override function update(elapsed:Float):Void
+	{
+		super.update(elapsed);
+
+		if (ready_to_play && Ctrl.jjump[1])
 		{
-			if (Ctrl.jjump[1])
-			{
-				start_minigame();
-			}
-		}
-		else
-		{
+			start_minigame();
 		}
 	}
 
