@@ -50,37 +50,26 @@ class ButtonBuffer
 			if (key.indexOf("_hold") > -1 && exists(charge_opposites.get(key)))
 				switch (key)
 				{
-					case "action_hold":
-						!Ctrl.action[team] ? set(key, 2) : "pass";
-					case "jump_hold":
-						!Ctrl.jump[team] ? set(key, 2) : "pass";
-					case "special_hold":
-						!Ctrl.special[team] ? set(key, 2) : "pass";
-					case "use_hold":
-						!Ctrl.use[team] ? set(key, 2) : "pass";
+					case "interact_hold":
+						!Ctrl.interact[team] ? set(key, 2) : "pass";
+					case "menu_hold":
+						!Ctrl.menu[team] ? set(key, 2) : "pass";
+					case "emote_hold":
+						!Ctrl.emote[team] ? set(key, 2) : "pass";
 				}
 		}
 
-		buffer_input(Ctrl.jaction[team], "action");
-		buffer_input(Ctrl.jjump[team], "jump");
-		buffer_input(Ctrl.jspecial[team], "special");
-		buffer_input(Ctrl.juse[team], "use");
+		buffer_input(Ctrl.jinteract[team], "interact");
+		buffer_input(Ctrl.jmenu[team], "menu");
+		buffer_input(Ctrl.jemote[team], "emote");
 
-		buffer_input(Ctrl.raction[team], "action_release");
-		buffer_input(Ctrl.rjump[team], "jump_release");
-		buffer_input(Ctrl.rspecial[team], "special_release");
-		buffer_input(Ctrl.ruse[team], "use_release");
+		buffer_input(Ctrl.rinteract[team], "interact_release");
+		buffer_input(Ctrl.rmenu[team], "menu_release");
+		buffer_input(Ctrl.remote[team], "emote_release");
 
-		buffer_input(Ctrl.down[team], "down_hold");
-		buffer_input(Ctrl.action[team], "action_hold");
-		buffer_input(Ctrl.jump[team], "jump_hold");
-		buffer_input(Ctrl.special[team], "special_hold");
-		buffer_input(Ctrl.use[team], "use_hold");
-
-		if (buffer_input(Ctrl.jjump[team] && Ctrl.down[team] || Ctrl.jroll[team], "roll"))
-			remove("jump");
-
-		// trace(cd, team, this);
+		buffer_input(Ctrl.interact[team], "interact_hold");
+		buffer_input(Ctrl.menu[team], "menu_hold");
+		buffer_input(Ctrl.emote[team], "emote_hold");
 	}
 
 	/**

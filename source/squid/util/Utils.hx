@@ -836,7 +836,7 @@ class Inflect
 	 */
 	public static inline function scroll_factor_and_position_adjust(sprite:FlxObject, move_rate:Float = 2)
 	{
-		if (Ctrl.use[1])
+		if (Ctrl.interact[1])
 		{
 			if (Ctrl.up[1])
 				sprite.scrollFactor.y -= 0.01;
@@ -851,7 +851,7 @@ class Inflect
 				sprite.scrollFactor.x += 2;
 		}
 
-		if (Ctrl.special[1])
+		if (Ctrl.menu[1])
 		{
 			if (Ctrl.up[1])
 				sprite.y -= move_rate;
@@ -866,7 +866,7 @@ class Inflect
 				sprite.x += move_rate;
 		}
 
-		if ((Ctrl.use[1] || Ctrl.special[1]) && (Ctrl.down[1] || Ctrl.up[1] || Ctrl.left[1] || Ctrl.right[1]))
+		if ((Ctrl.interact[1] || Ctrl.menu[1]) && (Ctrl.down[1] || Ctrl.up[1] || Ctrl.left[1] || Ctrl.right[1]))
 			trace("position", sprite.y, "scrollFactor", sprite.scrollFactor);
 	}
 

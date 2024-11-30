@@ -40,6 +40,8 @@ class NPC extends Interactable
 				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
 				sprite_anim.anim(PresentAnimation.NEARBY);
+				if (Ctrl.jinteract[1])
+					start_chat();
 			case CHATTING:
 				sprite_anim.anim(PresentAnimation.IDLE);
 		}

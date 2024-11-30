@@ -189,6 +189,11 @@ class MinigameHandler
 
 		// TODO: Restart the radio.
 	}
+
+	public function is_minigame_active():Bool
+	{
+		return active_minigame_id != null;
+	}
 }
 
 typedef MinigameConstructor = () -> FlxState;

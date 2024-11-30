@@ -16,30 +16,27 @@ class Ctrl
 
 	// controls are handled as an array of bools
 	public static var anyB:Array<Bool> = [false];
-	// jump/action
-	public static var jump:Array<Bool> = [false];
-	public static var action:Array<Bool> = [false];
-	public static var special:Array<Bool> = [false];
-	public static var use:Array<Bool> = [false];
+
+	// action
+	public static var interact:Array<Bool> = [false];
+	public static var menu:Array<Bool> = [false];
+	public static var emote:Array<Bool> = [false];
 
 	// just pressed
-	public static var jjump:Array<Bool> = [false];
-	public static var jaction:Array<Bool> = [false];
-	public static var jspecial:Array<Bool> = [false];
-	public static var juse:Array<Bool> = [false];
-	public static var jroll:Array<Bool> = [false];
+	public static var jinteract:Array<Bool> = [false];
+	public static var jmenu:Array<Bool> = [false];
+	public static var jemote:Array<Bool> = [false];
 
 	// just released
-	public static var rjump:Array<Bool> = [false];
-	public static var raction:Array<Bool> = [false];
-	public static var rspecial:Array<Bool> = [false];
-	public static var ruse:Array<Bool> = [false];
+	public static var rinteract:Array<Bool> = [false];
+	public static var rmenu:Array<Bool> = [false];
+	public static var remote:Array<Bool> = [false];
 
 	// directions
-	public static var left:Array<Bool> = [false];
-	public static var right:Array<Bool> = [false];
 	public static var up:Array<Bool> = [false];
 	public static var down:Array<Bool> = [false];
+	public static var left:Array<Bool> = [false];
+	public static var right:Array<Bool> = [false];
 
 	// constant directions (for menus)
 	public static var cleft:Array<Bool> = [false];
@@ -86,7 +83,7 @@ class Ctrl
 	public static function set()
 	{
 		controls = [[""]];
-		for (c in 1...5)
+		for (c in 1...2)
 		{
 			controls.push(Assets.getText("assets/data/config/controls/plyrc" + c + ".txt").split("\n"));
 			for (f in 0...controls[c].length)
@@ -115,32 +112,33 @@ class Ctrl
 		allCleared = false;
 		for (c in 1...2)
 		{
-			up[c] = FlxG.keys.anyPressed([controls[c][0]]);
-			down[c] = FlxG.keys.anyPressed([controls[c][1]]);
-			left[c] = FlxG.keys.anyPressed([controls[c][2]]);
-			right[c] = FlxG.keys.anyPressed([controls[c][3]]);
-			jump[c] = FlxG.keys.anyPressed([controls[c][4]]);
-			jjump[c] = FlxG.keys.anyJustPressed([controls[c][4]]);
-			rjump[c] = FlxG.keys.anyJustReleased([controls[c][4]]);
-			action[c] = FlxG.keys.anyPressed([controls[c][5]]);
-			jaction[c] = FlxG.keys.anyJustPressed([controls[c][5]]);
-			raction[c] = FlxG.keys.anyJustReleased([controls[c][5]]);
-			special[c] = FlxG.keys.anyPressed([controls[c][6]]);
-			jspecial[c] = FlxG.keys.anyJustPressed([controls[c][6]]);
-			rspecial[c] = FlxG.keys.anyJustReleased([controls[c][6]]);
-			use[c] = FlxG.keys.anyPressed([controls[c][7]]);
-			juse[c] = FlxG.keys.anyJustPressed([controls[c][7]]);
-			ruse[c] = FlxG.keys.anyJustReleased([controls[c][7]]);
-			pause[c] = FlxG.keys.anyJustPressed(["P", "ENTER"]);
+			up[c] = FlxG.keys.anyPressed(["W", "UP", controls[c][0]]);
+			down[c] = FlxG.keys.anyPressed(["S", "DOWN", controls[c][1]]);
+			left[c] = FlxG.keys.anyPressed(["A", "LEFT", controls[c][2]]);
+			right[c] = FlxG.keys.anyPressed(["D", "RIGHT", controls[c][3]]);
+
+			interact[c] = FlxG.keys.anyPressed([controls[c][4]]);
+			jinteract[c] = FlxG.keys.anyJustPressed([controls[c][4]]);
+			rinteract[c] = FlxG.keys.anyJustReleased([controls[c][4]]);
+			
+			menu[c] = FlxG.keys.anyPressed([controls[c][5]]);
+			jmenu[c] = FlxG.keys.anyJustPressed([controls[c][5]]);
+			rmenu[c] = FlxG.keys.anyJustReleased([controls[c][5]]);
+			
+			emote[c] = FlxG.keys.anyPressed([controls[c][6]]);
+			jemote[c] = FlxG.keys.anyJustPressed([controls[c][6]]);
+			remote[c] = FlxG.keys.anyJustReleased([controls[c][6]]);
+
+			pause[c] = FlxG.keys.anyJustPressed(["V", "P", "ENTER"]);
 			map[c] = FlxG.keys.anyJustPressed(["SPACE"]);
 			reset[c] = FlxG.keys.anyJustPressed(["R"]);
-			jroll[c] = FlxG.keys.anyJustPressed(["SHIFT"]);
-			menuLeft[c] = jspecial[c];
-			menuRight[c] = juse[c];
-			menuConfirm[c] = jjump[c] && !REVERSE_MENU_CONTROLS || jspecial[c] && REVERSE_MENU_CONTROLS;
-			menuBack[c] = jjump[c] && REVERSE_MENU_CONTROLS || jspecial[c] && !REVERSE_MENU_CONTROLS;
 
-			anyB[c] = up[c] || down[c] || left[c] || right[c] || jump[c] || action[c] || special[c] || use[c] || pause[c] || map[c] || reset[c] || jroll[c];
+			menuLeft[c] = left[c];
+			menuRight[c] = right[c];
+			menuConfirm[c] = jinteract[c] && !REVERSE_MENU_CONTROLS || jemote[c] && REVERSE_MENU_CONTROLS;
+			menuBack[c] = jinteract[c] && REVERSE_MENU_CONTROLS || jemote[c] && !REVERSE_MENU_CONTROLS || pause[c];
+
+			anyB[c] = up[c] || down[c] || left[c] || right[c] || interact[c] || menu[c] || emote[c] || pause[c] || map[c] || reset[c];
 
 			if (anyB[c])
 				model = "keyboard";
@@ -179,35 +177,27 @@ class Ctrl
 				pause[p] = pause[p] || gp.anyJustPressed([FlxGamepadInputID.START]);
 				map[p] = map[p] || gp.anyJustPressed([FlxGamepadInputID.BACK]);
 
-				jump[p] = jump[p] || gp.anyPressed([FlxGamepadInputID.A]);
-				jjump[p] = jjump[p] || gp.anyJustPressed([FlxGamepadInputID.A]);
-				rjump[p] = rjump[p] || gp.anyJustReleased([FlxGamepadInputID.A]);
+				interact[p] = interact[p] || gp.anyPressed([FlxGamepadInputID.A]);
+				jinteract[p] = jinteract[p] || gp.anyJustPressed([FlxGamepadInputID.A]);
+				jinteract[p] = rinteract[p] || gp.anyJustReleased([FlxGamepadInputID.A]);
 
-				action[p] = action[p] || gp.anyPressed([FlxGamepadInputID.X]);
-				jaction[p] = jaction[p] || gp.anyJustPressed([FlxGamepadInputID.X]);
-				raction[p] = raction[p] || gp.anyJustReleased([FlxGamepadInputID.X]);
+				menu[p] = menu[p] || gp.anyPressed([FlxGamepadInputID.B]);
+				jmenu[p] = jmenu[p] || gp.anyJustPressed([FlxGamepadInputID.B]);
+				rmenu[p] = rmenu[p] || gp.anyJustReleased([FlxGamepadInputID.B]);
 
-				special[p] = special[p] || gp.anyPressed([FlxGamepadInputID.B]);
-				jspecial[p] = jspecial[p] || gp.anyJustPressed([FlxGamepadInputID.B]);
-				rspecial[p] = rspecial[p] || gp.anyJustReleased([FlxGamepadInputID.B]);
-
-				use[p] = use[p] || gp.anyPressed([FlxGamepadInputID.Y]);
-				juse[p] = juse[p] || gp.anyJustPressed([FlxGamepadInputID.Y]);
-				ruse[p] = ruse[p] || gp.anyJustReleased([FlxGamepadInputID.Y]);
+				emote[p] = emote[p] || gp.anyPressed([FlxGamepadInputID.X]);
+				jemote[p] = jemote[p] || gp.anyJustPressed([FlxGamepadInputID.X]);
+				remote[p] = remote[p] || gp.anyJustReleased([FlxGamepadInputID.X]);
 
 				reset[p] = reset[p] || gp.anyJustReleased([FlxGamepadInputID.BACK]);
 
-				jroll[p] = jroll[p]
-					|| gp.anyJustPressed([FlxGamepadInputID.LEFT_SHOULDER])
-					|| gp.anyJustPressed([FlxGamepadInputID.RIGHT_SHOULDER]);
-
-				menuConfirm[p] = jjump[p] && !REVERSE_MENU_CONTROLS || jspecial[p] && REVERSE_MENU_CONTROLS;
-				menuBack[p] = jjump[p] && REVERSE_MENU_CONTROLS || jaction[p] && !REVERSE_MENU_CONTROLS;
+				menuConfirm[p] = jinteract[p] && !REVERSE_MENU_CONTROLS || jemote[p] && REVERSE_MENU_CONTROLS;
+				menuBack[p] = jinteract[p] && REVERSE_MENU_CONTROLS || jemote[p] && !REVERSE_MENU_CONTROLS;
 
 				menuLeft[p] = menuLeft[p] || gp.anyJustPressed([FlxGamepadInputID.LEFT_SHOULDER]);
 				menuRight[p] = menuRight[p] || gp.anyJustPressed([FlxGamepadInputID.RIGHT_SHOULDER]);
 
-				anyB[p] = up[p] || down[p] || left[p] || right[p] || jump[p] || action[p] || special[p] || use[p] || pause[p] || map[p] || reset[p] || jroll[p];
+				anyB[p] = up[p] || down[p] || left[p] || right[p] || interact[p] || menu[p] || emote[p] || pause[p] || map[p] || reset[p];
 
 				if (gp.anyInput())
 				{
@@ -283,18 +273,22 @@ class Ctrl
 		down[c] = false;
 		left[c] = false;
 		right[c] = false;
-		jump[c] = false;
-		jjump[c] = false;
-		rjump[c] = false;
-		action[c] = false;
-		jaction[c] = false;
-		raction[c] = false;
-		special[c] = false;
-		jspecial[c] = false;
-		rspecial[c] = false;
-		juse[c] = false;
-		use[c] = false;
-		ruse[c] = false;
+
+		interact[c] = false;
+		jinteract[c] = false;
+		rinteract[c] = false;
+		
+		menu[c] = false;
+		jmenu[c] = false;
+		rmenu[c] = false;
+		
+		emote[c] = false;
+		jemote[c] = false;
+		remote[c] = false;
+
+		menuLeft[c] = false;
+		menuRight[c] = false;
+
 		pause[c] = false;
 		map[c] = false;
 		reset[c] = false;
@@ -305,6 +299,8 @@ class Ctrl
 		cleft[c] = false;
 		cright[c] = false;
 		cTicks[c] = 0;
+
+		anyB[c] = false;
 	}
 
 	public static function any(l:Array<Bool>):Bool

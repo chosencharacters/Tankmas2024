@@ -115,9 +115,12 @@ class OverlaySubState extends flixel.FlxSubState
 		if (state != requestedState && requestedState != null)
 			switchStateActual();
 
-		if (Ctrl.jspecial[1]) {
+		if (Ctrl.menuBack[1]) {
 			trace('Closing overlay');
 			close();
+
+			// TODO: Is there a better way to do this?
+			Ctrl.jemote[1] = false;
 		}
 	}
 

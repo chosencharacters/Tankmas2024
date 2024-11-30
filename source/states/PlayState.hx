@@ -124,9 +124,10 @@ class PlayState extends BaseState
 
 		if (Ctrl.reset[1])
 			FlxG.switchState(new PlayState());
-		if (Ctrl.jaction[1] && !player.interact_in_use())
+
+		if (Ctrl.jmenu[1])
 			new CostumeSelectSheet();
-		if (Ctrl.jspecial[1])
+		if (Ctrl.jemote[1])
 			new StickerSelectSheet();
 		for (mem in ui.members)
 			switch (ui.members.indexOf(mem))
