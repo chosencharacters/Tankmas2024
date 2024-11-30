@@ -16,11 +16,11 @@ Edit in `Ctrl.hx` and `assets/data/config/controls/`
 - `DOWN`: Move Down
 - `LEFT`: Move Left
 - `RIGHT`: Move Right
-- `Z`: Jump
-- `X`: Action
-- `C`: Special
-- `V`: Use
+- `Z`: Interact
+- `X`: Menu
+- `C`: Emote
 - `P/Enter`: pause
+- `V`: Pause
 - `Space`: map
 - `R`: reset
 - `Shift`: roll

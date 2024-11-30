@@ -120,7 +120,7 @@ class Prompt extends flixel.group.FlxGroup
 		super.update(elapsed);
 		
 		var goBack = false;
-		if (Ctrl.jspecial[1])
+		if (Ctrl.menuBack[1])
 			goBack = true;
 		
 		if (goBack)

@@ -5,6 +5,7 @@ import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.PlayerAnimation;
 import entities.Interactable;
 import entities.base.BaseUser;
+import minigames.MinigameHandler;
 import net.tankmas.NetDefs.NetUserDef;
 import net.tankmas.OnlineLoop;
 class Player extends BaseUser
@@ -61,7 +62,7 @@ class Player extends BaseUser
 
 	override function update(elapsed:Float)
 	{
-		if (Main.DEV && Ctrl.any(Ctrl.jaction))
+		if (Main.DEV && Ctrl.any(Ctrl.menu))
 			debug_rotate_costumes();
 
 		fsm();
@@ -87,7 +88,7 @@ class Player extends BaseUser
 		final RIGHT:Bool = Ctrl.right[1];
 		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
-		if (Ctrl.juse[1])
+		if (Ctrl.jemote[1] && !MinigameHandler.instance.is_minigame_active())
 			use_sticker(sticker);
 		// keeping the sheet menus right next to each other makes sense, no?
 
@@ -125,7 +126,7 @@ class Player extends BaseUser
 	{
 		if (active_activity_area == null)
 			return;
-		if (Ctrl.jjump[1])
+		if (Ctrl.interact[1])
 		{
 			active_activity_area.on_interact(this);
 		}
