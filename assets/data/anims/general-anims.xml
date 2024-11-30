@@ -29,4 +29,9 @@
 		<anim name="idle" fps="100ms">0</anim>
 		<anim name="shine" fps="50ms" looping="false">1t9</anim>
 	</animSet>
+
+	<animSet image="item-navigator">
+		<anim name="hover" fps="100ms">0t1</anim>
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+	</animSet>
 </root>

@@ -7,7 +7,7 @@ import flixel.tweens.FlxEase;
 import squid.ext.FlxGroupExt;
 import squid.ui.FlxTextBMP;
 
-class DialogueBox extends FlxGroupExt
+class DialogueBox extends FlxGroupExt<FlxSprite>
 {
 	#if ttf
 	var text:FlxText;

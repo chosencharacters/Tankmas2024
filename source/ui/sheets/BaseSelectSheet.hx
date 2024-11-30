@@ -13,21 +13,21 @@ import squid.ext.FlxGroupExt;
 import states.substates.SheetSubstate;
 import ui.sheets.defs.SheetDefs;
 
-class BaseSelectSheet extends FlxGroupExt
+class BaseSelectSheet extends FlxGroupExt<FlxSprite>
 {
 	var type:SheetType;
 
-	var stickerSheetOutline:FlxSprite;
-	var stickerSheetBase:FlxSprite;
+	var stickerSheetOutline:FlxSpriteExt;
+	var stickerSheetBase:FlxSpriteExt;
 	var effectSheet:FlxEffectSprite;
 	var description:FlxText;
 	var title:FlxText;
 
-	public var selector:FlxSprite;
+	public var selector:FlxSpriteExt;
 	public var backTab:FlxSpriteExt;
 
 	var sheet_collection:SheetFileDef;
-	final characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSprite>> = [];
+	final characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSpriteExt>> = [];
 	final notSeenGroup:Array<FlxTypedSpriteGroup<FlxSpriteExt>> = [];
 	final characterNames:Array<Array<String>> = [];
 
@@ -66,8 +66,8 @@ class BaseSelectSheet extends FlxGroupExt
 
 		add(backTab = new FlxSpriteExt(66 + (type == COSTUME ? 500 : 0), 130, Paths.get('${type == COSTUME ? 'emote-tab' : 'costume-tab'}.png')));
 
-		add(stickerSheetOutline = new FlxSprite(46, 219).makeGraphic(1446, 852, FlxColor.WHITE));
-		add(stickerSheetBase = new FlxSprite(66, 239));
+		add(stickerSheetOutline = new FlxSpriteExt(46, 219).makeGraphicExt(1446, 852, FlxColor.WHITE));
+		add(stickerSheetBase = new FlxSpriteExt(66, 239));
 
 		title = new FlxText(70, 70, 1420, '');
 		title.setFormat(Paths.get('CharlieType-Heavy.otf'), 60, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
@@ -78,7 +78,7 @@ class BaseSelectSheet extends FlxGroupExt
 
 		for (sheet in sheet_collection.sheets)
 		{
-			final characterSprites:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>();
+			final characterSprites:FlxTypedSpriteGroup<FlxSpriteExt> = new FlxTypedSpriteGroup<FlxSpriteExt>();
 			add(characterSprites);
 
 			final notSeenSprites:FlxTypedSpriteGroup<FlxSpriteExt> = new FlxTypedSpriteGroup<FlxSpriteExt>();
@@ -91,7 +91,7 @@ class BaseSelectSheet extends FlxGroupExt
 				if (sheet.items[i].name == null)
 					continue;
 				final identity:SheetItemDef = sheet.items[i];
-				final sprite:FlxSprite = new FlxSprite(0, 0);
+				final sprite:FlxSpriteExt = new FlxSpriteExt(0, 0);
 				sprite.ID = i;
 				if (type == STICKER)
 				{
@@ -161,10 +161,9 @@ class BaseSelectSheet extends FlxGroupExt
 		curTab.scale.set(1.1, 1.1);
 		add(curTab);
 
-		selector = new FlxSprite().loadGraphic(Paths.get("item-navigator.png"), true, 330, 334);
-		selector.animation.add("hover", [0, 1], 2);
+		selector = new FlxSpriteExt().one_line("item-navigator");
+		selector.anim("hover");
 		add(selector);
-		selector.animation.play("hover");
 
 		current_selection = saved_selection;
 		current_sheet = saved_sheet;

@@ -18,6 +18,7 @@ import net.tankmas.OnlineLoop;
 import ui.DialogueBox;
 import ui.sheets.*;
 import zones.Door;
+import ui.sheets.SheetMenu;
 
 class PlayState extends BaseState
 {
@@ -52,6 +53,8 @@ class PlayState extends BaseState
 
 	public var ui:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 
+	public var sheet_menu:SheetMenu;
+
 	public function new(?world_to_load:String)
 	{
 		if (world_to_load != null)
@@ -73,6 +76,11 @@ class PlayState extends BaseState
 
 		bgColor = FlxColor.BLACK;
 
+		make_world();
+		make_ui();
+
+		sheet_menu = new SheetMenu();
+
 		add(level_backgrounds);
 		add(levels);
 		add(level_collision);
@@ -90,12 +98,11 @@ class PlayState extends BaseState
 
 		add(doors);
 
+		add(sheet_menu);
+
 		add(ui);
 
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
-
-		make_world();
-		make_ui();
 
 		MinigameHandler.instance.initialize();
 
