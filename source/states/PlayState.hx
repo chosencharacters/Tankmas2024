@@ -22,6 +22,7 @@ import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
 import zones.Door;
+import video.PremiereHandler;
 
 class PlayState extends BaseState
 {
@@ -63,6 +64,8 @@ class PlayState extends BaseState
 
 	public static var show_usernames(default, set):Bool = true;
 
+	public var premieres:PremiereHandler;
+
 	public function new(?world_to_load:String)
 	{
 		if (world_to_load != null)
@@ -81,6 +84,8 @@ class PlayState extends BaseState
 		self = this;
 
 		OnlineLoop.init();
+
+		premieres = new PremiereHandler();
 
 		bgColor = FlxColor.BLACK;
 
@@ -142,6 +147,8 @@ class PlayState extends BaseState
 	override public function update(elapsed:Float)
 	{
 		OnlineLoop.iterate();
+
+		premieres.update(elapsed);
 
 		super.update(elapsed);
 		// Ctrl.update();
