@@ -13,6 +13,11 @@ class ArtSubstate extends flixel.FlxSubState
 	{
 		super();
 		art = new FlxSprite(0, 0).loadGraphic(Paths.get('$content.png'));
+
+		#if censor_presents
+		art = new FlxSprite(0, 0).loadGraphic(Paths.get('present-censored.png'));
+		#end
+
 		art.setGraphicSize(art.width > art.height ? 1920 : 0, art.height >= art.width ? 1080 : 0);
 		art.updateHitbox();
 		art.screenCenter();

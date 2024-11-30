@@ -11,7 +11,7 @@ import openfl.Assets;
  */
 class Ctrl
 {
-	//for switch, mainly
+	// for switch, mainly
 	static var REVERSE_MENU_CONTROLS:Bool = false;
 
 	// controls are handled as an array of bools
@@ -59,8 +59,6 @@ class Ctrl
 
 	public static var releaseHolds:Array<Bool> = [false];
 
-	public static var controlModes:Array<String> = ["", "CONTROLLER", "CONTROLLER"];
-
 	public static var p1controller:FlxGamepad;
 	public static var p2controller:FlxGamepad;
 
@@ -72,6 +70,8 @@ class Ctrl
 	public static var allCleared:Bool = false;
 
 	static var controlLock:Int = 0;
+
+	public static var mode:ControlMode = ControlModes.INITIAL;
 
 	public function new()
 	{
@@ -94,7 +94,7 @@ class Ctrl
 		// ProgressManager("keys_load");
 		#if switch
 		model = "switch";
-		REVERSE_MENU_CONTROLS=true;
+		REVERSE_MENU_CONTROLS = true;
 		#end
 	}
 
@@ -120,11 +120,11 @@ class Ctrl
 			interact[c] = FlxG.keys.anyPressed([controls[c][4]]);
 			jinteract[c] = FlxG.keys.anyJustPressed([controls[c][4]]);
 			rinteract[c] = FlxG.keys.anyJustReleased([controls[c][4]]);
-			
+
 			menu[c] = FlxG.keys.anyPressed([controls[c][5]]);
 			jmenu[c] = FlxG.keys.anyJustPressed([controls[c][5]]);
 			rmenu[c] = FlxG.keys.anyJustReleased([controls[c][5]]);
-			
+
 			emote[c] = FlxG.keys.anyPressed([controls[c][6]]);
 			jemote[c] = FlxG.keys.anyJustPressed([controls[c][6]]);
 			remote[c] = FlxG.keys.anyJustReleased([controls[c][6]]);
@@ -153,7 +153,6 @@ class Ctrl
 
 		for (p in 1...3)
 		{
-			// if (controlModes[p].indexOf("CONTROLLER") == -1) return;
 			var gp:FlxGamepad = null;
 
 			if (p == 1)
@@ -161,8 +160,6 @@ class Ctrl
 
 			if (p == 2)
 				gp = p2controller;
-
-			// debug(PlayState.coop);
 
 			if (p1controller == null && p2controller == null && p == 1)
 				gp = FlxG.gamepads.getFirstActiveGamepad();
@@ -252,9 +249,9 @@ class Ctrl
 
 	public static function allFalse()
 	{
-		// debug("All False");
+		// for all players
 		for (c in 1...3)
-		{ // for all players
+		{
 			setFalse(c);
 		}
 		allCleared = true;
@@ -277,11 +274,11 @@ class Ctrl
 		interact[c] = false;
 		jinteract[c] = false;
 		rinteract[c] = false;
-		
+
 		menu[c] = false;
 		jmenu[c] = false;
 		rmenu[c] = false;
-		
+
 		emote[c] = false;
 		jemote[c] = false;
 		remote[c] = false;
@@ -335,4 +332,28 @@ class Ctrl
 			return FlxG.keys.anyJustReleased(keys);
 		}
 	 */
+}
+
+typedef ControlMode =
+{
+	var can_move:Bool;
+	var can_emote:Bool;
+	var can_open_menus:Bool;
+}
+
+enum abstract ControlModes(ControlMode) from ControlMode to ControlMode
+{
+	public static final INITIAL:ControlMode = {can_move: false, can_emote: false, can_open_menus: false};
+	public static final OVERWORLD:ControlMode = {can_move: true, can_emote: true, can_open_menus: true};
+	public static final TALKING:ControlMode = {can_move: false, can_emote: false, can_open_menus: false};
+	public static final MINIGAME:ControlMode = {can_move: false, can_emote: false, can_open_menus: false};
+
+	public function restrict_controls(mode:ControlMode)
+	{
+		// not implemented
+		switch (mode)
+		{
+			default:
+		}
+	}
 }

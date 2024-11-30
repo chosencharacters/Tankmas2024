@@ -50,6 +50,10 @@ class Present extends Interactable
 
 		PlayState.self.presents.add(this);
 		thumbnail = new Thumbnail(x, y - 200, Paths.get((content + (comic ? '-0' : '') + '.png')));
+
+		#if censor_presents
+		thumbnail.color = FlxColor.BLACK;
+		#end
 	}
 
 	override function kill()

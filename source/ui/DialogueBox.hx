@@ -53,6 +53,8 @@ class DialogueBox extends FlxGroupExt
 			text.fieldWidthSet((FlxG.width / 2).floor());
 		 */
 
+		Ctrl.mode = Ctrl.ControlModes.TALKING;
+
 		#if ttf
 		text = Utils.formatText(new FlxText(0, 0, 1216), TextFormatPresets.DIALOGUE);
 		#else
@@ -155,6 +157,7 @@ class DialogueBox extends FlxGroupExt
 
 	override function kill()
 	{
+		Ctrl.mode = Ctrl.ControlModes.OVERWORLD;
 		options.on_complete != null ? options.on_complete() : false;
 		PlayState.self.dialogues.remove(this, true);
 		super.kill();
