@@ -5,7 +5,7 @@ import net.tankmas.NetDefs;
 
 class TankmasClient
 {
-	static var address:String = #if test_local 'http://127.0.0.1:5000' #else "http://78.108.218.30:25567" #end;
+	static var address:String = #if test_local 'http://127.0.0.1:5000' #else "https://tankmas.kornesjo.se:25567" #end;
 
 	public static function get_users_in_room(room_id:String, ?on_complete:Dynamic->Void)
 	{
@@ -17,6 +17,12 @@ class TankmasClient
 	public static function post_user(room_id:String, user:NetUserDef, ?on_complete:Dynamic->Void)
 	{
 		var url:String = '$address/rooms/$room_id/users';
+
+		user.name = Main.username;
+		if (user.name == null || user.name.length == 0)
+		{
+			return;
+		}
 
 		Client.post(url, user, on_complete);
 	}
@@ -33,5 +39,11 @@ class TankmasClient
 		var url:String = '$address/rooms/$room_id/events/post';
 
 		Client.post(url, event, on_complete);
+	}
+
+	public static function get_premieres(?on_complete:Dynamic->Void)
+	{
+		var url:String = '$address/premieres';
+		Client.get(url, on_complete);
 	}
 }

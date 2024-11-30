@@ -28,7 +28,7 @@ class OnlineLoop
 	static var last_rooms_get_timestamp:Float;
 	static var last_events_get_timestamp:Float;
 
-	static final tick_wait_timeout:Int = 999;
+	static final tick_wait_timeout:Int = -1;
 
 	public static var current_timestamp(get, default):Float;
 
@@ -40,7 +40,7 @@ class OnlineLoop
 	public static function init()
 	{
 		#if offline return; #end
-		
+
 		force_send_full_user = true;
 
 		rooms_post_tick_rate = 0;
