@@ -17,6 +17,7 @@ import minigames.MinigameHandler;
 import net.tankmas.OnlineLoop;
 import ui.DialogueBox;
 import ui.sheets.*;
+import ui.sheets.SheetMenu;
 import zones.Door;
 
 class PlayState extends BaseState
@@ -53,6 +54,8 @@ class PlayState extends BaseState
 
 	public var ui:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 
+	public var sheet_menu:SheetMenu;
+
 	public function new(?world_to_load:String)
 	{
 		if (world_to_load != null)
@@ -73,6 +76,9 @@ class PlayState extends BaseState
 		OnlineLoop.init();
 
 		bgColor = FlxColor.BLACK;
+
+		make_world();
+		make_ui();
 
 		add(level_backgrounds);
 		add(levels);
@@ -96,9 +102,6 @@ class PlayState extends BaseState
 
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
-		make_world();
-		make_ui();
-
 		MinigameHandler.instance.initialize();
 
 		FlxG.autoPause = false;
@@ -120,8 +123,9 @@ class PlayState extends BaseState
 
 		OnlineLoop.iterate();
 
-		//runs nearby animation if not checked here
-		for(mem in presents.members) mem.checkOpen();
+		// runs nearby animation if not checked here
+		for (mem in presents.members)
+			mem.checkOpen();
 	}
 
 	override public function update(elapsed:Float)
@@ -137,12 +141,8 @@ class PlayState extends BaseState
 		#end
 
 		if (Ctrl.mode.can_open_menus)
-		{
 			if (Ctrl.jmenu[1])
-				new CostumeSelectSheet();
-			//if (Ctrl.jemote[1])
-				//new StickerSelectSheet();
-		}
+				sheet_menu.open();
 
 		for (mem in ui.members)
 			switch (ui.members.indexOf(mem))
@@ -166,7 +166,7 @@ class PlayState extends BaseState
 							twen = FlxTween.tween(mem, {y: 1180}, 0.3, {
 								onComplete: (twn:FlxTween) ->
 								{
-									new CostumeSelectSheet();
+									new SheetMenu();
 									twen = null;
 								}
 							});
@@ -215,8 +215,9 @@ class PlayState extends BaseState
 			}
 		handle_collisions();
 
-		if(tags.members[0].visible != BaseState.showUsers)
-			for(mem in tags.members) mem.visible = BaseState.showUsers;
+		if (tags.members[0].visible != BaseState.showUsers)
+			for (mem in tags.members)
+				mem.visible = BaseState.showUsers;
 	}
 
 	function handle_collisions()

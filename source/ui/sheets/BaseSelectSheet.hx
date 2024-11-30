@@ -10,24 +10,23 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxTimer;
 import squid.ext.FlxGroupExt;
-import states.substates.SheetSubstate;
 import ui.sheets.defs.SheetDefs;
 
-class BaseSelectSheet extends FlxGroupExt
+class BaseSelectSheet extends FlxGroupExt<FlxSprite>
 {
 	var type:SheetType;
 
-	var stickerSheetOutline:FlxSprite;
-	var stickerSheetBase:FlxSprite;
+	var stickerSheetOutline:FlxSpriteExt;
+	var stickerSheetBase:FlxSpriteExt;
 	var effectSheet:FlxEffectSprite;
 	var description:FlxText;
 	var title:FlxText;
 
-	public var selector:FlxSprite;
+	public var selector:FlxSpriteExt;
 	public var backTab:FlxSpriteExt;
 
 	var sheet_collection:SheetFileDef;
-	final characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSprite>> = [];
+	final characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSpriteExt>> = [];
 	final notSeenGroup:Array<FlxTypedSpriteGroup<FlxSpriteExt>> = [];
 	final characterNames:Array<Array<String>> = [];
 
@@ -37,23 +36,23 @@ class BaseSelectSheet extends FlxGroupExt
 
 	var graphicSheet:Bool = false;
 
-	public var canSelect:Bool = false;
-
 	public var seen:Array<String> = [];
+
+	public var menu:SheetMenu;
 
 	/**
 	 * This is private, should be only made through things that extend it
 	 * @param saved_sheet
 	 * @param saved_selection
 	 */
-	function new(saved_sheet:Int, saved_selection:Int, ?type:SheetType = COSTUME, ?newState:Bool = true)
+	function new(menu:SheetMenu, saved_sheet:Int, saved_selection:Int, ?type:SheetType = COSTUME)
 	{
 		super();
 
+		this.menu = menu;
 		this.type = type;
 
-		if (newState)
-			FlxG.state.openSubState(new SheetSubstate(this));
+		sstate(INACTIVE);
 
 		add(descGroup);
 
@@ -66,8 +65,8 @@ class BaseSelectSheet extends FlxGroupExt
 
 		add(backTab = new FlxSpriteExt(66 + (type == COSTUME ? 500 : 0), 130, Paths.get('${type == COSTUME ? 'emote-tab' : 'costume-tab'}.png')));
 
-		add(stickerSheetOutline = new FlxSprite(46, 219).makeGraphic(1446, 852, FlxColor.WHITE));
-		add(stickerSheetBase = new FlxSprite(66, 239));
+		add(stickerSheetOutline = new FlxSpriteExt(46, 219).makeGraphicExt(1446, 852, FlxColor.WHITE));
+		add(stickerSheetBase = new FlxSpriteExt(66, 239));
 
 		title = new FlxText(70, 70, 1420, '');
 		title.setFormat(Paths.get('CharlieType-Heavy.otf'), 60, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
@@ -78,7 +77,7 @@ class BaseSelectSheet extends FlxGroupExt
 
 		for (sheet in sheet_collection.sheets)
 		{
-			final characterSprites:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>();
+			final characterSprites:FlxTypedSpriteGroup<FlxSpriteExt> = new FlxTypedSpriteGroup<FlxSpriteExt>();
 			add(characterSprites);
 
 			final notSeenSprites:FlxTypedSpriteGroup<FlxSpriteExt> = new FlxTypedSpriteGroup<FlxSpriteExt>();
@@ -91,7 +90,7 @@ class BaseSelectSheet extends FlxGroupExt
 				if (sheet.items[i].name == null)
 					continue;
 				final identity:SheetItemDef = sheet.items[i];
-				final sprite:FlxSprite = new FlxSprite(0, 0);
+				final sprite:FlxSpriteExt = new FlxSpriteExt(0, 0);
 				sprite.ID = i;
 				if (type == STICKER)
 				{
@@ -161,10 +160,9 @@ class BaseSelectSheet extends FlxGroupExt
 		curTab.scale.set(1.1, 1.1);
 		add(curTab);
 
-		selector = new FlxSprite().loadGraphic(Paths.get("item-navigator.png"), true, 330, 334);
-		selector.animation.add("hover", [0, 1], 2);
+		selector = new FlxSpriteExt().one_line("item-navigator");
+		selector.anim("hover");
 		add(selector);
-		selector.animation.play("hover");
 
 		current_selection = saved_selection;
 		current_sheet = saved_sheet;
@@ -178,7 +176,7 @@ class BaseSelectSheet extends FlxGroupExt
 		});
 		new FlxTimer().start(0.8, function(tmr:FlxTimer)
 		{
-			canSelect = true;
+			sstate(ACTIVE);
 			FlxTween.tween(descGroup, {x: 0}, 0.5, {ease: FlxEase.cubeOut});
 		});
 	}
@@ -186,17 +184,26 @@ class BaseSelectSheet extends FlxGroupExt
 	function make_sheet_collection():SheetFileDef
 		throw "not implemented";
 
+	function fsm()
+		switch (cast(state, State))
+		{
+			default:
+			case INACTIVE:
+			case ACTIVE:
+				control();
+		}
+
+	public function set_sheet_active(active:Bool)
+		sstate(active ? ACTIVE : INACTIVE);
+
 	override function update(elapsed:Float)
 	{
+		fsm();
 		super.update(elapsed);
-		Ctrl.update();
-		control();
 	}
 
 	function control()
 	{
-		if (!canSelect)
-			return;
 		for (i in 0...characterSpritesArray[current_sheet].length)
 		{
 			// TODO: make this mobile-friendly
@@ -213,13 +220,14 @@ class BaseSelectSheet extends FlxGroupExt
 			current_sheet = current_sheet - 1;
 		if (FlxG.mouse.overlaps(backTab))
 		{
+			trace(type, backTab);
 			if (backTab.y != 110)
 				backTab.y = 110;
 			if (FlxG.mouse.justPressed)
 			{
 				if (backTab.scale.x != 0.8)
 					backTab.scale.set(0.8, 0.8);
-				SheetSubstate.instance.reload(type == COSTUME ? "STICKER" : "COSTUME");
+				menu.next_tab();
 			}
 			else if (!FlxG.mouse.pressed && backTab.scale.x != 1.1)
 				backTab.scale.set(1.1, 1.1);
@@ -313,9 +321,9 @@ class BaseSelectSheet extends FlxGroupExt
 		// characterSpritesArray[current_sheet].members[current_selection].scale.set(1.1, 1.1);
 	}
 
-	public function transOut()
+	public function start_closing(?on_complete:Void->Void)
 	{
-		canSelect = false;
+		sstate(CLOSING);
 		FlxTween.tween(descGroup, {x: -440}, 0.5, {ease: FlxEase.quintIn});
 		new FlxTimer().start(0.3, function(tmr:FlxTimer)
 		{
@@ -324,6 +332,7 @@ class BaseSelectSheet extends FlxGroupExt
 				final daMem:FlxObject = cast(member, FlxObject);
 				FlxTween.tween(daMem, {y: daMem.y + 1300}, 1, {ease: FlxEase.cubeInOut});
 			});
+			on_complete == null ? on_complete : false;
 		});
 	}
 }
@@ -332,4 +341,12 @@ enum abstract SheetType(String) from String to String
 {
 	final COSTUME;
 	final STICKER;
+}
+
+private enum abstract State(String) from String to String
+{
+	var OPENING;
+	var ACTIVE;
+	var CLOSING;
+	var INACTIVE;
 }
