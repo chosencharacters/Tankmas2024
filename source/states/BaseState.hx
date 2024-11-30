@@ -16,11 +16,14 @@ class BaseState extends FlxState
 
 	var radio:RadioManager;
 
+	public static var showUsers:Bool = true;
+
 	public function new()
 	{
 		super();
 		if (FIRST_RUN)
 		{
+			SaveManager.init();
 			#if gif
 			GifRecorder.init("game", "../../../export/");
 			#end
@@ -30,10 +33,11 @@ class BaseState extends FlxState
 
 			#if !no_radio
 			radio = new RadioManager();
+			#else
+			SoundPlayer.music(Paths.get('christmasohyeah-stixdevs.ogg'));
 			#end
 
-			SoundPlayer.music(Paths.get('christmasohyeah-stixdevs.ogg'));
-			SaveManager.init();
+			FlxG.camera.fade(FlxColor.BLACK, 2, true);
 		}
 		else
 		{

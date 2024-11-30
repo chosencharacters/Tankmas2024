@@ -162,7 +162,8 @@ enum abstract PresentAnimation(SpriteAnimationDef) from SpriteAnimationDef to Sp
 				y: 0,
 				angle: 0,
 				height: 1.0,
-				width: 1.0
+				width: 1.0,
+				frameNum: 0
 			}, // frame 1
 			{
 				duration: 2,
@@ -250,6 +251,7 @@ enum abstract PresentAnimation(SpriteAnimationDef) from SpriteAnimationDef to Sp
 				angle: 0,
 				height: 0.8,
 				width: 1.0,
+				frameNum: 0
 			},
 			{
 				duration: 2,

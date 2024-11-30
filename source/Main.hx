@@ -10,7 +10,7 @@ import utils.CrashHandler;
 
 class Main extends Sprite
 {
-	public static var username:String = #if random_username 'poop_${Math.random()}' #else "not_very_squidly" #end;
+	public static var username:String = #if random_username 'poop_${Math.random()}' #else "" #end;
 
 	public static var current_room_id:String = "1";
 
@@ -42,6 +42,7 @@ class Main extends Sprite
 		Lists.init();
 		#if newgrounds
 		ng_api = new NewgroundsHandler();
+		username = ng_api.NG_USERNAME;
 		#end
 		addChild(new FlxGame(1920, 1080, PlayState, true));
 	}

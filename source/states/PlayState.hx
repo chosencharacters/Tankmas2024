@@ -29,6 +29,7 @@ class PlayState extends BaseState
 
 	public var player:Player;
 	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
+	public var tags:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
 	public var objects:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 	public var thumbnails:FlxTypedGroup<Thumbnail> = new FlxTypedGroup<Thumbnail>();
@@ -78,6 +79,7 @@ class PlayState extends BaseState
 		add(minigames);
 		add(npcs);
 		add(presents);
+		add(tags);
 		add(users);
 		add(objects);
 		add(thumbnails);
@@ -102,6 +104,7 @@ class PlayState extends BaseState
 		var bg:FlxObject = level_backgrounds.members[0];
 
 		FlxG.worldBounds.set(bg.x, bg.y, bg.width, bg.height);
+		FlxG.camera.setScrollBoundsRect(bg.x, bg.y, bg.width, bg.height);
 
 		#if !show_collision
 		level_collision.visible = false;
@@ -113,6 +116,9 @@ class PlayState extends BaseState
 		// FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
 
 		OnlineLoop.iterate();
+
+		//runs nearby animation if not checked here
+		for(mem in presents.members) mem.checkOpen();
 	}
 
 	override public function update(elapsed:Float)
@@ -127,8 +133,8 @@ class PlayState extends BaseState
 
 		if (Ctrl.jmenu[1])
 			new CostumeSelectSheet();
-		if (Ctrl.jemote[1])
-			new StickerSelectSheet();
+		//if (Ctrl.jemote[1])
+			//new StickerSelectSheet();
 		for (mem in ui.members)
 			switch (ui.members.indexOf(mem))
 			{
@@ -198,9 +204,10 @@ class PlayState extends BaseState
 					else if (mem.scale.x != 1)
 						mem.scale.set(1, 1);
 			}
-		/**if (Ctrl.jspecial[1])
-			new StickerSelectSheet();**/
 		handle_collisions();
+
+		if(tags.members[0].visible != BaseState.showUsers)
+			for(mem in tags.members) mem.visible = BaseState.showUsers;
 	}
 
 	function handle_collisions()

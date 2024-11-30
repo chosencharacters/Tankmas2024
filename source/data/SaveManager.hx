@@ -87,8 +87,9 @@ class SaveManager
 
 	public static function open_present(content:String, day:Int)
 	{
-		if (savedPresents.safeContains(content))
+		if (savedPresents.contains(content))
 			return;
+		trace("saving present" + content);
 		savedPresents.push(content);
 		// TODO: find medal accompanying present
 		save_presents(true);

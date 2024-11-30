@@ -20,7 +20,7 @@ class Present extends Interactable
 		return openable = o;
 	}
 
-	public static var opened:Bool = false;
+	public var opened:Bool = false;
 
 	public var thumbnail:Thumbnail;
 
@@ -40,7 +40,6 @@ class Present extends Interactable
 			presentData = JsonData.get_present('thedyingsun');
 		}
 		comic = presentData.comicProperties != null ? true : false;
-		opened = SaveManager.savedPresents.contains(content);
 		day = Std.parseInt(presentData.day);
 
 		openable = true;
@@ -50,17 +49,6 @@ class Present extends Interactable
 		loadGraphic(Paths.get('present-$content.png'), true, 94, 94);
 
 		PlayState.self.presents.add(this);
-
-		if (!opened)
-		{
-			sprite_anim.anim(PresentAnimation.IDLE);
-			sstate(IDLE);
-		}
-		else
-		{
-			// sprite_anim.anim(PresentAnimation.OPENED);
-			sstate(OPENED);
-		}
 		thumbnail = new Thumbnail(x, y - 200, Paths.get((content + (comic ? '-0' : '') + '.png')));
 	}
 
@@ -68,6 +56,23 @@ class Present extends Interactable
 	{
 		PlayState.self.presents.remove(this, true);
 		super.kill();
+	}
+
+	public function checkOpen()
+	{
+		opened = SaveManager.savedPresents.contains(content);
+		if (!opened)
+		{
+			sprite_anim.anim(PresentAnimation.IDLE);
+			sstate(IDLE);
+			frame = frames.frames[0];
+		}
+		else
+		{
+			sprite_anim.anim(PresentAnimation.OPENED);
+			sstate(OPENED);
+		}
+		trace(state);
 	}
 
 	override function update(elapsed:Float)
@@ -84,9 +89,6 @@ class Present extends Interactable
 				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
 				sprite_anim.anim(PresentAnimation.NEARBY);
-				thumbnail.sstate("OPEN");
-				if (Ctrl.interact[1])
-					open();
 			case OPENING:
 				sprite_anim.anim(PresentAnimation.OPENING);
 			case OPENED:
@@ -112,16 +114,7 @@ class Present extends Interactable
 			return;
 
 		if (mark /** && thumbnail.scale.x == 0**/)
-		{
-			if (mark /** && thumbnail.scale.x == 0**/)
-			{
-				thumbnail.sstate("OPEN");
-				if (Ctrl.interact[1])
-					open();
-			}
-			else if (!mark /** && thumbnail.scale.x != 0 && thumbnail.state != "CLOSE"**/)
-				thumbnail.sstate("CLOSE");
-		}
+			thumbnail.sstate("OPEN");
 		else if (!mark /** && thumbnail.scale.x != 0 && thumbnail.state != "CLOSE"**/)
 			thumbnail.sstate("CLOSE");
 	}

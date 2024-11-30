@@ -16,6 +16,7 @@ class BaseUser extends NGSprite
 	var move_speed:Int = 500;
 
 	var shadow:FlxSpriteExt;
+	var nameTag:FlxText;
 
 	public var username:String;
 
@@ -32,6 +33,12 @@ class BaseUser extends NGSprite
 
 		new_costume(JsonData.get_costume("tankman"));
 		sprite_anim.anim(PlayerAnimation.MOVING);
+
+		nameTag = new FlxText(0, 0, 0, username.toUpperCase());
+		nameTag.setFormat(Paths.get('CharlieType-Heavy.otf'), 24, FlxColor.WHITE, LEFT, OUTLINE, FlxColor.BLACK);
+		nameTag.bold = true;
+		nameTag.offset.y = -30;
+		PlayState.self.tags.add(nameTag);
 
 		PlayState.self.users.add(this);
 		PlayState.self.shadows.add(shadow = new FlxSpriteExt(Paths.get("player-shadow.png")));
@@ -79,6 +86,9 @@ class BaseUser extends NGSprite
 		shadow.center_on_bottom(this);
 		shadow.offset.x = offset.x;
 		shadow.updateMotion(elapsed);
+
+		nameTag.center_on_bottom(this);
+
 		check_current_area();
 	}
 
