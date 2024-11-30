@@ -3,7 +3,6 @@ package data.types;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.SpriteAnimationDef;
 
-
 enum abstract UnlockCondition(String) from String to String
 {
 	/**On a specific date, data contains the unix timestamp, see: https://www.unixtimestamp.com/index.php**/
@@ -22,24 +21,23 @@ enum abstract UnlockCondition(String) from String to String
 	final FLAG;
 
 	public static inline function get_unlocked(condition:UnlockCondition, data:Dynamic):Bool
-        switch (cast(condition, UnlockCondition))
-        {
-            default:
-                return true;
-            case UnlockCondition.YOUR_A_SPECIAL_LITTLE_BOY:
-                return true;
-            case UnlockCondition.ANGRY_FAIC:
-                return false;
-            case UnlockCondition.DATE:
-                return Date.now().getTime() >= data; // where data is a unix timestamp, see above
-            case UnlockCondition.ACHIEVEMENT:
+		switch (cast(condition, UnlockCondition))
+		{
+			default:
 				return true;
-                // TODO: insert code that handles achievements from NG API here
+			case UnlockCondition.YOUR_A_SPECIAL_LITTLE_BOY:
+				return true;
+			case UnlockCondition.ANGRY_FAIC:
+				return false;
+			case UnlockCondition.DATE:
+				return Date.now().getTime() >= data; // where data is a unix timestamp, see above
+			case UnlockCondition.ACHIEVEMENT:
+				return true;
+			// TODO: insert code that handles achievements from NG API here
 			case UnlockCondition.FLAG:
 				return Flags.get(data);
-        }
+		}
 }
-
 
 /**
  * Enum of fixed player animations, probably will be moved
@@ -130,6 +128,7 @@ enum abstract PlayerAnimation(SpriteAnimationDef) from SpriteAnimationDef to Spr
 		]
 	};
 }
+
 /**
  * Enum of fixed player animations, probably will be moved
  */

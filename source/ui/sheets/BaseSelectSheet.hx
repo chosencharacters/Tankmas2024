@@ -64,7 +64,7 @@ class BaseSelectSheet extends FlxGroupExt
 		description.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
 		descGroup.add(description);
 
-		add(backTab = new FlxSpriteExt(66 + (type == COSTUME ? 500 : 0), 130, Paths.get((type == COSTUME ? 'emotetab' : 'costumetab') + '.png')));
+		add(backTab = new FlxSpriteExt(66 + (type == COSTUME ? 500 : 0), 130, Paths.get('${type == COSTUME ? 'emote-tab' : 'costume-tab'}.png')));
 
 		add(stickerSheetOutline = new FlxSprite(46, 219).makeGraphic(1446, 852, FlxColor.WHITE));
 		add(stickerSheetBase = new FlxSprite(66, 239));
@@ -156,11 +156,12 @@ class BaseSelectSheet extends FlxGroupExt
 			notSeenSprites.kill();
 		}
 
-		final curTab:FlxSpriteExt = new FlxSpriteExt(66 + (type == STICKER ? 500 : 0), 130, Paths.get((type == STICKER ? 'emotetab' : 'costumetab') + '.png'));
+		final curTab:FlxSpriteExt = new FlxSpriteExt(66 + (type == STICKER ? 500 : 0), 130,
+			Paths.get((type == STICKER ? 'emote-tab' : 'costume-tab') + '.png'));
 		curTab.scale.set(1.1, 1.1);
 		add(curTab);
 
-		selector = new FlxSprite().loadGraphic(Paths.get("itemnavigator.png"), true, 330, 334);
+		selector = new FlxSprite().loadGraphic(Paths.get("item-navigator.png"), true, 330, 334);
 		selector.animation.add("hover", [0, 1], 2);
 		add(selector);
 		selector.animation.play("hover");

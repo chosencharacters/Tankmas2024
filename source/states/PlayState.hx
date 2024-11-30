@@ -64,6 +64,9 @@ class PlayState extends BaseState
 	override public function create()
 	{
 		super.create();
+
+		Ctrl.mode = ControlModes.OVERWORLD;
+
 		self = this;
 
 		OnlineLoop.init();
@@ -122,13 +125,19 @@ class PlayState extends BaseState
 		super.update(elapsed);
 		// Ctrl.update();
 
+		#if dev
 		if (Ctrl.reset[1])
 			FlxG.switchState(new PlayState());
+		#end
 
-		if (Ctrl.jmenu[1])
-			new CostumeSelectSheet();
-		if (Ctrl.jemote[1])
-			new StickerSelectSheet();
+		if (Ctrl.mode.can_open_menus)
+		{
+			if (Ctrl.jmenu[1])
+				new CostumeSelectSheet();
+			if (Ctrl.jemote[1])
+				new StickerSelectSheet();
+		}
+
 		for (mem in ui.members)
 			switch (ui.members.indexOf(mem))
 			{
@@ -141,7 +150,7 @@ class PlayState extends BaseState
 								onComplete: function(twn:FlxTween)
 								{
 									twen = null;
-									mem.loadGraphic(Paths.get('charselect_mini_FULL.png'));
+									mem.loadGraphic(Paths.get('charselect-mini-full.png'));
 								}
 							});
 						if (FlxG.mouse.justReleased)
@@ -168,7 +177,7 @@ class PlayState extends BaseState
 								onComplete: function(twn:FlxTween)
 								{
 									twen = null;
-									mem.loadGraphic(Paths.get('charselect_mini_BG.png'));
+									mem.loadGraphic(Paths.get('charselect-mini-bg.png'));
 								}
 							});
 					}
@@ -223,7 +232,7 @@ class PlayState extends BaseState
 	{
 		ui.add(new FlxSpriteExt(20, 20, Paths.get('heart.png')));
 		ui.add(new FlxSpriteExt(1708, 20, Paths.get('settings.png')));
-		ui.add(new FlxSpriteExt(1520, 1030, Paths.get('charselect_mini_BG.png')));
+		ui.add(new FlxSpriteExt(1520, 1030, Paths.get('charselect-mini-bg.png')));
 		ui.forEach((spr:FlxSpriteExt) ->
 		{
 			spr.scrollFactor.set(0, 0);

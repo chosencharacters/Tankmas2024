@@ -87,32 +87,36 @@ class Player extends BaseUser
 		final DOWN:Bool = Ctrl.down[1];
 		final LEFT:Bool = Ctrl.left[1];
 		final RIGHT:Bool = Ctrl.right[1];
+
 		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
 		if (Ctrl.jemote[1] && !MinigameHandler.instance.is_minigame_active())
 			use_sticker(sticker);
 		// keeping the sheet menus right next to each other makes sense, no?
 
-		if (UP)
-			velocity.y -= move_speed / move_acl * (velocity.y > 0 ? 1 : move_reverse_mod);
-		else if (DOWN)
-			velocity.y += move_speed / move_acl * (velocity.y < 0 ? 1 : move_reverse_mod);
+		if (Ctrl.mode.can_move)
+		{
+			if (UP)
+				velocity.y -= move_speed / move_acl * (velocity.y > 0 ? 1 : move_reverse_mod);
+			else if (DOWN)
+				velocity.y += move_speed / move_acl * (velocity.y < 0 ? 1 : move_reverse_mod);
 
-		if (LEFT)
-			velocity.x -= move_speed / move_acl * (velocity.x > 0 ? 1 : move_reverse_mod);
-		else if (RIGHT)
-			velocity.x += move_speed / move_acl * (velocity.x < 0 ? 1 : move_reverse_mod);
+			if (LEFT)
+				velocity.x -= move_speed / move_acl * (velocity.x > 0 ? 1 : move_reverse_mod);
+			else if (RIGHT)
+				velocity.x += move_speed / move_acl * (velocity.x < 0 ? 1 : move_reverse_mod);
 
-		if (!LEFT && !RIGHT)
-			velocity.x = velocity.x * .95;
-		else
-			flipX = RIGHT;
-		// flipX = velocity.x > 0;
+			if (!LEFT && !RIGHT)
+				velocity.x = velocity.x * .95;
+			else
+				flipX = RIGHT;
+			// flipX = velocity.x > 0;
 
-		if (!UP && !DOWN)
-			velocity.y = velocity.y * move_no_input_drag;
+			if (!UP && !DOWN)
+				velocity.y = velocity.y * move_no_input_drag;
+		}
 
-		move_animation_handler(!NO_KEYS);
+		move_animation_handler(!NO_KEYS && Ctrl.mode.can_move);
 
 		// move_animation_handler(velocity.x.abs() + velocity.y.abs() > 10);
 	}
