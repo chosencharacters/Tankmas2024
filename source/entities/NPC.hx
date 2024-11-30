@@ -10,8 +10,8 @@ class NPC extends Interactable
 
 	public function new(?X:Float, ?Y:Float, name:String)
 	{
-		super(X, Y);		
-        
+		super(X, Y);
+
 		detect_range = 300;
 		interactable = true;
 
@@ -19,7 +19,7 @@ class NPC extends Interactable
 
 		this.name = name;
 
-        PlayState.self.npcs.add(this);
+		PlayState.self.npcs.add(this);
 
 		loadGraphic(Paths.get('${name}.png'));
 
@@ -40,11 +40,15 @@ class NPC extends Interactable
 				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
 				sprite_anim.anim(PresentAnimation.NEARBY);
-				if (Ctrl.jjump[1])
-					start_chat();
 			case CHATTING:
 				sprite_anim.anim(PresentAnimation.IDLE);
 		}
+
+	override function on_interact()
+	{
+		if (state == NEARBY)
+			start_chat();
+	}
 
 	function start_chat()
 	{

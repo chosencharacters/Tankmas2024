@@ -3,9 +3,18 @@ package entities;
 import entities.base.NGSprite;
 
 class Interactable extends NGSprite
-{	
-    public var detect_range:Int;
+{
+	public var detect_range:Int;
 	public var interactable:Bool;
+
+	public var marked(default, set):Bool = false;
+
+	function set_marked(m)
+	{
+		if (m != marked)
+			mark_target(m);
+		return marked = m;
+	}
 
 	public function new(?X:Float, ?Y:Float)
 	{
@@ -33,12 +42,15 @@ class Interactable extends NGSprite
 		return null;
 	}
 
-    public function mark_target(mark:Bool)
-		throw "not implemented";
+	// Called when in range and player presses interact button
+	public function on_interact() {}
 
-    public static function unmark_all<T:Interactable>(interactables:FlxTypedGroup<T>)
-        for (interactable in interactables)
-            interactable.mark_target(false);
+	function mark_target(mark:Bool) {}
+
+	public static function unmark_all<T:Interactable>(interactables:FlxTypedGroup<T>)
+		for (interactable in interactables)
+			interactable.marked = false;
+
 	override function kill()
 	{
 		PlayState.self.interactables.remove(this, true);

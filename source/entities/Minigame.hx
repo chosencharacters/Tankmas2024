@@ -27,18 +27,9 @@ class Minigame extends Interactable
 		alpha = 0.5;
 	}
 
-	public override function mark_target(mark:Bool)
+	override function on_interact()
 	{
-		if (mark)
-		{
-			if (Ctrl.jjump[1])
-			{
-				start_minigame();
-			}
-		}
-		else
-		{
-		}
+		start_minigame();
 	}
 
 	function start_minigame()

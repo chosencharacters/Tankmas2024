@@ -12,10 +12,18 @@ import states.substates.ComicSubstate;
 
 class Present extends Interactable
 {
-	public var openable:Bool = true;
+	public var openable(default, set):Bool = true;
+
+	function set_openable(o)
+	{
+		interactable = o;
+		return openable = o;
+	}
+
 	public static var opened:Bool = false;
 
 	public var thumbnail:Thumbnail;
+
 	var content:String;
 	var day:Int = 0;
 	var comic:Bool = false;
@@ -24,7 +32,6 @@ class Present extends Interactable
 	{
 		super(X, Y);
 		detect_range = 300;
-		interactable = true;
 		this.content = content;
 		var presentData:PresentDef = JsonData.get_present(this.content);
 		if (presentData == null)
@@ -36,8 +43,10 @@ class Present extends Interactable
 		opened = SaveManager.savedPresents.contains(content);
 		day = Std.parseInt(presentData.day);
 
+		openable = true;
+
 		type = Interactable.InteractableType.PRESENT;
-		
+
 		loadGraphic(Paths.get('present-$content.png'), true, 94, 94);
 
 		PlayState.self.presents.add(this);
@@ -75,34 +84,36 @@ class Present extends Interactable
 				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
 				sprite_anim.anim(PresentAnimation.NEARBY);
-				if (Ctrl.jjump[1])
-					open();
 			case OPENING:
 				sprite_anim.anim(PresentAnimation.OPENING);
-			case OPENED:			
+			case OPENED:
 				sprite_anim.anim(PresentAnimation.OPENED);
 		}
 
+	override function on_interact()
+	{
+		open();
+	}
+
 	override public function mark_target(mark:Bool)
 	{
-		if (!opened)
-		{
-			if (mark && openable)
-				sstate(NEARBY);
-			if (!mark && openable)
-				sstate(IDLE);
-		}
+		if (!openable)
+			return;
+
+		if (mark)
+			sstate(opened ? OPENED : NEARBY);
 		else
+			sstate(IDLE);
+
+		if (!opened)
+			return;
+
+		if (mark /** && thumbnail.scale.x == 0**/)
 		{
-			if (mark /** && thumbnail.scale.x == 0**/)
-			{
-				thumbnail.sstate("OPEN");
-				if (Ctrl.jjump[1])
-					open();
-			}
-			else if (!mark /** && thumbnail.scale.x != 0 && thumbnail.state != "CLOSE"**/)
-				thumbnail.sstate("CLOSE");
+			thumbnail.sstate("OPEN");
 		}
+		else if (!mark /** && thumbnail.scale.x != 0 && thumbnail.state != "CLOSE"**/)
+			thumbnail.sstate("CLOSE");
 	}
 
 	override function updateMotion(elapsed:Float)
@@ -120,6 +131,7 @@ class Present extends Interactable
 			{
 				// TODO: sound effect
 				sstate(OPENED);
+				thumbnail.sstate("OPEN");
 				PlayState.self.openSubState(comic ? new ComicSubstate(content, true) : new ArtSubstate(content));
 				opened = true;
 				SaveManager.open_present(content, day);

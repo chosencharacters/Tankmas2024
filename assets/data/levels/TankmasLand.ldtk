@@ -640,7 +640,7 @@
 			"maxWidth": null,
 			"minHeight": 64,
 			"maxHeight": null,
-			"keepAspectRatio": false,
+			"keepAspectRatio": true,
 			"tileOpacity": 1,
 			"fillOpacity": 1,
 			"lineOpacity": 1,
@@ -656,8 +656,8 @@
 			"maxCount": 0,
 			"limitScope": "PerLevel",
 			"limitBehavior": "MoveLastOne",
-			"pivotX": 0,
-			"pivotY": 0,
+			"pivotX": 0.5,
+			"pivotY": 0.5,
 			"fieldDefs": [
 				{
 					"identifier": "ActivityType",

@@ -7,6 +7,7 @@ import entities.Interactable;
 import entities.base.BaseUser;
 import net.tankmas.NetDefs.NetUserDef;
 import net.tankmas.OnlineLoop;
+
 class Player extends BaseUser
 {
 	var move_no_input_drag:Float = 0.9;
@@ -61,7 +62,7 @@ class Player extends BaseUser
 
 	override function update(elapsed:Float)
 	{
-		if (Main.DEV && Ctrl.any(Ctrl.jaction))
+		if (Main.DEV && Ctrl.any(Ctrl.jaction) && !interact_in_use())
 			debug_rotate_costumes();
 
 		fsm();
@@ -125,13 +126,21 @@ class Player extends BaseUser
 	{
 		if (active_activity_area == null)
 			return;
-		if (Ctrl.jjump[1])
+		if (Ctrl.jaction[1])
 		{
 			active_activity_area.on_interact(this);
 		}
 	}
 
-	var previously_closest_interactable:Interactable;
+	var active_interactable:Interactable;
+
+	// returns true if either in an activity area, or if close to an interactable.
+	// If false, the use button can be used for other stuff
+	public function interact_in_use()
+	{
+		return active_activity_area != null || (active_interactable != null && active_interactable.interactable);
+	}
+
 	function detect_interactables()
 	{
 		// Disable interactions if in activity area
@@ -142,16 +151,16 @@ class Player extends BaseUser
 		}
 
 		var closest:Interactable = Interactable.find_closest_in_array(this, Interactable.find_in_detect_range(this, PlayState.self.interactables));
-		var target_changed = closest != previously_closest_interactable;
+		var target_changed = closest != active_interactable;
 
-		if (target_changed && previously_closest_interactable != null)
+		if (target_changed && active_interactable != null)
 		{
-			previously_closest_interactable.mark_target(false);
+			active_interactable.marked = false;
 		}
 
 		if (closest == null)
 		{
-			previously_closest_interactable = null;
+			active_interactable = null;
 			return;
 		}
 
@@ -165,12 +174,13 @@ class Player extends BaseUser
 				// nothin
 		}
 
-		if (target_changed)
-		{
-			closest.mark_target(true);
-		}
+		closest.marked = true;
+		active_interactable = closest;
 
-		previously_closest_interactable = closest;
+		if (Ctrl.jaction[1])
+		{
+			active_interactable.on_interact();
+		}
 	}
 
 	override function kill()
@@ -178,6 +188,7 @@ class Player extends BaseUser
 		PlayState.self.player = null;
 		super.kill();
 	}
+
 	override function use_sticker(sticker_name:String):Bool
 	{
 		var sticker_got_used:Bool = super.use_sticker(sticker_name);
@@ -201,7 +212,6 @@ class Player extends BaseUser
 
 		if (last_update_json.y != y.floor() || force_send_full_user)
 			def.y = y.floor();
-
 
 		if (last_update_json.costume != costume.name || force_send_full_user)
 			def.costume = costume.name;
