@@ -148,7 +148,7 @@ class DialogueBox extends FlxGroupExt
 			case IDLE:
 				if (line_finished)
 				{
-					if (Ctrl.interact[1])
+					if (Ctrl.jinteract[1])
 						sstate(SWIPE_OUT);
 				}
 		}
