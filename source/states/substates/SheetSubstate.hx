@@ -9,6 +9,7 @@ import ui.sheets.StickerSelectSheet;
 class SheetSubstate extends flixel.FlxSubState
 {
 	var sheet_ui:BaseSelectSheet;
+
 	public static var instance:SheetSubstate;
 
 	override public function new(sheet_ui:BaseSelectSheet)
@@ -27,9 +28,13 @@ class SheetSubstate extends flixel.FlxSubState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		if (Ctrl.jaction[1] && sheet_ui.canSelect) {
+		if (Ctrl.jinteract[1] && sheet_ui.canSelect)
+		{
 			sheet_ui.transOut();
-			new FlxTimer().start(1.2, function(tmr:FlxTimer) {close();});
+			new FlxTimer().start(1.2, function(tmr:FlxTimer)
+			{
+				close();
+			});
 		}
 	}
 
