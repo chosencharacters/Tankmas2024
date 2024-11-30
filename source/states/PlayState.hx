@@ -151,31 +151,30 @@ class PlayState extends BaseState
 		if (Ctrl.mode.can_open_menus)
 			if (Ctrl.jmenu[1])
 				sheet_menu.open();
+		handle_collisions();
+		if (tags.members[0].visible != BaseState.showUsers)
+			for (mem in tags.members)
+				mem.visible = BaseState.showUsers;
 	}
-	handle_collisions();
-	if (tags.members[0].visible != BaseState.showUsers)
-		for (mem in tags.members)
-			mem.visible = BaseState.showUsers;
-}
 
-function handle_collisions()
-	FlxG.collide(level_collision, player);
+	function handle_collisions()
+		FlxG.collide(level_collision, player);
 
-override function destroy()
-{
-	self = null;
-	super.destroy();
-}
+	override function destroy()
+	{
+		self = null;
+		super.destroy();
+	}
 
-function make_world()
-{
-	TankmasLevel.make_all_levels_in_world(current_world);
-	for (level in levels)
-		level.place_entities();
-}
+	function make_world()
+	{
+		TankmasLevel.make_all_levels_in_world(current_world);
+		for (level in levels)
+			level.place_entities();
+	}
 
-function make_ui()
-{
-	ui_overlay = new MainGameOverlay();
-}
+	function make_ui()
+	{
+		ui_overlay = new MainGameOverlay();
+	}
 }
