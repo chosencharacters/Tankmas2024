@@ -1,6 +1,7 @@
 package data;
 
 import entities.Player;
+import net.tankmas.TankmasClient;
 import ui.sheets.CostumeSelectSheet;
 import ui.sheets.StickerSelectSheet;
 
@@ -15,10 +16,14 @@ class SaveManager
 
 	public static function init()
 	{
-		savedRoom = Main.default_room;
+		download();
 
+		savedRoom = Main.default_room;
 		saved_sticker_collection = Main.default_sticker_collection;
 		saved_costume_collection = Main.default_costume_collection;
+
+		// opened presents
+		load_presents();
 
 		// unlocked costumes, as well as what the player is currently wearing
 		load_costumes();
@@ -36,6 +41,41 @@ class SaveManager
 		load_room();
 	}
 
+	public static function upload()
+	{
+		// Serialize data
+		var encodedData = haxe.Serializer.run(FlxG.save.data);
+
+		var username = #if newgrounds Main.ng_api.NG_USERNAME #else "test_user" #end;
+
+		// Upload data
+		TankmasClient.post_save(username, encodedData, (data:Dynamic) -> {
+			trace("Successfully uploaded save data.");
+		});
+	}
+
+	public static function download()
+	{
+
+		var username = #if newgrounds Main.ng_api.NG_USERNAME #else "test_user" #end;
+
+		// Download data
+		TankmasClient.get_save(username, (data:Dynamic) -> {
+			trace("Successfully downloaded save data.");
+
+			var encodedData = data?.data;
+
+			if (encodedData != null)
+			{
+				// Deserialize data
+				var data = haxe.Serializer.run(encodedData);
+				trace('Successfully deserialized save data.');
+				trace(data);
+				FlxG.save.mergeData(data, true);
+			}
+		});
+	}
+
 	public static function save()
 	{
 		save_presents();
@@ -44,6 +84,8 @@ class SaveManager
 		save_room();
 		save_collections();
 		FlxG.save.flush();
+
+		upload();
 	}
 
 	public static function save_collections(force:Bool = false):Void

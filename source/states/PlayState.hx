@@ -140,8 +140,11 @@ class PlayState extends BaseState
 		// Ctrl.update();
 
 		#if dev
-		if (Ctrl.reset[1])
+		if (Ctrl.reset[1] && !FlxG.keys.pressed.SHIFT)
 			FlxG.switchState(new PlayState());
+
+		if (Ctrl.reset[1] && FlxG.keys.pressed.SHIFT)
+			SaveManager.upload();
 		#end
 
 		if (Ctrl.mode.can_open_menus)
