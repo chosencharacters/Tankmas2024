@@ -1,10 +1,11 @@
 package ui.popups;
 
+import flixel.FlxBasic;
 import flixel.addons.display.FlxSpriteAniRot;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 
-class StickerPackOpening extends FlxTypedGroupExt<FlxSpriteExt>
+class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 {
 	var sticker_pack:FlxSpriteExt;
 
@@ -20,9 +21,20 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxSpriteExt>
 
 	var hits:Int = 0;
 
-	public function new()
+	var stickers:Array<FlxSpriteExt> = [];
+
+	var sticker_draw:Array<String> = [];
+
+	var ran:FlxRandom = new FlxRandom();
+
+	var wobble_rate:Int = 3;
+	var wobble_amount:Int = 4;
+
+	public function new(sticker_draw:Array<String>)
 	{
 		super();
+
+		this.sticker_draw = sticker_draw;
 
 		black = new FlxSpriteExt().makeGraphicExt(FlxG.width, FlxG.height, FlxColor.BLACK);
 		black.alpha = 0;
@@ -44,13 +56,56 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxSpriteExt>
 
 		sstate(STICKER_PACK_IN);
 
+		make_stickers();
+
 		for (member in members)
 			member.scrollFactor.set(0, 0);
+	}
+
+	function make_stickers()
+	{
+		for (n in 0...3)
+		{
+			var sticker:FlxSpriteExt = new FlxSpriteExt(Paths.get('${sticker_draw[n]}.png'));
+			sticker.screenCenter();
+
+			switch (n)
+			{
+				case 0:
+					sticker.setPosition(sticker.x - 50, sticker.y - 25);
+				case 1:
+					sticker.setPosition(stickers[0].x + 100, stickers[0].y + 25 + 25);
+				case 2:
+					sticker.setPosition(stickers[1].x - 75, stickers[1].y + 25 + 25);
+			}
+
+			stickers.push(sticker);
+		}
+
+		for (n in 0...3)
+		{
+			trace(n, 2 - n);
+			add(stickers[2 - n]);
+		}
+	}
+
+	function sticker_wobble()
+	{
+		for (sticker in stickers)
+		{
+			var old_offset:FlxPoint = sticker.offset.copyTo(FlxPoint.weak());
+			while (sticker.offset.x == old_offset.x && sticker.offset.y == old_offset.y)
+				sticker.offset.set(ran.getObject([-1, 0, 1]) * wobble_amount, ran.getObject([-1, 0, 1]) * wobble_amount);
+		}
 	}
 
 	override function update(elapsed:Float)
 	{
 		fsm();
+
+		if (ttick() % wobble_rate == 0)
+			sticker_wobble();
+
 		super.update(elapsed);
 	}
 
@@ -76,12 +131,9 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxSpriteExt>
 				if (sticker_pack.animation.finished)
 				{
 					FlxG.camera.flash();
+					sticker_pack.kill();
 					sstate(KABOOM, fsm);
 				}
-			case KABOOM:
-				sticker_pack.animProtect("kaboom");
-				if (sticker_pack.animation.finished)
-					sstate(KABOOM);
 		}
 
 	override function kill()
