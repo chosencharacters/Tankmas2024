@@ -92,6 +92,7 @@
 	<haxedef name="FLX_NO_TOUCH" if="desktop" />
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
+	<haxedef name="FLX_NO_DEBUG" unless="debug"/>
 	<haxedef name="message.reporting" value="pretty" />
 
 	<!-- Debugging -->
