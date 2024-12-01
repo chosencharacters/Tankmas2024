@@ -22,10 +22,10 @@ class CostumeSelectSheet extends BaseSelectSheet
 
 	override function save_selection()
 	{
-		SaveManager.current_costume = characterNames[current_sheet][current_selection];
+		SaveManager.current_costume = characterNames[locked_sheet][locked_selection];
 
-		saved_sheet = current_sheet;
-		saved_selection = current_selection;
+		saved_sheet = locked_sheet;
+		saved_selection = locked_selection;
 		seenCostumes = seen;
 
 		SaveManager.save_costumes(true);

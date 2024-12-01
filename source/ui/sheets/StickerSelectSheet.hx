@@ -22,10 +22,10 @@ class StickerSelectSheet extends BaseSelectSheet
 
 	override function save_selection()
 	{
-		SaveManager.current_emote = characterNames[current_sheet][current_selection];
+		SaveManager.current_emote = characterNames[locked_sheet][locked_selection];
 
-		saved_sheet = current_sheet;
-		saved_selection = current_selection;
+		saved_sheet = locked_sheet;
+		saved_selection = locked_selection;
 		seenStickers = seen;
 
 		SaveManager.save_emotes(true);
