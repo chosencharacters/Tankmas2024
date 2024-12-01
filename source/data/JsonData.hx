@@ -136,7 +136,9 @@ class JsonData
 		for (n in 0...amount)
 		{
 			var random_sticker:String = null;
-			while (random_sticker == null || SaveManager.saved_sticker_collection.contains(random_sticker))
+			while (random_sticker == null
+				|| SaveManager.saved_sticker_collection.contains(random_sticker)
+				|| drawn_stickers.contains(random_sticker))
 				random_sticker = Main.ran.getObject(limit_list == null ? all_sticker_names : limit_list);
 			drawn_stickers.push(random_sticker);
 		}

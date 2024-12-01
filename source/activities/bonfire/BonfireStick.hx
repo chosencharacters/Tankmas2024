@@ -84,10 +84,11 @@ class BonfireStick extends FlxSprite
 		enabled = false;
 		discardMarshmallow();
 	}
-	
+
 	var shake_force = 0.0;
 
-	public function shake_off() {
+	public function shake_off()
+	{
 		discardMarshmallow();
 		shake_force = 10.0;
 	}
@@ -112,7 +113,6 @@ class BonfireStick extends FlxSprite
 				return;
 			}
 		}
-		
 
 		var offset_x = 128;
 
@@ -135,11 +135,13 @@ class BonfireStick extends FlxSprite
 		y += (ty - y) * 0.3;
 
 		angle = flipX ? -_ang : _ang;
-		
-		if (shake_force > 0) {
+
+		if (shake_force > 0)
+		{
 			shake_force *= 0.86;
 			angle += Math.sin(time * (0.8 + shake_force)) * 2 * shake_force;
-			if (shake_force < 0.01) {
+			if (shake_force < 0.01)
+			{
 				newMarshmallow();
 				shake_force = 0;
 			}
@@ -147,25 +149,33 @@ class BonfireStick extends FlxSprite
 
 		if (marshmallow != null)
 		{
-			marshmallow.x = x;
-			marshmallow.y = y;
-			marshmallow.flipX = flipX;
-
-			var putOnDx = 15.0;
-			var putOnDy = 15.0;
-
-			if (!flipX)
+			// TODO: fix the .x error and remove this trycatch
+			try
 			{
-				putOnDx = -putOnDx;
-				marshmallow.x += 64;
-			}
-			
-			marshmallow.x += (marshmallow.alpha - 1.0) * putOnDx;
-			marshmallow.y += (marshmallow.alpha - 1.0) * putOnDy;
-			
-			var d = FlxMath.distanceBetween(bonfire, marshmallow);
+				marshmallow.x = x;
+				marshmallow.y = y;
+				marshmallow.flipX = flipX;
 
-			marshmallow.heat(d, elapsed);
+				var putOnDx = 15.0;
+				var putOnDy = 15.0;
+
+				if (!flipX)
+				{
+					putOnDx = -putOnDx;
+					marshmallow.x += 64;
+				}
+
+				marshmallow.x += (marshmallow.alpha - 1.0) * putOnDx;
+				marshmallow.y += (marshmallow.alpha - 1.0) * putOnDy;
+
+				var d = FlxMath.distanceBetween(bonfire, marshmallow);
+
+				marshmallow.heat(d, elapsed);
+			}
+			catch (e)
+			{
+				trace(e);
+			}
 		}
 	}
 }

@@ -53,12 +53,14 @@ class SheetSubstate extends FlxSubStateExt
 
 	public function close_and_close_substate()
 	{
-		var new_costume:CostumeDef = JsonData.get_costume(SaveManager.current_costume);
-		if (new_costume != null && new_costume.name != PlayState.self.player.costume.name)
-		{
-			PlayState.self.player.new_costume(JsonData.get_costume(SaveManager.current_costume));
-			FlxG.camera.flash(FlxColor.BLACK, 0.5);
-		}
+		/*
+			var new_costume:CostumeDef = JsonData.get_costume(SaveManager.current_costume);
+			if (new_costume != null && new_costume.name != PlayState.self.player.costume.name)
+			{
+				PlayState.self.player.new_costume(JsonData.get_costume(SaveManager.current_costume));
+				FlxG.camera.flash(FlxColor.BLACK, 0.5);
+			}
+		 */
 		close();
 		FlxG.state.closeSubState();
 	}
