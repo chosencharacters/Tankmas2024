@@ -158,6 +158,12 @@
             "desc": "As prickly as being a cactus would make her, Rebutia may come off as the grumpiest of her four piece cactus punk band, but rumors say she's actually quite sweet underneath. Probably. Or probably not.",
             "unlock": "USERNAME",
             "data": "Bacun"
+        },{
+            "name": "strawberry-clock",
+            "display": "Strawberry Clock",
+            "desc": "B",
+            "unlock": "USERNAME",
+            "data": "coolboyman"
         }
     ]
 }
