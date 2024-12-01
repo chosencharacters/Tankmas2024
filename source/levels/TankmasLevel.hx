@@ -39,8 +39,9 @@ class TankmasLevel extends LDTKLevel
 		setPosition(data.worldX, data.worldY);
 
 		PlayState.self.level_backgrounds.add(bg = new FlxSpriteExt(x, y, Paths.get(data.json.bgRelPath.split("/").last())));
-		if(LevelName.startsWith("hotel_courtyard"))
-			PlayState.self.level_backgrounds.add(fg = new FlxSpriteExt(x, y, Paths.get("outside-hotel-foreground-day" + Main.get_current_bg(/**Date.now().getMonth() != 11 ? 32 : Date.now().getDate()**/1) + ".png")));
+		if (LevelName.startsWith("hotel_courtyard"))
+			PlayState.self.level_backgrounds.add(fg = new FlxSpriteExt(x, y,
+				Paths.get("outside-hotel-foreground-day" + Main.get_current_bg(/**Date.now().getMonth() != 11 ? 32 : Date.now().getDate()**/ 1) + ".png")));
 
 		// col = new FlxTilemap();
 
@@ -102,6 +103,13 @@ class TankmasLevel extends LDTKLevel
 		for (entity in level.l_Entities.all_Activity_Area.iterator())
 		{
 			new ActivityArea(entity.f_ActivityType, x + entity.pixelX, y + entity.pixelY, entity.width, entity.height);
+		}
+
+		for (entity in level.l_Entities.all_Graphic)
+		{
+			var sprite:FlxSpriteExt = new FlxSpriteExt(x + entity.pixelX, y + entity.pixelY);
+			sprite.loadAllFromAnimationSet(entity.f_name);
+			PlayState.self.misc_sprites.add(sprite);
 		}
 		/**put entity iterators here**/
 		/* 

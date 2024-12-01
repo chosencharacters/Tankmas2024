@@ -2,8 +2,9 @@ package activities;
 
 import entities.base.BaseUser;
 import net.tankmas.NetDefs.NetEventDef;
+import squid.sprite.FlxSpriteExt;
 
-class ActivityAreaInstance extends FlxSprite
+class ActivityAreaInstance extends FlxSpriteExt
 {
 	var player:BaseUser;
 	var activity_area:ActivityArea;

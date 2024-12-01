@@ -52,4 +52,8 @@
 	<animSet image="move-circle">
 		<anim name="idle" fps="100ms" looping="false">0t4</anim>
 	</animSet>
+
+	<animSet image="outside-bonfire" width="919" height="1374">
+		<anim name="idle" fps="40ms">0t39</anim>
+	</animSet>
 </root>

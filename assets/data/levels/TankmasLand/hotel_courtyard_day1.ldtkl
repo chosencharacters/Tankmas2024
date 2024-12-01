@@ -864,7 +864,7 @@
 			"entityInstances": [
 				{
 					"__identifier": "Player",
-					"__grid": [136,136],
+					"__grid": [98,7],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -873,14 +873,14 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 1,
-					"px": [2176,2176],
+					"px": [1568,112],
 					"fieldInstances": [],
-					"__worldX": 2208,
-					"__worldY": 2192
+					"__worldX": 1600,
+					"__worldY": 128
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [130,104],
+					"__grid": [65,94],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -889,7 +889,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [2080,1664],
+					"px": [1040,1504],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "cymbourine", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -897,8 +897,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 1, "__tile": null, "defUid": 6, "realEditorValues": [] }
 					],
-					"__worldX": 2112,
-					"__worldY": 1680
+					"__worldX": 1072,
+					"__worldY": 1520
 				},
 				{
 					"__identifier": "NPC",
@@ -937,6 +937,25 @@
 					}] }],
 					"__worldX": 1680,
 					"__worldY": 2480
+				},
+				{
+					"__identifier": "Graphic",
+					"__grid": [75,83],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#E4A672",
+					"iid": "c4cc78a0-9b00-11ef-9727-ab7990037f30",
+					"width": 919,
+					"height": 1374,
+					"defUid": 29,
+					"px": [1211,1338],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "outside-bonfire", "__tile": null, "defUid": 31, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["outside-bonfire"]
+					}] }],
+					"__worldX": 1243,
+					"__worldY": 1354
 				}
 			]
 		},

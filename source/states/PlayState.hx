@@ -1,7 +1,5 @@
 package states;
 
-import net.tankmas.TankmasClient;
-import net.tankmas.NetDefs.NetUserDef;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -16,15 +14,17 @@ import fx.StickerFX;
 import fx.Thumbnail;
 import levels.TankmasLevel;
 import minigames.MinigameHandler;
+import net.tankmas.NetDefs.NetUserDef;
 import net.tankmas.OnlineLoop;
+import net.tankmas.TankmasClient;
 import ui.DialogueBox;
 import ui.MainGameOverlay;
 import ui.TouchOverlay;
 import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
-import zones.Door;
 import video.PremiereHandler;
+import zones.Door;
 
 class PlayState extends BaseState
 {
@@ -46,6 +46,7 @@ class PlayState extends BaseState
 	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
 	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
 	public var minigames:FlxTypedGroup<Minigame> = new FlxTypedGroup<Minigame>();
+	public var misc_sprites:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
 	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
@@ -111,6 +112,8 @@ class PlayState extends BaseState
 		add(stickers);
 		add(sticker_fx);
 		add(dialogues);
+
+		add(misc_sprites);
 
 		add(doors);
 
