@@ -17,6 +17,7 @@ import minigames.MinigameHandler;
 import net.tankmas.OnlineLoop;
 import ui.DialogueBox;
 import ui.MainGameOverlay;
+import ui.TouchOverlay;
 import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
@@ -58,6 +59,8 @@ class PlayState extends BaseState
 
 	public var sheet_menu:SheetMenu;
 
+	public var touch:TouchOverlay;
+
 	public function new(?world_to_load:String)
 	{
 		if (world_to_load != null)
@@ -85,6 +88,8 @@ class PlayState extends BaseState
 		add(level_backgrounds);
 		add(levels);
 		add(level_collision);
+
+		add(touch = new TouchOverlay());
 
 		add(shadows);
 		add(minigames);

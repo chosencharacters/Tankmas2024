@@ -49,4 +49,8 @@
 	<animSet image="sticker-pack-icon">
 		<anim name="idle" fps="100ms">0t14</anim>
 	</animSet>
+
+	<animSet image="move-circle">
+		<anim name="idle" fps="100ms" looping="false">0t4</anim>
+	</animSet>
 </root>

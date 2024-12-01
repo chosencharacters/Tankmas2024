@@ -6,6 +6,7 @@ import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.PlayerAnimation;
 import entities.Interactable;
 import entities.base.BaseUser;
+import flixel.math.FlxVelocity;
 import minigames.MinigameHandler;
 import net.tankmas.NetDefs.NetUserDef;
 import net.tankmas.OnlineLoop;
@@ -20,6 +21,10 @@ class Player extends BaseUser
 	static var debug_costume_rotation:Array<CostumeDef>;
 
 	public static var has_sticker_pack:Bool = true;
+
+	var auto_moving:Bool = false;
+	var auto_move_dest:FlxPoint;
+	final auto_move_deadzone:Int = 32;
 
 	public function new(?X:Float, ?Y:Float)
 	{
@@ -41,7 +46,7 @@ class Player extends BaseUser
 			#end
 		 */
 
-		costume = JsonData.costumes.get(SaveManager.current_costume);
+		costume = JsonData.get_costume(SaveManager.current_costume);
 
 		last_update_json = {name: username};
 
@@ -52,6 +57,12 @@ class Player extends BaseUser
 		sprite_anim.anim(PlayerAnimation.MOVING);
 
 		sstate(NEUTRAL);
+	}
+
+	public function start_auto_move(auto_move_dest:FlxPoint)
+	{
+		this.auto_move_dest = auto_move_dest.copy();
+		auto_moving = true;
 	}
 
 	function debug_rotate_costumes()
@@ -86,17 +97,60 @@ class Player extends BaseUser
 
 	function general_movement()
 	{
-		final UP:Bool = Ctrl.up[1];
-		final DOWN:Bool = Ctrl.down[1];
-		final LEFT:Bool = Ctrl.left[1];
-		final RIGHT:Bool = Ctrl.right[1];
+		var UP:Bool = Ctrl.up[1];
+		var DOWN:Bool = Ctrl.down[1];
+		var LEFT:Bool = Ctrl.left[1];
+		var RIGHT:Bool = Ctrl.right[1];
 
 		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
+		// if any key pressed, cancel auto_move
+		if (!NO_KEYS || Ctrl.jemote[1])
+			auto_moving = false;
+
 		if (Ctrl.jemote[1] && !MinigameHandler.instance.is_minigame_active())
 			use_sticker(SaveManager.current_emote);
+
+		if (auto_moving)
+			auto_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
+		else
+			manual_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
+
 		// keeping the sheet menus right next to each other makes sense, no?
 
+		move_animation_handler(!NO_KEYS && Ctrl.mode.can_move || auto_moving);
+
+		// move_animation_handler(velocity.x.abs() + velocity.y.abs() > 10);
+	}
+
+	function auto_movement(UP:Bool, DOWN:Bool, LEFT:Bool, RIGHT:Bool, NO_KEYS:Bool)
+	{
+		// only move if we're not within deadzones
+		var within_x_deadzone:Bool = Math.abs(auto_move_dest.x - mp.x) <= auto_move_deadzone;
+		var within_y_deadzone:Bool = Math.abs(auto_move_dest.y - mp.y) <= auto_move_deadzone;
+
+		if (!within_x_deadzone)
+		{
+			LEFT = auto_move_dest.x < mp.x;
+			RIGHT = !RIGHT;
+		}
+		if (!within_y_deadzone)
+		{
+			UP = auto_move_dest.y < mp.y;
+			DOWN = !UP;
+		}
+		// FlxVelocity.moveTowardsPoint(this, auto_move_dest, move_speed);
+
+		// normally we'd snap to position on this deadzone condition but we can do that later cause you could use it to clip through walls
+		// if we're not careful
+		if (within_x_deadzone && within_y_deadzone)
+			auto_moving = false;
+
+		manual_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
+	}
+
+	function manual_movement(UP:Bool, DOWN:Bool, LEFT:Bool, RIGHT:Bool, NO_KEYS:Bool)
+	{
 		if (Ctrl.mode.can_move)
 		{
 			if (UP)
@@ -118,10 +172,6 @@ class Player extends BaseUser
 			if (!UP && !DOWN)
 				velocity.y = velocity.y * move_no_input_drag;
 		}
-
-		move_animation_handler(!NO_KEYS && Ctrl.mode.can_move);
-
-		// move_animation_handler(velocity.x.abs() + velocity.y.abs() > 10);
 	}
 
 	function post_start_stop()
