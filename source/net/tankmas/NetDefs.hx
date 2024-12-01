@@ -7,7 +7,16 @@ typedef NetUserDef =
 	?y:Int,
 	?sx:Int, // Scale x, if facing right or left
 	?costume:String,
-	?timestamp:Int,
+	?timestamp:Float,
+	?room_id:Int,
+	// Data can contain specific user flags that the user can set.
+	// Sort of like a save file but you can read other players data too.
+	// WIP - no calls in client for this yet.
+	?data:
+		{
+			?test_value:Int,
+			?marshmallows_thrown:Int,
+		}
 }
 
 typedef NetEventDef =

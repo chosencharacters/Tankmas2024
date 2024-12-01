@@ -1,5 +1,7 @@
 package states;
 
+import net.tankmas.TankmasClient;
+import net.tankmas.NetDefs.NetUserDef;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -142,6 +144,22 @@ class PlayState extends BaseState
 			mem.checkOpen();
 
 		SaveManager.save_room();
+
+		// Check if player exists, and load their position.
+		// A bit jank now since it does it after the player is spawned.
+		// Also this could be loaded in the user's save file instead
+		#if (!offline)
+		TankmasClient.get_user(Main.username, player_loaded);
+		#end
+	}
+
+	function player_loaded(?p:NetUserDef)
+	{
+		if (p != null)
+		{
+			// player.x = p.x;
+			// player.y = p.y;
+		}
 	}
 
 	override public function update(elapsed:Float)
