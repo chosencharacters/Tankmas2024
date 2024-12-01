@@ -34,4 +34,16 @@ class TankmasClient
 
 		Client.post(url, event, on_complete);
 	}
+
+	public static function get_save(username:String, ?on_complete:Dynamic->Void) {
+		var url:String = '$address/saves/get';
+
+		Client.post(url, {username: username}, on_complete);
+	}
+
+	public static function post_save(username:String, save:String, ?on_complete:Dynamic->Void) {
+		var url:String = '$address/saves/post';
+
+		Client.post(url, {username: username, data: save}, on_complete);
+	}
 }

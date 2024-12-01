@@ -56,7 +56,7 @@ class Client
 		client.post(url, data).then(response ->
 		{
 			#if trace_net trace('STATUS: ${response.httpStatus}'); #end
-			on_data(response.bodyAsJson);
+			if (on_data != null) on_data(response.bodyAsJson);
 		}, (error:HttpError) ->
 			{
 				trace('POST ERROR @ $url');
