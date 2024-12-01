@@ -171,9 +171,6 @@ class Player extends BaseUser
 			var move_speed_y:Float = move_speed / move_acl * (reversing_y ? move_reverse_mod : 1);
 
 			if (UP)
-				trace(velocity.y, reversing_y);
-
-			if (UP)
 				velocity.y -= move_speed_y;
 			else if (DOWN)
 				velocity.y += move_speed_y;
