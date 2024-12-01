@@ -77,6 +77,7 @@ class BaseUser extends NGSprite
 	{
 		loadGraphic(Paths.get('${costume.name}.png'));
 		original_size.set(width, height);
+		this.costume = costume;
 	}
 
 	override function updateMotion(elapsed:Float)

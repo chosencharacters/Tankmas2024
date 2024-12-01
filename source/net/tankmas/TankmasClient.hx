@@ -14,6 +14,19 @@ class TankmasClient
 		Client.get(url, on_complete);
 	}
 
+	public static function get_user(username:String, ?on_complete:?NetUserDef->Void)
+	{
+		var url:String = '$address/users/$username';
+		var on_user_loaded = (res:{?data:NetUserDef}) ->
+		{
+			if (on_complete != null)
+			{
+				on_complete(res.data);
+			}
+		}
+		Client.get(url, on_user_loaded);
+	}
+
 	public static function post_user(room_id:String, user:NetUserDef, ?on_complete:Dynamic->Void)
 	{
 		var url:String = '$address/rooms/$room_id/users';
