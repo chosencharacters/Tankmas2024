@@ -38,7 +38,8 @@ class ArtSubstate extends flixel.FlxSubState
 			+ " by "
 			+ ((data.artist != null && data.artist != "") ? data.artist : "Unknown")
 			+ '\nClick here to view this ${data.link != null ? 'piece' : 'artist'} on NG!');
-		theText.setFormat(null, 32, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
+
+		theText.setFormat(Paths.get('CharlieType-Heavy.otf'), 32, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
 		add(theText);
 
 		add(back_button = new HoverButton((b) -> back_button_activated()));
