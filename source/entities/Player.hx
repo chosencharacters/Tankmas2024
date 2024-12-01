@@ -105,7 +105,7 @@ class Player extends BaseUser
 		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
 		// if any key pressed, cancel auto_move
-		if (!NO_KEYS || Ctrl.jemote[1])
+		if (!NO_KEYS || Ctrl.jemote[1] || !Ctrl.mode.can_move)
 			auto_moving = false;
 
 		if (Ctrl.jemote[1] && !MinigameHandler.instance.is_minigame_active())
@@ -116,9 +116,11 @@ class Player extends BaseUser
 		else
 			manual_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
 
+		var moving:Bool = !NO_KEYS && Ctrl.mode.can_move || auto_moving;
+
 		// keeping the sheet menus right next to each other makes sense, no?
 
-		move_animation_handler(!NO_KEYS && Ctrl.mode.can_move || auto_moving);
+		move_animation_handler(moving);
 
 		// move_animation_handler(velocity.x.abs() + velocity.y.abs() > 10);
 	}
@@ -129,24 +131,30 @@ class Player extends BaseUser
 		var within_x_deadzone:Bool = Math.abs(auto_move_dest.x - mp.x) <= auto_move_deadzone;
 		var within_y_deadzone:Bool = Math.abs(auto_move_dest.y - mp.y) <= auto_move_deadzone;
 
-		if (!within_x_deadzone)
-		{
-			LEFT = auto_move_dest.x < mp.x;
-			RIGHT = !RIGHT;
-		}
-		if (!within_y_deadzone)
-		{
-			UP = auto_move_dest.y < mp.y;
-			DOWN = !UP;
-		}
-		// FlxVelocity.moveTowardsPoint(this, auto_move_dest, move_speed);
+		/*
+			if (!within_x_deadzone)
+			{
+				LEFT = auto_move_dest.x < mp.x;
+				RIGHT = !RIGHT;
+			}
+			if (!within_y_deadzone)
+			{
+				UP = auto_move_dest.y < mp.y;
+				DOWN = !UP;
+		}*/
+		FlxVelocity.moveTowardsPoint(this, auto_move_dest, move_speed);
+
+		flipX = velocity.x > 0;
 
 		// normally we'd snap to position on this deadzone condition but we can do that later cause you could use it to clip through walls
 		// if we're not careful
 		if (within_x_deadzone && within_y_deadzone)
+		{
+			velocity.scale(0.5, 0.5);
 			auto_moving = false;
+		}
 
-		manual_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
+		// manual_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
 	}
 
 	function manual_movement(UP:Bool, DOWN:Bool, LEFT:Bool, RIGHT:Bool, NO_KEYS:Bool)

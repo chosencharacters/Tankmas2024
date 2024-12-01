@@ -56,6 +56,7 @@ class SheetSubstate extends FlxSubStateExt
 
 	override function close()
 	{
+		Ctrl.mode = ControlModes.OVERWORLD;
 		sheet_menu.kill();
 		self = null;
 		PlayState.self.ui_overlay.reveal_top_ui();

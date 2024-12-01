@@ -103,6 +103,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 							hide_top_ui();
 							if (twen != null)
 								twen.cancel();
+							Ctrl.mode = ControlModes.NONE;
 							twen = FlxTween.tween(member, {y: 1180}, 0.3, {
 								onComplete: (twn:FlxTween) ->
 								{
@@ -157,6 +158,15 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 
 	function get_player():Player
 		return PlayState.self.player;
+
+	/**The mouse is hovering over any of the ui elements, if so, don't let touch inputs happen*/
+	public function mouse_is_over_ui():Bool
+	{
+		var mouse_over_no_no_zone:Bool = false;
+		for (member in members)
+			mouse_over_no_no_zone = mouse_over_no_no_zone || FlxG.mouse.overlaps(member);
+		return mouse_over_no_no_zone;
+	}
 }
 
 private enum abstract State(String) from String to String

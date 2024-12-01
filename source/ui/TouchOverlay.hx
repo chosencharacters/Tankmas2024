@@ -23,6 +23,8 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 			case IDLE:
 				if (!Ctrl.mode.can_move)
 					return;
+				if (PlayState.self.ui_overlay.mouse_is_over_ui())
+					return;
 				if (FlxG.mouse.pressed)
 					sstate(PRESSING, fsm);
 			case PRESSING:
