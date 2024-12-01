@@ -10,6 +10,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 	var sticker_pack:FlxSpriteExt;
 
 	var sticker_pack_descent_speed:Float = 0.5;
+	var sticker_ascent_speed:Float = 0.7;
 
 	var black:FlxSpriteExt;
 	var black_alpha:Float = 0.75;
@@ -79,6 +80,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 					sticker.setPosition(stickers[1].x - 75, stickers[1].y + 25 + 25);
 			}
 
+			sticker.visible = false;
 			stickers.push(sticker);
 		}
 
@@ -89,22 +91,9 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 		}
 	}
 
-	function sticker_wobble()
-	{
-		for (sticker in stickers)
-		{
-			var old_offset:FlxPoint = sticker.offset.copyTo(FlxPoint.weak());
-			while (sticker.offset.x == old_offset.x && sticker.offset.y == old_offset.y)
-				sticker.offset.set(ran.getObject([-1, 0, 1]) * wobble_amount, ran.getObject([-1, 0, 1]) * wobble_amount);
-		}
-	}
-
 	override function update(elapsed:Float)
 	{
 		fsm();
-
-		if (ttick() % wobble_rate == 0)
-			sticker_wobble();
 
 		super.update(elapsed);
 	}
@@ -120,6 +109,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 				hits++;
 				sticker_pack.animProtect('${hits}');
 				sstate(HITTING, fsm);
+				Utils.shake(ShakePreset.LIGHT);
 			case HITTING:
 				if (sticker_pack.animation.finished)
 					sstate(POST_HIT, fsm);
@@ -130,15 +120,48 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 				sticker_pack.animProtect("pre-kaboom");
 				if (sticker_pack.animation.finished)
 				{
-					FlxG.camera.flash();
+					Utils.shake(ShakePreset.DAMAGE);
+					FlxG.camera.flash(() -> sstate(STICKERS_OUT));
 					sticker_pack.kill();
+					for (sticker in stickers)
+						sticker.visible = true;
 					sstate(KABOOM, fsm);
 				}
+			case KABOOM:
+				if (ttick() % wobble_rate == 0)
+					sticker_wobble();
+			case STICKERS_OUT:
+				ttick();
+				if (tick % wobble_rate == 0)
+					sticker_wobble();
+				for (n in 0...3)
+					if (tick == n * 15 + 1)
+					{
+						var sticker:FlxSpriteExt = stickers[n];
+						sticker.tween = FlxTween.tween(sticker, {y: -sticker.height}, sticker_ascent_speed, {
+							ease: FlxEase.elasticIn
+						});
+						if (n == 2)
+							sticker.tween.onComplete = (t) -> sstate(FADE_OUT, fsm);
+					}
+			case FADE_OUT:
+				sstate(WAIT);
+				black.tween = FlxTween.tween(black, {alpha: 0}, sticker_pack_descent_speed, {ease: FlxEase.elasticInOut, onComplete: (t) -> kill});
 		}
 
 	override function kill()
 	{
 		super.kill();
+	}
+
+	function sticker_wobble()
+	{
+		for (sticker in stickers)
+		{
+			var old_offset:FlxPoint = sticker.offset.copyTo(FlxPoint.weak());
+			while (sticker.offset.x == old_offset.x && sticker.offset.y == old_offset.y)
+				sticker.offset.set(ran.getObject([-1, 0, 1]) * wobble_amount, ran.getObject([-1, 0, 1]) * wobble_amount);
+		}
 	}
 }
 
@@ -151,4 +174,7 @@ private enum abstract State(String) from String to String
 	final POST_HIT;
 	final PRE_KABOOM;
 	final KABOOM;
+	final STICKERS_OUT;
+	final FADE_OUT;
+	final WAIT;
 }
