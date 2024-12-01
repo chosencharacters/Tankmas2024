@@ -29,16 +29,21 @@ class Player extends BaseUser
 	{
 		super(X, Y, Main.username);
 
-		debug_costume_rotation = JsonData.all_costume_defs.copy();
-		costume = debug_costume_rotation[0];
+		/*
+			debug_costume_rotation = JsonData.all_costume_defs.copy();
+			costume = debug_costume_rotation[0];
 
-		while (costume.name != "tankman")
-			debug_rotate_costumes();
+			while (costume.name != "tankman")
+			{
+				debug_rotate_costumes();
+				trace(costume.name);
+			}
 
-		#if vanity
-		while (costume.name != "sodaman")
-			debug_rotate_costumes();
-		#end
+			#if vanity
+			while (costume.name != "sodaman")
+				debug_rotate_costumes();
+			#end
+		 */
 
 		last_update_json = {name: username};
 

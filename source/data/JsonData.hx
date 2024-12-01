@@ -82,7 +82,6 @@ class JsonData
 
 	public static function check_for_unlock_sticker(sticker:StickerDef):Bool
 	{
-		trace(SaveManager.saved_sticker_collection, sticker.name);
 		return SaveManager.saved_sticker_collection.contains(sticker.name);
 		/*
 				if (sticker.unlock == null)

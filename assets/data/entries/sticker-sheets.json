@@ -5,30 +5,41 @@
             "items": [
                 {
                     "name": "common-tamago"
-                }, {
-                    "name": "a-blender"
-                }, {
+                },
+                {
+                    "name": "toasty-warm"
+                },
+                {
+                    "name": "edd-sticker"
+                },
+                {
+                    "name": "mustard"
+                },
+                {
+                    "name": "pink-kight-mondo"
+                },
+                {
                     "name": "tappy-sticker"
-                }, {
-                    "name": "sticker-rolus"
-                }, {
-                    "name": "tappy-sticker"
-                }, {
-                    "name": "ilho-gift"
-                }, {
-                    "name": "chunks-rawr"
-                }, {
-                    "name": "a-gift"
-                }, {
-                    "name": null
-                }, {
+                },
+                {
+                    "name": "son-christmas"
+                },
+                {
+                    "name": "sick-skull"
+                },
+                {
+                    "name": "slashe-wave"
+                },
+                {
+                    "name": "gimme-five"
+                },
+                {
                     "name": "john-sticker"
-                }, {
-                    "name": "bellvonartsy-sticker"
-                }, {
-                    "name": "smug-bastard"
+                },
+                {
+                    "name": "pico-sticker-swag"
                 }
             ]
-         }
+        }
     ]
 }
