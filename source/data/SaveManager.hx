@@ -20,14 +20,17 @@ class SaveManager
 		saved_sticker_collection = Main.default_sticker_collection;
 		saved_costume_collection = Main.default_costume_collection;
 
-		// opened presents
-		load_presents();
-
 		// unlocked costumes, as well as what the player is currently wearing
 		load_costumes();
 
 		// unlocked emotes, as well as what emote the player is currently using
 		load_emotes();
+
+		// if it's December 1st, reset it...?
+		// if(Date.now().getMonth() == 11 && Date.now().getDate() == 1) return;
+
+		// opened presents
+		load_presents();
 
 		// loads current room
 		load_room();
@@ -137,10 +140,20 @@ class SaveManager
 	{
 		if (savedPresents.contains(content))
 			return;
-		trace("saving present" + content);
 		savedPresents.push(content);
-		// TODO: find medal accompanying present
 		save_presents(true);
+		#if newgrounds
+		if(day == 1 && content == "cymbourine")
+			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-1"));
+		if((Date.now().getMonth() != 0 && Date.now().getDate() != 1) && Date.now().getMonth() != 11) return;
+		switch(content)
+		{
+			case "matthewlopz":
+				return Main.ng_api.medal_popup(Main.ng_api.medals.get("little-candles"));
+			default:
+				return Main.ng_api.medal_popup(Main.ng_api.medals.get('day-$day'));
+		}
+		#end
 	}
 
 	public static function save_presents(force:Bool = false)

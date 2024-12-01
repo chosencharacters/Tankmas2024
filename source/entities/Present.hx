@@ -116,9 +116,9 @@ class Present extends Interactable
 		if (!opened)
 			return;
 
-		if (mark /** && thumbnail.scale.x == 0**/)
+		if (mark)
 			thumbnail.sstate("OPEN");
-		else if (!mark /** && thumbnail.scale.x != 0 && thumbnail.state != "CLOSE"**/)
+		else if (!mark)
 			thumbnail.sstate("CLOSE");
 	}
 

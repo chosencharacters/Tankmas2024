@@ -16,6 +16,7 @@ class TankmasLevel extends LDTKLevel
 	public var col:FlxTilemap;
 
 	public var bg:FlxSprite;
+	public var fg:FlxSprite;
 
 	var level_name:String;
 
@@ -37,8 +38,9 @@ class TankmasLevel extends LDTKLevel
 
 		setPosition(data.worldX, data.worldY);
 
-		bg = new FlxSpriteExt(x, y, Paths.get(data.json.bgRelPath.split("/").last()));
-		PlayState.self.level_backgrounds.add(bg);
+		PlayState.self.level_backgrounds.add(bg = new FlxSpriteExt(x, y, Paths.get(data.json.bgRelPath.split("/").last())));
+		if(LevelName.startsWith("hotel_courtyard"))
+			PlayState.self.level_backgrounds.add(fg = new FlxSpriteExt(x, y, Paths.get("outside-hotel-foreground-day" + Main.get_current_bg(/**Date.now().getMonth() != 11 ? 32 : Date.now().getDate()**/1) + ".png")));
 
 		// col = new FlxTilemap();
 

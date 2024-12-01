@@ -128,6 +128,8 @@ class PlayState extends BaseState
 		// runs nearby animation if not checked here
 		for (mem in presents.members)
 			mem.checkOpen();
+
+		SaveManager.save_room();
 	}
 
 	override public function update(elapsed:Float)
@@ -164,10 +166,14 @@ class PlayState extends BaseState
 
 	function make_world()
 	{
+		final date:Date = Date.now();
+		final theNum:Int = Main.get_current_bg(date.getMonth() != 11 ? 32 : date.getDate());
 		TankmasLevel.make_all_levels_in_world(current_world);
 		for (level in levels)
 			level.place_entities();
 	}
+
+	
 
 	function make_ui()
 	{

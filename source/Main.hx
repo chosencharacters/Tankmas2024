@@ -58,4 +58,11 @@ class Main extends Sprite
 		#end
 		addChild(new FlxGame(1920, 1080, PlayState, true));
 	}
+
+	public static function get_current_bg(day:Int):Int
+		{
+			/**if(day <= 3)**/ return day
+			/**else if(day <= 6) return 3
+			else /**if(day <= ) return 7**/;
+		}
 }

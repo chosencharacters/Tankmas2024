@@ -30,7 +30,7 @@ class ArtSubstate extends flixel.FlxSubState
 		data = JsonData.get_present(content);
 
 		theText = new FlxText(0, 980, 1920,
-			((data.name != null && data.name != "") ? data.name : "Untitled")
+			((data.name != null && data.name != "") ? ('"' + data.name + '"') : "Untitled")
 			+ " by "
 			+ ((data.artist != null && data.artist != "") ? data.artist : "Unknown")
 			+ '\nClick here to view this ${data.link != null ? 'piece' : 'artist'} on NG!');

@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "hotel_interior",
@@ -353,15 +353,7 @@
 					"defUid": 14,
 					"px": [896,0],
 					"fieldInstances": [
-						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
-							"entityIid": "f3c8b250-9b00-11ef-9354-3f2472078c53",
-							"layerIid": "1f4bee20-73f0-11ef-9983-a7372464c4f6",
-							"levelIid": "95f99f60-73f0-11ef-9983-612730a885a0",
-							"worldIid": "95f97851-73f0-11ef-9983-cda8b61095c5"
-						}, "__tile": null, "defUid": 16, "realEditorValues": [{
-							"id": "V_String",
-							"params": ["f3c8b250-9b00-11ef-9354-3f2472078c53"]
-						}] },
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 16, "realEditorValues": [] },
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 64, "cy": 21 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["64,21"]

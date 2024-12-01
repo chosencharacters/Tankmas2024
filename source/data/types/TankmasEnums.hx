@@ -32,8 +32,7 @@ enum abstract UnlockCondition(String) from String to String
 			case UnlockCondition.DATE:
 				return Date.now().getTime() >= data; // where data is a unix timestamp, see above
 			case UnlockCondition.ACHIEVEMENT:
-				return true;
-			// TODO: insert code that handles achievements from NG API here
+				#if newgrounds return Main.ng_api.has_medal(Main.ng_api.medals.get(data)) #else return false #end; // where data is the name of a medal
 			case UnlockCondition.FLAG:
 				return Flags.get(data);
 		}

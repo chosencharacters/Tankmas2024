@@ -81,6 +81,11 @@ class NewgroundsHandler
 			medals.set(medal.name, medal);
 	}
 
+	function has_medal(def:MedalDef):Bool
+	{
+		return NG_LOGGED_IN && NG.core.medals.get(def.id).unlocked;
+	}
+
 	public function medal_popup(medal_def:MedalDef)
 	{
 		if (!NG_LOGGED_IN)

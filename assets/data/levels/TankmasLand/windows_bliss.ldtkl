@@ -5,14 +5,14 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "windows_bliss",
 	"iid": "2ccc0570-9b00-11ef-afb8-5fdaf55d6f34",
 	"uid": 13,
-	"worldX": 3316,
-	"worldY": 2266,
+	"worldX": 4416,
+	"worldY": 2176,
 	"worldDepth": 0,
 	"pxWid": 1920,
 	"pxHei": 1200,
@@ -93,8 +93,8 @@
 						"id": "V_String",
 						"params": ["thomas"]
 					}] }],
-					"__worldX": 4564,
-					"__worldY": 2410
+					"__worldX": 5664,
+					"__worldY": 2320
 				},
 				{
 					"__identifier": "Present",
@@ -112,8 +112,8 @@
 						{ "__identifier": "username", "__type": "String", "__value": null, "__tile": null, "defUid": 5, "realEditorValues": [] },
 						{ "__identifier": "day", "__type": "Int", "__value": 1, "__tile": null, "defUid": 6, "realEditorValues": [] }
 					],
-					"__worldX": 3428,
-					"__worldY": 3242
+					"__worldX": 4528,
+					"__worldY": 3152
 				},
 				{
 					"__identifier": "Present",
@@ -131,8 +131,8 @@
 						{ "__identifier": "username", "__type": "String", "__value": null, "__tile": null, "defUid": 5, "realEditorValues": [] },
 						{ "__identifier": "day", "__type": "Int", "__value": 1, "__tile": null, "defUid": 6, "realEditorValues": [] }
 					],
-					"__worldX": 4068,
-					"__worldY": 3242
+					"__worldX": 5168,
+					"__worldY": 3152
 				},
 				{
 					"__identifier": "Present",
@@ -150,8 +150,8 @@
 						{ "__identifier": "username", "__type": "String", "__value": null, "__tile": null, "defUid": 5, "realEditorValues": [] },
 						{ "__identifier": "day", "__type": "Int", "__value": 1, "__tile": null, "defUid": 6, "realEditorValues": [] }
 					],
-					"__worldX": 3732,
-					"__worldY": 2714
+					"__worldX": 4832,
+					"__worldY": 2624
 				}
 			]
 		},
@@ -181,5 +181,5 @@
 			"entityInstances": []
 		}
 	],
-	"__neighbours": [{ "levelIid": "95f99f60-73f0-11ef-9983-612730a885a0", "dir": "w" }]
+	"__neighbours": []
 }
