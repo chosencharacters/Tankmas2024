@@ -327,7 +327,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		if (graphicSheet)
 			stickerSheetBase.loadGraphic(Paths.get(sheet_collection.sheets[current_hover_sheet].graphic + '.png'));
 		else
-			stickerSheetBase.makeGraphic(1430, 845, FlxColor.BLACK);
+			stickerSheetBase.makeGraphic(1410, 845, FlxColor.BLACK);
 
 		characterSpritesArray[current_hover_sheet].revive();
 		notSeenGroup[current_hover_sheet].revive();

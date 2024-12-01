@@ -47,6 +47,7 @@ class Player extends BaseUser
 		 */
 
 		costume = JsonData.get_costume(SaveManager.current_costume);
+		if(costume == null) costume = JsonData.get_costume("tankman");
 
 		last_update_json = {name: username};
 
@@ -77,8 +78,8 @@ class Player extends BaseUser
 
 	override function update(elapsed:Float)
 	{
-		if (Main.DEV && Ctrl.any(Ctrl.menu))
-			debug_rotate_costumes();
+		/**if (Main.DEV && Ctrl.any(Ctrl.menu))
+			debug_rotate_costumes();**/
 
 		fsm();
 		super.update(elapsed);

@@ -61,6 +61,8 @@ class PlayState extends BaseState
 
 	public var touch:TouchOverlay;
 
+	public static var showUsers(default, set):Bool = true;
+
 	public function new(?world_to_load:String)
 	{
 		if (world_to_load != null)
@@ -157,10 +159,6 @@ class PlayState extends BaseState
 				sheet_menu.open();
 
 		handle_collisions();
-
-		if (tags.members[0].visible != BaseState.showUsers)
-			for (mem in tags.members)
-				mem.visible = BaseState.showUsers;
 	}
 
 	function handle_collisions()
@@ -184,5 +182,11 @@ class PlayState extends BaseState
 	function make_ui()
 	{
 		ui_overlay = new MainGameOverlay();
+	}
+
+	public static function set_showUsers(val:Bool):Bool
+	{
+		for(user in self.tags.members) user.visible = val;
+		return showUsers = val;
 	}
 }

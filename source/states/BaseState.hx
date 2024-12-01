@@ -16,8 +16,6 @@ class BaseState extends FlxState
 
 	var radio:RadioManager;
 
-	public static var showUsers:Bool = true;
-
 	public function new()
 	{
 		super();
@@ -83,4 +81,6 @@ class BaseState extends FlxState
 			tick = 0;
 		state = new_state;
 	}
+
+
 }
