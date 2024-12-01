@@ -32,11 +32,14 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 	var wobble_rate:Int = 3;
 	var wobble_amount:Int = 4;
 
+	var sticker_count:Int;
+
 	public function new(sticker_draw:Array<String>)
 	{
 		super();
 
 		this.sticker_draw = sticker_draw;
+		sticker_count = sticker_draw.length;
 
 		black = new FlxSpriteExt().makeGraphicExt(FlxG.width + 100, FlxG.height + 100, FlxColor.BLACK);
 		black.alpha = 0;
@@ -72,7 +75,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 
 	function make_stickers()
 	{
-		for (n in 0...3)
+		for (n in 0...sticker_count)
 		{
 			var sticker:FlxSpriteExt = new FlxSpriteExt(Paths.get('${sticker_draw[n]}.png'));
 			sticker.screenCenter();
@@ -81,18 +84,22 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 			{
 				case 0:
 					sticker.setPosition(sticker.x - 50, sticker.y - 25);
+					if (sticker_count > 0)
+						sticker.y = sticker.y - 25;
 				case 1:
-					sticker.setPosition(stickers[0].x + 100, stickers[0].y + 25 + 25);
+					sticker.setPosition(stickers[n - 1].x + 100, stickers[n - 1].y + 25 + 25);
 				case 2:
-					sticker.setPosition(stickers[1].x - 75, stickers[1].y + 25 + 25);
+					sticker.setPosition(stickers[n - 1].x - 75, stickers[n - 1].y + 25 + 25);
+				case 3:
+					sticker.setPosition(stickers[n - 1].x + 100, stickers[n - 1].y + 25 + 25);
 			}
 
 			sticker.visible = false;
 			stickers.push(sticker);
 		}
 
-		for (n in 0...3)
-			add(stickers[2 - n]);
+		for (n in 0...sticker_count)
+			add(stickers[sticker_count - 1 - n]);
 	}
 
 	override function update(elapsed:Float)
@@ -145,14 +152,14 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 				ttick();
 				if (tick % wobble_rate == 0)
 					sticker_wobble();
-				for (n in 0...3)
+				for (n in 0...sticker_count)
 					if (tick == n * 15 + 1)
 					{
 						var sticker:FlxSpriteExt = stickers[n];
 						sticker.tween = FlxTween.tween(sticker, {y: -sticker.height}, sticker_ascent_speed, {
 							ease: FlxEase.elasticIn
 						});
-						if (n == 2)
+						if (n == sticker_count - 1)
 							sticker.tween.onComplete = (t) -> sstate(FADE_OUT, fsm);
 					}
 			case FADE_OUT:
