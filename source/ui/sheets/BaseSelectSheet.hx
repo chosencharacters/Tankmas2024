@@ -119,13 +119,12 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 				sprite_position.y = 320 + (270 * Math.floor(i / 4));
 
 				// add offsets
-				sprite_position.x += identity.xOffset;
-				sprite_position.y += identity.yOffset;
+				sprite_position.x += identity?.xOffset ?? 0;
+				sprite_position.y += identity?.yOffset ?? 0;
 
 				sprite.setPosition(sprite_position.x, sprite_position.y);
 
-				if (identity.angle != null)
-					sprite.angle = identity.angle;
+				sprite.angle = identity?.angle ?? 0.0;
 				characterSprites.add(sprite);
 				daNames.push(identity.name);
 				if (!seen.contains(identity.name))
@@ -166,7 +165,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		curTab.scale.set(1.1, 1.1);
 		add(curTab);
 
-		selector = new FlxSpriteExt().one_line("item-navigator");
+		selector = new FlxSpriteExt(0, 0).one_line("item-navigator");
 		selector.anim("hover");
 		add(selector);
 

@@ -83,7 +83,7 @@ class SaveManager
 			trace("Error loading saved stickers");
 			save_sticker_collection(true);
 		}
-		sticker_collection = FlxG.save.data.sticker_collection;
+		saved_sticker_collection = FlxG.save.data.sticker_collection;
 	}
 
 	public static function load_presents(force:Bool = false):Void
