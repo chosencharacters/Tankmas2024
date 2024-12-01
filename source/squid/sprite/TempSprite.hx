@@ -19,8 +19,6 @@ class TempSprite extends FlxSpriteExt
 
 	var dynamic_group:FlxTypedGroup<Dynamic>;
 
-	public var tween:FlxTween;
-
 	public var no_auto_kill:Bool = false;
 
 	var resolved:Bool = false;

@@ -20,7 +20,9 @@ class SaveManager
 
 	public static function init()
 	{
+		#if !offline
 		download();
+		#end
 
 		savedRoom = Main.default_room;
 		saved_sticker_collection = Main.default_sticker_collection;
@@ -53,18 +55,19 @@ class SaveManager
 		var username = #if newgrounds Main.ng_api.NG_USERNAME #else "test_user" #end;
 
 		// Upload data
-		TankmasClient.post_save(username, encodedData, (data:Dynamic) -> {
+		TankmasClient.post_save(username, encodedData, (data:Dynamic) ->
+		{
 			trace("Successfully uploaded save data.");
 		});
 	}
 
 	public static function download()
 	{
-
 		var username = #if newgrounds Main.ng_api.NG_USERNAME #else "test_user" #end;
 
 		// Download data
-		TankmasClient.get_save(username, (data:Dynamic) -> {
+		TankmasClient.get_save(username, (data:Dynamic) ->
+		{
 			trace("Successfully downloaded save data.");
 
 			var encodedData = data?.data;
