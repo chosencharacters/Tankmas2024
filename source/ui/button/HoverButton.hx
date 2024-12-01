@@ -5,6 +5,8 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 class HoverButton extends FlxSpriteExt
 {
 	public var on_release:HoverButton->Void;
+	public var on_hover:HoverButton->Void;
+	public var on_neutral:HoverButton->Void;
 
 	var enabled:Bool = true;
 
@@ -16,15 +18,22 @@ class HoverButton extends FlxSpriteExt
 
 	override function update(elapsed:Float)
 	{
-		var overlapping:Bool = FlxG.mouse.overlaps(this) && enabled;
-		var overlap_scale:Float = overlapping ? 1.1 : 1;
+		var hovering:Bool = FlxG.mouse.overlaps(this) && enabled;
+		var hover_scale:Float = hovering ? 1.1 : 1;
 
-		if (FlxG.mouse.pressed && overlapping)
-			overlap_scale = 1.35;
+		if (hovering)
+			if (on_hover != null)
+				on_hover(this);
+		if (!hovering)
+			if (on_neutral != null)
+				on_neutral(this);
 
-		scale.set(overlap_scale, overlap_scale);
+		if (FlxG.mouse.pressed && hovering)
+			hover_scale = 1.35;
 
-		if (overlapping && FlxG.mouse.justReleased)
+		scale.set(hover_scale, hover_scale);
+
+		if (hovering && FlxG.mouse.justReleased)
 			if (on_release != null)
 				on_release(this);
 
