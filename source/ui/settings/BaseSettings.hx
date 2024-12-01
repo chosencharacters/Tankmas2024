@@ -26,7 +26,7 @@ class BaseSettings extends FlxTypedGroupExt<FlxSprite>
 		add(new HoverButton(point.x - 683, point.y - 396, null, (b) -> substate.start_closing()).loadAllFromAnimationSet("back-arrow"));
 		add(new HoverButton(point.x - 424, point.y - 120, Paths.get('show-name-single.png'), (b) ->
 		{
-			PlayState.showUsers = !PlayState.showUsers;
+			PlayState.show_usernames = !PlayState.show_usernames;
 		}));
 		add(new HoverButton(point.x - 108, point.y - 120, Paths.get('fullscreen-single.png'), (b) ->
 		{

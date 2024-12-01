@@ -98,8 +98,6 @@ class NewgroundsHandler
 
 		NG.core.verbose = true;
 
-		trace(medal_def.id);
-
 		var ng_medal:Medal = NG.core.medals.get(medal_def.id);
 
 		trace('${ng_medal.name} [${ng_medal.id}] is worth ${ng_medal.value} points!');
@@ -160,6 +158,8 @@ class NewgroundsHandler
 		NG_MR_MONEYBAGS_OVER_HERE = NG.core.user.supporter;
 		NG_SESSION_ID = NGLite.getSessionId();
 
+		Main.username = NG_USERNAME;
+
 		trace('logged in! user:${NG_USERNAME} session: ${NG_SESSION_ID}');
 
 		load_api_medals_part_1();
@@ -211,7 +211,7 @@ class NewgroundsHandler
 		trace("ADDING MEDAL POP UP");
 		#end
 		FlxG.stage.addChild(new MedalPopup());
-		medal_popup(medals.get("test-medal"));
+		// medal_popup(medals.get("test-medal"));
 	}
 }
 

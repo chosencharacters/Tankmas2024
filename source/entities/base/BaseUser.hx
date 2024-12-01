@@ -28,17 +28,17 @@ class BaseUser extends NGSprite
 		super(X, Y);
 
 		type = "base-user";
-		
+
 		this.username = username;
 
 		new_costume(JsonData.get_costume("tankman"));
 		sprite_anim.anim(PlayerAnimation.MOVING);
 
 		nameTag = new FlxText(0, 0, 0, username.toUpperCase());
-		nameTag.setFormat(Paths.get('CharlieType-Heavy.otf'), 24, FlxColor.WHITE, LEFT, OUTLINE, FlxColor.BLACK);
+		nameTag.setFormat(Paths.get('CharlieType-Heavy.otf'), 36, FlxColor.WHITE, LEFT, OUTLINE, FlxColor.BLACK);
 		nameTag.bold = true;
-		nameTag.offset.y = -30;
-		PlayState.self.tags.add(nameTag);
+		nameTag.offset.y = -46;
+		PlayState.self.username_tags.add(nameTag);
 
 		PlayState.self.users.add(this);
 		PlayState.self.shadows.add(shadow = new FlxSpriteExt(Paths.get("player-shadow.png")));

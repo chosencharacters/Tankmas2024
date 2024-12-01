@@ -114,19 +114,23 @@
         },
         {
             "name": "girlfriend",
-            "display": "Girlfriend"
+            "display": "Girlfriend",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "ena-sprite",
-            "display": "ENA"
+            "display": "ENA",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "salad-fingers",
-            "display": "Salad Fingers"
+            "display": "Salad Fingers",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "meat-boy",
-            "display": "Meat Boy"
+            "display": "Meat Boy",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "jimmy",
@@ -135,15 +139,18 @@
         },
         {
             "name": "baby",
-            "display": "Baby"
+            "display": "Baby",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "dadshome",
-            "display": "Dad"
+            "display": "Dad",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "tarboy",
-            "display": "Tarboy"
+            "display": "Tarboy",
+            "unlock": "ANGRY_FAIC"
         }
     ]
 }

@@ -33,7 +33,7 @@ class PlayState extends BaseState
 
 	public var player:Player;
 	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
-	public var tags:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
+	public var username_tags:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
 	public var objects:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 	public var thumbnails:FlxTypedGroup<Thumbnail> = new FlxTypedGroup<Thumbnail>();
@@ -61,7 +61,7 @@ class PlayState extends BaseState
 
 	public var touch:TouchOverlay;
 
-	public static var showUsers(default, set):Bool = true;
+	public static var show_usernames(default, set):Bool = true;
 
 	public function new(?world_to_load:String)
 	{
@@ -97,7 +97,7 @@ class PlayState extends BaseState
 		add(minigames);
 		add(npcs);
 		add(presents);
-		add(tags);
+		add(username_tags);
 		add(users);
 		add(objects);
 		add(thumbnails);
@@ -156,7 +156,7 @@ class PlayState extends BaseState
 
 		if (Ctrl.mode.can_open_menus)
 			if (Ctrl.jmenu[1])
-				sheet_menu.open();
+				new SheetMenu();
 
 		handle_collisions();
 	}
@@ -184,9 +184,10 @@ class PlayState extends BaseState
 		ui_overlay = new MainGameOverlay();
 	}
 
-	public static function set_showUsers(val:Bool):Bool
+	public static function set_show_usernames(val:Bool):Bool
 	{
-		for(user in self.tags.members) user.visible = val;
-		return showUsers = val;
+		for (username_tag in self.username_tags.members)
+			username_tag.visible = val;
+		return show_usernames = val;
 	}
 }

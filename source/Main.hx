@@ -10,7 +10,7 @@ import utils.CrashHandler;
 
 class Main extends Sprite
 {
-	public static var username:String = #if random_username 'poop_${Math.random()}' #else "" #end;
+	public static var username:String = #if random_username 'poop_${Math.random()}' #else "lost soul" #end;
 
 	public static var current_room_id:String = "1";
 
@@ -60,9 +60,10 @@ class Main extends Sprite
 	}
 
 	public static function get_current_bg(day:Int):Int
-		{
-			/**if(day <= 3)**/ return day
-			/**else if(day <= 6) return 3
+	{
+		/**if(day <= 3)**/
+		return day
+		/**else if(day <= 6) return 3
 			else /**if(day <= ) return 7**/;
-		}
+	}
 }
