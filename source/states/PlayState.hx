@@ -166,9 +166,6 @@ class PlayState extends BaseState
 				new SheetMenu();
 
 		handle_collisions();
-		if (tags.members[0].visible != BaseState.showUsers)
-			for (mem in tags.members)
-				mem.visible = BaseState.showUsers;
 	}
 
 	function handle_collisions()
