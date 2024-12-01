@@ -45,4 +45,8 @@
 		<anim name="kaboom" fps="60ms" looping="false">16t40</anim>
 		<variable name="shake" frames="1,4,7,10,16"/>
 	</animSet>
+
+	<animSet image="sticker-pack-icon">
+		<anim name="idle" fps="100ms">0t14</anim>
+	</animSet>
 </root>

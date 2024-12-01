@@ -22,6 +22,18 @@ class Main extends Sprite
 	public static var ng_api:NewgroundsHandler;
 	#end
 
+	public static var default_sticker_collection:Array<String> = ["common-tamago"];
+	public static var default_sticker:String = "common-tamago";
+
+	public static var default_costume_collection:Array<String> = ["tankman", "paco"];
+	public static var default_costume:String = "tankman";
+
+	public static var default_room:String = "outside_hotel";
+
+	public static var ran:FlxRandom = new FlxRandom();
+
+	public static var daily_sticker_draw_amount:Int = 4;
+
 	public static function main():Void
 	{
 		// We need to make the crash handler LITERALLY FIRST so nothing EVER gets past it.

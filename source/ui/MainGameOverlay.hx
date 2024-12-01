@@ -1,8 +1,10 @@
 package ui;
 
+import data.JsonData;
 import entities.Player;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
+import ui.popups.StickerPackOpening;
 import ui.sheets.SheetMenu;
 
 class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
@@ -10,6 +12,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 	var emote:FlxSpriteExt;
 	var settings:FlxSpriteExt;
 	var sticker_menu:FlxSpriteExt;
+	var sticker_pack:FlxSpriteExt;
 
 	var hide_speed:Float = 0.35;
 	var reveal_speed:Float = 0.35;
@@ -24,6 +27,10 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 		add(settings = new FlxSpriteExt(1708, 20, Paths.get('settings.png')));
 		add(sticker_menu = new FlxSpriteExt(1520, 1030, Paths.get('charselect-mini-bg.png')));
 
+		sticker_pack = new FlxSpriteExt().one_line("sticker-pack-icon");
+		sticker_pack.setPosition(20, FlxG.height - sticker_pack.height - 20);
+		add(sticker_pack);
+
 		for (sprite in [emote, settings])
 			sprite.offset.y = sprite.height;
 
@@ -31,10 +38,13 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 
 		for (member in members)
 			member.scrollFactor.set(0, 0);
+
+		sticker_pack.visible = Player.has_sticker_pack;
 	}
 
 	override function update(elapsed:Float)
 	{
+		sticker_pack.visible = Player.has_sticker_pack;
 		hover_handler();
 		super.update(elapsed);
 	}
@@ -55,6 +65,20 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 
 	public function hover_handler()
 	{
+		if (!Ctrl.mode.can_open_menus)
+			return;
+
+		if (sticker_pack.visible && FlxG.mouse.overlaps(sticker_pack) && FlxG.mouse.pressed && Ctrl.mode.can_open_menus)
+		{
+			Ctrl.mode = ControlModes.NONE;
+
+			sticker_pack.tween = FlxTween.tween(sticker_pack, {y: FlxG.height + sticker_pack.height}, 0.25, {
+				onComplete: (t) -> FlxG.state.add(new StickerPackOpening(JsonData.random_draw_stickers(Main.daily_sticker_draw_amount)))
+			});
+
+			return;
+		}
+
 		for (member in members)
 			switch (members.indexOf(member))
 			{

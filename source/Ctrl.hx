@@ -347,6 +347,7 @@ enum abstract ControlModes(ControlMode) from ControlMode to ControlMode
 	public static final OVERWORLD:ControlMode = {can_move: true, can_emote: true, can_open_menus: true};
 	public static final TALKING:ControlMode = {can_move: false, can_emote: false, can_open_menus: false};
 	public static final MINIGAME:ControlMode = {can_move: false, can_emote: false, can_open_menus: false};
+	public static final NONE:ControlMode = {can_move: false, can_emote: false, can_open_menus: false};
 
 	public function restrict_controls(mode:ControlMode)
 	{

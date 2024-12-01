@@ -9,10 +9,17 @@ class SaveManager
 	public static var savedPresents:Array<String> = [];
 	public static var savedCostumes:Array<String> = [];
 	public static var savedEmotes:Array<String> = [];
-	public static var savedRoom:String = "outside_hotel";
+	public static var savedRoom:String;
+	public static var saved_sticker_collection:Array<String>;
+	public static var saved_costume_collection:Array<String>;
 
 	public static function init()
 	{
+		savedRoom = Main.default_room;
+
+		saved_sticker_collection = Main.default_sticker_collection;
+		saved_costume_collection = Main.default_costume_collection;
+
 		// opened presents
 		load_presents();
 
@@ -32,7 +39,48 @@ class SaveManager
 		save_costumes();
 		save_emotes();
 		save_room();
+		save_collections();
 		FlxG.save.flush();
+	}
+
+	public static function save_collections(force:Bool = false):Void
+	{
+		save_costume_collection(force);
+		save_sticker_collection(force);
+	}
+
+	public static function save_costume_collection(force:Bool = false):Void
+	{
+		FlxG.save.data.costume_collection = saved_costume_collection;
+		if (force)
+			FlxG.save.flush();
+	}
+
+	public static function save_sticker_collection(force:Bool = false):Void
+	{
+		FlxG.save.data.savedPresents = saved_sticker_collection;
+		if (force)
+			FlxG.save.flush();
+	}
+
+	public static function load_costume_collection(force:Bool = false):Void
+	{
+		if (FlxG.save.data.saved_costume_collection == null)
+		{
+			trace("Error loading saved costumes");
+			save_costume_collection(true);
+		}
+		savedPresents = FlxG.save.data.savedPresents;
+	}
+
+	public static function load_sticker_collection(force:Bool = false):Void
+	{
+		if (FlxG.save.data.saved_sticker_collection == null)
+		{
+			trace("Error loading saved stickers");
+			save_sticker_collection(true);
+		}
+		savedPresents = FlxG.save.data.savedPresents;
 	}
 
 	public static function load_presents(force:Bool = false):Void

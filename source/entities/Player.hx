@@ -23,6 +23,8 @@ class Player extends BaseUser
 
 	public var sticker:String = "common-tamago";
 
+	public static var has_sticker_pack:Bool = true;
+
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y, Main.username);
@@ -51,8 +53,6 @@ class Player extends BaseUser
 
 	function debug_rotate_costumes()
 	{
-		if (!Main.DEV)
-			return;
 		costume = debug_costume_rotation[0];
 		debug_costume_rotation.push(debug_costume_rotation.shift());
 		new_costume(costume);

@@ -1,5 +1,6 @@
 package ui.popups;
 
+import data.SaveManager;
 import flixel.FlxBasic;
 import flixel.addons.display.FlxSpriteAniRot;
 import flixel.tweens.FlxEase;
@@ -37,8 +38,9 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 
 		this.sticker_draw = sticker_draw;
 
-		black = new FlxSpriteExt().makeGraphicExt(FlxG.width, FlxG.height, FlxColor.BLACK);
+		black = new FlxSpriteExt().makeGraphicExt(FlxG.width + 100, FlxG.height + 100, FlxColor.BLACK);
 		black.alpha = 0;
+		black.screenCenter();
 
 		sticker_pack = new FlxSpriteExt(0, 0).one_line("sticker-pack-opening");
 
@@ -56,6 +58,8 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 		});
 
 		sstate(STICKER_PACK_IN);
+
+		SaveManager.save_collections();
 
 		make_stickers();
 
@@ -145,6 +149,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 							sticker.tween.onComplete = (t) -> sstate(FADE_OUT, fsm);
 					}
 			case FADE_OUT:
+				Ctrl.mode = ControlModes.OVERWORLD;
 				sstate(WAIT);
 				black.tween = FlxTween.tween(black, {alpha: 0}, sticker_pack_descent_speed, {ease: FlxEase.elasticInOut, onComplete: (t) -> kill});
 		}

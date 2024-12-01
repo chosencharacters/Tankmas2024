@@ -126,4 +126,17 @@ class JsonData
 			arr.push(val);
 		return arr;
 	}
+
+	public static function random_draw_stickers(amount:Int)
+	{
+		var drawn_stickers:Array<String> = [];
+		for (n in 0...amount)
+		{
+			var random_sticker:String = null;
+			while (random_sticker == null || SaveManager.saved_sticker_collection.contains(random_sticker))
+				random_sticker = Main.ran.getObject(all_sticker_names);
+			drawn_stickers.push(random_sticker);
+		}
+		return drawn_stickers;
+	}
 }

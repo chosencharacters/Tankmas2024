@@ -102,8 +102,6 @@ class PlayState extends BaseState
 
 		add(ui_overlay);
 
-		add(new StickerPackOpening(["pico-sticker-swag", "slashe-wave", "pink-kight-mondo"]));
-
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
 		MinigameHandler.instance.initialize();
