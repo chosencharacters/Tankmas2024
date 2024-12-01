@@ -10,6 +10,7 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 class NGSprite extends FlxSpriteExt
 {
 	public var original_size:FlxPoint = new FlxPoint();
+	public var original_offset:FlxPoint = new FlxPoint();
 
 	var sprite_anim:SpriteAnimationController;
 
@@ -103,8 +104,8 @@ class SpriteAnimationController
 
 	function update_sprite()
 	{
-		sprite.offset.x = frame.x == null ? sprite.offset.x : -frame.x;
-		sprite.offset.y = frame.y == null ? sprite.offset.y : -frame.y;
+		sprite.offset.x = original_offset.x + (frame.x == null ? sprite.offset.x : -frame.x);
+		sprite.offset.y = original_offset.y + (frame.y == null ? sprite.offset.y : -frame.y);
 		sprite.scale.x = frame.width == null ? sprite.scale.x : frame.width;
 		sprite.scale.y = frame.height == null ? sprite.scale.y : frame.height;
 
