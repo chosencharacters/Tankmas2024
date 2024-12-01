@@ -186,6 +186,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 		current_hover_selection = saved_selection;
 		current_hover_sheet = saved_sheet;
+		locked_sheet = saved_sheet;
+		locked_selection = saved_selection;
 
 		members.for_all_members((member:FlxBasic) ->
 		{
