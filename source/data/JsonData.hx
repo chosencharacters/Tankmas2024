@@ -4,7 +4,6 @@ import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.PresentDef;
 import data.types.TankmasDefs.StickerDef;
 import data.types.TankmasEnums.UnlockCondition;
-import dn.legacy.SavedData;
 
 /**
  * Mostly a wrapper for a JSON loaded costumes Map

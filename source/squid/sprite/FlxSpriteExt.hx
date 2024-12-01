@@ -105,7 +105,7 @@ class FlxSpriteExt extends FlxSprite
 	/**Midpoint, shorthand for getMidpoint(FlxPoint.weak())*/
 	public var mp(get, default):FlxPoint;
 
-	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset)
+	public function new(X:Float = 0, Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset)
 	{
 		super(X, Y, SimpleGraphic);
 		type = "sprite";
