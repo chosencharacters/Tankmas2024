@@ -20,6 +20,12 @@ enum abstract UnlockCondition(String) from String to String
 	/**Checks on flag, data is a String representing flag(s)*/
 	final FLAG;
 
+	/**Username must match*/
+	final USERNAME;
+
+	/**Gotta pay the toll*/
+	final SUPPORTER;
+
 	public static inline function get_unlocked(condition:UnlockCondition, data:Dynamic):Bool
 		switch (cast(condition, UnlockCondition))
 		{
@@ -36,6 +42,14 @@ enum abstract UnlockCondition(String) from String to String
 			// TODO: insert code that handles achievements from NG API here
 			case UnlockCondition.FLAG:
 				return Flags.get(data);
+			case UnlockCondition.USERNAME:
+				return Main.username == data;
+			case UnlockCondition.SUPPORTER:
+				#if newgrounds
+				return Main.ng_api.NG_MR_MONEYBAGS_OVER_HERE;
+				#else
+				return false;
+				#end
 		}
 }
 

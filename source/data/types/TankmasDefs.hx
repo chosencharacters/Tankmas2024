@@ -59,4 +59,3 @@ typedef SpriteAnimationFrameDef =
 	var duration:Int;
 	var ?frameNum:Int;
 }
-
