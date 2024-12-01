@@ -46,7 +46,7 @@ enum abstract UnlockCondition(String) from String to String
 			case UnlockCondition.FLAG:
 				return Flags.get(data);
 			case UnlockCondition.USERNAME:
-				return Main.username == data;
+				return Main.username.toLowerCase() == cast(data, String).toLowerCase();
 			case UnlockCondition.SUPPORTER:
 				#if newgrounds
 				return Main.ng_api.NG_MR_MONEYBAGS_OVER_HERE;
