@@ -38,7 +38,7 @@ class Minigame extends Interactable
 	{
 		super.update(elapsed);
 
-		if (ready_to_play && Ctrl.interact[1])
+		if (ready_to_play && (Ctrl.interact[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased))
 		{
 			start_minigame();
 		}

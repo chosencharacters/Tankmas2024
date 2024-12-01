@@ -2,12 +2,16 @@ package states.substates;
 
 import data.JsonData;
 import entities.Present;
+import flixel.tweens.FlxEase;
+import ui.button.HoverButton;
 
 class ArtSubstate extends flixel.FlxSubState
 {
 	var art:FlxSprite;
 	var data:data.types.TankmasDefs.PresentDef;
 	var theText:FlxText;
+
+	var back_button:HoverButton;
 
 	override public function new(content:String)
 	{
@@ -37,8 +41,23 @@ class ArtSubstate extends flixel.FlxSubState
 		theText.setFormat(null, 32, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
 		add(theText);
 
+		add(back_button = new HoverButton((b) -> back_button_activated()));
+
+		back_button.scrollFactor.set(0, 0);
+
+		back_button.loadAllFromAnimationSet("back-arrow-but-smaller-for-present-art");
+		back_button.setPosition(FlxG.width - back_button.width - 16, FlxG.height - back_button.height - 16);
+		back_button.offset.y = -back_button.height;
+		back_button.tween = FlxTween.tween(back_button.offset, {y: 0}, 0.25, {ease: FlxEase.cubeInOut});
+
+		back_button.on_neutral = (b) -> b.alpha = 0.35;
+		back_button.on_hover = (b) -> b.alpha = 0.75;
+
 		members.for_all_members((member:flixel.FlxBasic) -> cast(member, FlxObject).scrollFactor.set(0, 0));
 	}
+
+	function back_button_activated()
+		close();
 
 	override function update(elapsed:Float)
 	{
@@ -54,7 +73,7 @@ class ArtSubstate extends flixel.FlxSubState
 			art.x += 5;
 		if (Ctrl.menuConfirm[1])
 			close();
-		if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(theText))
+		if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(theText) && !FlxG.mouse.overlaps(back_button))
 			FlxG.openURL(data.link != null ? data.link : 'https://${data.artist.toLowerCase()}.newgrounds.com');
 	}
 }

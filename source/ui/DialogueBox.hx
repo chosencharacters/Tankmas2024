@@ -142,7 +142,7 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 				FlxTween.tween(bg, {y: -bg.height}, 0.15, {ease: FlxEase.quadIn, onComplete: (t:FlxTween) -> next_dlg()});
 				sstate(WAIT);
 			case TYPING:
-				if (Ctrl.interact[1])
+				if (Ctrl.interact[1] || FlxG.mouse.justPressed)
 					type_index = dlg.text.str.length - 1;
 				if (ttick() % type_rate == 0)
 					type();

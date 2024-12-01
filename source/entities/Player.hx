@@ -192,7 +192,7 @@ class Player extends BaseUser
 	{
 		if (active_activity_area == null)
 			return;
-		if (Ctrl.interact[1])
+		if (Ctrl.interact[1] || FlxG.mouse.overlaps(active_activity_area) && FlxG.mouse.justReleased)
 		{
 			active_activity_area.on_interact(this);
 		}
@@ -243,7 +243,7 @@ class Player extends BaseUser
 		closest.marked = true;
 		active_interactable = closest;
 
-		if (Ctrl.jinteract[1])
+		if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased)
 		{
 			active_interactable.on_interact();
 		}
