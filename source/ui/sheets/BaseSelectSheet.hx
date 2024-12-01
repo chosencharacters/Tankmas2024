@@ -8,6 +8,7 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxTimer;
 import squid.ext.FlxTypedGroupExt;
+import ui.button.HoverButton;
 import ui.sheets.defs.SheetDefs;
 
 class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
@@ -94,7 +95,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 				if (sheet.items[i].name == null)
 					continue;
 				final identity:SheetItemDef = sheet.items[i];
-				final sprite:FlxSpriteExt = new FlxSpriteExt(0, 0);
+				final sprite:HoverButton = new HoverButton(0, 0);
+				sprite.on_release = (b) -> lock_choices();
 				sprite.ID = i;
 				if (type == STICKER)
 				{
@@ -197,8 +199,11 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	function update_select_overlay()
 	{
-		var target:FlxObject = characterSpritesArray[locked_sheet].members[locked_selection];
+		var target:FlxSpriteExt = characterSpritesArray[locked_sheet].members[locked_selection];
+
 		selected_overlay.center_on(target);
+		selected_overlay.angle = target.angle;
+		selected_overlay.scale.copyFrom(target.scale);
 
 		// this is untested cause we only have one sheet
 		selected_overlay.visible = locked_sheet == current_hover_sheet;
@@ -346,12 +351,11 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			description.text = (costume.desc != null ? costume.desc : '');
 			// selector.setPosition(characterSpritesArray[current_hover_sheet].members[current_hover_selection].x - 110, characterSpritesArray[current_hover_sheet].members[current_hover_selection].y - 80);
 		}
-		selector.setPosition(characterSpritesArray[current_hover_sheet].members[current_hover_selection].x
-			+ (characterSpritesArray[current_hover_sheet].members[current_hover_selection].width / 2)
-			- 175,
-			characterSpritesArray[current_hover_sheet].members[current_hover_selection].y
-				+ (characterSpritesArray[current_hover_sheet].members[current_hover_selection].height / 2)
-				- 167);
+		var target:FlxSpriteExt = characterSpritesArray[current_hover_sheet].members[current_hover_selection];
+
+		selector.setPosition(target.x + (target.width / 2) - 175, target.y + (target.height / 2) - 167);
+		selector.angle = target.angle;
+
 		// characterSpritesArray[current_hover_sheet].members[current_hover_selection].scale.set(1.1, 1.1);
 	}
 
