@@ -30,6 +30,7 @@ typedef PresentDef =
 	var file:String;
 	var ?link:String;
 	var ?comicProperties:ComicDef;
+	var ?costumeUnlock:String;
 }
 
 typedef ComicDef =

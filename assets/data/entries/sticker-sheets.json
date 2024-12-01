@@ -29,35 +29,6 @@
                     "name": "smug-bastard"
                 }
             ]
-         }, {
-            "graphic": "emotes-back-blue",
-            "items": [
-                {
-                    "name": "cashy-peace"
-                }, {
-                    "name": null
-                }, {
-                    "name": "slimy-tankmas-sticker"
-                }, {
-                    "name": null
-                }, {
-                    "name": "alien-sticker"
-                }, {
-                    "name": "liv-sticker"
-                }, {
-                    "name": "smug-bastard"
-                }, {
-                    "name": null
-                }, {
-                    "name": "bellvonartsy-sticker"
-                }, {
-                    "name": "ena-blitzilla"
-                }, {
-                    "name": "olive-tankmas"
-                }, {
-                    "name": "questioning-you"
-                }
-            ]
-        }
+         }
     ]
 }

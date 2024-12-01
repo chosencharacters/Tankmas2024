@@ -19,7 +19,7 @@
 	"__bgColor": "#696A79",
 	"bgColor": null,
 	"useAutoIdentifier": false,
-	"bgRelPath": "../../images/bgs/day1/outside-hotel-foreground-day1.png",
+	"bgRelPath": "../../images/bgs/day1/outside-hotel-background.png",
 	"bgPos": "Cover",
 	"bgPivotX": 0.5,
 	"bgPivotY": 0.5,
@@ -632,22 +632,6 @@
 			"overrideTilesetUid": null,
 			"gridTiles": [],
 			"entityInstances": [
-				{
-					"__identifier": "Player",
-					"__grid": [136,136],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#46BE2F",
-					"iid": "8c590490-9b00-11ef-88ab-d757600acaa7",
-					"width": 128,
-					"height": 128,
-					"defUid": 1,
-					"px": [2176,2176],
-					"fieldInstances": [],
-					"__worldX": 2240,
-					"__worldY": 6208
-				},
 				{
 					"__identifier": "Present",
 					"__grid": [130,104],

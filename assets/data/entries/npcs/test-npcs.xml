@@ -10,4 +10,10 @@
             <dlg>You disappoint me. Be gone from my sight.</dlg>
         </state>
     </npc>
+    <npc name="tombstone">
+        <state name="default">
+            <dlg>Here lies Tankmas ADVENTure Calendar 2023's hopes and dreams.</dlg>
+            <dlg>"I died before I could live."</dlg>
+        </state>
+    </npc>
 </root>
