@@ -74,9 +74,12 @@ class JsonData
 
 	public static function check_for_unlock_sticker(sticker:StickerDef):Bool
 	{
-		if (sticker.unlock == null)
-			return true;
-		return data.types.TankmasEnums.UnlockCondition.get_unlocked(sticker.unlock, sticker.data);
+		return SaveManager.saved_sticker_collection.contains(sticker.name);
+		/*
+			if (sticker.unlock == null)
+				return true;
+			return data.types.TankmasEnums.UnlockCondition.get_unlocked(sticker.unlock, sticker.data);
+		 */
 	}
 
 	static function get_all_costume_defs():Array<CostumeDef>
@@ -127,14 +130,14 @@ class JsonData
 		return arr;
 	}
 
-	public static function random_draw_stickers(amount:Int)
+	public static function random_draw_stickers(amount:Int, ?limit_list:Array<String>)
 	{
 		var drawn_stickers:Array<String> = [];
 		for (n in 0...amount)
 		{
 			var random_sticker:String = null;
 			while (random_sticker == null || SaveManager.saved_sticker_collection.contains(random_sticker))
-				random_sticker = Main.ran.getObject(all_sticker_names);
+				random_sticker = Main.ran.getObject(limit_list == null ? all_sticker_names : limit_list);
 			drawn_stickers.push(random_sticker);
 		}
 		return drawn_stickers;

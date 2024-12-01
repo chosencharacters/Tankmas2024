@@ -7,6 +7,7 @@ import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 import ui.popups.StickerPackOpening;
 import ui.sheets.SheetMenu;
+import ui.sheets.StickerSelectSheet;
 
 class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 {
@@ -76,8 +77,22 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 		{
 			Ctrl.mode = ControlModes.NONE;
 
+			var limit_list:Array<String> = [
+				"toasty-warm",
+				"edd-sticker",
+				"mustard",
+				"pink-kight-mondo",
+				"tappy-sticker",
+				"son-christmas",
+				"sick-skull",
+				"slashe-wave",
+				"gimme-five",
+				"john-sticker",
+				"pico-sticker-swag"
+			];
+
 			sticker_pack.tween = FlxTween.tween(sticker_pack, {y: FlxG.height + sticker_pack.height}, 0.25, {
-				onComplete: (t) -> FlxG.state.add(new StickerPackOpening(JsonData.random_draw_stickers(Main.daily_sticker_draw_amount)))
+				onComplete: (t) -> FlxG.state.add(new StickerPackOpening(JsonData.random_draw_stickers(Main.daily_sticker_draw_amount, limit_list)))
 			});
 
 			return;

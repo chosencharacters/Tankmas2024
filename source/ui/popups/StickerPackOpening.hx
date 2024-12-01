@@ -59,6 +59,9 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 
 		sstate(STICKER_PACK_IN);
 
+		for (sticker in sticker_draw)
+			SaveManager.saved_sticker_collection.push(sticker);
+
 		SaveManager.save_collections();
 
 		make_stickers();
@@ -89,10 +92,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 		}
 
 		for (n in 0...3)
-		{
-			trace(n, 2 - n);
 			add(stickers[2 - n]);
-		}
 	}
 
 	override function update(elapsed:Float)
@@ -103,6 +103,8 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 	}
 
 	function fsm()
+	{
+		var hit_that_sticker_like_a_shaggy_fulpy:Bool = Ctrl.anyB[1] || FlxG.mouse.justPressed;
 		switch (cast(state, State))
 		{
 			default:
@@ -118,7 +120,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 				if (sticker_pack.animation.finished)
 					sstate(POST_HIT, fsm);
 			case POST_HIT:
-				if (ttick() > post_hit_wait)
+				if (hit_that_sticker_like_a_shaggy_fulpy)
 					sstate(hits == max_hits ? PRE_KABOOM : HIT_IT, fsm);
 			case PRE_KABOOM:
 				sticker_pack.animProtect("pre-kaboom");
@@ -129,11 +131,16 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 					sticker_pack.kill();
 					for (sticker in stickers)
 						sticker.visible = true;
-					sstate(KABOOM, fsm);
+					sstate(WOBBLE_ON_AND_ABOUT, fsm);
 				}
-			case KABOOM:
+			case WOBBLE_ON_AND_ABOUT:
 				if (ttick() % wobble_rate == 0)
 					sticker_wobble();
+				if (tick > 30 && hit_that_sticker_like_a_shaggy_fulpy)
+				{
+					Utils.shake(ShakePreset.DAMAGE);
+					sstate(STICKERS_OUT);
+				}
 			case STICKERS_OUT:
 				ttick();
 				if (tick % wobble_rate == 0)
@@ -153,6 +160,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 				sstate(WAIT);
 				black.tween = FlxTween.tween(black, {alpha: 0}, sticker_pack_descent_speed, {ease: FlxEase.elasticInOut, onComplete: (t) -> kill});
 		}
+	}
 
 	override function kill()
 	{
@@ -178,7 +186,7 @@ private enum abstract State(String) from String to String
 	final HITTING;
 	final POST_HIT;
 	final PRE_KABOOM;
-	final KABOOM;
+	final WOBBLE_ON_AND_ABOUT;
 	final STICKERS_OUT;
 	final FADE_OUT;
 	final WAIT;
