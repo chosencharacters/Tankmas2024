@@ -33,14 +33,14 @@ class ComicSubstate extends flixel.FlxSubState
 		art = new FlxSprite(0, 0);
 		add(art);
 
-		backButton = new FlxSprite(20, 470).loadGraphic(Paths.get('leftarrow.png'));
+		backButton = new FlxSprite(20, 470).loadGraphic(Paths.get('left-arrow.png'));
 		add(backButton);
 		backButton.kill();
 
-		forwardButton = new FlxSprite(1755, 470).loadGraphic(Paths.get('rightarrow.png'));
+		forwardButton = new FlxSprite(1755, 470).loadGraphic(Paths.get('right-arrow.png'));
 		add(forwardButton);
 
-		exitButton = new FlxSprite(20, 20).loadGraphic(Paths.get('backarrow.png'));
+		exitButton = new FlxSprite(20, 20).loadGraphic(Paths.get('back-arrow.png'));
 		add(exitButton);
 
 		members.for_all_members((member:flixel.FlxBasic) -> cast(member, FlxObject).scrollFactor.set(0, 0));
@@ -154,7 +154,8 @@ class ComicSubstate extends flixel.FlxSubState
 	override function close()
 	{
 		art.kill();
-		if (audio != null) {
+		if (audio != null)
+		{
 			audio.stop();
 			RadioManager.volume = 1.0;
 		}
