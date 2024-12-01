@@ -20,12 +20,12 @@ enum abstract TankmasFonts(FontDef) from FontDef to FontDef
  */
 enum abstract TextFormatPresets(TextFormatDef) from TextFormatDef to TextFormatDef
 {
-	public static final BLACK:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color:FlxColor.BLACK};
-	public static final WHITE:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color:FlxColor.WHITE};
+	public static final BLACK:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color: FlxColor.BLACK};
+	public static final WHITE:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color: FlxColor.WHITE};
 
-    public static final BLACK_OUTLINED:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color:FlxColor.BLACK, outline:{color:FlxColor.WHITE, thickness:2}};
-	public static final WHITE_OUTLINED:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color:FlxColor.WHITE, outline:{color:FlxColor.BLACK, thickness:2}};
+	public static final BLACK_OUTLINED:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color: FlxColor.BLACK, outline: {color: FlxColor.WHITE, thickness: 2}};
+	public static final WHITE_OUTLINED:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color: FlxColor.WHITE, outline: {color: FlxColor.BLACK, thickness: 2}};
 
-	public static final DIALOGUE:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color:FlxColor.BLACK};
-	public static final TITLE:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color:FlxColor.BLACK, alignment: FlxTextAlign.CENTER};
+	public static final DIALOGUE:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color: FlxColor.BLACK};
+	public static final TITLE:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color: FlxColor.BLACK, alignment: FlxTextAlign.CENTER};
 }

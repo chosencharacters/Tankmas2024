@@ -27,6 +27,10 @@ enum abstract UnlockCondition(String) from String to String
 	final SUPPORTER;
 
 	public static inline function get_unlocked(condition:UnlockCondition, data:Dynamic):Bool
+	{
+		#if all_unlocked
+		return true;
+		#end
 		switch (cast(condition, UnlockCondition))
 		{
 			default:
@@ -51,6 +55,7 @@ enum abstract UnlockCondition(String) from String to String
 				return false;
 				#end
 		}
+	}
 }
 
 /**

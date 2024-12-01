@@ -4,63 +4,52 @@
             "graphic": "costumes-series-1",
             "items": [
                 {
-                    "name": "tankman",
+                    "name":"tankman",
                     "angle": 10
-                },
-                {
-                    "name": "paco",
+                }, {
+                    "name":"paco",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
-                },
-                {
-                    "name": "g-bot",
+                }, {
+                    "name":"knight-red",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
-                },
-                {
-                    "name": "thomas",
+                }, {
+                    "name":"knight-blue",
                     "angle": -10
-                },
-                {
-                    "name": "sodaman",
+                }, {
+                    "name":"knight-green",
                     "angle": -10
-                },
-                {
-                    "name": "splatter-dash",
+                }, {
+                    "name":"knight-orange",
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30
-                },
-                {
-                    "name": "c-jay",
+                }, {
+                    "name":"knight-pink",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
-                },
-                {
-                    "name": "tamag0",
+                }, {
+                    "name":"boyfriend",
                     "angle": 10
-                },
-                {
-                    "name": "midgetsausage",
+                }, {
+                    "name":"madness-grunt",
                     "angle": 10
-                },
-                {
-                    "name": "alien-hominid",
+                }, {
+                    "name":"alien-hominid",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
-                },
-                {
-                    "name": "jimmy",
+                }, {
+                    "name":null,
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
-                },
-                {
-                    "name": "baby",
+                }, {
+                    "name":"thomas",
                     "angle": -10
                 }
             ]
