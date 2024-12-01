@@ -17,6 +17,7 @@ import minigames.MinigameHandler;
 import net.tankmas.OnlineLoop;
 import ui.DialogueBox;
 import ui.MainGameOverlay;
+import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
 import zones.Door;
@@ -100,6 +101,8 @@ class PlayState extends BaseState
 		add(doors);
 
 		add(ui_overlay);
+
+		add(new StickerPackOpening());
 
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 

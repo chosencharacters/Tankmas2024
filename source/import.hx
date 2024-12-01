@@ -12,6 +12,7 @@ import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import squid.ext.FlxTypedGroupExt;
 import squid.sprite.FlxSpriteExt;
 import squid.types.Fonts;
 import squid.types.ListsTypes.AnimDef;
@@ -27,4 +28,3 @@ using squid.util.FlxSpriteUtils;
 using squid.util.SysUtils;
 using squid.util.Utils;
 using squid.util.XmlUtils;
-

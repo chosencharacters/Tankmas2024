@@ -37,7 +37,9 @@ class BaseState extends FlxState
 			SoundPlayer.music(Paths.get('christmasohyeah-stixdevs.ogg'));
 			#end
 
+			#if !no_fade
 			FlxG.camera.fade(FlxColor.BLACK, 2, true);
+			#end
 		}
 		else
 		{

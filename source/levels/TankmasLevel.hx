@@ -30,9 +30,8 @@ class TankmasLevel extends LDTKLevel
 
 		super.generate(level_name, tilesheet_graphic);
 
-
-		//for (i in 0..._tileObjects.length)
-			//setTileProperties(i, FlxObject.NONE);
+		// for (i in 0..._tileObjects.length)
+		// setTileProperties(i, FlxObject.NONE);
 
 		var data:LdtkProject_Level = get_level_by_name(level_name);
 
@@ -92,12 +91,12 @@ class TankmasLevel extends LDTKLevel
 			var spawn:FlxPoint = new FlxPoint(x + entity.f_spawn.cx * 16, y + entity.f_spawn.cy * 16);
 			new Door(x + entity.pixelX, y + entity.pixelY, entity.width, entity.height, entity.f_linked_door, spawn, entity.iid);
 		}
-	
+
 		for (entity in level.l_Entities.all_Minigame.iterator())
 		{
 			new Minigame(x + entity.pixelX, y + entity.pixelY, entity.width, entity.height, entity.f_minigame_id);
 		}
-		
+
 		for (entity in level.l_Entities.all_Activity_Area.iterator())
 		{
 			new ActivityArea(entity.f_ActivityType, x + entity.pixelX, y + entity.pixelY, entity.width, entity.height);
@@ -109,6 +108,7 @@ class TankmasLevel extends LDTKLevel
 					new Boy(x + entity.pixelX, y + entity.pixelY);
 		 */
 	}
+
 	public static function make_all_levels_in_world(world_name:String):Array<TankmasLevel>
 	{
 		var array:Array<TankmasLevel> = [];
@@ -120,6 +120,7 @@ class TankmasLevel extends LDTKLevel
 
 		return array;
 	}
+
 	override function update(elapsed:Float)
 	{
 		// getTileCollisions(getTileIndexByCoords(PlayState.self.player.mp));
