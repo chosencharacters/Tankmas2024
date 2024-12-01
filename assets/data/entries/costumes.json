@@ -164,6 +164,13 @@
             "desc": "B",
             "unlock": "USERNAME",
             "data": "coolboyman"
+        },
+        {
+            "name": "shmoods",
+            "display": "Mr. Shmoods",
+            "desc": "Shmoods loves Tankmas and White Castle. He has never done hard drugs, only soft drugs. Only the fluffiest drugs for shmoods. You can join him sometime. It's an open invitation.",
+            "unlock": "USERNAME",
+            "data": "MrShmoods"
         }
     ]
 }

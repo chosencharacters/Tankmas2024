@@ -102,6 +102,9 @@ class PlayState extends BaseState
 		add(touch = new TouchOverlay());
 
 		add(shadows);
+
+		add(misc_sprites);
+
 		add(minigames);
 		add(npcs);
 		add(presents);
@@ -112,8 +115,6 @@ class PlayState extends BaseState
 		add(stickers);
 		add(sticker_fx);
 		add(dialogues);
-
-		add(misc_sprites);
 
 		add(doors);
 

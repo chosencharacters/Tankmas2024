@@ -880,7 +880,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [65,94],
+					"__grid": [99,49],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -889,7 +889,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1040,1504],
+					"px": [1584,784],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "cymbourine", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -897,8 +897,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 1, "__tile": null, "defUid": 6, "realEditorValues": [] }
 					],
-					"__worldX": 1072,
-					"__worldY": 1520
+					"__worldX": 1616,
+					"__worldY": 800
 				},
 				{
 					"__identifier": "NPC",
