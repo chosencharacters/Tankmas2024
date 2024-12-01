@@ -12,7 +12,7 @@ class BaseUser extends NGSprite
 {
 	public var costume:CostumeDef;
 
-	var move_acl:Int = 60;
+	var move_acl:Int = 25;
 	var move_speed:Int = 500;
 
 	var shadow:FlxSpriteExt;

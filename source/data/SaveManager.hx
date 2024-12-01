@@ -27,6 +27,8 @@ class SaveManager
 		savedRoom = Main.default_room;
 		saved_sticker_collection = Main.default_sticker_collection;
 		saved_costume_collection = Main.default_costume_collection;
+		current_emote = Main.default_sticker;
+		current_costume = Main.default_costume;
 
 		// opened presents
 		load_presents();
@@ -90,9 +92,21 @@ class SaveManager
 		save_emotes();
 		save_room();
 		save_collections();
-		FlxG.save.flush();
+		flush();
 
 		upload();
+	}
+
+	public static function flush()
+	{
+		try
+		{
+			FlxG.save.flush();
+		}
+		catch (e)
+		{
+			trace("SAVE ERROR: " + e);
+		}
 	}
 
 	public static function save_collections(force:Bool = false):Void
@@ -105,14 +119,14 @@ class SaveManager
 	{
 		FlxG.save.data.costume_collection = saved_costume_collection;
 		if (force)
-			FlxG.save.flush();
+			flush();
 	}
 
 	public static function save_sticker_collection(force:Bool = false):Void
 	{
 		FlxG.save.data.sticker_collection = saved_sticker_collection;
 		if (force)
-			FlxG.save.flush();
+			flush();
 	}
 
 	public static function load_costume_collection(force:Bool = false):Void
@@ -208,7 +222,7 @@ class SaveManager
 	{
 		FlxG.save.data.savedPresents = savedPresents;
 		if (force)
-			FlxG.save.flush();
+			flush();
 	}
 
 	public static function save_costumes(force:Bool = false)
@@ -218,8 +232,11 @@ class SaveManager
 		FlxG.save.data.savedCostumeSheet = CostumeSelectSheet.saved_sheet;
 		FlxG.save.data.savedCostumeSelect = CostumeSelectSheet.saved_selection;
 		FlxG.save.data.seenCostumes = CostumeSelectSheet.seenCostumes;
+		/*trace(FlxG.save.data.savedCostumes, FlxG.save.data.currentCostume, FlxG.save.data.savedCostumeSheet, FlxG.save.data.savedCostumeSelect,
+			FlxG.save.data.seenCostumes); */
+
 		if (force)
-			FlxG.save.flush();
+			flush();
 	}
 
 	public static function save_emotes(force:Bool = false)
@@ -230,13 +247,13 @@ class SaveManager
 		FlxG.save.data.savedEmoteSelect = StickerSelectSheet.saved_selection;
 		FlxG.save.data.seenEmotes = StickerSelectSheet.seenStickers;
 		if (force)
-			FlxG.save.flush();
+			flush();
 	}
 
 	public static function save_room(force:Bool = false)
 	{
 		FlxG.save.data.savedRoom = savedRoom;
 		if (force)
-			FlxG.save.flush();
+			flush();
 	}
 }

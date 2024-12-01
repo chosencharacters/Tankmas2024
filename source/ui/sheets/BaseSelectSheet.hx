@@ -1,5 +1,6 @@
 package ui.sheets;
 
+import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.StickerDef;
 import flixel.FlxBasic;
@@ -136,6 +137,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 				sprite.angle = identity?.angle ?? 0.0;
 				characterSprites.add(sprite);
 				daNames.push(identity.name);
+
 				if (!seen.contains(identity.name))
 				{
 					final newFrame:FlxSpriteExt = new FlxSpriteExt(sprite_position.x + (sprite.width / 2) - 141, sprite_position.y + (sprite.height / 2) - 163);
@@ -275,6 +277,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		locked_selection = current_hover_selection;
 		locked_sheet = current_hover_sheet;
 		update_locked_selection_overlay();
+		save_selection();
 	}
 
 	function set_current_hover_sheet(val:Int):Int
@@ -314,7 +317,11 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 				i.ID == characterSpritesArray[current_hover_sheet].members[current_hover_selection].ID);
 			if (matches.length > 0)
 			{
-				seen.push(characterNames[current_hover_sheet][current_hover_selection]);
+				var character_name:String = characterNames[current_hover_sheet][current_hover_selection];
+				if (!seen.contains(character_name))
+				{
+					seen.push(character_name);
+				}
 				notSeenGroup[current_hover_sheet].members.remove(matches[0]);
 			}
 		}

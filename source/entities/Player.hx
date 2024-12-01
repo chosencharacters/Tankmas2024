@@ -164,22 +164,30 @@ class Player extends BaseUser
 	{
 		if (Ctrl.mode.can_move)
 		{
+			var reversing_x:Bool = velocity.x > 0 && LEFT || velocity.x < 0 && RIGHT;
+			var reversing_y:Bool = velocity.y > 0 && UP || velocity.y < 0 && DOWN;
+
+			var move_speed_x:Float = move_speed / move_acl * (reversing_x ? move_reverse_mod : 1);
+			var move_speed_y:Float = move_speed / move_acl * (reversing_y ? move_reverse_mod : 1);
+
 			if (UP)
-				velocity.y -= move_speed / move_acl * (velocity.y > 0 ? 1 : move_reverse_mod);
+				trace(velocity.y, reversing_y);
+
+			if (UP)
+				velocity.y -= move_speed_y;
 			else if (DOWN)
-				velocity.y += move_speed / move_acl * (velocity.y < 0 ? 1 : move_reverse_mod);
+				velocity.y += move_speed_y;
 
 			if (LEFT)
-				velocity.x -= move_speed / move_acl * (velocity.x > 0 ? 1 : move_reverse_mod);
+				velocity.x -= move_speed_x;
 			else if (RIGHT)
-				velocity.x += move_speed / move_acl * (velocity.x < 0 ? 1 : move_reverse_mod);
+				velocity.x += move_speed_x;
+
+			if (LEFT || RIGHT)
+				flipX = RIGHT;
 
 			if (!LEFT && !RIGHT)
-				velocity.x = velocity.x * .95;
-			else
-				flipX = RIGHT;
-			// flipX = velocity.x > 0;
-
+				velocity.x = velocity.x * move_no_input_drag;
 			if (!UP && !DOWN)
 				velocity.y = velocity.y * move_no_input_drag;
 		}

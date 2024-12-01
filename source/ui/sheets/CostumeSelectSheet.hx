@@ -14,7 +14,7 @@ class CostumeSelectSheet extends BaseSelectSheet
 	public function new(menu:SheetMenu, ?forceState:Bool = true)
 	{
 		super(menu, saved_sheet, saved_selection, COSTUME);
-		seen = seenCostumes;
+		seen = seenCostumes.copy();
 	}
 
 	override function make_sheet_collection():SheetFileDef
@@ -26,7 +26,7 @@ class CostumeSelectSheet extends BaseSelectSheet
 
 		saved_sheet = locked_sheet;
 		saved_selection = locked_selection;
-		seenCostumes = seen;
+		seenCostumes = seen.copy();
 
 		SaveManager.save_costumes(true);
 

@@ -9,12 +9,12 @@ class StickerSelectSheet extends BaseSelectSheet
 {
 	public static var saved_sheet:Int = 0;
 	public static var saved_selection:Int = 0;
-	public static var seenStickers:Array<String> = [];
+	public static var seenStickers:Array<String>;
 
 	public function new(menu:SheetMenu, ?forceState:Bool = true)
 	{
 		super(menu, saved_sheet, saved_selection, STICKER);
-		seen = seenStickers;
+		seen = seenStickers.copy();
 	}
 
 	override function make_sheet_collection():SheetFileDef
@@ -26,7 +26,7 @@ class StickerSelectSheet extends BaseSelectSheet
 
 		saved_sheet = locked_sheet;
 		saved_selection = locked_selection;
-		seenStickers = seen;
+		seenStickers = seen.copy();
 
 		SaveManager.save_emotes(true);
 	}
