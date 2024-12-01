@@ -61,7 +61,7 @@ class SaveManager
 
 	public static function save_sticker_collection(force:Bool = false):Void
 	{
-		FlxG.save.data.savedPresents = saved_sticker_collection;
+		FlxG.save.data.sticker_collection = saved_sticker_collection;
 		if (force)
 			FlxG.save.flush();
 	}
@@ -73,7 +73,7 @@ class SaveManager
 			trace("Error loading saved costumes");
 			save_costume_collection(true);
 		}
-		savedPresents = FlxG.save.data.savedPresents;
+		saved_costume_collection = FlxG.save.data.costume_collection;
 	}
 
 	public static function load_sticker_collection(force:Bool = false):Void
@@ -83,7 +83,7 @@ class SaveManager
 			trace("Error loading saved stickers");
 			save_sticker_collection(true);
 		}
-		savedPresents = FlxG.save.data.savedPresents;
+		sticker_collection = FlxG.save.data.sticker_collection;
 	}
 
 	public static function load_presents(force:Bool = false):Void
