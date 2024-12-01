@@ -10,8 +10,12 @@ class SaveManager
 	public static var savedCostumes:Array<String> = [];
 	public static var savedEmotes:Array<String> = [];
 	public static var savedRoom:String;
+
 	public static var saved_sticker_collection:Array<String>;
 	public static var saved_costume_collection:Array<String>;
+
+	public static var current_costume(default, default):String;
+	public static var current_emote(default, default):String;
 
 	public static function init()
 	{
@@ -119,8 +123,6 @@ class SaveManager
 			save_emotes(true);
 		}
 		savedEmotes = FlxG.save.data.savedEmotes;
-		if (FlxG.save.data.currentEmote != null && PlayState.self != null)
-			PlayState.self.player.sticker = FlxG.save.data.currentEmote;
 		StickerSelectSheet.saved_sheet = FlxG.save.data.savedEmoteSheet != null ? FlxG.save.data.savedEmoteSheet : 0;
 		StickerSelectSheet.saved_selection = FlxG.save.data.savedEmoteSelect != null ? FlxG.save.data.savedEmoteSelect : 0;
 		StickerSelectSheet.seenStickers = FlxG.save.data.seenEmotes != null ? FlxG.save.data.seenEmotes : [];
@@ -143,10 +145,11 @@ class SaveManager
 		savedPresents.push(content);
 		save_presents(true);
 		#if newgrounds
-		if(day == 1 && content == "cymbourine")
+		if (day == 1 && content == "cymbourine")
 			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-1"));
-		if((Date.now().getMonth() != 0 && Date.now().getDate() != 1) && Date.now().getMonth() != 11) return;
-		switch(content)
+		if ((Date.now().getMonth() != 0 && Date.now().getDate() != 1) && Date.now().getMonth() != 11)
+			return;
+		switch (content)
 		{
 			case "matthewlopz":
 				return Main.ng_api.medal_popup(Main.ng_api.medals.get("little-candles"));
@@ -166,7 +169,7 @@ class SaveManager
 	public static function save_costumes(force:Bool = false)
 	{
 		FlxG.save.data.savedCostumes = savedCostumes;
-		FlxG.save.data.currentCostume = PlayState.self == null ? 'tankman' : PlayState.self.player.costume.name;
+		FlxG.save.data.currentCostume = current_costume;
 		FlxG.save.data.savedCostumeSheet = CostumeSelectSheet.saved_sheet;
 		FlxG.save.data.savedCostumeSelect = CostumeSelectSheet.saved_selection;
 		FlxG.save.data.seenCostumes = CostumeSelectSheet.seenCostumes;
@@ -177,7 +180,7 @@ class SaveManager
 	public static function save_emotes(force:Bool = false)
 	{
 		FlxG.save.data.savedEmotes = savedEmotes;
-		FlxG.save.data.currentEmote = PlayState.self == null ? 'edd-sticker' : PlayState.self.player.sticker;
+		FlxG.save.data.currentEmote = current_emote;
 		FlxG.save.data.savedEmoteSheet = StickerSelectSheet.saved_sheet;
 		FlxG.save.data.savedEmoteSelect = StickerSelectSheet.saved_selection;
 		FlxG.save.data.seenEmotes = StickerSelectSheet.seenStickers;

@@ -21,8 +21,6 @@ class SheetSubstate extends FlxSubStateExt
 		add(this.sheet_menu = sheet_menu);
 
 		sstate(ACTIVE);
-
-		trace("substate exists");
 	}
 
 	override function update(elapsed:Float)
@@ -39,13 +37,22 @@ class SheetSubstate extends FlxSubStateExt
 			case ACTIVE:
 				Ctrl.update();
 				if (Ctrl.jinteract[1])
-				{
-					sheet_menu.start_closing();
-					sstate(CLOSING);
-				}
+					start_closing();
 			case CLOSING:
 				return;
 		}
+
+	public function start_closing()
+	{
+		sheet_menu.start_closing(() -> close_and_close_substate());
+		sstate(CLOSING);
+	}
+
+	public function close_and_close_substate()
+	{
+		close();
+		FlxG.state.closeSubState();
+	}
 
 	override function close()
 	{

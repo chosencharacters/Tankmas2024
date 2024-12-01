@@ -1,7 +1,10 @@
 package ui.sheets;
 
+import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 import states.substates.SheetSubstate;
+import ui.Button.BackButton;
+import ui.button.HoverButton;
 
 enum SheetTab
 {
@@ -19,11 +22,15 @@ class SheetMenu extends FlxTypedGroupExt<BaseSelectSheet>
 	var tabs:Array<SheetTab> = [COSTUMES, STICKERS];
 	var tab(get, never):SheetTab;
 
+	var back_button:HoverButton;
+
+	var substate:SheetSubstate;
+
 	public function new(open_on_tab:SheetTab = COSTUMES)
 	{
 		super();
 
-		FlxG.state.openSubState(new SheetSubstate(this));
+		FlxG.state.openSubState(substate = new SheetSubstate(this));
 
 		costumes = new CostumeSelectSheet(this);
 		stickers = new StickerSelectSheet(this);
@@ -33,7 +40,23 @@ class SheetMenu extends FlxTypedGroupExt<BaseSelectSheet>
 
 		cycle_tabs_until(open_on_tab);
 
+		substate.add(back_button = new HoverButton((b) -> back_button_activated()));
+
+		back_button.scrollFactor.set(0, 0);
+
+		back_button.loadAllFromAnimationSet("back-arrow");
+		back_button.setPosition(FlxG.width - back_button.width - 16, FlxG.height - back_button.height - 16);
+		back_button.offset.y = -back_button.height;
+		back_button.tween = FlxTween.tween(back_button.offset, {y: 0}, 0.25, {ease: FlxEase.cubeInOut});
+
 		update_tab_states();
+	}
+
+	function back_button_activated()
+	{
+		back_button.tween = FlxTween.tween(back_button, {y: FlxG.height + back_button.height}, 0.25, {ease: FlxEase.cubeInOut});
+		back_button.disable();
+		substate.start_closing();
 	}
 
 	override function update(elapsed:Float)

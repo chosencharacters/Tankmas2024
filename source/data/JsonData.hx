@@ -11,9 +11,9 @@ import dn.legacy.SavedData;
  */
 class JsonData
 {
-	static var costumes:Map<String, CostumeDef>;
-	static var presents:Map<String, PresentDef>;
-	static var stickers:Map<String, StickerDef>;
+	public static var costumes:Map<String, CostumeDef>;
+	public static var presents:Map<String, PresentDef>;
+	public static var stickers:Map<String, StickerDef>;
 
 	public static var all_costume_defs(get, default):Array<CostumeDef>;
 	public static var all_costume_names(get, default):Array<String>;

@@ -76,7 +76,7 @@ class SpriteAnimationController
 		if (finished)
 		{
 			trace('${animation.name} finished');
-			on_complete == null ? false : on_complete();
+			on_complete != null ? on_complete() : false;
 			return;
 		}
 
@@ -108,7 +108,8 @@ class SpriteAnimationController
 
 		sprite.angle = frame.angle == null ? sprite.angle : frame.angle;
 
-		if((frame.frameNum != null) && (sprite.frames.frames.length >= (1 + frame.frameNum))) sprite.frame = sprite.frames.frames[frame.frameNum];
+		if ((frame.frameNum != null) && (sprite.frames.frames.length >= (1 + frame.frameNum)))
+			sprite.frame = sprite.frames.frames[frame.frameNum];
 	}
 
 	public function reset_sprite()

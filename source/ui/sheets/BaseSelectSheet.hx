@@ -109,7 +109,6 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 					if (!unlocked)
 						continue;
 
-					trace(costume.name);
 					sprite.loadGraphic(Paths.get('${costume.name}.png'));
 				}
 				var sprite_position:FlxPoint = FlxPoint.weak();
@@ -328,6 +327,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	public function start_closing(?on_complete:Void->Void)
 	{
+		var dumb_on_complete_bool:Bool = true;
 		sstate(CLOSING);
 		FlxTween.tween(descGroup, {x: -440}, 0.5, {ease: FlxEase.quintIn});
 		new FlxTimer().start(0.3, function(tmr:FlxTimer)
@@ -335,11 +335,22 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			members.for_all_members((member:FlxBasic) ->
 			{
 				final daMem:FlxObject = cast(member, FlxObject);
-				FlxTween.tween(daMem, {y: daMem.y + 1300}, 1, {ease: FlxEase.cubeInOut});
+				var tween:FlxTween = FlxTween.tween(daMem, {y: daMem.y + 1300}, 1, {ease: FlxEase.cubeInOut});
+				if (dumb_on_complete_bool)
+					tween.onComplete = (t) -> on_complete();
+				dumb_on_complete_bool = false;
 			});
-			on_complete == null ? on_complete : false;
 		});
 	}
+
+	override function kill()
+	{
+		save_selection();
+		super.kill();
+	}
+
+	function save_selection()
+		throw "not implemented";
 }
 
 enum abstract SheetType(String) from String to String

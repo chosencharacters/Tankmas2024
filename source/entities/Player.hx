@@ -1,6 +1,7 @@
 package entities;
 
 import data.JsonData;
+import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.PlayerAnimation;
 import entities.Interactable;
@@ -17,11 +18,6 @@ class Player extends BaseUser
 	var last_update_json:NetUserDef;
 
 	static var debug_costume_rotation:Array<CostumeDef>;
-
-	/**We send this once*/
-	public var queued_online_sticker:String;
-
-	public var sticker:String = "common-tamago";
 
 	public static var has_sticker_pack:Bool = true;
 
@@ -44,6 +40,8 @@ class Player extends BaseUser
 				debug_rotate_costumes();
 			#end
 		 */
+
+		costume = JsonData.costumes.get(SaveManager.current_costume);
 
 		last_update_json = {name: username};
 
@@ -96,7 +94,7 @@ class Player extends BaseUser
 		final NO_KEYS:Bool = !UP && !DOWN && !LEFT && !RIGHT;
 
 		if (Ctrl.jemote[1] && !MinigameHandler.instance.is_minigame_active())
-			use_sticker(sticker);
+			use_sticker(SaveManager.current_emote);
 		// keeping the sheet menus right next to each other makes sense, no?
 
 		if (Ctrl.mode.can_move)

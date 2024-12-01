@@ -20,13 +20,14 @@ class StickerSelectSheet extends BaseSelectSheet
 	override function make_sheet_collection():SheetFileDef
 		return haxe.Json.parse(Utils.load_file_string('sticker-sheets.json'));
 
-	override function kill()
+	override function save_selection()
 	{
-		PlayState.self.player.sticker = characterNames[current_sheet][current_selection];
+		SaveManager.current_emote = characterNames[current_sheet][current_selection];
+
 		saved_sheet = current_sheet;
 		saved_selection = current_selection;
 		seenStickers = seen;
+
 		SaveManager.save_emotes(true);
-		super.kill();
 	}
 }

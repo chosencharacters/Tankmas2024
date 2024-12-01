@@ -1,6 +1,7 @@
 package ui;
 
 import data.JsonData;
+import data.SaveManager;
 import entities.Player;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
@@ -52,14 +53,17 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 	public function hide_top_ui(?on_complete:FlxTween->Void)
 	{
 		for (sprite in [emote, settings])
-			sprite.tween = FlxTween.tween(sprite.offset, {y: sprite.height}, hide_speed, {ease: FlxEase.quadInOut});
+			sprite.tween = FlxTween.tween(sprite.offset, {y: sprite.height + 16}, hide_speed, {ease: FlxEase.quadInOut});
 		emote.tween.onComplete = on_complete;
 	}
 
 	public function reveal_top_ui(?on_complete:FlxTween->Void)
 	{
 		for (sprite in [emote, settings])
-			sprite.tween = FlxTween.tween(sprite.offset, {y: 0}, hide_speed, {ease: FlxEase.quadInOut});
+		{
+			sprite.tween = FlxTween.tween(sprite.offset, {y: 0}, reveal_speed, {ease: FlxEase.quadInOut, onComplete: (t) -> trace("revealing")});
+			sprite.offset.y = 0;
+		}
 		emote.tween.onComplete = on_complete;
 	}
 
@@ -140,7 +144,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 					if (FlxG.mouse.overlaps(member))
 					{
 						if (FlxG.mouse.justReleased)
-							player.use_sticker(player.sticker);
+							player.use_sticker(SaveManager.current_emote);
 						if (FlxG.mouse.pressed && member.scale.x != 0.8)
 							member.scale.set(0.8, 0.8)
 						else if (!FlxG.mouse.pressed && member.scale.x != 1.1)

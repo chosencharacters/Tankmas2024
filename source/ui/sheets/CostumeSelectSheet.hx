@@ -20,13 +20,16 @@ class CostumeSelectSheet extends BaseSelectSheet
 	override function make_sheet_collection():SheetFileDef
 		return haxe.Json.parse(Utils.load_file_string('costume-sheets.json'));
 
-	override function kill()
+	override function save_selection()
 	{
-		PlayState.self.player.new_costume(data.JsonData.get_costume(characterNames[current_sheet][current_selection]));
+		SaveManager.current_costume = characterNames[current_sheet][current_selection];
+
 		saved_sheet = current_sheet;
 		saved_selection = current_selection;
 		seenCostumes = seen;
+
 		SaveManager.save_costumes(true);
-		super.kill();
+
+		PlayState.self.player.new_costume(data.JsonData.get_costume(SaveManager.current_costume));
 	}
 }
