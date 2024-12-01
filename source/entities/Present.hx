@@ -133,9 +133,9 @@ class Present extends Interactable
 		if (state != "OPENED")
 		{
 			sstate(OPENING);
-			new FlxTimer().start(1, function(tmr:FlxTimer)
+			new FlxTimer().start(0.24, (tmr:FlxTimer) -> SoundPlayer.sound(Paths.get('present-open.ogg')));
+			new FlxTimer().start(1.2, function(tmr:FlxTimer)
 			{
-				// TODO: sound effect
 				sstate(OPENED);
 				thumbnail.sstate("OPEN");
 				PlayState.self.openSubState(comic ? new ComicSubstate(content, true) : new ArtSubstate(content));
@@ -145,7 +145,7 @@ class Present extends Interactable
 		}
 		else
 		{
-			// TODO: sound effect
+			SoundPlayer.sound(Paths.get('present-open.ogg'));
 			PlayState.self.openSubState(comic ? new ComicSubstate(content, false) : new ArtSubstate(content));
 		}
 	}
