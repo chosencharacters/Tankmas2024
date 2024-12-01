@@ -43,7 +43,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	public var menu:SheetMenu;
 
-	public var selected_overlay:FlxSpriteExt;
+	public var locked_selection_overlay:FlxSpriteExt;
 
 	/**
 	 * This is private, should be only made through things that extend it
@@ -172,6 +172,10 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		curTab.scale.set(1.1, 1.1);
 		add(curTab);
 
+		add(locked_selection_overlay = new FlxSpriteExt().one_line("locked-sticker-selection-overlay"));
+		locked_selection_overlay.scrollFactor.set(0, 0);
+		update_locked_selection_overlay();
+
 		selector = new FlxSpriteExt(0, 0).one_line("item-navigator");
 		selector.anim("hover");
 		add(selector);
@@ -191,22 +195,18 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			sstate(ACTIVE);
 			FlxTween.tween(descGroup, {x: 0}, 0.5, {ease: FlxEase.cubeOut});
 		});
-
-		add(selected_overlay = new FlxSpriteExt().one_line("selected-sticker-overlay"));
-		selected_overlay.scrollFactor.set(0, 0);
-		update_select_overlay();
 	}
 
-	function update_select_overlay()
+	function update_locked_selection_overlay()
 	{
 		var target:FlxSpriteExt = characterSpritesArray[locked_sheet].members[locked_selection];
 
-		selected_overlay.center_on(target);
-		selected_overlay.angle = target.angle;
-		selected_overlay.scale.copyFrom(target.scale);
+		locked_selection_overlay.center_on(target);
+		locked_selection_overlay.angle = target.angle;
+		locked_selection_overlay.scale.copyFrom(target.scale);
 
 		// this is untested cause we only have one sheet
-		selected_overlay.visible = locked_sheet == current_hover_sheet;
+		locked_selection_overlay.visible = locked_sheet == current_hover_sheet;
 	}
 
 	function make_sheet_collection():SheetFileDef
@@ -226,7 +226,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	override function update(elapsed:Float)
 	{
-		update_select_overlay();
+		update_locked_selection_overlay();
 		fsm();
 		super.update(elapsed);
 	}
@@ -272,7 +272,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			Utils.shake(ShakePreset.LIGHT);
 		locked_selection = current_hover_selection;
 		locked_sheet = current_hover_sheet;
-		update_select_overlay();
+		update_locked_selection_overlay();
 	}
 
 	function set_current_hover_sheet(val:Int):Int
