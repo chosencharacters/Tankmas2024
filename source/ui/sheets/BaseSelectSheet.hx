@@ -99,10 +99,18 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 				}
 				else
 				{
-					final character:CostumeDef = data.JsonData.get_costume(identity.name);
-					if (!data.JsonData.check_for_unlock_costume(character))
+					final costume:CostumeDef = data.JsonData.get_costume(identity.name);
+
+					if (costume == null)
 						continue;
-					sprite.loadGraphic(Paths.get('${character.name}.png'));
+
+					var unlocked:Bool = data.JsonData.check_for_unlock_costume(costume);
+
+					if (!unlocked)
+						continue;
+
+					trace(costume.name);
+					sprite.loadGraphic(Paths.get('${costume.name}.png'));
 				}
 				var sprite_position:FlxPoint = FlxPoint.weak();
 

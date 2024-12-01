@@ -3,6 +3,8 @@ package data;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.PresentDef;
 import data.types.TankmasDefs.StickerDef;
+import data.types.TankmasEnums.UnlockCondition;
+import dn.legacy.SavedData;
 
 /**
  * Mostly a wrapper for a JSON loaded costumes Map
@@ -36,6 +38,10 @@ class JsonData
 
 		for (costume_def in json.costumes)
 			costumes.set(costume_def.name, costume_def);
+
+		for (costume in costumes)
+			if (costume.unlock == null)
+				costume.unlock = UnlockCondition.YOUR_A_SPECIAL_LITTLE_BOY;
 	}
 
 	static function load_presents()
@@ -67,6 +73,8 @@ class JsonData
 
 	public static function check_for_unlock_costume(costume:CostumeDef):Bool
 	{
+		if (costume == null)
+			return false;
 		if (costume.unlock == null)
 			return true;
 		return data.types.TankmasEnums.UnlockCondition.get_unlocked(costume.unlock, costume.data);
@@ -74,9 +82,12 @@ class JsonData
 
 	public static function check_for_unlock_sticker(sticker:StickerDef):Bool
 	{
-		if (sticker.unlock == null)
-			return true;
-		return data.types.TankmasEnums.UnlockCondition.get_unlocked(sticker.unlock, sticker.data);
+		trace(SaveManager.saved_sticker_collection, sticker.name);
+		return SaveManager.saved_sticker_collection.contains(sticker.name);
+		/*
+				if (sticker.unlock == null)
+					return true;
+			return data.types.TankmasEnums.UnlockCondition.get_unlocked(sticker.unlock, sticker.data); */
 	}
 
 	static function get_all_costume_defs():Array<CostumeDef>

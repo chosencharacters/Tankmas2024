@@ -8,52 +8,68 @@
         {
             "name": "paco",
             "display": "Pico",
-            "desc": "The most popular school shooter hero of 1999"
+            "desc": "They've been blasting through the Portal since 1999, it's Pico!"
+        },
+        {
+            "name": "g-bot",
+            "display": "G-Bot",
+            "desc": "Every month they send thousands of dedicated Newgrounders PMs telling them that it's time once again to support. Now you can pilot them as a massive mech and show off!",
+            "unlock": "SUPPORTER"
         },
         {
             "name": "knight-red",
             "display": "Red Knight",
-            "desc": "Castle Crasher video game but red"
+            "desc": "Castle Crasher video game but red",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "knight-blue",
             "display": "Blue Knight",
-            "desc": "Castle Crasher video game but blue"
+            "desc": "Castle Crasher video game but blue",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "knight-green",
             "display": "Green Knight",
-            "desc": "Castle Crasher video game but green"
+            "desc": "Castle Crasher video game but green",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "knight-orange",
             "display": "Orange Knight",
-            "desc": "Castle Crasher video game but orange"
+            "desc": "Castle Crasher video game but orange",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "knight-pink",
             "display": "Pink Knight UwU",
-            "desc": "Castle Crasher video game but pink uwu"
+            "desc": "Castle Crasher video game but pink uwu",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "boyfriend",
             "display": "Boyfriend",
-            "desc": "BEEP BEEP BEEP ⬆️⬇️⬅️➡️ BEEP BEEP BEEP"
+            "desc": "BEEP BEEP BEEP ⬆️⬇️⬅️➡️ BEEP BEEP BEEP",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "madness-grunt",
             "display": "Grunt",
-            "desc": "As seen on addicting games dot com"
+            "desc": "As seen on addicting games dot com",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "alien-hominid",
             "display": "Alien Hominid",
-            "desc": "It's an absolute invasion!"
+            "desc": "It's an absolute invasion!",
+            "unlock": "ANGRY_FAIC"
         },
         {
             "name": "thomas",
             "display": "Thomas",
-            "unlock": "ANGRY_FAIC"
+            "desc": "Are we talking about Tom Fulp?",
+            "unlock": "USERNAME",
+            "data": "TomFulp"
         },
         {
             "name": "santa",
@@ -63,7 +79,71 @@
         },
         {
             "name": "sodaman",
-            "display": "Sodaman"
+            "display": "Sodaman",
+            "desc": "STREAMING EVERY WEEKDAY MORNING TO AFTERNOON EST",
+            "unlock": "USERNAME",
+            "data": "squidly"
+        },
+        {
+            "name": "tamag0",
+            "display": "Tamag0",
+            "desc": "What, you egg?",
+            "unlock": "USERNAME",
+            "data": "Tamag0"
+        },
+        {
+            "name": "c-jay",
+            "display": "C-Jay",
+            "desc": "*electronic coughing noises*",
+            "unlock": "USERNAME",
+            "data": "OnyxGalaria"
+        },
+        {
+            "name": "splatter-dash",
+            "display": "SplatterDash",
+            "desc": "Shroomy",
+            "unlock": "USERNAME",
+            "data": "SplatterDash"
+        },
+        {
+            "name": "midgetsausage",
+            "display": "MidgetSausage",
+            "desc": "The correct term is little person wiener",
+            "unlock": "USERNAME",
+            "data": "midgetsausage"
+        },
+        {
+            "name": "girlfriend",
+            "display": "Girlfriend"
+        },
+        {
+            "name": "ena-sprite",
+            "display": "ENA"
+        },
+        {
+            "name": "salad-fingers",
+            "display": "Salad Fingers"
+        },
+        {
+            "name": "meat-boy",
+            "display": "Meat Boy"
+        },
+        {
+            "name": "jimmy",
+            "display": "Jimmy",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "baby",
+            "display": "Baby"
+        },
+        {
+            "name": "dadshome",
+            "display": "Dad"
+        },
+        {
+            "name": "tarboy",
+            "display": "Tarboy"
         }
     ]
 }

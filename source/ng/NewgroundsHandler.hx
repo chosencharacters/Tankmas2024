@@ -21,6 +21,8 @@ class NewgroundsHandler
 	public var NG_USERNAME:String = "";
 	public var NG_SESSION_ID:String = "";
 
+	public var NG_MR_MONEYBAGS_OVER_HERE:Bool;
+
 	public var medals:Map<String, MedalDef> = [];
 
 	public function new(use_medals:Bool = true, use_scoreboards:Bool = false, ?login_callback:Void->Void)
@@ -155,7 +157,9 @@ class NewgroundsHandler
 		NG_USERNAME = NG.core.user.name;
 		NG_LOGGED_IN = true;
 
+		NG_MR_MONEYBAGS_OVER_HERE = NG.core.user.supporter;
 		NG_SESSION_ID = NGLite.getSessionId();
+
 		trace('logged in! user:${NG_USERNAME} session: ${NG_SESSION_ID}');
 
 		load_api_medals_part_1();

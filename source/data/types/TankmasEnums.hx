@@ -20,7 +20,17 @@ enum abstract UnlockCondition(String) from String to String
 	/**Checks on flag, data is a String representing flag(s)*/
 	final FLAG;
 
+	/**Username must match*/
+	final USERNAME;
+
+	/**Gotta pay the toll*/
+	final SUPPORTER;
+
 	public static inline function get_unlocked(condition:UnlockCondition, data:Dynamic):Bool
+	{
+		#if all_unlocked
+		return true;
+		#end
 		switch (cast(condition, UnlockCondition))
 		{
 			default:
@@ -35,7 +45,16 @@ enum abstract UnlockCondition(String) from String to String
 				#if newgrounds return Main.ng_api.has_medal(Main.ng_api.medals.get(data)) #else return false #end; // where data is the name of a medal
 			case UnlockCondition.FLAG:
 				return Flags.get(data);
+			case UnlockCondition.USERNAME:
+				return Main.username == data;
+			case UnlockCondition.SUPPORTER:
+				#if newgrounds
+				return Main.ng_api.NG_MR_MONEYBAGS_OVER_HERE;
+				#else
+				return false;
+				#end
 		}
+	}
 }
 
 /**
