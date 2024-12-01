@@ -1,5 +1,6 @@
 package entities;
 
+import data.JsonData;
 import data.types.TankmasDefs.CostumeDef;
 import entities.base.BaseUser;
 import flixel.math.FlxVelocity;
@@ -24,6 +25,9 @@ class NetUser extends BaseUser
 	{
 		super(X, Y, username);
 		type = "net-user";
+
+		if (costume == null)
+			costume = JsonData.get_costume(Main.default_costume);
 
 		new_costume(costume);
 		move_to(X, Y, true);

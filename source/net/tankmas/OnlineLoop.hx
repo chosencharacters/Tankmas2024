@@ -1,6 +1,7 @@
 package net.tankmas;
 
 import data.JsonData;
+import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import entities.NetUser;
 import entities.Player;
@@ -138,8 +139,15 @@ class OnlineLoop
 
 		for (username in usernames)
 		{
+			if (username.contains("temporary_random_username"))
+				continue;
+
 			var def:NetUserDef = Reflect.field(data.data, username);
 			var costume:CostumeDef = JsonData.get_costume(def.costume);
+
+			if (costume == null)
+				costume = JsonData.get_costume(Main.default_costume);
+
 			var user:BaseUser = BaseUser.get_user(username, function()
 			{
 				return new NetUser(def.x, def.y, username, costume);
@@ -150,6 +158,10 @@ class OnlineLoop
 			if (user.costume == null || user.costume.name != costume.name)
 				user.new_costume(costume);
 		}
+
+		PlayState.self.users.remove(PlayState.self.player, true);
+		PlayState.self.users.add(PlayState.self.player);
+
 		rooms_get_tick_rate = data.tick_rate * rooms_get_tick_rate_multiplier;
 		rooms_post_tick_rate = data.tick_rate * rooms_post_tick_rate_multiplier;
 
