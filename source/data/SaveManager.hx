@@ -52,7 +52,7 @@ class SaveManager
 		// Serialize data
 		var encodedData = haxe.Serializer.run(FlxG.save.data);
 
-		var username = #if newgrounds Main.ng_api.NG_USERNAME #else "test_user" #end;
+		var username = #if newgrounds Main.ng_api.NG_USERNAME #elseif username haxe.macro.Compiler.getDefine("username") #else "test_user" #end;
 
 		// Upload data
 		TankmasClient.post_save(username, encodedData, (data:Dynamic) ->
@@ -63,7 +63,7 @@ class SaveManager
 
 	public static function download()
 	{
-		var username = #if newgrounds Main.ng_api.NG_USERNAME #else "test_user" #end;
+		var username = #if newgrounds Main.ng_api.NG_USERNAME #elseif username haxe.macro.Compiler.getDefine("username") #else "test_user" #end;
 
 		// Download data
 		TankmasClient.get_save(username, (data:Dynamic) ->
@@ -75,7 +75,7 @@ class SaveManager
 			if (encodedData != null)
 			{
 				// Deserialize data
-				var data = haxe.Serializer.run(encodedData);
+				var data = haxe.Unserializer.run(encodedData);
 				trace('Successfully deserialized save data.');
 				trace(data);
 				FlxG.save.mergeData(data, true);
