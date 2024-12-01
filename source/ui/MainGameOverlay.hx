@@ -61,7 +61,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 	{
 		for (sprite in [emote, settings])
 		{
-			sprite.tween = FlxTween.tween(sprite.offset, {y: 0}, reveal_speed, {ease: FlxEase.quadInOut, onComplete: (t) -> trace("revealing")});
+			sprite.tween = FlxTween.tween(sprite.offset, {y: 0}, reveal_speed, {ease: FlxEase.quadInOut});
 			sprite.offset.y = 0;
 		}
 		emote.tween.onComplete = on_complete;

@@ -176,8 +176,6 @@ class PlayState extends BaseState
 			level.place_entities();
 	}
 
-	
-
 	function make_ui()
 	{
 		ui_overlay = new MainGameOverlay();
