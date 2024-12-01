@@ -45,6 +45,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	public var locked_selection_overlay:FlxSpriteExt;
 
+	final close_speed:Float = 0.5;
+
 	/**
 	 * This is private, should be only made through things that extend it
 	 * @param saved_sheet
@@ -363,13 +365,13 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	{
 		var dumb_on_complete_bool:Bool = true;
 		sstate(CLOSING);
-		FlxTween.tween(descGroup, {x: -440}, 0.5, {ease: FlxEase.quintIn});
-		new FlxTimer().start(0.3, function(tmr:FlxTimer)
+		FlxTween.tween(descGroup, {x: -440}, close_speed * 0.5, {ease: FlxEase.quintIn});
+		new FlxTimer().start(close_speed * .3, function(tmr:FlxTimer)
 		{
 			members.for_all_members((member:FlxBasic) ->
 			{
 				final daMem:FlxObject = cast(member, FlxObject);
-				var tween:FlxTween = FlxTween.tween(daMem, {y: daMem.y + 1300}, 1, {ease: FlxEase.cubeInOut});
+				var tween:FlxTween = FlxTween.tween(daMem, {y: daMem.y + 1300}, close_speed, {ease: FlxEase.cubeInOut});
 				if (dumb_on_complete_bool)
 					tween.onComplete = (t) -> on_complete();
 				dumb_on_complete_bool = false;
