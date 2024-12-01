@@ -54,6 +54,6 @@
 	</animSet>
 
 	<animSet image="outside-bonfire" width="919" height="1374">
-		<anim name="idle" fps="40ms">0t39</anim>
+		<anim name="idle" fps="40ms">0t33</anim>
 	</animSet>
 </root>
