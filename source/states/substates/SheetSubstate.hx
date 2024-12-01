@@ -36,7 +36,7 @@ class SheetSubstate extends FlxSubStateExt
 			default:
 			case ACTIVE:
 				Ctrl.update();
-				if (Ctrl.jinteract[1])
+				if (Ctrl.jmenu[1])
 					start_closing();
 			case CLOSING:
 				return;

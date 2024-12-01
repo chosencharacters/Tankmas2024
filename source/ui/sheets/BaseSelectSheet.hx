@@ -8,6 +8,7 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxTimer;
 import squid.ext.FlxTypedGroupExt;
+import ui.button.HoverButton;
 import ui.sheets.defs.SheetDefs;
 
 class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
@@ -28,8 +29,12 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	final notSeenGroup:Array<FlxTypedSpriteGroup<FlxSpriteExt>> = [];
 	final characterNames:Array<Array<String>> = [];
 
-	var current_sheet(default, set):Int = 0;
-	var current_selection(default, set):Int = 0;
+	var current_hover_sheet(default, set):Int = 0;
+	var current_hover_selection(default, set):Int = 0;
+
+	var locked_sheet:Int = 0;
+	var locked_selection:Int = 0;
+
 	final descGroup:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
 
 	var graphicSheet:Bool = false;
@@ -37,6 +42,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	public var seen:Array<String> = [];
 
 	public var menu:SheetMenu;
+
+	public var locked_selection_overlay:FlxSpriteExt;
 
 	/**
 	 * This is private, should be only made through things that extend it
@@ -83,12 +90,13 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 			final daNames:Array<String> = [];
 
-			for (i in 0...sheet.items.length - 1)
+			for (i in 0...sheet.items.length)
 			{
 				if (sheet.items[i].name == null)
 					continue;
 				final identity:SheetItemDef = sheet.items[i];
-				final sprite:FlxSpriteExt = new FlxSpriteExt(0, 0);
+				final sprite:HoverButton = new HoverButton(0, 0);
+				sprite.on_release = (b) -> lock_choices();
 				sprite.ID = i;
 				if (type == STICKER)
 				{
@@ -164,12 +172,16 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		curTab.scale.set(1.1, 1.1);
 		add(curTab);
 
+		add(locked_selection_overlay = new FlxSpriteExt().one_line("locked-sticker-selection-overlay"));
+		locked_selection_overlay.scrollFactor.set(0, 0);
+		update_locked_selection_overlay();
+
 		selector = new FlxSpriteExt(0, 0).one_line("item-navigator");
 		selector.anim("hover");
 		add(selector);
 
-		current_selection = saved_selection;
-		current_sheet = saved_sheet;
+		current_hover_selection = saved_selection;
+		current_hover_sheet = saved_sheet;
 
 		members.for_all_members((member:FlxBasic) ->
 		{
@@ -183,6 +195,18 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			sstate(ACTIVE);
 			FlxTween.tween(descGroup, {x: 0}, 0.5, {ease: FlxEase.cubeOut});
 		});
+	}
+
+	function update_locked_selection_overlay()
+	{
+		var target:FlxSpriteExt = characterSpritesArray[locked_sheet].members[locked_selection];
+
+		locked_selection_overlay.center_on(target);
+		locked_selection_overlay.angle = target.angle;
+		locked_selection_overlay.scale.copyFrom(target.scale);
+
+		// this is untested cause we only have one sheet
+		locked_selection_overlay.visible = locked_sheet == current_hover_sheet;
 	}
 
 	function make_sheet_collection():SheetFileDef
@@ -202,26 +226,29 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	override function update(elapsed:Float)
 	{
+		update_locked_selection_overlay();
 		fsm();
 		super.update(elapsed);
 	}
 
 	function control()
 	{
-		for (i in 0...characterSpritesArray[current_sheet].length)
+		for (i in 0...characterSpritesArray[current_hover_sheet].length)
 		{
 			// TODO: make this mobile-friendly
-			if (FlxG.mouse.overlaps(characterSpritesArray[current_sheet].members[i]))
-				current_selection = i;
+			if (FlxG.mouse.overlaps(characterSpritesArray[current_hover_sheet].members[i]))
+				current_hover_selection = i;
 		}
 		if (Ctrl.cleft[1])
-			current_selection = current_selection - 1;
+			current_hover_selection = current_hover_selection - 1;
 		if (Ctrl.cright[1])
-			current_selection = current_selection + 1;
+			current_hover_selection = current_hover_selection + 1;
 		if (Ctrl.cup[1])
-			current_sheet = current_sheet + 1;
+			current_hover_sheet = current_hover_sheet + 1;
 		if (Ctrl.cdown[1])
-			current_sheet = current_sheet - 1;
+			current_hover_sheet = current_hover_sheet - 1;
+		if (Ctrl.jinteract[1])
+			lock_choices();
 		if (FlxG.mouse.overlaps(backTab))
 		{
 			if (backTab.y != 110)
@@ -239,62 +266,71 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			backTab.scale.set(1, 1);
 	}
 
-	function set_current_sheet(val:Int):Int
+	function lock_choices(shake:Bool = true)
+	{
+		if (shake)
+			Utils.shake(ShakePreset.LIGHT);
+		locked_selection = current_hover_selection;
+		locked_sheet = current_hover_sheet;
+		update_locked_selection_overlay();
+	}
+
+	function set_current_hover_sheet(val:Int):Int
 	{
 		if (characterSpritesArray.length > 1)
 		{
-			characterSpritesArray[current_sheet].kill();
-			notSeenGroup[current_sheet].kill();
+			characterSpritesArray[current_hover_sheet].kill();
+			notSeenGroup[current_hover_sheet].kill();
 		}
 
 		if (val < 0)
-			current_sheet = characterSpritesArray.length - 1;
+			current_hover_sheet = characterSpritesArray.length - 1;
 		else if (val > characterSpritesArray.length - 1)
-			current_sheet = 0;
+			current_hover_sheet = 0;
 		else
-			current_sheet = val;
+			current_hover_sheet = val;
 
 		update_sheet_graphics();
 
-		return current_sheet;
+		return current_hover_sheet;
 	}
 
-	function set_current_selection(val:Int):Int
+	function set_current_hover_selection(val:Int):Int
 	{
-		// characterSpritesArray[current_sheet].members[current_selection].scale.set(1, 1);
+		// characterSpritesArray[current_hover_sheet].members[current_hover_selection].scale.set(1, 1);
 
 		if (val < 0)
-			current_selection = characterSpritesArray[current_sheet].members.length - 1;
-		else if (val > characterSpritesArray[current_sheet].members.length - 1)
-			current_selection = 0;
+			current_hover_selection = characterSpritesArray[current_hover_sheet].members.length - 1;
+		else if (val > characterSpritesArray[current_hover_sheet].members.length - 1)
+			current_hover_selection = 0;
 		else
-			current_selection = val;
+			current_hover_selection = val;
 
-		if (notSeenGroup[current_sheet].members.length > 0)
+		if (notSeenGroup[current_hover_sheet].members.length > 0)
 		{
-			final matches:Array<FlxSpriteExt> = notSeenGroup[current_sheet].members.filter(i ->
-				i.ID == characterSpritesArray[current_sheet].members[current_selection].ID);
+			final matches:Array<FlxSpriteExt> = notSeenGroup[current_hover_sheet].members.filter(i ->
+				i.ID == characterSpritesArray[current_hover_sheet].members[current_hover_selection].ID);
 			if (matches.length > 0)
 			{
-				seen.push(characterNames[current_sheet][current_selection]);
-				notSeenGroup[current_sheet].members.remove(matches[0]);
+				seen.push(characterNames[current_hover_sheet][current_hover_selection]);
+				notSeenGroup[current_hover_sheet].members.remove(matches[0]);
 			}
 		}
 		update_selection_graphics();
 
-		return current_selection;
+		return current_hover_selection;
 	}
 
 	function update_sheet_graphics()
 	{
-		graphicSheet = sheet_collection.sheets[current_sheet].graphic != null ? true : false;
+		graphicSheet = sheet_collection.sheets[current_hover_sheet].graphic != null ? true : false;
 		if (graphicSheet)
-			stickerSheetBase.loadGraphic(Paths.get(sheet_collection.sheets[current_sheet].graphic + '.png'));
+			stickerSheetBase.loadGraphic(Paths.get(sheet_collection.sheets[current_hover_sheet].graphic + '.png'));
 		else
 			stickerSheetBase.makeGraphic(1430, 845, FlxColor.BLACK);
 
-		characterSpritesArray[current_sheet].revive();
-		notSeenGroup[current_sheet].revive();
+		characterSpritesArray[current_hover_sheet].revive();
+		notSeenGroup[current_hover_sheet].revive();
 
 		update_selection_graphics();
 	}
@@ -303,25 +339,24 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	{
 		if (type == STICKER)
 		{
-			final sticker:StickerDef = data.JsonData.get_sticker(characterNames[current_sheet][current_selection]);
+			final sticker:StickerDef = data.JsonData.get_sticker(characterNames[current_hover_sheet][current_hover_selection]);
 			title.text = sticker.properName.toUpperCase();
 			description.text = (sticker.desc != null ? (sticker.desc + ' ') : '') + 'Created by ${sticker.artist != null ? sticker.artist : "Unknown"}';
-			// selector.setPosition(characterSpritesArray[current_sheet].members[current_selection].x + (characterSpritesArray[current_sheet].members[current_selection].width / 2) - 175, characterSpritesArray[current_sheet].members[current_selection].y + (characterSpritesArray[current_sheet].members[current_selection].height / 2) - 177);
+			// selector.setPosition(characterSpritesArray[current_hover_sheet].members[current_hover_selection].x + (characterSpritesArray[current_hover_sheet].members[current_hover_selection].width / 2) - 175, characterSpritesArray[current_hover_sheet].members[current_hover_selection].y + (characterSpritesArray[current_hover_sheet].members[current_hover_selection].height / 2) - 177);
 		}
 		else
 		{
-			final costume:CostumeDef = data.JsonData.get_costume(characterNames[current_sheet][current_selection]);
+			final costume:CostumeDef = data.JsonData.get_costume(characterNames[current_hover_sheet][current_hover_selection]);
 			title.text = costume.display.toUpperCase();
 			description.text = (costume.desc != null ? costume.desc : '');
-			// selector.setPosition(characterSpritesArray[current_sheet].members[current_selection].x - 110, characterSpritesArray[current_sheet].members[current_selection].y - 80);
+			// selector.setPosition(characterSpritesArray[current_hover_sheet].members[current_hover_selection].x - 110, characterSpritesArray[current_hover_sheet].members[current_hover_selection].y - 80);
 		}
-		selector.setPosition(characterSpritesArray[current_sheet].members[current_selection].x
-			+ (characterSpritesArray[current_sheet].members[current_selection].width / 2)
-			- 175,
-			characterSpritesArray[current_sheet].members[current_selection].y
-				+ (characterSpritesArray[current_sheet].members[current_selection].height / 2)
-				- 167);
-		// characterSpritesArray[current_sheet].members[current_selection].scale.set(1.1, 1.1);
+		var target:FlxSpriteExt = characterSpritesArray[current_hover_sheet].members[current_hover_selection];
+
+		selector.setPosition(target.x + (target.width / 2) - 175, target.y + (target.height / 2) - 167);
+		selector.angle = target.angle;
+
+		// characterSpritesArray[current_hover_sheet].members[current_hover_selection].scale.set(1.1, 1.1);
 	}
 
 	public function start_closing(?on_complete:Void->Void)

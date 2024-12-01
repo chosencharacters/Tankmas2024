@@ -75,7 +75,9 @@ class SpriteAnimationController
 
 		if (finished)
 		{
+			#if trace_animation
 			trace('${animation.name} finished');
+			#end
 			on_complete != null ? on_complete() : false;
 			return;
 		}
