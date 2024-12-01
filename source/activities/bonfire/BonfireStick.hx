@@ -168,8 +168,10 @@ class BonfireStick extends FlxSprite
 				marshmallow.x += (marshmallow.alpha - 1.0) * putOnDx;
 				marshmallow.y += (marshmallow.alpha - 1.0) * putOnDy;
 
-				var d = FlxMath.distanceBetween(bonfire, marshmallow);
+				if (bonfire == null || marshmallow == null)
+					return;
 
+				var d = FlxMath.distanceBetween(bonfire, marshmallow);
 				marshmallow.heat(d, elapsed);
 			}
 			catch (e)
