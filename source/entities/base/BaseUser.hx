@@ -123,6 +123,11 @@ class BaseUser extends NGSprite
 
 	public function on_event(event:NetEventDef)
 	{
+		if (event.username == username)
+		{
+			return;
+		}
+
 		switch (event.type)
 		{
 			case NetEventType.STICKER:
