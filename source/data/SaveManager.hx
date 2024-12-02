@@ -47,6 +47,9 @@ class SaveManager
 
 		// loads current room
 		load_room();
+
+		load_costume_collection();
+		load_sticker_collection();
 	}
 
 	public static function upload()
@@ -213,6 +216,7 @@ class SaveManager
 			case "matthewlopz":
 				return Main.ng_api.medal_popup(Main.ng_api.medals.get("little-candles"));
 			default:
+				Player.has_sticker_pack = true;
 				return Main.ng_api.medal_popup(Main.ng_api.medals.get('day-$day'));
 		}
 		#end

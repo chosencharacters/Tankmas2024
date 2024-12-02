@@ -17,6 +17,7 @@ import lime.tools.GUID;
 class NewgroundsHandler
 {
 	public var NG_LOGGED_IN:Bool = false;
+	public var NG_LOGIN_ERROR:String;
 
 	public var NG_USERNAME:String = "";
 	public var NG_SESSION_ID:String = "";
@@ -24,11 +25,12 @@ class NewgroundsHandler
 	public var NG_MR_MONEYBAGS_OVER_HERE:Bool;
 
 	public var medals:Map<String, MedalDef> = [];
+	public var boards:Map<String, MedalDef> = [];
 
-	public function new(use_medals:Bool = true, use_scoreboards:Bool = false, ?login_callback:Void->Void)
+	public function new(use_medals:Bool = true, use_scoreboards:Bool = true, ?login_callback:Void->Void)
 		init(use_medals, use_scoreboards, login_callback);
 
-	public function init(use_medals:Bool = true, use_scoreboards:Bool = false, ?login_callback:Void->Void)
+	public function init(use_medals:Bool = true, use_scoreboards:Bool = true, ?login_callback:Void->Void)
 	{
 		/*
 			Make sure this file ng-secrets.json file exists, it's just a simple json that has this format
@@ -42,7 +44,7 @@ class NewgroundsHandler
 
 		try
 		{
-			load_medal_defs();
+			load_medal_and_board_defs();
 			login(login_callback);
 		}
 		catch (e)
@@ -53,6 +55,7 @@ class NewgroundsHandler
 
 	function login(?login_callback:Void->Void)
 	{
+		if(NG_LOGGED_IN) return;
 		var json = haxe.Json.parse(Utils.load_file_string(Paths.get("ng-secrets.json")));
 
 		NG.createAndCheckSession(json.app_id, false);
@@ -65,22 +68,39 @@ class NewgroundsHandler
 			trace("Waiting on manual login...");
 			NG.core.requestLogin(function(outcome:LoginOutcome):Void
 			{
-				trace(outcome);
-				NG_LOGGED_IN = true;
-				login_callback != null ? login_callback() : false;
-			});
+				switch(outcome) {
+					case SUCCESS: 
+						NG_LOGGED_IN = true;
+						onNGLogin(login_callback);
+
+					case FAIL(CANCELLED(_)):
+						//NG.core.cancelLoginRequest();
+						login_callback != null ? login_callback() : false;
+
+					case FAIL(ERROR(error)):
+						trace(error);
+						NG_LOGIN_ERROR = error.toString();
+						login_callback != null ? login_callback() : false;
+				}
+			}, );
 		}
 		else
 		{
 			NG_LOGGED_IN = true;
+			login_callback != null ? login_callback() : false;
 		}
 	}
 
-	function load_medal_defs()
+	function load_medal_and_board_defs()
 	{
 		var json:{medals:Array<MedalDef>} = haxe.Json.parse(Utils.load_file_string(Paths.get("medals.json")));
 		for (medal in json.medals)
 			medals.set(medal.name, medal);
+
+		// I know they were made for medals but honestly why not just re-use instead of creating something samely different?
+		var json:{boards:Array<MedalDef>} = haxe.Json.parse(Utils.load_file_string(Paths.get("boards.json")));
+		for(board in json.boards)
+			boards.set(board.name, board);
 	}
 
 	public function has_medal(def:MedalDef):Bool
@@ -120,30 +140,50 @@ class NewgroundsHandler
 		});
 	}
 
+	public function get_score(board_id:Int, ?callback:(io.newgrounds.objects.Score)->Void)
+	{
+		if(!validate_board(board_id)) return;
+
+		final score:io.newgrounds.objects.Score = NG.core.scoreBoards.get(board_id).scores.filter(i -> i.user.name == NG_USERNAME)[0];
+		if(callback != null) callback(score);
+	}
+
 	public function post_score(score:Int, board_id:Int)
+	{
+		if(!validate_board(board_id)) return;
+
+		NG.core.scoreBoards.get(board_id).postScore(Math.floor(score));
+		NG.core.scoreBoards.get(board_id).requestScores();
+
+		//trace(NG.core.scoreBoards.get(board_id).scores);
+		trace("Posted to " + NG.core.scoreBoards.get(board_id).name);
+	}
+
+	function validate_board(board_id:Int):Bool
 	{
 		if (!NG_LOGGED_IN)
 		{
-			trace('Can\'t get a score if not logged in $score -> $board_id');
-			return;
+			trace('Can\'t get a score if not logged in -> $board_id');
+			return false;
 		}
 
 		if (!NG.core.loggedIn)
 		{
 			trace("not logged in");
-			return;
+			return false;
 		}
 
-		if (NG.core.scoreBoards == null)
+		if (NG.core.scoreBoards == null) {
 			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
-		if (NG.core.scoreBoards.getById(board_id) == null)
+			return false;
+		}
+
+		if (NG.core.scoreBoards.getById(board_id) == null) {
 			throw "Invalid boardId:" + board_id;
+			return false;
+		}
 
-		NG.core.scoreBoards.get(board_id).postScore(Math.floor(score));
-		NG.core.scoreBoards.get(board_id).requestScores();
-
-		trace(NG.core.scoreBoards.get(board_id).scores);
-		trace("Posted to " + NG.core.scoreBoards.get(board_id));
+		return true;
 	}
 
 	/**
@@ -151,9 +191,9 @@ class NewgroundsHandler
 	 */
 	function onNGLogin(?login_callback:Void->Void):Void
 	{
+		trace('mark');
 		NG_LOGGED_IN = true;
 		NG_USERNAME = NG.core.user.name;
-		NG_LOGGED_IN = true;
 
 		NG_MR_MONEYBAGS_OVER_HERE = NG.core.user.supporter;
 		NG_SESSION_ID = NGLite.getSessionId();
@@ -163,6 +203,7 @@ class NewgroundsHandler
 		trace('logged in! user:${NG_USERNAME} session: ${NG_SESSION_ID}');
 
 		load_api_medals_part_1();
+		load_api_leaderboards();
 		// NG.core.scoreBoards.loadList();
 		// trace(NG.core.scoreBoards == null ? null : NG.core.scoreBoards.keys());
 		NG.core.medals.loadList();
@@ -211,13 +252,40 @@ class NewgroundsHandler
 		trace("ADDING MEDAL POP UP");
 		#end
 		FlxG.stage.addChild(new MedalPopup());
-		// medal_popup(medals.get("test-medal"));
+		medal_popup(medals.get("checked-in"));
 	}
-}
 
+	function load_api_leaderboards()
+		{
+			#if trace_newgrounds
+			trace("REQUESTING LEADERBOARDS");
+			#end
+			NG.core.scoreBoards.loadList((outcome) -> outcome_handler(outcome, load_api_medals_part_2));
+		}
+}
+#else
+package ng;
+
+class NewgroundsHandler
+{
+	public function new(use_medals:Bool = true, use_scoreboards:Bool = false, ?login_callback:Void->Void)
+		trace("Unable to load NG content");
+
+	public function has_medal(def:MedalDef)
+		trace("Unable to load NG content");
+	
+	public function medal_popup(medal_def:MedalDef)
+		trace("Unable to load NG content");
+
+	public function get_score(board_id:Int)
+		trace("Unable to load NG content");
+
+	public function post_score(score:Int, board_id:Int)
+		trace("Unable to load NG content");
+}
+#end
 typedef MedalDef =
 {
 	var name:String;
 	var id:Int;
 }
-#end

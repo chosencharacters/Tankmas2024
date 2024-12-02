@@ -29,7 +29,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 
 		add(emote = new FlxSpriteExt(20, 20, Paths.get('heart.png')));
 		add(settings = new FlxSpriteExt(1708, 20, Paths.get('settings.png')));
-		add(sticker_menu = new FlxSpriteExt(1520, 1030, Paths.get('charselect-mini-bg.png')));
+		add(sticker_menu = new FlxSpriteExt(1520, 1030, Paths.get('charselect-mini-full.png')));
 
 		sticker_pack = new FlxSpriteExt().one_line("sticker-pack-icon");
 		sticker_pack.setPosition(20, FlxG.height - sticker_pack.height - 20);
@@ -109,11 +109,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 					{
 						if (member.y == 1030 && twen == null)
 							twen = FlxTween.tween(member, {y: 880}, 0.3, {
-								onComplete: function(twn:FlxTween)
-								{
-									twen = null;
-									member.loadGraphic(Paths.get('charselect-mini-full.png'));
-								}
+								onComplete: (t) -> {twen = null;}
 							});
 						if (FlxG.mouse.justReleased)
 						{
@@ -138,11 +134,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 							member.scale.set(1, 1);
 						if ((member.y == 880 || member.y == 1180) && twen == null)
 							twen = FlxTween.tween(member, {y: 1030}, 0.3, {
-								onComplete: function(twn:FlxTween)
-								{
-									twen = null;
-									member.loadGraphic(Paths.get('charselect-mini-bg.png'));
-								}
+								onComplete: (t) -> {twen = null;}
 							});
 					}
 
