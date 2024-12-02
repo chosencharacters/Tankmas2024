@@ -49,7 +49,7 @@ class Present extends Interactable
 		loadGraphic(Paths.get('present-$content.png'), true, 94, 94);
 
 		PlayState.self.presents.add(this);
-		thumbnail = new Thumbnail(x, y - 200, Paths.get((content + (comic ? '-0' : '') + '.png')));
+		thumbnail = new Thumbnail(x, y - 200, Paths.get((content + (comic ? '-0' : '') + '.jpg')));
 
 		#if censor_presents
 		thumbnail.color = FlxColor.BLACK;

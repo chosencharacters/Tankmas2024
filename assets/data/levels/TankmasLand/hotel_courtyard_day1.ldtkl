@@ -956,6 +956,28 @@
 					}] }],
 					"__worldX": 1243,
 					"__worldY": 1354
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [83,59],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "a2872fc0-9b00-11ef-917a-77419e64e882",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1340,952],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "sevi", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["sevi"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 2, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [2] }] }
+					],
+					"__worldX": 1372,
+					"__worldY": 968
 				}
 			]
 		},

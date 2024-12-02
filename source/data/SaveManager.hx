@@ -206,6 +206,8 @@ class SaveManager
 		#if newgrounds
 		if (day == 1 && content == "cymbourine")
 			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-1"));
+		if (day == 2 && content == "sevi")
+			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-2"));
 		if ((Date.now().getMonth() != 0 && Date.now().getDate() != 1) && Date.now().getMonth() != 11)
 			return;
 		switch (content)

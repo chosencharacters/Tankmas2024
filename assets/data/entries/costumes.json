@@ -49,20 +49,17 @@
         {
             "name": "boyfriend",
             "display": "Boyfriend",
-            "desc": "BEEP BEEP BEEP ⬆️⬇️⬅️➡️ BEEP BEEP BEEP",
-            "unlock": "ANGRY_FAIC"
+            "desc": "BEEP BEEP BEEP BEEP BEEP BEEP"
         },
         {
             "name": "madness-grunt",
             "display": "Grunt",
-            "desc": "As seen on addicting games dot com",
-            "unlock": "ANGRY_FAIC"
+            "desc": "As seen on addicting games dot com"
         },
         {
             "name": "alien-hominid",
             "display": "Alien Hominid",
-            "desc": "It's an absolute invasion!",
-            "unlock": "ANGRY_FAIC"
+            "desc": "It's an absolute invasion!"
         },
         {
             "name": "thomas",
@@ -158,7 +155,8 @@
             "desc": "As prickly as being a cactus would make her, Rebutia may come off as the grumpiest of her four piece cactus punk band, but rumors say she's actually quite sweet underneath. Probably. Or probably not.",
             "unlock": "USERNAME",
             "data": "Bacun"
-        },{
+        },
+        {
             "name": "strawberry-clock",
             "display": "Strawberry Clock",
             "desc": "B",

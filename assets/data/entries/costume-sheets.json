@@ -48,19 +48,19 @@
                     "angle": 10
                 },
                 {
-                    "name": "rebutia",
+                    "name": "madness-grunt",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": "jimmy",
+                    "name": "alien-hominid",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": "shmoods",
+                    "name": "boyfriend",
                     "angle": -10
                 }
             ]

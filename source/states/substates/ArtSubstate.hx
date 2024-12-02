@@ -16,10 +16,10 @@ class ArtSubstate extends flixel.FlxSubState
 	override public function new(content:String)
 	{
 		super();
-		art = new FlxSprite(0, 0).loadGraphic(Paths.get('$content.png'));
+		art = new FlxSprite(0, 0).loadGraphic(Paths.get('$content.jpg'));
 
 		#if censor_presents
-		art = new FlxSprite(0, 0).loadGraphic(Paths.get('present-censored.png'));
+		art = new FlxSprite(0, 0).loadGraphic(Paths.get('art-censored.jpg'));
 		#end
 
 		art.setGraphicSize(art.width > art.height ? 1920 : 0, art.height >= art.width ? 1080 : 0);
