@@ -1,5 +1,6 @@
 package net.tankmas;
 
+import hx.ws.Types.MessageType;
 import net.tankmas.NetDefs.NetUserDef;
 import haxe.Json;
 #if websocket
@@ -9,9 +10,10 @@ import haxe.io.Bytes;
 
 enum abstract WebsocketEventType(Int)
 {
-	var SignIn = 1;
-	var PositionUpdate = 2;
-	var Event = 3;
+	var PlayerStateUpdate = 2;
+	var Event = 3; // Events are custom types, the contain names
+
+	var PlayerLeft = 4; // When player disconnects or goes to another room
 }
 
 typedef WebsocketEvent =
@@ -30,16 +32,44 @@ class WebsocketClient
 	#end
 
 	var connected = false;
+	var username:String = null;
+	var session_id:String = null;
 
 	public function new()
 	{
-		connect();
+		#if offline
+		return;
+		#end
+
+		username = Main.username;
+		session_id = null;
+
+		#if newgrounds
+		session_id = Main.ng_api.NG_SESSION_ID;
+		username = Main.ng_api.NG_USERNAME;
+		#end
+
+		#if (dev && test_local)
+		session_id = 'test_dev_session';
+		#end
+
+		if (session_id != null && username != null)
+		{
+			connect();
+		}
 	}
 
 	function connect()
 	{
 		#if websocket
-		socket = new WebSocket(address);
+		if (username == null || session_id == null)
+		{
+			trace("Trying to connect with a session id or username");
+			return;
+		}
+
+		var url = '${address}?username=${username}&session=${session_id}';
+		socket = new WebSocket(url);
 		socket.onmessage = on_message;
 		socket.onopen = on_connect;
 		socket.onerror = on_error;
@@ -50,29 +80,55 @@ class WebsocketClient
 	function on_error(error)
 	{
 		trace(error);
-		connected = false;
 	}
 
 	function on_close()
 	{
-		trace('disconnect');
+		trace('Disconnected to server.');
 		connected = false;
 	}
 
 	function on_connect()
 	{
+		trace('Connected to server.');
 		connected = true;
-		sign_in(Main.username);
 	}
 
-	function on_message(message)
+	function on_message(data:MessageType)
 	{
-		trace(message);
+		try
+		{
+			switch (data)
+			{
+				case StrMessage(content):
+					var events:{events:Array<WebsocketEvent>} = Json.parse(content);
+					if (events == null || events.events == null)
+						return;
+					for (event in events.events)
+					{
+						if (event.type == PlayerStateUpdate)
+						{
+							var d:NetUserDef = event.data;
+							OnlineLoop.update_user_visual(d.username, d);
+						}
+						if (event.type == PlayerLeft)
+						{
+							var d:NetUserDef = event.data;
+							PlayState.self.remove_user(d.username);
+						}
+					}
+				default:
+			}
+		}
+		catch (err)
+		{
+			trace(err);
+		}
 	}
 
 	var queued_messages:Array<Dynamic> = [];
 
-	var flush_interval = 0.5;
+	var flush_interval = 0.2;
 	var until_flush = 0.0;
 
 	public function update(elapsed:Float)
@@ -123,7 +179,7 @@ class WebsocketClient
 	public function send_player(player:NetUserDef)
 	{
 		send({
-			type: WebsocketEventType.PositionUpdate,
+			type: WebsocketEventType.PlayerStateUpdate,
 			data: player,
 		});
 	}
@@ -135,15 +191,5 @@ class WebsocketClient
 			name: type,
 			data: data,
 		}, immediate);
-	}
-
-	public function sign_in(username:String)
-	{
-		send({
-			type: WebsocketEventType.SignIn,
-			data: {
-				username: username,
-			}
-		}, true);
 	}
 }

@@ -50,7 +50,7 @@ class Player extends BaseUser
 		if (costume == null)
 			costume = JsonData.get_costume("tankman");
 
-		last_update_json = {name: username};
+		last_update_json = {username: username};
 
 		type = "player";
 
@@ -275,7 +275,7 @@ class Player extends BaseUser
 
 	public function get_user_update_json(force_send_full_user:Bool = false):NetUserDef
 	{
-		var def:NetUserDef = {name: username};
+		var def:NetUserDef = {username: username, room_id: PlayState.self.current_room_id};
 
 		var new_sx = flipX ? -1 : 1;
 		if (last_update_json.x != x.floor() || force_send_full_user)
@@ -291,7 +291,7 @@ class Player extends BaseUser
 			def.costume = costume.name;
 
 		last_update_json = {
-			name: username,
+			username: username,
 			x: x.floor(),
 			y: y.floor(),
 			sx: new_sx,

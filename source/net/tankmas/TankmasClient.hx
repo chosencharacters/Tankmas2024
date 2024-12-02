@@ -36,8 +36,8 @@ class TankmasClient
 	{
 		var url:String = '$address/rooms/$room_id/users';
 
-		user.name = Main.username;
-		if (user.name == null || user.name.length == 0)
+		user.username = Main.username;
+		if (user.username == null || user.username.length == 0)
 		{
 			return;
 		}

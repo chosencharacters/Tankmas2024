@@ -163,8 +163,16 @@ class BaseUser extends NGSprite
 	{
 		leave_activity_area();
 
+		shadow.destroy();
+		nameTag.destroy();
+
 		PlayState.self.users.remove(this, true);
 		super.kill();
+	}
+
+	public function on_user_left()
+	{
+		kill();
 	}
 
 	public static function get_user(username:String, ?make_user_function:Void->BaseUser):BaseUser
