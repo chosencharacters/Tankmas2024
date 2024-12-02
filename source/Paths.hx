@@ -1,7 +1,5 @@
 package;
 
-import flixel.graphics.FlxGraphic;
-import openfl.display.BitmapData;
 import flixel.system.FlxAssets;
 import lime.utils.AssetManifest;
 import openfl.utils.AssetType;
@@ -14,7 +12,6 @@ class Paths
 {
 	public static var path_cache:Map<String, String> = new Map<String, String>();
 	public static var asset_folder_alias:String;
-	public static var loaded_no_preload_assets:Map<String, String> = new Map<String, String>();
 
 	public static var allowed_extensions:Array<String> = [
 		".json", ".png", ".xml", ".txt", ".ogg", ".ttf", ".world", ".tasc", ".ldtkl", ".aseprite", ".fnt"
@@ -29,8 +26,7 @@ class Paths
 		if (path_cache.exists(clean_name))
 		{
 			#if demo_asset_record PathsDemo.add_asset_to_demo_assets_folder(name); #end
-			final path:String = path_cache.get(clean_name);
-			return '$path/$clean_name';
+			return '${path_cache.get(clean_name)}/$clean_name';
 		}
 
 		if (!safe)
@@ -51,28 +47,6 @@ class Paths
 	{
 		var clean_name:String = name.file_from_path();
 		return '${path_cache.get(clean_name)}/$clean_name';
-	}
-
-	public static function get_music(name:String):FlxSound
-	{
-		var clean_name:String = name.file_from_path();
-		if(!loaded_no_preload_assets.exists(clean_name))
-			loaded_no_preload_assets.set(clean_name, path_cache.get(clean_name));
-		return new FlxSound().loadStream('assets/music/$clean_name.ogg', true, false);
-	}
-
-	public static function get_art(name:String):FlxGraphic
-	{
-		var clean_name:String = name.file_from_path();
-		var graphic:FlxGraphic;
-		BitmapData.loadFromFile('${path_cache.get(clean_name)}/$clean_name').onComplete((bmd) -> {
-			graphic = FlxG.bitmap.add(bmd, true, clean_name);
-			graphic.destroyOnNoUse = false;
-			graphic.persist = true;
-			if(!loaded_no_preload_assets.exists(clean_name))
-			loaded_no_preload_assets.set(clean_name, path_cache.get(clean_name));
-		});
-		return graphic;
 	}
 
 	public static function get_every_file_of_type(extension:String, starting_path:String = "assets", ?file_must_contain:String = ""):Array<String>
