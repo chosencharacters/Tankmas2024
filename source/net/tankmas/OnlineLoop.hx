@@ -35,12 +35,16 @@ class OnlineLoop
 
 	public static var force_send_full_user:Bool;
 
+	static var websocket:WebsocketClient;
+
 	static function get_current_timestamp():Float
 		return haxe.Timer.stamp();
 
 	public static function init()
 	{
 		#if offline return; #end
+
+		websocket = new WebsocketClient();
 
 		force_send_full_user = true;
 
@@ -53,9 +57,11 @@ class OnlineLoop
 		last_events_get_timestamp = current_timestamp;
 	}
 
-	public static function iterate()
+	public static function iterate(elapsed:Float = 0.0)
 	{
 		#if offline return; #end
+
+		websocket.update(elapsed);
 
 		var post_time_diff:Float = current_timestamp - last_rooms_post_timestamp;
 		var get_time_diff:Float = current_timestamp - last_rooms_get_timestamp;
@@ -85,18 +91,23 @@ class OnlineLoop
 		var json:NetUserDef = user.get_user_update_json();
 
 		if (json.x != null || json.y != null || json.costume != null || json.sx != null)
+		{
+			websocket.send_player(json);
 			TankmasClient.post_user(room_id, json, after_post_player);
+		}
 	}
 
 	/**This is a post request**/
 	public static function post_sticker(room_id:String, sticker_name:String)
 	{
+		websocket.send_event("sticker", {"name": sticker_name});
 		TankmasClient.post_event(room_id, {type: "sticker", data: {"name": sticker_name}, username: Main.username});
 	}
 
 	public static function post_marshmallow_discard(room_id:String, marshmallow_level:Int)
 	{
 		#if offline return #end
+		websocket.send_event("drop_marshmallow", {"level": marshmallow_level});
 		TankmasClient.post_event(room_id, {type: "drop_marshmallow", data: {"level": marshmallow_level}, username: Main.username});
 	}
 

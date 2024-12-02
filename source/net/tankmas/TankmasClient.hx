@@ -2,6 +2,11 @@ package net.tankmas;
 
 import net.core.Client;
 import net.tankmas.NetDefs;
+#if websocket
+import haxe.io.Bytes;
+import hx.ws.Log;
+import hx.ws.WebSocket;
+#end
 
 class TankmasClient
 {
