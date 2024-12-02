@@ -1,7 +1,7 @@
 {
     "medals": [
         {
-            "name":"checked-in",
+            "name":"test-medal",
             "id": 81754
         }, {
             "name": "day-1",

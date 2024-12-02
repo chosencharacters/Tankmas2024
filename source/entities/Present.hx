@@ -41,8 +41,6 @@ class Present extends Interactable
 		}
 		comic = presentData.comicProperties != null ? true : false;
 		day = Std.parseInt(presentData.day);
-		if(Date.now().getMonth() == 11 && Date.now().getDate() < day)
-			return;
 
 		openable = true;
 

@@ -34,8 +34,6 @@ class Main extends Sprite
 
 	public static var daily_sticker_draw_amount:Int = 4;
 
-	public var error_text:String;
-
 	public static function main():Void
 	{
 		// We need to make the crash handler LITERALLY FIRST so nothing EVER gets past it.
@@ -53,25 +51,14 @@ class Main extends Sprite
 
 	function on_logged_in()
 	{
-		error_text = 'Welcome to Tankmas ADVENTure 2024!\n\nWe hope you enjoy your visit. If you want to earn medals, score on leaderboards, and save your costumes and progress, please login to Newgrounds on your next visit!';
 		#if newgrounds
-		if(ng_api.NG_LOGGED_IN) {
-			username = ng_api.NG_USERNAME;
-			if (username == "")
-			{
-				username = 'temporary_random_username_${Math.random()}';
-			}
-			addChild(new FlxGame(1920, 1080, PlayState, true));
-		} else {
-			if(ng_api.NG_LOGIN_ERROR != null) error_text = 'ERROR WHILE LOADING LOGIN: ${ng_api.NG_LOGIN_ERROR}\n\nPlease screenshot this and share with Tankmas ADVENTure 2024 developers. Login functions are deactivated.';
-			#end
+		username = ng_api.NG_USERNAME;
+		if (username == "")
+		{
 			username = 'temporary_random_username_${Math.random()}';
-			TextState.text_to_write = error_text;
-			addChild(new FlxGame(1920, 1080, TextState, true));
-		#if newgrounds
 		}
 		#end
-
+		addChild(new FlxGame(1920, 1080, PlayState, true));
 	}
 
 	public static function get_current_bg(day:Int):Int
@@ -86,7 +73,7 @@ class Main extends Sprite
 	{
 		Lists.init();
 		#if newgrounds
-		ng_api = new NewgroundsHandler(true, true, on_logged_in);
+		ng_api = new NewgroundsHandler(true, false, on_logged_in);
 		#else
 		on_logged_in();
 		#end

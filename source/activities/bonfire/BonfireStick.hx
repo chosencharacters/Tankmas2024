@@ -43,11 +43,6 @@ class BonfireStick extends FlxSprite
 	{
 		if (marshmallow != null)
 		{
-			#if newgrounds
-			@:privateAccess
-			if(marshmallow.current_level == (marshmallow.heat_levels.length - 2))
-				Main.ng_api.get_score(Main.ng_api.boards.get("marshmallow-roasting").id, (s) -> Main.ng_api.post_score(s.value + 1, Main.ng_api.boards.get("marshmallow-roasting").id));
-				#end
 			marshmallow.discard();
 		}
 		marshmallow = null;

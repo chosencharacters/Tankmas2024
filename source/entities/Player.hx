@@ -20,7 +20,7 @@ class Player extends BaseUser
 
 	static var debug_costume_rotation:Array<CostumeDef>;
 
-	public static var has_sticker_pack:Bool = false;
+	public static var has_sticker_pack:Bool = true;
 
 	var auto_moving:Bool = false;
 	var auto_move_dest:FlxPoint;
