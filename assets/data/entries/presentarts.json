@@ -1,0 +1,54 @@
+{
+    "presents": [
+        {
+            "day": "0",
+            "file": "thedyingsun",
+            "name": "",
+            "artist": "TheDyingSun"
+        }, {
+            "day": "1",
+            "file": "cymbourine",
+            "name": "sorry uhh i just now played madness project nexus LOL",
+            "artist": "Cymbourine",
+            "costumeUnlock": "pico"
+        }, 
+        {
+            "day": "2",
+            "file": "sevi",
+            "name": "Elf on a shelf (branch)",
+            "artist": "Sevi",
+            "costumeUnlock": "pico"
+        }, 
+        {
+            "day": "1",
+            "file": "night-before",
+            "name": "The Night Before Tankmas",
+            "artist": "",
+            "comicProperties": {
+                "pages": 12,
+                "audio": "night-before-audio",
+                "cover": true,
+                "timing": [ 8.000
+                , 14.000
+                , 22.000
+                , 29.000
+                , 36.000
+                , 44.000
+                , 51.000
+                , 56.500
+                , 63.000
+                , 70.500
+                ]
+            }
+        }, {
+            "day": "1",
+            "file": "daintiest-knoblin",
+            "name": "The Daintiest Knoblin",
+            "artist": "",
+            "comicProperties": {
+                "pages": 16,
+                "cover": true
+            }
+        }
+    ]
+}

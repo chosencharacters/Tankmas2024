@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+	<animSet image = "" path = "assets\images">
+		<anim name = ""></anim>
+	</animSet>
+
+	<animSet image="paco">
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+		<anim name="start-stop" fps="100ms" looping="false">1t2</anim>
+		<anim name="moving" fps="50ms">3t9</anim>
+		<anim name="emote" fps="100ms" looping="false">10t11</anim>
+		<anim name="jump-start" fps="100ms" looping="false">12t13</anim>
+		<anim name="jump-land" fps="100ms" looping="false">18t19</anim>
+	</animSet>
+
+	<animSet image="player-shadow">
+		
+	</animSet>
+
+	<animSet image="present">
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+		<anim name="nearby" fps="100ms">1t6</anim>
+		<anim name="open" fps="100ms" looping="false">7t9</anim>
+		<anim name="opened" fps="100ms" looping="false">9</anim>
+	</animSet>
+
+	<animSet image="new-sticker-overlay">
+		<anim name="idle" fps="100ms">0</anim>
+		<anim name="shine" fps="50ms" looping="false">1t9</anim>
+	</animSet>
+
+	<animSet image="item-navigator">
+		<anim name="hover" fps="100ms">0t1</anim>
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+	</animSet>
+
+	<animSet image="sticker-pack-opening" width="784" height="839">
+		<anim name="idle" fps="500ms" looping="false">0</anim>
+		<anim name="1" looping="false">1t3</anim>
+		<anim name="2" looping="false">4t6</anim>
+		<anim name="3" looping="false">7t9</anim>
+		<anim name="4" looping="false">10t12</anim>
+		<anim name="pre-kaboom" fps="100ms" looping="false">13t15</anim>
+		<variable name="shake" frames="1,4,7,10,16"/>
+	</animSet>
+
+	<animSet image="sticker-pack-icon">
+		<anim name="idle" fps="100ms">0t14</anim>
+	</animSet>
+
+	<animSet image="move-circle">
+		<anim name="idle" fps="100ms" looping="false">0t4</anim>
+	</animSet>
+
+	<animSet image="outside-bonfire" width="919" height="1374">
+		<anim name="idle" fps="40ms">0t33</anim>
+	</animSet>
+</root>
