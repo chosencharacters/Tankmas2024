@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://lime.openfl.org/project/1.0.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://lime.openfl.org/project/1.0.4 http://lime.openfl.org/xsd/project-1.0.4.xsd">
+<project xmlns="http://lime.openfl.org/project/1.0.4"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://lime.openfl.org/project/1.0.4 http://lime.openfl.org/xsd/project-1.0.4.xsd">
 
 	<!-- _________________________ Application Settings _________________________ -->
 
@@ -31,7 +31,7 @@
 
 	<set name="BUILD_DIR" value="export" />
 	<source path="source" />
-	
+
 	<section if="hl||cpp">
 		<assets path="assets" embed="false" exclude="*.gif"/>
 	</section>
@@ -50,11 +50,12 @@
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
-	<haxelib name="lime" />	
+	<haxelib name="lime" />
 	<haxelib name="openfl" />
 	<haxelib name="flixel" />
 	<haxelib name="flixel-addons" />
 	<haxelib name="newgrounds" if="newgrounds"/>
+	<haxelib name="hxWebSockets" />
 
 	<haxelib name="ase" />
 	<haxelib name="castle" />
@@ -71,17 +72,19 @@
 		<haxelib name="hscript" />
 	</section>
 
+	<haxedef name="websocket" />
+
 	<!-- ______________________________ Minigames _______________________________ -->
 
 	<!-- Tell minigame code that it is part of the full project, and to exclude any wrappers -->
 	<haxedef name="ADVENT" />
 
 	<section unless="exclude_bunnymark">
-		
+
 		<source path="minigames/bunnymark/source" />
 		<library name="bunnymark" preload="false" />
 		<assets path="minigames/bunnymark/assets" rename="assets/minigames/bunnymark" library="bunnymark" exclude="*.ase|*.wav"/>
-		
+
 	</section>
 
 	<!-- ______________________________ Haxedefines _____________________________ -->

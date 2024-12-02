@@ -168,7 +168,7 @@ class PlayState extends BaseState
 
 	override public function update(elapsed:Float)
 	{
-		OnlineLoop.iterate();
+		OnlineLoop.iterate(elapsed);
 
 		premieres.update(elapsed);
 

@@ -20,6 +20,8 @@ server
 *.png~
 .ldtk-backups
 assets/data/config/ng/ng-secrets.json
+ng-secrets.json
+
 .vscode
 /scripts/openssl
 /dump
