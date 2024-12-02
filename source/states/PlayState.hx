@@ -32,6 +32,8 @@ class PlayState extends BaseState
 
 	static final default_world:String = "outside_hotel";
 
+	public var current_room_id = 1;
+
 	var current_world:String;
 
 	public var player:Player;
@@ -213,6 +215,18 @@ class PlayState extends BaseState
 		TankmasLevel.make_all_levels_in_world(current_world);
 		for (level in levels)
 			level.place_entities();
+	}
+
+	public function remove_user(username:String)
+	{
+		if (username == Main.username)
+			return;
+
+		var user:BaseUser = BaseUser.get_user(username);
+		if (user != null)
+		{
+			user.on_user_left();
+		}
 	}
 
 	function make_ui()

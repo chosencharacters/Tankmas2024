@@ -89,10 +89,10 @@ class ActivityArea extends FlxSprite
 
 	public function on_event(event:NetEventDef, player:BaseUser)
 	{
-		var area = active_players[player.username];
-		if (area == null)
+		var area_user_instance = active_players[player.username];
+		if (area_user_instance == null)
 			return;
-		area.on_event(event);
+		area_user_instance.on_event(event);
 	}
 
 	// Happens when the local player presses the interact button

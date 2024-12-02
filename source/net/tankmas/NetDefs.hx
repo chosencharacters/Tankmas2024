@@ -2,7 +2,7 @@ package net.tankmas;
 
 typedef NetUserDef =
 {
-	name:String,
+	username:String,
 	?x:Int,
 	?y:Int,
 	?sx:Int, // Scale x, if facing right or left
