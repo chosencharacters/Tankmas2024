@@ -51,6 +51,16 @@ class Main extends Sprite
 		Manifest.init(make_game);
 	}
 
+	function after_auto_login()
+	{
+		#if newgrounds
+		trace(ng_api);
+		if(ng_api.NG_LOGGED_IN) on_logged_in() else ng_api.login_manual(on_logged_in);
+		#else
+		on_logged_in();
+		#end
+	}
+
 	function on_logged_in()
 	{
 		error_text = 'Welcome to Tankmas ADVENTure 2024!\n\nWe hope you enjoy your visit. If you want to earn medals, score on leaderboards, and save your costumes and progress, please login to Newgrounds on your next visit!';
@@ -63,7 +73,7 @@ class Main extends Sprite
 			}
 			addChild(new FlxGame(1920, 1080, PlayState, true));
 		} else {
-			if(ng_api.NG_LOGIN_ERROR != null) error_text = 'ERROR WHILE LOADING LOGIN: ${ng_api.NG_LOGIN_ERROR}\n\nPlease screenshot this and share with Tankmas ADVENTure 2024 developers. Login functions are deactivated.';
+			//if(ng_api.NG_LOGIN_ERROR != null) error_text = 'ERROR WHILE LOADING LOGIN: ${ng_api.NG_LOGIN_ERROR}\n\nPlease screenshot this and share with Tankmas ADVENTure 2024 developers. Login functions are deactivated.';
 			#end
 			username = 'temporary_random_username_${Math.random()}';
 			TextState.text_to_write = error_text;
@@ -86,7 +96,7 @@ class Main extends Sprite
 	{
 		Lists.init();
 		#if newgrounds
-		ng_api = new NewgroundsHandler(true, true, on_logged_in);
+		ng_api = new NewgroundsHandler(true, true, after_auto_login);
 		#else
 		on_logged_in();
 		#end
