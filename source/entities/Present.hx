@@ -49,7 +49,7 @@ class Present extends Interactable
 
 		type = Interactable.InteractableType.PRESENT;
 
-		loadGraphic(Paths.get('present-$content.png'), true, 94, 94);
+		loadAllFromAnimationSet("present-any", 'present-$content');
 
 		PlayState.self.presents.add(this);
 		thumbnail = new Thumbnail(x, y - 200, Paths.get(def.file));

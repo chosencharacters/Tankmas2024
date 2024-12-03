@@ -207,6 +207,9 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	{
 		var target:FlxSpriteExt = characterSpritesArray[locked_sheet].members[locked_selection];
 
+		if (target == null)
+			return;
+
 		locked_selection_overlay.center_on(target);
 		locked_selection_overlay.angle = target.angle;
 		locked_selection_overlay.scale.copyFrom(target.scale);

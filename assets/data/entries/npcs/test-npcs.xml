@@ -16,4 +16,13 @@
             <dlg>"I died before I could live."</dlg>
         </state>
     </npc>
+    <npc name="concierge">
+        <state name="default">
+            <dlg>Good tidings... Future guests...</dlg>
+            <dlg>Do you desire... Accommodations of a warmer... Variety?</dlg>
+            <dlg>All this... Could be arranged... If one is to be... Patient...</dlg>
+            <dlg>For now... Consume golden morsels to your delight... For now...</dlg>
+            <dlg>...For now...</dlg>
+        </state>
+    </npc>
 </root>

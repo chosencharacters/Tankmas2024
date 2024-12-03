@@ -61,7 +61,7 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 		text.fieldWidthSet(1216);
 		#end
 
-		bg = new FlxSpriteExt(Paths.get("dialogue-box.png"));
+		bg = new FlxSpriteExt().one_line("dialogue-box");
 
 		bg.setPosition(FlxG.width / 2 - bg.width / 2, 0);
 
@@ -123,6 +123,7 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 
 	override function update(elapsed:Float)
 	{
+		bg.anim(line_number < dlgs.length - 1 ? "has-next" : "idle");
 		text.setPosition(bg.x + text_position.x, bg.y + text_position.y);
 		// text.offset_adjust();
 		fsm();

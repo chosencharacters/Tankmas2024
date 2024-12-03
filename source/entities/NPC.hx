@@ -21,7 +21,7 @@ class NPC extends Interactable
 
 		PlayState.self.npcs.add(this);
 
-		loadGraphic(Paths.get('${name}.png'));
+		loadAllFromAnimationSet(name);
 
 		sstate(IDLE);
 	}
@@ -39,7 +39,7 @@ class NPC extends Interactable
 			case IDLE:
 				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
-				sprite_anim.anim(PresentAnimation.NEARBY);
+				// sprite_anim.anim(PresentAnimation.NEARBY);
 				if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased)
 					start_chat();
 			case CHATTING:

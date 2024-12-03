@@ -56,4 +56,22 @@
 	<animSet image="outside-bonfire" width="919" height="1374">
 		<anim name="idle" fps="40ms">0t33</anim>
 	</animSet>
+
+	<animSet image="present-any">
+		<anim name="closed">0</anim>
+		<anim name="open">1</anim>
+	</animSet>
+
+	<animSet image="tombstone">
+		<anim name="idle">0</anim>
+	</animSet>
+
+	<animSet image="concierge">
+		<anim name="idle">0t17</anim>
+	</animSet>
+
+	<animSet image="dialogue-box">
+		<anim name="idle">0</anim>
+		<anim name="has-next">1t6</anim>
+	</animSet>
 </root>

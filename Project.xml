@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="1.0.0" company="Glenside Helper Elf Society" />
+	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="3.0.0" company="Glenside Helper Elf Society" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -16,7 +16,7 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<!--These window settings apply to all targets-->
-	<window width="960" height="540" fps="60" background="#000000" hardware="true" vsync="false" />
+	<window width="960" height="540" fps="60" background="#000000" hardware="false" vsync="false" />
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />

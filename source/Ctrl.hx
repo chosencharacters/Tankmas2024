@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.input.gamepad.FlxGamepadInputID;
+import flixel.input.keyboard.FlxKey;
 import openfl.Assets;
 
 /**
@@ -117,9 +118,9 @@ class Ctrl
 			left[c] = FlxG.keys.anyPressed(["A", "LEFT", controls[c][2]]);
 			right[c] = FlxG.keys.anyPressed(["D", "RIGHT", controls[c][3]]);
 
-			interact[c] = FlxG.keys.anyPressed([controls[c][4]]);
-			jinteract[c] = FlxG.keys.anyJustPressed([controls[c][4]]);
-			rinteract[c] = FlxG.keys.anyJustReleased([controls[c][4]]);
+			interact[c] = FlxG.keys.anyPressed([controls[c][4], "SPACE"]);
+			jinteract[c] = FlxG.keys.anyJustPressed([controls[c][4], "SPACE"]);
+			rinteract[c] = FlxG.keys.anyJustReleased([controls[c][4], "SPACE"]);
 
 			menu[c] = FlxG.keys.anyPressed([controls[c][5]]);
 			jmenu[c] = FlxG.keys.anyJustPressed([controls[c][5]]);

@@ -107,9 +107,9 @@ class PlayState extends BaseState
 
 		add(minigames);
 		add(npcs);
-		add(presents);
 		add(username_tags);
 		add(users);
+		add(presents);
 		add(objects);
 		add(thumbnails);
 		add(stickers);
