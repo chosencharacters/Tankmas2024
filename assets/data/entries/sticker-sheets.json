@@ -40,6 +40,47 @@
                     "name": "pico-sticker-swag"
                 }
             ]
+        },
+        {
+            "graphic": "emotes-back-blue",
+            "items": [
+                {
+                    "name": "common-tamago"
+                },
+                {
+                    "name": "toasty-warm"
+                },
+                {
+                    "name": "edd-sticker"
+                },
+                {
+                    "name": "mustard"
+                },
+                {
+                    "name": "pink-kight-mondo"
+                },
+                {
+                    "name": "tappy-sticker"
+                },
+                {
+                    "name": "son-christmas"
+                },
+                {
+                    "name": "sick-skull"
+                },
+                {
+                    "name": "slashe-wave"
+                },
+                {
+                    "name": "gimme-five"
+                },
+                {
+                    "name": "john-sticker"
+                },
+                {
+                    "name": "pico-sticker-swag"
+                }
+            ]
         }
     ]
 }
