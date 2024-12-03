@@ -15,7 +15,7 @@
 
 --library deepnightLibs:git:https://github.com/EliteMasterEric/deepnightLibs#bugfix/achievement
 
---library hxWebsockets:git:https://github.com/jefvel/hxWebSockets.git
+--library hxWebSockets:git:https://github.com/jefvel/hxWebSockets.git
 
 --library promises:git:https://github.com/core-haxe/promises
 --library queues-core:git:https://github.com/core-haxe/queues-core
