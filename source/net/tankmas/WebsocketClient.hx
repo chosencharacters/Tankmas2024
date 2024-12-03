@@ -1,5 +1,7 @@
 package net.tankmas;
 
+import net.tankmas.NetDefs.NetEventDef;
+import bunnymark.PlayState;
 import hx.ws.Types.MessageType;
 import net.tankmas.NetDefs.NetUserDef;
 import haxe.Json;
@@ -10,17 +12,32 @@ import haxe.io.Bytes;
 
 enum abstract WebsocketEventType(Int)
 {
+	// Called whenever the state of a player changes.
+	// This can be the position / costume / room / data
 	var PlayerStateUpdate = 2;
-	var Event = 3; // Events are custom types, the contain names
 
-	var PlayerLeft = 4; // When player disconnects or goes to another room
+	// Custom events, such as using stickers or doing activities in minigames.
+	var CustomEvent = 3;
+
+	// Called when player disconnects or leaves the room.
+	var PlayerLeft = 4;
+
+	// For loading and saving an user's own save data.
+	var LoadUserData = 94;
+	var SaveUserData = 95;
 }
 
 typedef WebsocketEvent =
 {
 	type:WebsocketEventType,
+	?timestamp:Float,
+
 	?name:String,
+
 	?data:Dynamic,
+
+	?room_id:Int,
+	?username:String,
 }
 
 class WebsocketClient
@@ -34,6 +51,9 @@ class WebsocketClient
 	var connected = false;
 	var username:String = null;
 	var session_id:String = null;
+
+	// When the user connects, they'll get an intial room/position.
+	var loaded_user_position:Bool = false;
 
 	public function new()
 	{
@@ -57,6 +77,13 @@ class WebsocketClient
 		{
 			connect();
 		}
+	}
+
+	public function close()
+	{
+		#if websocket
+		socket.close();
+		#end
 	}
 
 	function connect()
@@ -109,12 +136,33 @@ class WebsocketClient
 						if (event.type == PlayerStateUpdate)
 						{
 							var d:NetUserDef = event.data;
+							if (d.username == Main.username)
+							{
+								if (d.immediate)
+								{
+									loaded_user_position = true;
+									PlayState.self.latest_player_position = d;
+								}
+							}
 							OnlineLoop.update_user_visual(d.username, d);
 						}
+
 						if (event.type == PlayerLeft)
 						{
 							var d:NetUserDef = event.data;
 							PlayState.self.remove_user(d.username);
+						}
+
+						if (event.type == CustomEvent)
+						{
+							var net_event:NetEventDef = {
+								room_id: event.room_id,
+								type: event.name,
+								data: event.data,
+								timestamp: event.timestamp,
+								username: event.username,
+							}
+							PlayState.self.on_net_event_received(net_event);
 						}
 					}
 				default:
@@ -126,7 +174,7 @@ class WebsocketClient
 		}
 	}
 
-	var queued_messages:Array<Dynamic> = [];
+	var queued_messages:Array<WebsocketEvent> = [];
 
 	var flush_interval = 0.2;
 	var until_flush = 0.0;
@@ -161,7 +209,7 @@ class WebsocketClient
 		#end
 	}
 
-	function send(event:WebsocketEvent, immediate = false)
+	function send(event:WebsocketEvent, immediate = false, overwriteIfExisting = false)
 	{
 		#if websocket
 		if (socket == null)
@@ -172,12 +220,30 @@ class WebsocketClient
 			flush_messages();
 		}
 		else
+		{
+			if (overwriteIfExisting)
+			{
+				var index = -1;
+				for (i in 0...queued_messages.length)
+				{
+					if (queued_messages[i].type == event.type)
+					{
+						queued_messages[i] = event;
+						return;
+					}
+				}
+			}
+
 			queued_messages.push(event);
+		}
 		#end
 	}
 
 	public function send_player(player:NetUserDef)
 	{
+		if (!loaded_user_position)
+			return;
+
 		send({
 			type: WebsocketEventType.PlayerStateUpdate,
 			data: player,
@@ -186,8 +252,10 @@ class WebsocketClient
 
 	public function send_event(type:String, data:Dynamic = null, immediate = false)
 	{
+		if (!loaded_user_position)
+			return;
 		send({
-			type: WebsocketEventType.Event,
+			type: WebsocketEventType.CustomEvent,
 			name: type,
 			data: data,
 		}, immediate);

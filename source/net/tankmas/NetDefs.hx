@@ -16,14 +16,29 @@ typedef NetUserDef =
 		{
 			?test_value:Int,
 			?marshmallows_thrown:Int,
-		}
+		},
+
+	// Whether or not to apply the changes immediately or not. Good for initial placement of players
+	?immediate:Bool,
 }
 
 typedef NetEventDef =
 {
-	username:String,
-	type:String,
+	// Events can also be non user specific, if we want global events happening.
+	?username:String,
+
+	type:NetEventType,
 	data:Dynamic,
+
+	?timestamp:Float,
+
+	// If event happened in a specific room.
+	?room_id:Int,
+}
+
+typedef NetMessage =
+{
+	type:NetEventType,
 }
 
 enum abstract NetEventType(String) from String to String

@@ -31,6 +31,7 @@ class OnlineLoop
 	static var last_events_get_timestamp:Float;
 
 	static var last_websocket_player_tick_timestamp:Float;
+	static final websocket_state_send_interval = 0.5;
 
 	static final tick_wait_timeout:Int = -1;
 
@@ -47,6 +48,8 @@ class OnlineLoop
 	{
 		#if offline return; #end
 
+		if (websocket != null)
+			websocket.close();
 		websocket = new WebsocketClient();
 
 		force_send_full_user = true;
@@ -70,7 +73,7 @@ class OnlineLoop
 		websocket.update(elapsed);
 
 		var tick_diff = current_timestamp - last_websocket_player_tick_timestamp;
-		if (tick_diff < 0.2)
+		if (tick_diff < websocket_state_send_interval)
 			return;
 
 		last_websocket_player_tick_timestamp = current_timestamp;
@@ -163,7 +166,9 @@ class OnlineLoop
 
 	public static function update_user_visual(username:String, def:NetUserDef)
 	{
-		if (username == Main.username)
+		var is_local_player = username == Main.username;
+
+		if (is_local_player && !def.immediate)
 			return;
 
 		var costume:CostumeDef = JsonData.get_costume(def.costume);
@@ -171,12 +176,29 @@ class OnlineLoop
 		if (costume == null)
 			costume = JsonData.get_costume(Main.default_costume);
 
-		var user:BaseUser = BaseUser.get_user(username, function()
+		var create_function = () ->
 		{
 			return new NetUser(def.x, def.y, username, costume);
-		});
+		}
 
-		cast(user, NetUser).move_to(def.x != null ? def.x : user.x, def.y != null ? def.y : user.y, def.sx);
+		var user:BaseUser = BaseUser.get_user(username, !is_local_player ? create_function : null);
+
+		if (user == null)
+			return;
+
+		var new_x = def.x != null ? def.x : user.x;
+		var new_y = def.y != null ? def.y : user.y;
+		var new_sx = def.sx;
+
+		if (!def.immediate)
+		{
+			cast(user, NetUser).move_to(new_x, new_y, new_sx);
+		}
+		else
+		{
+			user.x = new_x;
+			user.y = new_y;
+		}
 
 		if (user.costume == null || user.costume.name != costume.name)
 			user.new_costume(costume);

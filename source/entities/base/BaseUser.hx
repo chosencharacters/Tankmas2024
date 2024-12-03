@@ -121,9 +121,11 @@ class BaseUser extends NGSprite
 		}
 	}
 
+	// Received when player did action.
 	public function on_event(event:NetEventDef)
 	{
-		if (event.username == username)
+		// Ignore these events if they come from the local player.
+		if (event.username == Main.username)
 		{
 			return;
 		}
@@ -132,6 +134,8 @@ class BaseUser extends NGSprite
 		{
 			case NetEventType.STICKER:
 				use_sticker(event.data.name);
+			case NetEventType.DROP_MARSHMALLOW:
+				// bobep
 		}
 
 		if (active_activity_area != null)

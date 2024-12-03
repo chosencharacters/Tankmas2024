@@ -1,5 +1,7 @@
 package states;
 
+import net.tankmas.NetDefs.NetEventType;
+import net.tankmas.NetDefs.NetEventDef;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -33,6 +35,7 @@ class PlayState extends BaseState
 	static final default_world:String = "outside_hotel";
 
 	public var current_room_id = 1;
+	public var latest_player_position:NetUserDef;
 
 	var current_world:String;
 
@@ -239,5 +242,30 @@ class PlayState extends BaseState
 		for (username_tag in self.username_tags.members)
 			username_tag.visible = val;
 		return show_usernames = val;
+	}
+
+	// Happens whenever a custom event is received from the server.
+	// Currently these include stickers and marshmallow drops
+	public function on_net_event_received(event:NetEventDef)
+	{
+		if (event.room_id != null && event.room_id != current_room_id)
+			return;
+
+		// If event has an username, pass it to the user.
+		if (event.username != null)
+		{
+			var user = BaseUser.get_user(event.username);
+			if (user != null)
+			{
+				user.on_event(event);
+			}
+		}
+
+		// We could also do stuff here, like add a broadcast message type
+		// which could show a text on screen for every connected player etc.
+		if (event.type == NetEventType.STICKER)
+		{
+			// Any player postede a sticker.
+		}
 	}
 }
