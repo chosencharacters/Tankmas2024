@@ -55,6 +55,15 @@ class WebsocketClient
 	// When the user connects, they'll get an intial room/position.
 	var loaded_user_position:Bool = false;
 
+	var connection_retries = 0;
+	var max_connection_retries = 10;
+	var retry_connection = false;
+
+	var until_retry_s = 4.0;
+	var retry_interval = 6.0;
+
+	var closed = false;
+
 	public function new()
 	{
 		#if offline
@@ -82,7 +91,10 @@ class WebsocketClient
 	public function close()
 	{
 		#if websocket
-		socket.close();
+		if (socket != null)
+			socket.close();
+		closed = true;
+		connected = false;
 		#end
 	}
 
@@ -96,28 +108,64 @@ class WebsocketClient
 		}
 
 		var url = '${address}?username=${username}&session=${session_id}';
-		socket = new WebSocket(url);
-		socket.onmessage = on_message;
-		socket.onopen = on_connect;
-		socket.onerror = on_error;
-		socket.onclose = on_close;
+		try
+		{
+			socket = new WebSocket(url);
+			socket.onmessage = on_message;
+			socket.onopen = on_connect;
+			socket.onerror = on_error;
+			socket.onclose = on_close;
+		}
+		catch (err)
+		{
+			start_reconnection();
+		}
 		#end
 	}
 
-	function on_error(error)
+	function on_error(_err)
 	{
-		trace(error);
+		#if websocket
+		start_reconnection();
+		#end
+	}
+
+	function start_reconnection()
+	{
+		until_retry_s = retry_interval;
+		connection_retries++;
+
+		socket = null;
+
+		if (connection_retries > max_connection_retries)
+		{
+			trace('could not connect to socket after max retries');
+		}
+		else
+		{
+			trace('socket crashed, retry...');
+			retry_connection = true;
+		}
 	}
 
 	function on_close()
 	{
-		trace('Disconnected to server.');
 		connected = false;
+		if (!closed)
+		{
+			start_reconnection();
+		}
+		else
+		{
+			trace('Disconnected to server.');
+		}
 	}
 
 	function on_connect()
 	{
 		trace('Connected to server.');
+		retry_connection = false;
+		connection_retries = 0;
 		connected = true;
 	}
 
@@ -181,6 +229,16 @@ class WebsocketClient
 
 	public function update(elapsed:Float)
 	{
+		if (retry_connection && socket == null)
+		{
+			until_retry_s -= elapsed;
+			if (until_retry_s < 0)
+			{
+				until_retry_s = retry_interval;
+				connect();
+			}
+		}
+
 		until_flush -= elapsed;
 		if (until_flush <= 0)
 		{
@@ -192,7 +250,7 @@ class WebsocketClient
 	{
 		until_flush = flush_interval;
 		#if websocket
-		if (!connected)
+		if (!connected || socket == null)
 			return;
 
 		if (queued_messages.length == 0)
