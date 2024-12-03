@@ -22,6 +22,8 @@ class Marshmallow extends FlxSprite
 
 	var heat_levels = [30.0, 60.0, 80.0, 90.0, 98.0, 100.0];
 
+	public static final GOLDEN_MARSHMALLOW_LEVEL:Int = 5;
+
 	var level_up_sounds = [
 		AssetPaths.grill_1__wav,
 		AssetPaths.grill_2__wav,
@@ -117,6 +119,15 @@ class Marshmallow extends FlxSprite
 		if (own)
 			FlxG.sound.play(level_up_sounds[current_level], 0.3);
 		set_level(current_level + 1);
+	}
+
+	public static function on_cooked_perfect():Void {
+		// Earn a medal, if applicable.
+		Main.ng_api.medal_popup(Main.ng_api.medals.get("golden-marshmallow"));
+
+		final GOLDEN_MARSHMALLOWS_SCOREBOARD:Int = 14324;
+
+		Main.ng_api.post_score(1, GOLDEN_MARSHMALLOWS_SCOREBOARD);
 	}
 
 	override function update(elapsed:Float)
