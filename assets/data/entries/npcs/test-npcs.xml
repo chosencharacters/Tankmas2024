@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+    <npc name="thomas">
+        <state name="default">
+            <dlg>Hello fellow newgrounder I am the tom fulp of the new grounds dot com</dlg>
+            <dlg>Are we talking about tom fulp? I love talking about tom fulp.</dlg>
+            <dlg if="SECRET_LOVE_OF_THE_TOM">btw I only say this to people I enjoy the company of. But I love you.</dlg>
+        </state>
+        <state name="default" if="THE_IRE_OF_TOM">
+            <dlg>You disappoint me. Be gone from my sight.</dlg>
+        </state>
+    </npc>
+    <npc name="tombstone">
+        <state name="default">
+            <dlg>Here lies Tankmas ADVENTure Calendar 2023's hopes and dreams.</dlg>
+            <dlg>"I died before I could live."</dlg>
+        </state>
+    </npc>
+    <npc name="concierge">
+        <state name="default">
+            <dlg>Good tidings... Future guests...</dlg>
+            <dlg>Do you desire... Accommodations of a warmer... Variety?</dlg>
+            <dlg>All this... Could be arranged... If one is to be... Patient...</dlg>
+            <dlg>For now... Consume golden morsels to your delight... For now...</dlg>
+            <dlg>...For now...</dlg>
+        </state>
+    </npc>
+</root>
