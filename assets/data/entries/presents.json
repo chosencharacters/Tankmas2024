@@ -1,26 +1,43 @@
 {
     "presents": [
         {
-            "day": "0",
-            "file": "thedyingsun",
+            "day": 0,
+            "file": "thedyingsun.jpg",
             "name": "",
             "artist": "TheDyingSun"
-        }, {
-            "day": "1",
-            "file": "cymbourine",
+        }, 
+        {
+            "day": 1,
+            "file": "cymbourine.jpg",
             "name": "sorry uhh i just now played madness project nexus LOL",
-            "artist": "Cymbourine",
-            "costumeUnlock": "pico"
+            "artist": "Cymbourine"
         }, 
         {
-            "day": "2",
-            "file": "sevi",
+            "day": 2,
+            "file": "sevi.jpg",
             "name": "Elf on a shelf (branch)",
-            "artist": "Sevi",
-            "costumeUnlock": "pico"
+            "artist": "Sevi"
         }, 
         {
-            "day": "1",
+            "day": 3,
+            "file": "midgetsausage.jpg",
+            "name": "Yo! Merry Sexy Tankmas!!!!!",
+            "artist": "MidgetSausage"
+        },
+        {
+            "day": 4,
+            "file": "sirlenward.jpg",
+            "name": "NG Wreath Goes Crazy",
+            "artist": "SirLenward"
+        },
+        {
+            "day": 5,
+            "file": "midgetsausage.jpg",
+            "name": "Yo! Merry Sexy Tankmas!!!!!",
+            "artist": "TheExtreamh"
+        }, 
+        {
+            "day": 1,
             "file": "night-before",
             "name": "The Night Before Tankmas",
             "artist": "",
@@ -41,7 +58,7 @@
                 ]
             }
         }, {
-            "day": "1",
+            "day": 1,
             "file": "daintiest-knoblin",
             "name": "The Daintiest Knoblin",
             "artist": "",

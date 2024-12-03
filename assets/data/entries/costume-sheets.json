@@ -24,27 +24,27 @@
                     "angle": -10
                 },
                 {
-                    "name": "sodaman",
+                    "name": "knight-red",
                     "angle": -10
                 },
                 {
-                    "name": "splatter-dash",
+                    "name": "knight-blue",
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": "c-jay",
+                    "name": "knight-green",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": "tamag0",
+                    "name": "knight-orange",
                     "angle": 10
                 },
                 {
-                    "name": "midgetsausage",
+                    "name": "knight-pink",
                     "angle": 10
                 },
                 {

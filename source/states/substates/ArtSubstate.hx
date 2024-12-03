@@ -16,10 +16,12 @@ class ArtSubstate extends flixel.FlxSubState
 	override public function new(content:String)
 	{
 		super();
-		art = new FlxSprite(0, 0).loadGraphic(Paths.get('$content.jpg'));
+		data = JsonData.get_present(content);
 
 		#if censor_presents
 		art = new FlxSprite(0, 0).loadGraphic(Paths.get('art-censored.jpg'));
+		#else
+		art = new FlxSprite(0, 0).loadGraphic(Paths.get(data.file));
 		#end
 
 		art.setGraphicSize(art.width > art.height ? 1920 : 0, art.height >= art.width ? 1080 : 0);
@@ -30,8 +32,6 @@ class ArtSubstate extends flixel.FlxSubState
 		final backBox:FlxSprite = new FlxSprite(0, 960).makeGraphic(1920, 120, FlxColor.BLACK);
 		backBox.alpha = 0.3;
 		add(backBox);
-
-		data = JsonData.get_present(content);
 
 		theText = new FlxText(0, 980, 1920,
 			((data.name != null && data.name != "") ? ('"' + data.name + '"') : "Untitled")

@@ -19,32 +19,28 @@
         {
             "name": "knight-red",
             "display": "Red Knight",
-            "desc": "Castle Crasher video game but red",
-            "unlock": "ANGRY_FAIC"
+            "desc": "Castle Crasher video game but red"
         },
         {
             "name": "knight-blue",
             "display": "Blue Knight",
-            "desc": "Castle Crasher video game but blue",
-            "unlock": "ANGRY_FAIC"
+            "desc": "Castle Crasher video game but blue"
         },
         {
             "name": "knight-green",
             "display": "Green Knight",
-            "desc": "Castle Crasher video game but green",
-            "unlock": "ANGRY_FAIC"
+            "desc": "Castle Crasher video game but green"
         },
         {
             "name": "knight-orange",
             "display": "Orange Knight",
-            "desc": "Castle Crasher video game but orange",
-            "unlock": "ANGRY_FAIC"
+            "desc": "Castle Crasher video game but orange"
         },
         {
             "name": "knight-pink",
             "display": "Pink Knight UwU",
             "desc": "Castle Crasher video game but pink uwu",
-            "unlock": "ANGRY_FAIC"
+            "unlock": "SUPPORTER"
         },
         {
             "name": "boyfriend",

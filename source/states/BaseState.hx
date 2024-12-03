@@ -81,6 +81,4 @@ class BaseState extends FlxState
 			tick = 0;
 		state = new_state;
 	}
-
-
 }

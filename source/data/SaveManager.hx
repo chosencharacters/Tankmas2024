@@ -208,6 +208,12 @@ class SaveManager
 			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-1"));
 		if (day == 2 && content == "sevi")
 			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-2"));
+		if (day == 3 && content == "midgetsausage")
+			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-3"));
+		if (day == 4 && content == "sirlenward")
+			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-4"));
+		if (day == 5 && content == "theextreamh")
+			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-5"));
 		if ((Date.now().getMonth() != 0 && Date.now().getDate() != 1) && Date.now().getMonth() != 11)
 			return;
 		switch (content)

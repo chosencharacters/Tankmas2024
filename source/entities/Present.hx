@@ -28,19 +28,22 @@ class Present extends Interactable
 	var day:Int = 0;
 	var comic:Bool = false;
 
+	var def:PresentDef;
+
 	public function new(?X:Float, ?Y:Float, ?content:String = 'thedyingsun')
 	{
 		super(X, Y);
 		detect_range = 300;
 		this.content = content;
-		var presentData:PresentDef = JsonData.get_present(this.content);
-		if (presentData == null)
+
+		trace(content, JsonData.get_all_present_names());
+		def = JsonData.get_present(this.content);
+		if (def == null)
 		{
 			throw 'Error getting present: content ${content}; defaulting to default content';
-			presentData = JsonData.get_present('thedyingsun');
+			def = JsonData.get_present('thedyingsun');
 		}
-		comic = presentData.comicProperties != null ? true : false;
-		day = Std.parseInt(presentData.day);
+		comic = def.comicProperties != null ? true : false;
 
 		openable = true;
 
@@ -49,11 +52,18 @@ class Present extends Interactable
 		loadGraphic(Paths.get('present-$content.png'), true, 94, 94);
 
 		PlayState.self.presents.add(this);
-		thumbnail = new Thumbnail(x, y - 200, Paths.get((content + (comic ? '-0' : '') + '.jpg')));
+		thumbnail = new Thumbnail(x, y - 200, Paths.get(def.file));
 
 		#if censor_presents
 		thumbnail.color = FlxColor.BLACK;
 		#end
+
+		update_present_visible();
+	}
+
+	public function update_present_visible()
+	{
+		visible = Main.time.date >= def.day;
 	}
 
 	override function kill()
@@ -80,6 +90,7 @@ class Present extends Interactable
 
 	override function update(elapsed:Float)
 	{
+		update_present_visible();
 		fsm();
 		super.update(elapsed);
 	}
@@ -140,7 +151,7 @@ class Present extends Interactable
 				thumbnail.sstate("OPEN");
 				PlayState.self.openSubState(comic ? new ComicSubstate(content, true) : new ArtSubstate(content));
 				opened = true;
-				SaveManager.open_present(content, day);
+				SaveManager.open_present(content, def.day);
 			});
 		}
 		else

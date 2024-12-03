@@ -24,13 +24,14 @@ typedef StickerDef =
 
 typedef PresentDef =
 {
-	var day:String;
+	var day:Int;
 	var name:String;
 	var artist:String;
 	var file:String;
 	var ?link:String;
 	var ?comicProperties:ComicDef;
 	var ?costumeUnlock:String;
+	var ?timelock:Int;
 }
 
 typedef ComicDef =

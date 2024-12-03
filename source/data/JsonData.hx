@@ -41,10 +41,10 @@ class JsonData
 	static function load_presents()
 	{
 		presents = [];
-		var json:{presents:Array<PresentDef>} = haxe.Json.parse(Utils.load_file_string("presentarts.json"));
+		var json:{presents:Array<PresentDef>} = haxe.Json.parse(Utils.load_file_string("presents.json"));
 
 		for (present_def in json.presents)
-			presents.set(present_def.file, present_def);
+			presents.set(present_def.artist.toLowerCase(), present_def);
 	}
 
 	static function load_stickers()
@@ -82,7 +82,7 @@ class JsonData
 		 */
 	}
 
-	static function get_all_costume_defs():Array<CostumeDef>
+	public static function get_all_costume_defs():Array<CostumeDef>
 	{
 		var arr:Array<CostumeDef> = [];
 		for (val in costumes)
@@ -90,7 +90,7 @@ class JsonData
 		return arr;
 	}
 
-	static function get_all_costume_names():Array<String>
+	public static function get_all_costume_names():Array<String>
 	{
 		var arr:Array<String> = [];
 		for (val in costumes.keys())
@@ -98,7 +98,7 @@ class JsonData
 		return arr;
 	}
 
-	static function get_all_present_defs():Array<PresentDef>
+	public static function get_all_present_defs():Array<PresentDef>
 	{
 		var arr:Array<PresentDef> = [];
 		for (val in presents)
@@ -106,7 +106,7 @@ class JsonData
 		return arr;
 	}
 
-	static function get_all_present_names():Array<String>
+	public static function get_all_present_names():Array<String>
 	{
 		var arr:Array<String> = [];
 		for (val in presents.keys())
@@ -114,7 +114,7 @@ class JsonData
 		return arr;
 	}
 
-	static function get_all_sticker_defs():Array<StickerDef>
+	public static function get_all_sticker_defs():Array<StickerDef>
 	{
 		var arr:Array<StickerDef> = [];
 		for (val in stickers)
@@ -122,7 +122,7 @@ class JsonData
 		return arr;
 	}
 
-	static function get_all_sticker_names():Array<String>
+	public static function get_all_sticker_names():Array<String>
 	{
 		var arr:Array<String> = [];
 		for (val in stickers.keys())

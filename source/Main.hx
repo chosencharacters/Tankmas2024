@@ -1,11 +1,13 @@
 package;
 
+import data.TimeManager;
 import Paths.Manifest;
 import data.loaders.NPCLoader;
 import flixel.FlxGame;
 import levels.LdtkProject;
 import openfl.display.Sprite;
 import utils.CrashHandler;
+import data.TimeManager;
 #if newgrounds import ng.NewgroundsHandler; #end
 
 class Main extends Sprite
@@ -33,6 +35,8 @@ class Main extends Sprite
 	public static var ran:FlxRandom = new FlxRandom();
 
 	public static var daily_sticker_draw_amount:Int = 4;
+
+	public static var time:TimeManager = new TimeManager();
 
 	public static function main():Void
 	{
