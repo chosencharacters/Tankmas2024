@@ -133,7 +133,7 @@ class SaveManager
 	{
 		if (FlxG.save.data.saved_costume_collection == null)
 		{
-			trace("Error loading saved costumes");
+			trace("Error loading saved costumes (might be empty)");
 			save_costume_collection(true);
 		}
 		saved_costume_collection = FlxG.save.data.costume_collection;
@@ -143,7 +143,7 @@ class SaveManager
 	{
 		if (FlxG.save.data.saved_sticker_collection == null)
 		{
-			trace("Error loading saved stickers");
+			trace("Error loading saved stickers (might be empty)");
 			save_sticker_collection(true);
 		}
 		saved_sticker_collection = FlxG.save.data.sticker_collection;
@@ -153,7 +153,7 @@ class SaveManager
 	{
 		if (FlxG.save.data.savedPresents == null)
 		{
-			trace("Error loading saved presents");
+			trace("Error loading saved presents (might be empty)");
 			save_presents(true);
 		}
 		savedPresents = FlxG.save.data.savedPresents;
@@ -163,7 +163,7 @@ class SaveManager
 	{
 		if (FlxG.save.data.savedCostumes == null)
 		{
-			trace("Error loading saved costumes");
+			trace("Error loading saved costumes (might be empty)");
 			save_costumes(true);
 		}
 		savedCostumes = FlxG.save.data.savedCostumes;
@@ -178,7 +178,7 @@ class SaveManager
 	{
 		if (FlxG.save.data.savedEmotes == null)
 		{
-			trace("Error loading saved emotes");
+			trace("Error loading saved emotes (might be empty)");
 			save_emotes(true);
 		}
 		savedEmotes = FlxG.save.data.savedEmotes;
@@ -191,7 +191,7 @@ class SaveManager
 	{
 		if (FlxG.save.data.savedRoom == null)
 		{
-			trace("Error loading saved room");
+			trace("Error loading saved room (might be empty)");
 			save_room(true);
 		}
 		savedRoom = FlxG.save.data.savedRoom;

@@ -163,8 +163,7 @@ class NewgroundsHandler
 		trace('logged in! user:${NG_USERNAME} session: ${NG_SESSION_ID}');
 
 		load_api_medals_part_1();
-		// NG.core.scoreBoards.loadList();
-		// trace(NG.core.scoreBoards == null ? null : NG.core.scoreBoards.keys());
+		NG.core.scoreBoards.loadList();
 		NG.core.medals.loadList();
 
 		login_callback != null ? login_callback() : false;

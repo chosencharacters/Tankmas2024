@@ -122,12 +122,17 @@ class Marshmallow extends FlxSprite
 	}
 
 	public static function on_cooked_perfect():Void {
+		trace('Cooked a perfect marshmallow!');
+		#if newgrounds
+		trace('Awarding "Golden Marshmallow" medal...');
+
 		// Earn a medal, if applicable.
 		Main.ng_api.medal_popup(Main.ng_api.medals.get("golden-marshmallow"));
 
 		final GOLDEN_MARSHMALLOWS_SCOREBOARD:Int = 14324;
 
 		Main.ng_api.post_score(1, GOLDEN_MARSHMALLOWS_SCOREBOARD);
+		#end
 	}
 
 	override function update(elapsed:Float)
