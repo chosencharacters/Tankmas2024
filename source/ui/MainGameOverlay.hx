@@ -1,13 +1,13 @@
 package ui;
 
-import ui.settings.BaseSettings;
-import flixel.system.debug.completion.CompletionListScrollBar;
 import data.JsonData;
 import data.SaveManager;
 import entities.Player;
+import flixel.system.debug.completion.CompletionListScrollBar;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 import ui.popups.StickerPackOpening;
+import ui.settings.BaseSettings;
 import ui.sheets.SheetMenu;
 import ui.sheets.StickerSelectSheet;
 
@@ -124,7 +124,14 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 							twen = FlxTween.tween(member, {y: 1180}, 0.3, {
 								onComplete: (twn:FlxTween) ->
 								{
-									new SheetMenu();
+									try
+									{
+										new SheetMenu();
+									}
+									catch (e)
+									{
+										trace(e);
+									}
 									twen = null;
 								}
 							});
@@ -149,7 +156,8 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 				case 1:
 					if (FlxG.mouse.overlaps(member))
 					{
-						if(FlxG.mouse.justReleased) new BaseSettings();
+						if (FlxG.mouse.justReleased)
+							new BaseSettings();
 						if (FlxG.mouse.pressed && member.scale.x != 0.8)
 							member.scale.set(0.8, 0.8)
 						else if (!FlxG.mouse.pressed && member.scale.x != 1.1)

@@ -185,7 +185,14 @@ class PlayState extends BaseState
 
 		if (Ctrl.mode.can_open_menus)
 			if (Ctrl.jmenu[1])
-				new SheetMenu();
+				try
+				{
+					new SheetMenu();
+				}
+				catch (e)
+				{
+					trace(e);
+				}
 
 		handle_collisions();
 	}

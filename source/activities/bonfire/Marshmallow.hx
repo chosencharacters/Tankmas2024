@@ -121,8 +121,11 @@ class Marshmallow extends FlxSprite
 		set_level(current_level + 1);
 	}
 
-	public static function on_cooked_perfect():Void {
+	public static function on_cooked_perfect():Void
+	{
 		// Earn a medal, if applicable.
+
+		trace("YA DID IT MAN! YA DID IT!");
 		Main.ng_api.medal_popup(Main.ng_api.medals.get("golden-marshmallow"));
 
 		final GOLDEN_MARSHMALLOWS_SCOREBOARD:Int = 14324;
