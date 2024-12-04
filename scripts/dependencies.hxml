@@ -12,6 +12,7 @@
 --library json2object
 --library hxjsonast
 --library newgrounds:2.0.3
+--library datetime
 
 --library deepnightLibs:git:https://github.com/EliteMasterEric/deepnightLibs#bugfix/achievement
 
