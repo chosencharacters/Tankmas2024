@@ -1,5 +1,6 @@
 package net.tankmas;
 
+import openfl.events.EventDispatcher;
 import net.tankmas.NetDefs.NetEventType;
 import net.tankmas.NetDefs.GenerateBasicAuthHeader;
 import http.HttpRequest;
@@ -23,6 +24,9 @@ enum abstract WebsocketEventType(Int)
 
 	// Called when player disconnects or leaves the room.
 	var PlayerLeft = 4;
+
+	// Received when the server broadcasts a message.
+	var NotificationMessage = 12;
 }
 
 typedef WebsocketEvent =
@@ -38,9 +42,9 @@ typedef WebsocketEvent =
 	?username:String,
 }
 
-class WebsocketClient
+class WebsocketClient extends EventDispatcher
 {
-	static var address:String = #if test_local 'ws://127.0.0.1:5000' #else "wss://tankmas.kornesjo.se:25567" #end;
+	static var address:String = #if test_local 'ws://127.0.0.1:5000' #elseif host_address haxe.macro.Compiler.getDefine("socket_address") #else "wss://tankmas.kornesjo.se:25567" #end;
 
 	#if websocket
 	var socket:WebSocket;
@@ -204,6 +208,16 @@ class WebsocketClient
 								username: event.username,
 							}
 							PlayState.self.on_net_event_received(net_event);
+						}
+
+						if (event.type == NotificationMessage)
+						{
+							var message_data:
+								{
+									?text:String,
+									?persistent:Bool
+								} = event.data;
+							if (message_data != null) {}
 						}
 					}
 				default:
