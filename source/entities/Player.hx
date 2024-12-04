@@ -54,14 +54,7 @@ class Player extends BaseUser
 		if (costume == null)
 			costume = JsonData.get_costume("tankman");
 
-		if (PlayState.self.latest_player_position != null)
-		{
-			last_update_json = PlayState.self.latest_player_position;
-			x = last_update_json.x;
-			y = last_update_json.y;
-		}
-		else
-			last_update_json = {username: username};
+		last_update_json = {username: username};
 
 		type = "player";
 

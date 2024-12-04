@@ -42,7 +42,7 @@ typedef WebsocketEvent =
 
 class WebsocketClient
 {
-	static var address:String = #if test_local 'ws://127.0.0.1:8000' #else "wss://tankmas.kornesjo.se:25567" #end;
+	static var address:String = #if test_local 'ws://127.0.0.1:5000' #else "wss://tankmas.kornesjo.se:25567" #end;
 
 	#if websocket
 	var socket:WebSocket;
@@ -51,9 +51,6 @@ class WebsocketClient
 	var connected = false;
 	var username:String = null;
 	var session_id:String = null;
-
-	// When the user connects, they'll get an intial room/position.
-	var loaded_user_position:Bool = false;
 
 	var connection_retries = 0;
 	var max_connection_retries = 10;
@@ -125,6 +122,7 @@ class WebsocketClient
 
 	function on_error(_err)
 	{
+		trace(_err);
 		#if websocket
 		start_reconnection();
 		#end
@@ -185,13 +183,7 @@ class WebsocketClient
 						{
 							var d:NetUserDef = event.data;
 							if (d.username == Main.username)
-							{
-								if (d.immediate)
-								{
-									loaded_user_position = true;
-									PlayState.self.latest_player_position = d;
-								}
-							}
+								continue;
 							OnlineLoop.update_user_visual(d.username, d);
 						}
 
@@ -299,9 +291,6 @@ class WebsocketClient
 
 	public function send_player(player:NetUserDef)
 	{
-		if (!loaded_user_position)
-			return;
-
 		send({
 			type: WebsocketEventType.PlayerStateUpdate,
 			data: player,
@@ -310,8 +299,6 @@ class WebsocketClient
 
 	public function send_event(type:String, data:Dynamic = null, immediate = false)
 	{
-		if (!loaded_user_position)
-			return;
 		send({
 			type: WebsocketEventType.CustomEvent,
 			name: type,

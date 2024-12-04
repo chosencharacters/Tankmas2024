@@ -35,7 +35,6 @@ class PlayState extends BaseState
 	static final default_world:String = "outside_hotel";
 
 	public var current_room_id = 1;
-	public var latest_player_position:NetUserDef;
 
 	var current_world:String;
 

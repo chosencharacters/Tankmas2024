@@ -12,7 +12,7 @@ import data.TimeManager;
 
 class Main extends Sprite
 {
-	public static var username:String = #if username haxe.macro.Compiler.getDefine("username") #elseif random_username 'poop_${Math.random()}' #else "lost soul" #end;
+	public static var username:String = #if username haxe.macro.Compiler.getDefine("username") #elseif random_username 'poop_${Math.random()}' #else "lost_soul" #end;
 
 	public static var current_room_id:String = "1";
 
