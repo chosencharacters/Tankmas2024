@@ -29,6 +29,13 @@
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
+	<section if="release">
+		<haxedef name="no_radio" />
+		<haxedef name="trace_net" />
+		<haxedef name="newgrounds" />
+		<haxedef name="websocket" />
+	</section>
+
 	<set name="BUILD_DIR" value="export" />
 	<source path="source" />
 
