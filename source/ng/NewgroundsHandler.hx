@@ -159,6 +159,7 @@ class NewgroundsHandler
 		NG_SESSION_ID = NGLite.getSessionId();
 
 		Main.username = NG_USERNAME;
+		Main.session_id = NG_SESSION_ID;
 
 		trace('logged in! user:${NG_USERNAME} session: ${NG_SESSION_ID}');
 

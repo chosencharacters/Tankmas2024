@@ -94,6 +94,8 @@ class PlayState extends BaseState
 
 		OnlineLoop.init();
 
+		SaveManager.load(on_save_loaded);
+
 		premieres = new PremiereHandler();
 
 		bgColor = FlxColor.BLACK;
@@ -157,22 +159,11 @@ class PlayState extends BaseState
 			mem.checkOpen();
 
 		SaveManager.save_room();
-
-		// Check if player exists, and load their position.
-		// A bit jank now since it does it after the player is spawned.
-		// Also this could be loaded in the user's save file instead
-		#if (!offline)
-		TankmasClient.get_user(Main.username, player_loaded);
-		#end
 	}
 
-	function player_loaded(?p:NetUserDef)
+	function on_save_loaded()
 	{
-		if (p != null)
-		{
-			// player.x = p.x;
-			// player.y = p.y;
-		}
+		player.on_save_loaded();
 	}
 
 	override public function update(elapsed:Float)
@@ -189,7 +180,7 @@ class PlayState extends BaseState
 			FlxG.switchState(new PlayState());
 
 		if (Ctrl.reset[1] && FlxG.keys.pressed.SHIFT)
-			SaveManager.upload();
+			SaveManager.save();
 		#end
 
 		if (Ctrl.mode.can_open_menus)

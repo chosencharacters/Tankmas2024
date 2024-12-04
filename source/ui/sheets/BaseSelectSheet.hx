@@ -212,7 +212,10 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	function update_locked_selection_overlay()
 	{
-		var target:FlxSpriteExt = characterSpritesArray[locked_sheet].members[locked_selection];
+		var character_sprite = characterSpritesArray[locked_sheet];
+		if (character_sprite == null)
+			return;
+		var target:FlxSpriteExt = character_sprite.members[locked_selection];
 
 		if (target == null)
 			return;
