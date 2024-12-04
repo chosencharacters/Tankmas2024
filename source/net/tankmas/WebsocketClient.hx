@@ -108,8 +108,10 @@ class WebsocketClient
 
 		try
 		{
-			var auth = GenerateBasicAuthHeader(username, session_id);
-			socket = new WebSocket(address, true, ["Authorization" => auth]);
+			// var auth = GenerateBasicAuthHeader(username, session_id);
+			// /socket = new WebSocket(address, true, ["Authorization" => auth]);
+			var url = '${address}?username=${username}&session=${session_id}';
+			socket = new WebSocket(url);
 			socket.onmessage = on_message;
 			socket.onopen = on_connect;
 			socket.onerror = on_error;
