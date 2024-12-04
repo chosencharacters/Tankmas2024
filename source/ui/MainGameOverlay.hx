@@ -130,7 +130,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 									}
 									catch (e)
 									{
-										trace(e);
+										trace(e, e.stack);
 									}
 									twen = null;
 								}

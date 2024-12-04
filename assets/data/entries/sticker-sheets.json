@@ -45,40 +45,122 @@
             "graphic": "emotes-back-blue",
             "items": [
                 {
-                    "name": "common-tamago"
+                    "name": "cashy-peace"
                 },
                 {
-                    "name": "toasty-warm"
+                    "name": "slimy-tankmas-sticker"
                 },
                 {
-                    "name": "edd-sticker"
+                    "name": "alien-sticker"
                 },
                 {
-                    "name": "mustard"
+                    "name": "liv-sticker"
                 },
                 {
-                    "name": "pink-kight-mondo"
+                    "name": "smug-bastard"
                 },
                 {
-                    "name": "tappy-sticker"
+                    "name": "bellvonartsy-sticker"
                 },
                 {
-                    "name": "son-christmas"
+                    "name": "ena-blitzilla"
                 },
                 {
-                    "name": "sick-skull"
+                    "name": "olive-tankmas"
                 },
                 {
-                    "name": "slashe-wave"
+                    "name": "questioning-you"
                 },
                 {
-                    "name": "gimme-five"
+                    "name": "sticker-doodle"
                 },
                 {
-                    "name": "john-sticker"
+                    "name": "shepherd-wat"
                 },
                 {
-                    "name": "pico-sticker-swag"
+                    "name": "advent-collab-sticker"
+                }
+            ]
+        },
+        {
+            "graphic": "emotes-back-green",
+            "items": [
+                {
+                    "name": "sock-on-lemons"
+                },
+                {
+                    "name": "ilho-gift"
+                },
+                {
+                    "name": "sticker-rolus"
+                },
+                {
+                    "name": "peck"
+                },
+                {
+                    "name": "chilly-trudy"
+                },
+                {
+                    "name": "chunks-rawr"
+                },
+                {
+                    "name": "why-coal"
+                },
+                {
+                    "name": "meat"
+                },
+                {
+                    "name": "sticker-psyca"
+                },
+                {
+                    "name": "the-creature"
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                }
+            ]
+        },
+        {
+            "graphic": "emotes-back-pink",
+            "items": [
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
                 }
             ]
         }

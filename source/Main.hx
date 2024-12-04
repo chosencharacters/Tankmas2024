@@ -24,7 +24,7 @@ class Main extends Sprite
 	public static var ng_api:NewgroundsHandler;
 	#end
 
-	public static var default_sticker_collection:Array<String> = ["common-tamago"];
+	public static var default_sticker_collection:Array<String> = ["common-tamago", "ilho-gift"];
 	public static var default_sticker:String = "common-tamago";
 
 	public static var default_costume_collection:Array<String> = ["tankman", "paco"];

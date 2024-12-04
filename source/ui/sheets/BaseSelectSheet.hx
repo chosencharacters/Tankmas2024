@@ -104,8 +104,13 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 				if (type == STICKER)
 				{
 					final sticker:StickerDef = data.JsonData.get_sticker(identity.name);
+
+					if (sticker == null)
+						continue;
+
 					if (!data.JsonData.check_for_unlock_sticker(sticker))
 						continue;
+
 					sprite.loadGraphic(Paths.get('${sticker.name}.png'));
 				}
 				else
