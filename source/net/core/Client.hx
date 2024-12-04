@@ -25,7 +25,7 @@ class Client
 	 * @param url target url
 	 * @param on_data return function on success
 	 */
-	public static function get(url:String, ?on_data:Dynamic->Void)
+	public static function get(url:String, ?on_data:Dynamic->Void, ?on_error:HttpError->Void)
 	{
 		#if trace_net
 		trace('GET <- $url');
@@ -40,7 +40,9 @@ class Client
 		}, (error:HttpError) ->
 			{
 				trace('GET ERROR @ $url');
-				on_error(error);
+				if (on_error != null)
+					on_error(error);
+				Client.on_error(error);
 			});
 	}
 

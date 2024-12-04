@@ -1,5 +1,6 @@
 package net.tankmas;
 
+import http.HttpError;
 import net.core.Client;
 import net.tankmas.NetDefs;
 #if websocket
@@ -46,10 +47,10 @@ class TankmasClient
 		Client.post(url, event, on_complete);
 	}
 
-	public static function get_save(?on_complete:Dynamic->Void)
+	public static function get_save(?on_complete:Dynamic->Void, ?on_error:HttpError->Void)
 	{
 		var url:String = '$address/saves';
-		Client.get(url, on_complete);
+		Client.get(url, on_complete, on_error);
 	}
 
 	public static function post_save(save:String, ?on_complete:Dynamic->Void)

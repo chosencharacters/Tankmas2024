@@ -77,7 +77,7 @@ class PlayState extends BaseState
 	public var premieres:PremiereHandler;
 
 	// No idea how I could get this into the overlay ui
-	public var notification_message:ServerNotificationMessagePopup = new ServerNotificationMessagePopup();
+	public var notification_message:ServerNotificationMessagePopup;
 
 	public function new(?world_to_load:String)
 	{
@@ -98,7 +98,11 @@ class PlayState extends BaseState
 
 		OnlineLoop.init();
 
-		SaveManager.load(on_save_loaded);
+		SaveManager.load(on_save_loaded, () ->
+		{
+			// Save failed to load, give player control anyway.
+			on_save_loaded();
+		});
 
 		premieres = new PremiereHandler();
 
@@ -135,6 +139,7 @@ class PlayState extends BaseState
 
 		add(ui_overlay);
 
+		notification_message = new ServerNotificationMessagePopup();
 		add(notification_message);
 
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));

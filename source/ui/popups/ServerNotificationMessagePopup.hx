@@ -3,7 +3,7 @@ package ui.popups;
 import flixel.tweens.FlxEase;
 import flixel.group.FlxContainer.FlxTypedContainer;
 
-class ServerNotificationMessagePopup extends FlxTypedGroup<FlxObject>
+class ServerNotificationMessagePopup extends FlxTypedGroup<FlxText>
 {
 	final notification_message_duration = 8.0;
 
@@ -19,14 +19,17 @@ class ServerNotificationMessagePopup extends FlxTypedGroup<FlxObject>
 
 	public function new()
 	{
-		super();
-		text_object = new FlxText(40, 40, 0, null, 40,);
-		text_object.setFormat(null, 40, 0xffd8d8ff, "left", FlxTextBorderStyle.OUTLINE, 0xFF16122C);
-		text_object.shadowOffset.set(1, 1);
-		text_object.borderSize = 4;
+		super(10);
+
+		text_object = new FlxText(40, 40, 0, '', 40);
+		// text_object.color.setRGB(140, 140, 140);
+		// text_object.setFormat(, 40, 0xff3d4880); // , "left", FlxTextBorderStyle.OUTLINE, 0xFF16122C);
+		// text_object.shadowOffset.set(1, 1);
+		// text_object.borderSize = 4;
+
+		text_object.scrollFactor.set(0, 0);
 
 		add(text_object);
-		text_object.scrollFactor.set(0, 0);
 	}
 
 	public function show(text:String, persistent = false)
@@ -56,11 +59,17 @@ class ServerNotificationMessagePopup extends FlxTypedGroup<FlxObject>
 	{
 		if (state != ACTIVE)
 			return;
+
 		state = FADING_OUT;
 
 		if (current_tween != null)
 			current_tween.cancel();
 		current_tween = FlxTween.tween(text_object, {alpha: 0.0}, 0.45, {ease: FlxEase.circOut, onComplete: finish_fadeout});
+	}
+
+	override function draw()
+	{
+		super.draw();
 	}
 
 	function finish_fadeout(_cb)

@@ -1,5 +1,6 @@
 package data;
 
+import http.HttpError;
 import entities.Player;
 import net.tankmas.TankmasClient;
 import ui.sheets.CostumeSelectSheet;
@@ -27,7 +28,6 @@ class SaveManager
 
 	public static var state:SaveManagerState = Initial;
 
-	public static var on_save_loaded:() -> Void = null;
 	public static var on_save_stored:() -> Void = null;
 
 	public static var data = {
@@ -65,11 +65,6 @@ class SaveManager
 		load_room();
 
 		state = Loaded;
-
-		if (on_save_loaded != null)
-		{
-			on_save_loaded();
-		}
 	}
 
 	public static function upload()
@@ -86,14 +81,14 @@ class SaveManager
 		});
 	}
 
-	public static function load(on_complete:() -> Void = null)
+	public static function load(on_complete:() -> Void = null, ?on_fail:() -> Void)
 	{
-		on_save_loaded = on_complete;
-
 		state = Loading;
 
 		#if offline
 		finalize_load();
+		if (on_complete != null)
+			on_complete();
 		#else
 		// Download data
 		TankmasClient.get_save((data:Dynamic) ->
@@ -112,7 +107,15 @@ class SaveManager
 			}
 
 			finalize_load();
-		});
+
+			if (on_complete != null)
+				on_complete();
+		}, (error:HttpError) ->
+			{
+				if (on_fail != null)
+					on_fail();
+				trace('Failed to download save');
+			});
 		#end
 	}
 
