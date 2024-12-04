@@ -32,7 +32,7 @@ class BaseState extends FlxState
 			#if !no_radio
 			radio = new RadioManager();
 			#else
-			SoundPlayer.music('christmasjoy-realtin3sn.ogg');
+			SoundPlayer.music('christmasjoy-realtin3sn');
 			#end
 
 			#if !no_fade

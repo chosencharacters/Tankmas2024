@@ -1,7 +1,5 @@
 package states;
 
-import net.tankmas.NetDefs.NetEventType;
-import net.tankmas.NetDefs.NetEventDef;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -16,6 +14,8 @@ import fx.StickerFX;
 import fx.Thumbnail;
 import levels.TankmasLevel;
 import minigames.MinigameHandler;
+import net.tankmas.NetDefs.NetEventDef;
+import net.tankmas.NetDefs.NetEventType;
 import net.tankmas.NetDefs.NetUserDef;
 import net.tankmas.OnlineLoop;
 import net.tankmas.TankmasClient;

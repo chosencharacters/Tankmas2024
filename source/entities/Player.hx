@@ -26,6 +26,10 @@ class Player extends BaseUser
 	var auto_move_dest:FlxPoint;
 	final auto_move_deadzone:Int = 32;
 
+	var wavedash_cd:Int = 0;
+
+	var prev_velocity:FlxPoint = new FlxPoint();
+
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y, Main.username);
@@ -90,8 +94,25 @@ class Player extends BaseUser
 		/**if (Main.DEV && Ctrl.any(Ctrl.menu))
 			debug_rotate_costumes();**/
 
+		if (wavedash_cd > 0)
+			wavedash_cd--;
+
 		fsm();
 		super.update(elapsed);
+	}
+
+	override function updateMotion(elapsed:Float)
+	{
+		if (prev_velocity.x > 0 && velocity.x < 0 || prev_velocity.x < 0 && velocity.x > 0)
+		{
+			if (wavedash_cd < 300)
+				wavedash_cd += 35;
+			if (wavedash_cd >= 150)
+				SoundPlayer.alt_sound("controller", true, ["controller-1", "controller-2", "controller-3", "controller-4"]);
+		}
+		prev_velocity.copyFrom(velocity);
+
+		super.updateMotion(elapsed);
 	}
 
 	function fsm()

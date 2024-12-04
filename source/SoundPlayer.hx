@@ -22,7 +22,10 @@ class SoundPlayer
 	public static function music(music_asset:String, vol:Float = 1)
 	{
 		music_asset = music_asset.replace(".ogg", "");
+		trace(MUSIC_VOLUME);
 		FlxG.sound.playMusic(Paths.get('${music_asset}.ogg'), MUSIC_VOLUME * vol);
+		FlxG.sound.music.persist = true;
+		trace(FlxG.sound.music);
 		return FlxG.sound.music;
 	}
 
