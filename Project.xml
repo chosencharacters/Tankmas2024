@@ -42,20 +42,26 @@
 	<source path="source" />
 
 	<section if="hl||cpp">
-		<assets path="assets" embed="false" exclude="*.gif"/>
+		<assets path="assets" embed="false" exclude="*.gif|*.mp3"/>
+
+		<assets path="assets/music" preload="false" exclude="*.gif|*.mp3" />
+		<assets path="assets/art" preload="false" exclude="*.gif|*.mp3" />
+		<assets path="assets/videos" preload="false" exclude="*.gif|*.mp3" />
 	</section>
 
 	<section if="js||html5">
-		<assets path="assets" embed="true" exclude="*.gif"/>
+		<assets path="assets" embed="true" exclude="*.gif|*.ogg"/>
+
+		<assets path="assets/music" preload="false" exclude="*.gif|*.ogg" />
+		<assets path="assets/art" preload="false" exclude="*.gif|*.ogg" />
+		<assets path="assets/videos" preload="false" exclude="*.gif|*.ogg" />
 	</section>
 
 	<section if="offline">
 		<haxedef name="ghost_town" />
 	</section>
 
-	<assets path="assets/music" preload="false" />
-	<assets path="assets/art" preload="false" />
-	<assets path="assets/videos" preload="false" />
+
 
 	<!-- _______________________________ Libraries ______________________________ -->
 

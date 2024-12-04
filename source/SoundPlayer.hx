@@ -10,20 +10,26 @@ class SoundPlayer
 
 	static var ran:FlxRandom;
 
+	#if html5
+	public static final SOUND_EXT:String = ".mp3";
+	#else
+	public static final SOUND_EXT:String = ".ogg";
+	#end
+
 	public static function init() {}
 
 	public static function sound(sound_asset:String, vol:Float = 1):FlxSound
 	{
-		sound_asset = sound_asset.replace(".ogg", "");
-		var return_sound:FlxSound = FlxG.sound.play(Paths.get('${sound_asset}.ogg'), SOUND_VOLUME * vol);
+		sound_asset = sound_asset.replace('.ogg', "");
+		var return_sound:FlxSound = FlxG.sound.play(Paths.get('${sound_asset}${SOUND_EXT}'), SOUND_VOLUME * vol);
 		return return_sound;
 	}
 
 	public static function music(music_asset:String, vol:Float = 1)
 	{
-		music_asset = music_asset.replace(".ogg", "");
+		music_asset = music_asset.replace('.ogg', "");
 		trace(MUSIC_VOLUME);
-		FlxG.sound.playMusic(Paths.get('${music_asset}.ogg'), MUSIC_VOLUME * vol);
+		FlxG.sound.playMusic(Paths.get('${music_asset}${SOUND_EXT}'), MUSIC_VOLUME * vol);
 		FlxG.sound.music.persist = true;
 		trace(FlxG.sound.music);
 		return FlxG.sound.music;
