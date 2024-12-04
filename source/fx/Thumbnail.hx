@@ -6,8 +6,8 @@ import flixel.tweens.FlxEase;
 
 class Thumbnail extends FlxSpriteExt
 {
-    public static var OPEN_TIME:Float = 0.5;
-    public static var CLOSE_TIME:Float = 0.5;
+	public static var OPEN_TIME:Float = 0.5;
+	public static var CLOSE_TIME:Float = 0.5;
 
 	inline static var BOB_DIS = 7;
 	inline static var BOB_PERIOD = 2.0;
@@ -19,7 +19,7 @@ class Thumbnail extends FlxSpriteExt
 
 	public function new(X:Float, Y:Float, content:FlxGraphicAsset)
 	{
-        super(X, Y, content);
+		super(X, Y, content);
 		theY = Y;
 		scale.set(0.07, 0.07);
 		updateHitbox();
@@ -36,26 +36,28 @@ class Thumbnail extends FlxSpriteExt
 		super.kill();
 	}
 
-    override function update(elapsed:Float) {
+	override function update(elapsed:Float)
+	{
 		fsm();
-        super.update(elapsed);
+		super.update(elapsed);
 		if (scale.x != 0)
 		{
 			y = theY + Math.round(FlxMath.fastCos(timer / BOB_PERIOD * Math.PI) * BOB_DIS);
 			timer += elapsed;
 		}
-    }
+	}
 
-    override function updateMotion(elapsed:Float)
-    {
-        super.updateMotion(elapsed);
-    }
-    
-    function fsm()
-        switch (cast(state, State))
-        {
-            default:
-            case OPEN:
+	public function show()
+		sstate(SHOW);
+
+	public function hide()
+		sstate(HIDE);
+
+	function fsm()
+		switch (cast(state, State))
+		{
+			default:
+			case SHOW:
 				if (scale.x == 0)
 					FlxTween.tween(this.scale, {x: scaleX}, OPEN_TIME, {
 						ease: FlxEase.elasticInOut,
@@ -64,7 +66,7 @@ class Thumbnail extends FlxSpriteExt
 							sstate(IDLE);
 						}
 					});
-            case CLOSE:
+			case HIDE:
 				if (scale.x == scaleX)
 					FlxTween.tween(this.scale, {x: 0}, CLOSE_TIME, {
 						ease: FlxEase.elasticInOut,
@@ -74,13 +76,12 @@ class Thumbnail extends FlxSpriteExt
 							timer = 0;
 						}
 					});
-        }
+		}
 }
-    
+
 private enum abstract State(String) from String to String
 {
 	final IDLE;
-	final OPEN;
-	final CLOSE;
+	final SHOW;
+	final HIDE;
 }
-        

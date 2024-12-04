@@ -30,9 +30,12 @@ class Present extends Interactable
 
 	var def:PresentDef;
 
+	var time_activated(get, never):Bool;
+
 	public function new(?X:Float, ?Y:Float, ?content:String = 'thedyingsun')
 	{
 		super(X, Y);
+		trace("new gift");
 		detect_range = 300;
 		this.content = content;
 
@@ -58,13 +61,17 @@ class Present extends Interactable
 		thumbnail.color = FlxColor.BLACK;
 		#end
 
-		update_present_visible();
+		update_present_visibility();
 	}
 
-	public function update_present_visible()
+	function update_present_visibility()
 	{
-		visible = Main.time.date >= def.day;
+		visible = time_activated;
+		interactable = visible;
 	}
+
+	function get_time_activated():Bool
+		return Main.time.day >= def.day;
 
 	override function kill()
 	{
@@ -90,7 +97,8 @@ class Present extends Interactable
 
 	override function update(elapsed:Float)
 	{
-		update_present_visible();
+		update_present_visibility();
+
 		fsm();
 		super.update(elapsed);
 	}
@@ -128,9 +136,9 @@ class Present extends Interactable
 			return;
 
 		if (mark)
-			thumbnail.sstate("OPEN");
+			thumbnail.show();
 		else if (!mark)
-			thumbnail.sstate("CLOSE");
+			thumbnail.hide();
 	}
 
 	override function updateMotion(elapsed:Float)

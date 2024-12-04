@@ -63,6 +63,7 @@
 	<haxelib name="gif" if="gif"/>
 	<haxelib name="json2object" />
 	<haxelib name="ldtk-haxe-api"/>
+	<haxelib name="datetime" />
 
 	<!--Follow instructions in scripts! This needs core-haxe-->
 	<haxelib name="http" />
