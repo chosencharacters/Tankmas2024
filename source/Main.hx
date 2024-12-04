@@ -1,14 +1,18 @@
 package;
 
-import data.TimeManager;
 import Paths.Manifest;
+import data.TimeManager;
+import data.TimeManager;
 import data.loaders.NPCLoader;
 import flixel.FlxGame;
+import flixel.FlxState;
+import flixel.util.typeLimit.NextState.InitialState;
 import levels.LdtkProject;
 import openfl.display.Sprite;
-import utils.CrashHandler;
-import data.TimeManager;
+import states.*;
+import states.debug.*;
 #if newgrounds import ng.NewgroundsHandler; #end
+import utils.CrashHandler;
 
 class Main extends Sprite
 {
@@ -38,6 +42,8 @@ class Main extends Sprite
 
 	public static var time:TimeManager = new TimeManager();
 
+	public static var initial_state(get, never):InitialState;
+
 	public static function main():Void
 	{
 		// We need to make the crash handler LITERALLY FIRST so nothing EVER gets past it.
@@ -62,7 +68,7 @@ class Main extends Sprite
 			username = 'temporary_random_username_${Math.random()}';
 		}
 		#end
-		addChild(new FlxGame(1920, 1080, PlayState, true));
+		addChild(new FlxGame(1920, 1080, initial_state, true));
 	}
 
 	public static function get_current_bg(day:Int):Int
@@ -81,5 +87,13 @@ class Main extends Sprite
 		#else
 		on_logged_in();
 		#end
+	}
+
+	static function get_initial_state():InitialState
+	{
+		#if debug_menu
+		return DebugMenuState;
+		#end
+		return PlayState;
 	}
 }
