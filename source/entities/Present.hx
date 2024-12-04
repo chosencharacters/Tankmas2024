@@ -35,7 +35,6 @@ class Present extends Interactable
 	public function new(?X:Float, ?Y:Float, ?content:String = 'thedyingsun')
 	{
 		super(X, Y);
-		trace("new gift");
 		detect_range = 300;
 		this.content = content;
 
@@ -62,6 +61,8 @@ class Present extends Interactable
 		#end
 
 		update_present_visibility();
+
+		trace(Main.time.day >= def.day, Main.time.day, def.day, visible);
 	}
 
 	function update_present_visibility()
