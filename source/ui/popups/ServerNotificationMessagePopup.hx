@@ -20,8 +20,13 @@ class ServerNotificationMessagePopup extends FlxTypedGroup<FlxObject>
 	public function new()
 	{
 		super();
-		text_object = new FlxText(40, 40, 0, null, 40);
+		text_object = new FlxText(40, 40, 0, null, 40,);
+		text_object.setFormat(null, 40, 0xffd8d8ff, "left", FlxTextBorderStyle.OUTLINE, 0xFF16122C);
+		text_object.shadowOffset.set(1, 1);
+		text_object.borderSize = 4;
+
 		add(text_object);
+		text_object.scrollFactor.set(0, 0);
 	}
 
 	public function show(text:String, persistent = false)
@@ -36,13 +41,15 @@ class ServerNotificationMessagePopup extends FlxTypedGroup<FlxObject>
 
 		text_object.text = text;
 
+		var text_y = FlxG.height * 0.3;
+
 		text_object.alpha = 0.0;
-		text_object.x = FlxG.width * 0.5;
-		text_object.y = FlxG.height * 0.4 - 8;
+		text_object.x = Math.round((FlxG.width - text_object.width) * 0.5);
+		text_object.y = text_y - 12;
 
 		if (current_tween != null)
 			current_tween.cancel();
-		current_tween = FlxTween.tween(text_object, {alpha: 1.0, y: FlxG.height * 0.4}, 0.45, {ease: FlxEase.circOut});
+		current_tween = FlxTween.tween(text_object, {alpha: 1.0, y: Math.round(text_y)}, 0.35, {ease: FlxEase.elasticOut});
 	}
 
 	public function hide()

@@ -170,7 +170,6 @@ class PlayState extends BaseState
 	function on_save_loaded()
 	{
 		player.on_save_loaded();
-		notification_message.show("Loaded save !");
 	}
 
 	override public function update(elapsed:Float)
@@ -190,7 +189,7 @@ class PlayState extends BaseState
 			SaveManager.save();
 
 		if (FlxG.keys.justPressed.N)
-			notification_message.show("I'm a test notification message and\n  I have no idea how to not follow the camera");
+			notification_message.show("I'm a test notification message and\n  I just want to say hi :)");
 		#end
 
 		if (Ctrl.mode.can_open_menus)
