@@ -14,7 +14,10 @@ class Client
 		if (client == null)
 		{
 			client = new HttpClient();
-			client.defaultRequestHeaders = ["Content-Type" => "application/json"];
+			client.defaultRequestHeaders = [
+				"Content-Type" => "application/json",
+				"Access-Control-Allow-Origin" => "*",
+			];
 		}
 		return client;
 	}
