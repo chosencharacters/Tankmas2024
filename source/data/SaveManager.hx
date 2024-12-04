@@ -5,6 +5,13 @@ import net.tankmas.TankmasClient;
 import ui.sheets.CostumeSelectSheet;
 import ui.sheets.StickerSelectSheet;
 
+enum SaveManagerState
+{
+	Initial;
+	Loading;
+	Loaded;
+}
+
 class SaveManager
 {
 	public static var savedPresents:Array<String> = [];
@@ -18,18 +25,27 @@ class SaveManager
 	public static var current_costume(default, default):String;
 	public static var current_emote(default, default):String;
 
+	public static var state:SaveManagerState = Initial;
+
+	public static var on_save_loaded:() -> Void = null;
+	public static var on_save_stored:() -> Void = null;
+
+	public static var data = {
+		saved_room: Main.default_room,
+	}
+
 	public static function init()
 	{
-		#if !offline
-		download();
-		#end
-
+		state = Initial;
 		savedRoom = Main.default_room;
 		saved_sticker_collection = Main.default_sticker_collection;
 		saved_costume_collection = Main.default_costume_collection;
 		current_emote = Main.default_sticker;
 		current_costume = Main.default_costume;
+	}
 
+	static function finalize_load()
+	{
 		// opened presents
 		load_presents();
 
@@ -47,6 +63,13 @@ class SaveManager
 
 		// loads current room
 		load_room();
+
+		state = Loaded;
+
+		if (on_save_loaded != null)
+		{
+			on_save_loaded();
+		}
 	}
 
 	public static function upload()
@@ -54,21 +77,26 @@ class SaveManager
 		// Serialize data
 		var encodedData = haxe.Serializer.run(FlxG.save.data);
 
-		var username = #if newgrounds Main.ng_api.NG_USERNAME #elseif username haxe.macro.Compiler.getDefine("username") #else "test_user" #end;
-
 		// Upload data
-		TankmasClient.post_save(username, encodedData, (data:Dynamic) ->
+		TankmasClient.post_save(encodedData, (data:Dynamic) ->
 		{
 			trace("Successfully uploaded save data.");
+			if (on_save_stored != null)
+				on_save_stored();
 		});
 	}
 
-	public static function download()
+	public static function load(on_complete:() -> Void = null)
 	{
-		var username = #if newgrounds Main.ng_api.NG_USERNAME #elseif username haxe.macro.Compiler.getDefine("username") #else "test_user" #end;
+		on_save_loaded = on_complete;
 
+		state = Loading;
+
+		#if offline
+		finalize_load();
+		#else
 		// Download data
-		TankmasClient.get_save(username, (data:Dynamic) ->
+		TankmasClient.get_save((data:Dynamic) ->
 		{
 			trace("Successfully downloaded save data.");
 
@@ -82,7 +110,10 @@ class SaveManager
 				trace(data);
 				FlxG.save.mergeData(data, true);
 			}
+
+			finalize_load();
 		});
+		#end
 	}
 
 	public static function save()
@@ -167,8 +198,7 @@ class SaveManager
 			save_costumes(true);
 		}
 		savedCostumes = FlxG.save.data.savedCostumes;
-		if (FlxG.save.data.currentCostume != null && PlayState.self != null)
-			PlayState.self.player.new_costume(JsonData.get_costume(FlxG.save.data.currentCostume));
+		current_costume = FlxG.save.data.currentCostume;
 		CostumeSelectSheet.saved_sheet = FlxG.save.data.savedCostumeSheet != null ? FlxG.save.data.savedCostumeSheet : 0;
 		CostumeSelectSheet.saved_selection = FlxG.save.data.savedCostumeSelect != null ? FlxG.save.data.savedCostumeSelect : 0;
 		CostumeSelectSheet.seenCostumes = FlxG.save.data.seenCostumes != null ? FlxG.save.data.seenCostumes : [];

@@ -1,5 +1,6 @@
 package states;
 
+import ui.popups.ServerNotificationMessagePopup;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -75,6 +76,9 @@ class PlayState extends BaseState
 
 	public var premieres:PremiereHandler;
 
+	// No idea how I could get this into the overlay ui
+	public var notification_message:ServerNotificationMessagePopup = new ServerNotificationMessagePopup();
+
 	public function new(?world_to_load:String)
 	{
 		if (world_to_load != null)
@@ -93,6 +97,8 @@ class PlayState extends BaseState
 		self = this;
 
 		OnlineLoop.init();
+
+		SaveManager.load(on_save_loaded);
 
 		premieres = new PremiereHandler();
 
@@ -129,6 +135,8 @@ class PlayState extends BaseState
 
 		add(ui_overlay);
 
+		add(notification_message);
+
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
 		MinigameHandler.instance.initialize();
@@ -157,22 +165,11 @@ class PlayState extends BaseState
 			mem.checkOpen();
 
 		SaveManager.save_room();
-
-		// Check if player exists, and load their position.
-		// A bit jank now since it does it after the player is spawned.
-		// Also this could be loaded in the user's save file instead
-		#if (!offline)
-		TankmasClient.get_user(Main.username, player_loaded);
-		#end
 	}
 
-	function player_loaded(?p:NetUserDef)
+	function on_save_loaded()
 	{
-		if (p != null)
-		{
-			// player.x = p.x;
-			// player.y = p.y;
-		}
+		player.on_save_loaded();
 	}
 
 	override public function update(elapsed:Float)
@@ -189,7 +186,10 @@ class PlayState extends BaseState
 			FlxG.switchState(new PlayState());
 
 		if (Ctrl.reset[1] && FlxG.keys.pressed.SHIFT)
-			SaveManager.upload();
+			SaveManager.save();
+
+		if (FlxG.keys.justPressed.N)
+			notification_message.show("I'm a test notification message and\n  I just want to say hi :)");
 		#end
 
 		if (Ctrl.mode.can_open_menus)

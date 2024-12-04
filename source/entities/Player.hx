@@ -50,10 +50,6 @@ class Player extends BaseUser
 			#end
 		 */
 
-		costume = JsonData.get_costume(SaveManager.current_costume);
-		if (costume == null)
-			costume = JsonData.get_costume("tankman");
-
 		last_update_json = {username: username};
 
 		type = "player";
@@ -61,6 +57,22 @@ class Player extends BaseUser
 		PlayState.self.player = this;
 
 		sprite_anim.anim(PlayerAnimation.MOVING);
+
+		sstate(INITIALIZING);
+	}
+
+	// Called once the save data is up to date after fetching it from the server.
+	public function on_save_loaded()
+	{
+		var saved_costume_name = SaveManager.current_costume;
+		var costume = JsonData.get_costume(saved_costume_name);
+		if (costume == null)
+			costume = JsonData.get_costume("tankman");
+
+		new_costume(costume);
+
+		// We have loaded player data. Send full player state to server.
+		OnlineLoop.send_player_state(true);
 
 		sstate(NEUTRAL);
 	}
@@ -115,6 +127,7 @@ class Player extends BaseUser
 				general_movement();
 				process_activity_area();
 				detect_interactables();
+			case INITIALIZING:
 			case JUMPING:
 			case EMOTING:
 		}
@@ -289,7 +302,7 @@ class Player extends BaseUser
 		var sticker_got_used:Bool = super.use_sticker(sticker_name);
 		#if !offline
 		if (sticker_got_used)
-			OnlineLoop.post_sticker(Main.current_room_id, sticker_name);
+			OnlineLoop.post_sticker(sticker_name);
 		#end
 		return sticker_got_used;
 	}
@@ -297,6 +310,12 @@ class Player extends BaseUser
 	public function get_user_update_json(force_send_full_user:Bool = false):NetUserDef
 	{
 		var def:NetUserDef = {username: username, room_id: PlayState.self.current_room_id};
+
+		// Don't send state updates until the player's save data has been loaded
+		if (SaveManager.state != Loaded)
+		{
+			return def;
+		}
 
 		var new_sx = flipX ? -1 : 1;
 		if (last_update_json.x != x.floor() || force_send_full_user)
@@ -325,6 +344,7 @@ class Player extends BaseUser
 
 private enum abstract State(String) from String to String
 {
+	final INITIALIZING;
 	final NEUTRAL;
 	final JUMPING;
 	final EMOTING;

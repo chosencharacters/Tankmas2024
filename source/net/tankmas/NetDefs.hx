@@ -1,5 +1,7 @@
 package net.tankmas;
 
+import haxe.crypto.Base64;
+
 typedef NetUserDef =
 {
 	username:String,
@@ -45,4 +47,11 @@ enum abstract NetEventType(String) from String to String
 {
 	final STICKER = "sticker";
 	final DROP_MARSHMALLOW = "drop_marshmallow";
+}
+
+function GenerateBasicAuthHeader(username:String, session_id:String)
+{
+	var merged = '${username}:${session_id}';
+	var encoded = Base64.encode(haxe.io.Bytes.ofString(merged));
+	return 'Basic $encoded';
 }

@@ -1,7 +1,10 @@
 package net.tankmas;
 
+import openfl.events.EventDispatcher;
+import net.tankmas.NetDefs.NetEventType;
+import net.tankmas.NetDefs.GenerateBasicAuthHeader;
+import http.HttpRequest;
 import net.tankmas.NetDefs.NetEventDef;
-import bunnymark.PlayState;
 import hx.ws.Types.MessageType;
 import net.tankmas.NetDefs.NetUserDef;
 import haxe.Json;
@@ -22,9 +25,8 @@ enum abstract WebsocketEventType(Int)
 	// Called when player disconnects or leaves the room.
 	var PlayerLeft = 4;
 
-	// For loading and saving an user's own save data.
-	var LoadUserData = 94;
-	var SaveUserData = 95;
+	// Received when the server broadcasts a message.
+	var NotificationMessage = 12;
 }
 
 typedef WebsocketEvent =
@@ -42,7 +44,7 @@ typedef WebsocketEvent =
 
 class WebsocketClient
 {
-	static var address:String = #if test_local 'ws://127.0.0.1:5000' #else "wss://tankmas.kornesjo.se:25567" #end;
+	static var address:String = #if host_address 'ws://${haxe.macro.Compiler.getDefine("host_address")}' #elseif test_local 'ws://127.0.0.1:5000' #else "wss://tankmas.kornesjo.se:25567" #end;
 
 	#if websocket
 	var socket:WebSocket;
@@ -53,13 +55,15 @@ class WebsocketClient
 	var session_id:String = null;
 
 	var connection_retries = 0;
-	var max_connection_retries = 10;
+	var max_connection_retries = 5;
 	var retry_connection = false;
 
-	var until_retry_s = 4.0;
-	var retry_interval = 6.0;
+	var until_retry_s = 3.0;
+	var retry_interval = 5.0;
 
 	var closed = false;
+
+	public var on_socket_timeout:() -> Void = null;
 
 	public function new()
 	{
@@ -75,9 +79,7 @@ class WebsocketClient
 		username = Main.ng_api.NG_USERNAME;
 		#end
 
-		#if (dev && test_local)
-		session_id = 'test_dev_session';
-		#end
+		session_id = Main.session_id;
 
 		if (session_id != null && username != null)
 		{
@@ -104,10 +106,10 @@ class WebsocketClient
 			return;
 		}
 
-		var url = '${address}?username=${username}&session=${session_id}';
 		try
 		{
-			socket = new WebSocket(url);
+			var auth = GenerateBasicAuthHeader(username, session_id);
+			socket = new WebSocket(address, true, ["Authorization" => auth]);
 			socket.onmessage = on_message;
 			socket.onopen = on_connect;
 			socket.onerror = on_error;
@@ -115,6 +117,7 @@ class WebsocketClient
 		}
 		catch (err)
 		{
+			trace('Could not create websocket: $err');
 			start_reconnection();
 		}
 		#end
@@ -138,10 +141,12 @@ class WebsocketClient
 		if (connection_retries > max_connection_retries)
 		{
 			trace('could not connect to socket after max retries');
+			if (on_socket_timeout != null)
+				on_socket_timeout();
 		}
 		else
 		{
-			trace('socket crashed, retry...');
+			trace('socket crashed, retry connection in a while...');
 			retry_connection = true;
 		}
 	}
@@ -204,13 +209,27 @@ class WebsocketClient
 							}
 							PlayState.self.on_net_event_received(net_event);
 						}
+
+						if (event.type == NotificationMessage)
+						{
+							var data:
+								{
+									?text:String,
+									?persistent:Bool
+								} = event.data;
+
+							if (data == null || data.text == null)
+								return;
+
+							PlayState.self.notification_message.show(data.text, data.persistent);
+						}
 					}
 				default:
 			}
 		}
 		catch (err)
 		{
-			trace(err);
+			trace(err.stack);
 		}
 	}
 
@@ -297,7 +316,7 @@ class WebsocketClient
 		});
 	}
 
-	public function send_event(type:String, data:Dynamic = null, immediate = false)
+	public function send_event(type:NetEventType, data:Dynamic = null, immediate = false)
 	{
 		send({
 			type: WebsocketEventType.CustomEvent,
