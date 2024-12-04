@@ -44,7 +44,7 @@ typedef WebsocketEvent =
 
 class WebsocketClient
 {
-	static var address:String = #if test_local 'ws://127.0.0.1:5000' #elseif host_address haxe.macro.Compiler.getDefine("socket_address") #else "wss://tankmas.kornesjo.se:25567" #end;
+	static var address:String = #if host_address 'ws://${haxe.macro.Compiler.getDefine("host_address")}' #elseif test_local 'ws://127.0.0.1:5000' #else "wss://tankmas.kornesjo.se:25567" #end;
 
 	#if websocket
 	var socket:WebSocket;
