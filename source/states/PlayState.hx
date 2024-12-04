@@ -55,8 +55,6 @@ class PlayState extends BaseState
 
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
 	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
-	public var level_foregrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
-
 	public var level_collision:FlxTypedGroup<FlxTilemap> = new FlxTypedGroup<FlxTilemap>();
 
 	/**Do not add to state*/
@@ -130,9 +128,6 @@ class PlayState extends BaseState
 		add(thumbnails);
 		add(stickers);
 		add(sticker_fx);
-
-		add(level_foregrounds);
-
 		add(dialogues);
 
 		add(doors);
