@@ -30,6 +30,8 @@
 	<!-- _____________________________ Path Settings ____________________________ -->
 
 	<section if="release">
+		<set name="newgrounds" />
+
 		<haxedef name="no_radio" />
 		<haxedef name="trace_net" />
 		<haxedef name="newgrounds" />
