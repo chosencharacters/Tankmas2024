@@ -42,7 +42,7 @@ typedef WebsocketEvent =
 	?username:String,
 }
 
-class WebsocketClient extends EventDispatcher
+class WebsocketClient
 {
 	static var address:String = #if test_local 'ws://127.0.0.1:5000' #elseif host_address haxe.macro.Compiler.getDefine("socket_address") #else "wss://tankmas.kornesjo.se:25567" #end;
 
@@ -212,12 +212,16 @@ class WebsocketClient extends EventDispatcher
 
 						if (event.type == NotificationMessage)
 						{
-							var message_data:
+							var data:
 								{
 									?text:String,
 									?persistent:Bool
 								} = event.data;
-							if (message_data != null) {}
+
+							if (data == null || data.text == null)
+								return;
+
+							PlayState.self.notification_message.show(data.text, data.persistent);
 						}
 					}
 				default:

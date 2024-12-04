@@ -65,6 +65,11 @@ class SaveManager
 		load_room();
 
 		state = Loaded;
+
+		if (on_save_loaded != null)
+		{
+			on_save_loaded();
+		}
 	}
 
 	public static function upload()
@@ -89,8 +94,6 @@ class SaveManager
 
 		#if offline
 		finalize_load();
-		if (on_save_loaded != null)
-			on_save_loaded();
 		#else
 		// Download data
 		TankmasClient.get_save((data:Dynamic) ->
@@ -109,9 +112,6 @@ class SaveManager
 			}
 
 			finalize_load();
-
-			if (on_save_loaded != null)
-				on_save_loaded();
 		});
 		#end
 	}

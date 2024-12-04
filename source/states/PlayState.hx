@@ -1,5 +1,6 @@
 package states;
 
+import ui.popups.ServerNotificationMessagePopup;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -75,6 +76,9 @@ class PlayState extends BaseState
 
 	public var premieres:PremiereHandler;
 
+	// No idea how I could get this into the overlay ui
+	public var notification_message:ServerNotificationMessagePopup = new ServerNotificationMessagePopup();
+
 	public function new(?world_to_load:String)
 	{
 		if (world_to_load != null)
@@ -131,6 +135,8 @@ class PlayState extends BaseState
 
 		add(ui_overlay);
 
+		add(notification_message);
+
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
 		MinigameHandler.instance.initialize();
@@ -164,6 +170,7 @@ class PlayState extends BaseState
 	function on_save_loaded()
 	{
 		player.on_save_loaded();
+		notification_message.show("Loaded save !");
 	}
 
 	override public function update(elapsed:Float)
@@ -181,6 +188,9 @@ class PlayState extends BaseState
 
 		if (Ctrl.reset[1] && FlxG.keys.pressed.SHIFT)
 			SaveManager.save();
+
+		if (FlxG.keys.justPressed.N)
+			notification_message.show("I'm a test notification message and\n  I have no idea how to not follow the camera");
 		#end
 
 		if (Ctrl.mode.can_open_menus)
