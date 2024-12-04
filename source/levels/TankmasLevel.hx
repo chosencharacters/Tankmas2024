@@ -40,7 +40,7 @@ class TankmasLevel extends LDTKLevel
 
 		PlayState.self.level_backgrounds.add(bg = new FlxSpriteExt(x, y, Paths.get(data.json.bgRelPath.split("/").last())));
 		if (LevelName.startsWith("hotel_courtyard"))
-			PlayState.self.level_backgrounds.add(fg = new FlxSpriteExt(x, y,
+			PlayState.self.level_foregrounds.add(fg = new FlxSpriteExt(x, y,
 				Paths.get("outside-hotel-foreground-day" + Main.get_current_bg(/**Date.now().getMonth() != 11 ? 32 : Date.now().getDate()**/ 1) + ".png")));
 
 		// col = new FlxTilemap();
