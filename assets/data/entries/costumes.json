@@ -43,11 +43,6 @@
             "unlock": "SUPPORTER"
         },
         {
-            "name": "boyfriend",
-            "display": "Boyfriend",
-            "desc": "BEEP BEEP BEEP BEEP BEEP BEEP"
-        },
-        {
             "name": "madness-grunt",
             "display": "Grunt",
             "desc": "As seen on addicting games dot com"
@@ -106,14 +101,21 @@
             "data": "midgetsausage"
         },
         {
+            "name": "boyfriend",
+            "display": "Boyfriend",
+            "desc": "BEEP BEEP BEEP BEEP BEEP BEEP?"
+        },
+        {
             "name": "girlfriend",
             "display": "Girlfriend",
-            "unlock": "ANGRY_FAIC"
+            "unlock": "BEEP BOOP BEEP BEEP BEEP BOOP!"
         },
         {
             "name": "ena-sprite",
             "display": "ENA",
-            "unlock": "ANGRY_FAIC"
+            "desc": "Some weird stuff that doesn't make sense",
+            "unlock": "USERNAME",
+            "data": "joelg"
         },
         {
             "name": "salad-fingers",
@@ -166,27 +168,87 @@
             "unlock": "USERNAME",
             "data": "MrShmoods"
         },
-		{
-			"name": "ng-satina",
-			"display": "Satina",
-			"desc": "That cute lil' devil girl from Hell who has a HUMAN for a father!"
-		},
-		{
-			"name": "bitey",
-			"display": "Bitey",
-			"desc": "...of Brackenwood!"
-		},
+        {
+            "name": "satina",
+            "display": "Satina",
+            "desc": "That cute lil' devil girl from Hell who has a HUMAN for a father!"
+        },
+        {
+            "name": "bitey",
+            "display": "Bitey",
+            "desc": "...of Brackenwood!",
+            "unlock": "FLAG",
+            "data": "BITEY_ENCOUNTERED"
+        },
+        {
             "name": "captain-steve",
             "display": "Captain Steve",
             "desc": "What's wrong with this Tankman? Is he autistic?",
             "unlock": "USERNAME",
-            "data": "CaptainStevie"
+            "data": "captainstevie"
         },
+        {
             "name": "lils",
             "display": "Lils",
             "desc": "The Tankdemon. Make sure to sacrifice a marshmallow to them!",
             "unlock": "USERNAME",
-            "data": "CheddarExuberant"
+            "data": "cheddarexuberant"
+        },
+        {
+            "name": "mimny",
+            "display": "Mimny",
+            "desc": "Smug son of a-",
+            "unlock": "USERNAME",
+            "data": "mimny"
+        },
+        {
+            "name": "blockhead",
+            "display": "Blockhead",
+            "desc": "An idiot but a lovable idiot",
+            "unlock": "USERNAME",
+            "data": "the-swain"
+        },
+        {
+            "name": "salad-fingers",
+            "display": "Salad Fingers",
+            "desc": "He likes the feeling of rust against his salad fingers",
+            "unlock": "USERNAME",
+            "data": "doki"
+        },
+        {
+            "name": "duncan",
+            "display": "Duncan",
+            "desc": "1/2 of Duncan and Jones",
+            "unlock": "USERNAME",
+            "data": "snackers"
+        },
+        {
+            "name": "jones",
+            "display": "Jones",
+            "desc": "1/2 of Jones and Duncan",
+            "unlock": "USERNAME",
+            "data": "snackers"
+        },
+        {
+            "name": "ritz",
+            "display": "Ritz",
+            "desc": "They a rat and they gotta get their cheese lmao",
+            "unlock": "USERNAME",
+            "data": "mkmaffo"
+        },
+        {
+            "name": "randy",
+            "display": "Randy da Mouse",
+            "desc": "When it's time to learn, Randy's your Concern!",
+            "unlock": "USERNAME",
+            "data": "dungeonation"
+        },
+        {
+            "name": "psycho-goldfish",
+            "display": "Psycho Goldfish",
+            "desc": "Here ya go Josh >:(",
+            "unlock": "USERNAME",
+            "data": "psychogoldfish"
         }
     ]
 }

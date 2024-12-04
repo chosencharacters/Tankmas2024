@@ -74,4 +74,12 @@
 		<anim name="idle">0</anim>
 		<anim name="has-next">1t6</anim>
 	</animSet>
+
+	<animSet image="javert">
+		<anim name="idle" fps="100ms">0t12</anim>
+	</animSet>
+
+	<animSet image="lil-jimby">
+		<anim name="idle" fps="100ms">0t10</anim>
+	</animSet>
 </root>

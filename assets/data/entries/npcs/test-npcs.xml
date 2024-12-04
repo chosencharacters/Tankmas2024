@@ -25,4 +25,21 @@
             <dlg>...For now...</dlg>
         </state>
     </npc>
+    <npc name="lil-jimby">
+        <state name="default">
+            <dlg>Hey man whazz goin on</dlg>
+            <dlg>Hey man I can feel it man big things comin soon man</dlg>
+            <dlg>I can feel it in my BONES man... and I don't even HAVE those man</dlg>
+            <dlg>Stay tuned right here man big things comin soon</dlg>
+            <dlg>You heard it from me first man Lil Jimby @ GeistBeatz dot com</dlg>
+        </state>
+    </npc>
+    <npc name="javert">
+        <state name="default">
+            <dlg>C'est how you say the staging of ze big reveal</dlg>
+            <dlg>O? You do not know what it iz I am talking about?</dlg>
+            <dlg>So ringarde! Ze living do not appreciate ze vibez of de metaphyizical world, yes?</dlg>
+            <dlg>Go on now to your little sweet puff peasent treats, hon hon hon!</dlg>
+        </state>
+    </npc>
 </root>

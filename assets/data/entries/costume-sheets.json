@@ -60,7 +60,7 @@
                     "yOffset": -30
                 },
                 {
-                    "name": "g-bot",
+                    "name": "girlfriend",
                     "angle": -10
                 }
             ]
@@ -89,27 +89,27 @@
                     "angle": -10
                 },
                 {
-                    "name": "tamag0",
+                    "name": "duncan",
                     "angle": -10
                 },
                 {
-                    "name": "psycho-goldfish",
+                    "name": "jones",
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": "c-jay",
+                    "name": "go-go",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": "mimny",
+                    "name": "ritz",
                     "angle": 10
                 },
                 {
-                    "name": "captain-steve",
+                    "name": "randy",
                     "angle": 10
                 },
                 {
@@ -125,7 +125,7 @@
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "g-bot",
                     "angle": -10
                 }
             ]
@@ -170,21 +170,21 @@
                     "yOffset": -30
                 },
                 {
+                    "name": "strawberry-clock",
+                    "angle": 10
+                },
+                {
+                    "name": "lils",
+                    "angle": 10
+                },
+                {
                     "name": "captain-steve",
-                    "angle": 10
-                },
-                {
-                    "name": null,
-                    "angle": 10
-                },
-                {
-                    "name": null,
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "mimny",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30

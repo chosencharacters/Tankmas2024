@@ -125,6 +125,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 					if (!unlocked)
 						continue;
 
+					// sprite.color=FlxColor.BLACK;
+
 					sprite.loadGraphic(Paths.get('${costume.name}.png'));
 				}
 				var sprite_position:FlxPoint = FlxPoint.weak();
@@ -356,26 +358,35 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	function update_selection_graphics()
 	{
-		if (type == STICKER)
+		try
 		{
-			final sticker:StickerDef = data.JsonData.get_sticker(characterNames[current_hover_sheet][current_hover_selection]);
-			title.text = sticker.properName.toUpperCase();
-			description.text = (sticker.desc != null ? (sticker.desc + ' ') : '') + 'Created by ${sticker.artist != null ? sticker.artist : "Unknown"}';
-			// selector.setPosition(characterSpritesArray[current_hover_sheet].members[current_hover_selection].x + (characterSpritesArray[current_hover_sheet].members[current_hover_selection].width / 2) - 175, characterSpritesArray[current_hover_sheet].members[current_hover_selection].y + (characterSpritesArray[current_hover_sheet].members[current_hover_selection].height / 2) - 177);
+			if (type == STICKER)
+			{
+				final sticker:StickerDef = data.JsonData.get_sticker(characterNames[current_hover_sheet][current_hover_selection]);
+
+				title.text = sticker.properName.toUpperCase();
+				description.text = (sticker.desc != null ? (sticker.desc + ' ') : '') + 'Created by ${sticker.artist != null ? sticker.artist : "Unknown"}';
+				// selector.setPosition(characterSpritesArray[current_hover_sheet].members[current_hover_selection].x + (characterSpritesArray[current_hover_sheet].members[current_hover_selection].width / 2) - 175, characterSpritesArray[current_hover_sheet].members[current_hover_selection].y + (characterSpritesArray[current_hover_sheet].members[current_hover_selection].height / 2) - 177);
+			}
+			else
+			{
+				final costume:CostumeDef = data.JsonData.get_costume(characterNames[current_hover_sheet][current_hover_selection]);
+
+				title.text = costume.display.toUpperCase();
+				description.text = (costume.desc != null ? costume.desc : '');
+				// selector.setPosition(characterSpritesArray[current_hover_sheet].members[current_hover_selection].x - 110, characterSpritesArray[current_hover_sheet].members[current_hover_selection].y - 80);
+			}
+			var target:FlxSpriteExt = characterSpritesArray[current_hover_sheet].members[current_hover_selection];
+
+			selector.setPosition(target.x + (target.width / 2) - 175, target.y + (target.height / 2) - 167);
+			selector.angle = target.angle;
+
+			// characterSpritesArray[current_hover_sheet].members[current_hover_selection].scale.set(1.1, 1.1);
 		}
-		else
+		catch (e)
 		{
-			final costume:CostumeDef = data.JsonData.get_costume(characterNames[current_hover_sheet][current_hover_selection]);
-			title.text = costume.display.toUpperCase();
-			description.text = (costume.desc != null ? costume.desc : '');
-			// selector.setPosition(characterSpritesArray[current_hover_sheet].members[current_hover_selection].x - 110, characterSpritesArray[current_hover_sheet].members[current_hover_selection].y - 80);
+			locked_selection_overlay.visible = false;
 		}
-		var target:FlxSpriteExt = characterSpritesArray[current_hover_sheet].members[current_hover_selection];
-
-		selector.setPosition(target.x + (target.width / 2) - 175, target.y + (target.height / 2) - 167);
-		selector.angle = target.angle;
-
-		// characterSpritesArray[current_hover_sheet].members[current_hover_selection].scale.set(1.1, 1.1);
 	}
 
 	public function start_closing(?on_complete:Void->Void)
