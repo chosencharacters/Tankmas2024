@@ -165,6 +165,28 @@
             "desc": "Shmoods loves Tankmas and White Castle. He has never done hard drugs, only soft drugs. Only the fluffiest drugs for shmoods. You can join him sometime. It's an open invitation.",
             "unlock": "USERNAME",
             "data": "MrShmoods"
+        },
+		{
+			"name": "ng-satina",
+			"display": "Satina",
+			"desc": "That cute lil' devil girl from Hell who has a HUMAN for a father!"
+		},
+		{
+			"name": "bitey",
+			"display": "Bitey",
+			"desc": "...of Brackenwood!"
+		},
+            "name": "captain-steve",
+            "display": "Captain Steve",
+            "desc": "What's wrong with this Tankman? Is he autistic?",
+            "unlock": "USERNAME",
+            "data": "CaptainStevie"
+        },
+            "name": "lils",
+            "display": "Lils",
+            "desc": "The Tankdemon. Make sure to sacrifice a marshmallow to them!",
+            "unlock": "USERNAME",
+            "data": "CheddarExuberant"
         }
     ]
 }
