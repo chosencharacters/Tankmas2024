@@ -22,11 +22,20 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 			default:
 			case IDLE:
 				if (!Ctrl.mode.can_move)
+				{
+					trace('cant move');
 					return;
+				}
 				if (PlayState.self.ui_overlay.mouse_is_over_ui())
+				{
+					trace('not over ui');
 					return;
+				}
+				trace(FlxG.mouse.pressed);
 				if (FlxG.mouse.pressed)
+				{
 					sstate(PRESSING, fsm);
+				}
 			case PRESSING:
 				if (FlxG.mouse.justReleased)
 				{

@@ -58,7 +58,7 @@ class Player extends BaseUser
 
 		sprite_anim.anim(PlayerAnimation.MOVING);
 
-		sstate(INITIALIZING);
+		sstate(NEUTRAL);
 	}
 
 	// Called once the save data is up to date after fetching it from the server.
@@ -70,11 +70,6 @@ class Player extends BaseUser
 			costume = JsonData.get_costume("tankman");
 
 		new_costume(costume);
-
-		// We have loaded player data. Send full player state to server.
-		OnlineLoop.send_player_state(true);
-
-		sstate(NEUTRAL);
 	}
 
 	public function start_auto_move(auto_move_dest:FlxPoint)
@@ -127,7 +122,6 @@ class Player extends BaseUser
 				general_movement();
 				process_activity_area();
 				detect_interactables();
-			case INITIALIZING:
 			case JUMPING:
 			case EMOTING:
 		}
@@ -309,14 +303,7 @@ class Player extends BaseUser
 
 	public function get_user_update_json(force_send_full_user:Bool = false):NetUserDef
 	{
-		var def:NetUserDef = {username: username, room_id: PlayState.self.current_room_id};
-
-		// Don't send state updates until the player's save data has been loaded
-		if (SaveManager.state != Loaded)
-		{
-			return def;
-		}
-
+		var def:NetUserDef = {username: username, room_id: Main.current_room_id};
 		var new_sx = flipX ? -1 : 1;
 		if (last_update_json.x != x.floor() || force_send_full_user)
 		{
@@ -344,7 +331,6 @@ class Player extends BaseUser
 
 private enum abstract State(String) from String to String
 {
-	final INITIALIZING;
 	final NEUTRAL;
 	final JUMPING;
 	final EMOTING;

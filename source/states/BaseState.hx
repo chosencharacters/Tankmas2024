@@ -21,7 +21,6 @@ class BaseState extends FlxState
 		super();
 		if (FIRST_RUN)
 		{
-			SaveManager.init();
 			#if gif
 			GifRecorder.init("game", "../../../export/");
 			#end

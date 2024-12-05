@@ -11,16 +11,16 @@ import hx.ws.WebSocket;
 
 class TankmasClient
 {
-	static var address:String = #if host_address 'http://${haxe.macro.Compiler.getDefine("host_address")}' #elseif test_local 'http://127.0.0.1:5000' #else "https://tankmas.kornesjo.se:25567" #end;
+	static var address:String = #if host_address 'https://${haxe.macro.Compiler.getDefine("host_address")}' #elseif test_local 'http://127.0.0.1:5000' #else "https://tankmas.kornesjo.se:25567" #end;
 
-	public static function get_users_in_room(room_id:String, ?on_complete:Dynamic->Void)
+	public static function get_users_in_room(room_id:Int, ?on_complete:Dynamic->Void)
 	{
 		var url:String = '$address/rooms/$room_id/users';
 
 		Client.get(url, on_complete);
 	}
 
-	public static function post_user(room_id:String, user:NetUserDef, ?on_complete:Dynamic->Void)
+	public static function post_user(room_id:Int, user:NetUserDef, ?on_complete:Dynamic->Void)
 	{
 		var url:String = '$address/rooms/$room_id/users';
 
@@ -33,14 +33,14 @@ class TankmasClient
 		Client.post(url, user, on_complete);
 	}
 
-	public static function get_events(room_id:String, ?on_complete:Dynamic->Void)
+	public static function get_events(room_id:Int, ?on_complete:Dynamic->Void)
 	{
 		var url:String = '$address/rooms/$room_id/events/get';
 
 		Client.post(url, {username: Main.username}, on_complete);
 	}
 
-	public static function post_event(room_id:String, event:NetEventDef, ?on_complete:Dynamic->Void)
+	public static function post_event(room_id:Int, event:NetEventDef, ?on_complete:Dynamic->Void)
 	{
 		var url:String = '$address/rooms/$room_id/events/post';
 

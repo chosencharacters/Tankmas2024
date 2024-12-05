@@ -1,17 +1,9 @@
 package data;
 
 import http.HttpError;
-import entities.Player;
 import net.tankmas.TankmasClient;
 import ui.sheets.CostumeSelectSheet;
 import ui.sheets.StickerSelectSheet;
-
-enum SaveManagerState
-{
-	Initial;
-	Loading;
-	Loaded;
-}
 
 class SaveManager
 {
@@ -26,8 +18,6 @@ class SaveManager
 	public static var current_costume(default, default):String;
 	public static var current_emote(default, default):String;
 
-	public static var state:SaveManagerState = Initial;
-
 	public static var on_save_stored:() -> Void = null;
 
 	public static var data = {
@@ -36,7 +26,6 @@ class SaveManager
 
 	public static function init()
 	{
-		state = Initial;
 		savedRoom = Main.default_room;
 		saved_sticker_collection = Main.default_sticker_collection;
 		saved_costume_collection = Main.default_costume_collection;
@@ -63,8 +52,6 @@ class SaveManager
 
 		// loads current room
 		load_room();
-
-		state = Loaded;
 	}
 
 	public static function upload()
@@ -83,7 +70,8 @@ class SaveManager
 
 	public static function load(on_complete:() -> Void = null, ?on_fail:() -> Void)
 	{
-		state = Loading;
+		SaveManager.load_costumes();
+		SaveManager.load_emotes();
 
 		#if offline
 		finalize_load();
