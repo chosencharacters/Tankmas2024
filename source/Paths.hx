@@ -14,7 +14,18 @@ class Paths
 	public static var asset_folder_alias:String;
 
 	public static var allowed_extensions:Array<String> = [
-		".json", ".png", ".xml", ".txt", ".ogg", ".ttf", ".world", ".tasc", ".ldtkl", ".aseprite", ".fnt"
+		".json",
+		".jpg",
+		".png",
+		".xml",
+		".txt",
+		".ogg",
+		".ttf",
+		".world",
+		".tasc",
+		".ldtkl",
+		".aseprite",
+		".fnt"
 	];
 
 	public static function get(name:String, starting_path:String = "assets", safe:Bool = false):String
@@ -130,6 +141,27 @@ class Paths
 			trace(cmd);
 		Sys.command(cmd);
 		#end
+	}
+
+	/**
+	 * Returns .png or .jpg, prefers .jpg
+	 */
+	public static function image_path(name:String, starting_path:String = "assets", safe:Bool = false):String
+	{
+		name = name.split(".")[0];
+
+		var jpg_path:String = Paths.get('$name.jpg', starting_path, true);
+		if (jpg_path != null)
+			return jpg_path;
+
+		var png_path:String = Paths.get('$name.png', starting_path, true);
+		if (png_path != null)
+			return png_path;
+
+		if (!safe)
+			throw 'No JPG or PNG by the name of $name\nsimilar: ${name.all_similar_strings_in(path_cache.keys().to_array())}';
+
+		return null;
 	}
 }
 

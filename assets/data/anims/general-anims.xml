@@ -82,4 +82,8 @@
 	<animSet image="lil-jimby">
 		<anim name="idle" fps="100ms">0t10</anim>
 	</animSet>
+
+	<animSet image="mallow">
+		<anim name="idle" fps="100ms">0t1,0h20,0t1,2t8</anim>
+	</animSet>
 </root>

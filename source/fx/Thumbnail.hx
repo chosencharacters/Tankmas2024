@@ -17,9 +17,9 @@ class Thumbnail extends FlxSpriteExt
 	private var scaleY:Float = 0.0;
 	private var timer:Float = 0.0;
 
-	public function new(X:Float, Y:Float, content:FlxGraphicAsset)
+	public function new(X:Float, Y:Float, graphic:FlxGraphicAsset)
 	{
-		super(X, Y, content);
+		super(X, Y, graphic);
 		theY = Y;
 		scale.set(0.07, 0.07);
 		updateHitbox();

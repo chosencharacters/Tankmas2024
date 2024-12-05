@@ -42,4 +42,13 @@
             <dlg>Go on now to your little sweet puff peasent treats, hon hon hon!</dlg>
         </state>
     </npc>
+    <npc name="mallow">
+        <state name="default">
+            <dlg>Shh... Dude... Keep it down!</dlg>
+            <dlg>Did you see what's going on out there? They're absolutely crazy.</dlg>
+            <dlg>They're doing the same thing every single day! Thousands of times!</dlg>
+            <dlg>Impaling cute lil marshmallows just like me on wooden stakes! Then eating them!</dlg>
+            <dlg>It's sick! But you wouldn't do that, would you?</dlg>
+        </state>
+    </npc>
 </root>

@@ -1,13 +1,12 @@
 package net.tankmas;
 
-import net.tankmas.NetDefs.NetEventDef;
-import bunnymark.PlayState;
-import hx.ws.Types.MessageType;
-import net.tankmas.NetDefs.NetUserDef;
 import haxe.Json;
+import hx.ws.Types.MessageType;
+import net.tankmas.NetDefs.NetEventDef;
+import net.tankmas.NetDefs.NetUserDef;
 #if websocket
-import hx.ws.WebSocket;
 import haxe.io.Bytes;
+import hx.ws.WebSocket;
 #end
 
 enum abstract WebsocketEventType(Int)

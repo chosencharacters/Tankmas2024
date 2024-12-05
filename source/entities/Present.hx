@@ -24,7 +24,7 @@ class Present extends Interactable
 
 	public var thumbnail:Thumbnail;
 
-	var content:String;
+	var username:String;
 	var day:Int = 0;
 	var comic:Bool = false;
 
@@ -32,29 +32,28 @@ class Present extends Interactable
 
 	var time_activated(get, never):Bool;
 
-	public function new(?X:Float, ?Y:Float, ?content:String = 'thedyingsun')
+	public function new(X:Float, Y:Float, username:String)
 	{
 		super(X, Y);
 		detect_range = 300;
-		this.content = content;
+		this.username = username;
 
-		// trace(content, JsonData.get_all_present_names());
-		def = JsonData.get_present(this.content);
+		// trace(username, JsonData.get_all_present_names());
+		def = JsonData.get_present(this.username);
+
 		if (def == null)
-		{
-			throw 'Error getting present: content ${content}; defaulting to default content';
-			def = JsonData.get_present('thedyingsun');
-		}
+			throw 'Error getting present JSON for username ${username}';
+
 		comic = def.comicProperties != null ? true : false;
 
 		openable = true;
 
 		type = Interactable.InteractableType.PRESENT;
 
-		loadAllFromAnimationSet("present-any", 'present-$content');
+		loadAllFromAnimationSet("present-any", 'present-$username');
 
 		PlayState.self.presents.add(this);
-		thumbnail = new Thumbnail(x, y - 200, Paths.get(def.file));
+		thumbnail = new Thumbnail(x, y - 200, Paths.image_path(def.file));
 
 		#if censor_presents
 		thumbnail.color = FlxColor.BLACK;
@@ -82,7 +81,7 @@ class Present extends Interactable
 
 	public function checkOpen()
 	{
-		opened = SaveManager.savedPresents.contains(content);
+		opened = SaveManager.savedPresents.contains(username);
 		if (!opened)
 		{
 			sprite_anim.anim(PresentAnimation.IDLE);
@@ -158,15 +157,15 @@ class Present extends Interactable
 			{
 				sstate(OPENED);
 				thumbnail.sstate("OPEN");
-				PlayState.self.openSubState(comic ? new ComicSubstate(content, true) : new ArtSubstate(content));
+				PlayState.self.openSubState(comic ? new ComicSubstate(username, true) : new ArtSubstate(username));
 				opened = true;
-				SaveManager.open_present(content, def.day);
+				SaveManager.open_present(username, def.day);
 			});
 		}
 		else
 		{
 			SoundPlayer.sound(Paths.get('present-open.ogg'));
-			PlayState.self.openSubState(comic ? new ComicSubstate(content, false) : new ArtSubstate(content));
+			PlayState.self.openSubState(comic ? new ComicSubstate(username, false) : new ArtSubstate(username));
 		}
 	}
 }

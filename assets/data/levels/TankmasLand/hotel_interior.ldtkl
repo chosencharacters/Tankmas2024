@@ -24,7 +24,7 @@
 	"bgPivotX": 0.5,
 	"bgPivotY": 0.5,
 	"__smartColor": "#ADADB5",
-	"__bgPos": { "topLeftPx": [0,0], "scale": [1,1], "cropRect": [0,0,2048,2048] },
+	"__bgPos": null,
 	"externalRelPath": null,
 	"fieldInstances": [],
 	"layerInstances": [
@@ -38,7 +38,7 @@
 			"__pxTotalOffsetX": 0,
 			"__pxTotalOffsetY": 0,
 			"__tilesetDefUid": 19,
-			"__tilesetRelPath": "../../images/bgs/tiles/tile-collision.png",
+			"__tilesetRelPath": "../../images/levels/tiles/tile-collision.png",
 			"iid": "8b727cc2-9b00-11ef-bbae-af41c0a3f814",
 			"levelId": 15,
 			"layerDefUid": 20,

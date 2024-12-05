@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="4.0.1" company="Glenside Helper Elf Society" />
+	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="4.2.0" company="Glenside Helper Elf Society" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -33,11 +33,11 @@
 	<source path="source" />
 
 	<section if="hl||cpp">
-		<assets path="assets" embed="false" exclude="*.gif"/>
+		<assets path="assets" embed="false" exclude="*.gif||.*ini"/>
 	</section>
 
 	<section if="js||html5">
-		<assets path="assets" embed="true" exclude="*.gif"/>
+		<assets path="assets" embed="true" exclude="*.gif||.*ini"/>
 	</section>
 
 	<section if="offline">
@@ -45,7 +45,7 @@
 	</section>
 
 	<assets path="assets/music" preload="false" />
-	<assets path="assets/art" preload="false" />
+	<assets path="assets/images/art" preload="false" />
 	<assets path="assets/videos" preload="false" />
 
 	<!-- _______________________________ Libraries ______________________________ -->

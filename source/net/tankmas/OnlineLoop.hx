@@ -1,6 +1,5 @@
 package net.tankmas;
 
-import bunnymark.PlayState;
 import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;

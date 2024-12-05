@@ -205,15 +205,15 @@
             "name": "blockhead",
             "display": "Blockhead",
             "desc": "An idiot but a lovable idiot",
-            "unlock": "USERNAME",
-            "data": "the-swain"
+            "unlock": "DATE",
+            "data": 1733374800
         },
         {
             "name": "salad-fingers",
             "display": "Salad Fingers",
             "desc": "He likes the feeling of rust against his salad fingers",
-            "unlock": "USERNAME",
-            "data": "doki"
+            "unlock": "DATE",
+            "data": 1733374800
         },
         {
             "name": "duncan",
