@@ -4,7 +4,7 @@ import net.tankmas.OnlineLoop;
 import data.SaveManager;
 import flixel.FlxState;
 
-class LoadGameState extends FlxState
+class LoadGameState extends BaseState
 {
 	public function new()
 	{
@@ -17,6 +17,6 @@ class LoadGameState extends FlxState
 	function start_game()
 	{
 		OnlineLoop.init();
-		FlxG.switchState(new PlayState());
+		FlxG.switchState(() -> new PlayState());
 	}
 }
