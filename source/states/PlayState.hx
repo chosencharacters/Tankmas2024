@@ -1,6 +1,5 @@
 package states;
 
-import ui.popups.ServerNotificationMessagePopup;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -23,6 +22,7 @@ import net.tankmas.TankmasClient;
 import ui.DialogueBox;
 import ui.MainGameOverlay;
 import ui.TouchOverlay;
+import ui.popups.ServerNotificationMessagePopup;
 import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
@@ -55,6 +55,8 @@ class PlayState extends BaseState
 
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
 	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
+	public var level_foregrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
+
 	public var level_collision:FlxTypedGroup<FlxTilemap> = new FlxTypedGroup<FlxTilemap>();
 
 	/**Do not add to state*/
@@ -126,6 +128,7 @@ class PlayState extends BaseState
 		add(presents);
 		add(objects);
 		add(thumbnails);
+		add(level_foregrounds);
 		add(stickers);
 		add(sticker_fx);
 		add(dialogues);
