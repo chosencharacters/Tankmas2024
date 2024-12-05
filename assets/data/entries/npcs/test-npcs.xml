@@ -18,6 +18,15 @@
     </npc>
     <npc name="concierge">
         <state name="default">
+            <dlg>Ah yes... Ah yes... It is almost time...</dlg>
+            <dlg>But... It is not time... No... Not yet...</dlg>
+            <dlg>Patience... This will be required...</dlg>
+            <dlg>After all... As it is often said...</dlg>
+            <dlg>Doors will open... For those who wait...</dlg>
+        </state>
+    </npc>
+    <npc name="concierge-old">
+        <state name="default">
             <dlg>Good tidings... Future guests...</dlg>
             <dlg>Do you desire... Accommodations of a warmer... Variety?</dlg>
             <dlg>All this... Could be arranged... If one is to be... Patient...</dlg>
