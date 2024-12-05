@@ -35,8 +35,6 @@ class PlayState extends BaseState
 
 	static final default_world:String = "outside_hotel";
 
-	public var current_room_id = 1;
-
 	var current_world:String;
 
 	public var player:Player;
@@ -56,6 +54,7 @@ class PlayState extends BaseState
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
 	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 	public var level_collision:FlxTypedGroup<FlxTilemap> = new FlxTypedGroup<FlxTilemap>();
+	public var level_foregrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 
 	/**Do not add to state*/
 	public var interactables:FlxTypedGroup<Interactable> = new FlxTypedGroup<Interactable>();
@@ -92,15 +91,8 @@ class PlayState extends BaseState
 
 		Ctrl.mode = ControlModes.OVERWORLD;
 
+		trace('settin myself');
 		self = this;
-
-		OnlineLoop.init();
-
-		SaveManager.load(on_save_loaded, () ->
-		{
-			// Save failed to load, give player control anyway.
-			on_save_loaded();
-		});
 
 		premieres = new PremiereHandler();
 
@@ -128,6 +120,9 @@ class PlayState extends BaseState
 		add(thumbnails);
 		add(stickers);
 		add(sticker_fx);
+
+		add(level_foregrounds);
+
 		add(dialogues);
 
 		add(doors);
@@ -158,17 +153,12 @@ class PlayState extends BaseState
 
 		// FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
 
-		OnlineLoop.iterate();
-
 		// runs nearby animation if not checked here
 		for (mem in presents.members)
 			mem.checkOpen();
 
 		SaveManager.save_room();
-	}
 
-	function on_save_loaded()
-	{
 		player.on_save_loaded();
 	}
 
@@ -252,7 +242,7 @@ class PlayState extends BaseState
 	// Currently these include stickers and marshmallow drops
 	public function on_net_event_received(event:NetEventDef)
 	{
-		if (event.room_id != null && event.room_id != current_room_id)
+		if (event.room_id != null && event.room_id != Main.current_room_id)
 			return;
 
 		// If event has an username, pass it to the user.

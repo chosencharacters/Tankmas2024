@@ -1,5 +1,6 @@
 package;
 
+import data.SaveManager;
 import data.TimeManager;
 import Paths.Manifest;
 import data.loaders.NPCLoader;
@@ -15,7 +16,7 @@ class Main extends Sprite
 	public static var username:String = #if username haxe.macro.Compiler.getDefine("username") #elseif random_username 'poop_${Math.random()}' #else "lost_soul" #end;
 	public static var session_id:String = #if (offline || !newgrounds) "test_session" #else null #end;
 
-	public static var current_room_id:String = "1";
+	public static var current_room_id:Int = 1;
 
 	public static var DEV:Bool = #if dev true #else false #end;
 
@@ -63,7 +64,8 @@ class Main extends Sprite
 			username = 'temporary_random_username_${Math.random()}';
 		}
 		#end
-		addChild(new FlxGame(1920, 1080, PlayState, true));
+
+		addChild(new FlxGame(1920, 1080, LoadGameState, true));
 	}
 
 	public static function get_current_bg(day:Int):Int

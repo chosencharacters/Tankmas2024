@@ -51,9 +51,13 @@ class OnlineLoop
 		Main.session_id = 'test_session';
 		#end
 
-		if (websocket != null)
-			websocket.close();
-		websocket = new WebsocketClient();
+		if (websocket == null)
+		{
+			trace('initing online loop');
+			websocket = new WebsocketClient();
+		}
+
+		websocket.connect();
 
 		force_send_full_user = true;
 
@@ -71,7 +75,8 @@ class OnlineLoop
 	public static function iterate(elapsed:Float = 0.0)
 	{
 		#if !offline
-		websocket.update(elapsed);
+		if (websocket != null)
+			websocket.update(elapsed);
 
 		var tick_diff = current_timestamp - last_websocket_player_tick_timestamp;
 		if (tick_diff < websocket_state_send_interval)
@@ -85,6 +90,11 @@ class OnlineLoop
 
 	public static function send_player_state(do_full_update:Bool = false)
 	{
+		if (PlayState.self == null)
+		{
+			return;
+		}
+
 		var json:NetUserDef = PlayState.self.player.get_user_update_json(do_full_update);
 		if (json.x != null || json.y != null || json.costume != null || json.sx != null)
 		{
@@ -111,6 +121,7 @@ class OnlineLoop
 	public static function post_event(event:NetEventDef)
 	{
 		#if offline return #end
+
 		#if !websocket
 		TankmasClient.post_event(Main.current_room_id, event);
 		#else
@@ -119,14 +130,14 @@ class OnlineLoop
 	}
 
 	/**This is a get request**/
-	public static function get_room(room_id:String)
+	public static function get_room(room_id:Int)
 	{
 		rooms_get_tick_rate = tick_wait_timeout;
 		TankmasClient.get_users_in_room(room_id, update_user_visuals);
 	}
 
 	/**This is a post request**/
-	public static function get_events(room_id:String)
+	public static function get_events(room_id:Int)
 	{
 		events_get_tick_rate = tick_wait_timeout;
 		TankmasClient.get_events(room_id, update_user_events);
@@ -144,6 +155,9 @@ class OnlineLoop
 
 	public static function update_user_visual(username:String, def:NetUserDef)
 	{
+		if (PlayState.self == null)
+			return;
+
 		#if !ghosttown
 		var is_local_player = username == Main.username;
 
@@ -184,6 +198,11 @@ class OnlineLoop
 	public static function update_user_visuals(data:Dynamic)
 	{
 		#if !ghost_town
+		if (PlayState.self == null)
+		{
+			return;
+		}
+
 		var usernames:Array<String> = Reflect.fields(data.data);
 
 		usernames.remove(Main.username);

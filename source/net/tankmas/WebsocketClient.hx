@@ -1,7 +1,9 @@
 package net.tankmas;
 
+import net.tankmas.NetDefs.GenerateBasicAuthHeader;
 import haxe.Json;
 import hx.ws.Types.MessageType;
+import net.tankmas.NetDefs.NetEventType;
 import net.tankmas.NetDefs.NetEventDef;
 import net.tankmas.NetDefs.NetUserDef;
 #if websocket
@@ -40,7 +42,7 @@ typedef WebsocketEvent =
 
 class WebsocketClient
 {
-	static var address:String = #if host_address 'ws://${haxe.macro.Compiler.getDefine("host_address")}' #elseif test_local 'ws://127.0.0.1:5000' #else "wss://tankmas.kornesjo.se:25567" #end;
+	static var address:String = #if host_address 'wss://${haxe.macro.Compiler.getDefine("host_address")}' #elseif test_local 'ws://127.0.0.1:5000' #else "wss://tankmas.kornesjo.se:25567" #end;
 
 	#if websocket
 	var socket:WebSocket;
@@ -66,21 +68,6 @@ class WebsocketClient
 		#if offline
 		return;
 		#end
-
-		username = Main.username;
-		session_id = null;
-
-		#if newgrounds
-		session_id = Main.ng_api.NG_SESSION_ID;
-		username = Main.ng_api.NG_USERNAME;
-		#end
-
-		session_id = Main.session_id;
-
-		if (session_id != null && username != null)
-		{
-			connect();
-		}
 	}
 
 	public function close()
@@ -88,15 +75,42 @@ class WebsocketClient
 		#if websocket
 		if (socket != null)
 			socket.close();
+		trace('Closing socket...');
 		closed = true;
 		connected = false;
 		#end
 	}
 
-	function connect()
+	public function connect()
 	{
+		if (socket != null)
+		{
+			return;
+		}
+
+		username = Main.username;
+		session_id = Main.session_id;
+
+		#if newgrounds
+		session_id = Main.ng_api.NG_SESSION_ID;
+		username = Main.ng_api.NG_USERNAME;
+
+		trace(Main.ng_api.NG_SESSION_ID);
+		trace(Main.ng_api.NG_USERNAME);
+		#end
+
+		#if dev
+		if (session_id == null || session_id == "")
+		{
+			session_id = "dev_test_session";
+		}
+		#end
+
+		trace(username);
+		trace(session_id);
+
 		#if websocket
-		if (username == null || session_id == null)
+		if (username == null || session_id == null || username == "" || session_id == "")
 		{
 			trace("Trying to connect with a session id or username");
 			return;
@@ -104,9 +118,9 @@ class WebsocketClient
 
 		try
 		{
-			// var auth = GenerateBasicAuthHeader(username, session_id);
-			// /socket = new WebSocket(address, true, ["Authorization" => auth]);
 			var url = '${address}?username=${username}&session=${session_id}';
+			trace('connecting to $url');
+
 			socket = new WebSocket(url);
 			socket.onmessage = on_message;
 			socket.onopen = on_connect;
@@ -124,6 +138,7 @@ class WebsocketClient
 	function on_error(_err)
 	{
 		trace(_err);
+		trace('Uh oh websocket errorrr!!');
 		#if websocket
 		start_reconnection();
 		#end
@@ -168,6 +183,9 @@ class WebsocketClient
 		retry_connection = false;
 		connection_retries = 0;
 		connected = true;
+
+		// We are ready to go
+		OnlineLoop.send_player_state(true);
 	}
 
 	function on_message(data:MessageType)
