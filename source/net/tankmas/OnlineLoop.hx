@@ -38,7 +38,9 @@ class OnlineLoop
 
 	public static var force_send_full_user:Bool;
 
+	#if websocket
 	static var websocket:WebsocketClient;
+	#end
 
 	static function get_current_timestamp():Float
 		return haxe.Timer.stamp();
@@ -47,9 +49,12 @@ class OnlineLoop
 	{
 		#if offline return; #end
 
+		#if websocket
 		if (websocket != null)
 			websocket.close();
+
 		websocket = new WebsocketClient();
+		#end
 
 		force_send_full_user = true;
 
@@ -122,15 +127,21 @@ class OnlineLoop
 	/**This is a post request**/
 	public static function post_sticker(room_id:String, sticker_name:String)
 	{
+		#if websocket
 		websocket.send_event("sticker", {"name": sticker_name});
+		#else
 		TankmasClient.post_event(room_id, {type: "sticker", data: {"name": sticker_name}, username: Main.username});
+		#end
 	}
 
 	public static function post_marshmallow_discard(room_id:String, marshmallow_level:Int)
 	{
 		#if offline return #end
+		#if websocket
 		websocket.send_event("drop_marshmallow", {"level": marshmallow_level});
+		#else
 		TankmasClient.post_event(room_id, {type: "drop_marshmallow", data: {"level": marshmallow_level}, username: Main.username});
+		#end
 	}
 
 	/**This is a post request**/

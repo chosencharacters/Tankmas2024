@@ -1,5 +1,6 @@
 package net.tankmas;
 
+import bunnymark.PlayState;
 import haxe.Json;
 import hx.ws.Types.MessageType;
 import net.tankmas.NetDefs.NetEventDef;
