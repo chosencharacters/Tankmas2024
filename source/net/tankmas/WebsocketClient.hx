@@ -1,16 +1,12 @@
 package net.tankmas;
 
-import openfl.events.EventDispatcher;
-import net.tankmas.NetDefs.NetEventType;
-import net.tankmas.NetDefs.GenerateBasicAuthHeader;
-import http.HttpRequest;
-import net.tankmas.NetDefs.NetEventDef;
-import hx.ws.Types.MessageType;
-import net.tankmas.NetDefs.NetUserDef;
 import haxe.Json;
+import hx.ws.Types.MessageType;
+import net.tankmas.NetDefs.NetEventDef;
+import net.tankmas.NetDefs.NetUserDef;
 #if websocket
-import hx.ws.WebSocket;
 import haxe.io.Bytes;
+import hx.ws.WebSocket;
 #end
 
 enum abstract WebsocketEventType(Int)

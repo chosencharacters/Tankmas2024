@@ -19,9 +19,9 @@ class ArtSubstate extends flixel.FlxSubState
 		data = JsonData.get_present(content);
 
 		#if censor_presents
-		art = new FlxSprite(0, 0).loadGraphic(Paths.get('art-censored.jpg'));
+		art = new FlxSprite(0, 0).loadGraphic(Paths.image_path('art-censored'));
 		#else
-		art = new FlxSprite(0, 0).loadGraphic(Paths.get(data.file));
+		art = new FlxSprite(0, 0).loadGraphic(Paths.image_path(data.file));
 		#end
 
 		art.setGraphicSize(art.width > art.height ? 1920 : 0, art.height >= art.width ? 1080 : 0);

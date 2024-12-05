@@ -387,7 +387,7 @@ class FlxSpriteExt extends FlxSprite
 	public function loadAllFromAnimationSet(anim_set_name:String, ?image_override:String, unique:Bool = false, auto_play:String = "idle", unsafe:Bool = false,
 			?frame_offset:Int = 0):FlxSpriteExt
 	{
-		var file_path:String = Paths.get('${image_override != null ? image_override : anim_set_name}.png', true);
+		var file_path:String = Paths.image_path('${image_override != null ? image_override : anim_set_name}', true);
 
 		animSet = Lists.getAnimationSet(anim_set_name);
 		loaded_image = anim_set_name;
@@ -437,7 +437,7 @@ class FlxSpriteExt extends FlxSprite
 
 		var file_name:String = '${image_override == null ? anim_set_name : image_override}.png';
 
-		var file_path:String = Paths.file_exists(file_name) ? Paths.get(file_name) : Paths.get('${anim_set_name}.png');
+		var file_path:String = Paths.file_exists(file_name) ? Paths.get(file_name) : Paths.image_path('${anim_set_name}');
 
 		loadGraphic(file_path, true, Math.floor(animWidth), Math.floor(animHeight), unique);
 

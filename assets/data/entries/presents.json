@@ -1,38 +1,32 @@
 {
     "presents": [
         {
-            "day": 0,
-            "file": "thedyingsun.jpg",
-            "name": "",
-            "artist": "TheDyingSun"
-        }, 
-        {
             "day": 1,
-            "file": "cymbourine.jpg",
+            "file": "day-1-cymbourine",
             "name": "sorry uhh i just now played madness project nexus LOL",
             "artist": "Cymbourine"
         }, 
         {
             "day": 2,
-            "file": "sevi.jpg",
+            "file": "day-2-sevi",
             "name": "Elf on a shelf (branch)",
             "artist": "Sevi"
         }, 
         {
             "day": 3,
-            "file": "midgetsausage.jpg",
+            "file": "day-3-midgetsausage",
             "name": "Yo! Merry Sexy Tankmas!!!!!",
             "artist": "MidgetSausage"
         },
         {
             "day": 4,
-            "file": "sirlenward.jpg",
+            "file": "day-4-sirlenward",
             "name": "NG Wreath Goes Crazy",
             "artist": "SirLenward"
         },
         {
             "day": 5,
-            "file": "midgetsausage.jpg",
+            "file": "day-5-theextreamh",
             "name": "Yo! Merry Sexy Tankmas!!!!!",
             "artist": "TheExtreamh"
         }, 
