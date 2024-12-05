@@ -13,14 +13,17 @@ class JsonData
 	static var presents:Map<String, PresentDef>;
 	static var stickers:Map<String, StickerDef>;
 
-	public static var all_costume_defs(get, default):Array<CostumeDef>;
-	public static var all_costume_names(get, default):Array<String>;
+	public static var costume_defs(get, default):Array<CostumeDef>;
+	public static var costume_names(get, never):Array<String>;
 
-	public static var all_present_defs(get, default):Array<PresentDef>;
-	public static var all_present_names(get, default):Array<String>;
+	public static var present_defs(get, default):Array<PresentDef>;
+	public static var present_names(get, never):Array<String>;
 
-	public static var all_sticker_defs(get, default):Array<StickerDef>;
-	public static var all_sticker_names(get, default):Array<String>;
+	public static var emote_defs(get, default):Array<StickerDef>;
+	public static var emote_names(get, never):Array<String>;
+
+	public static var costume_sheet_defs(get, default):Array<StickerDef>;
+	public static var emote_sheet_defs(get, never):Array<StickerDef>;
 
 	public static function init()
 	{
@@ -65,6 +68,12 @@ class JsonData
 	public static function get_sticker(sticker_name:String):StickerDef
 		return stickers.get(sticker_name);
 
+	public static function get_emote_sheet_defs(sheet_name:String):StickerDef
+		return emote_sheet_defs.get(sheet_name);
+
+	public static function get_costume_sheet_defs(sheet_name:String):StickerDef
+		return costume_sheet_defs.get(sheet_name);
+
 	public static function check_for_unlock_costume(costume:CostumeDef):Bool
 	{
 		if (costume.unlock == null)
@@ -82,7 +91,7 @@ class JsonData
 		 */
 	}
 
-	public static function get_all_costume_defs():Array<CostumeDef>
+	public static function get_costume_defs():Array<CostumeDef>
 	{
 		var arr:Array<CostumeDef> = [];
 		for (val in costumes)
@@ -90,15 +99,12 @@ class JsonData
 		return arr;
 	}
 
-	public static function get_all_costume_names():Array<String>
+	public static function get_costume_names():Array<String>
 	{
-		var arr:Array<String> = [];
-		for (val in costumes.keys())
-			arr.push(val);
-		return arr;
+		costume_defs.
 	}
 
-	public static function get_all_present_defs():Array<PresentDef>
+	public static function get_present_defs():Array<PresentDef>
 	{
 		var arr:Array<PresentDef> = [];
 		for (val in presents)
@@ -106,7 +112,7 @@ class JsonData
 		return arr;
 	}
 
-	public static function get_all_present_names():Array<String>
+	public static function get_present_names():Array<String>
 	{
 		var arr:Array<String> = [];
 		for (val in presents.keys())
@@ -114,7 +120,7 @@ class JsonData
 		return arr;
 	}
 
-	public static function get_all_sticker_defs():Array<StickerDef>
+	public static function get_emote_defs():Array<StickerDef>
 	{
 		var arr:Array<StickerDef> = [];
 		for (val in stickers)
@@ -122,7 +128,7 @@ class JsonData
 		return arr;
 	}
 
-	public static function get_all_sticker_names():Array<String>
+	public static function get_emote_names():Array<String>
 	{
 		var arr:Array<String> = [];
 		for (val in stickers.keys())
@@ -139,7 +145,7 @@ class JsonData
 			while (random_sticker == null
 				|| SaveManager.saved_sticker_collection.contains(random_sticker)
 				|| drawn_stickers.contains(random_sticker))
-				random_sticker = Main.ran.getObject(limit_list == null ? all_sticker_names : limit_list);
+				random_sticker = Main.ran.getObject(limit_list == null ? emote_names : limit_list);
 			drawn_stickers.push(random_sticker);
 		}
 		return drawn_stickers;

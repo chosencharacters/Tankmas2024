@@ -4,6 +4,7 @@ import data.SaveManager;
 import entities.Player;
 import ui.sheets.BaseSelectSheet;
 import ui.sheets.defs.SheetDefs.SheetFileDef;
+import ui.sheets.defs.SheetDefs.SheetMenuDef;
 
 class CostumeSelectSheet extends BaseSelectSheet
 {
@@ -17,8 +18,11 @@ class CostumeSelectSheet extends BaseSelectSheet
 		seen = seenCostumes.copy();
 	}
 
-	override function make_sheet_collection():SheetFileDef
-		return haxe.Json.parse(Utils.load_file_string('costume-sheets.json'));
+	override function load_def():SheetMenuDef
+	{
+		var file_def:SheetFileDef = haxe.Json.parse(Utils.load_file_string('costume-sheets.json'));
+		return {name: file_def.sheets, src: file_def}
+	}
 
 	override function save_selection()
 	{

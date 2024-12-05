@@ -38,7 +38,7 @@ class Present extends Interactable
 		detect_range = 300;
 		this.username = username;
 
-		// trace(username, JsonData.get_all_present_names());
+		// trace(username, JsonData.get_present_names());
 		def = JsonData.get_present(this.username);
 
 		if (def == null)
