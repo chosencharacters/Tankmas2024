@@ -11,7 +11,7 @@ import hx.ws.WebSocket;
 
 class TankmasClient
 {
-	static var address:String = #if host_address 'https://${haxe.macro.Compiler.getDefine("host_address")}' #elseif test_local 'http://127.0.0.1:5000' #else "https://tankmas.kornesjo.se:25567" #end;
+	static var address:String = OnlineLoop.http_address;
 
 	public static function get_users_in_room(room_id:Int, ?on_complete:Dynamic->Void)
 	{

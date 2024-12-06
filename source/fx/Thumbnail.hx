@@ -1,8 +1,16 @@
 package fx;
 
+import openfl.Assets;
 import flixel.math.FlxMath;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.tweens.FlxEase;
+
+enum ImageState
+{
+	Initial;
+	Loading;
+	Ready;
+}
 
 class Thumbnail extends FlxSpriteExt
 {
@@ -17,17 +25,39 @@ class Thumbnail extends FlxSpriteExt
 	private var scaleY:Float = 0.0;
 	private var timer:Float = 0.0;
 
-	public function new(X:Float, Y:Float, graphic:FlxGraphicAsset)
+	private var graphic_path:String;
+	private var image_state:ImageState = Initial;
+
+	public function new(X:Float, Y:Float, graphic_path:String)
 	{
-		super(X, Y, graphic);
+		super(X, Y);
 		theY = Y;
+		this.graphic_path = graphic_path;
+		PlayState.self.thumbnails.add(this);
+		visible = false;
+		start_loading_image();
+	}
+
+	function image_loaded(image)
+	{
+		visible = true;
+		image_state = Ready;
+		loadGraphic(image);
 		scale.set(0.07, 0.07);
 		updateHitbox();
 		scaleX = scale.x;
 		scaleY = scale.y;
 		x -= (width / 4);
 		scale.x = 0;
-		PlayState.self.thumbnails.add(this);
+	}
+
+	function start_loading_image()
+	{
+		if (image_state != Initial)
+			return;
+		trace('started fetching ${graphic_path}');
+		image_state = Loading;
+		Assets.loadBitmapData(graphic_path, true).onComplete(image_loaded);
 	}
 
 	override function kill()
@@ -45,6 +75,13 @@ class Thumbnail extends FlxSpriteExt
 			y = theY + Math.round(FlxMath.fastCos(timer / BOB_PERIOD * Math.PI) * BOB_DIS);
 			timer += elapsed;
 		}
+	}
+
+	function check_if_should_preload()
+	{
+		var dist = PlayState.self.player.distance_to_sprite(this);
+		if (dist < 100)
+			start_loading_image();
 	}
 
 	public function show()

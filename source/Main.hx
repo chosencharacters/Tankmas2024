@@ -52,6 +52,9 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
+		#if sys
+		sys.ssl.Certificate.loadDefaults();
+		#end
 		Manifest.init(make_game);
 	}
 

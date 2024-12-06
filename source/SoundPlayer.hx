@@ -1,3 +1,7 @@
+import openfl.media.Sound;
+import lime.utils.AssetLibrary;
+import lime.media.AudioBuffer;
+import lime.utils.Assets;
 import flixel.math.FlxRandom;
 import flixel.sound.FlxSound;
 import flixel.system.FlxAssets.FlxSoundAsset;
@@ -9,6 +13,9 @@ class SoundPlayer
 	public static var SOUND_VOLUME:Float = 1;
 
 	static var ran:FlxRandom;
+
+	static var active_music_path:String;
+	static var active_music:FlxSound;
 
 	public static function init() {}
 
@@ -22,11 +29,27 @@ class SoundPlayer
 	public static function music(music_asset:String, vol:Float = 1)
 	{
 		music_asset = music_asset.replace(".ogg", "");
-		trace(MUSIC_VOLUME);
-		FlxG.sound.playMusic(Paths.get('${music_asset}.ogg'), MUSIC_VOLUME * vol);
+
+		var music_path = Paths.get('${music_asset}.ogg');
+
+		if (music_path == active_music_path)
+			return;
+
+		active_music_path = music_path;
+
+		Assets.loadAudioBuffer(music_path).onComplete((buffer) ->
+		{
+			music_loaded(buffer, music_path, vol);
+		});
+	}
+
+	static function music_loaded(buffer:AudioBuffer, music_path:String, volume:Float)
+	{
+		if (music_path != active_music_path)
+			return;
+		var music = Sound.fromAudioBuffer(buffer);
+		FlxG.sound.playMusic(music, MUSIC_VOLUME * volume);
 		FlxG.sound.music.persist = true;
-		trace(FlxG.sound.music);
-		return FlxG.sound.music;
 	}
 
 	static var slots:Array<Array<String>> = [];

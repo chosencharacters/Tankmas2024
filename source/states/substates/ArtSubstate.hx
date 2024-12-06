@@ -1,5 +1,6 @@
 package states.substates;
 
+import openfl.Assets;
 import data.JsonData;
 import entities.Present;
 import flixel.tweens.FlxEase;
@@ -17,16 +18,14 @@ class ArtSubstate extends flixel.FlxSubState
 	{
 		super();
 		data = JsonData.get_present(content);
+		trace(content);
+		trace(data);
 
-		#if censor_presents
-		art = new FlxSprite(0, 0).loadGraphic(Paths.image_path('art-censored'));
-		#else
-		art = new FlxSprite(0, 0).loadGraphic(Paths.image_path(data.file));
-		#end
+		art = new FlxSprite(0, 0);
 
-		art.setGraphicSize(art.width > art.height ? 1920 : 0, art.height >= art.width ? 1080 : 0);
-		art.updateHitbox();
-		art.screenCenter();
+		var image_url = #if censor_presents Paths.image_path('art-censored') #else Paths.image_path(data.file) #end;
+		Assets.loadBitmapData(image_url).onComplete(on_image_loaded);
+
 		add(art);
 
 		final backBox:FlxSprite = new FlxSprite(0, 960).makeGraphic(1920, 120, FlxColor.BLACK);
@@ -55,6 +54,14 @@ class ArtSubstate extends flixel.FlxSubState
 		back_button.on_hover = (b) -> b.alpha = 0.75;
 
 		members.for_all_members((member:flixel.FlxBasic) -> cast(member, FlxObject).scrollFactor.set(0, 0));
+	}
+
+	function on_image_loaded(image)
+	{
+		art.loadGraphic(image);
+		art.setGraphicSize(art.width > art.height ? 1920 : 0, art.height >= art.width ? 1080 : 0);
+		art.updateHitbox();
+		art.screenCenter();
 	}
 
 	function back_button_activated()

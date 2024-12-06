@@ -14,6 +14,29 @@ import net.tankmas.TankmasClient;
  */
 class OnlineLoop
 {
+	static final host_uri:String =
+		#if host_address
+		'${haxe.macro.Compiler.getDefine("host_address")}'
+		#elseif test_local
+		'127.0.0.1:5000'
+		#elseif dev
+		"test.tankmas-adventure.com"
+		#else
+		"tankmas.kornesjo.se:25567"
+		#end;
+
+	static final use_tls:Bool =
+		#if use_tls
+		true
+		#elseif test_local
+		false
+		#else
+		true
+		#end;
+
+	public static final http_address = '${use_tls ? 'https://' : 'http://'}${host_uri}';
+	public static final ws_address = '${use_tls ? 'wss://' : 'ws://'}${host_uri}';
+
 	public static var rooms_post_tick_rate:Float = 0;
 	public static var rooms_get_tick_rate:Float = 0;
 	public static var events_get_tick_rate:Float = 0;
