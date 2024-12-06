@@ -44,10 +44,11 @@
 		<assets path="assets/sounds" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
 		<assets path="assets/videos" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
 
+		<assets path="assets" embed="true" include="ng-secrets.json" />
+
+		<!-- resources to load on demand once the game has started -->
 		<assets path="assets/music" embed="false" />
 		<assets path="assets/images/art" embed="false" />
-
-		<assets path="assets" embed="true" include="ng-secrets.json" />
 	</section>
 
 	<!--

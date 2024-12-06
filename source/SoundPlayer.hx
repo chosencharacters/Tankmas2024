@@ -1,3 +1,5 @@
+import lime.app.Promise;
+import lime.app.Future;
 import openfl.media.Sound;
 import lime.utils.AssetLibrary;
 import lime.media.AudioBuffer;
@@ -14,9 +16,6 @@ class SoundPlayer
 
 	static var ran:FlxRandom;
 
-	static var active_music_path:String;
-	static var active_music:FlxSound;
-
 	public static function init() {}
 
 	public static function sound(sound_asset:String, vol:Float = 1):FlxSound
@@ -26,30 +25,52 @@ class SoundPlayer
 		return return_sound;
 	}
 
-	public static function music(music_asset:String, vol:Float = 1)
+	public static function music(music_asset:String, vol:Float = 1, force = false):Future<FlxSound>
 	{
 		music_asset = music_asset.replace(".ogg", "");
 
 		var music_path = Paths.get('${music_asset}.ogg');
 
-		if (music_path == active_music_path)
-			return;
+		// Don't restart same song if it's already playing,
+		// unless force is set to true.
+		if (!force && music_path == MUSIC_ALREADY_PLAYING)
+			return Future.withValue(FlxG.sound.music);
 
-		active_music_path = music_path;
+		MUSIC_ALREADY_PLAYING = music_path;
 
+		var is_local = Assets.isLocal(music_path);
+
+		// If music is local (embedded, it's already ready to play. Do it.)
+		if (is_local)
+		{
+			var music = Assets.getAudioBuffer(music_path);
+			return Future.withValue(start_music(music, music_path, vol));
+		}
+
+		var music_started_promise = new Promise<FlxSound>();
+		// If music is not embedded, we need to first load it,
+		// and then start it once it's ready.
+		var sound_buffer = Assets.loadAudioBuffer(music_path);
 		Assets.loadAudioBuffer(music_path).onComplete((buffer) ->
 		{
-			music_loaded(buffer, music_path, vol);
+			var res = start_music(buffer, music_path, vol);
+			music_started_promise.complete(res);
 		});
+
+		return music_started_promise.future;
 	}
 
-	static function music_loaded(buffer:AudioBuffer, music_path:String, volume:Float)
+	static function start_music(buffer:AudioBuffer, music_path:String, volume:Float)
 	{
-		if (music_path != active_music_path)
-			return;
+		// Music was already changed, so skip starting this.
+		if (music_path != MUSIC_ALREADY_PLAYING)
+			return FlxG.sound.music;
+
 		var music = Sound.fromAudioBuffer(buffer);
 		FlxG.sound.playMusic(music, MUSIC_VOLUME * volume);
 		FlxG.sound.music.persist = true;
+
+		return FlxG.sound.music;
 	}
 
 	static var slots:Array<Array<String>> = [];

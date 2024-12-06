@@ -31,7 +31,7 @@ class BaseState extends FlxState
 			#if !no_radio
 			radio = new RadioManager();
 			#else
-			SoundPlayer.music('thewanderer-everratic');
+			SoundPlayer.music(AssetPaths.thewanderer_everratic__ogg).onComplete((_music) -> trace('Song started playing.'));
 			#end
 
 			#if !no_fade
