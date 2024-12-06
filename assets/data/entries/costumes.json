@@ -6,6 +6,12 @@
             "desc": "The problems of the future, today!"
         },
         {
+            "name": "steve",
+            "display": "Steve :)",
+            "desc": "The future has no problems when you can keep a sunny outlook!",
+            "unlock": "SUPPORTER"
+        },
+        {
             "name": "paco",
             "display": "Pico",
             "desc": "They've been blasting through the Portal since 1999, it's Pico!"
@@ -219,15 +225,15 @@
             "name": "duncan",
             "display": "Duncan",
             "desc": "1/2 of Duncan and Jones",
-            "unlock": "USERNAME",
-            "data": "snackers"
+            "unlock": "DATE",
+            "data": 1733461200
         },
         {
             "name": "jones",
             "display": "Jones",
             "desc": "1/2 of Jones and Duncan",
-            "unlock": "USERNAME",
-            "data": "snackers"
+            "unlock": "DATE",
+            "data": 1733461200
         },
         {
             "name": "ritz",
@@ -249,6 +255,13 @@
             "desc": "Here ya go Josh >:(",
             "unlock": "USERNAME",
             "data": "psychogoldfish"
+        },
+        {
+            "name": "go-go",
+            "display": "Gogo",
+            "desc": "An 11 year old martial arts prodigy, Gogo Matsumoto is as powerful as she is... not entirely there all the time. Is she the only one powerful enough to defeat the powerful demon lord Emperor Koro?",
+            "unlock": "DATE",
+            "data": 1733461200
         }
     ]
 }

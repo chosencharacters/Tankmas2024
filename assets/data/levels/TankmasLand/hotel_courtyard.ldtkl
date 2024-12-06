@@ -10955,7 +10955,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [102,100],
+					"__grid": [112,111],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -10964,7 +10964,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1632,1600],
+					"px": [1792,1776],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "cymbourine", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -10972,8 +10972,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 1, "__tile": null, "defUid": 6, "realEditorValues": [] }
 					],
-					"__worldX": 1664,
-					"__worldY": 1616
+					"__worldX": 1824,
+					"__worldY": 1792
 				},
 				{
 					"__identifier": "NPC",
@@ -11034,7 +11034,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [67,113],
+					"__grid": [62,110],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -11043,7 +11043,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1084,1816],
+					"px": [1004,1768],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "sevi", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -11051,8 +11051,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 2, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [2] }] }
 					],
-					"__worldX": 1116,
-					"__worldY": 1832
+					"__worldX": 1036,
+					"__worldY": 1784
 				},
 				{
 					"__identifier": "Present",
@@ -11097,7 +11097,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [123,99],
+					"__grid": [125,97],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -11106,7 +11106,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1968,1584],
+					"px": [2000,1552],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "sirlenward", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -11114,8 +11114,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 4, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
 					],
-					"__worldX": 2000,
-					"__worldY": 1600
+					"__worldX": 2032,
+					"__worldY": 1568
 				},
 				{
 					"__identifier": "NPC",
@@ -11176,7 +11176,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [79,100],
+					"__grid": [75,98],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -11185,7 +11185,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1264,1600],
+					"px": [1200,1568],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "theextreamh", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -11193,8 +11193,30 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 5, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [5] }] }
 					],
-					"__worldX": 1296,
-					"__worldY": 1616
+					"__worldX": 1232,
+					"__worldY": 1584
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [89,111],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "dba6cdb0-9b00-11ef-b28a-17e025ddcf56",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1424,1776],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "bleak-creep", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["bleak-creep"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 6, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [6] }] }
+					],
+					"__worldX": 1456,
+					"__worldY": 1792
 				}
 			]
 		},

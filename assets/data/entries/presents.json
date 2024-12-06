@@ -27,9 +27,15 @@
         {
             "day": 5,
             "file": "day-5-theextreamh",
-            "name": "Yo! Merry Sexy Tankmas!!!!!",
+            "name": "All I want for Tankmas",
             "artist": "TheExtreamh"
-        }, 
+        },
+        {
+            "day": 6,
+            "file": "day-6-bleak-creep",
+            "name": "Warming Up With Winter!",
+            "artist": "Bleak-Creep"
+        },
         {
             "day": 1,
             "file": "night-before",
