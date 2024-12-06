@@ -1,7 +1,7 @@
 package;
 
 import Paths.Manifest;
-import data.TimeManager;
+import data.SaveManager;
 import data.TimeManager;
 import data.loaders.NPCLoader;
 import flixel.FlxGame;
@@ -16,9 +16,10 @@ import utils.CrashHandler;
 
 class Main extends Sprite
 {
-	public static var username:String = #if username haxe.macro.Compiler.getDefine("username") #elseif random_username 'poop_${Math.random()}' #else "lost soul" #end;
+	public static var username:String = #if username haxe.macro.Compiler.getDefine("username") #elseif random_username 'poop_${Math.random()}' #else "lost_soul" #end;
+	public static var session_id:String = #if (offline || !newgrounds) "test_session" #else null #end;
 
-	public static var current_room_id:String = "1";
+	public static var current_room_id:Int = 1;
 
 	public static var DEV:Bool = #if dev true #else false #end;
 
@@ -28,7 +29,7 @@ class Main extends Sprite
 	public static var ng_api:NewgroundsHandler;
 	#end
 
-	public static var default_sticker_collection:Array<String> = ["common-tamago"];
+	public static var default_sticker_collection:Array<String> = ["common-tamago", "ilho-gift"];
 	public static var default_sticker:String = "common-tamago";
 
 	public static var default_costume_collection:Array<String> = ["tankman", "paco"];
@@ -68,7 +69,7 @@ class Main extends Sprite
 			username = 'temporary_random_username_${Math.random()}';
 		}
 		#end
-		addChild(new FlxGame(1920, 1080, initial_state, true));
+		addChild(new FlxGame(1920, 1080, PlayState, true));
 	}
 
 	public static function get_current_bg(day:Int):Int

@@ -32,11 +32,12 @@ class BonfireArea extends ActivityAreaInstance
 		var marshmallow = stick.marshmallow;
 		if (marshmallow != null)
 		{
-			if (marshmallow.current_level == Marshmallow.GOLDEN_MARSHMALLOW_LEVEL) {
+			if (marshmallow.current_level == Marshmallow.GOLDEN_MARSHMALLOW_LEVEL)
+			{
 				Marshmallow.on_cooked_perfect();
 			}
 
-			OnlineLoop.post_marshmallow_discard(Main.current_room_id, marshmallow.current_level);
+			OnlineLoop.post_marshmallow_discard(marshmallow.current_level);
 		}
 		stick.shake_off();
 	}

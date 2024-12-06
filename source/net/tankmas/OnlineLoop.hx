@@ -38,9 +38,7 @@ class OnlineLoop
 
 	public static var force_send_full_user:Bool;
 
-	#if websocket
 	static var websocket:WebsocketClient;
-	#end
 
 	static function get_current_timestamp():Float
 		return haxe.Timer.stamp();
@@ -49,12 +47,17 @@ class OnlineLoop
 	{
 		#if offline return; #end
 
-		#if websocket
-		if (websocket != null)
-			websocket.close();
-
-		websocket = new WebsocketClient();
+		#if (dev && test_local)
+		Main.session_id = 'test_session';
 		#end
+
+		if (websocket == null)
+		{
+			trace('initing online loop');
+			websocket = new WebsocketClient();
+		}
+
+		websocket.connect();
 
 		force_send_full_user = true;
 
@@ -71,10 +74,9 @@ class OnlineLoop
 
 	public static function iterate(elapsed:Float = 0.0)
 	{
-		#if offline return; #end
-
-		#if websocket
-		websocket.update(elapsed);
+		#if !offline
+		if (websocket != null)
+			websocket.update(elapsed);
 
 		var tick_diff = current_timestamp - last_websocket_player_tick_timestamp;
 		if (tick_diff < websocket_state_send_interval)
@@ -82,83 +84,60 @@ class OnlineLoop
 
 		last_websocket_player_tick_timestamp = current_timestamp;
 
-		var json:NetUserDef = PlayState.self.player.get_user_update_json();
-		if (json.x != null || json.y != null || json.costume != null || json.sx != null)
-		{
-			websocket.send_player(json);
-		}
-		#end
-
-		#if !websocket
-		var post_time_diff:Float = current_timestamp - last_rooms_post_timestamp;
-		var get_time_diff:Float = current_timestamp - last_rooms_get_timestamp;
-		if (post_time_diff > rooms_post_tick_rate * .001 && rooms_post_tick_rate > -1)
-		{
-			last_rooms_post_timestamp = current_timestamp;
-			OnlineLoop.post_player("1", force_send_full_user, PlayState.self.player);
-		}
-
-		if (get_time_diff > rooms_get_tick_rate * .001 && rooms_get_tick_rate > -1)
-		{
-			last_rooms_get_timestamp = current_timestamp;
-			OnlineLoop.get_room("1");
-		}
-		if (get_time_diff > events_get_tick_rate * .001 && events_get_tick_rate > -1)
-		{
-			last_events_get_timestamp = current_timestamp;
-			OnlineLoop.get_events("1");
-		}
+		send_player_state();
 		#end
 	}
 
-	/**This is a post request**/
-	public static function post_player(room_id:String, force_send_full_user:Bool = false, user:Player)
+	public static function send_player_state(do_full_update:Bool = false)
 	{
-		rooms_post_tick_rate = tick_wait_timeout;
-		var json:NetUserDef = user.get_user_update_json();
+		if (PlayState.self == null)
+		{
+			return;
+		}
 
+		var json:NetUserDef = PlayState.self.player.get_user_update_json(do_full_update);
 		if (json.x != null || json.y != null || json.costume != null || json.sx != null)
 		{
-			// websocket.send_player(json);
+			#if !websocket
 			TankmasClient.post_user(room_id, json, after_post_player);
+			#else
+			websocket.send_player(json);
+			#end
 		}
 	}
 
 	/**This is a post request**/
-	public static function post_sticker(room_id:String, sticker_name:String)
+	public static function post_sticker(sticker_name:String)
 	{
-		#if websocket
-		websocket.send_event("sticker", {"name": sticker_name});
-		#else
-		TankmasClient.post_event(room_id, {type: "sticker", data: {"name": sticker_name}, username: Main.username});
-		#end
+		post_event({type: STICKER, data: {"name": sticker_name}});
 	}
 
-	public static function post_marshmallow_discard(room_id:String, marshmallow_level:Int)
+	public static function post_marshmallow_discard(marshmallow_level:Int)
+	{
+		post_event({type: DROP_MARSHMALLOW, data: {"level": marshmallow_level}});
+	}
+
+	/**This is a post request**/
+	public static function post_event(event:NetEventDef)
 	{
 		#if offline return #end
-		#if websocket
-		websocket.send_event("drop_marshmallow", {"level": marshmallow_level});
-		#else
-		TankmasClient.post_event(room_id, {type: "drop_marshmallow", data: {"level": marshmallow_level}, username: Main.username});
-		#end
-	}
 
-	/**This is a post request**/
-	public static function post_event(room_id:String, event:NetEventDef)
-	{
-		TankmasClient.post_event(room_id, event);
+		#if !websocket
+		TankmasClient.post_event(Main.current_room_id, event);
+		#else
+		websocket.send_event(event.type, event.data);
+		#end
 	}
 
 	/**This is a get request**/
-	public static function get_room(room_id:String)
+	public static function get_room(room_id:Int)
 	{
 		rooms_get_tick_rate = tick_wait_timeout;
 		TankmasClient.get_users_in_room(room_id, update_user_visuals);
 	}
 
 	/**This is a post request**/
-	public static function get_events(room_id:String)
+	public static function get_events(room_id:Int)
 	{
 		events_get_tick_rate = tick_wait_timeout;
 		TankmasClient.get_events(room_id, update_user_events);
@@ -176,15 +155,16 @@ class OnlineLoop
 
 	public static function update_user_visual(username:String, def:NetUserDef)
 	{
+		if (PlayState.self == null)
+			return;
+
+		#if !ghosttown
 		var is_local_player = username == Main.username;
 
 		if (is_local_player && !def.immediate)
 			return;
 
 		var costume:CostumeDef = JsonData.get_costume(def.costume);
-
-		if (costume == null)
-			costume = JsonData.get_costume(Main.default_costume);
 
 		var create_function = () ->
 		{
@@ -210,13 +190,19 @@ class OnlineLoop
 			user.y = new_y;
 		}
 
-		if (user.costume == null || user.costume.name != costume.name)
+		if (costume != null && (user.costume == null || user.costume.name != costume.name))
 			user.new_costume(costume);
+		#end
 	}
 
 	public static function update_user_visuals(data:Dynamic)
 	{
 		#if !ghost_town
+		if (PlayState.self == null)
+		{
+			return;
+		}
+
 		var usernames:Array<String> = Reflect.fields(data.data);
 
 		usernames.remove(Main.username);

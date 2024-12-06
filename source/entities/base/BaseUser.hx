@@ -23,7 +23,7 @@ class BaseUser extends NGSprite
 	public var sticker_name:String;
 	public var active_activity_area:ActivityArea;
 
-	public function new(?X:Float, ?Y:Float, username:String)
+	public function new(?X:Float, ?Y:Float, username:String, costume:String = "tankman")
 	{
 		super(X, Y);
 
@@ -31,7 +31,7 @@ class BaseUser extends NGSprite
 
 		this.username = username;
 
-		new_costume(JsonData.get_costume("tankman"));
+		new_costume(JsonData.get_costume(costume));
 		sprite_anim.anim(PlayerAnimation.MOVING);
 
 		nameTag = new FlxText(0, 0, 0, username.toUpperCase());

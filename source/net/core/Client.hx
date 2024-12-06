@@ -1,5 +1,6 @@
 package net.core;
 
+import net.tankmas.NetDefs.GenerateBasicAuthHeader;
 import haxe.Http;
 import haxe.http.HttpStatus;
 import http.HttpClient;
@@ -24,20 +25,24 @@ class Client
 	 * @param url target url
 	 * @param on_data return function on success
 	 */
-	public static function get(url:String, ?on_data:Dynamic->Void)
+	public static function get(url:String, ?on_data:Dynamic->Void, ?on_error:HttpError->Void)
 	{
 		#if trace_net
 		trace('GET <- $url');
 		#end
 
-		client.get(url).then(response ->
+		var headers = ["Authorization" => GenerateBasicAuthHeader(Main.username, Main.session_id)];
+
+		client.get(url, null, headers).then(response ->
 		{
 			#if trace_net trace('STATUS: ${response.httpStatus}'); #end
 			on_data(response.bodyAsJson);
 		}, (error:HttpError) ->
 			{
 				trace('GET ERROR @ $url');
-				on_error(error);
+				if (on_error != null)
+					on_error(error);
+				Client.on_error(error);
 			});
 	}
 
@@ -53,10 +58,13 @@ class Client
 		trace('POST -> $url>>\tdata = $data');
 		#end
 
-		client.post(url, data).then(response ->
+		var headers = ["Authorization" => GenerateBasicAuthHeader(Main.username, Main.session_id)];
+
+		client.post(url, data, null, headers).then(response ->
 		{
 			#if trace_net trace('STATUS: ${response.httpStatus}'); #end
-			if (on_data != null) on_data(response.bodyAsJson);
+			if (on_data != null)
+				on_data(response.bodyAsJson);
 		}, (error:HttpError) ->
 			{
 				trace('POST ERROR @ $url');

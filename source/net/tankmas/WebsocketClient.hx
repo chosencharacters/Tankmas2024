@@ -1,8 +1,9 @@
 package net.tankmas;
 
-import bunnymark.PlayState;
+import net.tankmas.NetDefs.GenerateBasicAuthHeader;
 import haxe.Json;
 import hx.ws.Types.MessageType;
+import net.tankmas.NetDefs.NetEventType;
 import net.tankmas.NetDefs.NetEventDef;
 import net.tankmas.NetDefs.NetUserDef;
 #if websocket
@@ -22,9 +23,8 @@ enum abstract WebsocketEventType(Int)
 	// Called when player disconnects or leaves the room.
 	var PlayerLeft = 4;
 
-	// For loading and saving an user's own save data.
-	var LoadUserData = 94;
-	var SaveUserData = 95;
+	// Received when the server broadcasts a message.
+	var NotificationMessage = 12;
 }
 
 typedef WebsocketEvent =
@@ -42,7 +42,7 @@ typedef WebsocketEvent =
 
 class WebsocketClient
 {
-	static var address:String = #if test_local 'ws://127.0.0.1:8000' #else "wss://tankmas.kornesjo.se:25567" #end;
+	static var address:String = #if host_address 'wss://${haxe.macro.Compiler.getDefine("host_address")}' #elseif test_local 'ws://127.0.0.1:5000' #else "wss://tankmas.kornesjo.se:25567" #end;
 
 	#if websocket
 	var socket:WebSocket;
@@ -52,40 +52,22 @@ class WebsocketClient
 	var username:String = null;
 	var session_id:String = null;
 
-	// When the user connects, they'll get an intial room/position.
-	var loaded_user_position:Bool = false;
-
 	var connection_retries = 0;
-	var max_connection_retries = 10;
+	var max_connection_retries = 5;
 	var retry_connection = false;
 
-	var until_retry_s = 4.0;
-	var retry_interval = 6.0;
+	var until_retry_s = 3.0;
+	var retry_interval = 5.0;
 
 	var closed = false;
+
+	public var on_socket_timeout:() -> Void = null;
 
 	public function new()
 	{
 		#if offline
 		return;
 		#end
-
-		username = Main.username;
-		session_id = null;
-
-		#if newgrounds
-		session_id = Main.ng_api.NG_SESSION_ID;
-		username = Main.ng_api.NG_USERNAME;
-		#end
-
-		#if (dev && test_local)
-		session_id = 'test_dev_session';
-		#end
-
-		if (session_id != null && username != null)
-		{
-			connect();
-		}
 	}
 
 	public function close()
@@ -93,23 +75,52 @@ class WebsocketClient
 		#if websocket
 		if (socket != null)
 			socket.close();
+		trace('Closing socket...');
 		closed = true;
 		connected = false;
 		#end
 	}
 
-	function connect()
+	public function connect()
 	{
+		if (socket != null)
+		{
+			return;
+		}
+
+		username = Main.username;
+		session_id = Main.session_id;
+
+		#if newgrounds
+		session_id = Main.ng_api.NG_SESSION_ID;
+		username = Main.ng_api.NG_USERNAME;
+
+		trace(Main.ng_api.NG_SESSION_ID);
+		trace(Main.ng_api.NG_USERNAME);
+		#end
+
+		#if dev
+		if (session_id == null || session_id == "")
+		{
+			session_id = "dev_test_session";
+		}
+		#end
+
+		trace(username);
+		trace(session_id);
+
 		#if websocket
-		if (username == null || session_id == null)
+		if (username == null || session_id == null || username == "" || session_id == "")
 		{
 			trace("Trying to connect with a session id or username");
 			return;
 		}
 
-		var url = '${address}?username=${username}&session=${session_id}';
 		try
 		{
+			var url = '${address}?username=${username}&session=${session_id}';
+			trace('connecting to $url');
+
 			socket = new WebSocket(url);
 			socket.onmessage = on_message;
 			socket.onopen = on_connect;
@@ -118,6 +129,7 @@ class WebsocketClient
 		}
 		catch (err)
 		{
+			trace('Could not create websocket: $err');
 			start_reconnection();
 		}
 		#end
@@ -125,6 +137,8 @@ class WebsocketClient
 
 	function on_error(_err)
 	{
+		trace(_err);
+		trace('Uh oh websocket errorrr!!');
 		#if websocket
 		start_reconnection();
 		#end
@@ -140,10 +154,12 @@ class WebsocketClient
 		if (connection_retries > max_connection_retries)
 		{
 			trace('could not connect to socket after max retries');
+			if (on_socket_timeout != null)
+				on_socket_timeout();
 		}
 		else
 		{
-			trace('socket crashed, retry...');
+			trace('socket crashed, retry connection in a while...');
 			retry_connection = true;
 		}
 	}
@@ -167,6 +183,9 @@ class WebsocketClient
 		retry_connection = false;
 		connection_retries = 0;
 		connected = true;
+
+		// We are ready to go
+		OnlineLoop.send_player_state(true);
 	}
 
 	function on_message(data:MessageType)
@@ -185,13 +204,7 @@ class WebsocketClient
 						{
 							var d:NetUserDef = event.data;
 							if (d.username == Main.username)
-							{
-								if (d.immediate)
-								{
-									loaded_user_position = true;
-									PlayState.self.latest_player_position = d;
-								}
-							}
+								continue;
 							OnlineLoop.update_user_visual(d.username, d);
 						}
 
@@ -212,13 +225,27 @@ class WebsocketClient
 							}
 							PlayState.self.on_net_event_received(net_event);
 						}
+
+						if (event.type == NotificationMessage)
+						{
+							var data:
+								{
+									?text:String,
+									?persistent:Bool
+								} = event.data;
+
+							if (data == null || data.text == null)
+								return;
+
+							PlayState.self.notification_message.show(data.text, data.persistent);
+						}
 					}
 				default:
 			}
 		}
 		catch (err)
 		{
-			trace(err);
+			trace(err.stack);
 		}
 	}
 
@@ -299,19 +326,14 @@ class WebsocketClient
 
 	public function send_player(player:NetUserDef)
 	{
-		if (!loaded_user_position)
-			return;
-
 		send({
 			type: WebsocketEventType.PlayerStateUpdate,
 			data: player,
 		});
 	}
 
-	public function send_event(type:String, data:Dynamic = null, immediate = false)
+	public function send_event(type:NetEventType, data:Dynamic = null, immediate = false)
 	{
-		if (!loaded_user_position)
-			return;
 		send({
 			type: WebsocketEventType.CustomEvent,
 			name: type,

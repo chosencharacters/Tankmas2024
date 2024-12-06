@@ -1,5 +1,6 @@
 package states;
 
+import ui.popups.ServerNotificationMessagePopup;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -34,9 +35,6 @@ class PlayState extends BaseState
 
 	static final default_world:String = "outside_hotel";
 
-	public var current_room_id = 1;
-	public var latest_player_position:NetUserDef;
-
 	var current_world:String;
 
 	public var player:Player;
@@ -55,9 +53,8 @@ class PlayState extends BaseState
 
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
 	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
-	public var level_foregrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
-
 	public var level_collision:FlxTypedGroup<FlxTilemap> = new FlxTypedGroup<FlxTilemap>();
+	public var level_foregrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 
 	/**Do not add to state*/
 	public var interactables:FlxTypedGroup<Interactable> = new FlxTypedGroup<Interactable>();
@@ -76,6 +73,9 @@ class PlayState extends BaseState
 
 	public var premieres:PremiereHandler;
 
+	// No idea how I could get this into the overlay ui
+	public var notification_message:ServerNotificationMessagePopup;
+
 	public function new(?world_to_load:String)
 	{
 		if (world_to_load != null)
@@ -91,9 +91,8 @@ class PlayState extends BaseState
 
 		Ctrl.mode = ControlModes.OVERWORLD;
 
+		trace('settin myself');
 		self = this;
-
-		OnlineLoop.init();
 
 		premieres = new PremiereHandler();
 
@@ -130,6 +129,9 @@ class PlayState extends BaseState
 
 		add(ui_overlay);
 
+		notification_message = new ServerNotificationMessagePopup();
+		add(notification_message);
+
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
 		MinigameHandler.instance.initialize();
@@ -151,29 +153,13 @@ class PlayState extends BaseState
 
 		// FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
 
-		OnlineLoop.iterate();
-
 		// runs nearby animation if not checked here
 		for (mem in presents.members)
 			mem.checkOpen();
 
 		SaveManager.save_room();
 
-		// Check if player exists, and load their position.
-		// A bit jank now since it does it after the player is spawned.
-		// Also this could be loaded in the user's save file instead
-		#if (!offline)
-		TankmasClient.get_user(Main.username, player_loaded);
-		#end
-	}
-
-	function player_loaded(?p:NetUserDef)
-	{
-		if (p != null)
-		{
-			// player.x = p.x;
-			// player.y = p.y;
-		}
+		player.on_save_loaded();
 	}
 
 	override public function update(elapsed:Float)
@@ -190,7 +176,10 @@ class PlayState extends BaseState
 			FlxG.switchState(new PlayState());
 
 		if (Ctrl.reset[1] && FlxG.keys.pressed.SHIFT)
-			SaveManager.upload();
+			SaveManager.save();
+
+		if (FlxG.keys.justPressed.N)
+			notification_message.show("I'm a test notification message and\n  I just want to say hi :)");
 		#end
 
 		if (Ctrl.mode.can_open_menus)
@@ -253,7 +242,7 @@ class PlayState extends BaseState
 	// Currently these include stickers and marshmallow drops
 	public function on_net_event_received(event:NetEventDef)
 	{
-		if (event.room_id != null && event.room_id != current_room_id)
+		if (event.room_id != null && event.room_id != Main.current_room_id)
 			return;
 
 		// If event has an username, pass it to the user.

@@ -50,18 +50,7 @@ class Player extends BaseUser
 			#end
 		 */
 
-		costume = JsonData.get_costume(SaveManager.current_costume);
-		if (costume == null)
-			costume = JsonData.get_costume("tankman");
-
-		if (PlayState.self.latest_player_position != null)
-		{
-			last_update_json = PlayState.self.latest_player_position;
-			x = last_update_json.x;
-			y = last_update_json.y;
-		}
-		else
-			last_update_json = {username: username};
+		last_update_json = {username: username};
 
 		type = "player";
 
@@ -70,6 +59,17 @@ class Player extends BaseUser
 		sprite_anim.anim(PlayerAnimation.MOVING);
 
 		sstate(NEUTRAL);
+	}
+
+	// Called once the save data is up to date after fetching it from the server.
+	public function on_save_loaded()
+	{
+		var saved_costume_name = SaveManager.current_costume;
+		var costume = JsonData.get_costume(saved_costume_name);
+		if (costume == null)
+			costume = JsonData.get_costume("tankman");
+
+		new_costume(costume);
 	}
 
 	public function start_auto_move(auto_move_dest:FlxPoint)
@@ -296,15 +296,14 @@ class Player extends BaseUser
 		var sticker_got_used:Bool = super.use_sticker(sticker_name);
 		#if !offline
 		if (sticker_got_used)
-			OnlineLoop.post_sticker(Main.current_room_id, sticker_name);
+			OnlineLoop.post_sticker(sticker_name);
 		#end
 		return sticker_got_used;
 	}
 
 	public function get_user_update_json(force_send_full_user:Bool = false):NetUserDef
 	{
-		var def:NetUserDef = {username: username, room_id: PlayState.self.current_room_id};
-
+		var def:NetUserDef = {username: username, room_id: Main.current_room_id};
 		var new_sx = flipX ? -1 : 1;
 		if (last_update_json.x != x.floor() || force_send_full_user)
 		{

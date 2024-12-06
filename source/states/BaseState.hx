@@ -21,7 +21,6 @@ class BaseState extends FlxState
 		super();
 		if (FIRST_RUN)
 		{
-			SaveManager.init();
 			#if gif
 			GifRecorder.init("game", "../../../export/");
 			#end
@@ -32,7 +31,7 @@ class BaseState extends FlxState
 			#if !no_radio
 			radio = new RadioManager();
 			#else
-			SoundPlayer.music('christmasjoy-realtin3sn');
+			SoundPlayer.music('thewanderer-everratic');
 			#end
 
 			#if !no_fade
