@@ -107,9 +107,9 @@ class OnlineLoop
 	}
 
 	/**This is a post request**/
-	public static function post_sticker(sticker_name:String)
+	public static function post_emote(emote_name:String)
 	{
-		post_event({type: STICKER, data: {"name": sticker_name}});
+		post_event({type: STICKER, data: {"name": emote_name}});
 	}
 
 	public static function post_marshmallow_discard(marshmallow_level:Int)

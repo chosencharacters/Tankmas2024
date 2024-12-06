@@ -8,8 +8,8 @@ import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 import ui.popups.StickerPackOpening;
 import ui.settings.BaseSettings;
+import ui.sheets.EmoteSelectSheet;
 import ui.sheets.SheetMenu;
-import ui.sheets.StickerSelectSheet;
 
 class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 {
@@ -43,12 +43,12 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 		for (member in members)
 			member.scrollFactor.set(0, 0);
 
-		sticker_pack.visible = Player.has_sticker_pack;
+		sticker_pack.visible = Player.has_emote_pack;
 	}
 
 	override function update(elapsed:Float)
 	{
-		sticker_pack.visible = Player.has_sticker_pack;
+		sticker_pack.visible = Player.has_emote_pack;
 		hover_handler();
 		super.update(elapsed);
 	}
@@ -94,7 +94,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 			];
 
 			sticker_pack.tween = FlxTween.tween(sticker_pack, {y: FlxG.height + sticker_pack.height}, 0.25, {
-				onComplete: (t) -> FlxG.state.add(new StickerPackOpening(JsonData.random_draw_stickers(Main.daily_sticker_draw_amount, limit_list)))
+				onComplete: (t) -> FlxG.state.add(new StickerPackOpening(JsonData.random_draw_emotes(Main.daily_emote_draw_amount, limit_list)))
 			});
 
 			return;
@@ -170,7 +170,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 					if (FlxG.mouse.overlaps(member))
 					{
 						if (FlxG.mouse.justReleased)
-							player.use_sticker(SaveManager.current_emote);
+							player.use_emote(SaveManager.current_emote);
 						if (FlxG.mouse.pressed && member.scale.x != 0.8)
 							member.scale.set(0.8, 0.8)
 						else if (!FlxG.mouse.pressed && member.scale.x != 1.1)

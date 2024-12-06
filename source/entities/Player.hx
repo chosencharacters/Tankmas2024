@@ -20,7 +20,7 @@ class Player extends BaseUser
 
 	static var debug_costume_rotation:Array<CostumeDef>;
 
-	public static var has_sticker_pack:Bool = true;
+	public static var has_emote_pack:Bool = true;
 
 	var auto_moving:Bool = false;
 	var auto_move_dest:FlxPoint;
@@ -140,7 +140,7 @@ class Player extends BaseUser
 			auto_moving = false;
 
 		if (Ctrl.jemote[1] && !MinigameHandler.instance.is_minigame_active())
-			use_sticker(SaveManager.current_emote);
+			use_emote(SaveManager.current_emote);
 
 		if (auto_moving)
 			auto_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
@@ -291,12 +291,12 @@ class Player extends BaseUser
 		super.kill();
 	}
 
-	override function use_sticker(sticker_name:String):Bool
+	override function use_emote(emote_name:String):Bool
 	{
-		var sticker_got_used:Bool = super.use_sticker(sticker_name);
+		var sticker_got_used:Bool = super.use_emote(emote_name);
 		#if !offline
 		if (sticker_got_used)
-			OnlineLoop.post_sticker(sticker_name);
+			OnlineLoop.post_emote(emote_name);
 		#end
 		return sticker_got_used;
 	}

@@ -1,7 +1,7 @@
 {
     "sheets": [
         {
-            "graphic": "costumes-series-1",
+            "name": "costumes-series-1",
             "items": [
                 {
                     "name": "tankman",
@@ -66,7 +66,7 @@
             ]
         },
         {
-            "graphic": "costumes-series-2",
+            "name": "costumes-series-2",
             "items": [
                 {
                     "name": "bitey",
@@ -131,7 +131,7 @@
             ]
         },
         {
-            "graphic": "costumes-series-3",
+            "name": "costumes-series-3",
             "items": [
                 {
                     "name": "sodaman",

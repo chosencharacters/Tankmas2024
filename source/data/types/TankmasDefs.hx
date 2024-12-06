@@ -1,7 +1,6 @@
 package data.types;
 
 import data.types.TankmasEnums.UnlockCondition;
-import dn.achievements.AbstractAchievementPlatform;
 
 typedef CostumeDef =
 {
@@ -12,7 +11,7 @@ typedef CostumeDef =
 	var ?data:Dynamic;
 }
 
-typedef StickerDef =
+typedef EmoteDef =
 {
 	var name:String;
 	var properName:String;

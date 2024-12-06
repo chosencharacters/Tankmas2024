@@ -2,7 +2,7 @@ package ui.sheets;
 
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
-import data.types.TankmasDefs.StickerDef;
+import data.types.TankmasDefs.EmoteDef;
 import flixel.FlxBasic;
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
@@ -11,35 +11,30 @@ import flixel.util.FlxTimer;
 import squid.ext.FlxTypedGroupExt;
 import ui.button.HoverButton;
 import ui.sheets.buttons.SheetButton;
+import ui.sheets.defs.SheetDefs.SheetMenuDef;
 import ui.sheets.defs.SheetDefs;
 
 class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 {
 	var sheet_type:SheetType;
-	var def:SheetDef;
+	var def:SheetMenuDef;
 
-	var stickerSheetOutline:FlxSpriteExt;
-	var stickerSheetBase:FlxSpriteExt;
-	var effectSheet:FlxEffectSprite;
+	var outline:FlxSpriteExt;
+	var bg:FlxSpriteExt;
+
 	var description:FlxText;
 	var title:FlxText;
 
 	public var selector:FlxSpriteExt;
 	public var backTab:FlxSpriteExt;
-
-	final characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSpriteExt>> = [];
-	final notSeenGroup:Array<FlxTypedSpriteGroup<FlxSpriteExt>> = [];
-	final characterNames:Array<Array<String>> = [];
-
-	var current_hover_sheet(default, set):Int = 0;
-	var current_hover_selection(default, set):Int = 0;
+	public var notepad:FlxSpriteExt;
 
 	var locked_sheet:Int = 0;
 	var locked_selection:Int = 0;
 
-	final descGroup:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
+	var selection = 0;
 
-	var graphicSheet:Bool = false;
+	final desc_group:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
 
 	public var seen:Array<String> = [];
 
@@ -49,14 +44,15 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	final close_speed:Float = 0.5;
 
-	var grid:SheetMenuDef;
+	var rows:Int = 4;
+	var cols:Int = 4;
 
 	/**
 	 * This is private, should be only made through things that extend it
 	 * @param saved_sheet
 	 * @param saved_selection
 	 */
-	function new(menu:SheetMenu, saved_sheet:Int, saved_selection:Int, ?sheet_type:SheetType = COSTUME)
+	function new(sheet_name:String, menu:SheetMenu, ?sheet_type:SheetType = COSTUME)
 	{
 		super();
 
@@ -65,62 +61,63 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 		sstate(INACTIVE);
 
-		add(descGroup);
+		add(desc_group);
 
-		final notepad:FlxSpriteExt = new FlxSpriteExt(1490, 300, Paths.get("sticker-sheet-note.png"));
-		descGroup.add(notepad);
+		notepad = new FlxSpriteExt(1490, 300, Paths.get("sticker-sheet-note.png"));
+		desc_group.add(notepad);
 
 		description = new FlxText(1500, 325, 420, '');
 		description.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
-		descGroup.add(description);
+		desc_group.add(description);
 
 		add(backTab = new FlxSpriteExt(66 + (sheet_type == COSTUME ? 500 : 0), 130, Paths.get('${sheet_type == COSTUME ? 'emote-tab' : 'costume-tab'}.png')));
 
-		add(stickerSheetOutline = new FlxSpriteExt(46, 219).makeGraphicExt(1446, 852, FlxColor.WHITE));
-		add(stickerSheetBase = new FlxSpriteExt(66, 239));
+		add(outline = new FlxSpriteExt(46, 219).makeGraphicExt(1446, 852, FlxColor.WHITE));
+		add(bg = new FlxSpriteExt(66, 239));
 
 		title = new FlxText(70, 70, 1420, '');
 		title.setFormat(Paths.get('CharlieType-Heavy.otf'), 60, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
 		title.borderSize = 6;
 		add(title);
 
-		def = load_def();
+		def = load_new_def(sheet_name);
 
 		add_sprites();
-
-		sheet_collection = make_sheet_collection();
-
-		var sprite_position:FlxPoint = FlxPoint.weak();
 	}
 
 	function add_sprites()
 	{
-		var row:Array<SheetButton> = [];
-		var rows:Array<Array<SheetButton>> = [];
+		for (row in 0...rows)
+			for (col in 0...cols)
+				def.grid_2D[row][col] = null;
 
-		for (item in rows)
+		for (i in 0...def.src.items.length)
 		{
-			var row:Array<SheetButton> = [];
-			for (row in rows)
-			{
-				// initial positions
-				sprite_position.x = 190 + (340 * (i % 4));
-				sprite_position.y = 320 + (270 * Math.floor(i / 4));
+			var item_def:SheetItemDef = def.src.items[i];
+			var button:HoverButton = new HoverButton(0, 0, item_def.name, (b) -> lock_choices());
 
-				// add offsets
-				sprite_position.x += identity?.xOffset ?? 0;
-				sprite_position.y += identity?.yOffset ?? 0;
-				sprite.setPosition(sprite_position.x, sprite_position.y);
+			var row:Float = i / 4;
+			var col:Float = i % 4;
 
-				sprite.angle = identity?.angle ?? 0.0;
-				characterSprites.add(sprite);
-			}
+			// initial positions
+			button.x = 190 + (340 * col);
+			button.y = 320 + (270 * row);
+
+			// add offsets
+			button.setPosition(button.x + item_def?.xOffset ?? 0, button.y + item_def?.yOffset ?? 0);
+
+			button.angle = item_def?.angle ?? 0.0;
+
+			def.grid_1D[i] = item_def;
+			def.grid_2D[row][col] = item_def;
+
+			add(button);
 		}
 	}
 
 	function update_locked_selection_overlay() {}
 
-	function load_def():SheetMenuDef
+	function load_new_def(name:String):SheetMenuDef
 		throw "not implemented";
 
 	function fsm()
@@ -148,18 +145,22 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		{
 			// TODO: make this mobile-friendly
 			if (FlxG.mouse.overlaps(characterSpritesArray[current_hover_sheet].members[i]))
-				current_hover_selection = i;
+				selection = i;
 		}
 		if (Ctrl.cleft[1])
-			current_hover_selection = current_hover_selection - 1;
+			selection = selection - 1;
 		if (Ctrl.cright[1])
-			current_hover_selection = current_hover_selection + 1;
+			selection = selection + 1;
 		if (Ctrl.cup[1])
-			current_hover_sheet = current_hover_sheet + 1;
+			selection = selection - cols;
 		if (Ctrl.cdown[1])
-			current_hover_sheet = current_hover_sheet - 1;
+			selection = selection + cols;
+
+		selection = FlxMath.bound(selection, 0, rows * cols);
+
 		if (Ctrl.jinteract[1])
 			lock_choices();
+
 		if (FlxG.mouse.overlaps(backTab))
 		{
 			if (backTab.y != 110)
@@ -179,15 +180,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	function lock_choices(shake:Bool = true) {}
 
-	function set_current_hover_sheet(val:Int):Int
-	{
-		return current_hover_sheet;
-	}
-
-	function set_current_hover_selection(val:Int):Int
-	{
-		return current_hover_selection;
-	}
+	function set_selection(val:Int):Int
+		return selection;
 
 	function update_sheet_graphics() {}
 

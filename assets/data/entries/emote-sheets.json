@@ -1,7 +1,7 @@
 {
     "sheets": [
         {
-            "graphic": "emotes-back-red",
+            "name": "emotes-back-red",
             "items": [
                 {
                     "name": "common-tamago"
@@ -42,7 +42,7 @@
             ]
         },
         {
-            "graphic": "emotes-back-blue",
+            "name": "emotes-back-blue",
             "items": [
                 {
                     "name": "cashy-peace"
@@ -83,7 +83,7 @@
             ]
         },
         {
-            "graphic": "emotes-back-green",
+            "name": "emotes-back-green",
             "items": [
                 {
                     "name": "sock-on-lemons"
@@ -124,7 +124,7 @@
             ]
         },
         {
-            "graphic": "emotes-back-pink",
+            "name": "emotes-back-pink",
             "items": [
                 {
                     "name": ""

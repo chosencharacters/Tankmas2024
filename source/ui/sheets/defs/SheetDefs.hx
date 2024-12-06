@@ -9,7 +9,7 @@ typedef SheetFileDef =
 
 typedef SheetDef =
 {
-	var ?graphic:String;
+	var name:String;
 	var items:Array<SheetItemDef>;
 }
 
@@ -25,5 +25,6 @@ typedef SheetMenuDef =
 {
 	var name:String;
 	var src:SheetDef;
-	var grid:Array<Array<SheetButton>>;
+	var grid_1D:Array<SheetButton>;
+	var grid_2D:Array<Array<SheetButton>>;
 }

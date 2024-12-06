@@ -63,17 +63,17 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 		sstate(STICKER_PACK_IN);
 
 		for (sticker in sticker_draw)
-			SaveManager.saved_sticker_collection.push(sticker);
+			SaveManager.saved_emote_collection.push(sticker);
 
 		SaveManager.save_collections();
 
-		make_stickers();
+		make_emotes();
 
 		for (member in members)
 			member.scrollFactor.set(0, 0);
 	}
 
-	function make_stickers()
+	function make_emotes()
 	{
 		for (n in 0...sticker_count)
 		{
@@ -111,7 +111,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 
 	function fsm()
 	{
-		var hit_that_sticker_like_a_shaggy_fulpy:Bool = Ctrl.anyB[1] || FlxG.mouse.justPressed;
+		var hit_that_emote_like_a_shaggy_fulpy:Bool = Ctrl.anyB[1] || FlxG.mouse.justPressed;
 		switch (cast(state, State))
 		{
 			default:
@@ -127,7 +127,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 				if (sticker_pack.animation.finished)
 					sstate(POST_HIT, fsm);
 			case POST_HIT:
-				if (hit_that_sticker_like_a_shaggy_fulpy)
+				if (hit_that_emote_like_a_shaggy_fulpy)
 					sstate(hits == max_hits ? PRE_KABOOM : HIT_IT, fsm);
 			case PRE_KABOOM:
 				sticker_pack.animProtect("pre-kaboom");
@@ -143,7 +143,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 			case WOBBLE_ON_AND_ABOUT:
 				if (ttick() % wobble_rate == 0)
 					sticker_wobble();
-				if (tick > 30 && hit_that_sticker_like_a_shaggy_fulpy)
+				if (tick > 30 && hit_that_emote_like_a_shaggy_fulpy)
 				{
 					Utils.shake(ShakePreset.DAMAGE);
 					sstate(STICKERS_OUT);

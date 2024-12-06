@@ -20,7 +20,7 @@ class BaseUser extends NGSprite
 
 	public var username:String;
 
-	public var sticker_name:String;
+	public var emote_name:String;
 	public var active_activity_area:ActivityArea;
 
 	public function new(?X:Float, ?Y:Float, username:String, costume:String = "tankman")
@@ -50,12 +50,12 @@ class BaseUser extends NGSprite
 		drag.set(300, 300);
 	}
 
-	public function use_sticker(sticker_name:String):Bool
+	public function use_emote(emote_name:String):Bool
 	{
-		if (this.sticker_name == sticker_name)
+		if (this.emote_name == emote_name)
 			return false;
-		this.sticker_name = sticker_name;
-		new fx.StickerFX(this, sticker_name, () -> this.sticker_name = null);
+		this.emote_name = emote_name;
+		new fx.StickerFX(this, emote_name, () -> this.emote_name = null);
 		return true;
 	}
 
@@ -133,7 +133,7 @@ class BaseUser extends NGSprite
 		switch (event.type)
 		{
 			case NetEventType.STICKER:
-				use_sticker(event.data.name);
+				use_emote(event.data.name);
 			case NetEventType.DROP_MARSHMALLOW:
 				// bobep
 		}

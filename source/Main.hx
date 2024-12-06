@@ -29,8 +29,8 @@ class Main extends Sprite
 	public static var ng_api:NewgroundsHandler;
 	#end
 
-	public static var default_sticker_collection:Array<String> = ["common-tamago", "ilho-gift"];
-	public static var default_sticker:String = "common-tamago";
+	public static var default_emote_collection:Array<String> = ["common-tamago", "ilho-gift"];
+	public static var default_emote:String = "common-tamago";
 
 	public static var default_costume_collection:Array<String> = ["tankman", "paco"];
 	public static var default_costume:String = "tankman";
@@ -39,7 +39,7 @@ class Main extends Sprite
 
 	public static var ran:FlxRandom = new FlxRandom();
 
-	public static var daily_sticker_draw_amount:Int = 4;
+	public static var daily_emote_draw_amount:Int = 4;
 
 	public static var time:TimeManager = new TimeManager();
 
