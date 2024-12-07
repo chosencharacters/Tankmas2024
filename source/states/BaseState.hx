@@ -31,7 +31,7 @@ class BaseState extends FlxState
 			#if !no_radio
 			radio = new RadioManager();
 			#else
-			SoundPlayer.music('thewanderer-everratic');
+			if(Main.time.day > 6) SoundPlayer.music('dancinginthesnow-twistedfw');
 			#end
 
 			#if !no_fade
