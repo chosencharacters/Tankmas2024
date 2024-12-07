@@ -240,14 +240,14 @@
             "display": "Ritz the Rat",
             "desc": "They a rat, and they gotta get their cheese, lmao!",
             "unlock": "DATE",
-            "data": 1733547605
+            "data": 1733547600
         },
         {
             "name": "randy",
             "display": "Randy da Mouse",
             "desc": "When it's time to learn, Randy's your Concern!",
             "unlock": "DATE",
-            "data": 1733547605
+            "data": 1733547600
         },
         {
             "name": "psycho-goldfish",
@@ -263,7 +263,8 @@
             "unlock": "DATE",
             "data": 1733461200
         },
-		    "name": "dungeoncookiebun",
+        {
+            "name": "dungeoncookiebun",
             "display": "Dungeon the Cookiebunny",
             "desc": "He loves chocolate chip cookies, the technically-cannibal that he is.",
             "unlock": "USERNAME",
