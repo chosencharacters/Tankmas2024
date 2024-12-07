@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "hotel_courtyard",
@@ -11217,6 +11217,28 @@
 					],
 					"__worldX": 1456,
 					"__worldY": 1792
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [100,98],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "946736b0-9b00-11ef-b40f-610387f65015",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1600,1568],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "mkmaffo", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["mkmaffo"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 7, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [7] }] }
+					],
+					"__worldX": 1632,
+					"__worldY": 1584
 				}
 			]
 		},
