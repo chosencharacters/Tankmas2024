@@ -16,24 +16,25 @@ class Door extends FlxSpriteExt
 
 	static var level_transition_door_iid:String = "";
 
+	var same_world_door:Bool = false;
+
 	public function new(?X:Float, ?Y:Float, width:Int, height:Int, linked_door_ref:EntityReferenceInfos, spawn:FlxPoint, iid:String)
 	{
 		super(X, Y);
 
-		trace(linked_door_ref);
-
 		this.linked_door_ref = linked_door_ref;
+		this.iid = iid;
 
 		this.spawn = spawn;
 
 		makeGraphic(width, height, FlxColor.YELLOW);
 		alpha = 0.5;
 
-        PlayState.self.doors.add(this);
+		PlayState.self.doors.add(this);
 
 		sstate(IDLE);
 		if (level_transition_door_iid == iid)
-			sstate(DOOR_IN);
+			start_door_in();
 	}
 
 	override function update(elapsed:Float)
@@ -52,9 +53,10 @@ class Door extends FlxSpriteExt
 			case DOOR_OUT:
 				// PUT TRANSITION HERE
 				sstate(WAIT);
-				dip();
+				same_world_door ? dip_to_same_world() : dip_to_different_world();
 			case DOOR_IN:
 				PlayState.self.player.center_on(spawn);
+				PlayState.self.update_scroll_bounds();
 				sstate(IDLE);
 		}
 
@@ -64,19 +66,33 @@ class Door extends FlxSpriteExt
 			if (world.iid == linked_door_ref.worldIid)
 				next_world = world.identifier;
 
+		same_world_door = next_world == PlayState.self.current_world;
+
 		level_transition_door_iid = linked_door_ref.entityIid;
 
-		sstate(DOOR_OUT);
+		sstate(DOOR_OUT, fsm);
 	}
 
-	function dip()
+	function dip_to_same_world()
 	{
-		FlxG.switchState(new PlayState(next_world));
+		for (door in PlayState.self.doors)
+		{
+			if (door.iid == level_transition_door_iid)
+				door.start_door_in();
+		}
 	}
+
+	public function start_door_in()
+	{
+		sstate(DOOR_IN);
+	}
+
+	function dip_to_different_world()
+		FlxG.switchState(new PlayState(next_world));
 
 	override function kill()
 	{
-        PlayState.self.doors.remove(this,true);
+		PlayState.self.doors.remove(this, true);
 		super.kill();
 	}
 }

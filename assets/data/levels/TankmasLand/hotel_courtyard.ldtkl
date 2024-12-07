@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.3",
+		"appVersion": "1.5.4",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "hotel_courtyard",
@@ -19,7 +19,7 @@
 	"__bgColor": "#696A79",
 	"bgColor": null,
 	"useAutoIdentifier": false,
-	"bgRelPath": "../../images/levels/maps/courtyard/hotel-courtyard-background.jpg",
+	"bgRelPath": "../../images/levels/maps/courtyard/hotel-courtyard-foreground.png",
 	"bgPos": "Unscaled",
 	"bgPivotX": 0.5,
 	"bgPivotY": 0.5,
@@ -10939,7 +10939,7 @@
 			"entityInstances": [
 				{
 					"__identifier": "Player",
-					"__grid": [98,47],
+					"__grid": [179,120],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -10948,10 +10948,10 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 1,
-					"px": [1568,752],
+					"px": [2864,1920],
 					"fieldInstances": [],
-					"__worldX": 1600,
-					"__worldY": 768
+					"__worldX": 2896,
+					"__worldY": 1936
 				},
 				{
 					"__identifier": "Present",
@@ -11239,6 +11239,36 @@
 					],
 					"__worldX": 1632,
 					"__worldY": 1584
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [198,106],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFF100",
+					"iid": "91e28270-9b00-11ef-83c5-fd9fac341b26",
+					"width": 112,
+					"height": 592,
+					"defUid": 14,
+					"px": [3168,1696],
+					"fieldInstances": [
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "e48bbea0-9b00-11ef-83c5-63948af164f2",
+							"layerIid": "b4b80d12-9b00-11ef-83c5-b9fed97c3d08",
+							"levelIid": "b4b80d10-9b00-11ef-83c5-19191281cd28",
+							"worldIid": "95f97851-73f0-11ef-9983-cda8b61095c5"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["e48bbea0-9b00-11ef-83c5-63948af164f2"]
+						}] },
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 190, "cy": 131 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["190,131"]
+						}] }
+					],
+					"__worldX": 3200,
+					"__worldY": 1712
 				}
 			]
 		},

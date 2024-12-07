@@ -114,9 +114,7 @@ class OnlineLoop
 	public static function send_player_state(do_full_update:Bool = false)
 	{
 		if (PlayState.self == null)
-		{
 			return;
-		}
 
 		var json:NetUserDef = PlayState.self.player.get_user_update_json(do_full_update);
 		if (json.x != null || json.y != null || json.costume != null || json.sx != null)

@@ -1,6 +1,5 @@
 package states;
 
-import ui.popups.ServerNotificationMessagePopup;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -23,6 +22,7 @@ import net.tankmas.TankmasClient;
 import ui.DialogueBox;
 import ui.MainGameOverlay;
 import ui.TouchOverlay;
+import ui.popups.ServerNotificationMessagePopup;
 import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
@@ -35,7 +35,7 @@ class PlayState extends BaseState
 
 	static final default_world:String = "outside_hotel";
 
-	var current_world:String;
+	public var current_world:String;
 
 	public var player:Player;
 	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
@@ -139,10 +139,7 @@ class PlayState extends BaseState
 		FlxG.autoPause = false;
 		FlxG.camera.target = player;
 
-		var bg:FlxObject = level_backgrounds.members[0];
-
-		FlxG.worldBounds.set(bg.x, bg.y, bg.width, bg.height);
-		FlxG.camera.setScrollBoundsRect(bg.x, bg.y, bg.width, bg.height);
+		update_scroll_bounds();
 
 		#if !show_collision
 		level_collision.visible = false;
@@ -161,6 +158,15 @@ class PlayState extends BaseState
 
 		player.on_save_loaded();
 	}
+
+	public function update_scroll_bounds()
+		for (bg in level_backgrounds)
+			if (bg.overlaps(player))
+			{
+				FlxG.worldBounds.set(bg.x, bg.y, bg.width, bg.height);
+				FlxG.camera.setScrollBoundsRect(bg.x, bg.y, bg.width, bg.height);
+				return;
+			}
 
 	override public function update(elapsed:Float)
 	{
