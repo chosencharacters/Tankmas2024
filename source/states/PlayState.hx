@@ -1,6 +1,5 @@
 package states;
 
-import ui.popups.ServerNotificationMessagePopup;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -23,6 +22,7 @@ import net.tankmas.TankmasClient;
 import ui.DialogueBox;
 import ui.MainGameOverlay;
 import ui.TouchOverlay;
+import ui.popups.ServerNotificationMessagePopup;
 import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
@@ -160,6 +160,8 @@ class PlayState extends BaseState
 		SaveManager.save_room();
 
 		player.on_save_loaded();
+
+		add(new fx.CircleTransition());
 	}
 
 	override public function update(elapsed:Float)

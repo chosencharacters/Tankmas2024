@@ -1,9 +1,9 @@
 package fx;
 
-import openfl.Assets;
 import flixel.math.FlxMath;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.tweens.FlxEase;
+import openfl.Assets;
 
 enum ImageState
 {
