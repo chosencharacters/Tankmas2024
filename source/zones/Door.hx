@@ -4,6 +4,7 @@ import entities.Player;
 import flixel.math.FlxVelocity;
 import fx.CircleTransition;
 import ldtk.Json.EntityReferenceInfos;
+import states.PlayState;
 
 /**
  * Sigh here we go again
@@ -130,8 +131,8 @@ class Door extends FlxSpriteExt
 		player.tween = FlxTween.tween(player, {x: destination.x, y: destination.y}, 0.5, {
 			onComplete: function(t)
 			{
-				PlayState.self.player.immovable = false;
-				PlayState.self.player.sstate("NEUTRAL");
+				player.immovable = false;
+				player.sstate("NEUTRAL");
 			}
 		});
 	}

@@ -62,6 +62,7 @@ class TankmasLevel extends LDTKLevel
 		// col.setPosition(x, y);
 
 		PlayState.self.level_collision.add(col = new LDTKLevel(level_name, Paths.get("tile-collision.png")));
+		col.setPosition(x, y);
 		col.setTileProperties(0, FlxDirectionFlags.NONE);
 		col.setTileProperties(1, FlxDirectionFlags.ANY);
 
@@ -107,7 +108,14 @@ class TankmasLevel extends LDTKLevel
 		{
 			var sprite:FlxSpriteExt = new FlxSpriteExt(x + entity.pixelX, y + entity.pixelY);
 			sprite.loadAllFromAnimationSet(entity.f_name);
-			PlayState.self.misc_sprites.add(sprite);
+
+			switch (entity.f_layer.getName().toLowerCase())
+			{
+				case "back":
+					PlayState.self.props_background.add(sprite);
+				case "front":
+					PlayState.self.props_foreground.add(sprite);
+			}
 		}
 		/**put entity iterators here**/
 		/* 

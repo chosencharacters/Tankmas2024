@@ -10977,7 +10977,7 @@
 				},
 				{
 					"__identifier": "NPC",
-					"__grid": [171,155],
+					"__grid": [153,120],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -10986,13 +10986,13 @@
 					"width": 104,
 					"height": 191,
 					"defUid": 10,
-					"px": [2736,2480],
+					"px": [2448,1920],
 					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "tombstone", "__tile": null, "defUid": 11, "realEditorValues": [{
 						"id": "V_String",
 						"params": ["tombstone"]
 					}] }],
-					"__worldX": 2768,
-					"__worldY": 2496
+					"__worldX": 2480,
+					"__worldY": 1936
 				},
 				{
 					"__identifier": "Activity_Area",
@@ -11025,10 +11025,13 @@
 					"height": 1374,
 					"defUid": 29,
 					"px": [1211,1338],
-					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "outside-bonfire", "__tile": null, "defUid": 31, "realEditorValues": [{
-						"id": "V_String",
-						"params": ["outside-bonfire"]
-					}] }],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "outside-bonfire", "__tile": null, "defUid": 31, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["outside-bonfire"]
+						}] },
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+					],
 					"__worldX": 1243,
 					"__worldY": 1354
 				},
@@ -11262,9 +11265,9 @@
 							"id": "V_String",
 							"params": ["e48bbea0-9b00-11ef-83c5-63948af164f2"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 169, "cy": 134 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 173, "cy": 134 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["169,134"]
+							"params": ["173,134"]
 						}] }
 					],
 					"__worldX": 3216,

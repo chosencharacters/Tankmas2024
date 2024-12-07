@@ -86,4 +86,6 @@
 	<animSet image="mallow">
 		<anim name="idle" fps="100ms">0t1,0h20,0t1,2t8</anim>
 	</animSet>
+
+	
 </root>

@@ -18,11 +18,10 @@
     </npc>
     <npc name="concierge">
         <state name="default">
-            <dlg>Ah yes... Ah yes... It is almost time...</dlg>
-            <dlg>But... It is not time... No... Not yet...</dlg>
-            <dlg>Patience... This will be required...</dlg>
-            <dlg>After all... As it is often said...</dlg>
-            <dlg>Doors will open... For those who wait...</dlg>
+            <dlg>Good tidings... Future guests.</dlg>
+            <dlg>Your patience will be rewarded... Shortly...</dlg>
+            <dlg>Hotel Check-ins will be commencing... Any moment now...</dlg>
+            <dlg>Warmth awaits you soon... Yes... Soon...</dlg>
         </state>
     </npc>
     <npc name="concierge-old">

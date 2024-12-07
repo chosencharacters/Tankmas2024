@@ -49,7 +49,8 @@ class PlayState extends BaseState
 	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
 	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
 	public var minigames:FlxTypedGroup<Minigame> = new FlxTypedGroup<Minigame>();
-	public var misc_sprites:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
+	public var props_background:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
+	public var props_foreground:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
 	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
@@ -109,23 +110,26 @@ class PlayState extends BaseState
 
 		add(shadows);
 
-		add(misc_sprites);
+		add(props_background);
 
 		add(minigames);
 		add(npcs);
 		add(username_tags);
 		add(users);
-		add(presents);
 		add(objects);
-		add(thumbnails);
-		add(stickers);
-		add(sticker_fx);
 
 		add(level_foregrounds);
+		add(props_foreground);
+
+		add(presents);
+		add(thumbnails);
 
 		add(dialogues);
 
 		add(doors);
+
+		add(stickers);
+		add(sticker_fx);
 
 		add(ui_overlay);
 
@@ -164,6 +168,7 @@ class PlayState extends BaseState
 			if (bg.overlaps(player))
 			{
 				FlxG.worldBounds.set(bg.x, bg.y, bg.width, bg.height);
+				FlxG.worldBounds.set(0, 0, 99999, 99999);
 				FlxG.camera.setScrollBoundsRect(bg.x, bg.y, bg.width, bg.height);
 				return;
 			}
