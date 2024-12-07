@@ -1,5 +1,6 @@
 package states;
 
+import data.JsonData;
 import data.SaveManager;
 import flixel.FlxState;
 import sound.RadioManager;
@@ -31,7 +32,7 @@ class BaseState extends FlxState
 			#if !no_radio
 			radio = new RadioManager();
 			#else
-			SoundPlayer.music(AssetPaths.thewanderer_everratic__ogg).onComplete((_music) -> trace('Song started playing.'));
+			SoundPlayer.music(JsonData.get_track("thewanderer-everratic")).onComplete((_music) -> trace('Song started playing.'));
 			#end
 
 			#if !no_fade

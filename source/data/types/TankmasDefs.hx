@@ -12,6 +12,15 @@ typedef CostumeDef =
 	var ?data:Dynamic;
 }
 
+typedef TrackDef = {
+	var id:String;
+	var name:String;
+	var artist:String;
+	// Unlock condition
+	var ?unlock:UnlockCondition;
+	var ?data:Dynamic;
+}
+
 typedef StickerDef =
 {
 	var name:String;

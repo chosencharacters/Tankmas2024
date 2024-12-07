@@ -3,6 +3,7 @@ package data;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.PresentDef;
 import data.types.TankmasDefs.StickerDef;
+import data.types.TankmasDefs.TrackDef;
 
 /**
  * Mostly a wrapper for a JSON loaded costumes Map
@@ -12,6 +13,7 @@ class JsonData
 	static var costumes:Map<String, CostumeDef>;
 	static var presents:Map<String, PresentDef>;
 	static var stickers:Map<String, StickerDef>;
+	static var tracks:Map<String, TrackDef>;
 
 	public static var all_costume_defs(get, default):Array<CostumeDef>;
 	public static var all_costume_names(get, default):Array<String>;
@@ -22,11 +24,15 @@ class JsonData
 	public static var all_sticker_defs(get, default):Array<StickerDef>;
 	public static var all_sticker_names(get, default):Array<String>;
 
+	public static var all_track_defs(get, default):Array<TrackDef>;
+	public static var all_track_ids(get, default):Array<String>;
+
 	public static function init()
 	{
 		load_costumes();
 		load_presents();
 		load_stickers();
+		load_tracks();
 	}
 
 	static function load_costumes()
@@ -56,6 +62,15 @@ class JsonData
 			stickers.set(sticker_def.name, sticker_def);
 	}
 
+	static function load_tracks()
+	{
+		tracks = [];
+		var json:{tracks:Array<TrackDef>} = haxe.Json.parse(Utils.load_file_string("tracks.json"));
+
+		for (track_def in json.tracks)
+			tracks.set(track_def.id, track_def);
+	}
+
 	public static function get_costume(costume_name:String):CostumeDef
 		return costumes.get(costume_name);
 
@@ -64,6 +79,9 @@ class JsonData
 
 	public static function get_sticker(sticker_name:String):StickerDef
 		return stickers.get(sticker_name);
+
+	public static function get_track(track_id:String):TrackDef
+		return tracks.get(track_id);
 
 	public static function check_for_unlock_costume(costume:CostumeDef):Bool
 	{
@@ -126,6 +144,22 @@ class JsonData
 	{
 		var arr:Array<String> = [];
 		for (val in stickers.keys())
+			arr.push(val);
+		return arr;
+	}
+
+	public static function get_all_track_defs():Array<TrackDef>
+	{
+		var arr:Array<TrackDef> = [];
+		for (val in tracks)
+			arr.push(val);
+		return arr;
+	}
+
+	public static function get_all_track_ids():Array<String>
+	{
+		var arr:Array<String> = [];
+		for (val in tracks.keys())
 			arr.push(val);
 		return arr;
 	}
