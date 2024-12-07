@@ -157,6 +157,8 @@ class PlayState extends BaseState
 		SaveManager.save_room();
 
 		player.on_save_loaded();
+
+		add(new fx.CircleTransition());
 	}
 
 	public function update_scroll_bounds()
