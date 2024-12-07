@@ -32,15 +32,17 @@ class CircleTransition extends FlxSpriteExt
 	var sources:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 
 	/***Variable strengths of light***/
-	var radius:Int = 1280;
+	var radius:Int = 1920;
 
 	/***Make an outer circle of black?***/
 	var outerCircle:Bool = false;
 
 	/**Darkness and shit*/
-	var darkness:Float = 1;
+	var darkness:Float = 0;
 
-	public function new(?darkness:Float = 0.7, defaultOff:Bool = false)
+	var finished:Bool = false;
+
+	public function new(target:FlxSprite, ?duration:Float = 0.5, closing:Bool, ?on_complete:Void->Void)
 	{
 		super();
 
@@ -54,26 +56,32 @@ class CircleTransition extends FlxSpriteExt
 		this.scrollFactor.set(0, 0);
 		shadow.scrollFactor.set(0, 0);
 
-		trace("THE DARKNESS BECOMES ME AND IT IS OF THE SPECIFIC VALUE: ", darkness);
-		this.darkness = darkness == null ? 0.7 : darkness;
 		update_darkness(darkness);
 
 		visible = false;
 
 		immovable = true;
 
-		if (defaultOff)
-		{
-			turnOff();
-			shadow.alpha = 0;
-		}
-
 		scrollFactor.set(0, 0);
 
 		always_on_screen = true;
 
-		FlxTween.num(radius, 0, 1.5, {ease: FlxEase.cubeOut}, update_radius);
-		FlxTween.num(darkness, 1, 1.5, {ease: FlxEase.cubeOut}, update_darkness);
+		var from_radius:Float = closing ? radius : 0;
+		var to_radius:Float = closing ? 0 : radius;
+
+		var from_darkness:Float = !closing ? 1 : 0.5;
+		var to_darkness:Float = !closing ? 0.5 : 1;
+
+		FlxTween.num(from_radius, to_radius, duration, {
+			ease: FlxEase.cubeOut,
+			onComplete: function(t)
+			{
+				on_complete != null ? on_complete() : null;
+				kill();
+			}
+		}, update_radius);
+
+		FlxTween.num(from_darkness, to_darkness, duration, {ease: FlxEase.cubeOut}, update_darkness);
 	}
 
 	function update_radius(val:Float)

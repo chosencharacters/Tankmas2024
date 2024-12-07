@@ -826,7 +826,7 @@
 				"__bgColor": "#696A79",
 				"bgColor": null,
 				"useAutoIdentifier": false,
-				"bgRelPath": "../../images/levels/maps/courtyard/hotel-courtyard-foreground.png",
+				"bgRelPath": "../../images/levels/maps/courtyard/hotel-courtyard-background.jpg",
 				"bgPos": "Unscaled",
 				"bgPivotX": 0.5,
 				"bgPivotY": 0.5,

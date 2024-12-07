@@ -19,7 +19,7 @@
 	"__bgColor": "#696A79",
 	"bgColor": null,
 	"useAutoIdentifier": false,
-	"bgRelPath": "../../images/levels/maps/courtyard/hotel-courtyard-foreground.png",
+	"bgRelPath": "../../images/levels/maps/courtyard/hotel-courtyard-background.jpg",
 	"bgPos": "Unscaled",
 	"bgPivotX": 0.5,
 	"bgPivotY": 0.5,
@@ -10939,7 +10939,7 @@
 			"entityInstances": [
 				{
 					"__identifier": "Player",
-					"__grid": [179,120],
+					"__grid": [173,119],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -10948,10 +10948,10 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 1,
-					"px": [2864,1920],
+					"px": [2768,1904],
 					"fieldInstances": [],
-					"__worldX": 2896,
-					"__worldY": 1936
+					"__worldX": 2800,
+					"__worldY": 1920
 				},
 				{
 					"__identifier": "Present",
@@ -10977,7 +10977,7 @@
 				},
 				{
 					"__identifier": "NPC",
-					"__grid": [176,132],
+					"__grid": [171,155],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -10986,13 +10986,13 @@
 					"width": 104,
 					"height": 191,
 					"defUid": 10,
-					"px": [2816,2112],
+					"px": [2736,2480],
 					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "tombstone", "__tile": null, "defUid": 11, "realEditorValues": [{
 						"id": "V_String",
 						"params": ["tombstone"]
 					}] }],
-					"__worldX": 2848,
-					"__worldY": 2128
+					"__worldX": 2768,
+					"__worldY": 2496
 				},
 				{
 					"__identifier": "Activity_Area",
@@ -11242,16 +11242,16 @@
 				},
 				{
 					"__identifier": "Door",
-					"__grid": [198,106],
+					"__grid": [199,106],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
 					"__smartColor": "#FFF100",
 					"iid": "91e28270-9b00-11ef-83c5-fd9fac341b26",
-					"width": 112,
+					"width": 96,
 					"height": 592,
 					"defUid": 14,
-					"px": [3168,1696],
+					"px": [3184,1696],
 					"fieldInstances": [
 						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
 							"entityIid": "e48bbea0-9b00-11ef-83c5-63948af164f2",
@@ -11262,12 +11262,12 @@
 							"id": "V_String",
 							"params": ["e48bbea0-9b00-11ef-83c5-63948af164f2"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 190, "cy": 131 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 169, "cy": 134 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["190,131"]
+							"params": ["169,134"]
 						}] }
 					],
-					"__worldX": 3200,
+					"__worldX": 3216,
 					"__worldY": 1712
 				}
 			]

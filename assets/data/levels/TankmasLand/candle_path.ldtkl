@@ -526,9 +526,9 @@
 							"id": "V_String",
 							"params": ["91e28270-9b00-11ef-83c5-fd9fac341b26"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 18, "cy": 72 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 25, "cy": 70 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["18,72"]
+							"params": ["25,70"]
 						}] }
 					],
 					"__worldX": 3936,
