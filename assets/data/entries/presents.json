@@ -5,13 +5,13 @@
             "file": "day-1-cymbourine",
             "name": "sorry uhh i just now played madness project nexus LOL",
             "artist": "Cymbourine"
-        }, 
+        },
         {
             "day": 2,
             "file": "day-2-sevi",
             "name": "Elf on a shelf (branch)",
             "artist": "Sevi"
-        }, 
+        },
         {
             "day": 3,
             "file": "day-3-midgetsausage",
@@ -37,6 +37,12 @@
             "artist": "Bleak-Creep"
         },
         {
+            "day": 7,
+            "file": "day-7-mkmaffo",
+            "name": "Everything, by Everyone",
+            "artist": "MKMaffo"
+        },
+        {
             "day": 1,
             "file": "night-before",
             "name": "The Night Before Tankmas",
@@ -45,19 +51,21 @@
                 "pages": 12,
                 "audio": "night-before-audio",
                 "cover": true,
-                "timing": [ 8.000
-                , 14.000
-                , 22.000
-                , 29.000
-                , 36.000
-                , 44.000
-                , 51.000
-                , 56.500
-                , 63.000
-                , 70.500
+                "timing": [
+                    8.000,
+                    14.000,
+                    22.000,
+                    29.000,
+                    36.000,
+                    44.000,
+                    51.000,
+                    56.500,
+                    63.000,
+                    70.500
                 ]
             }
-        }, {
+        },
+        {
             "day": 1,
             "file": "daintiest-knoblin",
             "name": "The Daintiest Knoblin",

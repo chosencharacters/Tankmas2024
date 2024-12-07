@@ -237,17 +237,17 @@
         },
         {
             "name": "ritz",
-            "display": "Ritz",
-            "desc": "They a rat and they gotta get their cheese lmao",
-            "unlock": "USERNAME",
-            "data": "mkmaffo"
+            "display": "Ritz the Rat",
+            "desc": "They a rat, and they gotta get their cheese, lmao!",
+            "unlock": "DATE",
+            "data": 1733547600
         },
         {
             "name": "randy",
             "display": "Randy da Mouse",
             "desc": "When it's time to learn, Randy's your Concern!",
-            "unlock": "USERNAME",
-            "data": "dungeonation"
+            "unlock": "DATE",
+            "data": 1733547600
         },
         {
             "name": "psycho-goldfish",
@@ -262,6 +262,13 @@
             "desc": "An 11 year old martial arts prodigy, Gogo Matsumoto is as powerful as she is... not entirely there all the time. Is she the only one powerful enough to defeat the powerful demon lord Emperor Koro?",
             "unlock": "DATE",
             "data": 1733461200
+        },
+        {
+            "name": "dungeoncookiebun",
+            "display": "Dungeon the Cookiebunny",
+            "desc": "He loves chocolate chip cookies, the technically-cannibal that he is.",
+            "unlock": "USERNAME",
+            "data": "dungeonation"
         }
     ]
 }
