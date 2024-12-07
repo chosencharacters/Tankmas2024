@@ -32,23 +32,44 @@
 	<set name="BUILD_DIR" value="export" />
 	<source path="source" />
 
-	<section if="hl||cpp">
-		<assets path="assets" embed="false" exclude="*.gif|.*ini|*.aseprite"/>
+	<!-- Build with -Drelease to enable these flags -->
+	<section if="release">
+		<set name="newgrounds" />
+
+		<haxedef name="no_radio" />
+		<haxedef name="trace_net" />
+		<haxedef name="newgrounds" />
+		<haxedef name="websocket" />
 	</section>
 
-	<section if="js||html5">
+	<section if="hl||cpp">
+		<assets path="assets" embed="true" include="ng-secrets.json" />
+
+		<assets path="assets" embed="false" exclude="*.gif|*.mp3"/>
+
+		<assets path="assets/images/art" preload="false" exclude="*.gif" />
 		<assets path="assets/data" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
 		<assets path="assets/fonts" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
 		<assets path="assets/images" embed="true" exclude="*.gif|.*ini|*.aseprite|art"/>
+		<assets path="assets/music" preload="false" exclude="*.gif|*.mp3" />
 		<assets path="assets/preloader" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
-		<assets path="assets/sounds" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
+		<assets path="assets/sounds" embed="true" exclude="*.gif|.*ini|*.aseprite|*.mp3"/>
 		<assets path="assets/videos" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
+	</section>
 
+	<section if="js||html5">
 		<assets path="assets" embed="true" include="ng-secrets.json" />
 
-		<!-- resources to load on demand once the game has started -->
-		<assets path="assets/music" embed="false" />
-		<assets path="assets/images/art" embed="false" />
+		<assets path="assets" embed="false" exclude="*.gif|*.ogg"/>
+
+		<assets path="assets/images/art" embed="false" preload="false" exclude="*.gif" />
+		<assets path="assets/data" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
+		<assets path="assets/fonts" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
+		<assets path="assets/images" embed="true" exclude="*.gif|.*ini|*.aseprite|art"/>
+		<assets path="assets/music" preload="false" exclude="*.gif|*.ogg" />
+		<assets path="assets/preloader" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
+		<assets path="assets/sounds" embed="true" exclude="*.gif|.*ini|*.aseprite|*.ogg"/>
+		<assets path="assets/videos" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
 	</section>
 
 	<!--
