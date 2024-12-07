@@ -47,7 +47,11 @@ class NewgroundsHandler
 		}
 		catch (e)
 		{
+			#if dev
+			throw e;
+			#else
 			trace(e);
+			#end
 		}
 	}
 
@@ -82,6 +86,8 @@ class NewgroundsHandler
 	function load_medal_defs()
 	{
 		var json:{medals:Array<MedalDef>} = haxe.Json.parse(Utils.load_file_string(Paths.get("medals.json")));
+		if (json?.medals == null) return;
+		
 		for (medal in json.medals)
 			medals.set(medal.name, medal);
 	}

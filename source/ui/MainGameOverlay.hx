@@ -3,20 +3,19 @@ package ui;
 import data.JsonData;
 import data.SaveManager;
 import entities.Player;
-import flixel.system.debug.completion.CompletionListScrollBar;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 import ui.popups.StickerPackOpening;
 import ui.settings.BaseSettings;
 import ui.sheets.SheetMenu;
-import ui.sheets.StickerSelectSheet;
 
-class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
+class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 {
 	var emote:FlxSpriteExt;
 	var settings:FlxSpriteExt;
 	var sticker_menu:FlxSpriteExt;
 	var sticker_pack:FlxSpriteExt;
+	var music_popup:MusicPopup;
 
 	var hide_speed:Float = 0.35;
 	var reveal_speed:Float = 0.35;
@@ -27,12 +26,15 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 	{
 		super();
 
+		add(music_popup = MusicPopup.get_instance());
+
 		add(emote = new FlxSpriteExt(20, 20, Paths.get('heart.png')));
 		add(settings = new FlxSpriteExt(1708, 20, Paths.get('settings.png')));
 		add(sticker_menu = new FlxSpriteExt(1520, 1030, Paths.get('charselect-mini-full.png')));
 
 		sticker_pack = new FlxSpriteExt().one_line("sticker-pack-icon");
-		sticker_pack.setPosition(20, FlxG.height - sticker_pack.height - 20);
+		// sticker_pack.setPosition(20, FlxG.height - sticker_pack.height - 20);
+		sticker_pack.setPosition(emote.x + emote.width + 20, 20);
 		add(sticker_pack);
 
 		for (sprite in [emote, settings])

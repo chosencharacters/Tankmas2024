@@ -28,7 +28,7 @@ class Paths
 		".fnt"
 	];
 
-	public static function get(name:String, starting_path:String = "assets", safe:Bool = false):String
+	public static function get(name:String, starting_path:String = "assets", safe:Bool = false):Null<String>
 	{
 		starting_path = starting_path.replace("assets", asset_folder_alias);
 
