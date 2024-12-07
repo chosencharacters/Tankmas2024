@@ -61,6 +61,145 @@
                 },
                 {
                     "name": "boyfriend",
+<<<<<<< Updated upstream
+=======
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "girlfriend",
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "graphic": "costumes-series-2",
+            "items": [
+                {
+                    "name": "bitey",
+                    "angle": 10
+                },
+                {
+                    "name": "satina",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "blockhead",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "salad-fingers",
+                    "angle": -10
+                },
+                {
+                    "name": "duncan",
+                    "angle": -10
+                },
+                {
+                    "name": "jones",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "go-go",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "ritz",
+                    "angle": 10
+                },
+                {
+                    "name": "randy",
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "steve",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "g-bot",
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "graphic": "costumes-series-3",
+            "items": [
+                {
+                    "name": "sodaman",
+                    "angle": 10
+                },
+                {
+                    "name": "shmoods",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "splatter-dash",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "midgetsausage",
+                    "angle": -10
+                },
+                {
+                    "name": "tamag0",
+                    "angle": -10
+                },
+                {
+                    "name": "psycho-goldfish",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "c-jay",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "strawberry-clock",
+                    "angle": 10
+                },
+                {
+                    "name": "lils",
+                    "angle": 10
+                },
+                {
+                    "name": "captain-steve",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "mimny",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "dungeoncookiebun",
+>>>>>>> Stashed changes
                     "angle": -10
                 }
             ]

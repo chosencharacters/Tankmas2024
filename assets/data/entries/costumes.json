@@ -186,7 +186,80 @@
             "display": "Lils",
             "desc": "The Tankdemon. Make sure to sacrifice a marshmallow to them!",
             "unlock": "USERNAME",
+<<<<<<< Updated upstream
             "data": "CheddarExuberant"
+=======
+            "data": "cheddarexuberant"
+        },
+        {
+            "name": "mimny",
+            "display": "Mimny",
+            "desc": "Smug son of a-",
+            "unlock": "USERNAME",
+            "data": "mimny"
+        },
+        {
+            "name": "blockhead",
+            "display": "Blockhead",
+            "desc": "An idiot but a lovable idiot",
+            "unlock": "DATE",
+            "data": 1733374800
+        },
+        {
+            "name": "salad-fingers",
+            "display": "Salad Fingers",
+            "desc": "He likes the feeling of rust against his salad fingers",
+            "unlock": "DATE",
+            "data": 1733374800
+        },
+        {
+            "name": "duncan",
+            "display": "Duncan",
+            "desc": "1/2 of Duncan and Jones",
+            "unlock": "DATE",
+            "data": 1733461200
+        },
+        {
+            "name": "jones",
+            "display": "Jones",
+            "desc": "1/2 of Jones and Duncan",
+            "unlock": "DATE",
+            "data": 1733461200
+        },
+        {
+            "name": "ritz",
+            "display": "Ritz",
+            "desc": "They a rat, and they gotta get their cheese, lmao!",
+            "unlock": "DATE",
+			"data": 1733547605
+        },
+        {
+            "name": "randy",
+            "display": "Randy da Mouse",
+            "desc": "When it's time to learn, Randy's your concern!",
+            "unlock": "DATE",
+            "data": 1733547605
+        },
+        {
+            "name": "psycho-goldfish",
+            "display": "Psycho Goldfish",
+            "desc": "Here ya go Josh >:(",
+            "unlock": "USERNAME",
+            "data": "psychogoldfish"
+        },
+        {
+            "name": "go-go",
+            "display": "Gogo",
+            "desc": "An 11 year old martial arts prodigy, Gogo Matsumoto is as powerful as she is... not entirely there all the time. Is she the only one powerful enough to defeat the powerful demon lord Emperor Koro?",
+            "unlock": "DATE",
+            "data": 1733461200
+        },
+		    "name": "dungeoncookiebun",
+            "display": "Dungeon The Cookiebunny",
+            "desc": "He likes chocolate chip cookies, the technically-cannibal that he is.",
+            "unlock": "USERNAME",
+            "data": "dungeonation"
+>>>>>>> Stashed changes
         }
     ]
 }
