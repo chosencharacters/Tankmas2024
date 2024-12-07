@@ -16,6 +16,8 @@ class BaseState extends FlxState
 
 	var radio:RadioManager;
 
+	var trace_new_state:Bool = false;
+
 	public function new()
 	{
 		super();
@@ -74,7 +76,7 @@ class BaseState extends FlxState
 	{
 		#if dev_trace
 		if (trace_new_state && state != new_state)
-			trace('[${type}] New State: ${state} -> ${new_state}');
+			trace('New State: ${state} -> ${new_state}');
 		#end
 		if (reset_tick)
 			tick = 0;

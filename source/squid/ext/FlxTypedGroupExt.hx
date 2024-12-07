@@ -24,7 +24,7 @@ class FlxTypedGroupExt<T:FlxBasic> extends FlxTypedGroup<T>
 
 		#if dev_trace
 		if (trace_new_state && state_changing)
-			trace('[${type}] New State: ${state} -> ${new_state}');
+			trace('New State: ${state} -> ${new_state}');
 		#end
 		if (!state_changing)
 			return false;

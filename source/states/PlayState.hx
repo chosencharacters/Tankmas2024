@@ -1,11 +1,12 @@
 package states;
 
-import ui.popups.ServerNotificationMessagePopup;
 import activities.ActivityArea;
+import data.JsonData;
 import data.SaveManager;
 import entities.Interactable;
 import entities.Minigame;
 import entities.NPC;
+import entities.Pet;
 import entities.Player;
 import entities.Present;
 import entities.base.BaseUser;
@@ -23,6 +24,7 @@ import net.tankmas.TankmasClient;
 import ui.DialogueBox;
 import ui.MainGameOverlay;
 import ui.TouchOverlay;
+import ui.popups.ServerNotificationMessagePopup;
 import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
@@ -50,6 +52,7 @@ class PlayState extends BaseState
 	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
 	public var minigames:FlxTypedGroup<Minigame> = new FlxTypedGroup<Minigame>();
 	public var misc_sprites:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
+	public var pets:FlxTypedGroup<Pet> = new FlxTypedGroup<Pet>();
 
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
 	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
@@ -115,6 +118,7 @@ class PlayState extends BaseState
 		add(npcs);
 		add(username_tags);
 		add(users);
+		add(pets);
 		add(presents);
 		add(objects);
 		add(thumbnails);
@@ -160,6 +164,8 @@ class PlayState extends BaseState
 		SaveManager.save_room();
 
 		player.on_save_loaded();
+
+		new Pet(player.x + 100, player.y + 100, player, JsonData.get_pet("chompy"));
 	}
 
 	override public function update(elapsed:Float)

@@ -12,6 +12,26 @@ typedef CostumeDef =
 	var ?data:Dynamic;
 }
 
+typedef PetDef =
+{
+	var name:String;
+	var display:String;
+	var ?desc:String;
+	var ?unlock:UnlockCondition;
+	var ?data:Dynamic;
+	var ?stats:PetStats;
+}
+
+typedef PetStats =
+{
+	var ?follow_speed:Int;
+	var ?follow_acl:Int;
+	var ?deadzone:Int;
+	var ?follow_offset_x:Int;
+	var ?follow_offset_y:Int;
+	var ?follow_accuracy:Float;
+}
+
 typedef StickerDef =
 {
 	var name:String;

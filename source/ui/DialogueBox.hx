@@ -22,8 +22,8 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 
 	var line_number:Int = 0;
 
-	var type_index:Int;
-	var type_rate:Int = 2;
+	var char_index:Int;
+	var typing_rate:Int = 2;
 
 	public function get_dlg():NPCDLG
 		return dlgs[line_number];
@@ -35,7 +35,7 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 	var text_position:FlxPoint;
 
 	public function get_line_finished()
-		return type_index >= dlg.text.str.length;
+		return char_index >= dlg.text.str.length;
 
 	public function new(dlgs:Array<NPCDLG>, ?options:DialogueBoxOptions)
 	{
@@ -93,7 +93,7 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 	public function load_dlg(dlg:NPCDLG)
 	{
 		text.text = "";
-		type_index = 0;
+		char_index = 0;
 		sstate(SWIPE_IN);
 	}
 
@@ -113,10 +113,10 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 		kill();
 	}
 
-	public function type()
+	public function type_char()
 	{
-		type_index = type_index + 1;
-		text.text = dlg.text.str.substr(0, type_index);
+		char_index = char_index + 1;
+		text.text = dlg.text.str.substr(0, char_index);
 		if (line_finished)
 			sstate(IDLE);
 	}
@@ -144,9 +144,9 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 				sstate(WAIT);
 			case TYPING:
 				if (Ctrl.jinteract[1] || FlxG.mouse.justPressed)
-					type_index = dlg.text.str.length - 1;
-				if (ttick() % type_rate == 0)
-					type();
+					char_index = dlg.text.str.length - 1;
+				if (ttick() % typing_rate == 0)
+					type_char();
 			case IDLE:
 				if (line_finished)
 				{
