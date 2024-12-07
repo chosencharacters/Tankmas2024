@@ -24,8 +24,8 @@ class JsonData
 	public static var emote_defs(get, default):Array<EmoteDef>;
 	public static var emote_names(get, never):Array<String>;
 
-	public static var costume_sheets(get, default):Map<String, SheetDef>;
-	public static var emote_sheets(get, never):Map<String, SheetDef>;
+	public static var costume_sheets:Map<String, SheetDef>;
+	public static var emote_sheets:Map<String, SheetDef>;
 
 	public static function init()
 	{
