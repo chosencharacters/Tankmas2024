@@ -64,14 +64,14 @@ class Door extends FlxSpriteExt
 				// PUT TRANSITION HERE
 				sstate(WAIT);
 				Ctrl.mode = ControlModes.NONE;
-				FlxG.camera.fade(FlxColor.BLACK, 0.45, false);
-				FlxG.state.add(new CircleTransition(PlayState.self.player, 0.5, true, post_circle_transition_out));
+				FlxG.camera.fade(FlxColor.BLACK, 0.8, false);
+				FlxG.state.add(new CircleTransition(PlayState.self.player, 0.85, true, post_circle_transition_out));
 				player_enter_door_anim();
 			case DOOR_IN:
 				PlayState.self.player.center_on(spawn);
 				PlayState.self.update_scroll_bounds();
-				FlxG.camera.fade(FlxColor.BLACK, 0.45, true);
-				FlxG.state.add(new CircleTransition(PlayState.self.player, 0.5, false, function()
+				FlxG.camera.fade(FlxColor.BLACK, 0.8, true);
+				FlxG.state.add(new CircleTransition(PlayState.self.player, 0.85, false, function()
 				{
 					Ctrl.mode = ControlModes.OVERWORLD;
 				}));
@@ -112,7 +112,7 @@ class Door extends FlxSpriteExt
 		var destination:FlxPoint = player.getPosition().copy();
 		destination.add(player.mp.x > mp.x ? -door_travel_dist : door_travel_dist);
 
-		player.tween = FlxTween.tween(player, {x: destination.x, y: destination.y}, 0.5);
+		player.tween = FlxTween.tween(player, {x: destination.x, y: destination.y}, 0.8);
 	}
 
 	function player_exit_door_anim()
@@ -128,7 +128,7 @@ class Door extends FlxSpriteExt
 		player.center_on_x(this);
 		player.exit_door();
 
-		player.tween = FlxTween.tween(player, {x: destination.x, y: destination.y}, 0.5, {
+		player.tween = FlxTween.tween(player, {x: destination.x, y: destination.y}, 0.8, {
 			onComplete: function(t)
 			{
 				player.immovable = false;

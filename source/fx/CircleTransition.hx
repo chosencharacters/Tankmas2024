@@ -72,6 +72,8 @@ class CircleTransition extends FlxSpriteExt
 		var from_darkness:Float = !closing ? 1 : 0.5;
 		var to_darkness:Float = !closing ? 0.5 : 1;
 
+		from_darkness = to_darkness = 0;
+
 		FlxTween.num(from_radius, to_radius, duration, {
 			ease: FlxEase.cubeOut,
 			onComplete: function(t)
@@ -98,7 +100,8 @@ class CircleTransition extends FlxSpriteExt
 
 	override public function update(elapsed:Float):Void
 	{
-		shadowDraw();
+		if (ttick() % 999 == 1)
+			shadowDraw();
 		super.update(elapsed);
 	}
 
