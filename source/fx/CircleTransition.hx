@@ -42,6 +42,8 @@ class CircleTransition extends FlxSpriteExt
 
 	var finished:Bool = false;
 
+	var fading:Bool = false;
+
 	public function new(target:FlxSprite, ?duration:Float = 0.5, closing:Bool, ?on_complete:Void->Void)
 	{
 		super();
@@ -72,7 +74,7 @@ class CircleTransition extends FlxSpriteExt
 		var from_darkness:Float = !closing ? 1 : 0.5;
 		var to_darkness:Float = !closing ? 0.5 : 1;
 
-		FlxTween.num(from_radius, to_radius, duration, {
+		tween = FlxTween.num(from_radius, to_radius, duration, {
 			ease: FlxEase.cubeOut,
 			onComplete: function(t)
 			{
@@ -80,6 +82,19 @@ class CircleTransition extends FlxSpriteExt
 				kill();
 			}
 		}, update_radius);
+
+		if (closing)
+			tween.onUpdate = function(t)
+			{
+				if (t.percent >= 0.5 && !fading)
+				{
+					FlxG.camera.fade(FlxColor.BLACK, (1 - t.percent) * duration, true);
+					fading = true;
+					trace(1 - t.percent, (1 - t.percent) * duration);
+				}
+			}
+		else
+			FlxG.camera.fade(FlxColor.BLACK, duration * .5, false);
 
 		FlxTween.num(from_darkness, to_darkness, duration, {ease: FlxEase.cubeOut}, update_darkness);
 	}

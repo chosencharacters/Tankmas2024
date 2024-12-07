@@ -63,7 +63,6 @@ class Door extends FlxSpriteExt
 				// PUT TRANSITION HERE
 				sstate(WAIT);
 				Ctrl.mode = ControlModes.NONE;
-				FlxG.camera.fade(FlxColor.BLACK, 0.45, false);
 				FlxG.state.add(new CircleTransition(PlayState.self.player, 0.5, true, post_circle_transition_out));
 				player_enter_door_anim();
 			case DOOR_IN:
