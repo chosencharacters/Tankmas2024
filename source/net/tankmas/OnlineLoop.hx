@@ -130,7 +130,7 @@ class OnlineLoop
 		if (PlayState.self == null)
 			return;
 		var json:NetUserDef = PlayState.self.player.get_user_update_json(do_full_update);
-		if (json.x != null || json.y != null || json.costume != null || json.sx != null)
+		if (json.x != null || json.y != null || json.costume != null || json.sx != null || json.data != null)
 		{
 			websocket.send_player(json);
 		}
@@ -215,6 +215,27 @@ class OnlineLoop
 
 		if (costume != null && (user.costume == null || user.costume.name != costume.name))
 			user.new_costume(costume);
+
+		if (def.data != null)
+		{
+			user.merge_data_field(def.data);
+
+			/// user changed their pet type
+			if (def.data.pet != null)
+			{
+				var new_pet_type = user.data.pet;
+				trace('$username changed their pet to $new_pet_type');
+				user.pet_changed(new_pet_type);
+			}
+
+			/// user changed their scale
+			if (def.data.scale != null)
+			{
+				var new_user_scale = user.data.scale;
+				trace('$username changed scale to $new_user_scale');
+				user.scale_changed(new_user_scale);
+			}
+		}
 		#end
 	}
 }
