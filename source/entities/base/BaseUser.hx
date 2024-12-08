@@ -135,7 +135,10 @@ class BaseUser extends NGSprite
 			case NetEventType.STICKER:
 				use_sticker(event.data.name);
 			case NetEventType.DROP_MARSHMALLOW:
-				// bobep
+				// Another user dropped a marshmallow
+			case OPEN_PRESENT:
+				// Another user opened a present.
+				trace('${event.username} opened present ${event.data.name}. Get medal: ${event.data.medal}');
 		}
 
 		if (active_activity_area != null)
