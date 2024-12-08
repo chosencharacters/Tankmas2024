@@ -1,5 +1,6 @@
 package;
 
+import levels.TankmasLevel.RoomId;
 import data.SaveManager;
 import data.TimeManager;
 import Paths.Manifest;
@@ -16,7 +17,7 @@ class Main extends Sprite
 	public static var username:String = #if username haxe.macro.Compiler.getDefine("username") #elseif random_username 'poop_${Math.random()}' #else "lost_soul" #end;
 	public static var session_id:String = #if (offline || !newgrounds) "test_session" #else null #end;
 
-	public static var current_room_id:Int = 1;
+	public static var current_room_id:RoomId = HotelCourtyard;
 
 	public static var DEV:Bool = #if dev true #else false #end;
 
@@ -53,7 +54,7 @@ class Main extends Sprite
 	{
 		super();
 		#if sys
-		sys.ssl.Certificate.loadDefaults();
+		sys.ssl.Socket.DEFAULT_VERIFY_CERT = false;
 		#end
 		Manifest.init(make_game);
 	}

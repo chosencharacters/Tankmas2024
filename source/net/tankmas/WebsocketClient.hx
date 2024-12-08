@@ -184,8 +184,8 @@ class WebsocketClient
 		connection_retries = 0;
 		connected = true;
 
-		// We are ready to go
-		OnlineLoop.send_player_state(true);
+		// We are ready to go, force send full user on next tick.
+		OnlineLoop.force_send_full_user = true;
 	}
 
 	function on_message(data:MessageType)
@@ -294,7 +294,7 @@ class WebsocketClient
 		#end
 	}
 
-	function send(event:WebsocketEvent, immediate = false, overwriteIfExisting = false)
+	function send(event:WebsocketEvent, immediate = false)
 	{
 		#if websocket
 		if (socket == null)
@@ -306,19 +306,6 @@ class WebsocketClient
 		}
 		else
 		{
-			if (overwriteIfExisting)
-			{
-				var index = -1;
-				for (i in 0...queued_messages.length)
-				{
-					if (queued_messages[i].type == event.type)
-					{
-						queued_messages[i] = event;
-						return;
-					}
-				}
-			}
-
 			queued_messages.push(event);
 		}
 		#end

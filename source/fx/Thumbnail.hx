@@ -40,6 +40,8 @@ class Thumbnail extends FlxSpriteExt
 
 	function image_loaded(image)
 	{
+		if (image == null)
+			return;
 		visible = true;
 		image_state = Ready;
 		loadGraphic(image);

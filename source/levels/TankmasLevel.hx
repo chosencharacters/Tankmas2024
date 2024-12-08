@@ -8,8 +8,28 @@ import entities.Present;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxDirectionFlags;
 import levels.LDTKLevel;
-import levels.LdtkProject.LdtkProject_Level;
+import levels.LdtkProject;
 import zones.Door;
+
+enum abstract RoomId(Int) from Int from Int
+{
+	final HotelCourtyard = 1;
+	final HotelInterior = 2;
+
+	public static function from_string(name:String):RoomId
+	{
+		switch (name)
+		{
+			case "hotel_interior":
+				return HotelInterior;
+			case "hotel_courtyard":
+				return HotelCourtyard;
+		}
+
+		throw 'Could not find room id by name ${name}, 
+					 please add it to RoomId in TankmasLevel.hx';
+	}
+}
 
 class TankmasLevel extends LDTKLevel
 {

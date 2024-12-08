@@ -8,6 +8,8 @@ import flixel.FlxState;
 /// NG session exists, and that the player's save data is up to date.
 class LoadGameState extends BaseState
 {
+	public var loaded:Bool = false;
+
 	public function new()
 	{
 		super();
@@ -18,6 +20,15 @@ class LoadGameState extends BaseState
 
 	function start_game()
 	{
+		loaded = true;
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+		if (!loaded)
+			return;
+
 		OnlineLoop.init();
 		FlxG.switchState(() -> new PlayState());
 	}

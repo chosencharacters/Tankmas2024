@@ -331,6 +331,12 @@ class Player extends BaseUser
 			costume: costume.name
 		};
 
+		// When sending full players,
+		// Also request the state of all other players
+		// in the room at the same time.
+		if (force_send_full_user)
+			def.request_full_room = true;
+
 		return def;
 	}
 

@@ -160,6 +160,8 @@ class PlayState extends BaseState
 
 		SaveManager.save_room();
 
+		OnlineLoop.init_room();
+
 		player.on_save_loaded();
 	}
 
