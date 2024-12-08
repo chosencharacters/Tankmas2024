@@ -182,12 +182,10 @@ class Manifest
 			for (extension in Paths.allowed_extensions)
 				if (real_path.indexOf(extension) == -1)
 				{
-					#if trace_assets
-					trace(real_path);
-					#end
-
 					var asset_name:String = real_path.split("/").last();
-
+					#if trace_assets
+					trace('- ${asset_name}: ${real_path}');
+					#end
 					Paths.path_cache.set(asset_name, real_path.substr(0, real_path.length - asset_name.length - 1));
 
 					break;

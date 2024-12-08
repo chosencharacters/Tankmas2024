@@ -66,8 +66,11 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
         y = FlxG.height - main.height - 104;
         scrollFactor.set(0,0);
         
-        if (info != null)
+        if (info != null) {
             play_anim();
+        } else {
+            trace('Jukebox loaded! Waiting for info (${info})');
+        }
         
     }
     
@@ -90,6 +93,8 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
         var tweenOutro:(?_:FlxTween)->Void = null;
         final duration = 0.5;
         
+        trace('Displaying jukebox: ${info}');
+
         switch (info)
         {
             case Playing(data):
@@ -132,8 +137,11 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
     public static function show_info(info:String)
     {
         MusicPopup.info = Playing(info);
-        if (instance != null)
+        if (instance != null) {
             instance.play_anim();
+        } else {
+            trace('Jukebox not loaded yet! Waiting to display info (${info})');
+        }
     }
     
     /**
@@ -142,8 +150,11 @@ class MusicPopup extends FlxTypedSpriteGroup<FlxSprite>
     public static function show_loading(info:String)
     {
         MusicPopup.info = Loading(info);
-        if (instance != null)
+        if (instance != null) {
             instance.play_anim();
+        } else {
+            trace('Jukebox not loaded yet! Waiting to display info (${info})');
+        }
     }
     
     static public function get_instance()

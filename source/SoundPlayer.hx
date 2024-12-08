@@ -45,8 +45,30 @@ class SoundPlayer
 
 		// Don't restart same song if it's already playing,
 		// unless force is set to true.
-		if (music_path == null || !force && track == CURRENT_TRACK)
+		if (music_path == null) {
+			var expected = 'assets/music/${track.id}${SOUND_EXT}';
+
+			var message = 'SoundPlayer: Tried to play invalid music track \"${expected}\"';
+
+			if (SOUND_EXT == ".mp3") {
+				message += " (Did you remember to convert to MP3 for web?)";
+			}
+
+			// Don't throw in production! Just fail silently.
+			#if dev
+			throw message;
+			#else
+			trace(message);
+			#end
+
+			var future:Future<FlxSound> = cast Future.withError(message);
+			return future;
+		}
+
+		if (!force && track == CURRENT_TRACK) {
+			trace('SoundPlayer: Music is already playing "${track.name}"');
 			return Future.withValue(FlxG.sound.music);
+		}
 
 		CURRENT_TRACK = track;
 
@@ -62,11 +84,15 @@ class SoundPlayer
 		var music_started_promise = new Promise<FlxSound>();
 		// If music is not embedded, we need to first load it,
 		// and then start it once it's ready.
-		var sound_buffer = Assets.loadAudioBuffer(music_path);
-		Assets.loadAudioBuffer(music_path).onComplete((buffer) ->
+		set_music_loading(track);
+		var sound_buffer = Assets.loadAudioBuffer(music_path).onComplete((buffer) ->
 		{
 			var res = start_music(buffer, track, vol);
 			music_started_promise.complete(res);
+		}).onError((error) ->
+		{
+			trace('Error loading music ${music_path}');
+			trace(error);
 		});
 
 		return music_started_promise.future;
@@ -96,10 +122,12 @@ class SoundPlayer
 	}
 
 	static function set_music_playing(track:TrackDef):Void {
+		trace('SoundPlayer: Playing music ${track.name}');
 		MusicPopup.show_info(build_song_name(track));
 	}
 
 	static function set_music_loading(track:TrackDef):Void {
+		trace('SoundPlayer: Loading music ${track.name}');
 		MusicPopup.show_loading(build_song_name(track));
 	}
 
