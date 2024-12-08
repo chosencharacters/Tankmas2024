@@ -8,6 +8,8 @@ class NPC extends Interactable
 {
 	var name:String;
 
+	var inspectable:Bool = false;
+
 	public function new(?X:Float, ?Y:Float, name:String)
 	{
 		super(X, Y);
@@ -40,17 +42,13 @@ class NPC extends Interactable
 				sprite_anim.anim(PresentAnimation.IDLE);
 			case NEARBY:
 				// sprite_anim.anim(PresentAnimation.NEARBY);
-				if (Ctrl.mode.can_open_menus && (Ctrl.jinteract[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased))
-					start_chat();
 			case CHATTING:
 				sprite_anim.anim(PresentAnimation.IDLE);
 		}
 
 	override function on_interact()
-	{
-		if (state == NEARBY)
+		if (state == NEARBY && Ctrl.mode.can_open_menus)
 			start_chat();
-	}
 
 	function start_chat()
 	{
