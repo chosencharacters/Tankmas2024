@@ -55,8 +55,8 @@ class NewgroundsHandler
 	{
 		var json = haxe.Json.parse(Utils.load_file_string(Paths.get("ng-secrets.json")));
 
-		var app_id = #if dev json.dev_app_id #else json.app_id #end;
-		var encryption_key = #if dev json.dev_encryption_key #else json.encryption_key #end;
+		var app_id = json.app_id;
+		var encryption_key = json.encryption_key;
 
 		NG.createAndCheckSession(app_id, false);
 		NG.core.setupEncryption(encryption_key, AES_128, BASE_64);

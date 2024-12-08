@@ -9,6 +9,7 @@ import flixel.FlxState;
 class LoadGameState extends BaseState
 {
 	public var loaded:Bool = false;
+	public var started:Bool = false;
 
 	public function new()
 	{
@@ -26,8 +27,10 @@ class LoadGameState extends BaseState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		if (!loaded)
+		if (!loaded || started)
 			return;
+
+		started = true;
 
 		OnlineLoop.init();
 		FlxG.switchState(() -> new PlayState());

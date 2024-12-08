@@ -92,7 +92,7 @@ class PlayState extends BaseState
 
 		Ctrl.mode = ControlModes.OVERWORLD;
 
-		trace('settin myself');
+		trace('New Playstate');
 		self = this;
 
 		premieres = new PremiereHandler();
