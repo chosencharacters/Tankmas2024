@@ -83,6 +83,7 @@ class PlayState extends BaseState
 			current_world = world_to_load
 		else
 			current_world = SaveManager.savedRoom == null ? default_world : SaveManager.savedRoom;
+		Main.current_room_id = RoomId.from_string(current_world);
 		super();
 	}
 

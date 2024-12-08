@@ -16,17 +16,17 @@ enum abstract RoomId(Int) from Int from Int
 	final HotelCourtyard = 1;
 	final HotelInterior = 2;
 
-	public static function from_string(name:String):RoomId
+	public static function from_string(world_identifier:String):RoomId
 	{
-		switch (name)
+		switch (world_identifier)
 		{
 			case "hotel_interior":
 				return HotelInterior;
-			case "hotel_courtyard":
+			case "outside_hotel":
 				return HotelCourtyard;
 		}
 
-		throw 'Could not find room id by name ${name}, 
+		throw 'Could not find room id by name ${world_identifier}, 
 					 please add it to RoomId in TankmasLevel.hx';
 	}
 }
