@@ -59,19 +59,6 @@ class Main extends Sprite
 		Manifest.init(make_game);
 	}
 
-	function on_logged_in()
-	{
-		#if newgrounds
-		username = ng_api.NG_USERNAME;
-		if (username == "")
-		{
-			username = 'temporary_random_username_${Math.random()}';
-		}
-		#end
-
-		addChild(new FlxGame(1920, 1080, LoadGameState, true));
-	}
-
 	public static function get_current_bg(day:Int):Int
 	{
 		/**if(day <= 3)**/
@@ -83,10 +70,6 @@ class Main extends Sprite
 	public function make_game()
 	{
 		Lists.init();
-		#if newgrounds
-		ng_api = new NewgroundsHandler(true, false, on_logged_in);
-		#else
-		on_logged_in();
-		#end
+		addChild(new FlxGame(1920, 1080, LoadGameState, true));
 	}
 }
