@@ -135,10 +135,16 @@ class OnlineLoop
 		post_event({type: DROP_MARSHMALLOW, data: {"level": marshmallow_level}});
 	}
 
+	public static function post_present_open(day:Int, get_open_medal = false)
+	{
+		post_event({type: OPEN_PRESENT, data: {"medal": get_open_medal, "day": day}});
+	}
+
 	public static function post_event(event:NetEventDef)
 	{
-		#if offline return #end
+		#if !offline
 		websocket.send_event(event.type, event.data);
+		#end
 	}
 
 	public static function update_user_visual(username:String, def:NetUserDef)

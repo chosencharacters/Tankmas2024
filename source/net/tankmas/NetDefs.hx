@@ -15,11 +15,7 @@ typedef NetUserDef =
 	// Data can contain specific user flags that the user can set.
 	// Sort of like a save file but you can read other players data too.
 	// WIP - no calls in client for this yet.
-	?data:
-		{
-			?test_value:Int,
-			?marshmallows_thrown:Int,
-		},
+	?data:Dynamic,
 
 	// Whether or not to apply the changes immediately or not. Good for initial placement of players
 	?immediate:Bool,
@@ -52,6 +48,7 @@ enum abstract NetEventType(String) from String to String
 {
 	final STICKER = "sticker";
 	final DROP_MARSHMALLOW = "drop_marshmallow";
+	final OPEN_PRESENT = "open_present";
 }
 
 function GenerateBasicAuthHeader(username:String, session_id:String)
