@@ -135,9 +135,9 @@ class OnlineLoop
 		post_event({type: DROP_MARSHMALLOW, data: {"level": marshmallow_level}});
 	}
 
-	public static function post_present_open(day:Int, get_open_medal = false)
+	public static function post_present_open(day:Int, earned_medal = false, first_time = true)
 	{
-		post_event({type: OPEN_PRESENT, data: {"medal": get_open_medal, "day": day}});
+		post_event({type: OPEN_PRESENT, data: {"day": day, "medal": earned_medal, "first_time": first_time}});
 	}
 
 	public static function post_event(event:NetEventDef)
@@ -176,7 +176,9 @@ class OnlineLoop
 
 		if (!def.immediate)
 		{
-			cast(user, NetUser).move_to(new_x, new_y, new_sx);
+			var net_user = cast(user, NetUser);
+			if (net_user != null)
+				net_user.move_to(new_x, new_y, new_sx);
 		}
 		else
 		{

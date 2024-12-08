@@ -1,5 +1,6 @@
 package entities;
 
+import net.tankmas.OnlineLoop;
 import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.PresentDef;
@@ -32,6 +33,18 @@ class Present extends Interactable
 
 	var time_activated(get, never):Bool;
 
+	// Whether or not the present will unlock its medal when opened
+	var medal_unlock_enabled(get, never):Bool;
+
+	function get_medal_unlock_enabled()
+	{
+		// Edge case, always award this one.
+		if (day == 7 && username == "matthewlopz")
+			return true;
+
+		return day == 1 || day == Main.time.day;
+	}
+
 	public function new(X:Float, Y:Float, username:String)
 	{
 		super(X, Y);
@@ -40,6 +53,8 @@ class Present extends Interactable
 
 		// trace(username, JsonData.get_all_present_names());
 		def = JsonData.get_present(this.username);
+
+		day = def.day;
 
 		if (def == null)
 			throw 'Error getting present JSON for username ${username}';
@@ -149,6 +164,8 @@ class Present extends Interactable
 
 	public function open()
 	{
+		var medal_was_unlocked = false;
+		var first_time_opening = true;
 		if (state != "OPENED")
 		{
 			sstate(OPENING);
@@ -159,17 +176,42 @@ class Present extends Interactable
 				thumbnail.sstate("OPEN");
 				PlayState.self.openSubState(comic ? new ComicSubstate(username, true) : new ArtSubstate(username));
 				opened = true;
+
+				medal_was_unlocked = medal_unlock_enabled;
+
 				SaveManager.open_present(username, def.day);
 			});
 		}
 		else
 		{
+			first_time_opening = false;
 			// Always try to award medals (fixes an edge case where someone encounters a crash mid-gift)
 			SaveManager.open_present(username, def.day);
 
 			SoundPlayer.sound(Paths.get('present-open.ogg'));
 			PlayState.self.openSubState(comic ? new ComicSubstate(username, false) : new ArtSubstate(username));
 		}
+
+		// Post present opened event to server (it's broadcasted to every other player, and also kept for stats).
+		OnlineLoop.post_present_open(day, medal_was_unlocked, first_time_opening);
+
+		if (medal_unlock_enabled)
+			give_opened_medal();
+	}
+
+	function give_opened_medal()
+	{
+		#if newgrounds
+		switch (username)
+		{
+			case "matthewlopz":
+				trace("open present unlock: the little candles");
+				return Main.ng_api.medal_popup(Main.ng_api.medals.get("the-little-candles"));
+			default:
+				trace("open present unlock", username, day);
+				return Main.ng_api.medal_popup(Main.ng_api.medals.get('day-$day'));
+		}
+		#end
 	}
 }
 
