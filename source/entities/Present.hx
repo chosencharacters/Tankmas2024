@@ -32,7 +32,6 @@ class Present extends Interactable
 	var def:PresentDef;
 
 	var time_activated(get, never):Bool;
-	var medal_unlock_enabled(get, never):Bool;
 
 	// Whether or not the present will unlock its medal when opened
 	function is_medal_unlock_enabled()
