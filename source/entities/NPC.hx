@@ -7,8 +7,9 @@ import ui.DialogueBox;
 class NPC extends Interactable
 {
 	var name:String;
+	var timelock:Int = 0;
 
-	public function new(?X:Float, ?Y:Float, name:String)
+	public function new(?X:Float, ?Y:Float, name:String, timelock:Int)
 	{
 		super(X, Y);
 
