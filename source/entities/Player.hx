@@ -30,6 +30,8 @@ class Player extends BaseUser
 
 	var prev_velocity:FlxPoint = new FlxPoint();
 
+	public var can_enter_doors(get, default):Bool;
+
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y, Main.username);
@@ -124,6 +126,10 @@ class Player extends BaseUser
 				detect_interactables();
 			case JUMPING:
 			case EMOTING:
+			case ENTERING_DOOR:
+				sprite_anim.anim(PlayerAnimation.MOVING);
+			case EXITING_DOOR:
+				sprite_anim.anim(PlayerAnimation.MOVING);
 		}
 
 	function general_movement()
@@ -325,8 +331,23 @@ class Player extends BaseUser
 			costume: costume.name
 		};
 
+		// When sending full players,
+		// Also request the state of all other players
+		// in the room at the same time.
+		if (force_send_full_user)
+			def.request_full_room = true;
+
 		return def;
 	}
+
+	public function enter_door()
+		sstate(ENTERING_DOOR);
+
+	public function exit_door()
+		sstate(EXITING_DOOR);
+
+	function get_can_enter_doors():Bool
+		return ![ENTERING_DOOR, EXITING_DOOR].contains(state);
 }
 
 private enum abstract State(String) from String to String
@@ -334,4 +355,6 @@ private enum abstract State(String) from String to String
 	final NEUTRAL;
 	final JUMPING;
 	final EMOTING;
+	final ENTERING_DOOR;
+	final EXITING_DOOR;
 }

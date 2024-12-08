@@ -8,8 +8,28 @@ import entities.Present;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxDirectionFlags;
 import levels.LDTKLevel;
-import levels.LdtkProject.LdtkProject_Level;
+import levels.LdtkProject;
 import zones.Door;
+
+enum abstract RoomId(Int) from Int from Int
+{
+	final HotelCourtyard = 1;
+	final HotelInterior = 2;
+
+	public static function from_string(world_identifier:String):RoomId
+	{
+		switch (world_identifier)
+		{
+			case "hotel_interior":
+				return HotelInterior;
+			case "outside_hotel":
+				return HotelCourtyard;
+		}
+
+		throw 'Could not find room id by name ${world_identifier}, 
+					 please add it to RoomId in TankmasLevel.hx';
+	}
+}
 
 class TankmasLevel extends LDTKLevel
 {
@@ -62,6 +82,7 @@ class TankmasLevel extends LDTKLevel
 		// col.setPosition(x, y);
 
 		PlayState.self.level_collision.add(col = new LDTKLevel(level_name, Paths.get("tile-collision.png")));
+		col.setPosition(x, y);
 		col.setTileProperties(0, FlxDirectionFlags.NONE);
 		col.setTileProperties(1, FlxDirectionFlags.ANY);
 
@@ -107,7 +128,14 @@ class TankmasLevel extends LDTKLevel
 		{
 			var sprite:FlxSpriteExt = new FlxSpriteExt(x + entity.pixelX, y + entity.pixelY);
 			sprite.loadAllFromAnimationSet(entity.f_name);
-			PlayState.self.misc_sprites.add(sprite);
+
+			switch (entity.f_layer.getName().toLowerCase())
+			{
+				case "back":
+					PlayState.self.props_background.add(sprite);
+				case "front":
+					PlayState.self.props_foreground.add(sprite);
+			}
 		}
 		/**put entity iterators here**/
 		/* 

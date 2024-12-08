@@ -1,6 +1,5 @@
 package states;
 
-import ui.popups.ServerNotificationMessagePopup;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -23,6 +22,7 @@ import net.tankmas.TankmasClient;
 import ui.DialogueBox;
 import ui.MainGameOverlay;
 import ui.TouchOverlay;
+import ui.popups.ServerNotificationMessagePopup;
 import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
@@ -35,7 +35,7 @@ class PlayState extends BaseState
 
 	static final default_world:String = "outside_hotel";
 
-	var current_world:String;
+	public var current_world:String;
 
 	public var player:Player;
 	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
@@ -49,7 +49,8 @@ class PlayState extends BaseState
 	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
 	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
 	public var minigames:FlxTypedGroup<Minigame> = new FlxTypedGroup<Minigame>();
-	public var misc_sprites:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
+	public var props_background:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
+	public var props_foreground:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
 	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
@@ -82,6 +83,7 @@ class PlayState extends BaseState
 			current_world = world_to_load
 		else
 			current_world = SaveManager.savedRoom == null ? default_world : SaveManager.savedRoom;
+		Main.current_room_id = RoomId.from_string(current_world);
 		super();
 	}
 
@@ -91,7 +93,7 @@ class PlayState extends BaseState
 
 		Ctrl.mode = ControlModes.OVERWORLD;
 
-		trace('settin myself');
+		trace('New Playstate');
 		self = this;
 
 		premieres = new PremiereHandler();
@@ -109,23 +111,26 @@ class PlayState extends BaseState
 
 		add(shadows);
 
-		add(misc_sprites);
+		add(props_background);
 
 		add(minigames);
 		add(npcs);
 		add(username_tags);
 		add(users);
-		add(presents);
 		add(objects);
-		add(thumbnails);
-		add(stickers);
-		add(sticker_fx);
 
 		add(level_foregrounds);
+		add(props_foreground);
+
+		add(presents);
+		add(thumbnails);
 
 		add(dialogues);
 
 		add(doors);
+
+		add(stickers);
+		add(sticker_fx);
 
 		add(ui_overlay);
 
@@ -139,10 +144,7 @@ class PlayState extends BaseState
 		FlxG.autoPause = false;
 		FlxG.camera.target = player;
 
-		var bg:FlxObject = level_backgrounds.members[0];
-
-		FlxG.worldBounds.set(bg.x, bg.y, bg.width, bg.height);
-		FlxG.camera.setScrollBoundsRect(bg.x, bg.y, bg.width, bg.height);
+		update_scroll_bounds();
 
 		#if !show_collision
 		level_collision.visible = false;
@@ -159,8 +161,20 @@ class PlayState extends BaseState
 
 		SaveManager.save_room();
 
+		OnlineLoop.init_room();
+
 		player.on_save_loaded();
 	}
+
+	public function update_scroll_bounds()
+		for (bg in level_backgrounds)
+			if (bg.overlaps(player))
+			{
+				FlxG.worldBounds.set(bg.x, bg.y, bg.width, bg.height);
+				FlxG.worldBounds.set(0, 0, 99999, 99999);
+				FlxG.camera.setScrollBoundsRect(bg.x, bg.y, bg.width, bg.height);
+				return;
+			}
 
 	override public function update(elapsed:Float)
 	{

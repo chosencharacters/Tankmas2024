@@ -32,7 +32,8 @@ class BaseState extends FlxState
 			#if !no_radio
 			radio = new RadioManager();
 			#else
-			SoundPlayer.music(JsonData.get_track("thewanderer-everratic")).onComplete((_music) -> trace('Song started playing.'));
+			var song_name:String = Main.time.day >= 7 ? 'dancinginthesnow-twistedfw' : 'thewanderer-everratic';
+			SoundPlayer.music(song_name).onComplete((_music) -> trace('Song started playing.'));
 			#end
 
 			#if !no_fade

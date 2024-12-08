@@ -10938,22 +10938,6 @@
 			"gridTiles": [],
 			"entityInstances": [
 				{
-					"__identifier": "Player",
-					"__grid": [98,47],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#46BE2F",
-					"iid": "6bc75490-9b00-11ef-a0ea-9fe121c1b52e",
-					"width": 128,
-					"height": 128,
-					"defUid": 1,
-					"px": [1568,752],
-					"fieldInstances": [],
-					"__worldX": 1600,
-					"__worldY": 768
-				},
-				{
 					"__identifier": "Present",
 					"__grid": [112,111],
 					"__pivot": [0,0],
@@ -10977,7 +10961,7 @@
 				},
 				{
 					"__identifier": "NPC",
-					"__grid": [176,132],
+					"__grid": [153,120],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -10986,13 +10970,13 @@
 					"width": 104,
 					"height": 191,
 					"defUid": 10,
-					"px": [2816,2112],
+					"px": [2448,1920],
 					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "tombstone", "__tile": null, "defUid": 11, "realEditorValues": [{
 						"id": "V_String",
 						"params": ["tombstone"]
 					}] }],
-					"__worldX": 2848,
-					"__worldY": 2128
+					"__worldX": 2480,
+					"__worldY": 1936
 				},
 				{
 					"__identifier": "Activity_Area",
@@ -11025,10 +11009,13 @@
 					"height": 1374,
 					"defUid": 29,
 					"px": [1211,1338],
-					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "outside-bonfire", "__tile": null, "defUid": 31, "realEditorValues": [{
-						"id": "V_String",
-						"params": ["outside-bonfire"]
-					}] }],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "outside-bonfire", "__tile": null, "defUid": 31, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["outside-bonfire"]
+						}] },
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+					],
 					"__worldX": 1243,
 					"__worldY": 1354
 				},
@@ -11217,6 +11204,170 @@
 					],
 					"__worldX": 1456,
 					"__worldY": 1792
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [100,98],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "946736b0-9b00-11ef-b40f-610387f65015",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1600,1568],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "mkmaffo", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["mkmaffo"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 7, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [7] }] }
+					],
+					"__worldX": 1632,
+					"__worldY": 1584
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [199,106],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFF100",
+					"iid": "91e28270-9b00-11ef-83c5-fd9fac341b26",
+					"width": 96,
+					"height": 592,
+					"defUid": 14,
+					"px": [3184,1696],
+					"fieldInstances": [
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "e48bbea0-9b00-11ef-83c5-63948af164f2",
+							"layerIid": "b4b80d12-9b00-11ef-83c5-b9fed97c3d08",
+							"levelIid": "b4b80d10-9b00-11ef-83c5-19191281cd28",
+							"worldIid": "95f97851-73f0-11ef-9983-cda8b61095c5"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["e48bbea0-9b00-11ef-83c5-63948af164f2"]
+						}] },
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 182, "cy": 131 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["182,131"]
+						}] }
+					],
+					"__worldX": 3216,
+					"__worldY": 1712
+				},
+				{
+					"__identifier": "Player",
+					"__grid": [98,65],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#46BE2F",
+					"iid": "1134a0d0-9b00-11ef-83c5-874f90586fad",
+					"width": 128,
+					"height": 128,
+					"defUid": 1,
+					"px": [1568,1040],
+					"fieldInstances": [],
+					"__worldX": 1600,
+					"__worldY": 1056
+				},
+				{
+					"__identifier": "Graphic",
+					"__grid": [190,133],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#E4A672",
+					"iid": "bca46a40-9b00-11ef-83c5-dddf7b0dac88",
+					"width": 80,
+					"height": 128,
+					"defUid": 29,
+					"px": [3040,2128],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "candle", "__tile": null, "defUid": 31, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["candle"]
+						}] },
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+					],
+					"__worldX": 3072,
+					"__worldY": 2144
+				},
+				{
+					"__identifier": "Graphic",
+					"__grid": [171,140],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#E4A672",
+					"iid": "c10b94f0-9b00-11ef-83c5-b98edbc071a5",
+					"width": 80,
+					"height": 128,
+					"defUid": 29,
+					"px": [2736,2240],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "candle", "__tile": null, "defUid": 31, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["candle"]
+						}] },
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+					],
+					"__worldX": 2768,
+					"__worldY": 2256
+				},
+				{
+					"__identifier": "Graphic",
+					"__grid": [154,143],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#E4A672",
+					"iid": "cbfbb8e0-9b00-11ef-83c5-212ac1a88253",
+					"width": 64,
+					"height": 112,
+					"defUid": 29,
+					"px": [2464,2288],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "candle", "__tile": null, "defUid": 31, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["candle"]
+						}] },
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+					],
+					"__worldX": 2496,
+					"__worldY": 2304
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [84,47],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFF100",
+					"iid": "b00e4190-9b00-11ef-9507-af9851a74f56",
+					"width": 576,
+					"height": 112,
+					"defUid": 14,
+					"px": [1344,752],
+					"fieldInstances": [
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "99315cb0-9b00-11ef-967e-e1adc4478bbe",
+							"layerIid": "0b13d4d2-9b00-11ef-9354-9d2ed3d4a6a1",
+							"levelIid": "0b13d4d1-9b00-11ef-9354-cb54b317af20",
+							"worldIid": "0b13d4d0-9b00-11ef-9354-a71a8f29f283"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["99315cb0-9b00-11ef-967e-e1adc4478bbe"]
+						}] },
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 103, "cy": 74 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["103,74"]
+						}] }
+					],
+					"__worldX": 1376,
+					"__worldY": 768
 				}
 			]
 		},

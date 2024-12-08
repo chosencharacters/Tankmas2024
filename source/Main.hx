@@ -1,5 +1,6 @@
 package;
 
+import levels.TankmasLevel.RoomId;
 import data.SaveManager;
 import data.TimeManager;
 import Paths.Manifest;
@@ -16,7 +17,7 @@ class Main extends Sprite
 	public static var username:String = #if username haxe.macro.Compiler.getDefine("username") #elseif random_username 'poop_${Math.random()}' #else "lost_soul" #end;
 	public static var session_id:String = #if (offline || !newgrounds) "test_session" #else null #end;
 
-	public static var current_room_id:Int = 1;
+	public static var current_room_id:RoomId = HotelCourtyard;
 
 	public static var DEV:Bool = #if dev true #else false #end;
 
@@ -53,22 +54,9 @@ class Main extends Sprite
 	{
 		super();
 		#if sys
-		sys.ssl.Certificate.loadDefaults();
+		sys.ssl.Socket.DEFAULT_VERIFY_CERT = false;
 		#end
 		Manifest.init(make_game);
-	}
-
-	function on_logged_in()
-	{
-		#if newgrounds
-		username = ng_api.NG_USERNAME;
-		if (username == "")
-		{
-			username = 'temporary_random_username_${Math.random()}';
-		}
-		#end
-
-		addChild(new FlxGame(1920, 1080, LoadGameState, true));
 	}
 
 	public static function get_current_bg(day:Int):Int
@@ -82,10 +70,6 @@ class Main extends Sprite
 	public function make_game()
 	{
 		Lists.init();
-		#if newgrounds
-		ng_api = new NewgroundsHandler(true, false, on_logged_in);
-		#else
-		on_logged_in();
-		#end
+		addChild(new FlxGame(1920, 1080, LoadGameState, true));
 	}
 }

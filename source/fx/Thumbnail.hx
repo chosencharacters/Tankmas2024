@@ -1,9 +1,9 @@
 package fx;
 
-import openfl.Assets;
 import flixel.math.FlxMath;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.tweens.FlxEase;
+import openfl.Assets;
 
 enum ImageState
 {
@@ -40,6 +40,8 @@ class Thumbnail extends FlxSpriteExt
 
 	function image_loaded(image)
 	{
+		if (image == null)
+			return;
 		visible = true;
 		image_state = Ready;
 		loadGraphic(image);
@@ -55,7 +57,7 @@ class Thumbnail extends FlxSpriteExt
 	{
 		if (image_state != Initial)
 			return;
-		trace('started fetching ${graphic_path}');
+		#if trace_image trace('started fetching ${graphic_path}'); #end
 		image_state = Loading;
 		Assets.loadBitmapData(graphic_path, true).onComplete(image_loaded);
 	}
