@@ -649,15 +649,9 @@ class FlxSpriteExt extends FlxSprite
 	function point_weak(?X:Float = 0, ?Y:Float = 0)
 		return FlxPoint.weak(X, Y);
 
-	public function extLoadSet(?image:String, ?image_as:String, unique:Bool = false):FlxSpriteExt
+	public function one_line(?image:String, ?image_as:String, unique:Bool = false):FlxSpriteExt
 	{
 		loadAllFromAnimationSet(image, image_as, unique);
-		return this;
-	}
-
-	public function one_line(?image:String, ?image_as:String, unique:Bool = false)
-	{
-		extLoadSet(image, image_as, unique);
 		return this;
 	}
 

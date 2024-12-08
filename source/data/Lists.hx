@@ -49,7 +49,6 @@ class Lists
 
 		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("test-npcs.xml"));
 
-
 		/*
 			var xml:String = "";
 
@@ -79,7 +78,6 @@ class Lists
 
 		// trace(word_count());
 	}
-
 
 	public static function xml_word_count(write:Bool = false, save_file_name:String = "count-en")
 	{
@@ -383,7 +381,7 @@ class Lists
 	public static function textStorageLoad(path:String):String
 	{
 		if (textStorage.get(path) == null)
-			textStorage.set(path, Assets.getText(path));
+			textStorage.set(path, sys.io.File.getContent(path));
 		return textStorage.get(path);
 	}
 

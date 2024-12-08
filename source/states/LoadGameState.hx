@@ -65,7 +65,6 @@ class LoadGameState extends BaseState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		trace("huh");
 		if (loading_state == Ready)
 			start_game();
 	}

@@ -86,7 +86,7 @@ class Ctrl
 		controls = [[""]];
 		for (c in 1...2)
 		{
-			controls.push(Assets.getText("assets/data/config/controls/plyrc" + c + ".txt").split("\n"));
+			controls.push(sys.io.File.getContent("assets/data/config/controls/plyrc" + c + ".txt").split("\n"));
 			for (f in 0...controls[c].length)
 			{
 				controls[c][f] = controls[c][f].trim();
