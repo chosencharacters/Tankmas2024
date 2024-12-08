@@ -1,0 +1,274 @@
+{
+    "costumes": [
+        {
+            "name": "tankman",
+            "display": "Tankman",
+            "desc": "The problems of the future, today!"
+        },
+        {
+            "name": "steve",
+            "display": "Steve :)",
+            "desc": "The future has no problems when you can keep a sunny outlook!",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "paco",
+            "display": "Pico",
+            "desc": "They've been blasting through the Portal since 1999, it's Pico!"
+        },
+        {
+            "name": "g-bot",
+            "display": "G-Bot",
+            "desc": "Every month they send thousands of dedicated Newgrounders PMs telling them that it's time once again to support. Now you can pilot them as a massive mech and show off!",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "knight-red",
+            "display": "Red Knight",
+            "desc": "Castle Crasher video game but red"
+        },
+        {
+            "name": "knight-blue",
+            "display": "Blue Knight",
+            "desc": "Castle Crasher video game but blue"
+        },
+        {
+            "name": "knight-green",
+            "display": "Green Knight",
+            "desc": "Castle Crasher video game but green"
+        },
+        {
+            "name": "knight-orange",
+            "display": "Orange Knight",
+            "desc": "Castle Crasher video game but orange"
+        },
+        {
+            "name": "knight-pink",
+            "display": "Pink Knight UwU",
+            "desc": "Castle Crasher video game but pink uwu",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "madness-grunt",
+            "display": "Grunt",
+            "desc": "As seen on addicting games dot com"
+        },
+        {
+            "name": "alien-hominid",
+            "display": "Alien Hominid",
+            "desc": "It's an absolute invasion!"
+        },
+        {
+            "name": "thomas",
+            "display": "Thomas",
+            "desc": "Are we talking about Tom Fulp?",
+            "unlock": "USERNAME",
+            "data": "TomFulp"
+        },
+        {
+            "name": "santa",
+            "display": "Santa",
+            "unlock": "DATE",
+            "data": 1735102800000
+        },
+        {
+            "name": "sodaman",
+            "display": "Sodaman",
+            "desc": "STREAMING EVERY WEEKDAY MORNING TO AFTERNOON EST",
+            "unlock": "USERNAME",
+            "data": "squidly"
+        },
+        {
+            "name": "tamag0",
+            "display": "Tamag0",
+            "desc": "What, you egg?",
+            "unlock": "USERNAME",
+            "data": "Tamag0"
+        },
+        {
+            "name": "c-jay",
+            "display": "C-Jay",
+            "desc": "*electronic coughing noises*",
+            "unlock": "USERNAME",
+            "data": "OnyxGalaria"
+        },
+        {
+            "name": "splatter-dash",
+            "display": "SplatterDash",
+            "desc": "Shroomy",
+            "unlock": "USERNAME",
+            "data": "SplatterDash"
+        },
+        {
+            "name": "midgetsausage",
+            "display": "MidgetSausage",
+            "desc": "The correct term is little person wiener",
+            "unlock": "USERNAME",
+            "data": "midgetsausage"
+        },
+        {
+            "name": "boyfriend",
+            "display": "Boyfriend",
+            "desc": "BEEP BEEP BEEP BEEP BEEP BEEP?"
+        },
+        {
+            "name": "girlfriend",
+            "display": "Girlfriend",
+            "desc": "BEEP BOOP BEEP BEEP BEEP BOOP!"
+        },
+        {
+            "name": "ena",
+            "display": "ENA",
+            "desc": "Some weird stuff that doesn't make sense",
+            "unlock": "DATE",
+            "data": 1733634000000
+        },
+        {
+            "name": "salad-fingers",
+            "display": "Salad Fingers",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "meat-boy",
+            "display": "Meat Boy",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "jimmy",
+            "display": "Jimmy",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "baby",
+            "display": "Baby",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "dadshome",
+            "display": "Dad",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "tarboy",
+            "display": "Tarboy",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "rebutia",
+            "display": "Rebutia",
+            "desc": "As prickly as being a cactus would make her, Rebutia may come off as the grumpiest of her four piece cactus punk band, but rumors say she's actually quite sweet underneath. Probably. Or probably not.",
+            "unlock": "DATE",
+            "data": 1733634000000
+        },
+        {
+            "name": "strawberry-clock",
+            "display": "Strawberry Clock",
+            "desc": "B",
+            "unlock": "USERNAME",
+            "data": "coolboyman"
+        },
+        {
+            "name": "shmoods",
+            "display": "Mr. Shmoods",
+            "desc": "Shmoods loves Tankmas and White Castle. He has never done hard drugs, only soft drugs. Only the fluffiest drugs for shmoods. You can join him sometime. It's an open invitation.",
+            "unlock": "USERNAME",
+            "data": "MrShmoods"
+        },
+        {
+            "name": "satina",
+            "display": "Satina",
+            "desc": "That cute lil' devil girl from Hell who has a HUMAN for a father!"
+        },
+        {
+            "name": "bitey",
+            "display": "Bitey",
+            "desc": "...of Brackenwood!",
+            "unlock": "FLAG",
+            "data": "BITEY_ENCOUNTERED"
+        },
+        {
+            "name": "captain-steve",
+            "display": "Captain Steve",
+            "desc": "What's wrong with this Tankman? Is he autistic?",
+            "unlock": "USERNAME",
+            "data": "captainstevie"
+        },
+        {
+            "name": "lils",
+            "display": "Lils",
+            "desc": "The Tankdemon. Make sure to sacrifice a marshmallow to them!",
+            "unlock": "USERNAME",
+            "data": "cheddarexuberant"
+        },
+        {
+            "name": "mimny",
+            "display": "Mimny",
+            "desc": "Smug son of a-",
+            "unlock": "USERNAME",
+            "data": "mimny"
+        },
+        {
+            "name": "blockhead",
+            "display": "Blockhead",
+            "desc": "An idiot but a lovable idiot",
+            "unlock": "DATE",
+            "data": 1733374800000
+        },
+        {
+            "name": "salad-fingers",
+            "display": "Salad Fingers",
+            "desc": "He likes the feeling of rust against his salad fingers",
+            "unlock": "DATE",
+            "data": 1733374800000
+        },
+        {
+            "name": "duncan",
+            "display": "Duncan",
+            "desc": "1/2 of Duncan and Jones",
+            "unlock": "DATE",
+            "data": 1733461200000
+        },
+        {
+            "name": "jones",
+            "display": "Jones",
+            "desc": "1/2 of Jones and Duncan",
+            "unlock": "DATE",
+            "data": 1733461200000
+        },
+        {
+            "name": "ritz",
+            "display": "Ritz the Rat",
+            "desc": "They a rat, and they gotta get their cheese, lmao!",
+            "unlock": "DATE",
+            "data": 1733547600000
+        },
+        {
+            "name": "randy",
+            "display": "Randy da Mouse",
+            "desc": "When it's time to learn, Randy's your Concern!",
+            "unlock": "DATE",
+            "data": 1733547600000
+        },
+        {
+            "name": "psycho-goldfish",
+            "display": "Psycho Goldfish",
+            "desc": "Here ya go Josh >:(",
+            "unlock": "USERNAME",
+            "data": "psychogoldfish"
+        },
+        {
+            "name": "go-go",
+            "display": "Gogo",
+            "desc": "An 11 year old martial arts prodigy, Gogo Matsumoto is as powerful as she is... not entirely there all the time. Is she the only one powerful enough to defeat the powerful demon lord Emperor Koro?",
+            "unlock": "DATE",
+            "data": 1733461200000
+        },
+        {
+            "name": "dungeoncookiebun",
+            "display": "Dungeon the Cookiebunny",
+            "desc": "He loves chocolate chip cookies, the technically-cannibal that he is.",
+            "unlock": "USERNAME",
+            "data": "dungeonation"
+        }
+    ]
+}
