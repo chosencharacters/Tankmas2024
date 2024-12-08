@@ -41,6 +41,8 @@ class Main extends Sprite
 
 	public static var time:TimeManager = new TimeManager();
 
+	public static var mouse_overlap_interact:Bool = false;
+
 	public static function main():Void
 	{
 		// We need to make the crash handler LITERALLY FIRST so nothing EVER gets past it.

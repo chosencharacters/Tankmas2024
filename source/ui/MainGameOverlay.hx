@@ -5,6 +5,7 @@ import data.SaveManager;
 import entities.Player;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
+import ui.button.ActionStamp;
 import ui.button.HoverButton;
 import ui.popups.StickerPackOpening;
 import ui.settings.BaseSettings;
@@ -17,6 +18,8 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 	var sticker_menu:FlxSpriteExt;
 	var sticker_pack:HoverButton;
 	var music_popup:MusicPopup;
+
+	public var action_stamp:ActionStamp;
 
 	var hide_speed:Float = 0.35;
 	var reveal_speed:Float = 0.35;
@@ -37,6 +40,8 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 
 		add(sticker_pack = cast(new HoverButton().one_line("sticker-pack-icon"), HoverButton));
 		sticker_pack.setPosition(emote.x + emote.width + 20, 20);
+
+		add(action_stamp = new ActionStamp());
 
 		for (sprite in [emote, settings])
 			sprite.offset.y = sprite.height;

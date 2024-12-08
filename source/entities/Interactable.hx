@@ -1,13 +1,14 @@
 package entities;
 
 import entities.base.NGSprite;
+import ui.button.ActionStamp.ActionStampType;
 
 class Interactable extends NGSprite
 {
 	public var detect_range:Int;
 	public var interactable:Bool;
 
-	public var interaction_type:ActionButtonType;
+	public var interaction_type(get, never):ActionStampType;
 
 	public var marked(default, set):Bool = false;
 
@@ -58,6 +59,11 @@ class Interactable extends NGSprite
 		PlayState.self.interactables.remove(this, true);
 		super.kill();
 	}
+
+	public function get_interaction_type():ActionStampType
+	{
+		return ActionStampType.INSPECT;
+	}
 }
 
 enum abstract InteractableType(String) from String to String
@@ -65,13 +71,4 @@ enum abstract InteractableType(String) from String to String
 	final NPC = "npc";
 	final PRESENT = "present";
 	final MINIGAME = "minigame";
-}
-
-enum abstract ActionButtonType(String) from String to String
-{
-	final TALK = "talk";
-	final PRESENT_NEW = "present-new";
-	final PRESENT_OPENED = "present-opened";
-	final INSPECT = "inspect";
-	final MARSHMALLOW = "marshmallow";
 }
