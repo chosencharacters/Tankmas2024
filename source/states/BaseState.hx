@@ -1,5 +1,6 @@
 package states;
 
+import data.JsonData;
 import data.SaveManager;
 import flixel.FlxState;
 import sound.RadioManager;

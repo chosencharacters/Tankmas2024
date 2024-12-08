@@ -1,5 +1,7 @@
 package sound;
 
+import ui.MusicPopup;
+
 typedef RadioSegment =
 {
 	var type:RadioSegmentType;
@@ -61,8 +63,10 @@ class RadioManager
 			var next_sound:String = current_segment.parts.shift();
             #if trace_radio  trace("PLAYING ", next_sound); #end
 			current_sound = SoundPlayer.sound(next_sound, volume);
-			current_sound.persist = true;
-			current_sound.onComplete = end_sound;
+			if (current_sound != null) {
+				current_sound.persist = true;
+				current_sound.onComplete = end_sound;
+			}
 		}
 		else if (current_sound.volume != volume)
 			current_sound.volume = volume;
@@ -84,7 +88,9 @@ class RadioManager
 
 	function get_part(part_name:String){
         #if trace_radio trace(part_name, sounds.get(part_name)); #end
-		return sounds.get(part_name).pop();
+		var sound = sounds.get(part_name);
+		if (sound == null) return '';
+		return sound.pop();
     }
 
 	function make_segment(type:RadioSegmentType):RadioSegment
@@ -110,6 +116,7 @@ class RadioManager
 	{
 		segment.parts = [get_part("shotgun-")];
 		segment.follow_up = MUSIC;
+		MusicPopup.show_info("You're listening to Tankmas Radio!");
 		return segment;
 	}
 
@@ -132,6 +139,7 @@ class RadioManager
 		var n:String = 'A';
 		segment.parts = [get_part('news-intro-'), get_part('news-$n-main-'), get_part('news-outro-')];
 		segment.follow_up = SHOTGUN;
+		MusicPopup.show_info("You're listening to Tankmas Radio!");
 		return segment;
 	}
 
@@ -139,6 +147,7 @@ class RadioManager
 	{
 		segment.parts = [get_part('ad-intro-'), get_part('ad-main-'), get_part('ad-outro-')];
 		segment.follow_up = SHOTGUN;
+		MusicPopup.show_info("You're listening to Tankmas Radio!");
 		return segment;
 	}
 

@@ -1,42 +1,54 @@
-import lime.app.Promise;
-import lime.app.Future;
-import openfl.media.Sound;
-import lime.utils.AssetLibrary;
-import lime.media.AudioBuffer;
-import lime.utils.Assets;
+import data.types.TankmasDefs.TrackDef;
 import flixel.math.FlxRandom;
 import flixel.sound.FlxSound;
 import flixel.system.FlxAssets.FlxSoundAsset;
+import lime.app.Future;
+import lime.app.Promise;
+import lime.media.AudioBuffer;
+import lime.utils.AssetLibrary;
+import lime.utils.Assets;
+import openfl.media.Sound;
+import ui.MusicPopup;
 
 class SoundPlayer
 {
-	public static var MUSIC_ALREADY_PLAYING:String = "";
+	public static var CURRENT_TRACK:Null<TrackDef> = null;
 	public static var MUSIC_VOLUME:Float = 1;
 	public static var SOUND_VOLUME:Float = 1;
 
 	static var ran:FlxRandom;
+
+	#if html5
+	public static final SOUND_EXT:String = ".mp3";
+	#else
+	public static final SOUND_EXT:String = ".ogg";
+	#end
 
 	public static function init() {}
 
 	public static function sound(sound_asset:String, vol:Float = 1):FlxSound
 	{
 		sound_asset = sound_asset.replace(".ogg", "");
-		var return_sound:FlxSound = FlxG.sound.play(Paths.get('${sound_asset}.ogg'), SOUND_VOLUME * vol);
+
+		// Query the asset before trying to play it.
+		// Don't play the sound if it doesn't exist
+		var sound_path:Null<String> = Paths.get('${sound_asset}${SOUND_EXT}', true);
+		if (sound_path == null) return null;
+
+		var return_sound:FlxSound = FlxG.sound.play(sound_path, SOUND_VOLUME * vol);
 		return return_sound;
 	}
 
-	public static function music(music_asset:String, vol:Float = 1, force = false):Future<FlxSound>
+	public static function music(track:TrackDef, vol:Float = 1, force = false):Future<FlxSound>
 	{
-		music_asset = music_asset.replace(".ogg", "");
-
-		var music_path = Paths.get('${music_asset}.ogg');
+		var music_path = Paths.get('assets/music/${track.id}${SOUND_EXT}', true);
 
 		// Don't restart same song if it's already playing,
 		// unless force is set to true.
-		if (!force && music_path == MUSIC_ALREADY_PLAYING)
+		if (music_path == null || !force && track == CURRENT_TRACK)
 			return Future.withValue(FlxG.sound.music);
 
-		MUSIC_ALREADY_PLAYING = music_path;
+		CURRENT_TRACK = track;
 
 		var is_local = Assets.isLocal(music_path);
 
@@ -44,7 +56,7 @@ class SoundPlayer
 		if (is_local)
 		{
 			var music = Assets.getAudioBuffer(music_path);
-			return Future.withValue(start_music(music, music_path, vol));
+			return Future.withValue(start_music(music, track, vol));
 		}
 
 		var music_started_promise = new Promise<FlxSound>();
@@ -53,24 +65,42 @@ class SoundPlayer
 		var sound_buffer = Assets.loadAudioBuffer(music_path);
 		Assets.loadAudioBuffer(music_path).onComplete((buffer) ->
 		{
-			var res = start_music(buffer, music_path, vol);
+			var res = start_music(buffer, track, vol);
 			music_started_promise.complete(res);
 		});
 
 		return music_started_promise.future;
 	}
 
-	static function start_music(buffer:AudioBuffer, music_path:String, volume:Float)
+	static function start_music(buffer:AudioBuffer, track:TrackDef, volume:Float)
 	{
 		// Music was already changed, so skip starting this.
-		if (music_path != MUSIC_ALREADY_PLAYING)
+		if (track != CURRENT_TRACK)
 			return FlxG.sound.music;
+
+		set_music_playing(track);
 
 		var music = Sound.fromAudioBuffer(buffer);
 		FlxG.sound.playMusic(music, MUSIC_VOLUME * volume);
-		FlxG.sound.music.persist = true;
+		if (FlxG.sound.music != null) {
+			FlxG.sound.music.persist = true;
+		}
 
 		return FlxG.sound.music;
+	}
+
+	static function build_song_name(track:TrackDef):String {
+		if (track == null) return 'Unknown Song';
+
+		return '${track.name} by ${track.artist}';
+	}
+
+	static function set_music_playing(track:TrackDef):Void {
+		MusicPopup.show_info(build_song_name(track));
+	}
+
+	static function set_music_loading(track:TrackDef):Void {
+		MusicPopup.show_loading(build_song_name(track));
 	}
 
 	static var slots:Array<Array<String>> = [];
