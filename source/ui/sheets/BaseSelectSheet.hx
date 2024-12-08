@@ -17,13 +17,14 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	var type:SheetType;
 
 	var stickerSheetOutline:FlxSpriteExt;
-	var stickerSheetBase:FlxSpriteExt;
+	var base:FlxSpriteExt;
 	var effectSheet:FlxEffectSprite;
 	var description:FlxText;
 	var title:FlxText;
 
 	public var selector:FlxSpriteExt;
 	public var backTab:FlxSpriteExt;
+	public var next_sheet_button:HoverButton;
 
 	var sheet_collection:SheetFileDef;
 	final characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSpriteExt>> = [];
@@ -74,7 +75,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		add(backTab = new FlxSpriteExt(66 + (type == COSTUME ? 500 : 0), 130, Paths.get('${type == COSTUME ? 'emote-tab' : 'costume-tab'}.png')));
 
 		add(stickerSheetOutline = new FlxSpriteExt(46, 219).makeGraphicExt(1446, 852, FlxColor.WHITE));
-		add(stickerSheetBase = new FlxSpriteExt(66, 239));
+		add(base = new FlxSpriteExt(66, 239));
 
 		title = new FlxText(70, 70, 1420, '');
 		title.setFormat(Paths.get('CharlieType-Heavy.otf'), 60, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
@@ -196,6 +197,10 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		locked_sheet = saved_sheet;
 		locked_selection = saved_selection;
 
+		add(next_sheet_button = new HoverButton());
+		next_sheet_button.one_line("next-sticker-page");
+		next_sheet_button.setPosition(base.x + base.width - next_sheet_button.width, base.y - next_sheet_button.height / 2);
+
 		members.for_all_members((member:FlxBasic) ->
 		{
 			final daMem:FlxObject = cast(member, FlxObject);
@@ -268,6 +273,10 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			current_hover_sheet = current_hover_sheet - 1;
 		if (Ctrl.jinteract[1])
 			lock_choices();
+
+		if (FlxG.mouse.overlaps(next_sheet_button) && FlxG.mouse.justPressed)
+			current_hover_sheet = current_hover_sheet + 1;
+
 		if (FlxG.mouse.overlaps(backTab))
 		{
 			if (backTab.y != 110)
@@ -349,9 +358,9 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	{
 		graphicSheet = sheet_collection.sheets[current_hover_sheet].graphic != null ? true : false;
 		if (graphicSheet)
-			stickerSheetBase.loadGraphic(Paths.get(sheet_collection.sheets[current_hover_sheet].graphic + '.png'));
+			base.loadGraphic(Paths.get(sheet_collection.sheets[current_hover_sheet].graphic + '.png'));
 		else
-			stickerSheetBase.makeGraphic(1410, 845, FlxColor.BLACK);
+			base.makeGraphic(1410, 845, FlxColor.BLACK);
 
 		characterSpritesArray[current_hover_sheet].revive();
 		notSeenGroup[current_hover_sheet].revive();
