@@ -19,12 +19,12 @@
 	"__bgColor": "#696A79",
 	"bgColor": null,
 	"useAutoIdentifier": false,
-	"bgRelPath": "../../images/bgs/temp/hotel-interior.png",
+	"bgRelPath": "../../images/levels/maps/courtyard/candle-path-background.jpg",
 	"bgPos": "Cover",
 	"bgPivotX": 0.5,
 	"bgPivotY": 0.5,
 	"__smartColor": "#ADADB5",
-	"__bgPos": null,
+	"__bgPos": { "topLeftPx": [0,0], "scale": [1.313662604233483,1.313662604233483], "cropRect": [378.5,0,1559,1559] },
 	"externalRelPath": null,
 	"fieldInstances": [],
 	"layerInstances": [
@@ -353,7 +353,15 @@
 					"defUid": 14,
 					"px": [896,0],
 					"fieldInstances": [
-						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 16, "realEditorValues": [] },
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "b00e4190-9b00-11ef-9507-af9851a74f56",
+							"layerIid": "1f4bee20-73f0-11ef-9983-a7372464c4f6",
+							"levelIid": "95f99f60-73f0-11ef-9983-612730a885a0",
+							"worldIid": "95f97851-73f0-11ef-9983-cda8b61095c5"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["b00e4190-9b00-11ef-9507-af9851a74f56"]
+						}] },
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 64, "cy": 21 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["64,21"]
