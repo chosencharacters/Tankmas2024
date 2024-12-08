@@ -235,6 +235,11 @@ class OnlineLoop
 				trace('$username changed scale to $new_user_scale');
 				user.scale_changed(new_user_scale);
 			}
+
+			if (def.data.marshmallow_streak != null)
+			{
+				// trace('$username marshmallows: ${def.data.marshmallow_streak}');
+			}
 		}
 		#end
 	}

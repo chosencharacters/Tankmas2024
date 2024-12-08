@@ -43,6 +43,8 @@ class BonfireArea extends ActivityAreaInstance
 			return;
 		txt.text = '${player.data.marshmallow_streak}';
 		txt.visible = player.data.marshmallow_streak > 0;
+		txt.x = player.x + 90;
+		txt.y = player.y - 30;
 	}
 
 	override function on_leave()
@@ -56,8 +58,7 @@ class BonfireArea extends ActivityAreaInstance
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		txt.x = player.x + 90;
-		txt.y = player.y - 30;
+		update_text();
 	}
 
 	override function on_interact()
@@ -87,6 +88,7 @@ class BonfireArea extends ActivityAreaInstance
 		super.on_event(event);
 		if (local)
 			return;
+
 		if (event.type == NetEventType.DROP_MARSHMALLOW)
 		{
 			var level:Int = cast(event.data.level, Int);
