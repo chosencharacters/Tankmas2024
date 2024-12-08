@@ -32,11 +32,10 @@ class Present extends Interactable
 	var def:PresentDef;
 
 	var time_activated(get, never):Bool;
-
-	// Whether or not the present will unlock its medal when opened
 	var medal_unlock_enabled(get, never):Bool;
 
-	function get_medal_unlock_enabled()
+	// Whether or not the present will unlock its medal when opened
+	function is_medal_unlock_enabled()
 	{
 		// Edge case, always award this one.
 		if (day == 7 && username == "matthewlopz")
@@ -177,7 +176,7 @@ class Present extends Interactable
 				PlayState.self.openSubState(comic ? new ComicSubstate(username, true) : new ArtSubstate(username));
 				opened = true;
 
-				medal_was_unlocked = medal_unlock_enabled;
+				medal_was_unlocked = is_medal_unlock_enabled();
 
 				SaveManager.open_present(username, def.day);
 			});
@@ -195,7 +194,7 @@ class Present extends Interactable
 		// Post present opened event to server (it's broadcasted to every other player, and also kept for stats).
 		OnlineLoop.post_present_open(day, medal_was_unlocked, first_time_opening);
 
-		if (medal_unlock_enabled)
+		if (is_medal_unlock_enabled())
 			give_opened_medal();
 	}
 
