@@ -47,6 +47,16 @@ class OnlineLoop
 
 	public static var current_timestamp(get, default):Float;
 
+	static final default_throttle_delay = 0.2;
+	static final event_throttle_delays:Map<NetEventType, Float> = [
+		// Event delays, timeout in seconds between messages
+		OPEN_PRESENT => 1.0,
+		DROP_MARSHMALLOW => 0.5,
+		STICKER => 0.8,
+	];
+
+	static var event_send_timestamps:Map<NetEventType, Float> = new Map();
+
 	public static var force_send_full_user:Bool;
 
 	static var websocket:WebsocketClient;
@@ -137,13 +147,29 @@ class OnlineLoop
 
 	public static function post_present_open(day:Int, earned_medal = false, first_time = true)
 	{
-		post_event({type: OPEN_PRESENT, data: {"day": day, "medal": earned_medal, "first_time": first_time}});
+		post_event({type: OPEN_PRESENT, data: {"day": day, "medal": earned_medal, "first_time": first_time}}, true, first_time);
 	}
 
-	public static function post_event(event:NetEventDef)
+	public static function post_event(event:NetEventDef, immediate = false, force = false)
 	{
 		#if !offline
-		websocket.send_event(event.type, event.data);
+		// Check if event is not spammed too quickly
+		var now = current_timestamp;
+		var throttle_interval = event_throttle_delays.exists(event.type) ? event_throttle_delays[event.type] : default_throttle_delay;
+
+		if (!force && event_send_timestamps.exists(event.type))
+		{
+			var time_delta = now - event_send_timestamps[event.type];
+			if (time_delta < throttle_interval)
+			{
+				trace('Tried to send event ${event.type} too quickly.');
+				return;
+			}
+		}
+
+		event_send_timestamps[event.type] = now;
+
+		websocket.send_event(event.type, event.data, immediate);
 		#end
 	}
 
