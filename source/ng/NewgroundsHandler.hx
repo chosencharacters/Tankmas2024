@@ -111,6 +111,11 @@ class NewgroundsHandler
 
 		trace('${ng_medal.name} [${ng_medal.id}] is worth ${ng_medal.value} points!');
 
+		if (ng_medal.unlocked) {
+			trace('${ng_medal.name} is already unlocked!');
+			return;
+		}
+
 		ng_medal.onUnlock.add(function():Void
 		{
 			trace('${ng_medal.name} unlocked:${ng_medal.unlocked}');
