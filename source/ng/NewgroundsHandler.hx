@@ -101,9 +101,31 @@ class NewgroundsHandler
 			return;
 		}
 
+		if (medal_def == null)
+		{
+			var message = "No medal definition provided. Can't unlock it.";
+			#if debug
+			throw message;
+			#else
+			trace(message);
+			#end
+			return;
+		}
+
 		NG.core.verbose = true;
 
 		var ng_medal:Medal = NG.core.medals.get(medal_def.id);
+
+		if (ng_medal == null)
+		{
+			var message = 'Could not find medal with ID ${medal_def}.';
+			#if debug
+			throw message;
+			#else
+			trace(message);
+			#end
+			return;
+		}
 
 		trace('${ng_medal.name} [${ng_medal.id}] is worth ${ng_medal.value} points!');
 
