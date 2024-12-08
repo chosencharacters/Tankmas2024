@@ -11340,34 +11340,26 @@
 					"__worldY": 2304
 				},
 				{
-					"__identifier": "Door",
-					"__grid": [84,47],
+					"__identifier": "Present",
+					"__grid": [100,122],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
-					"__smartColor": "#FFF100",
-					"iid": "b00e4190-9b00-11ef-9507-af9851a74f56",
-					"width": 576,
-					"height": 112,
-					"defUid": 14,
-					"px": [1344,752],
+					"__smartColor": "#D74343",
+					"iid": "657eebf0-9b00-11ef-a8d4-fdc18713a3bd",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1600,1952],
 					"fieldInstances": [
-						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
-							"entityIid": "99315cb0-9b00-11ef-967e-e1adc4478bbe",
-							"layerIid": "0b13d4d2-9b00-11ef-9354-9d2ed3d4a6a1",
-							"levelIid": "0b13d4d1-9b00-11ef-9354-cb54b317af20",
-							"worldIid": "0b13d4d0-9b00-11ef-9354-a71a8f29f283"
-						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+						{ "__identifier": "username", "__type": "String", "__value": "bellvonartsy", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["99315cb0-9b00-11ef-967e-e1adc4478bbe"]
+							"params": ["bellvonartsy"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 103, "cy": 74 }, "__tile": null, "defUid": 17, "realEditorValues": [{
-							"id": "V_String",
-							"params": ["103,74"]
-						}] }
+						{ "__identifier": "day", "__type": "Int", "__value": 8, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [8] }] }
 					],
-					"__worldX": 1376,
-					"__worldY": 768
+					"__worldX": 1632,
+					"__worldY": 1968
 				}
 			]
 		},

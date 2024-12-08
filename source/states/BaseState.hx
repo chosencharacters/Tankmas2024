@@ -2,6 +2,7 @@ package states;
 
 import data.JsonData;
 import data.SaveManager;
+import data.types.TankmasDefs.TrackDef;
 import flixel.FlxState;
 import sound.RadioManager;
 #if gif
@@ -32,8 +33,8 @@ class BaseState extends FlxState
 			#if !no_radio
 			radio = new RadioManager();
 			#else
-			var song_name:String = Main.time.day >= 7 ? 'dancinginthesnow-twistedfw' : 'thewanderer-everratic';
-			SoundPlayer.music(song_name).onComplete((_music) -> trace('Song started playing.'));
+			var track:TrackDef = JsonData.get_track("dancinginthesnow-twistedfw");
+			SoundPlayer.music(track).onComplete((_music) -> trace('Song started playing.'));
 			#end
 
 			#if !no_fade

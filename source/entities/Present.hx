@@ -50,7 +50,7 @@ class Present extends Interactable
 
 		type = Interactable.InteractableType.PRESENT;
 
-		loadAllFromAnimationSet("present-any", 'present-$username');
+		loadAllFromAnimationSet("present-any", 'day-${def.day}-present-$username');
 
 		PlayState.self.presents.add(this);
 		thumbnail = new Thumbnail(x, y - 200, Paths.image_path(def.file));
