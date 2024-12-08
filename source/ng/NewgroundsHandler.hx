@@ -70,12 +70,7 @@ class NewgroundsHandler
 		if (!NG.core.loggedIn)
 		{
 			trace("Waiting on manual login...");
-			NG.core.requestLogin(function(outcome:LoginOutcome):Void
-			{
-				trace(outcome);
-				NG_LOGGED_IN = true;
-				login_callback != null ? login_callback() : false;
-			});
+			NG.core.requestLogin();
 		}
 		else
 		{
@@ -86,8 +81,9 @@ class NewgroundsHandler
 	function load_medal_defs()
 	{
 		var json:{medals:Array<MedalDef>} = haxe.Json.parse(Utils.load_file_string(Paths.get("medals.json")));
-		if (json?.medals == null) return;
-		
+		if (json?.medals == null)
+			return;
+
 		for (medal in json.medals)
 			medals.set(medal.name, medal);
 	}
@@ -111,7 +107,8 @@ class NewgroundsHandler
 
 		trace('${ng_medal.name} [${ng_medal.id}] is worth ${ng_medal.value} points!');
 
-		if (ng_medal.unlocked) {
+		if (ng_medal.unlocked)
+		{
 			trace('${ng_medal.name} is already unlocked!');
 			return;
 		}
@@ -170,7 +167,7 @@ class NewgroundsHandler
 		NG_LOGGED_IN = true;
 
 		NG_MR_MONEYBAGS_OVER_HERE = NG.core.user.supporter;
-		NG_SESSION_ID = NGLite.getSessionId();
+		NG_SESSION_ID = NG.core.sessionId;
 
 		Main.username = NG_USERNAME;
 		Main.session_id = NG_SESSION_ID;
