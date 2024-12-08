@@ -49,7 +49,8 @@ class OnlineLoop
 
 	static final default_throttle_delay = 0.2;
 	static final event_throttle_delays:Map<NetEventType, Float> = [
-		// Event delays, timeout in seconds between messages
+		// Event delays, timeout in seconds between messages,
+		// if sent quicker than this interval, they'll be ignored.
 		OPEN_PRESENT => 1.0,
 		DROP_MARSHMALLOW => 0.5,
 		STICKER => 0.8,
