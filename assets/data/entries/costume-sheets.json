@@ -134,6 +134,71 @@
             "graphic": "costumes-series-3",
             "items": [
                 {
+                    "name": "rebutia",
+                    "angle": 10
+                },
+                {
+                    "name": "ena",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "graphic": "costumes-series-D",
+            "items": [
+                {
                     "name": "sodaman",
                     "angle": 10
                 },

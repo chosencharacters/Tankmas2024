@@ -69,7 +69,7 @@
             "name": "santa",
             "display": "Santa",
             "unlock": "DATE",
-            "data": 1735102800
+            "data": 1735102800000
         },
         {
             "name": "sodaman",
@@ -114,14 +114,14 @@
         {
             "name": "girlfriend",
             "display": "Girlfriend",
-            "unlock": "BEEP BOOP BEEP BEEP BEEP BOOP!"
+            "desc": "BEEP BOOP BEEP BEEP BEEP BOOP!"
         },
         {
-            "name": "ena-sprite",
+            "name": "ena",
             "display": "ENA",
             "desc": "Some weird stuff that doesn't make sense",
-            "unlock": "USERNAME",
-            "data": "joelg"
+            "unlock": "DATE",
+            "data": 1733634000000
         },
         {
             "name": "salad-fingers",
@@ -157,8 +157,8 @@
             "name": "rebutia",
             "display": "Rebutia",
             "desc": "As prickly as being a cactus would make her, Rebutia may come off as the grumpiest of her four piece cactus punk band, but rumors say she's actually quite sweet underneath. Probably. Or probably not.",
-            "unlock": "USERNAME",
-            "data": "Bacun"
+            "unlock": "DATE",
+            "data": 1733634000000
         },
         {
             "name": "strawberry-clock",
@@ -212,42 +212,42 @@
             "display": "Blockhead",
             "desc": "An idiot but a lovable idiot",
             "unlock": "DATE",
-            "data": 1733374800
+            "data": 1733374800000
         },
         {
             "name": "salad-fingers",
             "display": "Salad Fingers",
             "desc": "He likes the feeling of rust against his salad fingers",
             "unlock": "DATE",
-            "data": 1733374800
+            "data": 1733374800000
         },
         {
             "name": "duncan",
             "display": "Duncan",
             "desc": "1/2 of Duncan and Jones",
             "unlock": "DATE",
-            "data": 1733461200
+            "data": 1733461200000
         },
         {
             "name": "jones",
             "display": "Jones",
             "desc": "1/2 of Jones and Duncan",
             "unlock": "DATE",
-            "data": 1733461200
+            "data": 1733461200000
         },
         {
             "name": "ritz",
             "display": "Ritz the Rat",
             "desc": "They a rat, and they gotta get their cheese, lmao!",
             "unlock": "DATE",
-            "data": 1733547600
+            "data": 1733547600000
         },
         {
             "name": "randy",
             "display": "Randy da Mouse",
             "desc": "When it's time to learn, Randy's your Concern!",
             "unlock": "DATE",
-            "data": 1733547600
+            "data": 1733547600000
         },
         {
             "name": "psycho-goldfish",
@@ -261,7 +261,7 @@
             "display": "Gogo",
             "desc": "An 11 year old martial arts prodigy, Gogo Matsumoto is as powerful as she is... not entirely there all the time. Is she the only one powerful enough to defeat the powerful demon lord Emperor Koro?",
             "unlock": "DATE",
-            "data": 1733461200
+            "data": 1733461200000
         },
         {
             "name": "dungeoncookiebun",

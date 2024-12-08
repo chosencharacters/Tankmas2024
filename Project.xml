@@ -49,7 +49,7 @@
 		<assets path="assets/fonts" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
 		<assets path="assets/images/art" preload="false" exclude="*.gif" />
 		<assets path="assets/images" embed="true" exclude="*.gif|.*ini|*.aseprite|art"/>
-		<assets path="assets/music" preload="false" exclude="*.gif|*.mp3" />
+		<assets path="assets/music" exclude="*.gif|*.mp3" />
 		<assets path="assets/preloader" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
 		<assets path="assets/sounds" embed="true" exclude="*.gif|.*ini|*.aseprite|*.mp3"/>
 		<assets path="assets/videos" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
