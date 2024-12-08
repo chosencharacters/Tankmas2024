@@ -18,11 +18,7 @@ class SoundPlayer
 
 	static var ran:FlxRandom;
 
-	#if html5
-	public static final SOUND_EXT:String = ".mp3";
-	#else
-	public static final SOUND_EXT:String = ".ogg";
-	#end
+	public static final SOUND_EXT:String = haxe.macro.Compiler.getDefine("SOUND_EXT");
 
 	public static function init() {}
 
@@ -33,7 +29,8 @@ class SoundPlayer
 		// Query the asset before trying to play it.
 		// Don't play the sound if it doesn't exist
 		var sound_path:Null<String> = Paths.get('${sound_asset}${SOUND_EXT}', true);
-		if (sound_path == null) return null;
+		if (sound_path == null)
+			return null;
 
 		var return_sound:FlxSound = FlxG.sound.play(sound_path, SOUND_VOLUME * vol);
 		return return_sound;
@@ -43,14 +40,13 @@ class SoundPlayer
 	{
 		var music_path = Paths.get('assets/music/${track.id}${SOUND_EXT}', true);
 
-		// Don't restart same song if it's already playing,
-		// unless force is set to true.
-		if (music_path == null) {
+		if (music_path == null)
+		{
 			var expected = 'assets/music/${track.id}${SOUND_EXT}';
-
 			var message = 'SoundPlayer: Tried to play invalid music track \"${expected}\"';
 
-			if (SOUND_EXT == ".mp3") {
+			if (SOUND_EXT == ".mp3")
+			{
 				message += " (Did you remember to convert to MP3 for web?)";
 			}
 
@@ -65,7 +61,10 @@ class SoundPlayer
 			return future;
 		}
 
-		if (!force && track == CURRENT_TRACK) {
+		// Don't restart same song if it's already playing,
+		// unless force is set to true.
+		if (!force && track == CURRENT_TRACK)
+		{
 			trace('SoundPlayer: Music is already playing "${track.name}"');
 			return Future.withValue(FlxG.sound.music);
 		}
@@ -108,25 +107,30 @@ class SoundPlayer
 
 		var music = Sound.fromAudioBuffer(buffer);
 		FlxG.sound.playMusic(music, MUSIC_VOLUME * volume);
-		if (FlxG.sound.music != null) {
+		if (FlxG.sound.music != null)
+		{
 			FlxG.sound.music.persist = true;
 		}
 
 		return FlxG.sound.music;
 	}
 
-	static function build_song_name(track:TrackDef):String {
-		if (track == null) return 'Unknown Song';
+	static function build_song_name(track:TrackDef):String
+	{
+		if (track == null)
+			return 'Unknown Song';
 
 		return '${track.name} by ${track.artist}';
 	}
 
-	static function set_music_playing(track:TrackDef):Void {
+	static function set_music_playing(track:TrackDef):Void
+	{
 		trace('SoundPlayer: Playing music ${track.name}');
 		MusicPopup.show_info(build_song_name(track));
 	}
 
-	static function set_music_loading(track:TrackDef):Void {
+	static function set_music_loading(track:TrackDef):Void
+	{
 		trace('SoundPlayer: Loading music ${track.name}');
 		MusicPopup.show_loading(build_song_name(track));
 	}

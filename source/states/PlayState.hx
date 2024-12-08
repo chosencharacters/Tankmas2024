@@ -194,6 +194,13 @@ class PlayState extends BaseState
 
 		if (FlxG.keys.justPressed.N)
 			notification_message.show("I'm a test notification message and\n  I just want to say hi :)");
+
+		// Debug test change pet
+		if (FlxG.keys.justPressed.P)
+			player.data.pet = player.data.pet == None ? Dog : None;
+
+		if (FlxG.keys.justPressed.L)
+			player.data.scale = 1.0 + Math.random();
 		#end
 
 		if (Ctrl.mode.can_open_menus)

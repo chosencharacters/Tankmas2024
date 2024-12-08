@@ -12,19 +12,52 @@ class BonfireArea extends ActivityAreaInstance
 
 	var bonfire_graphic:FlxSpriteExt;
 
+	var txt:FlxText;
+
 	public function new(player:BaseUser, area:ActivityArea)
 	{
 		super(player, area);
 		local = player == PlayState.self.player;
+
 		stick = new BonfireStick(player, this);
 		stick.activate();
+
+		PlayState.self.objects.add(this);
+		visible = false;
+
+		txt = new FlxText(x, y, 0, "", 32);
+		txt.color = FlxColor.PURPLE;
+		txt.alignment = CENTER;
+		PlayState.self.objects.add(txt);
+		update_text();
+	}
+
+	function reset_streak()
+	{
+		player.data.marshmallow_streak = 0;
+	}
+
+	function update_text()
+	{
+		if (txt == null)
+			return;
+		txt.text = '${player.data.marshmallow_streak}';
+		txt.visible = player.data.marshmallow_streak > 0;
 	}
 
 	override function on_leave()
 	{
 		super.on_leave();
 		stick.hide();
-		destroy();
+		kill();
+		txt.kill();
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+		txt.x = player.x + 90;
+		txt.y = player.y - 30;
 	}
 
 	override function on_interact()
@@ -35,7 +68,14 @@ class BonfireArea extends ActivityAreaInstance
 			if (marshmallow.current_level == Marshmallow.GOLDEN_MARSHMALLOW_LEVEL)
 			{
 				Marshmallow.on_cooked_perfect();
+				player.data.marshmallow_streak++;
 			}
+			else
+			{
+				player.data.marshmallow_streak = 0;
+			}
+
+			update_text();
 
 			OnlineLoop.post_marshmallow_discard(marshmallow.current_level);
 		}

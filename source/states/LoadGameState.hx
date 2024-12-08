@@ -35,6 +35,8 @@ class LoadGameState extends BaseState
 		loading_state = LoadingSave;
 		#if newgrounds
 		Main.username = Main.ng_api.NG_USERNAME;
+		Main.session_id = Main.ng_api.NG_SESSION_ID;
+
 		if (Main.username == "")
 		{
 			Main.username = 'temporary_random_username_${Math.random()}';
@@ -65,7 +67,6 @@ class LoadGameState extends BaseState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		trace("huh");
 		if (loading_state == Ready)
 			start_game();
 	}

@@ -225,20 +225,6 @@ class SaveManager
 			savedPresents.push(username);
 			save_presents(true);
 		}
-		#if newgrounds
-		// Check if the present we are opening is TODAY's present.
-		trace(present_day, Main.time.day);
-		if (present_day == Main.time.day || present_day == 1) {
-			trace("open present unlock", username, present_day);
-			return Main.ng_api.medal_popup(Main.ng_api.medals.get('day-$present_day'));
-		}
-		
-		// Edge case: always award The Little Candles
-		if (username == "matthewlopz" && present_day == 7) {
-			trace("open present unlock: the little candles");
-			return Main.ng_api.medal_popup(Main.ng_api.medals.get("the-little-candles"));
-		}
-		#end
 	}
 
 	public static function save_presents(force:Bool = false)
