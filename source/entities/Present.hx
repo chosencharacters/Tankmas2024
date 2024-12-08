@@ -164,6 +164,9 @@ class Present extends Interactable
 		}
 		else
 		{
+			// Always try to award medals (fixes an edge case where someone encounters a crash mid-gift)
+			SaveManager.open_present(username, def.day);
+
 			SoundPlayer.sound(Paths.get('present-open.ogg'));
 			PlayState.self.openSubState(comic ? new ComicSubstate(username, false) : new ArtSubstate(username));
 		}
