@@ -18,6 +18,15 @@
     </npc>
     <npc name="concierge">
         <state name="default">
+            <dlg>Hello... Hello... Dear guests...</dlg>
+            <dlg>Welcome... Welcome... It is now time...</dlg>
+            <dlg>Le Portél de Geist does welcome you... Yes...</dlg>
+            <dlg>If... Anything is of need... You can trust the concierge...</dlg>
+            <dlg>We shall... Be able to acquire it for you...</dlg>
+        </state>
+    </npc>
+    <npc name="concierge-old-old">
+        <state name="default">
             <dlg>Good tidings... Future guests.</dlg>
             <dlg>Your patience will be rewarded... Shortly...</dlg>
             <dlg>Hotel Check-ins will be commencing... Any moment now...</dlg>
