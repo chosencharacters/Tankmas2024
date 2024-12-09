@@ -86,4 +86,11 @@
 	<animSet image="mallow">
 		<anim name="idle" fps="100ms">0t1,0h20,0t1,2t8</anim>
 	</animSet>
+
+	<animSet image="cursor" width="199" height="247">
+		<anim name="idle">0</anim>
+		<anim name="hold">1</anim>
+		<anim name="release" looping="false">2t4</anim>
+		<anim name="to-hold" looping="false">5t8</anim> 
+	</animSet>
 </root>
