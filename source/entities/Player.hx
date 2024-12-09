@@ -335,6 +335,24 @@ class Player extends BaseUser
 			costume: costume.name
 		};
 
+		var changed_values = get_modified_data_fields(force_send_full_user);
+		if (changed_values != null)
+			prev_data = Reflect.copy(data);
+
+		if (changed_values != null)
+			def.data = changed_values;
+
+		// When sending full players,
+		// Also request the state of all other players
+		// in the room at the same time.
+		if (force_send_full_user)
+			def.request_full_room = true;
+
+		return def;
+	}
+
+	function get_modified_data_fields(?force_send_full_user:Bool)
+	{
 		var changed_values = Reflect.copy(data);
 		var field_names = Reflect.fields(data);
 		var changed_fields_count = field_names.length;
@@ -352,25 +370,9 @@ class Player extends BaseUser
 		}
 
 		if (changed_fields_count == 0)
-		{
-			changed_values = null;
-		}
+			return null;
 
-		if (changed_values != null)
-		{
-			prev_data = Reflect.copy(data);
-		}
-
-		if (changed_values != null)
-			def.data = changed_values;
-
-		// When sending full players,
-		// Also request the state of all other players
-		// in the room at the same time.
-		if (force_send_full_user)
-			def.request_full_room = true;
-
-		return def;
+		return changed_values;
 	}
 
 	public function enter_door()

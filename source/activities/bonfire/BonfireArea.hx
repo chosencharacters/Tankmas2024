@@ -27,9 +27,12 @@ class BonfireArea extends ActivityAreaInstance
 
 		txt = new FlxText(x, y, 0, "", 32);
 		txt.color = FlxColor.PURPLE;
-		txt.alignment = CENTER;
+		txt.setFormat(Paths.get('CharlieType-Heavy.otf'), 40, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
 		PlayState.self.objects.add(txt);
 		update_text();
+
+		if (player.data.marshmallow_streak == null)
+			player.data.marshmallow_streak = 0;
 	}
 
 	function reset_streak()

@@ -41,7 +41,8 @@ class OnlineLoop
 	public static var emote_tick_limit:Int = 1000;
 
 	static var last_websocket_player_tick_timestamp:Float;
-	static final websocket_state_send_interval = 0.5;
+	static final websocket_tick_rate = 2;
+	static final websocket_state_send_interval = 1.0 / websocket_tick_rate;
 
 	static var last_room_id:Null<RoomId> = null;
 
