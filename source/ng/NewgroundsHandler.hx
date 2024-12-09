@@ -25,8 +25,7 @@ class NewgroundsHandler
 
 	public var medals:Map<String, MedalDef> = [];
 
-	public function new(use_medals:Bool = true, use_scoreboards:Bool = false, ?login_callback:Void->Void)
-		init(use_medals, use_scoreboards, login_callback);
+	public function new() {}
 
 	public function init(use_medals:Bool = true, use_scoreboards:Bool = false, ?login_callback:Void->Void)
 	{
@@ -62,20 +61,21 @@ class NewgroundsHandler
 		var app_id = json.app_id;
 		var encryption_key = json.encryption_key;
 
-		NG.createAndCheckSession(app_id, false);
+		NG.createAndCheckSession(app_id, false, null, on_session_created);
 		NG.core.setupEncryption(encryption_key, AES_128, BASE_64);
 
 		NG.core.onLogin.add(() -> onNGLogin(login_callback));
+	}
 
-		if (!NG.core.loggedIn)
+	function on_session_created(outcome:LoginOutcome)
+	{
+		if (NG.core.loggedIn)
 		{
-			trace("Waiting on manual login...");
-			NG.core.requestLogin();
+			return;
 		}
-		else
-		{
-			NG_LOGGED_IN = true;
-		}
+
+		trace("Waiting on manual login...");
+		NG.core.requestLogin();
 	}
 
 	function load_medal_defs()

@@ -24,7 +24,8 @@ class LoadGameState extends BaseState
 		super();
 
 		#if newgrounds
-		Main.ng_api = new NewgroundsHandler(true, false, on_logged_in);
+		Main.ng_api = new NewgroundsHandler();
+		Main.ng_api.init(true, false, on_logged_in);
 		#else
 		on_logged_in();
 		#end
