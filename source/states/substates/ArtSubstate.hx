@@ -1,24 +1,24 @@
 package states.substates;
 
-import openfl.Assets;
 import data.JsonData;
 import entities.Present;
 import flixel.tweens.FlxEase;
+import openfl.Assets;
 import ui.button.HoverButton;
 
 class ArtSubstate extends flixel.FlxSubState
 {
 	var art:FlxSprite;
 	var data:data.types.TankmasDefs.PresentDef;
-	var theText:FlxText;
+	var display_text:FlxText;
 
 	var back_button:HoverButton;
 
-	override public function new(content:String)
+	override public function new(present_name:String)
 	{
 		super();
-		data = JsonData.get_present(content);
-		trace(content);
+		data = JsonData.get_present(present_name);
+		trace(present_name);
 		trace(data);
 
 		art = new FlxSprite(0, 0);
@@ -32,14 +32,14 @@ class ArtSubstate extends flixel.FlxSubState
 		backBox.alpha = 0.3;
 		add(backBox);
 
-		theText = new FlxText(0, 980, 1920,
-			((data.name != null && data.name != "") ? ('"' + data.name + '"') : "Untitled")
-			+ " by "
-			+ ((data.artist != null && data.artist != "") ? data.artist : "Unknown")
-			+ '\nClick here to view this ${data.link != null ? 'piece' : 'artist'} on NG!');
+		var title:String = data.title != null && data.title != "" ? data.title : "Untitled";
+		var artist:String = data.artist != null && data.artist != "" ? data.artist : "Unknown";
+		var link:String = 'Click here to view this ${data.link != null ? 'piece' : 'artist'} on NG!';
 
-		theText.setFormat(Paths.get('CharlieType-Heavy.otf'), 32, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
-		add(theText);
+		display_text = new FlxText(0, 980, 1920, '$title by $artist\n$link');
+
+		display_text.setFormat(Paths.get('CharlieType-Heavy.otf'), 32, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
+		add(display_text);
 
 		add(back_button = new HoverButton((b) -> back_button_activated()));
 
@@ -81,7 +81,7 @@ class ArtSubstate extends flixel.FlxSubState
 			art.x += 5;
 		if (Ctrl.menuConfirm[1])
 			close();
-		if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(theText) && !FlxG.mouse.overlaps(back_button))
-			FlxG.openURL(data.link != null ? data.link : 'https://${data.artist.toLowerCase()}.newgrounds.com');
+		if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(display_text) && !FlxG.mouse.overlaps(back_button))
+			FlxG.openURL(data.link != null ? data.link : ' https: // ${data.artist.toLowerCase()}.newgrounds.com');
 	}
 }

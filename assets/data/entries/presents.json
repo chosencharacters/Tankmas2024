@@ -2,68 +2,104 @@
     "presents": [
         {
             "day": 1,
-            "file": "day-1-cymbourine",
-            "name": "sorry uhh i just now played madness project nexus LOL",
+            "file": "day-1-art-cymbourine",
+            "title": "sorry uhh i just now played madness project nexus LOL",
             "artist": "Cymbourine"
         },
         {
             "day": 2,
-            "file": "day-2-sevi",
-            "name": "Elf on a shelf (branch)",
+            "file": "day-2-art-sevi",
+            "title": "Elf on a shelf (branch)",
             "artist": "Sevi"
         },
         {
             "day": 3,
-            "file": "day-3-midgetsausage",
-            "name": "Yo! Merry Sexy Tankmas!!!!!",
+            "file": "day-3-art-midgetsausage",
+            "title": "Yo! Merry Sexy Tankmas!!!!!",
             "artist": "MidgetSausage"
         },
         {
             "day": 4,
-            "file": "day-4-sirlenward",
-            "name": "NG Wreath Goes Crazy",
+            "file": "day-4-art-sirlenward",
+            "title": "NG Wreath Goes Crazy",
             "artist": "SirLenward"
         },
         {
             "day": 5,
-            "file": "day-5-theextreamh",
-            "name": "All I want for Tankmas",
+            "file": "day-5-art-theextreamh",
+            "title": "All I want for Tankmas",
             "artist": "TheExtreamh"
         },
         {
             "day": 6,
-            "file": "day-6-bleak-creep",
-            "name": "Warming Up With Winter!",
+            "file": "day-6-art-bleak-creep",
+            "title": "Warming Up With Winter!",
             "artist": "Bleak-Creep"
         },
         {
             "day": 7,
-            "file": "day-7-mkmaffo",
-            "name": "Everything, by Everyone",
+            "file": "day-7-art-mkmaffo",
+            "title": "Everything, by Everyone",
             "artist": "MKMaffo"
         },
         {
             "day": 7,
-            "file": "day-7-candleday-matthewlopz",
-            "name": "Candles Day 2024: pueblito viejo",
+            "file": "day-7-art-candleday-matthewlopz",
+            "title": "Candles Day 2024: pueblito viejo",
             "artist": "MatthewLopz"
         },
         {
             "day": 8,
-            "file": "day-8-bellvonartsy",
-            "name": "Pico's Snow Day!",
+            "file": "day-8-art-bellvonartsy",
+            "title": "Pico's Snow Day!",
             "artist": "BellvonArtsy"
         },
         {
             "day": 9,
-            "file": "day-9-karlestonchew",
-            "name": "karlestonchew",
+            "file": "day-9-art-karlestonchew",
+            "title": "karlestonchew",
             "artist": "Karlestonchew"
+        },
+        {
+            "day": 10,
+            "file": "day-10-art-konansaurus",
+            "title": "Happy Golden Days",
+            "artist": "KonanSaurus"
+        },
+        {
+            "day": 11,
+            "file": "day-11-art-ectosludge",
+            "title": "",
+            "artist": "EctoSludge"
+        },
+        {
+            "day": 12,
+            "file": "day-12-art-travsaus",
+            "title": "Nativity of Tankman",
+            "artist": "travsaus"
+        },
+        {
+            "day": 13,
+            "file": "day-13-art-dannydoods",
+            "title": "",
+            "artist": "dannydoods"
+        },
+        {
+            "day": 14,
+            "file": "day-14-art-omegakevin",
+            "title": "Snow Night",
+            "artist": "OmegaKevin"
+        },
+        {
+            "day": 15,
+            "file": "day-15-art-mimny",
+            "title": "Daddy?!? Sorry- I mean- Daddy??? I mean- Uhh- Daddy? I MEAN- HHHHHHHHHHH",
+            "artist": "Mimny"
         },
         {
             "day": 1,
             "file": "night-before",
-            "name": "The Night Before Tankmas",
+            "title": "The Night Before Tankmas",
             "artist": "",
             "comicProperties": {
                 "pages": 12,
@@ -86,7 +122,7 @@
         {
             "day": 1,
             "file": "daintiest-knoblin",
-            "name": "The Daintiest Knoblin",
+            "title": "The Daintiest Knoblin",
             "artist": "",
             "comicProperties": {
                 "pages": 16,
