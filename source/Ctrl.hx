@@ -340,15 +340,41 @@ typedef ControlMode =
 	var can_move:Bool;
 	var can_emote:Bool;
 	var can_open_menus:Bool;
+	var can_interact:Bool;
 }
 
 enum abstract ControlModes(ControlMode) from ControlMode to ControlMode
 {
-	public static final INITIAL:ControlMode = {can_move: false, can_emote: false, can_open_menus: false};
-	public static final OVERWORLD:ControlMode = {can_move: true, can_emote: true, can_open_menus: true};
-	public static final TALKING:ControlMode = {can_move: false, can_emote: false, can_open_menus: false};
-	public static final MINIGAME:ControlMode = {can_move: false, can_emote: false, can_open_menus: false};
-	public static final NONE:ControlMode = {can_move: false, can_emote: false, can_open_menus: false};
+	public static final INITIAL:ControlMode = {
+		can_move: false,
+		can_emote: false,
+		can_open_menus: false,
+		can_interact: false
+	};
+	public static final OVERWORLD:ControlMode = {
+		can_move: true,
+		can_emote: true,
+		can_open_menus: true,
+		can_interact: true
+	};
+	public static final TALKING:ControlMode = {
+		can_move: false,
+		can_emote: false,
+		can_open_menus: false,
+		can_interact: false
+	};
+	public static final MINIGAME:ControlMode = {
+		can_move: false,
+		can_emote: false,
+		can_open_menus: false,
+		can_interact: false
+	};
+	public static final NONE:ControlMode = {
+		can_move: false,
+		can_emote: false,
+		can_open_menus: false,
+		can_interact: false
+	};
 
 	public function restrict_controls(mode:ControlMode)
 	{

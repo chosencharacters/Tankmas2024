@@ -234,10 +234,11 @@ class Player extends BaseUser
 	{
 		if (active_activity_area == null)
 			return;
-		if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(active_activity_area) && FlxG.mouse.justReleased)
-		{
-			active_activity_area.on_interact(this);
-		}
+		if (Ctrl.mode.can_interact)
+			if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(active_activity_area) && FlxG.mouse.justReleased)
+			{
+				active_activity_area.on_interact(this);
+			}
 	}
 
 	var active_interactable:Interactable;
@@ -285,10 +286,11 @@ class Player extends BaseUser
 		closest.marked = true;
 		active_interactable = closest;
 
-		if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased)
-		{
-			active_interactable.on_interact();
-		}
+		if (Ctrl.mode.can_interact)
+			if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased)
+			{
+				active_interactable.on_interact();
+			}
 	}
 
 	override function kill()

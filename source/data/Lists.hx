@@ -47,8 +47,7 @@ class Lists
 
 		JsonData.init();
 
-		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("test-npcs.xml"));
-
+		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("npcs.xml"));
 
 		/*
 			var xml:String = "";
@@ -79,7 +78,6 @@ class Lists
 
 		// trace(word_count());
 	}
-
 
 	public static function xml_word_count(write:Bool = false, save_file_name:String = "count-en")
 	{

@@ -5,6 +5,14 @@ typedef NPCDefJSON =
 	var name:String;
 	var image:String;
 	var states:Array<NPCState>;
+	var ?animations:Map<String, NPCAnimDef>;
+}
+
+typedef NPCAnimDef =
+{
+	var type:String;
+	var sprite_anim:String;
+	var png_anim:String;
 }
 
 typedef NPCState =
@@ -41,7 +49,6 @@ abstract NPCDef(NPCDefJSON) from NPCDefJSON
 	}
 }
 
-
 class NPCLoader
 {
 	public static function load_npc_defs_from_file(map:Map<String, NPCDef>, file_path:String)
@@ -59,7 +66,8 @@ class NPCLoader
 		var def:NPCDefJSON = {
 			name: name,
 			image: image,
-			states: parse_npc_states(npc_xml.tags("state"))
+			states: parse_npc_states(npc_xml.tags("state")),
+			animations: parse_npc_anims(npc_xml.tags("animation"))
 		};
 
 		// trace(haxe.Json.stringify(def, "\t"));
@@ -74,6 +82,21 @@ class NPCLoader
 		return {
 			name: state_xml.get("name"),
 			dlg: parse_npc_dlgs(state_xml.tags("dlg"))
+		};
+
+	static function parse_npc_anims(npc_anims_xml:Array<Xml>):Map<String, NPCAnimDef>
+	{
+		var map:Map<String, NPCAnimDef> = new Map<String, NPCAnimDef>();
+		for (npc_anim in npc_anims_xml.map((npc_anim_xml) -> parse_npc_anim(npc_anim_xml)))
+			map.set(npc_anim.type, npc_anim);
+		return map;
+	}
+
+	static function parse_npc_anim(npc_anim_xml:Xml):NPCAnimDef
+		return {
+			type: npc_anim_xml.get("type"),
+			sprite_anim: npc_anim_xml.get("sprite_anim"),
+			png_anim: npc_anim_xml.get("png_anim")
 		};
 
 	static function parse_npc_dlgs(dlg_xmls:Array<Xml>):Array<NPCDLG>

@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="8.0.0" company="Glenside Helper Elf Society" />
+	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="8.1.0" company="Glenside Helper Elf Society" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -43,16 +43,16 @@
 	</section>
 
 	<section if="hl||cpp">
-		<assets path="assets" embed="true" include="ng-secrets.json" />
+		<assets path="assets" embed="false" include="ng-secrets.json" />
 
-		<assets path="assets/data" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
-		<assets path="assets/fonts" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
+		<assets path="assets/data" embed="false" exclude="*.gif|.*ini|*.aseprite"/>
+		<assets path="assets/fonts" embed="false" exclude="*.gif|.*ini|*.aseprite"/>
 		<assets path="assets/images/art" preload="false" exclude="*.gif" />
-		<assets path="assets/images" embed="true" exclude="*.gif|.*ini|*.aseprite|art"/>
+		<assets path="assets/images" embed="false" exclude="*.gif|.*ini|*.aseprite|art"/>
 		<assets path="assets/music" exclude="*.gif|*.mp3" />
-		<assets path="assets/preloader" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
-		<assets path="assets/sounds" embed="true" exclude="*.gif|.*ini|*.aseprite|*.mp3"/>
-		<assets path="assets/videos" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
+		<assets path="assets/preloader" embed="false" exclude="*.gif|.*ini|*.aseprite"/>
+		<assets path="assets/sounds" embed="false" exclude="*.gif|.*ini|*.aseprite|*.mp3"/>
+		<assets path="assets/videos" embed="false" exclude="*.gif|.*ini|*.aseprite"/>
 	</section>
 
 	<section if="js||html5">
