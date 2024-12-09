@@ -101,4 +101,9 @@
             <dlg>And this hotel is quite late.</dlg>
         </state>
     </npc>
+    <npc name="the-shape">
+        <state name="default">
+            <dlg>...</dlg>
+        </state>
+    </npc>
 </root>
