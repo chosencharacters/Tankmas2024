@@ -1570,7 +1570,15 @@
 					"defUid": 14,
 					"px": [1408,4016],
 					"fieldInstances": [
-						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 16, "realEditorValues": [] },
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "216c5fe0-9b00-11ef-927c-83b2d79945e9",
+							"layerIid": "1f4bee20-73f0-11ef-9983-a7372464c4f6",
+							"levelIid": "95f99f60-73f0-11ef-9983-612730a885a0",
+							"worldIid": "95f97851-73f0-11ef-9983-cda8b61095c5"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["216c5fe0-9b00-11ef-927c-83b2d79945e9"]
+						}] },
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 104, "cy": 232 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["104,232"]
@@ -1666,6 +1674,94 @@
 					],
 					"__worldX": 2544,
 					"__worldY": 3472
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [98,214],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "edfce290-9b00-11ef-927c-73fab6f6892a",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1568,3424],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "karlestonchew", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["karlestonchew"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 9, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [9] }] }
+					],
+					"__worldX": 1568,
+					"__worldY": 3424
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [83,196],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "fcd95be0-9b00-11ef-927c-331396bd6fd9",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1328,3136],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "bellvonartsy", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["bellvonartsy"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 8, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [8] }] }
+					],
+					"__worldX": 1328,
+					"__worldY": 3136
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [112,197],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "14cb93d0-9b00-11ef-927c-e79848f31600",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1792,3152],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "mkmaffo", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["mkmaffo"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 7, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [7] }] }
+					],
+					"__worldX": 1792,
+					"__worldY": 3152
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [130,186],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "1f5a84f0-9b00-11ef-927c-498adfbf3cd8",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [2080,2976],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "pompous-joan", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["pompous-joan"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
+					],
+					"__worldX": 2080,
+					"__worldY": 2976
 				}
 			]
 		},

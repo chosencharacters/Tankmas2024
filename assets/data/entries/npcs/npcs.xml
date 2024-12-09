@@ -36,6 +36,16 @@
     <npc name="lil-jimby">
         <state name="default">
             <dlg>Hey man whazz goin on</dlg>
+            <dlg>I was telling you man big things coming soon, right?</dlg>
+            <dlg>But I'm still thinking, like, there's even MORE coming</dlg>
+            <dlg>I can feel it in my BONES man... and I don't even HAVE those man</dlg>
+            <dlg>Stay tuned right here man big things comin soon</dlg>
+            <dlg>You heard it from me first man Lil Jimby @ GeistBeatz dot com</dlg>
+        </state>
+    </npc>
+     <npc name="lil-jimby-old">
+        <state name="default">
+            <dlg>Hey man whazz goin on</dlg>
             <dlg>Hey man I can feel it man big things comin soon man</dlg>
             <dlg>I can feel it in my BONES man... and I don't even HAVE those man</dlg>
             <dlg>Stay tuned right here man big things comin soon</dlg>
@@ -43,6 +53,13 @@
         </state>
     </npc>
     <npc name="javert">
+        <state name="default">
+            <dlg>I see ze ringarde one has found their way in.</dlg>
+            <dlg>Had your fill of your puff peasent treats?</dlg>
+            <dlg>Or are you only here to get a whiff of ze superior culture? Hon hon hon!</dlg>
+        </state>
+    </npc>
+    <npc name="javert-old">
         <state name="default">
             <dlg>C'est how you say the staging of ze big reveal</dlg>
             <dlg>O? You do not know what it iz I am talking about?</dlg>
@@ -77,7 +94,7 @@
             <dlg>Allow me to correct you, let's call it a charity, to the lesser beings like yourself.</dlg>
             <dlg>I am Joan. And YOU are not worth my efforts. Now begone.</dlg>
             <dlg>This premiere is far too exclusive for one such as yourself.</dlg>
-            <dlg>Now... If only wouldn't keep delaying the opening</dlg>
+            <dlg>Well... There's the door. So see yourself out the way you came.</dlg>
         </state>
     </npc>
     <npc name="mall-santa">
@@ -98,7 +115,7 @@
             <dlg>It's not easy being so generous, you know. I collect and collect. But then they ask ME for my worth.</dlg>
             <dlg>And, ME, being such a generous being, give them with the small ask they pay me back slightly more later.</dlg>
             <dlg>Of course... If they're late, well, then special arrangements will have to be made.</dlg>
-            <dlg>And this hotel is quite late.</dlg>
+            <dlg>And this hotel is *quite* late.</dlg>
         </state>
     </npc>
     <npc name="the-shape">

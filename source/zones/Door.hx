@@ -67,6 +67,7 @@ class Door extends FlxSpriteExt
 				FlxG.camera.fade(FlxColor.BLACK, 0.8, false);
 				FlxG.state.add(new CircleTransition(PlayState.self.player, 0.85, true, post_circle_transition_out));
 				player_enter_door_anim();
+				PlayState.self.player.immovable = true;
 			case DOOR_IN:
 				PlayState.self.player.center_on(spawn);
 				PlayState.self.update_scroll_bounds();
@@ -122,12 +123,15 @@ class Door extends FlxSpriteExt
 		player.center_on(spawn);
 
 		var destination:FlxPoint = player.getPosition().copy();
-		destination.add(spawn.x > mp.x ? -door_travel_dist : door_travel_dist);
 
+		#if fancy_door
+		destination.add(spawn.x > mp.x ? -door_travel_dist : door_travel_dist);
 		player.immovable = true;
 		player.center_on_x(this);
+		#end
 		player.exit_door();
 
+		#if fancy_door
 		player.tween = FlxTween.tween(player, {x: destination.x, y: destination.y}, 0.8, {
 			onComplete: function(t)
 			{
@@ -135,6 +139,17 @@ class Door extends FlxSpriteExt
 				player.sstate("NEUTRAL");
 			}
 		});
+		#end
+
+		#if !fancy_door
+		player.tween = FlxTween.tween(player, {x: destination.x, y: destination.y}, 0.25, {
+			onComplete: function(t)
+			{
+				player.immovable = false;
+				player.sstate("NEUTRAL");
+			}
+		});
+		#end
 	}
 
 	function dip_to_different_world()
