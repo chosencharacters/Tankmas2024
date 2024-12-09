@@ -1,7 +1,7 @@
 #if newgrounds
 package ng;
 
-import io.newgrounds.Call.CallError;
+import io.newgrounds.Call.CallOutcome;
 import io.newgrounds.Call.CallError;
 import io.newgrounds.NG;
 import io.newgrounds.NGLite;
@@ -19,7 +19,7 @@ class NewgroundsHandler
 	public var NG_LOGGED_IN:Bool = false;
 
 	public var NG_USERNAME:String = "";
-	public var NG_SESSION_ID:String = "";
+	public var NG_SESSION_ID:String = null;
 
 	public var NG_MR_MONEYBAGS_OVER_HERE:Bool;
 
@@ -27,7 +27,7 @@ class NewgroundsHandler
 
 	public function new() {}
 
-	public function init(use_medals:Bool = true, use_scoreboards:Bool = false, ?login_callback:Void->Void)
+	public function init(login_callback:Void->Void, on_ng_passport_requested:Void->Void)
 	{
 		/*
 			Make sure this file ng-secrets.json file exists, it's just a simple json that has this format
@@ -42,7 +42,7 @@ class NewgroundsHandler
 		try
 		{
 			load_medal_defs();
-			login(login_callback);
+			login(login_callback, on_ng_passport_requested);
 		}
 		catch (e)
 		{
@@ -54,29 +54,48 @@ class NewgroundsHandler
 		}
 	}
 
-	function login(?login_callback:Void->Void)
+	function login(login_callback:Void->Void, on_ng_passport_required:Void->Void)
 	{
 		var json = haxe.Json.parse(Utils.load_file_string(Paths.get("ng-secrets.json")));
 
 		var app_id = json.app_id;
 		var encryption_key = json.encryption_key;
 
-		NG.createAndCheckSession(app_id, false, null, on_session_created);
-		NG.core.setupEncryption(encryption_key, AES_128, BASE_64);
-
-		NG.core.onLogin.add(() -> onNGLogin(login_callback));
-	}
-
-	function on_session_created(outcome:LoginOutcome)
-	{
-		if (NG.core.loggedIn)
+		var session_id = NGLite.getSessionId();
+		if (NG_SESSION_ID == null || NG_SESSION_ID == "")
 		{
+			NG_SESSION_ID = session_id;
+		}
+
+		NG.create(app_id, NG_SESSION_ID);
+
+		NG.core.setupEncryption(encryption_key, AES_128, BASE_64);
+		NG.core.onLogin.add(() -> onNGLogin(login_callback), true);
+
+		if (NG_SESSION_ID != null)
+		{
+			// If we have a session ID (either directly from the newgrounds URL, or one saved locally),
+			// check if it's still valid.
+			NG.core.calls.app.checkSession().addOutcomeHandler(outcome ->
+			{
+				switch (outcome)
+				{
+					case FAIL(error):
+						// If session is invalid/expired, request NG Passport.
+						on_ng_passport_required();
+					default:
+				}
+			}).send();
+
 			return;
 		}
 
-		trace("Waiting on manual login...");
-		NG.core.requestLogin();
+		// No session found, gotta use newgrounds passport.
+		on_ng_passport_required();
 	}
+
+	public function launch_newgrounds_passport()
+		NG.core.requestLogin();
 
 	function load_medal_defs()
 	{
@@ -170,7 +189,10 @@ class NewgroundsHandler
 		if (NG.core.scoreBoards == null)
 			throw "Cannot access scoreboards until ngScoresLoaded is dispatched";
 		if (NG.core.scoreBoards.getById(board_id) == null)
-			throw "Invalid boardId:" + board_id;
+		{
+			trace("Invalid boardId:" + board_id);
+			return;
+		}
 
 		NG.core.scoreBoards.get(board_id).postScore(Math.floor(score));
 		NG.core.scoreBoards.get(board_id).requestScores();

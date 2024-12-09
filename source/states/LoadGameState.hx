@@ -1,5 +1,6 @@
 package states;
 
+import flixel.util.FlxSave;
 import net.tankmas.OnlineLoop;
 import data.SaveManager;
 import flixel.FlxState;
@@ -8,6 +9,7 @@ import flixel.FlxState;
 enum LoadStep
 {
 	LoggingIn;
+	NgPassportRequested;
 	LoadingSave;
 	Ready;
 	Started;
@@ -19,24 +21,53 @@ class LoadGameState extends BaseState
 {
 	var loading_state:LoadStep = LoggingIn;
 
+	var passport_text:FlxText;
+
+	var saved_session_id:FlxSave;
+
 	public function new()
 	{
 		super();
 
+		saved_session_id = new FlxSave();
+		saved_session_id.bind('ng_session_id');
+
+		trace(saved_session_id.data);
+
 		#if newgrounds
 		Main.ng_api = new NewgroundsHandler();
-		Main.ng_api.init(true, false, on_logged_in);
+
+		if (saved_session_id.data.session_id != null)
+		{
+			Main.ng_api.NG_SESSION_ID = saved_session_id.data.session_id;
+		}
+
+		Main.ng_api.init(on_logged_in, ng_passport_requested);
 		#else
 		on_logged_in();
 		#end
 	}
 
+	function ng_passport_requested()
+	{
+		loading_state = NgPassportRequested;
+		passport_text = new FlxText(0, 0, 0, 'Tap to sign in using Newgrounds Passport');
+		passport_text.setFormat(Paths.get('CharlieType-Heavy.otf'), 36, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
+		passport_text.alpha = 0;
+		FlxTween.tween(passport_text, {"alpha": 1.0}, 0.3);
+		add(passport_text);
+	}
+
 	function on_logged_in()
 	{
 		loading_state = LoadingSave;
+
 		#if newgrounds
 		Main.username = Main.ng_api.NG_USERNAME;
 		Main.session_id = Main.ng_api.NG_SESSION_ID;
+
+		saved_session_id.data.session_id = Main.session_id;
+		saved_session_id.flush();
 
 		if (Main.username == "")
 		{
@@ -68,6 +99,22 @@ class LoadGameState extends BaseState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		if (passport_text != null)
+		{
+			passport_text.x = FlxG.width * 0.5 - passport_text.width * 0.5;
+			passport_text.y = FlxG.height * 0.5 - 32;
+		}
+
+		if (loading_state == NgPassportRequested)
+		{
+			if (FlxG.mouse.justPressed)
+			{
+				#if newgrounds
+				Main.ng_api.launch_newgrounds_passport();
+				loading_state = LoggingIn;
+				#end
+			}
+		}
 		if (loading_state == Ready)
 			start_game();
 	}
