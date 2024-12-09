@@ -22,6 +22,7 @@ class ServerNotificationMessagePopup extends FlxTypedGroup<FlxText>
 		super(10);
 
 		text_object = new FlxText(40, 40, 0, '', 40);
+		text_object.setFormat(Paths.get('CharlieType-Heavy.otf'), 36, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
 		// text_object.color.setRGB(140, 140, 140);
 		// text_object.setFormat(, 40, 0xff3d4880); // , "left", FlxTextBorderStyle.OUTLINE, 0xFF16122C);
 		// text_object.shadowOffset.set(1, 1);
@@ -42,7 +43,7 @@ class ServerNotificationMessagePopup extends FlxTypedGroup<FlxText>
 
 		until_hide = notification_message_duration;
 
-		text_object.text = text;
+		text_object.text = text.replace("\\n", "\n");
 
 		var text_y = FlxG.height * 0.3;
 
