@@ -11067,6 +11067,31 @@
 					"__worldY": 1891
 				},
 				{
+					"__identifier": "NPC",
+					"__grid": [89,59],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "0708f150-9b00-11ef-ac52-399f8d8188a6",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1425,944],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "concierge", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["concierge"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": "1733636250", "__tile": null, "defUid": 38, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["1733636250"]
+						}] }
+					],
+					"__worldX": 1457,
+					"__worldY": 960
+				},
+				{
 					"__identifier": "Present",
 					"__grid": [126,106],
 					"__pivot": [0,0],
@@ -11087,6 +11112,50 @@
 					],
 					"__worldX": 2048,
 					"__worldY": 1712
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [138,90],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "41583960-9b00-11ef-9d63-b7b9a1c5f24c",
+					"width": 160,
+					"height": 144,
+					"defUid": 10,
+					"px": [2208,1440],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "javert", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["javert"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
+					],
+					"__worldX": 2240,
+					"__worldY": 1456
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [152,95],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "4c04ebb0-9b00-11ef-9d63-d149d914fee6",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [2432,1520],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "lil-jimby", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["lil-jimby"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
+					],
+					"__worldX": 2464,
+					"__worldY": 1536
 				},
 				{
 					"__identifier": "NPC",
@@ -11337,6 +11406,31 @@
 				},
 				{
 					"__identifier": "NPC",
+					"__grid": [62,80],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "0d4edf00-9b00-11ef-a794-f3a93e599ffe",
+					"width": 160,
+					"height": 160,
+					"defUid": 10,
+					"px": [992,1280],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "gold-miser-jacquez", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["gold-miser-jacquez"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": "1733719800", "__tile": null, "defUid": 38, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["1733719800"]
+						}] }
+					],
+					"__worldX": 1024,
+					"__worldY": 1296
+				},
+				{
+					"__identifier": "NPC",
 					"__grid": [32,139],
 					"__pivot": [0,0],
 					"__tags": [],
@@ -11431,55 +11525,6 @@
 					],
 					"__worldX": 1632,
 					"__worldY": 1616
-				},
-				{
-					"__identifier": "Door",
-					"__grid": [84,52],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#FFF100",
-					"iid": "216c5fe0-9b00-11ef-927c-83b2d79945e9",
-					"width": 576,
-					"height": 48,
-					"defUid": 14,
-					"px": [1344,832],
-					"fieldInstances": [
-						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
-							"entityIid": "176c1a30-9b00-11ef-927c-7de4dba6853e",
-							"layerIid": "0b13d4d2-9b00-11ef-9354-9d2ed3d4a6a1",
-							"levelIid": "0b13d4d1-9b00-11ef-9354-cb54b317af20",
-							"worldIid": "0b13d4d0-9b00-11ef-9354-a71a8f29f283"
-						}, "__tile": null, "defUid": 16, "realEditorValues": [{
-							"id": "V_String",
-							"params": ["176c1a30-9b00-11ef-927c-7de4dba6853e"]
-						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 104, "cy": 77 }, "__tile": null, "defUid": 17, "realEditorValues": [{
-							"id": "V_String",
-							"params": ["104,77"]
-						}] }
-					],
-					"__worldX": 1376,
-					"__worldY": 848
-				},
-				{
-					"__identifier": "NPC",
-					"__grid": [83,22],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#FF00D0",
-					"iid": "78e59020-9b00-11ef-927c-7bdd6b2a96e2",
-					"width": 32,
-					"height": 32,
-					"defUid": 10,
-					"px": [1328,352],
-					"fieldInstances": [
-						{ "__identifier": "name", "__type": "String", "__value": "", "__tile": null, "defUid": 11, "realEditorValues": [] },
-						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
-					],
-					"__worldX": 1360,
-					"__worldY": 368
 				}
 			]
 		},
