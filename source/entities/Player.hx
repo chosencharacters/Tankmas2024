@@ -32,6 +32,8 @@ class Player extends BaseUser
 
 	public var can_enter_doors(get, default):Bool;
 
+	var prev_data:Dynamic = {};
+
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y, Main.username);
@@ -332,6 +334,35 @@ class Player extends BaseUser
 			sx: new_sx,
 			costume: costume.name
 		};
+
+		var changed_values = Reflect.copy(data);
+		var field_names = Reflect.fields(data);
+		var changed_fields_count = field_names.length;
+
+		for (field in field_names)
+		{
+			var new_value = Reflect.field(data, field);
+			var old_value = Reflect.field(prev_data, field);
+			var changed = new_value == old_value && !force_send_full_user;
+			if (changed)
+			{
+				Reflect.deleteField(changed_values, field);
+				changed_fields_count--;
+			}
+		}
+
+		if (changed_fields_count == 0)
+		{
+			changed_values = null;
+		}
+
+		if (changed_values != null)
+		{
+			prev_data = Reflect.copy(data);
+		}
+
+		if (changed_values != null)
+			def.data = changed_values;
 
 		// When sending full players,
 		// Also request the state of all other players

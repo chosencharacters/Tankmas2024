@@ -91,14 +91,6 @@ class WebsocketClient
 		username = Main.username;
 		session_id = Main.session_id;
 
-		#if newgrounds
-		session_id = Main.ng_api.NG_SESSION_ID;
-		username = Main.ng_api.NG_USERNAME;
-
-		trace(Main.ng_api.NG_SESSION_ID);
-		trace(Main.ng_api.NG_USERNAME);
-		#end
-
 		#if dev
 		if (session_id == null || session_id == "")
 		{
@@ -106,13 +98,10 @@ class WebsocketClient
 		}
 		#end
 
-		trace(username);
-		trace(session_id);
-
 		#if websocket
 		if (username == null || session_id == null || username == "" || session_id == "")
 		{
-			trace("Trying to connect with a session id or username");
+			trace('Trying to connect without a session id or username ($username, $session_id)');
 			return;
 		}
 

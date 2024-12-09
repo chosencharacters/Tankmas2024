@@ -8,6 +8,14 @@ import entities.base.NGSprite;
 import net.tankmas.NetDefs.NetEventDef;
 import net.tankmas.NetDefs.NetEventType;
 
+// TEst enum for pet types
+enum abstract PetType(String) from String to String
+{
+	var None;
+	var Dog = 'dog';
+	var Cat = 'cat';
+}
+
 class BaseUser extends NGSprite
 {
 	public var costume:CostumeDef;
@@ -22,6 +30,14 @@ class BaseUser extends NGSprite
 
 	public var sticker_name:String;
 	public var active_activity_area:ActivityArea;
+
+	// Add custom values here. If you change the values of these
+	// in Player.hx, it will be synced to every other user ingame.
+	public var data = {
+		pet: PetType.Dog,
+		marshmallow_streak: 0,
+		scale: 1.0,
+	}
 
 	public function new(?X:Float, ?Y:Float, username:String, costume:String = "tankman")
 	{
@@ -135,7 +151,10 @@ class BaseUser extends NGSprite
 			case NetEventType.STICKER:
 				use_sticker(event.data.name);
 			case NetEventType.DROP_MARSHMALLOW:
-				// bobep
+				// Another user dropped a marshmallow
+			case OPEN_PRESENT:
+				// Another user opened a present.
+				trace('${event.username} opened present ${event.data.name}. Get medal: ${event.data.medal}');
 		}
 
 		if (active_activity_area != null)
@@ -143,6 +162,21 @@ class BaseUser extends NGSprite
 			active_activity_area.on_event(event, this);
 		}
 	}
+
+	public function merge_data_field(incoming_data:Dynamic)
+	{
+		if (incoming_data == null)
+			return;
+
+		for (field in Reflect.fields(incoming_data))
+		{
+			var value = Reflect.field(incoming_data, field);
+			Reflect.setField(data, field, value);
+			on_data_property_changed(field, value);
+		}
+	}
+
+	function on_data_property_changed(name:String, value:Dynamic) {}
 
 	public function leave_activity_area()
 	{
@@ -186,4 +220,10 @@ class BaseUser extends NGSprite
 				return user;
 		return make_user_function == null ? null : make_user_function();
 	}
+
+	/// Override these how you want in NetUser/Player
+
+	public function pet_changed(pet_type:PetType) {}
+
+	public function scale_changed(scale:Float) {}
 }

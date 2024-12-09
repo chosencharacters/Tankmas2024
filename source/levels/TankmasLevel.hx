@@ -58,8 +58,9 @@ class TankmasLevel extends LDTKLevel
 
 		setPosition(data.worldX, data.worldY);
 
-		PlayState.self.level_backgrounds.add(bg = new FlxSpriteExt(x, y, Paths.image_path(data.json.bgRelPath.split("/").last())));
-		PlayState.self.level_foregrounds.add(fg = new FlxSpriteExt(x, y, Paths.image_path(bg.loaded_image.replace("background", "foreground"))));
+		var image:String = data.json.bgRelPath.split("/").last().replace_multiple(["-reference", "-background", "-foreground", ".png", ".jpg"], "");
+		PlayState.self.level_backgrounds.add(bg = new FlxSpriteExt(x, y, Paths.image_path('$image-background')));
+		PlayState.self.level_foregrounds.add(fg = new FlxSpriteExt(x, y, Paths.image_path('$image-foreground')));
 
 		// col = new FlxTilemap();
 
@@ -95,19 +96,14 @@ class TankmasLevel extends LDTKLevel
 		var level:LdtkProject_Level = get_level_by_name(level_name);
 
 		for (entity in level.l_Entities.all_Player.iterator())
-		{
 			new Player(x + entity.pixelX, y + entity.pixelY);
-		}
 
 		for (entity in level.l_Entities.all_NPC.iterator())
-		{
 			new NPC(x + entity.pixelX, y + entity.pixelY, entity.f_name, Std.parseInt(entity.f_timelock));
-		}
 
 		for (entity in level.l_Entities.all_Present.iterator())
-		{
 			new Present(x + entity.pixelX, y + entity.pixelY, entity.f_username);
-		}
+
 		for (entity in level.l_Entities.all_Door.iterator())
 		{
 			var spawn:FlxPoint = new FlxPoint(x + entity.f_spawn.cx * 16, y + entity.f_spawn.cy * 16);
@@ -115,14 +111,10 @@ class TankmasLevel extends LDTKLevel
 		}
 
 		for (entity in level.l_Entities.all_Minigame.iterator())
-		{
 			new Minigame(x + entity.pixelX, y + entity.pixelY, entity.width, entity.height, entity.f_minigame_id);
-		}
 
 		for (entity in level.l_Entities.all_Activity_Area.iterator())
-		{
 			new ActivityArea(entity.f_ActivityType, x + entity.pixelX, y + entity.pixelY, entity.width, entity.height);
-		}
 
 		for (entity in level.l_Entities.all_Graphic)
 		{

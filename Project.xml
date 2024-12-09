@@ -34,52 +34,53 @@
 
 	<!-- Build with -Drelease to enable these flags -->
 	<section if="release">
-		<set name="newgrounds" />
-
+		<set name="newgrounds" unless="hl"/>
 		<haxedef name="no_radio" />
 		<haxedef name="trace_net" />
-		<haxedef name="newgrounds" />
 		<haxedef name="websocket" />
 	</section>
 
-	<section if="hl||cpp">
-		<assets path="assets" embed="false" include="ng-secrets.json" />
 
-		<assets path="assets/data" embed="false" exclude="*.gif|.*ini|*.aseprite"/>
-		<assets path="assets/fonts" embed="false" exclude="*.gif|.*ini|*.aseprite"/>
-		<assets path="assets/images/art" preload="false" exclude="*.gif" />
-		<assets path="assets/images" embed="false" exclude="*.gif|.*ini|*.aseprite|art"/>
-		<assets path="assets/music" exclude="*.gif|*.mp3" />
-		<assets path="assets/preloader" embed="false" exclude="*.gif|.*ini|*.aseprite"/>
-		<assets path="assets/sounds" embed="false" exclude="*.gif|.*ini|*.aseprite|*.mp3"/>
-		<assets path="assets/videos" embed="false" exclude="*.gif|.*ini|*.aseprite"/>
+	<!-- When newgrounds is enabled, make sure ng-secrets.json is included -->
+	<section if="newgrounds">
+		<assets path="assets" embed="true" include="ng-secrets.json" />
+		<haxelib name="newgrounds"/>
 	</section>
 
+	<!-- 
+		On Hashlink, include everything in the assets folder, but use ogg instead of mp3.
+	-->
+	<section if="hl||cpp">
+		<assets path="assets" embed="false" exclude="*.gif|.*ini|*.aseprite|*.mp3" />
+		<haxedef name="SOUND_EXT" value=".ogg" />
+	</section>
+
+	<!-- 
+		On Web, we have a more granular way to load things,
+		we preload everything except music and daily art.
+	-->
 	<section if="js||html5">
-		<assets path="assets" embed="true" include="ng-secrets.json" />
+		<haxedef name="SOUND_EXT" value=".mp3" />
 
 		<assets path="assets/data" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
-		<assets path="assets/fonts" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
-		<assets path="assets/images/art" embed="false" preload="false" exclude="*.gif" />
+		<assets path="assets/fonts" embed="true" exclude="*.gif|.*ini"/>
 		<assets path="assets/images" embed="true" exclude="*.gif|.*ini|*.aseprite|art"/>
-		<assets path="assets/music" preload="false" exclude="*.gif|*.ogg" />
 		<assets path="assets/preloader" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
-		<assets path="assets/sounds" preload="true" embed="true" exclude="*.gif|.*ini|*.aseprite|*.ogg"/>
 		<assets path="assets/videos" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
+
+		<assets path="assets/sounds" embed="true" exclude="*.ogg"/>
+
+		<!-- These assets will be loaded on demand -->
+		<assets path="assets/music" embed="false" preload="false" exclude="*.ogg" />
+		<assets path="assets/images/art" embed="false" preload="false" exclude="*.gif" />
 	</section>
 
-	<!--
-	<assets path="assets/music" preload="false" />
-	<assets path="assets/images/art" embed="false" />
-	<assets path="assets/videos" preload="false" />
--->
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="lime" />
 	<haxelib name="openfl" />
 	<haxelib name="flixel" />
 	<haxelib name="flixel-addons" />
-	<haxelib name="newgrounds" if="newgrounds"/>
 	<haxelib name="hxWebSockets" />
 
 	<haxelib name="ase" />

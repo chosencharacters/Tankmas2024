@@ -47,6 +47,17 @@ class OnlineLoop
 
 	public static var current_timestamp(get, default):Float;
 
+	static final default_throttle_delay = 0.2;
+	static final event_throttle_delays:Map<NetEventType, Float> = [
+		// Event delays, timeout in seconds between messages,
+		// if sent quicker than this interval, they'll be ignored.
+		OPEN_PRESENT => 1.0,
+		DROP_MARSHMALLOW => 0.5,
+		STICKER => 0.8,
+	];
+
+	static var event_send_timestamps:Map<NetEventType, Float> = new Map();
+
 	public static var force_send_full_user:Bool;
 
 	static var websocket:WebsocketClient;
@@ -119,7 +130,7 @@ class OnlineLoop
 		if (PlayState.self == null)
 			return;
 		var json:NetUserDef = PlayState.self.player.get_user_update_json(do_full_update);
-		if (json.x != null || json.y != null || json.costume != null || json.sx != null)
+		if (json.x != null || json.y != null || json.costume != null || json.sx != null || json.data != null)
 		{
 			websocket.send_player(json);
 		}
@@ -135,10 +146,32 @@ class OnlineLoop
 		post_event({type: DROP_MARSHMALLOW, data: {"level": marshmallow_level}});
 	}
 
-	public static function post_event(event:NetEventDef)
+	public static function post_present_open(day:Int, earned_medal = false, first_time = true)
 	{
-		#if offline return #end
-		websocket.send_event(event.type, event.data);
+		post_event({type: OPEN_PRESENT, data: {"day": day, "medal": earned_medal, "first_time": first_time}}, true, first_time);
+	}
+
+	public static function post_event(event:NetEventDef, immediate = false, force = false)
+	{
+		#if !offline
+		// Check if event is not spammed too quickly
+		var now = current_timestamp;
+		var throttle_interval = event_throttle_delays.exists(event.type) ? event_throttle_delays[event.type] : default_throttle_delay;
+
+		if (!force && event_send_timestamps.exists(event.type))
+		{
+			var time_delta = now - event_send_timestamps[event.type];
+			if (time_delta < throttle_interval)
+			{
+				trace('Tried to send event ${event.type} too quickly.');
+				return;
+			}
+		}
+
+		event_send_timestamps[event.type] = now;
+
+		websocket.send_event(event.type, event.data, immediate);
+		#end
 	}
 
 	public static function update_user_visual(username:String, def:NetUserDef)
@@ -170,7 +203,9 @@ class OnlineLoop
 
 		if (!def.immediate)
 		{
-			cast(user, NetUser).move_to(new_x, new_y, new_sx);
+			var net_user = cast(user, NetUser);
+			if (net_user != null)
+				net_user.move_to(new_x, new_y, new_sx);
 		}
 		else
 		{
@@ -180,6 +215,32 @@ class OnlineLoop
 
 		if (costume != null && (user.costume == null || user.costume.name != costume.name))
 			user.new_costume(costume);
+
+		if (def.data != null)
+		{
+			user.merge_data_field(def.data);
+
+			/// user changed their pet type
+			if (def.data.pet != null)
+			{
+				var new_pet_type = user.data.pet;
+				trace('$username changed their pet to $new_pet_type');
+				user.pet_changed(new_pet_type);
+			}
+
+			/// user changed their scale
+			if (def.data.scale != null)
+			{
+				var new_user_scale = user.data.scale;
+				trace('$username changed scale to $new_user_scale');
+				user.scale_changed(new_user_scale);
+			}
+
+			if (def.data.marshmallow_streak != null)
+			{
+				// trace('$username marshmallows: ${def.data.marshmallow_streak}');
+			}
+		}
 		#end
 	}
 }
