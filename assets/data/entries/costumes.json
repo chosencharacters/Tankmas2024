@@ -164,8 +164,29 @@
             "name": "strawberry-clock",
             "display": "Strawberry Clock",
             "desc": "B",
-            "unlock": "USERNAME",
-            "data": "coolboyman"
+            "unlock": "DATE",
+            "data": 1733763600000
+        },
+        {
+            "name": "hank",
+            "display": "Hank J. Wimbleton",
+            "desc": "Somewhere in Nevada is a mercenary who lives by an unknown code. As ruthless as they are enigmatic, Hank's abilities are unmatched. He is neither good nor bad, but one thing is for sure - whatever his goals are, he will not stop at anything to reach them.",
+            "unlock": "DATE",
+            "data": 1733763600000
+        },
+        {
+            "name": "jimmy",
+            "display": "Jimmy",
+            "desc": "The only pixel frog you can count on for your diamond stealing needs... except Baby",
+            "unlock": "DATE",
+            "data": 1733763600000
+        },
+        {
+            "name": "baby",
+            "display": "Baby",
+            "desc": "The only pixel frog you can count on for your diamond stealing needs... except Jimmy",
+            "unlock": "DATE",
+            "data": 1733763600000
         },
         {
             "name": "shmoods",

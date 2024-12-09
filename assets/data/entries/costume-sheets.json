@@ -144,21 +144,21 @@
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "strawberry-clock",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "hank",
                     "angle": -10
                 },
                 {
-                    "name": null,
+                    "name": "jimmy",
                     "angle": -10
                 },
                 {
-                    "name": null,
+                    "name": "baby",
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30
@@ -235,7 +235,7 @@
                     "yOffset": -30
                 },
                 {
-                    "name": "strawberry-clock",
+                    "name": null,
                     "angle": 10
                 },
                 {

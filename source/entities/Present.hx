@@ -1,6 +1,5 @@
 package entities;
 
-import net.tankmas.OnlineLoop;
 import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.PresentDef;
@@ -8,6 +7,7 @@ import data.types.TankmasEnums.PresentAnimation;
 import entities.base.NGSprite;
 import flixel.util.FlxTimer;
 import fx.Thumbnail;
+import net.tankmas.OnlineLoop;
 import states.substates.ArtSubstate;
 import states.substates.ComicSubstate;
 

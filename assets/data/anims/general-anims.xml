@@ -70,7 +70,7 @@
 		<anim name="idle">0t17</anim>
 	</animSet>
 
-	<animSet image="dialogue-box">
+	<animSet image="dialogue-box" width="1579" height="404">
 		<anim name="idle">0</anim>
 		<anim name="has-next">1t6</anim>
 	</animSet>
