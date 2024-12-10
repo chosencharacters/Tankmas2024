@@ -1,0 +1,168 @@
+{
+    "sheets": [
+        {
+            "graphic": "emotes-back-red",
+            "items": [
+                {
+                    "name": "common-tamago"
+                },
+                {
+                    "name": "toasty-warm"
+                },
+                {
+                    "name": "edd-sticker"
+                },
+                {
+                    "name": "mustard"
+                },
+                {
+                    "name": "pink-kight-mondo"
+                },
+                {
+                    "name": "tappy-sticker"
+                },
+                {
+                    "name": "son-christmas"
+                },
+                {
+                    "name": "sick-skull"
+                },
+                {
+                    "name": "slashe-wave"
+                },
+                {
+                    "name": "gimme-five"
+                },
+                {
+                    "name": "john-sticker"
+                },
+                {
+                    "name": "pico-sticker-swag"
+                }
+            ]
+        },
+        {
+            "graphic": "emotes-back-blue",
+            "items": [
+                {
+                    "name": "cashy-peace"
+                },
+                {
+                    "name": "slimy-tankmas-sticker"
+                },
+                {
+                    "name": "alien-sticker"
+                },
+                {
+                    "name": "liv-sticker"
+                },
+                {
+                    "name": "smug-bastard"
+                },
+                {
+                    "name": "bellvonartsy-sticker"
+                },
+                {
+                    "name": "ena-blitzilla"
+                },
+                {
+                    "name": "olive-tankmas"
+                },
+                {
+                    "name": "questioning-you"
+                },
+                {
+                    "name": "sticker-doodle"
+                },
+                {
+                    "name": "shepherd-wat"
+                },
+                {
+                    "name": "advent-collab-sticker"
+                }
+            ]
+        },
+        {
+            "graphic": "emotes-back-green",
+            "items": [
+                {
+                    "name": "sock-on-lemons"
+                },
+                {
+                    "name": "ilho-gift"
+                },
+                {
+                    "name": "sticker-rolus"
+                },
+                {
+                    "name": "peck"
+                },
+                {
+                    "name": "chilly-trudy"
+                },
+                {
+                    "name": "chunks-rawr"
+                },
+                {
+                    "name": "why-coal"
+                },
+                {
+                    "name": "meat"
+                },
+                {
+                    "name": "sticker-psyca"
+                },
+                {
+                    "name": "the-creature"
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                }
+            ]
+        },
+        {
+            "graphic": "emotes-back-pink",
+            "items": [
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                },
+                {
+                    "name": ""
+                }
+            ]
+        }
+    ]
+}
