@@ -32,8 +32,6 @@ class LoadGameState extends BaseState
 		saved_session_id = new FlxSave();
 		saved_session_id.bind('ng_session_id');
 
-		trace(saved_session_id.data);
-
 		#if newgrounds
 		Main.ng_api = new NewgroundsHandler();
 

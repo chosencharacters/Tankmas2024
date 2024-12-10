@@ -1,5 +1,6 @@
 package net.tankmas;
 
+import entities.base.BaseUserSharedData;
 import levels.TankmasLevel.RoomId;
 import haxe.crypto.Base64;
 
@@ -15,7 +16,7 @@ typedef NetUserDef =
 	// Data can contain specific user flags that the user can set.
 	// Sort of like a save file but you can read other players data too.
 	// WIP - no calls in client for this yet.
-	?data:Dynamic,
+	?data:BaseUserSharedData,
 
 	// Whether or not to apply the changes immediately or not. Good for initial placement of players
 	?immediate:Bool,
@@ -31,7 +32,7 @@ typedef NetEventDef =
 	?username:String,
 
 	type:NetEventType,
-	data:Dynamic,
+	?data:Dynamic,
 
 	?timestamp:Float,
 

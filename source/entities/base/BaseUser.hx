@@ -33,7 +33,8 @@ class BaseUser extends NGSprite
 
 	// Add custom values here. If you change the values of these
 	// in Player.hx, it will be synced to every other user ingame.
-	public var data = {
+	// To Add more values, define them in BaseUserSharedData.hx
+	public var data:BaseUserSharedData = {
 		pet: PetType.Dog,
 		marshmallow_streak: 0,
 		scale: 1.0,
