@@ -113,7 +113,7 @@
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "<EMPTY>",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
@@ -164,39 +164,39 @@
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "<EMPTY>",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "<EMPTY>",
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "<EMPTY>",
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "<EMPTY>",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "<EMPTY>",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "<EMPTY>",
                     "angle": -10
                 }
             ]
         },
         {
-            "graphic": "costumes-series-D",
+            "name": "costumes-series-D",
             "items": [
                 {
                     "name": "sodaman",
@@ -235,7 +235,7 @@
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "<EMPTY>",
                     "angle": 10
                 },
                 {

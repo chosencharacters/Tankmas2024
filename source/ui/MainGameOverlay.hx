@@ -169,9 +169,9 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 		if (FlxG.mouse.overlaps(emote))
 		{
 			if (FlxG.mouse.justReleased)
-				player.use_sticker(SaveManager.current_emote);
+				player.use_emote(SaveManager.current_emote);
 			if (FlxG.mouse.pressed && emote.scale.x != 0.8)
-				emote.scale.set(0.8, 0.8)
+				emote.scale.set(0.8, 0.8);
 			else if (!FlxG.mouse.pressed && emote.scale.x != 1.1)
 				emote.scale.set(1.1, 1.1);
 		}

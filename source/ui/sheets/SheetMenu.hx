@@ -16,10 +16,10 @@ enum SheetTab
 
 class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 {
+	var tab_order:Array<SheetTab> = [COSTUMES, EMOTES];
+
 	var costume_sheets:FlxTypedGroupExt<CostumeSelectSheet>;
 	var emote_sheets:FlxTypedGroupExt<EmoteSelectSheet>;
-
-	var current_sheet(get, never):FlxTypedGroupExt<BaseSelectSheet>;
 
 	var tabs:Array<SheetTab> = [COSTUMES, EMOTES];
 	var tab(get, never):SheetTab;
@@ -28,7 +28,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	var substate:SheetSubstate;
 
-	public static var local_saves:Map<SheetTab, {selection:Int}>;
+	public static var local_saves:Map<SheetTab, {selection:{x:Int, y:Int}}>;
 
 	public function new(open_on_tab:SheetTab = COSTUMES)
 	{
@@ -80,9 +80,6 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	override function set_visible(visible:Bool):Bool
 		return this.visible = visible;
-
-	function get_current_sheet():FlxTypedGroup<BaseSelectSheet>
-		return [costume_sheets, emote_sheets][tab];
 
 	function cycle_tabs_until(new_tab:SheetTab)
 		while (tab != new_tab)

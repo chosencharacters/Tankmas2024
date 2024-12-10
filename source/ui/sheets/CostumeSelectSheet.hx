@@ -19,23 +19,28 @@ class CostumeSelectSheet extends BaseSelectSheet
 
 	override function load_new_def(name:String):SheetMenuDef
 	{
-		var def:SheetDef = JsonData.get_costume_sheet_def(name);
-		return {name: def.name, src: def, grid: []}
+		var def:SheetDef = JsonData.get_costume_sheet(name);
+		return {
+			name: def.name,
+			src: def,
+			grid_1D: [],
+			grid_2D: []
+		}
 	}
 
 	override function save_selection()
 	{
 		super.save_selection();
 
-		SheetMenu.local_saves[COSTUMES].selection = selection;
-		SheetMenu.local_saves[COSTUMES].sheet_name = def.name;
+		// SheetMenu.local_saves[COSTUMES].selection = selection;
+		// SheetMenu.local_saves[COSTUMES].sheet_name = def.name;
 
-		SaveManager.current_costume = characterNames[locked_sheet][locked_selection];
+		// SaveManager.current_costume = characterNames[locked_sheet][locked_selection];
 
-		seenCostumes = seen.copy();
+		// seenCostumes = seen.copy();
 
-		SaveManager.save_costumes(true);
+		// SaveManager.save_costumes(true);
 
-		PlayState.self.player.new_costume(data.JsonData.get_costume(SaveManager.current_costume));
+		// PlayState.self.player.new_costume(data.JsonData.get_costume(SaveManager.current_costume));
 	}
 }

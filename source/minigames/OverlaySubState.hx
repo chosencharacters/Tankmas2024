@@ -107,7 +107,7 @@ class OverlaySubState extends flixel.FlxSubState
 		}
 
 		super.update(elapsed);
-		
+
 		Ctrl.update();
 		timers.update(elapsed);
 		tweens.update(elapsed);
@@ -115,7 +115,8 @@ class OverlaySubState extends flixel.FlxSubState
 		if (state != requestedState && requestedState != null)
 			switchStateActual();
 
-		if (Ctrl.menuBack[1]) {
+		if (Ctrl.menuBack[1])
+		{
 			trace('Closing overlay');
 			close();
 

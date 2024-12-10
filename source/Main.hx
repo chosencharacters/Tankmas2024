@@ -1,5 +1,6 @@
 package;
 
+import Paths;
 import data.SaveManager;
 import data.TimeManager;
 import data.loaders.NPCLoader;

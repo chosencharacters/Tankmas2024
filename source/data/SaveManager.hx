@@ -190,9 +190,9 @@ class SaveManager
 		}
 		savedCostumes = FlxG.save.data.savedCostumes;
 		current_costume = FlxG.save.data.currentCostume;
-		CostumeSelectSheet.saved_sheet = FlxG.save.data.savedCostumeSheet != null ? FlxG.save.data.savedCostumeSheet : 0;
-		CostumeSelectSheet.saved_selection = FlxG.save.data.savedCostumeSelect != null ? FlxG.save.data.savedCostumeSelect : 0;
-		CostumeSelectSheet.seenCostumes = FlxG.save.data.seenCostumes != null ? FlxG.save.data.seenCostumes : [];
+		// CostumeSelectSheet.saved_sheet = FlxG.save.data.savedCostumeSheet != null ? FlxG.save.data.savedCostumeSheet : 0;
+		// CostumeSelectSheet.saved_selection = FlxG.save.data.savedCostumeSelect != null ? FlxG.save.data.savedCostumeSelect : 0;
+		// CostumeSelectSheet.seenCostumes = FlxG.save.data.seenCostumes != null ? FlxG.save.data.seenCostumes : [];
 	}
 
 	public static function load_emotes():Void
@@ -203,9 +203,11 @@ class SaveManager
 			save_emotes(true);
 		}
 		savedEmotes = FlxG.save.data.savedEmotes;
-		EmoteSelectSheet.saved_sheet = FlxG.save.data.savedEmoteSheet != null ? FlxG.save.data.savedEmoteSheet : 0;
-		EmoteSelectSheet.saved_selection = FlxG.save.data.savedEmoteSelect != null ? FlxG.save.data.savedEmoteSelect : 0;
-		EmoteSelectSheet.seenStickers = FlxG.save.data.seenEmotes != null ? FlxG.save.data.seenEmotes : [];
+		/*
+			EmoteSelectSheet.saved_sheet = FlxG.save.data.savedEmoteSheet != null ? FlxG.save.data.savedEmoteSheet : 0;
+			EmoteSelectSheet.saved_selection = FlxG.save.data.savedEmoteSelect != null ? FlxG.save.data.savedEmoteSelect : 0;
+			EmoteSelectSheet.seenStickers = FlxG.save.data.seenEmotes != null ? FlxG.save.data.seenEmotes : [];
+		 */
 	}
 
 	public static function load_room():Void
@@ -238,8 +240,8 @@ class SaveManager
 	{
 		FlxG.save.data.savedCostumes = savedCostumes;
 		FlxG.save.data.currentCostume = current_costume;
-		FlxG.save.data.savedCostumeSheet = CostumeSelectSheet.saved_sheet;
-		FlxG.save.data.savedCostumeSelect = CostumeSelectSheet.saved_selection;
+		// FlxG.save.data.savedCostumeSheet = CostumeSelectSheet.saved_sheet;
+		// FlxG.save.data.savedCostumeSelect = CostumeSelectSheet.saved_selection;
 		FlxG.save.data.seenCostumes = CostumeSelectSheet.seenCostumes;
 		/*trace(FlxG.save.data.savedCostumes, FlxG.save.data.currentCostume, FlxG.save.data.savedCostumeSheet, FlxG.save.data.savedCostumeSelect,
 			FlxG.save.data.seenCostumes); */
@@ -252,8 +254,8 @@ class SaveManager
 	{
 		FlxG.save.data.savedEmotes = savedEmotes;
 		FlxG.save.data.currentEmote = current_emote;
-		FlxG.save.data.savedEmoteSheet = EmoteSelectSheet.saved_sheet;
-		FlxG.save.data.savedEmoteSelect = EmoteSelectSheet.saved_selection;
+		// FlxG.save.data.savedEmoteSheet = EmoteSelectSheet.saved_sheet;
+		// FlxG.save.data.savedEmoteSelect = EmoteSelectSheet.saved_selection;
 		FlxG.save.data.seenEmotes = EmoteSelectSheet.seenStickers;
 		if (force)
 			flush();

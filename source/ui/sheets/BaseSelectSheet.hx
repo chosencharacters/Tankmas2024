@@ -6,6 +6,7 @@ import data.types.TankmasDefs.EmoteDef;
 import flixel.FlxBasic;
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
+import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxTimer;
 import squid.ext.FlxTypedGroupExt;
@@ -94,10 +95,10 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		for (i in 0...def.src.items.length)
 		{
 			var item_def:SheetItemDef = def.src.items[i];
-			var button:HoverButton = new HoverButton(0, 0, item_def.name, (b) -> lock_choices());
+			var button:SheetButton = new SheetButton(0, 0, item_def.name, sheet_type, (b) -> lock_choices());
 
-			var row:Float = i / 4;
-			var col:Float = i % 4;
+			var row:Int = (i / 4).floor();
+			var col:Int = i % 4;
 
 			// initial positions
 			button.x = 190 + (340 * col);
@@ -108,8 +109,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 			button.angle = item_def?.angle ?? 0.0;
 
-			def.grid_1D[i] = item_def;
-			def.grid_2D[row][col] = item_def;
+			def.grid_1D[i] = button;
+			def.grid_2D[row][col] = button;
 
 			add(button);
 		}
@@ -141,41 +142,41 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	function control()
 	{
-		for (i in 0...characterSpritesArray[current_hover_sheet].length)
-		{
-			// TODO: make this mobile-friendly
-			if (FlxG.mouse.overlaps(characterSpritesArray[current_hover_sheet].members[i]))
-				selection = i;
-		}
-		if (Ctrl.cleft[1])
-			selection = selection - 1;
-		if (Ctrl.cright[1])
-			selection = selection + 1;
-		if (Ctrl.cup[1])
-			selection = selection - cols;
-		if (Ctrl.cdown[1])
-			selection = selection + cols;
+		// for (i in 0...characterSpritesArray[current_hover_sheet].length)
+		// {
+		// 	// TODO: make this mobile-friendly
+		// 	if (FlxG.mouse.overlaps(characterSpritesArray[current_hover_sheet].members[i]))
+		// 		selection = i;
+		// }
+		// if (Ctrl.cleft[1])
+		// 	selection = selection - 1;
+		// if (Ctrl.cright[1])
+		// 	selection = selection + 1;
+		// if (Ctrl.cup[1])
+		// 	selection = selection - cols;
+		// if (Ctrl.cdown[1])
+		// 	selection = selection + cols;
 
-		selection = FlxMath.bound(selection, 0, rows * cols);
+		// selection = FlxMath.bound(selection, 0, rows * cols);
 
-		if (Ctrl.jinteract[1])
-			lock_choices();
+		// if (Ctrl.jinteract[1])
+		// 	lock_choices();
 
-		if (FlxG.mouse.overlaps(backTab))
-		{
-			if (backTab.y != 110)
-				backTab.y = 110;
-			if (FlxG.mouse.justPressed)
-			{
-				if (backTab.scale.x != 0.8)
-					backTab.scale.set(0.8, 0.8);
-				menu.next_tab();
-			}
-			else if (!FlxG.mouse.pressed && backTab.scale.x != 1.1)
-				backTab.scale.set(1.1, 1.1);
-		}
-		else if (backTab.scale.x != 1)
-			backTab.scale.set(1, 1);
+		// if (FlxG.mouse.overlaps(backTab))
+		// {
+		// 	if (backTab.y != 110)
+		// 		backTab.y = 110;
+		// 	if (FlxG.mouse.justPressed)
+		// 	{
+		// 		if (backTab.scale.x != 0.8)
+		// 			backTab.scale.set(0.8, 0.8);
+		// 		menu.next_tab();
+		// 	}
+		// 	else if (!FlxG.mouse.pressed && backTab.scale.x != 1.1)
+		// 		backTab.scale.set(1.1, 1.1);
+		// }
+		// else if (backTab.scale.x != 1)
+		// 	backTab.scale.set(1, 1);
 	}
 
 	function lock_choices(shake:Bool = true) {}

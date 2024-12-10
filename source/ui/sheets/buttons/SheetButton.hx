@@ -7,7 +7,7 @@ class SheetButton extends HoverButton
 {
 	var sheet_type:SheetType;
 
-	public function new(X:Float, Y:Float, image:String, sheet_type:SheetType)
+	public function new(X:Float, Y:Float, image:String, sheet_type:SheetType, ?on_release:HoverButton->Void)
 	{
 		super(X, Y);
 		this.sheet_type = sheet_type;
