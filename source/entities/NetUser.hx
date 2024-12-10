@@ -53,9 +53,9 @@ class NetUser extends BaseUser
 
 		// var total_move_dist:Float = Math.abs(x - prev_x) + Math.abs(y - prev_y);
 
-		if (Math.abs(velocity.x) > 0.2)
+		if (Math.abs(hitbox.velocity.x) > 0.2)
 		{
-			flipX = velocity.x > 0;
+			flipX = hitbox.velocity.x > 0;
 		}
 		else if (facing_dir != 0)
 		{
@@ -78,9 +78,9 @@ class NetUser extends BaseUser
 	{
 		if (teleport)
 		{
-			setPosition(x, y);
-			velocity.set(0, 0);
-			acceleration.set(0, 0);
+			hitbox.setPosition(x, y);
+			hitbox.velocity.set(0, 0);
+			hitbox.acceleration.set(0, 0);
 			moving = false;
 
 			return;

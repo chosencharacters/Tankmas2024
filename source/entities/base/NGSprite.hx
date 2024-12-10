@@ -13,6 +13,9 @@ class NGSprite extends FlxSpriteExt
 
 	var sprite_anim:SpriteAnimationController;
 
+	/**Display priority *within the layer* and higher is better*/
+	public var display_priority:Int = 0;
+
 	public function new(?X:Float, ?Y:Float, ?SimpleGraphic:FlxGraphicAsset)
 	{
 		super(X, Y, SimpleGraphic);

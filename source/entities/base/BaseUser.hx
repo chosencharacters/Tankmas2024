@@ -8,7 +8,7 @@ import entities.base.NGSprite;
 import net.tankmas.NetDefs.NetEventDef;
 import net.tankmas.NetDefs.NetEventType;
 
-// TEst enum for pet types
+// Test enum for pet types
 enum abstract PetType(String) from String to String
 {
 	var None;
@@ -39,6 +39,8 @@ class BaseUser extends NGSprite
 		scale: 1.0,
 	}
 
+	public var hitbox:Hitbox;
+
 	public function new(?X:Float, ?Y:Float, username:String, costume:String = "tankman")
 	{
 		super(X, Y);
@@ -59,7 +61,8 @@ class BaseUser extends NGSprite
 		PlayState.self.users.add(this);
 		PlayState.self.shadows.add(shadow = new FlxSpriteExt(Paths.get("player-shadow.png")));
 
-		maxVelocity.set(move_speed, move_speed);
+		hitbox = new Hitbox(X, Y, 87, 19);
+		hitbox.maxVelocity.set(move_speed, move_speed);
 
 		sprite_anim.anim(PlayerAnimation.IDLE);
 
@@ -99,6 +102,8 @@ class BaseUser extends NGSprite
 	override function updateMotion(elapsed:Float)
 	{
 		super.updateMotion(elapsed);
+
+		setPosition(hitbox.x + hitbox.width - width * 5, hitbox.y - height);
 
 		shadow.center_on_bottom(this);
 		shadow.offset.x = offset.x;
@@ -226,4 +231,18 @@ class BaseUser extends NGSprite
 	public function pet_changed(pet_type:PetType) {}
 
 	public function scale_changed(scale:Float) {}
+
+	// // hitbox overrides
+	// function get_maxVelocity():FlxPoint
+	// 	return hitbox.maxVelocity();
+	// function get_velocity():FlxPoint
+	// 	return hitbox.velocity();
+	// function get_accleration():FlxPoint
+	// 	return hitbox.acceleration();
+	// function set_maxVelocity(val:FlxPoint):FlxPoint
+	// 	return hitbox.maxVelocity = val;
+	// function set_velocity(val:FlxPoint):FlxPoint
+	// 	return hitbox.velocity = val;
+	// function set_acceleration(val:FlxPoint):FlxPoint
+	// 	return hitbox.acceleration = val;
 }

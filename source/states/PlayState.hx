@@ -5,9 +5,11 @@ import data.SaveManager;
 import entities.Interactable;
 import entities.Minigame;
 import entities.NPC;
+import entities.NetUser;
 import entities.Player;
 import entities.Present;
 import entities.base.BaseUser;
+import entities.base.Hitbox;
 import entities.base.NGSprite;
 import flixel.tile.FlxTilemap;
 import fx.StickerFX;
@@ -37,8 +39,15 @@ class PlayState extends BaseState
 
 	public var current_world:String;
 
-	public var player:Player;
 	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
+
+	public var player:Player;
+
+	public var players:FlxTypedGroup<Player> = new FlxTypedGroup<Player>();
+	public var net_users:FlxTypedGroup<NetUser> = new FlxTypedGroup<NetUser>();
+
+	public var hitboxes:FlxTypedGroup<Hitbox> = new FlxTypedGroup<Hitbox>();
+
 	public var username_tags:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
 	public var objects:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
@@ -116,7 +125,9 @@ class PlayState extends BaseState
 		add(minigames);
 		add(npcs);
 		add(username_tags);
+
 		add(users);
+
 		add(objects);
 
 		add(level_foregrounds);
@@ -128,6 +139,8 @@ class PlayState extends BaseState
 		add(dialogues);
 
 		add(doors);
+
+		add(hitboxes);
 
 		add(stickers);
 		add(sticker_fx);
@@ -182,7 +195,6 @@ class PlayState extends BaseState
 
 		premieres.update(elapsed);
 
-		super.update(elapsed);
 		// Ctrl.update();
 
 		#if dev
@@ -215,10 +227,20 @@ class PlayState extends BaseState
 				}
 
 		handle_collisions();
+
+		sort_layers();
+
+		super.update(elapsed);
 	}
 
+	function sort_layers()
+		users.sort(sort_ng_sprite);
+
+	function sort_ng_sprite(n:Int, a:NGSprite, b:NGSprite):Int
+		return (a.display_priority > b.display_priority) ? -1 : 1;
+
 	function handle_collisions()
-		FlxG.collide(level_collision, player);
+		FlxG.collide(level_collision, hitboxes);
 
 	override function destroy()
 	{

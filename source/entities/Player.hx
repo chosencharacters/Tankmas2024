@@ -107,14 +107,14 @@ class Player extends BaseUser
 
 	override function updateMotion(elapsed:Float)
 	{
-		if (prev_velocity.x > 0 && velocity.x < 0 || prev_velocity.x < 0 && velocity.x > 0)
+		if (prev_velocity.x > 0 && hitbox.velocity.x < 0 || prev_velocity.x < 0 && hitbox.velocity.x > 0)
 		{
 			if (wavedash_cd < 300)
 				wavedash_cd += 35;
 			if (wavedash_cd >= 150)
 				SoundPlayer.alt_sound("controller", true, ["controller-1", "controller-2", "controller-3", "controller-4"]);
 		}
-		prev_velocity.copyFrom(velocity);
+		prev_velocity.copyFrom(hitbox.velocity);
 
 		super.updateMotion(elapsed);
 	}
@@ -161,7 +161,7 @@ class Player extends BaseUser
 
 		move_animation_handler(moving);
 
-		// move_animation_handler(velocity.x.abs() + velocity.y.abs() > 10);
+		// move_animation_handler(hitbox.velocity.x.abs() + hitbox.velocity.y.abs() > 10);
 	}
 
 	function auto_movement(UP:Bool, DOWN:Bool, LEFT:Bool, RIGHT:Bool, NO_KEYS:Bool)
@@ -183,13 +183,13 @@ class Player extends BaseUser
 		}*/
 		FlxVelocity.moveTowardsPoint(this, auto_move_dest, move_speed);
 
-		flipX = velocity.x > 0;
+		flipX = hitbox.velocity.x > 0;
 
 		// normally we'd snap to position on this deadzone condition but we can do that later cause you could use it to clip through walls
 		// if we're not careful
 		if (within_x_deadzone && within_y_deadzone)
 		{
-			velocity.scale(0.5, 0.5);
+			hitbox.velocity.scale(0.5, 0.5);
 			auto_moving = false;
 		}
 
@@ -200,35 +200,35 @@ class Player extends BaseUser
 	{
 		if (Ctrl.mode.can_move)
 		{
-			var reversing_x:Bool = velocity.x > 0 && LEFT || velocity.x < 0 && RIGHT;
-			var reversing_y:Bool = velocity.y > 0 && UP || velocity.y < 0 && DOWN;
+			var reversing_x:Bool = hitbox.velocity.x > 0 && LEFT || hitbox.velocity.x < 0 && RIGHT;
+			var reversing_y:Bool = hitbox.velocity.y > 0 && UP || hitbox.velocity.y < 0 && DOWN;
 
 			var move_speed_x:Float = move_speed / move_acl * (reversing_x ? move_reverse_mod : 1);
 			var move_speed_y:Float = move_speed / move_acl * (reversing_y ? move_reverse_mod : 1);
 
 			if (UP)
-				velocity.y -= move_speed_y;
+				hitbox.velocity.y -= move_speed_y;
 			else if (DOWN)
-				velocity.y += move_speed_y;
+				hitbox.velocity.y += move_speed_y;
 
 			if (LEFT)
-				velocity.x -= move_speed_x;
+				hitbox.velocity.x -= move_speed_x;
 			else if (RIGHT)
-				velocity.x += move_speed_x;
+				hitbox.velocity.x += move_speed_x;
 
 			if (LEFT || RIGHT)
 				flipX = RIGHT;
 
 			if (!LEFT && !RIGHT)
-				velocity.x = velocity.x * move_no_input_drag;
+				hitbox.velocity.x = hitbox.velocity.x * move_no_input_drag;
 			if (!UP && !DOWN)
-				velocity.y = velocity.y * move_no_input_drag;
+				hitbox.velocity.y = hitbox.velocity.y * move_no_input_drag;
 		}
 	}
 
 	function post_start_stop()
 	{
-		final MOVING:Bool = velocity.x.abs() + velocity.y.abs() > 10;
+		final MOVING:Bool = hitbox.velocity.x.abs() + hitbox.velocity.y.abs() > 10;
 		sprite_anim.anim(MOVING ? PlayerAnimation.MOVING : PlayerAnimation.IDLE);
 	}
 
