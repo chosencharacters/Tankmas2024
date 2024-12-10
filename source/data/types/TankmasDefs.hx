@@ -12,7 +12,8 @@ typedef CostumeDef =
 	var ?data:Dynamic;
 }
 
-typedef TrackDef = {
+typedef TrackDef =
+{
 	var id:String;
 	var name:String;
 	var artist:String;
@@ -34,7 +35,7 @@ typedef StickerDef =
 typedef PresentDef =
 {
 	var day:Int;
-	var name:String;
+	var title:String;
 	var artist:String;
 	var file:String;
 	var ?link:String;

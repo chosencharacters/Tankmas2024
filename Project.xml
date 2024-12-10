@@ -118,7 +118,7 @@
 		<haxedef name="ghost_town" />
 	</section>
 
-	<haxedef name="websocket" />
+	<haxedef name="websocket" unless="offline" />
 
 	<haxedef name="FLX_NO_HEALTH" />
 	<haxedef name="FLX_NO_MOUSE" if="mobile" />
