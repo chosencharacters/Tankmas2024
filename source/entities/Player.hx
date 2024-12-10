@@ -1,5 +1,6 @@
 package entities;
 
+import differ.shapes.Circle;
 import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
@@ -33,6 +34,8 @@ class Player extends BaseUser
 	public var can_enter_doors(get, default):Bool;
 
 	var prev_data:Dynamic = {};
+
+	var collision_shape:Circle = new Circle(0, 0, 60);
 
 	public function new(?X:Float, ?Y:Float)
 	{
@@ -102,7 +105,25 @@ class Player extends BaseUser
 			wavedash_cd--;
 
 		fsm();
+
+		resolve_collision(elapsed);
+
 		super.update(elapsed);
+	}
+
+	function resolve_collision(elapsed:Float)
+	{
+		collision_shape.x = x + width * 0.5 + velocity.x * elapsed;
+		collision_shape.y = y + height + velocity.y * elapsed;
+
+		var vel_l = velocity.length;
+
+		var res = PlayState.self.collisions.resolve_circle(collision_shape);
+		if (res != null)
+		{
+			x += res.dx;
+			y += res.dy;
+		}
 	}
 
 	override function updateMotion(elapsed:Float)
