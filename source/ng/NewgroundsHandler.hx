@@ -1,8 +1,8 @@
 #if newgrounds
 package ng;
 
-import io.newgrounds.Call.CallOutcome;
 import io.newgrounds.Call.CallError;
+import io.newgrounds.Call.CallOutcome;
 import io.newgrounds.NG;
 import io.newgrounds.NGLite;
 import io.newgrounds.crypto.Cipher;
@@ -62,7 +62,7 @@ class NewgroundsHandler
 		var encryption_key = json.encryption_key;
 
 		var session_id = NGLite.getSessionId();
-		if (NG_SESSION_ID == null || NG_SESSION_ID == "")
+		if (session_id != null && session_id != "")
 		{
 			NG_SESSION_ID = session_id;
 		}
