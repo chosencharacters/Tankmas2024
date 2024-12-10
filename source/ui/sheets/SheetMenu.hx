@@ -2,7 +2,7 @@ package ui.sheets;
 
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
-import states.substates.SheetSubstate;
+import states.substates.SheetSubState;
 import ui.Button.BackButton;
 import ui.button.HoverButton;
 
@@ -24,13 +24,13 @@ class SheetMenu extends FlxTypedGroupExt<BaseSelectSheet>
 
 	var back_button:HoverButton;
 
-	var substate:SheetSubstate;
+	var substate:SheetSubState;
 
 	public function new(open_on_tab:SheetTab = COSTUMES)
 	{
 		super();
 
-		FlxG.state.openSubState(substate = new SheetSubstate(this));
+		FlxG.state.openSubState(substate = new SheetSubState(this));
 
 		costumes = new CostumeSelectSheet(this);
 		stickers = new StickerSelectSheet(this);
