@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="5.1.0" company="Glenside Helper Elf Society" />
+	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="9.0.0" company="Glenside Helper Elf Society" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -32,21 +32,48 @@
 	<set name="BUILD_DIR" value="export" />
 	<source path="source" />
 
+	<!-- Build with -Drelease to enable these flags -->
+	<section if="release">
+		<set name="newgrounds" unless="hl"/>
+		<haxedef name="no_radio" />
+		<haxedef name="trace_net" />
+		<haxedef name="websocket" />
+	</section>
+
+
+	<!-- When newgrounds is enabled, make sure ng-secrets.json is included -->
+	<section if="newgrounds">
+		<assets path="assets" embed="true" include="ng-secrets.json" />
+		<haxelib name="newgrounds"/>
+	</section>
+
+	<!-- 
+		On Hashlink, include everything in the assets folder, but use ogg instead of mp3.
+	-->
 	<section if="hl||cpp">
-		<assets path="assets" embed="false" exclude="*.gif||.*ini"/>
+		<assets path="assets" embed="false" exclude="*.gif|.*ini|*.aseprite|*.mp3" />
+		<haxedef name="SOUND_EXT" value=".ogg" />
 	</section>
 
+	<!-- 
+		On Web, we have a more granular way to load things,
+		we preload everything except music and daily art.
+	-->
 	<section if="js||html5">
-		<assets path="assets" embed="true" exclude="*.gif||.*ini"/>
-	</section>
+		<haxedef name="SOUND_EXT" value=".mp3" />
 
-	<section if="offline">
-		<haxedef name="ghost_town" />
-	</section>
+		<assets path="assets/data" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
+		<assets path="assets/fonts" embed="true" exclude="*.gif|.*ini"/>
+		<assets path="assets/images" embed="true" exclude="*.gif|.*ini|*.aseprite|art"/>
+		<assets path="assets/preloader" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
+		<assets path="assets/videos" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
 
-	<assets path="assets/music" preload="false" />
-	<assets path="assets/images/art" preload="false" />
-	<assets path="assets/videos" preload="false" />
+		<assets path="assets/sounds" embed="true" exclude="*.ogg"/>
+
+		<!-- These assets will be loaded on demand -->
+		<assets path="assets/music" embed="false" preload="false" exclude="*.ogg" />
+		<assets path="assets/images/art" embed="false" preload="false" exclude="*.gif" />
+	</section>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
@@ -54,7 +81,6 @@
 	<haxelib name="openfl" />
 	<haxelib name="flixel" />
 	<haxelib name="flixel-addons" />
-	<haxelib name="newgrounds" if="newgrounds"/>
 	<haxelib name="hxWebSockets" />
 
 	<haxelib name="ase" />
@@ -75,8 +101,6 @@
 		<haxelib name="hscript" />
 	</section>
 
-	<haxedef name="no_radio" />
-
 	<!-- ______________________________ Minigames _______________________________ -->
 
 	<!-- Tell minigame code that it is part of the full project, and to exclude any wrappers -->
@@ -91,6 +115,12 @@
 	</section>
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
+
+	<section if="offline">
+		<haxedef name="ghost_town" />
+	</section>
+
+	<haxedef name="websocket" />
 
 	<haxedef name="FLX_NO_HEALTH" />
 	<haxedef name="FLX_NO_MOUSE" if="mobile" />

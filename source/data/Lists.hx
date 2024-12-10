@@ -47,7 +47,7 @@ class Lists
 
 		JsonData.init();
 
-		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("test-npcs.xml"));
+		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("npcs.xml"));
 
 		/*
 			var xml:String = "";

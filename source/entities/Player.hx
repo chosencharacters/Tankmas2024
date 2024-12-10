@@ -30,6 +30,10 @@ class Player extends BaseUser
 
 	var prev_velocity:FlxPoint = new FlxPoint();
 
+	public var can_enter_doors(get, default):Bool;
+
+	var prev_data:Dynamic = {};
+
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y, Main.username);
@@ -124,6 +128,10 @@ class Player extends BaseUser
 				detect_interactables();
 			case JUMPING:
 			case EMOTING:
+			case ENTERING_DOOR:
+				sprite_anim.anim(PlayerAnimation.MOVING);
+			case EXITING_DOOR:
+				sprite_anim.anim(PlayerAnimation.MOVING);
 		}
 
 	function general_movement()
@@ -228,10 +236,11 @@ class Player extends BaseUser
 	{
 		if (active_activity_area == null)
 			return;
-		if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(active_activity_area) && FlxG.mouse.justReleased)
-		{
-			active_activity_area.on_interact(this);
-		}
+		if (Ctrl.mode.can_interact)
+			if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(active_activity_area) && FlxG.mouse.justReleased)
+			{
+				active_activity_area.on_interact(this);
+			}
 	}
 
 	var active_interactable:Interactable;
@@ -279,10 +288,11 @@ class Player extends BaseUser
 		closest.marked = true;
 		active_interactable = closest;
 
-		if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased)
-		{
-			active_interactable.on_interact();
-		}
+		if (Ctrl.mode.can_interact)
+			if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased)
+			{
+				active_interactable.on_interact();
+			}
 	}
 
 	override function kill()
@@ -325,8 +335,52 @@ class Player extends BaseUser
 			costume: costume.name
 		};
 
+		var changed_values = Reflect.copy(data);
+		var field_names = Reflect.fields(data);
+		var changed_fields_count = field_names.length;
+
+		for (field in field_names)
+		{
+			var new_value = Reflect.field(data, field);
+			var old_value = Reflect.field(prev_data, field);
+			var changed = new_value == old_value && !force_send_full_user;
+			if (changed)
+			{
+				Reflect.deleteField(changed_values, field);
+				changed_fields_count--;
+			}
+		}
+
+		if (changed_fields_count == 0)
+		{
+			changed_values = null;
+		}
+
+		if (changed_values != null)
+		{
+			prev_data = Reflect.copy(data);
+		}
+
+		if (changed_values != null)
+			def.data = changed_values;
+
+		// When sending full players,
+		// Also request the state of all other players
+		// in the room at the same time.
+		if (force_send_full_user)
+			def.request_full_room = true;
+
 		return def;
 	}
+
+	public function enter_door()
+		sstate(ENTERING_DOOR);
+
+	public function exit_door()
+		sstate(EXITING_DOOR);
+
+	function get_can_enter_doors():Bool
+		return ![ENTERING_DOOR, EXITING_DOOR].contains(state);
 }
 
 private enum abstract State(String) from String to String
@@ -334,4 +388,6 @@ private enum abstract State(String) from String to String
 	final NEUTRAL;
 	final JUMPING;
 	final EMOTING;
+	final ENTERING_DOOR;
+	final EXITING_DOOR;
 }

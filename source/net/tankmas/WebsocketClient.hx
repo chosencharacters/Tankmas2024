@@ -42,7 +42,7 @@ typedef WebsocketEvent =
 
 class WebsocketClient
 {
-	static var address:String = #if host_address 'wss://${haxe.macro.Compiler.getDefine("host_address")}' #elseif test_local 'ws://127.0.0.1:5000' #else "wss://tankmas.kornesjo.se:25567" #end;
+	static final address:String = OnlineLoop.ws_address;
 
 	#if websocket
 	var socket:WebSocket;
@@ -91,14 +91,6 @@ class WebsocketClient
 		username = Main.username;
 		session_id = Main.session_id;
 
-		#if newgrounds
-		session_id = Main.ng_api.NG_SESSION_ID;
-		username = Main.ng_api.NG_USERNAME;
-
-		trace(Main.ng_api.NG_SESSION_ID);
-		trace(Main.ng_api.NG_USERNAME);
-		#end
-
 		#if dev
 		if (session_id == null || session_id == "")
 		{
@@ -106,13 +98,10 @@ class WebsocketClient
 		}
 		#end
 
-		trace(username);
-		trace(session_id);
-
 		#if websocket
 		if (username == null || session_id == null || username == "" || session_id == "")
 		{
-			trace("Trying to connect with a session id or username");
+			trace('Trying to connect without a session id or username ($username, $session_id)');
 			return;
 		}
 
@@ -184,8 +173,8 @@ class WebsocketClient
 		connection_retries = 0;
 		connected = true;
 
-		// We are ready to go
-		OnlineLoop.send_player_state(true);
+		// We are ready to go, force send full user on next tick.
+		OnlineLoop.force_send_full_user = true;
 	}
 
 	function on_message(data:MessageType)
@@ -294,7 +283,7 @@ class WebsocketClient
 		#end
 	}
 
-	function send(event:WebsocketEvent, immediate = false, overwriteIfExisting = false)
+	function send(event:WebsocketEvent, immediate = false)
 	{
 		#if websocket
 		if (socket == null)
@@ -306,19 +295,6 @@ class WebsocketClient
 		}
 		else
 		{
-			if (overwriteIfExisting)
-			{
-				var index = -1;
-				for (i in 0...queued_messages.length)
-				{
-					if (queued_messages[i].type == event.type)
-					{
-						queued_messages[i] = event;
-						return;
-					}
-				}
-			}
-
 			queued_messages.push(event);
 		}
 		#end

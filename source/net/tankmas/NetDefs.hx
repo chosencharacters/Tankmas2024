@@ -1,5 +1,6 @@
 package net.tankmas;
 
+import levels.TankmasLevel.RoomId;
 import haxe.crypto.Base64;
 
 typedef NetUserDef =
@@ -10,18 +11,18 @@ typedef NetUserDef =
 	?sx:Int, // Scale x, if facing right or left
 	?costume:String,
 	?timestamp:Float,
-	?room_id:Int,
+	?room_id:RoomId,
 	// Data can contain specific user flags that the user can set.
 	// Sort of like a save file but you can read other players data too.
 	// WIP - no calls in client for this yet.
-	?data:
-		{
-			?test_value:Int,
-			?marshmallows_thrown:Int,
-		},
+	?data:Dynamic,
 
 	// Whether or not to apply the changes immediately or not. Good for initial placement of players
 	?immediate:Bool,
+
+	// When set to true, the server will send back all existing players in the room.
+	// Good for syncing players.
+	?request_full_room:Bool,
 }
 
 typedef NetEventDef =
@@ -47,6 +48,7 @@ enum abstract NetEventType(String) from String to String
 {
 	final STICKER = "sticker";
 	final DROP_MARSHMALLOW = "drop_marshmallow";
+	final OPEN_PRESENT = "open_present";
 }
 
 function GenerateBasicAuthHeader(username:String, session_id:String)

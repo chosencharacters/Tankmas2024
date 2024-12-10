@@ -8,8 +8,28 @@ import entities.Present;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxDirectionFlags;
 import levels.LDTKLevel;
-import levels.LdtkProject.LdtkProject_Level;
+import levels.LdtkProject;
 import zones.Door;
+
+enum abstract RoomId(Int) from Int from Int
+{
+	final HotelCourtyard = 1;
+	final HotelInterior = 2;
+
+	public static function from_string(world_identifier:String):RoomId
+	{
+		switch (world_identifier)
+		{
+			case "hotel_interior":
+				return HotelInterior;
+			case "outside_hotel":
+				return HotelCourtyard;
+		}
+
+		throw 'Could not find room id by name ${world_identifier}, 
+					 please add it to RoomId in TankmasLevel.hx';
+	}
+}
 
 class TankmasLevel extends LDTKLevel
 {
@@ -38,8 +58,9 @@ class TankmasLevel extends LDTKLevel
 
 		setPosition(data.worldX, data.worldY);
 
-		PlayState.self.level_backgrounds.add(bg = new FlxSpriteExt(x, y, Paths.image_path(data.json.bgRelPath.split("/").last())));
-		PlayState.self.level_foregrounds.add(fg = new FlxSpriteExt(x, y, Paths.image_path(bg.loaded_image.replace("background", "foreground"))));
+		var image:String = data.json.bgRelPath.split("/").last().replace_multiple(["-reference", "-background", "-foreground", ".png", ".jpg"], "");
+		PlayState.self.level_backgrounds.add(bg = new FlxSpriteExt(x, y, Paths.image_path('$image-background')));
+		PlayState.self.level_foregrounds.add(fg = new FlxSpriteExt(x, y, Paths.image_path('$image-foreground')));
 
 		// col = new FlxTilemap();
 
@@ -62,6 +83,7 @@ class TankmasLevel extends LDTKLevel
 		// col.setPosition(x, y);
 
 		PlayState.self.level_collision.add(col = new LDTKLevel(level_name, Paths.get("tile-collision.png")));
+		col.setPosition(x, y);
 		col.setTileProperties(0, FlxDirectionFlags.NONE);
 		col.setTileProperties(1, FlxDirectionFlags.ANY);
 
@@ -74,19 +96,14 @@ class TankmasLevel extends LDTKLevel
 		var level:LdtkProject_Level = get_level_by_name(level_name);
 
 		for (entity in level.l_Entities.all_Player.iterator())
-		{
 			new Player(x + entity.pixelX, y + entity.pixelY);
-		}
 
 		for (entity in level.l_Entities.all_NPC.iterator())
-		{
-			new NPC(x + entity.pixelX, y + entity.pixelY, entity.f_name);
-		}
+			new NPC(x + entity.pixelX, y + entity.pixelY, entity.f_name, Std.parseInt(entity.f_timelock));
 
 		for (entity in level.l_Entities.all_Present.iterator())
-		{
 			new Present(x + entity.pixelX, y + entity.pixelY, entity.f_username);
-		}
+
 		for (entity in level.l_Entities.all_Door.iterator())
 		{
 			var spawn:FlxPoint = new FlxPoint(x + entity.f_spawn.cx * 16, y + entity.f_spawn.cy * 16);
@@ -94,20 +111,23 @@ class TankmasLevel extends LDTKLevel
 		}
 
 		for (entity in level.l_Entities.all_Minigame.iterator())
-		{
 			new Minigame(x + entity.pixelX, y + entity.pixelY, entity.width, entity.height, entity.f_minigame_id);
-		}
 
 		for (entity in level.l_Entities.all_Activity_Area.iterator())
-		{
 			new ActivityArea(entity.f_ActivityType, x + entity.pixelX, y + entity.pixelY, entity.width, entity.height);
-		}
 
 		for (entity in level.l_Entities.all_Graphic)
 		{
 			var sprite:FlxSpriteExt = new FlxSpriteExt(x + entity.pixelX, y + entity.pixelY);
 			sprite.loadAllFromAnimationSet(entity.f_name);
-			PlayState.self.misc_sprites.add(sprite);
+
+			switch (entity.f_layer.getName().toLowerCase())
+			{
+				case "back":
+					PlayState.self.props_background.add(sprite);
+				case "front":
+					PlayState.self.props_foreground.add(sprite);
+			}
 		}
 		/**put entity iterators here**/
 		/* 

@@ -1,6 +1,5 @@
 package;
 
-import Paths.Manifest;
 import data.SaveManager;
 import data.TimeManager;
 import data.loaders.NPCLoader;
@@ -8,6 +7,7 @@ import flixel.FlxGame;
 import flixel.FlxState;
 import flixel.util.typeLimit.NextState.InitialState;
 import levels.LdtkProject;
+import levels.TankmasLevel.RoomId;
 import openfl.display.Sprite;
 import states.*;
 import states.debug.*;
@@ -19,7 +19,7 @@ class Main extends Sprite
 	public static var username:String = #if username haxe.macro.Compiler.getDefine("username") #elseif random_username 'poop_${Math.random()}' #else "lost_soul" #end;
 	public static var session_id:String = #if (offline || !newgrounds) "test_session" #else null #end;
 
-	public static var current_room_id:Int = 1;
+	public static var current_room_id:RoomId = HotelCourtyard;
 
 	public static var DEV:Bool = #if dev true #else false #end;
 
@@ -57,19 +57,10 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		Manifest.init(make_game);
-	}
-
-	function on_logged_in()
-	{
-		#if newgrounds
-		username = ng_api.NG_USERNAME;
-		if (username == "")
-		{
-			username = 'temporary_random_username_${Math.random()}';
-		}
+		#if sys
+		sys.ssl.Socket.DEFAULT_VERIFY_CERT = false;
 		#end
-		addChild(new FlxGame(1920, 1080, PlayState, true));
+		Manifest.init(make_game);
 	}
 
 	public static function get_current_bg(day:Int):Int
@@ -83,11 +74,7 @@ class Main extends Sprite
 	public function make_game()
 	{
 		Lists.init();
-		#if newgrounds
-		ng_api = new NewgroundsHandler(true, false, on_logged_in);
-		#else
-		on_logged_in();
-		#end
+		addChild(new FlxGame(1920, 1080, LoadGameState, true));
 	}
 
 	static function get_initial_state():InitialState

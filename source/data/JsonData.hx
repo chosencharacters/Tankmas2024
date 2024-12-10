@@ -3,6 +3,7 @@ package data;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.EmoteDef;
 import data.types.TankmasDefs.PresentDef;
+import data.types.TankmasDefs.TrackDef;
 import ui.sheets.defs.SheetDefs.SheetDef;
 import ui.sheets.defs.SheetDefs.SheetMenuDef;
 
@@ -13,10 +14,8 @@ class JsonData
 {
 	static var costumes:Map<String, CostumeDef>;
 	static var presents:Map<String, PresentDef>;
-	static var emotes:Map<String, EmoteDef>;
-
-	public static var costume_defs(get, default):Array<CostumeDef>;
-	public static var costume_names(get, never):Array<String>;
+	static var stickers:Map<String, StickerDef>;
+	static var tracks:Map<String, TrackDef>;
 
 	public static var present_defs(get, default):Array<PresentDef>;
 	public static var present_names(get, never):Array<String>;
@@ -24,30 +23,19 @@ class JsonData
 	public static var emote_defs(get, default):Array<EmoteDef>;
 	public static var emote_names(get, never):Array<String>;
 
-	public static var costume_sheets:Map<String, SheetDef>;
-	public static var emote_sheets:Map<String, SheetDef>;
+	public static var all_sticker_defs(get, default):Array<StickerDef>;
+	public static var all_sticker_names(get, default):Array<String>;
+
+	public static var all_track_defs(get, default):Array<TrackDef>;
+	public static var all_track_ids(get, default):Array<String>;
 
 	public static function init()
 	{
 		load_sheets();
 		load_costumes();
 		load_presents();
-		load_emotes();
-	}
-
-	static function load_sheets()
-	{
-		costume_sheets = [];
-		var json:{sheets:Array<SheetDef>} = haxe.Json.parse(Utils.load_file_string("costume-sheets.json"));
-
-		for (costume_def in json.sheets)
-			costumes.set(costume_def.name, costume_def);
-
-		emote_sheets = [];
-		var json:{sheets:Array<SheetDef>} = haxe.Json.parse(Utils.load_file_string("emote-sheets.json"));
-
-		for (emote_def in json.sheets)
-			emotes.set(emote_def.name, emote_def);
+		load_stickers();
+		load_tracks();
 	}
 
 	static function load_costumes()
@@ -77,6 +65,24 @@ class JsonData
 			presents.set(present_def.artist.toLowerCase(), present_def);
 	}
 
+	static function load_stickers()
+	{
+		stickers = [];
+		var json:{stickers:Array<StickerDef>} = haxe.Json.parse(Utils.load_file_string("stickers.json"));
+
+		for (sticker_def in json.stickers)
+			stickers.set(sticker_def.name, sticker_def);
+	}
+
+	static function load_tracks()
+	{
+		tracks = [];
+		var json:{tracks:Array<TrackDef>} = haxe.Json.parse(Utils.load_file_string("tracks.json"));
+
+		for (track_def in json.tracks)
+			tracks.set(track_def.id, track_def);
+	}
+
 	public static function get_costume(costume_name:String):CostumeDef
 		return costumes.get(costume_name);
 
@@ -86,37 +92,11 @@ class JsonData
 	public static function get_present(present_name:String):PresentDef
 		return presents.get(present_name);
 
-	public static function get_emote_sheet_def(sheet_name:String):SheetDef
-		return emote_sheets.get(sheet_name);
+	public static function get_sticker(sticker_name:String):StickerDef
+		return stickers.get(sticker_name);
 
-	public static function get_costume_sheet_def(sheet_name:String):SheetDef
-		return costume_sheets.get(sheet_name);
-
-	public static function get_costume_names():Array<String>
-		return costume_defs.map((def:CostumeDef) -> return def.name);
-
-	public static function get_costume_defs():Array<CostumeDef>
-		return map_to_array(costumes);
-
-	public static function get_emote_names():Array<String>
-		return emote_defs.map((def:EmoteDef) -> return def.name);
-
-	public static function get_emote_defs():Array<EmoteDef>
-		return map_to_array(emotes);
-
-	public static function get_present_names():Array<String>
-		return present_defs.map((def:PresentDef) -> return def.name);
-
-	public static function get_present_defs():Array<PresentDef>
-		return map_to_array(presents);
-
-	public static inline function map_to_array<T:Dynamic>(map:Map<String, T>):Array<T>
-	{
-		var vals:Array<T> = [];
-		for (val in map)
-			vals.push(val);
-		return vals;
-	}
+	public static function get_track(track_id:String):TrackDef
+		return tracks.get(track_id);
 
 	public static function check_for_unlock_costume(costume:CostumeDef):Bool
 	{
@@ -125,8 +105,79 @@ class JsonData
 		return data.types.TankmasEnums.UnlockCondition.get_unlocked(costume.unlock, costume.data);
 	}
 
-	public static function check_for_unlock_emote(emote:EmoteDef):Bool
-		return SaveManager.saved_emote_collection.contains(emote.name);
+	public static function check_for_unlock_sticker(sticker:StickerDef):Bool
+	{
+		return SaveManager.saved_sticker_collection.contains(sticker.name);
+		/*
+			if (sticker.unlock == null)
+				return true;
+			return data.types.TankmasEnums.UnlockCondition.get_unlocked(sticker.unlock, sticker.data);
+		 */
+	}
+
+	public static function get_all_costume_defs():Array<CostumeDef>
+	{
+		var arr:Array<CostumeDef> = [];
+		for (val in costumes)
+			arr.push(val);
+		return arr;
+	}
+
+	public static function get_all_costume_names():Array<String>
+	{
+		var arr:Array<String> = [];
+		for (val in costumes.keys())
+			arr.push(val);
+		return arr;
+	}
+
+	public static function get_all_present_defs():Array<PresentDef>
+	{
+		var arr:Array<PresentDef> = [];
+		for (val in presents)
+			arr.push(val);
+		return arr;
+	}
+
+	public static function get_all_present_names():Array<String>
+	{
+		var arr:Array<String> = [];
+		for (val in presents.keys())
+			arr.push(val);
+		return arr;
+	}
+
+	public static function get_all_sticker_defs():Array<StickerDef>
+	{
+		var arr:Array<StickerDef> = [];
+		for (val in stickers)
+			arr.push(val);
+		return arr;
+	}
+
+	public static function get_all_sticker_names():Array<String>
+	{
+		var arr:Array<String> = [];
+		for (val in stickers.keys())
+			arr.push(val);
+		return arr;
+	}
+
+	public static function get_all_track_defs():Array<TrackDef>
+	{
+		var arr:Array<TrackDef> = [];
+		for (val in tracks)
+			arr.push(val);
+		return arr;
+	}
+
+	public static function get_all_track_ids():Array<String>
+	{
+		var arr:Array<String> = [];
+		for (val in tracks.keys())
+			arr.push(val);
+		return arr;
+	}
 
 	public static function random_draw_emotes(amount:Int, ?limit_list:Array<String>)
 	{

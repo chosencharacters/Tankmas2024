@@ -218,33 +218,13 @@ class SaveManager
 		savedRoom = FlxG.save.data.savedRoom;
 	}
 
-	public static function open_present(content:String, day:Int)
+	public static function open_present(username:String, present_day:Int)
 	{
-		if (savedPresents.contains(content))
-			return;
-		savedPresents.push(content);
-		save_presents(true);
-		#if newgrounds
-		if (day == 1 && content == "cymbourine")
-			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-1"));
-		if (day == 2 && content == "sevi")
-			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-2"));
-		if (day == 3 && content == "midgetsausage")
-			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-3"));
-		if (day == 4 && content == "sirlenward")
-			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-4"));
-		if (day == 5 && content == "theextreamh")
-			return Main.ng_api.medal_popup(Main.ng_api.medals.get("day-5"));
-		if ((Date.now().getMonth() != 0 && Date.now().getDate() != 1) && Date.now().getMonth() != 11)
-			return;
-		switch (content)
+		if (!savedPresents.contains(username))
 		{
-			case "matthewlopz":
-				return Main.ng_api.medal_popup(Main.ng_api.medals.get("little-candles"));
-			default:
-				return Main.ng_api.medal_popup(Main.ng_api.medals.get('day-$day'));
+			savedPresents.push(username);
+			save_presents(true);
 		}
-		#end
 	}
 
 	public static function save_presents(force:Bool = false)

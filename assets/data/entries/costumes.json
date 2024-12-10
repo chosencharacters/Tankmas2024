@@ -6,6 +6,12 @@
             "desc": "The problems of the future, today!"
         },
         {
+            "name": "steve",
+            "display": "Steve :)",
+            "desc": "The future has no problems when you can keep a sunny outlook!",
+            "unlock": "SUPPORTER"
+        },
+        {
             "name": "paco",
             "display": "Pico",
             "desc": "They've been blasting through the Portal since 1999, it's Pico!"
@@ -63,7 +69,7 @@
             "name": "santa",
             "display": "Santa",
             "unlock": "DATE",
-            "data": 1735102800
+            "data": 1735102800000
         },
         {
             "name": "sodaman",
@@ -108,14 +114,14 @@
         {
             "name": "girlfriend",
             "display": "Girlfriend",
-            "unlock": "BEEP BOOP BEEP BEEP BEEP BOOP!"
+            "desc": "BEEP BOOP BEEP BEEP BEEP BOOP!"
         },
         {
-            "name": "ena-sprite",
+            "name": "ena",
             "display": "ENA",
             "desc": "Some weird stuff that doesn't make sense",
-            "unlock": "USERNAME",
-            "data": "joelg"
+            "unlock": "DATE",
+            "data": 1733634000000
         },
         {
             "name": "salad-fingers",
@@ -151,15 +157,31 @@
             "name": "rebutia",
             "display": "Rebutia",
             "desc": "As prickly as being a cactus would make her, Rebutia may come off as the grumpiest of her four piece cactus punk band, but rumors say she's actually quite sweet underneath. Probably. Or probably not.",
-            "unlock": "USERNAME",
-            "data": "Bacun"
+            "unlock": "DATE",
+            "data": 1733634000000
         },
         {
             "name": "strawberry-clock",
             "display": "Strawberry Clock",
-            "desc": "B",
-            "unlock": "USERNAME",
-            "data": "coolboyman"
+            "desc": "B"
+        },
+        {
+            "name": "hank",
+            "display": "Hank J. Wimbleton",
+            "desc": "Somewhere in Nevada is a mercenary who lives by an unknown code. As ruthless as they are enigmatic, Hank's abilities are unmatched. He is neither good nor bad, but one thing is for sure - whatever his goals are, he will not stop at anything to reach them."
+           
+        },
+        {
+            "name": "jimmy",
+            "display": "Jimmy",
+            "desc": "The only pixel frog you can count on for your diamond stealing needs... except Baby"
+           
+        },
+        {
+            "name": "baby",
+            "display": "Baby",
+            "desc": "The only pixel frog you can count on for your diamond stealing needs... except Jimmy"
+            
         },
         {
             "name": "shmoods",
@@ -206,42 +228,42 @@
             "display": "Blockhead",
             "desc": "An idiot but a lovable idiot",
             "unlock": "DATE",
-            "data": 1733374800
+            "data": 1733374800000
         },
         {
             "name": "salad-fingers",
             "display": "Salad Fingers",
             "desc": "He likes the feeling of rust against his salad fingers",
             "unlock": "DATE",
-            "data": 1733374800
+            "data": 1733374800000
         },
         {
             "name": "duncan",
             "display": "Duncan",
             "desc": "1/2 of Duncan and Jones",
-            "unlock": "USERNAME",
-            "data": "snackers"
+            "unlock": "DATE",
+            "data": 1733461200000
         },
         {
             "name": "jones",
             "display": "Jones",
             "desc": "1/2 of Jones and Duncan",
-            "unlock": "USERNAME",
-            "data": "snackers"
+            "unlock": "DATE",
+            "data": 1733461200000
         },
         {
             "name": "ritz",
-            "display": "Ritz",
-            "desc": "They a rat and they gotta get their cheese lmao",
-            "unlock": "USERNAME",
-            "data": "mkmaffo"
+            "display": "Ritz the Rat",
+            "desc": "They a rat, and they gotta get their cheese, lmao!",
+            "unlock": "DATE",
+            "data": 1733547600000
         },
         {
             "name": "randy",
             "display": "Randy da Mouse",
             "desc": "When it's time to learn, Randy's your Concern!",
-            "unlock": "USERNAME",
-            "data": "dungeonation"
+            "unlock": "DATE",
+            "data": 1733547600000
         },
         {
             "name": "psycho-goldfish",
@@ -249,6 +271,20 @@
             "desc": "Here ya go Josh >:(",
             "unlock": "USERNAME",
             "data": "psychogoldfish"
+        },
+        {
+            "name": "go-go",
+            "display": "Gogo",
+            "desc": "An 11 year old martial arts prodigy, Gogo Matsumoto is as powerful as she is... not entirely there all the time. Is she the only one powerful enough to defeat the powerful demon lord Emperor Koro?",
+            "unlock": "DATE",
+            "data": 1733461200000
+        },
+        {
+            "name": "dungeoncookiebun",
+            "display": "Dungeon the Cookiebunny",
+            "desc": "He loves chocolate chip cookies, the technically-cannibal that he is.",
+            "unlock": "USERNAME",
+            "data": "dungeonation"
         }
     ]
 }

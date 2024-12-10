@@ -1,8 +1,11 @@
 package states;
 
+import data.JsonData;
 import data.SaveManager;
+import data.types.TankmasDefs.TrackDef;
 import flixel.FlxState;
 import sound.RadioManager;
+import ui.Cursor;
 #if gif
 import squid.recorder.GifRecorder;
 #end
@@ -15,6 +18,8 @@ class BaseState extends FlxState
 	static var FIRST_RUN:Bool = true;
 
 	var radio:RadioManager;
+
+	var cursor:Cursor;
 
 	public function new()
 	{
@@ -31,7 +36,8 @@ class BaseState extends FlxState
 			#if !no_radio
 			radio = new RadioManager();
 			#else
-			SoundPlayer.music('thewanderer-everratic');
+			var track:TrackDef = JsonData.get_track("odetosnow-leavesz");
+			SoundPlayer.music(track).onComplete((_music) -> trace('Song started playing.'));
 			#end
 
 			#if !no_fade
@@ -43,6 +49,12 @@ class BaseState extends FlxState
 			if (radio != null)
 				radio.end_sound();
 		}
+	}
+
+	override function create()
+	{
+		cursor = new Cursor();
+		super.create();
 	}
 
 	override function update(elapsed:Float)

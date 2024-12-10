@@ -3,7 +3,6 @@ package ui;
 import data.JsonData;
 import data.SaveManager;
 import entities.Player;
-import flixel.system.debug.completion.CompletionListScrollBar;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 import ui.popups.StickerPackOpening;
@@ -11,12 +10,13 @@ import ui.settings.BaseSettings;
 import ui.sheets.EmoteSelectSheet;
 import ui.sheets.SheetMenu;
 
-class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
+class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 {
 	var emote:FlxSpriteExt;
 	var settings:FlxSpriteExt;
 	var sticker_menu:FlxSpriteExt;
 	var sticker_pack:FlxSpriteExt;
+	var music_popup:MusicPopup;
 
 	var hide_speed:Float = 0.35;
 	var reveal_speed:Float = 0.35;
@@ -32,8 +32,11 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 		add(sticker_menu = new FlxSpriteExt(1520, 1030, Paths.get('charselect-mini-full.png')));
 
 		sticker_pack = new FlxSpriteExt().one_line("sticker-pack-icon");
-		sticker_pack.setPosition(20, FlxG.height - sticker_pack.height - 20);
+		// sticker_pack.setPosition(20, FlxG.height - sticker_pack.height - 20);
+		sticker_pack.setPosition(emote.x + emote.width + 20, 20);
 		add(sticker_pack);
+
+		add(music_popup = MusicPopup.get_instance());
 
 		for (sprite in [emote, settings])
 			sprite.offset.y = sprite.height;
@@ -100,85 +103,82 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 			return;
 		}
 
-		for (member in members)
-			switch (members.indexOf(member))
+		var twen:FlxTween = null;
+		if (FlxG.mouse.overlaps(sticker_menu))
+		{
+			if (sticker_menu.y == 1030 && twen == null)
+				twen = FlxTween.tween(sticker_menu, {y: 880}, 0.3, {
+					onComplete: function(twn:FlxTween)
+					{
+						twen = null;
+						sticker_menu.loadGraphic(Paths.get('charselect-mini-full.png'));
+					}
+				});
+			if (FlxG.mouse.justReleased)
 			{
-				case 2:
-					var twen:FlxTween = null;
-					if (FlxG.mouse.overlaps(member))
+				hide_top_ui();
+				if (twen != null)
+					twen.cancel();
+				Ctrl.mode = ControlModes.NONE;
+				twen = FlxTween.tween(sticker_menu, {y: 1180}, 0.3, {
+					onComplete: (twn:FlxTween) ->
 					{
-						if (member.y == 1030 && twen == null)
-							twen = FlxTween.tween(member, {y: 880}, 0.3, {
-								onComplete: function(twn:FlxTween)
-								{
-									twen = null;
-									member.loadGraphic(Paths.get('charselect-mini-full.png'));
-								}
-							});
-						if (FlxG.mouse.justReleased)
+						try
 						{
-							hide_top_ui();
-							if (twen != null)
-								twen.cancel();
-							Ctrl.mode = ControlModes.NONE;
-							twen = FlxTween.tween(member, {y: 1180}, 0.3, {
-								onComplete: (twn:FlxTween) ->
-								{
-									try
-									{
-										new SheetMenu();
-									}
-									catch (e)
-									{
-										trace(e, e.stack);
-									}
-									twen = null;
-								}
-							});
+							new SheetMenu();
 						}
-						if (FlxG.mouse.pressed && member.scale.x != 0.8)
-							member.scale.set(0.8, 0.8);
+						catch (e)
+						{
+							trace(e, e.stack);
+						}
+						twen = null;
 					}
-					else
-					{
-						if (member.scale.x != 1)
-							member.scale.set(1, 1);
-						if ((member.y == 880 || member.y == 1180) && twen == null)
-							twen = FlxTween.tween(member, {y: 1030}, 0.3, {
-								onComplete: function(twn:FlxTween)
-								{
-									twen = null;
-									member.loadGraphic(Paths.get('charselect-mini-full.png'));
-								}
-							});
-					}
-
-				case 1:
-					if (FlxG.mouse.overlaps(member))
-					{
-						if (FlxG.mouse.justReleased)
-							new BaseSettings();
-						if (FlxG.mouse.pressed && member.scale.x != 0.8)
-							member.scale.set(0.8, 0.8)
-						else if (!FlxG.mouse.pressed && member.scale.x != 1.1)
-							member.scale.set(1.1, 1.1);
-					}
-					else if (member.scale.x != 1)
-						member.scale.set(1, 1);
-
-				case 0:
-					if (FlxG.mouse.overlaps(member))
-					{
-						if (FlxG.mouse.justReleased)
-							player.use_emote(SaveManager.current_emote);
-						if (FlxG.mouse.pressed && member.scale.x != 0.8)
-							member.scale.set(0.8, 0.8)
-						else if (!FlxG.mouse.pressed && member.scale.x != 1.1)
-							member.scale.set(1.1, 1.1);
-					}
-					else if (member.scale.x != 1)
-						member.scale.set(1, 1);
+				});
 			}
+			if (FlxG.mouse.pressed && sticker_menu.scale.x != 0.8)
+				sticker_menu.scale.set(0.8, 0.8);
+		}
+		else
+		{
+			if (sticker_menu.scale.x != 1)
+				sticker_menu.scale.set(1, 1);
+			if ((sticker_menu.y == 880 || sticker_menu.y == 1180) && twen == null)
+				twen = FlxTween.tween(sticker_menu, {y: 1030}, 0.3, {
+					onComplete: function(twn:FlxTween)
+					{
+						twen = null;
+						sticker_menu.loadGraphic(Paths.get('charselect-mini-full.png'));
+					}
+				});
+		}
+
+		if (FlxG.mouse.overlaps(settings))
+		{
+			if (FlxG.mouse.justReleased)
+				new BaseSettings();
+			if (FlxG.mouse.pressed && settings.scale.x != 0.8)
+				settings.scale.set(0.8, 0.8)
+			else if (!FlxG.mouse.pressed && settings.scale.x != 1.1)
+				settings.scale.set(1.1, 1.1);
+		}
+		else if (settings.scale.x != 1)
+		{
+			settings.scale.set(1, 1);
+		}
+
+		if (FlxG.mouse.overlaps(emote))
+		{
+			if (FlxG.mouse.justReleased)
+				player.use_sticker(SaveManager.current_emote);
+			if (FlxG.mouse.pressed && emote.scale.x != 0.8)
+				emote.scale.set(0.8, 0.8)
+			else if (!FlxG.mouse.pressed && emote.scale.x != 1.1)
+				emote.scale.set(1.1, 1.1);
+		}
+		else if (emote.scale.x != 1)
+		{
+			emote.scale.set(1, 1);
+		}
 	}
 
 	function get_player():Player
