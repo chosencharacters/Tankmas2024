@@ -6,7 +6,7 @@ import data.types.TankmasDefs.CostumeDef;
 import flixel.FlxBasic;
 import flixel.FlxSubState;
 import flixel.util.FlxTimer;
-import squid.ext.FlxSubstateExt;
+import squid.ext.FlxSubStateExt;
 import ui.sheets.SheetMenu;
 
 class SheetSubstate extends FlxSubStateExt

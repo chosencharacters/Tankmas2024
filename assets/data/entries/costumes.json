@@ -45,7 +45,7 @@
         {
             "name": "knight-pink",
             "display": "Pink Knight UwU",
-            "desc": "Castle Crasher video game but pink uwu",
+            "desc": "Castle Crasher video game but pink UwU",
             "unlock": "SUPPORTER"
         },
         {
@@ -119,9 +119,7 @@
         {
             "name": "ena",
             "display": "ENA",
-            "desc": "Some weird stuff that doesn't make sense",
-            "unlock": "DATE",
-            "data": 1733634000000
+            "desc": "Some weird stuff that doesn't make sense"
         },
         {
             "name": "salad-fingers",
@@ -156,9 +154,7 @@
         {
             "name": "rebutia",
             "display": "Rebutia",
-            "desc": "As prickly as being a cactus would make her, Rebutia may come off as the grumpiest of her four piece cactus punk band, but rumors say she's actually quite sweet underneath. Probably. Or probably not.",
-            "unlock": "DATE",
-            "data": 1733634000000
+            "desc": "As prickly as being a cactus would make her, Rebutia may come off as the grumpiest of her four piece cactus punk band, but rumors say she's actually quite sweet underneath. Probably. Or probably not."
         },
         {
             "name": "strawberry-clock",
@@ -169,19 +165,16 @@
             "name": "hank",
             "display": "Hank J. Wimbleton",
             "desc": "Somewhere in Nevada is a mercenary who lives by an unknown code. As ruthless as they are enigmatic, Hank's abilities are unmatched. He is neither good nor bad, but one thing is for sure - whatever his goals are, he will not stop at anything to reach them."
-           
         },
         {
             "name": "jimmy",
             "display": "Jimmy",
             "desc": "The only pixel frog you can count on for your diamond stealing needs... except Baby"
-           
         },
         {
             "name": "baby",
             "display": "Baby",
             "desc": "The only pixel frog you can count on for your diamond stealing needs... except Jimmy"
-            
         },
         {
             "name": "shmoods",
@@ -201,6 +194,20 @@
             "desc": "...of Brackenwood!",
             "unlock": "FLAG",
             "data": "BITEY_ENCOUNTERED"
+        },
+        {
+            "name": "geometry-dash-cube",
+            "display": "Cube",
+            "desc": "No one knows their name, no one knows where they come from, but what everyone knows is that whatever happens, they ride. And give Audio Mods a headache when people really want them to ride to copyrighted music.",
+            "unlock": "DATE",
+            "data": 1733805000
+        }, 
+        {
+            "name": "fancy-pants",
+            "display": "Fancy Pants Man",
+            "desc": "They'll slide, jump, and break boundaries in how a Flash platformer can move all to get ice cream. There's never been a stick figure any fancier on Newgrounds, that's for sure!",
+            "unlock": "DATE",
+            "data": 1733805000
         },
         {
             "name": "captain-steve",
@@ -226,44 +233,32 @@
         {
             "name": "blockhead",
             "display": "Blockhead",
-            "desc": "An idiot but a lovable idiot",
-            "unlock": "DATE",
-            "data": 1733374800000
+            "desc": "An idiot but a lovable idiot"
         },
         {
             "name": "salad-fingers",
             "display": "Salad Fingers",
-            "desc": "He likes the feeling of rust against his salad fingers",
-            "unlock": "DATE",
-            "data": 1733374800000
+            "desc": "He likes the feeling of rust against his salad fingers"
         },
         {
             "name": "duncan",
             "display": "Duncan",
-            "desc": "1/2 of Duncan and Jones",
-            "unlock": "DATE",
-            "data": 1733461200000
+            "desc": "1/2 of Duncan and Jones"
         },
         {
             "name": "jones",
             "display": "Jones",
-            "desc": "1/2 of Jones and Duncan",
-            "unlock": "DATE",
-            "data": 1733461200000
+            "desc": "1/2 of Jones and Duncan"
         },
         {
             "name": "ritz",
             "display": "Ritz the Rat",
-            "desc": "They a rat, and they gotta get their cheese, lmao!",
-            "unlock": "DATE",
-            "data": 1733547600000
+            "desc": "They a rat, and they gotta get their cheese, lmao"
         },
         {
             "name": "randy",
             "display": "Randy da Mouse",
-            "desc": "When it's time to learn, Randy's your Concern!",
-            "unlock": "DATE",
-            "data": 1733547600000
+            "desc": "When it's time to learn, Randy's your Concern!"
         },
         {
             "name": "psycho-goldfish",
@@ -275,9 +270,7 @@
         {
             "name": "go-go",
             "display": "Gogo",
-            "desc": "An 11 year old martial arts prodigy, Gogo Matsumoto is as powerful as she is... not entirely there all the time. Is she the only one powerful enough to defeat the powerful demon lord Emperor Koro?",
-            "unlock": "DATE",
-            "data": 1733461200000
+            "desc": "An 11 year old martial arts prodigy, Gogo Matsumoto is as powerful as she is... not entirely there all the time. Is she the only one powerful enough to defeat the powerful demon lord Emperor Koro?"
         },
         {
             "name": "dungeoncookiebun",

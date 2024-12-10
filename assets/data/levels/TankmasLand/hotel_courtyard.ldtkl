@@ -11317,31 +11317,6 @@
 					"__worldY": 2240
 				},
 				{
-					"__identifier": "NPC",
-					"__grid": [52,38],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#FF00D0",
-					"iid": "ace4e070-9b00-11ef-927c-af2acc4f4b82",
-					"width": 128,
-					"height": 128,
-					"defUid": 10,
-					"px": [832,608],
-					"fieldInstances": [
-						{ "__identifier": "name", "__type": "String", "__value": "the-shape", "__tile": null, "defUid": 11, "realEditorValues": [{
-							"id": "V_String",
-							"params": ["the-shape"]
-						}] },
-						{ "__identifier": "timelock", "__type": "String", "__value": "1733720340", "__tile": null, "defUid": 38, "realEditorValues": [{
-							"id": "V_String",
-							"params": ["1733720340"]
-						}] }
-					],
-					"__worldX": 864,
-					"__worldY": 624
-				},
-				{
 					"__identifier": "Door",
 					"__grid": [84,52],
 					"__pivot": [0,0],

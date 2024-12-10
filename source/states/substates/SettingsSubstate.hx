@@ -1,8 +1,9 @@
 package states.substates;
 
+import squid.ext.FlxSubStateExt;
 import ui.settings.BaseSettings;
 
-class SettingsSubstate extends squid.ext.FlxSubstateExt.FlxSubStateExt
+class SettingsSubstate extends FlxSubStateExt
 {
 	var setting_ui:BaseSettings;
 

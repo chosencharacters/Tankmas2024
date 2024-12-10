@@ -1,11 +1,21 @@
 package squid.ext;
 
 import flixel.FlxSubState;
+import ui.Cursor;
 
 class FlxSubStateExt extends FlxSubState
 {
 	var tick:Float = 0;
 	var state:String = "";
+
+	var cursor:Cursor;
+
+	override function create()
+	{
+		super.create();
+
+		cursor = new Cursor(this);
+	}
 
 	/**
 		Increment tick by i * timescale

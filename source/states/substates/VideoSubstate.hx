@@ -1,6 +1,8 @@
 package states.substates;
 
-class VideoSubstate extends flixel.FlxSubState
+import squid.ext.FlxSubStateExt;
+
+class VideoSubstate extends FlxSubStateExt
 {
 	var video_name:String;
 

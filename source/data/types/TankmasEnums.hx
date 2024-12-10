@@ -42,7 +42,7 @@ enum abstract UnlockCondition(String) from String to String
 				return false;
 			case UnlockCondition.DATE:
 				trace(Main.time.utc, data);
-				return Main.time.utc >= data; // where data is a unix timestamp, see above
+				return Main.time.utc >= data * 1000; // where data is a unix timestamp, see above
 			case UnlockCondition.ACHIEVEMENT:
 				#if newgrounds return Main.ng_api.has_medal(Main.ng_api.medals.get(data)) #else return false #end; // where data is the name of a medal
 			case UnlockCondition.FLAG:

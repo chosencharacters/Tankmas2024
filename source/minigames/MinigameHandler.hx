@@ -68,9 +68,12 @@ class MinigameHandler
 		else
 		{
 			var result = data.minigames[minigame_id];
-			if (result == null) {
+			if (result == null)
+			{
 				throw "Minigame not found in data: " + minigame_id;
-			} else {
+			}
+			else
+			{
 				return result;
 			}
 		}
@@ -135,7 +138,7 @@ class MinigameHandler
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
-			FlxG.sound.music = null;
+		FlxG.sound.music = null;
 
 		active_minigame_id = minigame_id;
 	}
@@ -156,7 +159,8 @@ class MinigameHandler
 
 		var overlay = new OverlaySubState(minigame_id, data, constructor);
 
-		overlay.closeCallback = () -> {
+		overlay.closeCallback = () ->
+		{
 			var destructor = destructors[minigame_id];
 
 			if (destructor != null)
@@ -168,12 +172,15 @@ class MinigameHandler
 		FlxG.state.openSubState(overlay);
 	}
 
-	function playMinigame_external(minigame_id:String, data:MinigameEntry):Void {
-		if (data.external == null) {
+	function playMinigame_external(minigame_id:String, data:MinigameEntry):Void
+	{
+		if (data.external == null)
+		{
 			throw "Minigame external reference not found for minigame: " + minigame_id;
 		}
 
-		var onClose = () -> {
+		var onClose = () ->
+		{
 			closeMinigame();
 		}
 

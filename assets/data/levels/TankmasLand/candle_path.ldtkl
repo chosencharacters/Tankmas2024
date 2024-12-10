@@ -19,7 +19,7 @@
 	"__bgColor": "#696A79",
 	"bgColor": null,
 	"useAutoIdentifier": false,
-	"bgRelPath": "../../images/levels/maps/courtyard/candle-path-background.jpg",
+	"bgRelPath": "../../images/levels/maps/courtyard/candle-path-foreground.png",
 	"bgPos": "Cover",
 	"bgPivotX": 0.5,
 	"bgPivotY": 0.5,
@@ -1168,6 +1168,28 @@
 					],
 					"__worldX": 5488,
 					"__worldY": 1168
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [75,14],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "972aeec0-9b00-11ef-a204-fba5e4a8b242",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1200,224],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "the-shape", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["the-shape"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
+					],
+					"__worldX": 5136,
+					"__worldY": 1024
 				}
 			]
 		},

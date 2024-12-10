@@ -53,7 +53,7 @@ class BaseState extends FlxState
 
 	override function create()
 	{
-		cursor = new Cursor();
+		cursor = new Cursor(this);
 		super.create();
 	}
 

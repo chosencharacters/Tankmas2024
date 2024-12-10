@@ -1,10 +1,16 @@
 package ui;
 
+import flixel.FlxState;
+
 class Cursor extends FlxSpriteExt
 {
-	public function new(?X:Float, ?Y:Float)
+	var parent_state:FlxState;
+
+	public function new(parent_state:FlxState)
 	{
-		super(X, Y);
+		super();
+
+		this.parent_state = parent_state;
 
 		if (FlxG.mouse.enabled)
 			FlxG.mouse.visible = false;
@@ -28,8 +34,8 @@ class Cursor extends FlxSpriteExt
 
 	override function updateMotion(elapsed:Float)
 	{
-		FlxG.state.remove(this, true);
-		FlxG.state.add(this);
+		parent_state.remove(this, true);
+		parent_state.add(this);
 
 		setPosition(FlxG.mouse.x, FlxG.mouse.y);
 		super.updateMotion(elapsed);

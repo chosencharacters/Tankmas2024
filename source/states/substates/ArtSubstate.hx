@@ -4,9 +4,10 @@ import data.JsonData;
 import entities.Present;
 import flixel.tweens.FlxEase;
 import openfl.Assets;
+import squid.ext.FlxSubStateExt;
 import ui.button.HoverButton;
 
-class ArtSubstate extends flixel.FlxSubState
+class ArtSubstate extends FlxSubStateExt
 {
 	var art:FlxSprite;
 	var data:data.types.TankmasDefs.PresentDef;

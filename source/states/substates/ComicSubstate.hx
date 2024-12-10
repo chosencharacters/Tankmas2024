@@ -7,8 +7,9 @@ import data.JsonData;
 import entities.Present;
 import flixel.util.FlxTimer;
 import sound.RadioManager;
+import squid.ext.FlxSubStateExt;
 
-class ComicSubstate extends flixel.FlxSubState
+class ComicSubstate extends FlxSubStateExt
 {
 	var art:FlxSprite;
 	var backButton:FlxSprite;

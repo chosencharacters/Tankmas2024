@@ -24,7 +24,7 @@
 	"bgPivotX": 0.5,
 	"bgPivotY": 0.5,
 	"__smartColor": "#ADADB5",
-	"__bgPos": { "topLeftPx": [0,0], "scale": [1,1], "cropRect": [0,54.5,3188,4096] },
+	"__bgPos": null,
 	"externalRelPath": null,
 	"fieldInstances": [],
 	"layerInstances": [
@@ -1762,6 +1762,28 @@
 					],
 					"__worldX": 2080,
 					"__worldY": 2976
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [98,182],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "b0934bf0-9b00-11ef-a204-471e900130e3",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1568,2912],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "konansaurus", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["konansaurus"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 10, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [10] }] }
+					],
+					"__worldX": 1568,
+					"__worldY": 2912
 				}
 			]
 		},
