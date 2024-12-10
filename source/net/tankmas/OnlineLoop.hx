@@ -136,9 +136,7 @@ class OnlineLoop
 		}
 	}
 
-	public static function post_sticker(sticker_name:String)
-		/**This is a post request**/
-
+	/**This is a post request**/
 	public static function post_emote(emote_name:String)
 	{
 		post_event({type: STICKER, data: {"name": emote_name}});
