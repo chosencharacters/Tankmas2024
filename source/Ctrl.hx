@@ -227,7 +227,8 @@ class Ctrl
 	static function menuControl()
 	{
 		for (c in 1...3)
-		{ // for all players
+		{
+			// for all players
 			cup[c] = cdown[c] = cleft[c] = cright[c] = false;
 			if (up[c] || down[c] || left[c] || right[c])
 			{

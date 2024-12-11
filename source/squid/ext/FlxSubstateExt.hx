@@ -7,6 +7,12 @@ class FlxSubStateExt extends FlxSubState
 	var tick:Float = 0;
 	var state:String = "";
 
+	override function update(elapsed:Float)
+	{
+		Ctrl.update();
+		super.update(elapsed);
+	}
+
 	/**
 		Increment tick by i * timescale
 		@param	add int to increment by

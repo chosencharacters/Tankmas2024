@@ -75,14 +75,14 @@ class Main extends Sprite
 	public function make_game()
 	{
 		Lists.init();
-		addChild(new FlxGame(1920, 1080, LoadGameState, true));
+		addChild(new FlxGame(1920, 1080, get_initial_state(), true));
 	}
 
 	static function get_initial_state():InitialState
 	{
-		#if debug_menu
-		return DebugMenuState;
+		#if debug_sheet_menu
+		return states.debug.DebugSheetMenuState;
 		#end
-		return PlayState;
+		return LoadGameState;
 	}
 }

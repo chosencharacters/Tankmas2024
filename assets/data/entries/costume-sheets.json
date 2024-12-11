@@ -113,7 +113,7 @@
                     "angle": 10
                 },
                 {
-                    "name": "<EMPTY>",
+                    "name": null,
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
@@ -164,33 +164,33 @@
                     "yOffset": -30
                 },
                 {
-                    "name": "<EMPTY>",
+                    "name": null,
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": "<EMPTY>",
+                    "name": null,
                     "angle": 10
                 },
                 {
-                    "name": "<EMPTY>",
+                    "name": null,
                     "angle": 10
                 },
                 {
-                    "name": "<EMPTY>",
+                    "name": null,
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": "<EMPTY>",
+                    "name": null,
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": "<EMPTY>",
+                    "name": null,
                     "angle": -10
                 }
             ]
@@ -235,7 +235,7 @@
                     "yOffset": -30
                 },
                 {
-                    "name": "<EMPTY>",
+                    "name": null,
                     "angle": 10
                 },
                 {

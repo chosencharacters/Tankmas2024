@@ -18,8 +18,8 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 {
 	var tab_order:Array<SheetTab> = [COSTUMES, EMOTES];
 
-	var costume_sheets:FlxTypedGroupExt<CostumeSelectSheet>;
-	var emote_sheets:FlxTypedGroupExt<EmoteSelectSheet>;
+	var costume_sheets:FlxTypedGroupExt<CostumeSelectSheet> = new FlxTypedGroupExt<CostumeSelectSheet>();
+	var emote_sheets:FlxTypedGroupExt<EmoteSelectSheet> = new FlxTypedGroupExt<EmoteSelectSheet>();
 
 	var tabs:Array<SheetTab> = [COSTUMES, EMOTES];
 	var tab(get, never):SheetTab;
@@ -34,6 +34,8 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 	{
 		super();
 
+		FlxG.state.openSubState(substate = new SheetSubstate(this));
+
 		if (local_saves != null)
 		{
 			local_saves = [];
@@ -41,11 +43,9 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 				local_saves.set(tab, {selection: {x: 0, y: 0}});
 		}
 
-		FlxG.state.openSubState(substate = new SheetSubstate(this));
-
-		for (name in JsonData.costume_names)
+		for (name in JsonData.costume_sheet_names)
 			costume_sheets.add(new CostumeSelectSheet(name, this));
-		for (name in JsonData.costume_names)
+		for (name in JsonData.emote_sheet_names)
 			emote_sheets.add(new EmoteSelectSheet(name, this));
 
 		add(costume_sheets);

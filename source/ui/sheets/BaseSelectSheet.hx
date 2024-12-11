@@ -3,11 +3,13 @@ package ui.sheets;
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.EmoteDef;
+import dn.struct.Grid;
 import flixel.FlxBasic;
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
+import flixel.tweens.misc.ColorTween;
 import flixel.util.FlxTimer;
 import squid.ext.FlxTypedGroupExt;
 import ui.button.HoverButton;
@@ -26,14 +28,14 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	var description:FlxText;
 	var title:FlxText;
 
-	public var selector:FlxSpriteExt;
+	public var cursor:FlxSpriteExt;
 	public var backTab:FlxSpriteExt;
 	public var notepad:FlxSpriteExt;
 
 	var locked_sheet:Int = 0;
 	var locked_selection:Int = 0;
 
-	var selection = 0;
+	var selection:Int = 0;
 
 	final desc_group:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
 
@@ -45,8 +47,11 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	final close_speed:Float = 0.5;
 
-	var rows:Int = 4;
+	var rows:Int = 3;
 	var cols:Int = 4;
+
+	var control_cd:Int = 0;
+	var control_cd_set:Int = 10;
 
 	/**
 	 * This is private, should be only made through things that extend it
@@ -60,7 +65,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		this.menu = menu;
 		this.sheet_type = sheet_type;
 
-		sstate(INACTIVE);
+		def = load_new_def(sheet_name);
 
 		add(desc_group);
 
@@ -74,43 +79,52 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		add(backTab = new FlxSpriteExt(66 + (sheet_type == COSTUME ? 500 : 0), 130, Paths.get('${sheet_type == COSTUME ? 'emote-tab' : 'costume-tab'}.png')));
 
 		add(outline = new FlxSpriteExt(46, 219).makeGraphicExt(1446, 852, FlxColor.WHITE));
-		add(bg = new FlxSpriteExt(66, 239));
+		add(bg = new FlxSpriteExt(66, 239, Paths.image_path(def.name)));
+
+		add_sprites();
 
 		title = new FlxText(70, 70, 1420, '');
 		title.setFormat(Paths.get('CharlieType-Heavy.otf'), 60, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
 		title.borderSize = 6;
 		add(title);
 
-		def = load_new_def(sheet_name);
+		cursor = new FlxSpriteExt().one_line("sheet-selector");
+		add(cursor);
 
-		add_sprites();
+		update_cursor();
+
+		sstate(ACTIVE);
 	}
 
 	function add_sprites()
 	{
-		for (row in 0...rows)
-			for (col in 0...cols)
-				def.grid_2D[row][col] = null;
-
+		def.grid_1D = [
+			for (n in 0...(rows * cols))
+				null
+		];
+		def.grid_2D = [
+			for (c in 0...cols) [
+				for (r in 0...rows)
+					null
+			]
+		];
 		for (i in 0...def.src.items.length)
 		{
 			var item_def:SheetItemDef = def.src.items[i];
-			var button:SheetButton = new SheetButton(0, 0, item_def.name, sheet_type, (b) -> lock_choices());
+			var button:SheetButton = new SheetButton(0, 0, item_def, sheet_type, (b) -> lock_choices());
 
-			var row:Int = (i / 4).floor();
-			var col:Int = i % 4;
+			var row:Int = (i / rows).floor();
+			var col:Int = i % cols;
 
 			// initial positions
 			button.x = 190 + (340 * col);
 			button.y = 320 + (270 * row);
 
-			// add offsets
 			button.setPosition(button.x + item_def?.xOffset ?? 0, button.y + item_def?.yOffset ?? 0);
-
 			button.angle = item_def?.angle ?? 0.0;
 
 			def.grid_1D[i] = button;
-			def.grid_2D[row][col] = button;
+			def.grid_2D[col][row] = button;
 
 			add(button);
 		}
@@ -142,51 +156,52 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	function control()
 	{
-		// for (i in 0...characterSpritesArray[current_hover_sheet].length)
-		// {
-		// 	// TODO: make this mobile-friendly
-		// 	if (FlxG.mouse.overlaps(characterSpritesArray[current_hover_sheet].members[i]))
-		// 		selection = i;
-		// }
-		// if (Ctrl.cleft[1])
-		// 	selection = selection - 1;
-		// if (Ctrl.cright[1])
-		// 	selection = selection + 1;
-		// if (Ctrl.cup[1])
-		// 	selection = selection - cols;
-		// if (Ctrl.cdown[1])
-		// 	selection = selection + cols;
+		var any_button:Bool = Ctrl.cleft[1] || Ctrl.cright[1] || Ctrl.cup[1] || Ctrl.cdown[1];
 
-		// selection = FlxMath.bound(selection, 0, rows * cols);
+		control_cd--;
 
-		// if (Ctrl.jinteract[1])
-		// 	lock_choices();
+		if (control_cd > 0)
+			any_button = false;
 
-		// if (FlxG.mouse.overlaps(backTab))
-		// {
-		// 	if (backTab.y != 110)
-		// 		backTab.y = 110;
-		// 	if (FlxG.mouse.justPressed)
-		// 	{
-		// 		if (backTab.scale.x != 0.8)
-		// 			backTab.scale.set(0.8, 0.8);
-		// 		menu.next_tab();
-		// 	}
-		// 	else if (!FlxG.mouse.pressed && backTab.scale.x != 1.1)
-		// 		backTab.scale.set(1.1, 1.1);
-		// }
-		// else if (backTab.scale.x != 1)
-		// 	backTab.scale.set(1, 1);
+		if (any_button)
+		{
+			control_cd = control_cd_set;
+
+			var row:Int = (selection / rows).floor();
+			var col:Int = selection % cols;
+
+			trace(selection, row, col);
+
+			if (Ctrl.cleft[1])
+				col = col - 1;
+			if (Ctrl.cright[1])
+				col = col + 1;
+
+			if (Ctrl.cdown[1])
+				row = row + 1;
+			if (Ctrl.cup[1])
+				row = row - 1;
+
+			col = FlxMath.bound(col, 0, cols - 1).floor();
+			row = FlxMath.bound(row, 0, rows - 1).floor();
+
+			selection = col + (row * rows);
+			def.grid_1D[selection];
+
+			update_cursor();
+
+			trace(selection, row, col);
+		}
 	}
 
 	function lock_choices(shake:Bool = true) {}
 
-	function set_selection(val:Int):Int
-		return selection;
-
 	function update_sheet_graphics() {}
 
-	function update_selection_graphics() {}
+	function update_cursor()
+	{
+		cursor.center_on(def.grid_1D[selection]);
+	}
 
 	public function start_closing(?on_complete:Void->Void) {}
 

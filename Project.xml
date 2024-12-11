@@ -32,14 +32,6 @@
 	<set name="BUILD_DIR" value="export" />
 	<source path="source" />
 
-	<!-- Build with -Drelease to enable these flags -->
-	<section if="release">
-		<set name="newgrounds" unless="hl"/>
-		<haxedef name="no_radio" />
-		<haxedef name="trace_net" />
-		<haxedef name="websocket" />
-	</section>
-
 
 	<!-- When newgrounds is enabled, make sure ng-secrets.json is included -->
 	<section if="newgrounds">
