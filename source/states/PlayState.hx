@@ -164,6 +164,16 @@ class PlayState extends BaseState
 		OnlineLoop.init_room();
 
 		player.on_save_loaded();
+
+		if (OnlineLoop.is_offline)
+		{
+			ui_overlay.offline_indicator.show();
+		}
+
+		OnlineLoop.on_entered_offline_mode = () ->
+		{
+			ui_overlay.offline_indicator.show();
+		}
 	}
 
 	public function update_scroll_bounds()

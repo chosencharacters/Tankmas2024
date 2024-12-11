@@ -25,6 +25,10 @@ enum abstract WebsocketEventType(Int)
 
 	// Received when the server broadcasts a message.
 	var NotificationMessage = 12;
+
+	// The server sends this when another session is started,
+	// asks the client not to reconnect again
+	var PleaseLeave = 74;
 }
 
 typedef WebsocketEvent =
@@ -62,6 +66,7 @@ class WebsocketClient
 	var closed = false;
 
 	public var on_socket_timeout:() -> Void = null;
+	public var on_socket_closed:() -> Void = null;
 
 	public function new()
 	{
@@ -73,11 +78,17 @@ class WebsocketClient
 	public function close()
 	{
 		#if websocket
-		if (socket != null)
-			socket.close();
+		retry_connection = false;
+
 		trace('Closing socket...');
+
 		closed = true;
 		connected = false;
+
+		if (socket != null)
+			socket.close();
+		if (on_socket_closed != null)
+			on_socket_closed();
 		#end
 	}
 
@@ -114,6 +125,7 @@ class WebsocketClient
 			socket.onmessage = on_message;
 			socket.onopen = on_connect;
 			socket.onerror = on_error;
+
 			socket.onclose = on_close;
 		}
 		catch (err)
@@ -213,6 +225,12 @@ class WebsocketClient
 								username: event.username,
 							}
 							PlayState.self.on_net_event_received(net_event);
+						}
+
+						if (event.type == PleaseLeave)
+						{
+							trace('received good bye');
+							close();
 						}
 
 						if (event.type == NotificationMessage)

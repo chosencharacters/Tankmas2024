@@ -1,5 +1,6 @@
 package ui;
 
+import ui.popups.OfflineIndicator;
 import data.JsonData;
 import data.SaveManager;
 import entities.Player;
@@ -17,6 +18,8 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 	var sticker_pack:FlxSpriteExt;
 	var music_popup:MusicPopup;
 
+	public var offline_indicator:ui.popups.OfflineIndicator;
+
 	var hide_speed:Float = 0.35;
 	var reveal_speed:Float = 0.35;
 
@@ -29,6 +32,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 		add(emote = new FlxSpriteExt(20, 20, Paths.get('heart.png')));
 		add(settings = new FlxSpriteExt(1708, 20, Paths.get('settings.png')));
 		add(sticker_menu = new FlxSpriteExt(1520, 1030, Paths.get('charselect-mini-full.png')));
+		add(offline_indicator = new OfflineIndicator());
 
 		sticker_pack = new FlxSpriteExt().one_line("sticker-pack-icon");
 		// sticker_pack.setPosition(20, FlxG.height - sticker_pack.height - 20);
