@@ -1,0 +1,24 @@
+{
+    "tracks": [
+        {
+            "id": "thewanderer-everratic",
+            "name": "The Wanderer",
+            "artist": "EVERRATIC!!!"
+        },
+        {
+            "id": "dancinginthesnow-twistedfw",
+            "name": "Dancing in the Snow",
+            "artist": "TwistedFW"
+        },
+        {
+            "id": "odetosnow-leavesz",
+            "name": "Ode to Snow",
+            "artist": "Leavesz"
+        },
+        {
+            "id": "HolidayMelody-Irish-Soul",
+            "name": "Holiday Melody",
+            "artist": "Irish Soul"
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+{
+    "minigames": {
+        "bunnymark": {
+            "name": "Bunny Mark",
+            "description": "A benchmark for rendering performance",
+            "type": "overlay",
+            "crtShader": true,
+            "camera": {
+                "width": 640,
+                "height": 720,
+                "zoom": 1.5
+            }
+        },
+        "crouton": {
+            "name": "Crouton",
+            "description": "For all your crouton needs",
+            "type": "external",
+            "external": {
+                "prompt": "Need a crouton?",
+                "url": "https://crouton.net/"
+            }
+        },
+        "tankmas2018": {
+            "name": "Tankmas 2018",
+            "description": "The 2018 Newgrounds collaboration!",
+            "type": "external",
+            "external": {
+                "prompt": "Play Tankmas 2018!",
+                "url": "https://www.newgrounds.com/portal/view/721061"
+            }
+        },
+        "tankmas2019": {
+            "name": "Tankmas 2019",
+            "description": "The 2019 Newgrounds collaboration!",
+            "type": "external",
+            "external": {
+                "prompt": "Play Tankmas 2019!",
+                "url": "https://www.newgrounds.com/portal/view/743161"
+            }
+        },
+        "tankmas2020": {
+            "name": "Tankmas 2020",
+            "description": "The 2020 Newgrounds collaboration!",
+            "type": "external",
+            "external": {
+                "prompt": "Play Tankmas 2020!",
+                "url": "https://www.newgrounds.com/portal/view/773236"
+            }
+        },
+        "tankmas2021": {
+            "name": "Tankmas 2021",
+            "description": "The 2021 Newgrounds collaboration!",
+            "type": "external",
+            "external": {
+                "prompt": "Play Tankmas 2021!",
+                "url": "https://www.newgrounds.com/portal/view/824174"
+            }
+        },
+        "tankmas2022": {
+            "name": "Tankmas 2022",
+            "description": "The 2022 Newgrounds collaboration!",
+            "type": "external",
+            "external": {
+                "prompt": "Play Tankmas 2022!",
+                "url": "https://www.newgrounds.com/portal/view/865711"
+            }
+        }
+    }
+}
