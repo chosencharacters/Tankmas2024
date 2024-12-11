@@ -3,7 +3,7 @@ package squid.ext;
 import flixel.FlxSubState;
 import ui.Cursor;
 
-class FlxSubStateExt extends FlxSubState
+class FlxSubstateExt extends FlxSubState
 {
 	var tick:Float = 0;
 	var state:String = "";
