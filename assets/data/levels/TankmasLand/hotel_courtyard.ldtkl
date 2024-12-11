@@ -11,8 +11,8 @@
 	"identifier": "hotel_courtyard",
 	"iid": "95f99f60-73f0-11ef-9983-612730a885a0",
 	"uid": 0,
-	"worldX": 32,
-	"worldY": 16,
+	"worldX": 0,
+	"worldY": 0,
 	"worldDepth": 0,
 	"pxWid": 3284,
 	"pxHei": 3450,
@@ -21,13 +21,615 @@
 	"useAutoIdentifier": false,
 	"bgRelPath": "../../images/levels/maps/courtyard/hotel-courtyard-reference.png",
 	"bgPos": "Unscaled",
-	"bgPivotX": 0.5,
-	"bgPivotY": 0.5,
+	"bgPivotX": 0,
+	"bgPivotY": 0,
 	"__smartColor": "#ADADB5",
 	"__bgPos": { "topLeftPx": [0,0], "scale": [1,1], "cropRect": [0,0,3284,3450] },
 	"externalRelPath": null,
 	"fieldInstances": [],
 	"layerInstances": [
+		{
+			"__identifier": "Collision_V2",
+			"__type": "Entities",
+			"__cWid": 206,
+			"__cHei": 216,
+			"__gridSize": 16,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "a486ae80-9b00-11ef-b007-6b61027f7498",
+			"levelId": 0,
+			"layerDefUid": 46,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 9693508,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": [
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [410,626],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "29e1eef0-9b00-11ef-b007-e15f48a9cd0a",
+					"width": 752,
+					"height": 752,
+					"defUid": 45,
+					"px": [6568,10024],
+					"fieldInstances": [],
+					"__worldX": 6568,
+					"__worldY": 10024
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [49,585],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "48216090-9b00-11ef-b007-43f1199823da",
+					"width": 352,
+					"height": 352,
+					"defUid": 45,
+					"px": [792,9368],
+					"fieldInstances": [],
+					"__worldX": 792,
+					"__worldY": 9368
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [158,538],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "48e7bdd0-9b00-11ef-b007-4db7cc454217",
+					"width": 336,
+					"height": 336,
+					"defUid": 45,
+					"px": [2536,8616],
+					"fieldInstances": [],
+					"__worldX": 2536,
+					"__worldY": 8616
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [220,451],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "49afefd0-9b00-11ef-b007-bb7a0839bfd3",
+					"width": 400,
+					"height": 400,
+					"defUid": 45,
+					"px": [3528,7224],
+					"fieldInstances": [],
+					"__worldX": 3528,
+					"__worldY": 7224
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [141,834],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "4b5896c0-9b00-11ef-b007-c5732694cf98",
+					"width": 464,
+					"height": 464,
+					"defUid": 45,
+					"px": [2264,13352],
+					"fieldInstances": [],
+					"__worldX": 2264,
+					"__worldY": 13352
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [569,709],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "4d3d0e30-9b00-11ef-b007-af4d826ca627",
+					"width": 336,
+					"height": 336,
+					"defUid": 45,
+					"px": [9112,11352],
+					"fieldInstances": [],
+					"__worldX": 9112,
+					"__worldY": 11352
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [733,645],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "4e5953a0-9b00-11ef-b007-cd028ead8bce",
+					"width": 320,
+					"height": 320,
+					"defUid": 45,
+					"px": [11736,10328],
+					"fieldInstances": [],
+					"__worldX": 11736,
+					"__worldY": 10328
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [704,500],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "4fbab860-9b00-11ef-b007-d9e8fe4012eb",
+					"width": 304,
+					"height": 304,
+					"defUid": 45,
+					"px": [11272,8008],
+					"fieldInstances": [],
+					"__worldX": 11272,
+					"__worldY": 8008
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [780,441],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "626c0770-9b00-11ef-b007-c73611a4ea98",
+					"width": 336,
+					"height": 336,
+					"defUid": 45,
+					"px": [12488,7064],
+					"fieldInstances": [],
+					"__worldX": 12488,
+					"__worldY": 7064
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [633,349],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "63962f90-9b00-11ef-b007-c983e9550e81",
+					"width": 304,
+					"height": 304,
+					"defUid": 45,
+					"px": [10136,5592],
+					"fieldInstances": [],
+					"__worldX": 10136,
+					"__worldY": 5592
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [57,702],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "6aedea80-9b00-11ef-b007-1178670e621f",
+					"width": 336,
+					"height": 336,
+					"defUid": 45,
+					"px": [920,11240],
+					"fieldInstances": [],
+					"__worldX": 920,
+					"__worldY": 11240
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [788,845],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "6e5ece50-9b00-11ef-b007-5babd7495242",
+					"width": 400,
+					"height": 400,
+					"defUid": 45,
+					"px": [12616,13528],
+					"fieldInstances": [],
+					"__worldX": 12616,
+					"__worldY": 13528
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [645,539],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "813d47e0-9b00-11ef-b007-996288be8e54",
+					"width": 592,
+					"height": 592,
+					"defUid": 45,
+					"px": [10328,8632],
+					"fieldInstances": [],
+					"__worldX": 10328,
+					"__worldY": 8632
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [102,156],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "839ec7d0-9b00-11ef-b38a-e72f1dc2e824",
+					"width": 208,
+					"height": 208,
+					"defUid": 45,
+					"px": [1640,2504],
+					"fieldInstances": [],
+					"__worldX": 1640,
+					"__worldY": 2504
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [12,145],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "89214d90-9b00-11ef-b38a-95f56f9cef3a",
+					"width": 96,
+					"height": 96,
+					"defUid": 45,
+					"px": [200,2328],
+					"fieldInstances": [],
+					"__worldX": 200,
+					"__worldY": 2328
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [39,134],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "8bccbe80-9b00-11ef-b38a-a91967946f88",
+					"width": 80,
+					"height": 80,
+					"defUid": 45,
+					"px": [632,2152],
+					"fieldInstances": [],
+					"__worldX": 632,
+					"__worldY": 2152
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [55,112],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "8e50aa40-9b00-11ef-b38a-3fc81dbb1fb1",
+					"width": 64,
+					"height": 64,
+					"defUid": 45,
+					"px": [888,1800],
+					"fieldInstances": [],
+					"__worldX": 888,
+					"__worldY": 1800
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [79,69],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "905fb420-9b00-11ef-b38a-5dd50d21d975",
+					"width": 192,
+					"height": 192,
+					"defUid": 45,
+					"px": [1272,1112],
+					"fieldInstances": [],
+					"__worldX": 1272,
+					"__worldY": 1112
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [127,68],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "92495bb0-9b00-11ef-b38a-556d48187e14",
+					"width": 224,
+					"height": 224,
+					"defUid": 45,
+					"px": [2040,1096],
+					"fieldInstances": [],
+					"__worldX": 2040,
+					"__worldY": 1096
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [158,86],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "a29654f0-9b00-11ef-b38a-eb03995c7850",
+					"width": 80,
+					"height": 80,
+					"defUid": 45,
+					"px": [2536,1384],
+					"fieldInstances": [],
+					"__worldX": 2536,
+					"__worldY": 1384
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [176,124],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "a4b56460-9b00-11ef-b38a-b51ceae2ea7f",
+					"width": 96,
+					"height": 96,
+					"defUid": 45,
+					"px": [2824,1992],
+					"fieldInstances": [],
+					"__worldX": 2824,
+					"__worldY": 1992
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [194,109],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "a5db94e0-9b00-11ef-b38a-01959752e5e2",
+					"width": 112,
+					"height": 112,
+					"defUid": 45,
+					"px": [3112,1752],
+					"fieldInstances": [],
+					"__worldX": 3112,
+					"__worldY": 1752
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [183,160],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "a781a3c0-9b00-11ef-b38a-c5a88657451c",
+					"width": 96,
+					"height": 96,
+					"defUid": 45,
+					"px": [2936,2568],
+					"fieldInstances": [],
+					"__worldX": 2936,
+					"__worldY": 2568
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [142,177],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "a93ff590-9b00-11ef-b38a-ff86d16cc0a0",
+					"width": 80,
+					"height": 80,
+					"defUid": 45,
+					"px": [2280,2840],
+					"fieldInstances": [],
+					"__worldX": 2280,
+					"__worldY": 2840
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [14,175],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "ace44570-9b00-11ef-b38a-e91bd7f23f5f",
+					"width": 96,
+					"height": 96,
+					"defUid": 45,
+					"px": [232,2808],
+					"fieldInstances": [],
+					"__worldX": 232,
+					"__worldY": 2808
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [35,208],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "ae854b40-9b00-11ef-b38a-d1aa895f0b96",
+					"width": 80,
+					"height": 80,
+					"defUid": 45,
+					"px": [568,3336],
+					"fieldInstances": [],
+					"__worldX": 568,
+					"__worldY": 3336
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [197,211],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "b1140c70-9b00-11ef-b38a-19dd2447ea66",
+					"width": 112,
+					"height": 112,
+					"defUid": 45,
+					"px": [3160,3384],
+					"fieldInstances": [],
+					"__worldX": 3160,
+					"__worldY": 3384
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [27,96],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "b6d17850-9b00-11ef-b38a-5d78b95950dd",
+					"width": 96,
+					"height": 96,
+					"defUid": 45,
+					"px": [440,1544],
+					"fieldInstances": [],
+					"__worldX": 440,
+					"__worldY": 1544
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [46,84],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "b82807a0-9b00-11ef-b38a-05ab78da27f3",
+					"width": 80,
+					"height": 80,
+					"defUid": 45,
+					"px": [744,1352],
+					"fieldInstances": [],
+					"__worldX": 744,
+					"__worldY": 1352
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [9,106],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "b98d6400-9b00-11ef-b38a-815f2b4e8840",
+					"width": 112,
+					"height": 112,
+					"defUid": 45,
+					"px": [152,1704],
+					"fieldInstances": [],
+					"__worldX": 152,
+					"__worldY": 1704
+				},
+				{
+					"__identifier": "CollisionSquare",
+					"__grid": [0,14],
+					"__pivot": [0,0],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0808",
+					"iid": "bd12ba30-9b00-11ef-b38a-2346042f1aa7",
+					"width": 3280,
+					"height": 624,
+					"defUid": 44,
+					"px": [0,224],
+					"fieldInstances": [],
+					"__worldX": 0,
+					"__worldY": 224
+				},
+				{
+					"__identifier": "CollisionSquare",
+					"__grid": [0,53],
+					"__pivot": [0,0],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0808",
+					"iid": "c2376880-9b00-11ef-b38a-196835e86229",
+					"width": 48,
+					"height": 2608,
+					"defUid": 44,
+					"px": [0,848],
+					"fieldInstances": [],
+					"__worldX": 0,
+					"__worldY": 848
+				},
+				{
+					"__identifier": "CollisionSquare",
+					"__grid": [3,214],
+					"__pivot": [0,0],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0808",
+					"iid": "c6afd140-9b00-11ef-b38a-ddd366c815f5",
+					"width": 3232,
+					"height": 32,
+					"defUid": 44,
+					"px": [48,3424],
+					"fieldInstances": [],
+					"__worldX": 48,
+					"__worldY": 3424
+				},
+				{
+					"__identifier": "CollisionSquare",
+					"__grid": [203,53],
+					"__pivot": [0,0],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0808",
+					"iid": "ce906b40-9b00-11ef-b38a-3561f70b971f",
+					"width": 32,
+					"height": 2576,
+					"defUid": 44,
+					"px": [3248,848],
+					"fieldInstances": [],
+					"__worldX": 3248,
+					"__worldY": 848
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [159,132],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "7ce537f0-9b00-11ef-b38a-a953f75d42b2",
+					"width": 144,
+					"height": 144,
+					"defUid": 45,
+					"px": [2552,2120],
+					"fieldInstances": [],
+					"__worldX": 2552,
+					"__worldY": 2120
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [177,66],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "c3862210-9b00-11ef-b38a-d701e7208ea2",
+					"width": 96,
+					"height": 96,
+					"defUid": 45,
+					"px": [2840,1064],
+					"fieldInstances": [],
+					"__worldX": 2840,
+					"__worldY": 1064
+				}
+			]
+		},
 		{
 			"__identifier": "Collision",
 			"__type": "Tiles",
@@ -44,7 +646,7 @@
 			"layerDefUid": 20,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
-			"visible": true,
+			"visible": false,
 			"optionalRules": [],
 			"intGridCsv": [],
 			"autoLayerTiles": [],
@@ -10914,6 +11516,31 @@
 			"entityInstances": []
 		},
 		{
+			"__identifier": "Decorations",
+			"__type": "Entities",
+			"__cWid": 206,
+			"__cHei": 216,
+			"__gridSize": 16,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "fc6e0010-9b00-11ef-b38a-7f6a6de3871e",
+			"levelId": 0,
+			"layerDefUid": 54,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 9604855,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": []
+		},
+		{
 			"__identifier": "Entities",
 			"__type": "Entities",
 			"__cWid": 206,
@@ -10956,8 +11583,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 1, "__tile": null, "defUid": 6, "realEditorValues": [] }
 					],
-					"__worldX": 1632,
-					"__worldY": 2048
+					"__worldX": 1600,
+					"__worldY": 2032
 				},
 				{
 					"__identifier": "NPC",
@@ -10978,8 +11605,8 @@
 						}] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
 					],
-					"__worldX": 2480,
-					"__worldY": 1936
+					"__worldX": 2448,
+					"__worldY": 1920
 				},
 				{
 					"__identifier": "Activity_Area",
@@ -10997,8 +11624,8 @@
 						"id": "V_String",
 						"params": ["Bonfire"]
 					}] }],
-					"__worldX": 1680,
-					"__worldY": 2480
+					"__worldX": 1648,
+					"__worldY": 2464
 				},
 				{
 					"__identifier": "Graphic",
@@ -11019,8 +11646,8 @@
 						}] },
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
 					],
-					"__worldX": 1243,
-					"__worldY": 1354
+					"__worldX": 1211,
+					"__worldY": 1338
 				},
 				{
 					"__identifier": "Present",
@@ -11041,8 +11668,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 2, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [2] }] }
 					],
-					"__worldX": 1500,
-					"__worldY": 1768
+					"__worldX": 1468,
+					"__worldY": 1752
 				},
 				{
 					"__identifier": "Present",
@@ -11063,8 +11690,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 3, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [3] }] }
 					],
-					"__worldX": 2254,
-					"__worldY": 1715
+					"__worldX": 2222,
+					"__worldY": 1699
 				},
 				{
 					"__identifier": "Present",
@@ -11085,8 +11712,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 4, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
 					],
-					"__worldX": 1968,
-					"__worldY": 1840
+					"__worldX": 1936,
+					"__worldY": 1824
 				},
 				{
 					"__identifier": "NPC",
@@ -11107,8 +11734,8 @@
 						}] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
 					],
-					"__worldX": 128,
-					"__worldY": 3056
+					"__worldX": 96,
+					"__worldY": 3040
 				},
 				{
 					"__identifier": "Present",
@@ -11129,8 +11756,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 5, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [5] }] }
 					],
-					"__worldX": 1104,
-					"__worldY": 1712
+					"__worldX": 1072,
+					"__worldY": 1696
 				},
 				{
 					"__identifier": "Present",
@@ -11151,8 +11778,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 6, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [6] }] }
 					],
-					"__worldX": 1328,
-					"__worldY": 2016
+					"__worldX": 1296,
+					"__worldY": 2000
 				},
 				{
 					"__identifier": "Door",
@@ -11181,8 +11808,8 @@
 							"params": ["182,131"]
 						}] }
 					],
-					"__worldX": 3216,
-					"__worldY": 1712
+					"__worldX": 3184,
+					"__worldY": 1696
 				},
 				{
 					"__identifier": "Player",
@@ -11197,8 +11824,8 @@
 					"defUid": 1,
 					"px": [1568,1040],
 					"fieldInstances": [],
-					"__worldX": 1600,
-					"__worldY": 1056
+					"__worldX": 1568,
+					"__worldY": 1040
 				},
 				{
 					"__identifier": "Graphic",
@@ -11219,8 +11846,8 @@
 						}] },
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
 					],
-					"__worldX": 3072,
-					"__worldY": 2144
+					"__worldX": 3040,
+					"__worldY": 2128
 				},
 				{
 					"__identifier": "Graphic",
@@ -11241,8 +11868,8 @@
 						}] },
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
 					],
-					"__worldX": 2768,
-					"__worldY": 2256
+					"__worldX": 2736,
+					"__worldY": 2240
 				},
 				{
 					"__identifier": "Graphic",
@@ -11263,8 +11890,8 @@
 						}] },
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
 					],
-					"__worldX": 2496,
-					"__worldY": 2304
+					"__worldX": 2464,
+					"__worldY": 2288
 				},
 				{
 					"__identifier": "NPC",
@@ -11288,8 +11915,8 @@
 							"params": ["1733709600"]
 						}] }
 					],
-					"__worldX": 1264,
-					"__worldY": 1280
+					"__worldX": 1232,
+					"__worldY": 1264
 				},
 				{
 					"__identifier": "NPC",
@@ -11313,8 +11940,8 @@
 							"params": ["1733720100"]
 						}] }
 					],
-					"__worldX": 544,
-					"__worldY": 2240
+					"__worldX": 512,
+					"__worldY": 2224
 				},
 				{
 					"__identifier": "Door",
@@ -11338,13 +11965,13 @@
 							"id": "V_String",
 							"params": ["176c1a30-9b00-11ef-927c-7de4dba6853e"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 104, "cy": 77 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 102, "cy": 75 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["104,77"]
+							"params": ["102,75"]
 						}] }
 					],
-					"__worldX": 1376,
-					"__worldY": 848
+					"__worldX": 1344,
+					"__worldY": 832
 				}
 			]
 		},
@@ -11358,7 +11985,7 @@
 			"__pxTotalOffsetX": 0,
 			"__pxTotalOffsetY": 0,
 			"__tilesetDefUid": 4,
-			"__tilesetRelPath": null,
+			"__tilesetRelPath": "../../images/props/decorations_lg.png",
 			"iid": "2119f760-73f0-11ef-9983-e99c931b1228",
 			"levelId": 0,
 			"layerDefUid": 9,

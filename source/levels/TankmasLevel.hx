@@ -129,6 +129,31 @@ class TankmasLevel extends LDTKLevel
 					PlayState.self.props_foreground.add(sprite);
 			}
 		}
+
+		var colls = PlayState.self.collisions;
+		for (c in level.l_Collision_V2.all_CollisionCircle)
+		{
+			var wx = x + c.pixelX;
+			var wy = y + c.pixelY;
+			colls.add_circle(wx, wy, c.height * 0.5);
+		}
+
+		for (c in level.l_Collision_V2.all_CollisionSquare)
+		{
+			var wx = x + c.pixelX;
+			var wy = y + c.pixelY;
+			colls.add_rect(wx, wy, c.width, c.height);
+		}
+
+		for (c in level.l_Collision_V2.all_SlopeNE)
+			colls.add_slope_ne(x + c.pixelX, y + c.pixelY, c.width, c.height);
+		for (c in level.l_Collision_V2.all_SlopeNW)
+			colls.add_slope_nw(x + c.pixelX, y + c.pixelY, c.width, c.height);
+		for (c in level.l_Collision_V2.all_SlopeSE)
+			colls.add_slope_se(x + c.pixelX, y + c.pixelY, c.width, c.height);
+		for (c in level.l_Collision_V2.all_SlopeSW)
+			colls.add_slope_sw(x + c.pixelX, y + c.pixelY, c.width, c.height);
+
 		/**put entity iterators here**/
 		/* 
 			example:

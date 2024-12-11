@@ -1,5 +1,6 @@
 package entities;
 
+import differ.shapes.Circle;
 import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
@@ -24,7 +25,7 @@ class Player extends BaseUser
 
 	var auto_moving:Bool = false;
 	var auto_move_dest:FlxPoint;
-	final auto_move_deadzone:Int = 32;
+	final auto_move_deadzone:Int = 50;
 
 	var wavedash_cd:Int = 0;
 
@@ -33,6 +34,10 @@ class Player extends BaseUser
 	public var can_enter_doors(get, default):Bool;
 
 	var prev_data:Dynamic = {};
+
+	var collision_shape:Circle = new Circle(0, 0, 60);
+
+	var dbug_sprite:FlxSprite;
 
 	public function new(?X:Float, ?Y:Float)
 	{
@@ -63,6 +68,10 @@ class Player extends BaseUser
 		sprite_anim.anim(PlayerAnimation.MOVING);
 
 		sstate(NEUTRAL);
+
+		dbug_sprite = new FlxSprite(8, 8);
+		PlayState.self.objects.add(dbug_sprite);
+		dbug_sprite.visible = false;
 	}
 
 	// Called once the save data is up to date after fetching it from the server.
@@ -78,8 +87,25 @@ class Player extends BaseUser
 
 	public function start_auto_move(auto_move_dest:FlxPoint)
 	{
-		this.auto_move_dest = auto_move_dest.copy();
-		auto_moving = true;
+		var pos = getPosition();
+		pos.x += width * 0.5;
+		pos.y += height - 20;
+		var dist = auto_move_dest.dist(pos);
+
+		if (dist > auto_move_deadzone * 2)
+		{
+			this.auto_move_dest = auto_move_dest.copy();
+			auto_moving = true;
+		}
+
+		var delta_x = auto_move_dest.x - getMidpoint().x;
+
+		flipX = delta_x > 0;
+	}
+
+	public function stop_auto_move()
+	{
+		auto_moving = false;
 	}
 
 	function debug_rotate_costumes()
@@ -102,7 +128,28 @@ class Player extends BaseUser
 			wavedash_cd--;
 
 		fsm();
+
+		resolve_collision(elapsed);
+
 		super.update(elapsed);
+	}
+
+	function resolve_collision(elapsed:Float)
+	{
+		collision_shape.x = x + width * 0.5 + velocity.x * elapsed;
+		collision_shape.y = y + height + velocity.y * elapsed - 20;
+
+		dbug_sprite.x = collision_shape.x;
+		dbug_sprite.y = collision_shape.y;
+
+		var vel_l = velocity.length;
+
+		var res = PlayState.self.collisions.resolve_circle(collision_shape);
+		if (res != null)
+		{
+			x += res.dx;
+			y += res.dy;
+		}
 	}
 
 	override function updateMotion(elapsed:Float)
@@ -150,12 +197,11 @@ class Player extends BaseUser
 		if (Ctrl.jemote[1] && !MinigameHandler.instance.is_minigame_active())
 			use_sticker(SaveManager.current_emote);
 
+		var moving = false;
 		if (auto_moving)
-			auto_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
+			moving = auto_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
 		else
-			manual_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
-
-		var moving:Bool = !NO_KEYS && Ctrl.mode.can_move || auto_moving;
+			moving = manual_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
 
 		// keeping the sheet menus right next to each other makes sense, no?
 
@@ -166,6 +212,8 @@ class Player extends BaseUser
 
 	function auto_movement(UP:Bool, DOWN:Bool, LEFT:Bool, RIGHT:Bool, NO_KEYS:Bool)
 	{
+		if (!Ctrl.mode.can_move)
+			return false;
 		// only move if we're not within deadzones
 		var within_x_deadzone:Bool = Math.abs(auto_move_dest.x - mp.x) <= auto_move_deadzone;
 		var within_y_deadzone:Bool = Math.abs(auto_move_dest.y - mp.y) <= auto_move_deadzone;
@@ -181,9 +229,13 @@ class Player extends BaseUser
 				UP = auto_move_dest.y < mp.y;
 				DOWN = !UP;
 		}*/
-		FlxVelocity.moveTowardsPoint(this, auto_move_dest, move_speed);
 
-		flipX = velocity.x > 0;
+		var dist = distance(auto_move_dest);
+		var move_speed_scale = Math.min(dist / 100.0, 1.0);
+
+		FlxVelocity.moveTowardsPoint(this, auto_move_dest, move_speed * move_speed_scale);
+
+		// flipX = velocity.x > 0;
 
 		// normally we'd snap to position on this deadzone condition but we can do that later cause you could use it to clip through walls
 		// if we're not careful
@@ -191,39 +243,50 @@ class Player extends BaseUser
 		{
 			velocity.scale(0.5, 0.5);
 			auto_moving = false;
+			return false;
 		}
+
+		return dist > auto_move_deadzone;
 
 		// manual_movement(UP, DOWN, LEFT, RIGHT, NO_KEYS);
 	}
 
 	function manual_movement(UP:Bool, DOWN:Bool, LEFT:Bool, RIGHT:Bool, NO_KEYS:Bool)
 	{
-		if (Ctrl.mode.can_move)
-		{
-			var reversing_x:Bool = velocity.x > 0 && LEFT || velocity.x < 0 && RIGHT;
-			var reversing_y:Bool = velocity.y > 0 && UP || velocity.y < 0 && DOWN;
+		if (!Ctrl.mode.can_move)
+			return false;
 
-			var move_speed_x:Float = move_speed / move_acl * (reversing_x ? move_reverse_mod : 1);
-			var move_speed_y:Float = move_speed / move_acl * (reversing_y ? move_reverse_mod : 1);
+		var reversing_x:Bool = velocity.x > 0 && LEFT || velocity.x < 0 && RIGHT;
+		var reversing_y:Bool = velocity.y > 0 && UP || velocity.y < 0 && DOWN;
 
-			if (UP)
-				velocity.y -= move_speed_y;
-			else if (DOWN)
-				velocity.y += move_speed_y;
+		var move_speed_x:Float = move_speed / move_acl * (reversing_x ? move_reverse_mod : 1);
+		var move_speed_y:Float = move_speed / move_acl * (reversing_y ? move_reverse_mod : 1);
 
-			if (LEFT)
-				velocity.x -= move_speed_x;
-			else if (RIGHT)
-				velocity.x += move_speed_x;
+		var dir_y = 0;
+		var dir_x = 0;
 
-			if (LEFT || RIGHT)
-				flipX = RIGHT;
+		if (UP)
+			dir_y -= 1;
+		if (DOWN)
+			dir_y += 1;
 
-			if (!LEFT && !RIGHT)
-				velocity.x = velocity.x * move_no_input_drag;
-			if (!UP && !DOWN)
-				velocity.y = velocity.y * move_no_input_drag;
-		}
+		if (LEFT)
+			dir_x -= 1;
+		if (RIGHT)
+			dir_x += 1;
+
+		velocity.y += move_speed_y * dir_y;
+		velocity.x += move_speed_x * dir_x;
+
+		if (dir_x != 0)
+			flipX = dir_x > 0;
+
+		if (dir_x == 0)
+			velocity.x = velocity.x * move_no_input_drag;
+		if (dir_y == 0)
+			velocity.y = velocity.y * move_no_input_drag;
+
+		return dir_x != 0 || dir_y != 0;
 	}
 
 	function post_start_stop()
