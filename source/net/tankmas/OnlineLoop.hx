@@ -73,7 +73,7 @@ class OnlineLoop
 	{
 		#if offline return; #end
 
-		#if (dev && test_local)
+		#if (dev && test_local && !newgrounds)
 		Main.session_id = 'test_session';
 		#end
 

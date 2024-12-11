@@ -9,11 +9,11 @@ import flixel.util.FlxTimer;
 import squid.ext.FlxSubStateExt;
 import ui.sheets.SheetMenu;
 
-class SheetSubstate extends FlxSubStateExt
+class SheetSubState extends FlxSubStateExt
 {
 	var sheet_menu:SheetMenu;
 
-	public static var self:SheetSubstate;
+	public static var self:SheetSubState;
 
 	override public function new(sheet_menu:SheetMenu)
 	{

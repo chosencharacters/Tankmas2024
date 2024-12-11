@@ -1,5 +1,6 @@
 package states;
 
+import physics.CollisionResolver;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -77,8 +78,12 @@ class PlayState extends BaseState
 	// No idea how I could get this into the overlay ui
 	public var notification_message:ServerNotificationMessagePopup;
 
+	public var collisions:physics.CollisionResolver;
+
 	public function new(?world_to_load:String)
 	{
+		collisions = new CollisionResolver();
+
 		if (world_to_load != null)
 			current_world = world_to_load
 		else
@@ -218,7 +223,9 @@ class PlayState extends BaseState
 	}
 
 	function handle_collisions()
-		FlxG.collide(level_collision, player);
+	{
+		// FlxG.collide(level_collision, hitboxes);
+	}
 
 	override function destroy()
 	{
