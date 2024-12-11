@@ -37,6 +37,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	var selection:Int = 0;
 
+	var current_button(get, default):SheetButton;
+
 	final desc_group:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
 
 	public var seen:Array<String> = [];
@@ -78,7 +80,6 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 		add(backTab = new FlxSpriteExt(66 + (sheet_type == COSTUME ? 500 : 0), 130, Paths.get('${sheet_type == COSTUME ? 'emote-tab' : 'costume-tab'}.png')));
 
-		add(outline = new FlxSpriteExt(46, 219).makeGraphicExt(1446, 852, FlxColor.WHITE));
 		add(bg = new FlxSpriteExt(66, 239, Paths.image_path(def.name)));
 
 		add_sprites();
@@ -113,15 +114,17 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			var item_def:SheetItemDef = def.src.items[i];
 			var button:SheetButton = new SheetButton(0, 0, item_def, sheet_type, (b) -> lock_choices());
 
-			var row:Int = (i / rows).floor();
+			var row:Int = (i / cols).floor();
 			var col:Int = i % cols;
 
 			// initial positions
 			button.x = 190 + (340 * col);
 			button.y = 320 + (270 * row);
 
-			button.setPosition(button.x + item_def?.xOffset ?? 0, button.y + item_def?.yOffset ?? 0);
+			// button.setPosition(button.x + item_def?.xOffset ?? 0, button.y + item_def?.yOffset ?? 0);
 			button.angle = item_def?.angle ?? 0.0;
+
+			trace(i, col, row, item_def.name, button.x, button.y, i / rows);
 
 			def.grid_1D[i] = button;
 			def.grid_2D[col][row] = button;
@@ -167,30 +170,33 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		{
 			control_cd = control_cd_set;
 
-			var row:Int = (selection / rows).floor();
+			def.grid_1D[selection].manual_button_hover = false;
+
 			var col:Int = selection % cols;
+			var row:Int = (selection / cols).floor();
 
-			trace(selection, row, col);
+			var on_max_left:Bool = col == 0;
+			var on_max_right:Bool = col == cols - 1;
+			var on_max_up:Bool = row == 0;
+			var on_max_down:Bool = row == rows - 1;
 
-			if (Ctrl.cleft[1])
-				col = col - 1;
-			if (Ctrl.cright[1])
-				col = col + 1;
+			// trace('pre: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
 
-			if (Ctrl.cdown[1])
-				row = row + 1;
-			if (Ctrl.cup[1])
-				row = row - 1;
+			if (Ctrl.cleft[1] && !on_max_left)
+				selection = selection - 1;
+			if (Ctrl.cright[1] && !on_max_right)
+				selection = selection + 1;
 
-			col = FlxMath.bound(col, 0, cols - 1).floor();
-			row = FlxMath.bound(row, 0, rows - 1).floor();
+			if (Ctrl.cup[1] && !on_max_up)
+				selection = selection - cols;
+			if (Ctrl.cdown[1] && !on_max_down)
+				selection = selection + cols;
 
-			selection = col + (row * rows);
-			def.grid_1D[selection];
+			// trace('post: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
+
+			def.grid_1D[selection].manual_button_hover = true;
 
 			update_cursor();
-
-			trace(selection, row, col);
 		}
 	}
 
@@ -200,7 +206,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	function update_cursor()
 	{
-		cursor.center_on(def.grid_1D[selection]);
+		cursor.center_on(current_button);
+		cursor.angle = current_button.angle;
 	}
 
 	public function start_closing(?on_complete:Void->Void) {}
@@ -213,6 +220,9 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	function save_selection()
 		throw "not implemented";
+
+	function get_current_button():SheetButton
+		return def.grid_1D[selection];
 }
 
 enum abstract SheetType(String) from String to String

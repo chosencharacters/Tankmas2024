@@ -44,9 +44,11 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		}
 
 		for (name in JsonData.costume_sheet_names)
-			costume_sheets.add(new CostumeSelectSheet(name, this));
+			if (name == "costumes-series-1")
+				costume_sheets.add(new CostumeSelectSheet(name, this));
 		for (name in JsonData.emote_sheet_names)
-			emote_sheets.add(new EmoteSelectSheet(name, this));
+			if (name == "costumes-back-red")
+				emote_sheets.add(new EmoteSelectSheet(name, this));
 
 		add(costume_sheets);
 		add(emote_sheets);

@@ -10,6 +10,8 @@ class HoverButton extends FlxSpriteExt
 
 	var enabled:Bool = true;
 
+	public var manual_button_hover:Bool = false;
+
 	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset, ?on_release:HoverButton->Void)
 	{
 		super(X, Y, SimpleGraphic);
@@ -18,7 +20,7 @@ class HoverButton extends FlxSpriteExt
 
 	override function update(elapsed:Float)
 	{
-		var hovering:Bool = FlxG.mouse.overlaps(this) && enabled;
+		var hovering:Bool = FlxG.mouse.overlaps(this) && enabled || manual_button_hover;
 		var hover_scale:Float = hovering ? 1.1 : 1;
 
 		if (hovering)
