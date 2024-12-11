@@ -37,8 +37,6 @@ enum abstract RoomId(Int) from Int from Int
 
 class TankmasLevel extends LDTKLevel
 {
-	public var col:FlxTilemap;
-
 	public var bg:FlxSpriteExt;
 	public var fg:FlxSpriteExt;
 
@@ -65,34 +63,6 @@ class TankmasLevel extends LDTKLevel
 		var image:String = data.json.bgRelPath.split("/").last().replace_multiple(["-reference", "-background", "-foreground", ".png", ".jpg"], "");
 		PlayState.self.level_backgrounds.add(bg = new FlxSpriteExt(x, y, Paths.image_path('$image-background')));
 		PlayState.self.level_foregrounds.add(fg = new FlxSpriteExt(x, y, Paths.image_path('$image-foreground')));
-
-		// col = new FlxTilemap();
-
-		// trace(data.l_Collision.iid);
-
-		// col.loadMapFromArray(data.l_Collision.json.intGridCsv, lvl_width, lvl_height, Paths.get("tile-collision.png"), 32, 32);
-
-		// trace(data.l_Collision.json.intGridCsv);
-
-		// for (i in data.l_Collision.json.intGridCsv)
-		// {
-		// 	// trace(data.l_Collision.intGrid.get(i));
-		// 	if (data.l_Collision.intGrid.get(i) > 0)
-		// 	{
-		// 		trace(i);
-		// 	}
-		// 	col.setTileByIndex(i, data.l_Collision.json.intGridCsv[i]);
-		// }
-
-		// col.setPosition(x, y);
-
-		PlayState.self.level_collision.add(col = new LDTKLevel(level_name, Paths.get("tile-collision.png")));
-		col.setPosition(x, y);
-		col.setTileProperties(0, FlxDirectionFlags.NONE);
-		col.setTileProperties(1, FlxDirectionFlags.ANY);
-
-		//		for (i in [0, 3, 4])
-		// col.setTileProperties(i, FlxObject.NONE);
 	}
 
 	public function place_entities()
@@ -135,14 +105,14 @@ class TankmasLevel extends LDTKLevel
 		}
 
 		var colls = PlayState.self.collisions;
-		for (c in level.l_Collision_V2.all_CollisionCircle)
+		for (c in level.l_Collision.all_CollisionCircle)
 		{
 			var wx = x + c.pixelX;
 			var wy = y + c.pixelY;
 			colls.add_circle(wx, wy, c.height * 0.5);
 		}
 
-		for (c in level.l_Collision_V2.all_CollisionSquare)
+		for (c in level.l_Collision.all_CollisionSquare)
 		{
 			var wx = x + c.pixelX;
 			var wy = y + c.pixelY;
@@ -157,13 +127,14 @@ class TankmasLevel extends LDTKLevel
 					new GamingDevice(x + c.pixelY, y + c.pixelY);
 			}
 		}
-		for (c in level.l_Collision_V2.all_SlopeNE)
+
+		for (c in level.l_Collision.all_SlopeNE)
 			colls.add_slope_ne(x + c.pixelX, y + c.pixelY, c.width, c.height);
-		for (c in level.l_Collision_V2.all_SlopeNW)
+		for (c in level.l_Collision.all_SlopeNW)
 			colls.add_slope_nw(x + c.pixelX, y + c.pixelY, c.width, c.height);
-		for (c in level.l_Collision_V2.all_SlopeSE)
+		for (c in level.l_Collision.all_SlopeSE)
 			colls.add_slope_se(x + c.pixelX, y + c.pixelY, c.width, c.height);
-		for (c in level.l_Collision_V2.all_SlopeSW)
+		for (c in level.l_Collision.all_SlopeSW)
 			colls.add_slope_sw(x + c.pixelX, y + c.pixelY, c.width, c.height);
 
 		/**put entity iterators here**/
