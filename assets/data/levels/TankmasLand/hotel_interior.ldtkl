@@ -15,16 +15,16 @@
 	"worldY": 0,
 	"worldDepth": 0,
 	"pxWid": 3188,
-	"pxHei": 4096,
+	"pxHei": 4208,
 	"__bgColor": "#696A79",
 	"bgColor": null,
 	"useAutoIdentifier": false,
 	"bgRelPath": "../../images/levels/maps/courtyard/hotel-lobby-background.jpg",
-	"bgPos": "Cover",
-	"bgPivotX": 0.5,
-	"bgPivotY": 0.5,
+	"bgPos": "Unscaled",
+	"bgPivotX": 0,
+	"bgPivotY": 0,
 	"__smartColor": "#ADADB5",
-	"__bgPos": { "topLeftPx": [0,0], "scale": [1,1], "cropRect": [0,54.5,3188,4096] },
+	"__bgPos": { "topLeftPx": [0,0], "scale": [1,1], "cropRect": [0,0,3188,4205] },
 	"externalRelPath": null,
 	"fieldInstances": [],
 	"layerInstances": [
@@ -858,7 +858,7 @@
 			"__identifier": "Collision",
 			"__type": "Tiles",
 			"__cWid": 100,
-			"__cHei": 128,
+			"__cHei": 132,
 			"__gridSize": 32,
 			"__opacity": 1,
 			"__pxTotalOffsetX": 0,
@@ -2322,10 +2322,35 @@
 			"entityInstances": []
 		},
 		{
+			"__identifier": "Decorations",
+			"__type": "Entities",
+			"__cWid": 200,
+			"__cHei": 263,
+			"__gridSize": 16,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "fc6e2720-9b00-11ef-b38a-b52c155056c9",
+			"levelId": 15,
+			"layerDefUid": 54,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 6537530,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": []
+		},
+		{
 			"__identifier": "Entities",
 			"__type": "Entities",
 			"__cWid": 200,
-			"__cHei": 256,
+			"__cHei": 263,
 			"__gridSize": 16,
 			"__opacity": 1,
 			"__pxTotalOffsetX": 0,
@@ -2347,7 +2372,7 @@
 			"entityInstances": [
 				{
 					"__identifier": "Player",
-					"__grid": [58,37],
+					"__grid": [100,232],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -2356,10 +2381,10 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 1,
-					"px": [928,592],
+					"px": [1600,3712],
 					"fieldInstances": [],
-					"__worldX": 928,
-					"__worldY": 592
+					"__worldX": 1600,
+					"__worldY": 3712
 				},
 				{
 					"__identifier": "Door",
@@ -2372,7 +2397,7 @@
 					"width": 544,
 					"height": 80,
 					"defUid": 14,
-					"px": [1408,4016],
+					"px": [1408,4128],
 					"fieldInstances": [
 						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
 							"entityIid": "216c5fe0-9b00-11ef-927c-83b2d79945e9",
@@ -2383,13 +2408,13 @@
 							"id": "V_String",
 							"params": ["216c5fe0-9b00-11ef-927c-83b2d79945e9"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 104, "cy": 232 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 104, "cy": 247 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["104,232"]
+							"params": ["104,247"]
 						}] }
 					],
 					"__worldX": 1408,
-					"__worldY": 4016
+					"__worldY": 4128
 				},
 				{
 					"__identifier": "NPC",
@@ -2661,13 +2686,13 @@
 			"__identifier": "Tiles",
 			"__type": "Tiles",
 			"__cWid": 200,
-			"__cHei": 256,
+			"__cHei": 263,
 			"__gridSize": 16,
 			"__opacity": 1,
 			"__pxTotalOffsetX": 0,
 			"__pxTotalOffsetY": 0,
 			"__tilesetDefUid": 4,
-			"__tilesetRelPath": null,
+			"__tilesetRelPath": "../../images/props/decorations_lg.png",
 			"iid": "0b13d4d3-9b00-11ef-9354-891d49a8af30",
 			"levelId": 15,
 			"layerDefUid": 9,

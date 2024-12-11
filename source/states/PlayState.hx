@@ -1,5 +1,6 @@
 package states;
 
+import physics.CollisionResolver;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;

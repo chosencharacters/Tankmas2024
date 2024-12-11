@@ -23,6 +23,8 @@ class Cursor extends FlxSpriteExt
 		sstate(NEUTRAL);
 
 		update(0);
+
+		visible = !FlxG.onMobile;
 	}
 
 	override function update(elapsed:Float)

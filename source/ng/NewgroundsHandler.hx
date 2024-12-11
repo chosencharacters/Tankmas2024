@@ -81,8 +81,8 @@ class NewgroundsHandler
 				switch (outcome)
 				{
 					case FAIL(error):
-						// If session is invalid/expired, request NG Passport.
-						on_ng_passport_required();
+						// If session is invalid/expired,
+						create_new_session(on_ng_passport_required);
 					default:
 				}
 			}).send();
@@ -91,11 +91,25 @@ class NewgroundsHandler
 		}
 
 		// No session found, gotta use newgrounds passport.
-		on_ng_passport_required();
+		create_new_session(on_ng_passport_required);
+	}
+
+	var ng_passport_url:String = null;
+
+	function create_new_session(on_ng_passport_required:Void->Void)
+	{
+		NG.core.requestLogin(null, (passport_url) ->
+		{
+			this.ng_passport_url = passport_url;
+			on_ng_passport_required();
+		});
 	}
 
 	public function launch_newgrounds_passport()
-		NG.core.requestLogin();
+	{
+		FlxG.openURL(ng_passport_url);
+		NG.core.onPassportUrlOpen();
+	}
 
 	function load_medal_defs()
 	{

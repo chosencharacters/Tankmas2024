@@ -157,6 +157,14 @@ class TankmasLevel extends LDTKLevel
 					new GamingDevice(x + c.pixelY, y + c.pixelY);
 			}
 		}
+		for (c in level.l_Collision_V2.all_SlopeNE)
+			colls.add_slope_ne(x + c.pixelX, y + c.pixelY, c.width, c.height);
+		for (c in level.l_Collision_V2.all_SlopeNW)
+			colls.add_slope_nw(x + c.pixelX, y + c.pixelY, c.width, c.height);
+		for (c in level.l_Collision_V2.all_SlopeSE)
+			colls.add_slope_se(x + c.pixelX, y + c.pixelY, c.width, c.height);
+		for (c in level.l_Collision_V2.all_SlopeSW)
+			colls.add_slope_sw(x + c.pixelX, y + c.pixelY, c.width, c.height);
 
 		/**put entity iterators here**/
 		/* 

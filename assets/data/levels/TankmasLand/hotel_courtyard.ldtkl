@@ -11,8 +11,8 @@
 	"identifier": "hotel_courtyard",
 	"iid": "95f99f60-73f0-11ef-9983-612730a885a0",
 	"uid": 0,
-	"worldX": 32,
-	"worldY": 16,
+	"worldX": 0,
+	"worldY": 0,
 	"worldDepth": 0,
 	"pxWid": 3284,
 	"pxHei": 3450,
@@ -21,8 +21,8 @@
 	"useAutoIdentifier": false,
 	"bgRelPath": "../../images/levels/maps/courtyard/hotel-courtyard-reference.png",
 	"bgPos": "Unscaled",
-	"bgPivotX": 0.5,
-	"bgPivotY": 0.5,
+	"bgPivotX": 0,
+	"bgPivotY": 0,
 	"__smartColor": "#ADADB5",
 	"__bgPos": { "topLeftPx": [0,0], "scale": [1,1], "cropRect": [0,0,3284,3450] },
 	"externalRelPath": null,
@@ -11228,6 +11228,31 @@
 			"entityInstances": []
 		},
 		{
+			"__identifier": "Decorations",
+			"__type": "Entities",
+			"__cWid": 206,
+			"__cHei": 216,
+			"__gridSize": 16,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "fc6e0010-9b00-11ef-b38a-7f6a6de3871e",
+			"levelId": 0,
+			"layerDefUid": 54,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 9604855,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": []
+		},
+		{
 			"__identifier": "Entities",
 			"__type": "Entities",
 			"__cWid": 206,
@@ -11270,8 +11295,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 1, "__tile": null, "defUid": 6, "realEditorValues": [] }
 					],
-					"__worldX": 1632,
-					"__worldY": 2048
+					"__worldX": 1600,
+					"__worldY": 2032
 				},
 				{
 					"__identifier": "NPC",
@@ -11292,8 +11317,8 @@
 						}] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
 					],
-					"__worldX": 2480,
-					"__worldY": 1936
+					"__worldX": 2448,
+					"__worldY": 1920
 				},
 				{
 					"__identifier": "Activity_Area",
@@ -11311,8 +11336,8 @@
 						"id": "V_String",
 						"params": ["Bonfire"]
 					}] }],
-					"__worldX": 1680,
-					"__worldY": 2480
+					"__worldX": 1648,
+					"__worldY": 2464
 				},
 				{
 					"__identifier": "Graphic",
@@ -11333,8 +11358,8 @@
 						}] },
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
 					],
-					"__worldX": 1243,
-					"__worldY": 1354
+					"__worldX": 1211,
+					"__worldY": 1338
 				},
 				{
 					"__identifier": "Present",
@@ -11355,8 +11380,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 2, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [2] }] }
 					],
-					"__worldX": 1500,
-					"__worldY": 1768
+					"__worldX": 1468,
+					"__worldY": 1752
 				},
 				{
 					"__identifier": "Present",
@@ -11377,8 +11402,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 3, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [3] }] }
 					],
-					"__worldX": 2254,
-					"__worldY": 1715
+					"__worldX": 2222,
+					"__worldY": 1699
 				},
 				{
 					"__identifier": "Present",
@@ -11399,8 +11424,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 4, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [4] }] }
 					],
-					"__worldX": 1968,
-					"__worldY": 1840
+					"__worldX": 1936,
+					"__worldY": 1824
 				},
 				{
 					"__identifier": "NPC",
@@ -11421,8 +11446,8 @@
 						}] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
 					],
-					"__worldX": 128,
-					"__worldY": 3056
+					"__worldX": 96,
+					"__worldY": 3040
 				},
 				{
 					"__identifier": "Present",
@@ -11443,8 +11468,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 5, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [5] }] }
 					],
-					"__worldX": 1104,
-					"__worldY": 1712
+					"__worldX": 1072,
+					"__worldY": 1696
 				},
 				{
 					"__identifier": "Present",
@@ -11465,8 +11490,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 6, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [6] }] }
 					],
-					"__worldX": 1328,
-					"__worldY": 2016
+					"__worldX": 1296,
+					"__worldY": 2000
 				},
 				{
 					"__identifier": "Door",
@@ -11495,8 +11520,8 @@
 							"params": ["182,131"]
 						}] }
 					],
-					"__worldX": 3216,
-					"__worldY": 1712
+					"__worldX": 3184,
+					"__worldY": 1696
 				},
 				{
 					"__identifier": "Player",
@@ -11511,8 +11536,8 @@
 					"defUid": 1,
 					"px": [1568,1040],
 					"fieldInstances": [],
-					"__worldX": 1600,
-					"__worldY": 1056
+					"__worldX": 1568,
+					"__worldY": 1040
 				},
 				{
 					"__identifier": "Graphic",
@@ -11533,8 +11558,8 @@
 						}] },
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
 					],
-					"__worldX": 3072,
-					"__worldY": 2144
+					"__worldX": 3040,
+					"__worldY": 2128
 				},
 				{
 					"__identifier": "Graphic",
@@ -11555,8 +11580,8 @@
 						}] },
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
 					],
-					"__worldX": 2768,
-					"__worldY": 2256
+					"__worldX": 2736,
+					"__worldY": 2240
 				},
 				{
 					"__identifier": "Graphic",
@@ -11577,8 +11602,8 @@
 						}] },
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
 					],
-					"__worldX": 2496,
-					"__worldY": 2304
+					"__worldX": 2464,
+					"__worldY": 2288
 				},
 				{
 					"__identifier": "NPC",
@@ -11602,8 +11627,8 @@
 							"params": ["1733709600"]
 						}] }
 					],
-					"__worldX": 1264,
-					"__worldY": 1280
+					"__worldX": 1232,
+					"__worldY": 1264
 				},
 				{
 					"__identifier": "NPC",
@@ -11627,8 +11652,8 @@
 							"params": ["1733720100"]
 						}] }
 					],
-					"__worldX": 544,
-					"__worldY": 2240
+					"__worldX": 512,
+					"__worldY": 2224
 				},
 				{
 					"__identifier": "Door",
@@ -11652,13 +11677,13 @@
 							"id": "V_String",
 							"params": ["176c1a30-9b00-11ef-927c-7de4dba6853e"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 104, "cy": 77 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 102, "cy": 75 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["104,77"]
+							"params": ["102,75"]
 						}] }
 					],
-					"__worldX": 1376,
-					"__worldY": 848
+					"__worldX": 1344,
+					"__worldY": 832
 				}
 			]
 		},
@@ -11672,7 +11697,7 @@
 			"__pxTotalOffsetX": 0,
 			"__pxTotalOffsetY": 0,
 			"__tilesetDefUid": 4,
-			"__tilesetRelPath": null,
+			"__tilesetRelPath": "../../images/props/decorations_lg.png",
 			"iid": "2119f760-73f0-11ef-9983-e99c931b1228",
 			"levelId": 0,
 			"layerDefUid": 9,
