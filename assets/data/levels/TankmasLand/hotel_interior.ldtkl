@@ -1677,7 +1677,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [98,214],
+					"__grid": [98,221],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1686,7 +1686,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1568,3424],
+					"px": [1568,3536],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "karlestonchew", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1695,11 +1695,11 @@
 						{ "__identifier": "day", "__type": "Int", "__value": 9, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [9] }] }
 					],
 					"__worldX": 1568,
-					"__worldY": 3424
+					"__worldY": 3536
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [83,196],
+					"__grid": [71,209],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1708,7 +1708,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1328,3136],
+					"px": [1136,3344],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "bellvonartsy", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1716,12 +1716,12 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 8, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [8] }] }
 					],
-					"__worldX": 1328,
-					"__worldY": 3136
+					"__worldX": 1136,
+					"__worldY": 3344
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [112,197],
+					"__grid": [125,210],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1730,7 +1730,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1792,3152],
+					"px": [2000,3360],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "mkmaffo", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1738,8 +1738,8 @@
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 7, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [7] }] }
 					],
-					"__worldX": 1792,
-					"__worldY": 3152
+					"__worldX": 2000,
+					"__worldY": 3360
 				},
 				{
 					"__identifier": "NPC",
@@ -1765,7 +1765,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [98,182],
+					"__grid": [98,177],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1774,7 +1774,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1568,2912],
+					"px": [1568,2832],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "konansaurus", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1783,7 +1783,29 @@
 						{ "__identifier": "day", "__type": "Int", "__value": 10, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [10] }] }
 					],
 					"__worldX": 1568,
-					"__worldY": 2912
+					"__worldY": 2832
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [98,195],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "895273b0-9b00-11ef-acfc-c1b2116b4284",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1568,3120],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "ectosludge", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ectosludge"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 11, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [11] }] }
+					],
+					"__worldX": 1568,
+					"__worldY": 3120
 				}
 			]
 		},

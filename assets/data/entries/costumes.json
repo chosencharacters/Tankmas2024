@@ -198,16 +198,12 @@
         {
             "name": "geometry-dash-cube",
             "display": "Cube",
-            "desc": "No one knows their name, no one knows where they come from, but what everyone knows is that whatever happens, they ride. And give Audio Mods a headache when people really want them to ride to copyrighted music.",
-            "unlock": "DATE",
-            "data": 1733805000
+            "desc": "No one knows their name, no one knows where they come from, but what everyone knows is that whatever happens, they ride. And give Audio Mods a headache when people really want them to ride to copyrighted music."
         }, 
         {
             "name": "fancy-pants",
             "display": "Fancy Pants Man",
-            "desc": "They'll slide, jump, and break boundaries in how a Flash platformer can move all to get ice cream. There's never been a stick figure any fancier on Newgrounds, that's for sure!",
-            "unlock": "DATE",
-            "data": 1733805000
+            "desc": "They'll slide, jump, and break boundaries in how a Flash platformer can move all to get ice cream. There's never been a stick figure any fancier on Newgrounds, that's for sure!"
         },
         {
             "name": "captain-steve",
@@ -278,6 +274,20 @@
             "desc": "He loves chocolate chip cookies, the technically-cannibal that he is.",
             "unlock": "USERNAME",
             "data": "dungeonation"
+        },
+        {
+            "name": "nox",
+            "display": "NOX",
+            "desc": "The self-appointed judge, jury, and executioner of the Court of Public Opinion, and a model social media influencer.",
+            "unlock": "DATE",
+            "data": 1733893200
+        },
+        {
+            "name": "tarboy",
+            "display": "Tarboy",
+            "desc": "Out of the tar came the boy MADE of tar. He called himself, 'Tarboy', and boy was he mad. All of his mind filled with the pain of millions of robot slaves. For he was them.",
+            "unlock": "DATE",
+            "data": 1733893200
         }
     ]
 }
