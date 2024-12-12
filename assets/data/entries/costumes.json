@@ -308,6 +308,20 @@
             "display": "Samurai Asshole",
             "desc": "The ronin samurai, lost in his perpetual search for honor, and guided by a burning vengeance for the one who destroyed his village. Fights peniliens and doesn't afraid of anything.",
             "unlock": "SUPPORTER"
+        },
+        {
+            "name": "skid",
+            "display": "Skid",
+            "desc": "IT'S SPOOKY MONTH!!!",
+            "unlock": "USERNAME",
+            "data": "tamag0"
+        },
+        {
+            "name": "pump",
+            "display": "Pump",
+            "desc": "IT'S SPOOKY MONTH!!!",
+            "unlock": "USERNAME",
+            "data": "srpelo"
         }
     ]
 }

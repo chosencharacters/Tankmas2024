@@ -27,7 +27,7 @@ class Main extends Sprite
 	public static var ng_api:NewgroundsHandler;
 	#end
 
-	public static var default_sticker_collection:Array<String> = ["common-tamago", "ilho-gift"];
+	public static var default_sticker_collection:Array<String> = ["common-tamago", "gimme-five", "john-sticker", "why-coal"];
 	public static var default_sticker:String = "common-tamago";
 
 	public static var default_costume_collection:Array<String> = ["tankman", "paco"];
@@ -43,7 +43,7 @@ class Main extends Sprite
 
 	public static function main():Void
 	{
-		// We need to make the crash handler LITERALLY FIRST so nothing EVER gets past it.
+		// We need to make the crash handler LITERALLY FIRST so nothing EVER gets past it.why-coal
 		CrashHandler.initialize();
 		CrashHandler.queryStatus();
 

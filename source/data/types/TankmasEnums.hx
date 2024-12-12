@@ -31,7 +31,7 @@ enum abstract UnlockCondition(String) from String to String
 	{
 		#if all_unlocked
 		return true;
-		#end
+		#else
 		switch (cast(condition, UnlockCondition))
 		{
 			default:
@@ -56,6 +56,7 @@ enum abstract UnlockCondition(String) from String to String
 				return false;
 				#end
 		}
+		#end
 	}
 }
 
