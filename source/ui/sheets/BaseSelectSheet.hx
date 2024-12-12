@@ -183,8 +183,9 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			var on_max_up:Bool = row == 0;
 			var on_max_down:Bool = row == rows - 1;
 
-			trace('pre: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
+			// trace('pre: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
 
+			trace("this aint right");
 			if (Ctrl.cleft[1])
 			{
 				if (on_max_left)
@@ -211,7 +212,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			if (Ctrl.cdown[1] && !on_max_down)
 				selection = selection + cols;
 
-			trace('post: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
+			// trace('post: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
 
 			def.grid_1D[selection].manual_button_hover = true;
 

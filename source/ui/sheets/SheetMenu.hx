@@ -57,8 +57,8 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		if (local_saves == null)
 		{
 			local_saves = [];
-			for (tab_name in [COSTUMES, EMOTES])
-				local_saves.set(tab_name, {sheet_name: "costumes-series-1", selection: 0});
+			local_saves.set(COSTUMES, {sheet_name: "costumes-series-1", selection: 0});
+			local_saves.set(EMOTES, {sheet_name: "emotes-back-red", selection: 0});
 		}
 
 		select_sheet(tab, local_saves.get(COSTUMES));
@@ -78,6 +78,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	public function select_sheet(tab:SheetType, sheet_position:SheetPosition)
 	{
+		trace(tab, sheet_position);
 		switch (tab)
 		{
 			case COSTUMES:
@@ -88,7 +89,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 						sheet.selection = sheet_position.selection;
 					sheet.set_sheet_active(sheet.visible);
 				}
-				while (costume_sheets.members[0].visible)
+				while (!costume_sheets.members[0].visible)
 					costume_sheets.members.push(costume_sheets.members.shift());
 			case EMOTES:
 				for (sheet in emote_sheets)
@@ -98,22 +99,34 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 						sheet.selection = sheet_position.selection;
 					sheet.set_sheet_active(sheet.visible);
 				}
-				while (emote_sheets.members[0].visible)
+				while (!emote_sheets.members[0].visible)
 					emote_sheets.members.push(emote_sheets.members.shift());
 		}
 	}
 
-	public function prev_page() {}
+	public function prev_page()
+	{
+		get_current_group().members.unshift(get_current_group().members.pop());
+		local_saves.get(tab).sheet_name = cast(get_current_group().members[0], BaseSelectSheet).def.name;
+		local_saves.get(tab).selection = 0;
+
+		select_sheet(tab, local_saves.get(tab));
+	}
 
 	public function next_page()
 	{
+		trace(current_group_order(), tab, local_saves.get(tab));
+
 		get_current_group().members.push(get_current_group().members.shift());
 		local_saves.get(tab).sheet_name = cast(get_current_group().members[0], BaseSelectSheet).def.name;
 		local_saves.get(tab).selection = 0;
 
-		trace(local_saves.get(tab));
+		trace(current_group_order(), tab, local_saves.get(tab));
 		select_sheet(tab, local_saves.get(tab));
 	}
+
+	function current_group_order():Array<String>
+		return get_current_group().members.map((member) -> cast(member, BaseSelectSheet).def.name.split("-").last());
 
 	function back_button_activated()
 	{
