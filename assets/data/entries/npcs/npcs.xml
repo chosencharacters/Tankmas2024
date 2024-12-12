@@ -16,6 +16,13 @@
             <dlg>"I died before I could live."</dlg>
         </state>
     </npc>
+    <npc name="concierge-invisible">
+        <state name="default">
+            <dlg>Yes. This is the concierge. Are you in need of something?</dlg>
+            <dlg>I am busy. You can make me busier.</dlg>
+            <dlg>As it is. Please move to the side for someone else to make me busy.</dlg>
+        </state>
+    </npc>
     <npc name="concierge">
         <state name="default">
             <dlg>Hello... Hello... Dear guests...</dlg>
