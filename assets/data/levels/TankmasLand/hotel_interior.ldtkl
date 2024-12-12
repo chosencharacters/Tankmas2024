@@ -246,19 +246,19 @@
 				},
 				{
 					"__identifier": "CollisionSquare",
-					"__grid": [68,1006],
+					"__grid": [68,1021],
 					"__pivot": [0,0],
 					"__tags": ["Collision"],
 					"__tile": null,
 					"__smartColor": "#FF0808",
 					"iid": "e200db50-9b00-11ef-b007-57ebee42d0fe",
 					"width": 2612,
-					"height": 76,
+					"height": 16,
 					"defUid": 44,
-					"px": [272,4024],
+					"px": [272,4084],
 					"fieldInstances": [],
 					"__worldX": 272,
-					"__worldY": 4024
+					"__worldY": 4084
 				},
 				{
 					"__identifier": "CollisionCircle",

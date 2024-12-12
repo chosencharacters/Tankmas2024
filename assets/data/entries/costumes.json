@@ -307,9 +307,7 @@
             "name": "samurai-asshole",
             "display": "Samurai Asshole",
             "desc": "The ronin samurai, lost in his perpetual search for honor, and guided by a burning vengeance for the one who destroyed his village. Fights peniliens and doesn't afraid of anything.",
-            "unlock": "SUPPORTER",
-            "fx": "sakura",
-            "walk": "hop"
+            "unlock": "SUPPORTER"
         }
     ]
 }
