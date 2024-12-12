@@ -9,12 +9,30 @@ import ui.Button.BackButton;
 import ui.button.HoverButton;
 import ui.sheets.BaseSelectSheet.SheetType;
 
+typedef SheetPosition =
+{
+	var sheet_name:String;
+	var selection:Int;
+}
+
 class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 {
 	var tab_order:Array<SheetType> = [COSTUMES, EMOTES];
 
 	var costume_sheets:FlxTypedGroupExt<CostumeSelectSheet> = new FlxTypedGroupExt<CostumeSelectSheet>();
 	var emote_sheets:FlxTypedGroupExt<EmoteSelectSheet> = new FlxTypedGroupExt<EmoteSelectSheet>();
+
+	function get_current_group():FlxTypedGroupExt<Dynamic>
+	{
+		switch (tab)
+		{
+			case COSTUMES:
+				return costume_sheets;
+			case EMOTES:
+				return emote_sheets;
+		}
+		return null;
+	}
 
 	var tabs:Array<SheetType> = [COSTUMES, EMOTES];
 	var tab(get, never):SheetType;
@@ -23,7 +41,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	var substate:SheetSubstate;
 
-	public static var local_saves:Map<SheetType, {selection:{x:Int, y:Int}}>;
+	public static var local_saves:Map<SheetType, SheetPosition>;
 
 	public function new(open_on_tab:SheetType = COSTUMES)
 	{
@@ -31,20 +49,19 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 		FlxG.state.openSubState(substate = new SheetSubstate(this));
 
-		if (local_saves != null)
-		{
-			local_saves = [];
-			for (tab in [COSTUMES, EMOTES])
-				local_saves.set(tab, {selection: {x: 0, y: 0}});
-		}
-
 		for (name in JsonData.costume_sheet_names)
-			if (name == "costumes-series-1")
-				costume_sheets.add(new CostumeSelectSheet(name, this));
+			costume_sheets.add(new CostumeSelectSheet(name, this));
 		for (name in JsonData.emote_sheet_names)
 			emote_sheets.add(new EmoteSelectSheet(name, this));
 
-		trace(JsonData.emote_sheet_names);
+		if (local_saves == null)
+		{
+			local_saves = [];
+			for (tab_name in [COSTUMES, EMOTES])
+				local_saves.set(tab_name, {sheet_name: "costumes-series-1", selection: 0});
+		}
+
+		select_sheet(tab, local_saves.get(COSTUMES));
 
 		add(costume_sheets);
 		add(emote_sheets);
@@ -57,6 +74,45 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		back_button.offset.y = -back_button.height;
 		back_button.tween = FlxTween.tween(back_button.offset, {y: 0}, 0.25, {ease: FlxEase.cubeInOut});
 		update_tab_states();
+	}
+
+	public function select_sheet(tab:SheetType, sheet_position:SheetPosition)
+	{
+		switch (tab)
+		{
+			case COSTUMES:
+				for (sheet in costume_sheets)
+				{
+					sheet.visible = sheet_position.sheet_name == sheet.def.name;
+					if (sheet.visible)
+						sheet.selection = sheet_position.selection;
+					sheet.set_sheet_active(sheet.visible);
+				}
+				while (costume_sheets.members[0].visible)
+					costume_sheets.members.push(costume_sheets.members.shift());
+			case EMOTES:
+				for (sheet in emote_sheets)
+				{
+					sheet.visible = sheet_position.sheet_name == sheet.def.name;
+					if (sheet.visible)
+						sheet.selection = sheet_position.selection;
+					sheet.set_sheet_active(sheet.visible);
+				}
+				while (emote_sheets.members[0].visible)
+					emote_sheets.members.push(emote_sheets.members.shift());
+		}
+	}
+
+	public function prev_page() {}
+
+	public function next_page()
+	{
+		get_current_group().members.push(get_current_group().members.shift());
+		local_saves.get(tab).sheet_name = cast(get_current_group().members[0], BaseSelectSheet).def.name;
+		local_saves.get(tab).selection = 0;
+
+		trace(local_saves.get(tab));
+		select_sheet(tab, local_saves.get(tab));
 	}
 
 	function back_button_activated()

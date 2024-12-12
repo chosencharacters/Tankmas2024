@@ -20,7 +20,8 @@ import ui.sheets.defs.SheetDefs;
 class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 {
 	var sheet_type:SheetType;
-	var def:SheetMenuDef;
+
+	public var def:SheetMenuDef;
 
 	var outline:FlxSpriteExt;
 	var bg:FlxSpriteExt;
@@ -35,7 +36,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	var locked_sheet:Int = 0;
 	var locked_selection:Int = 0;
 
-	var selection:Int = 0;
+	public var selection(default, set):Int = 0;
 
 	var current_button(get, default):SheetButton;
 
@@ -54,6 +55,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	var control_cd:Int = 0;
 	var control_cd_set:Int = 10;
+
+	var multi_page:Bool = true;
 
 	/**
 	 * This is private, should be only made through things that extend it
@@ -180,19 +183,35 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			var on_max_up:Bool = row == 0;
 			var on_max_down:Bool = row == rows - 1;
 
-			// trace('pre: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
+			trace('pre: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
 
-			if (Ctrl.cleft[1] && !on_max_left)
-				selection = selection - 1;
-			if (Ctrl.cright[1] && !on_max_right)
-				selection = selection + 1;
+			if (Ctrl.cleft[1])
+			{
+				if (on_max_left)
+				{
+					menu.prev_page();
+					return;
+				}
+				else
+					selection = selection - 1;
+			}
+			if (Ctrl.cright[1])
+			{
+				if (on_max_right)
+				{
+					menu.next_page();
+					return;
+				}
+				else
+					selection = selection + 1;
+			}
 
 			if (Ctrl.cup[1] && !on_max_up)
 				selection = selection - cols;
 			if (Ctrl.cdown[1] && !on_max_down)
 				selection = selection + cols;
 
-			// trace('post: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
+			trace('post: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
 
 			def.grid_1D[selection].manual_button_hover = true;
 
@@ -223,6 +242,13 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	function get_current_button():SheetButton
 		return def.grid_1D[selection];
+
+	function set_selection(val:Int):Int
+	{
+		selection = val;
+		update_cursor();
+		return selection;
+	}
 }
 
 enum abstract SheetType(String) from String to String
