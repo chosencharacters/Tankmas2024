@@ -256,7 +256,6 @@ class SaveManager
 		FlxG.save.data.currentEmote = current_emote;
 		// FlxG.save.data.savedEmoteSheet = EmoteSelectSheet.saved_sheet;
 		// FlxG.save.data.savedEmoteSelect = EmoteSelectSheet.saved_selection;
-		FlxG.save.data.seenEmotes = EmoteSelectSheet.seenStickers;
 		if (force)
 			flush();
 	}

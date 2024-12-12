@@ -7,30 +7,25 @@ import squid.ext.FlxTypedGroupExt;
 import states.substates.SheetSubstate;
 import ui.Button.BackButton;
 import ui.button.HoverButton;
-
-enum SheetTab
-{
-	COSTUMES;
-	EMOTES;
-}
+import ui.sheets.BaseSelectSheet.SheetType;
 
 class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 {
-	var tab_order:Array<SheetTab> = [COSTUMES, EMOTES];
+	var tab_order:Array<SheetType> = [COSTUMES, EMOTES];
 
 	var costume_sheets:FlxTypedGroupExt<CostumeSelectSheet> = new FlxTypedGroupExt<CostumeSelectSheet>();
 	var emote_sheets:FlxTypedGroupExt<EmoteSelectSheet> = new FlxTypedGroupExt<EmoteSelectSheet>();
 
-	var tabs:Array<SheetTab> = [COSTUMES, EMOTES];
-	var tab(get, never):SheetTab;
+	var tabs:Array<SheetType> = [COSTUMES, EMOTES];
+	var tab(get, never):SheetType;
 
 	var back_button:HoverButton;
 
 	var substate:SheetSubstate;
 
-	public static var local_saves:Map<SheetTab, {selection:{x:Int, y:Int}}>;
+	public static var local_saves:Map<SheetType, {selection:{x:Int, y:Int}}>;
 
-	public function new(open_on_tab:SheetTab = COSTUMES)
+	public function new(open_on_tab:SheetType = COSTUMES)
 	{
 		super();
 
@@ -47,8 +42,9 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 			if (name == "costumes-series-1")
 				costume_sheets.add(new CostumeSelectSheet(name, this));
 		for (name in JsonData.emote_sheet_names)
-			if (name == "costumes-back-red")
-				emote_sheets.add(new EmoteSelectSheet(name, this));
+			emote_sheets.add(new EmoteSelectSheet(name, this));
+
+		trace(JsonData.emote_sheet_names);
 
 		add(costume_sheets);
 		add(emote_sheets);
@@ -83,7 +79,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 	override function set_visible(visible:Bool):Bool
 		return this.visible = visible;
 
-	function cycle_tabs_until(new_tab:SheetTab)
+	function cycle_tabs_until(new_tab:SheetType)
 		while (tab != new_tab)
 			next_tab();
 
@@ -96,15 +92,13 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	public function update_tab_states()
 	{
-		/*
-			for (sheet in members)
-				sheet.visible = sheet == current;
-			for (sheet in members)
-				sheet.set_sheet_active(sheet == current);
-		 */
+		for (sheet in members)
+			sheet.visible = sheet == members[0];
+		for (sheet in members)
+			sheet.active = sheet == members[0];
 	}
 
-	function get_tab():SheetTab
+	function get_tab():SheetType
 		return tabs[0];
 
 	public function start_closing(?on_complete:Void->Void)

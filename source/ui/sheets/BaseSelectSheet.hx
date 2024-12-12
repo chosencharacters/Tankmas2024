@@ -60,7 +60,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	 * @param saved_sheet
 	 * @param saved_selection
 	 */
-	function new(sheet_name:String, menu:SheetMenu, ?sheet_type:SheetType = COSTUME)
+	function new(sheet_name:String, menu:SheetMenu, ?sheet_type:SheetType = COSTUMES)
 	{
 		super();
 
@@ -78,7 +78,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		description.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
 		desc_group.add(description);
 
-		add(backTab = new FlxSpriteExt(66 + (sheet_type == COSTUME ? 500 : 0), 130, Paths.get('${sheet_type == COSTUME ? 'emote-tab' : 'costume-tab'}.png')));
+		add(backTab = new FlxSpriteExt(66 + (sheet_type == COSTUMES ? 0 : 500), 130, Paths.get('${sheet_type == COSTUMES ? 'costume-tab' : 'emote-tab'}.png')));
 
 		add(bg = new FlxSpriteExt(66, 239, Paths.image_path(def.name)));
 
@@ -227,8 +227,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 enum abstract SheetType(String) from String to String
 {
-	final COSTUME;
-	final STICKER;
+	final COSTUMES;
+	final EMOTES;
 }
 
 private enum abstract State(String) from String to String

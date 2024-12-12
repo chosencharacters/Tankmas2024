@@ -13,7 +13,7 @@ class CostumeSelectSheet extends BaseSelectSheet
 
 	public function new(sheet_name:String, menu:SheetMenu, ?forceState:Bool = true)
 	{
-		super(sheet_name, menu, COSTUME);
+		super(sheet_name, menu, COSTUMES);
 		seen = seenCostumes.copy();
 	}
 
