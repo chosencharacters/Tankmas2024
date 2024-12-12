@@ -7,6 +7,7 @@ import data.types.TankmasEnums.PlayerAnimation;
 import entities.base.NGSprite;
 import net.tankmas.NetDefs.NetEventDef;
 import net.tankmas.NetDefs.NetEventType;
+import squid.sprite.TempSprite;
 
 // TEst enum for pet types
 enum abstract PetType(String) from String to String
@@ -40,11 +41,24 @@ class BaseUser extends NGSprite
 		scale: 1.0,
 	}
 
+	var sakura_fx_rate:Int = 20;
+
+	var move_anim_name(get, never):String;
+
+	function get_move_anim_name():String
+	{
+		if (costume.walk != null)
+			return costume.walk;
+		return "moving";
+	}
+
 	public function new(?X:Float, ?Y:Float, username:String, costume:String = "tankman")
 	{
 		super(X, Y);
 
 		type = "base-user";
+
+		ran = new FlxRandom();
 
 		this.username = username;
 
@@ -67,6 +81,12 @@ class BaseUser extends NGSprite
 		drag.set(300, 300);
 	}
 
+	override function update(elapsed:Float)
+	{
+		ttick();
+		super.update(elapsed);
+	}
+
 	public function use_sticker(sticker_name:String):Bool
 	{
 		if (this.sticker_name == sticker_name)
@@ -83,11 +103,28 @@ class BaseUser extends NGSprite
 			default:
 			case "idle" | null:
 				if (moving)
-					sprite_anim.anim(PlayerAnimation.MOVING);
-			case "moving":
+					sprite_anim.anim(get_move_animation());
+			case move_anim_name:
+				walk_fx();
 				if (!moving)
 					sprite_anim.anim(PlayerAnimation.IDLE);
 		}
+	}
+
+	function walk_fx()
+	{
+		/*
+			switch (costume.fx)
+			{
+				case "sakura":
+					if (tick % sakura_fx_rate == 1)
+					{
+						var big:Bool = ran.int(0, 100) > 50;
+						var fx:TempSprite = new TempSprite('sakura-${big ? 'small' : 'medium'}', PlayState.self.user_fx);
+						fx.setPosition(x + (flipX ? width : 0), y + height - fx.height);
+						fx.flipX = flipX;
+					}
+		}*/
 	}
 
 	public function new_costume(costume:CostumeDef)
@@ -227,4 +264,15 @@ class BaseUser extends NGSprite
 	public function pet_changed(pet_type:PetType) {}
 
 	public function scale_changed(scale:Float) {}
+
+	function get_move_animation():PlayerAnimation
+	{
+		switch (move_anim_name)
+		{
+			default:
+				return PlayerAnimation.MOVING;
+			case "hop":
+				return PlayerAnimation.HOPPING;
+		}
+	}
 }

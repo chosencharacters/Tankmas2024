@@ -10,6 +10,8 @@ typedef CostumeDef =
 	var ?desc:String;
 	var ?unlock:UnlockCondition;
 	var ?data:Dynamic;
+	var ?fx:String;
+	var ?walk:String;
 }
 
 typedef TrackDef =

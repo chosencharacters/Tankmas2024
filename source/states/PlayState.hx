@@ -52,6 +52,8 @@ class PlayState extends BaseState
 	public var props_background:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 	public var props_foreground:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 
+	public var user_fx:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
+
 	public var levels:FlxTypedGroup<TankmasLevel> = new FlxTypedGroup<TankmasLevel>();
 	public var level_backgrounds:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 	public var level_collision:FlxTypedGroup<FlxTilemap> = new FlxTypedGroup<FlxTilemap>();
@@ -118,6 +120,8 @@ class PlayState extends BaseState
 		add(username_tags);
 		add(users);
 		add(objects);
+
+		add(user_fx);
 
 		add(level_foregrounds);
 		add(props_foreground);

@@ -93,4 +93,8 @@
 		<anim name="release" looping="false">2t4</anim>
 		<anim name="to-hold" looping="false">5t8</anim> 
 	</animSet>
+
+	<animSet image="sakura-small||sakura-medium">
+		<anim name="idle" fps="100ms" looping="false">0t17</anim>
+	</animSet>
 </root>

@@ -113,7 +113,7 @@
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "samurai-asshole",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
@@ -184,13 +184,13 @@
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "nene",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "darnell",
                     "angle": -10
                 }
             ]

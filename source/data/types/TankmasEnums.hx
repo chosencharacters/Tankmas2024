@@ -119,6 +119,37 @@ enum abstract PlayerAnimation(SpriteAnimationDef) from SpriteAnimationDef to Spr
 			},
 		]
 	};
+	public static final HOPPING:SpriteAnimationDef = {
+		name: "hopping",
+		fps: Utils.ms_to_frames_per_second("20ms"),
+		looping: true,
+		frames: [
+			{
+				duration: 2,
+				y: 0
+			},
+			{
+				duration: 2,
+				y: -20
+			},
+			{
+				duration: 2,
+				y: -40
+			},
+			{
+				duration: 2,
+				y: -30
+			},
+			{
+				duration: 2,
+				y: -10
+			},
+			{
+				duration: 2,
+				y: -4
+			},
+		]
+	};
 
 	public static final START_STOP:SpriteAnimationDef = {
 		name: "start-stop",
