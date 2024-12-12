@@ -100,7 +100,7 @@ class BaseUser extends NGSprite
 	{
 		switch (sprite_anim.name)
 		{
-			default:
+			// default:
 			case "idle" | null:
 				if (moving)
 					sprite_anim.anim(get_move_animation());

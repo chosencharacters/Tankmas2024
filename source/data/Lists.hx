@@ -49,15 +49,6 @@ class Lists
 
 		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("npcs.xml"));
 
-		/*
-			var xml:String = "";
-
-			for (file in Utils.get_every_file_of_type(".json", "${assets_path}images/npcs/beach"))
-			{
-				var clean_file:String = StringTools.replace(file.split("/").pop(), ".json", "");
-				xml = xml + json_to_aseprite(clean_file);
-		}*/
-
 		animSets.clear();
 		textStorage.clear();
 
