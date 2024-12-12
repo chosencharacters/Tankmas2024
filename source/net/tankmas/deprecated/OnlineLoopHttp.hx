@@ -266,9 +266,6 @@ class OnlineLoopHttp
 			update_user_visual(username, def);
 		}
 
-		PlayState.self.users.remove(PlayState.self.player, true);
-		PlayState.self.users.add(PlayState.self.player);
-
 		rooms_get_tick_rate = data.tick_rate * rooms_get_tick_rate_multiplier;
 		rooms_post_tick_rate = data.tick_rate * rooms_post_tick_rate_multiplier;
 

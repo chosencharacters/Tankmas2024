@@ -63,8 +63,12 @@ class OnlineLoop
 
 	static var websocket:WebsocketClient;
 
+	public static var on_entered_offline_mode:Void->Void = null;
+
 	static function get_current_timestamp():Float
 		return haxe.Timer.stamp();
+
+	public static var is_offline = false;
 
 	/**
 	 * Runs once at game startup
@@ -77,6 +81,12 @@ class OnlineLoop
 		Main.session_id = 'test_session';
 		#end
 
+		if (is_offline)
+		{
+			trace('Player is offline, do nothing.');
+			return;
+		}
+
 		if (websocket == null)
 		{
 			trace('initing online loop');
@@ -88,6 +98,18 @@ class OnlineLoop
 		force_send_full_user = true;
 
 		last_websocket_player_tick_timestamp = current_timestamp;
+
+		websocket.on_socket_closed = OnlineLoop.on_websocket_died;
+		websocket.on_socket_timeout = OnlineLoop.on_websocket_died;
+	}
+
+	static function on_websocket_died()
+	{
+		OnlineLoop.is_offline = true;
+		if (OnlineLoop.on_entered_offline_mode != null)
+		{
+			OnlineLoop.on_entered_offline_mode();
+		}
 	}
 
 	/**
