@@ -15,6 +15,7 @@ enum abstract RoomId(Int) from Int from Int
 {
 	final HotelCourtyard = 1;
 	final HotelInterior = 2;
+	final Theatre = 3;
 
 	public static function from_string(world_identifier:String):RoomId
 	{
@@ -24,6 +25,8 @@ enum abstract RoomId(Int) from Int from Int
 				return HotelInterior;
 			case "outside_hotel":
 				return HotelCourtyard;
+			case "theatre":
+				return Theatre;
 		}
 
 		throw 'Could not find room id by name ${world_identifier}, 
