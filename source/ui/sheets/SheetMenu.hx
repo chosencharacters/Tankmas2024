@@ -111,18 +111,19 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		local_saves.get(tab).selection = 0;
 
 		select_sheet(tab, local_saves.get(tab));
+
+		get_current_group().members[0].update_unlocks();
 	}
 
 	public function next_page()
 	{
-		trace(current_group_order(), tab, local_saves.get(tab));
-
 		get_current_group().members.push(get_current_group().members.shift());
 		local_saves.get(tab).sheet_name = cast(get_current_group().members[0], BaseSelectSheet).def.name;
 		local_saves.get(tab).selection = 0;
 
-		trace(current_group_order(), tab, local_saves.get(tab));
 		select_sheet(tab, local_saves.get(tab));
+
+		get_current_group().members[0].update_unlocks();
 	}
 
 	function current_group_order():Array<String>

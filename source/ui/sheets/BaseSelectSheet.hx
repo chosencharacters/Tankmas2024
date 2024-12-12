@@ -26,7 +26,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	var outline:FlxSpriteExt;
 	var bg:FlxSpriteExt;
 
-	var description:FlxText;
+	var description_text:FlxText;
 	var title:FlxText;
 
 	public var cursor:FlxSpriteExt;
@@ -40,7 +40,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	var current_button(get, default):SheetButton;
 
-	final desc_group:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
+	final description_group:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
 
 	public var seen:Array<String> = [];
 
@@ -72,18 +72,23 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 		def = load_new_def(sheet_name);
 
-		add(desc_group);
+		bg = new FlxSpriteExt(66, 239, Paths.image_path(def.name));
 
-		notepad = new FlxSpriteExt(1490, 300, Paths.get("sticker-sheet-note.png"));
-		desc_group.add(notepad);
+		notepad = new FlxSpriteExt(bg.x + bg.width, 300, Paths.image_path("notepad"));
+		description_group.add(notepad);
 
-		description = new FlxText(1500, 325, 420, '');
-		description.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
-		desc_group.add(description);
+		description_text = new FlxText(notepad.x, notepad.y, 420, '');
+		description_text.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
+		description_group.add(description_text);
 
-		add(backTab = new FlxSpriteExt(66 + (sheet_type == COSTUMES ? 0 : 500), 130, Paths.get('${sheet_type == COSTUMES ? 'costume-tab' : 'emote-tab'}.png')));
+		backTab = new FlxSpriteExt(66 + (sheet_type == COSTUMES ? 0 : 500), 130, Paths.get('${sheet_type == COSTUMES ? 'costume-tab' : 'emote-tab'}.png'));
 
-		add(bg = new FlxSpriteExt(66, 239, Paths.image_path(def.name)));
+		add(notepad);
+		add(description_group);
+
+		add(backTab);
+
+		add(bg);
 
 		add_sprites();
 
@@ -99,6 +104,10 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 		sstate(ACTIVE);
 	}
+
+	public function update_unlocks()
+		for (button in def.grid_1D)
+			button.update_unlocked();
 
 	function add_sprites()
 	{
@@ -127,7 +136,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			// button.setPosition(button.x + item_def?.xOffset ?? 0, button.y + item_def?.yOffset ?? 0);
 			button.angle = item_def?.angle ?? 0.0;
 
-			trace(i, col, row, item_def.name, button.x, button.y, i / rows);
+			// trace(i, col, row, item_def.name, button.x, button.y, i / rows);
 
 			def.grid_1D[i] = button;
 			def.grid_2D[col][row] = button;
@@ -185,7 +194,6 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 			// trace('pre: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
 
-			trace("this aint right");
 			if (Ctrl.cleft[1])
 			{
 				if (on_max_left)
