@@ -91,6 +91,8 @@
 	<haxelib name="ldtk-haxe-api"/>
 	<haxelib name="datetime" />
 
+	<haxelib name="differ" />
+
 	<!--Follow instructions in scripts! This needs core-haxe-->
 	<haxelib name="http" />
 
