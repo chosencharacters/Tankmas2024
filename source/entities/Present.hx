@@ -89,7 +89,7 @@ class Present extends Interactable
 
 	function get_time_activated():Bool
 	{
-		if (timelock != null && timelock > 0)
+		if (timelock > 0)
 			return Main.time.utc >= timelock;
 		return Main.time.day >= def.day;
 	}
