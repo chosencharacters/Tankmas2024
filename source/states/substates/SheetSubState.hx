@@ -13,7 +13,7 @@ class SheetSubstate extends FlxSubstateExt
 {
 	var sheet_menu:SheetMenu;
 
-	public static var self:SheetSubState;
+	public static var self:SheetSubstate;
 
 	override public function new(sheet_menu:SheetMenu)
 	{

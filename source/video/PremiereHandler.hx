@@ -1,5 +1,6 @@
 package video;
 
+import haxe.io.Float32Array;
 import net.tankmas.TankmasClient;
 
 typedef PremiereData =
@@ -7,6 +8,12 @@ typedef PremiereData =
 	var name:String;
 	var timestamp:Int;
 	var url:String;
+	var released:Bool;
+}
+
+typedef PremiereList =
+{
+	var premieres:Array<PremiereData>;
 }
 
 class PremiereHandler
@@ -15,6 +22,7 @@ class PremiereHandler
 	 * Called when the data has been retrieved and the next premiere has been selected.
 	 */
 	public var on_loaded:() -> Void = null;
+
 	/**
 	 * Called when a new premiere starts or if it has started today.
 	 */
@@ -25,9 +33,19 @@ class PremiereHandler
 	var enable_recheck:Bool = false;
 	var recheck_timestamp:Float = 0;
 
-	public function new()
+	public function new() {}
+
+	public function get_active_premiere()
 	{
-		refresh();
+		return current_premiere;
+	}
+
+	public function get_time_until_next_premiere()
+	{
+		if (current_premiere == null)
+			return -1.0;
+
+		return Math.max(0, (current_premiere.timestamp - Main.time.utc) / 1000.0);
 	}
 
 	public function update(elapsed:Float)
@@ -42,57 +60,76 @@ class PremiereHandler
 		}
 	}
 
-	function refresh()
+	public function refresh()
 	{
 		enable_recheck = false;
 		TankmasClient.get_premieres(on_get_premieres);
 	}
 
-	function on_get_premieres(p:Dynamic)
+	function on_get_premieres(p:PremiereList)
 	{
-		var premieres:Array<PremiereData> = p.data.premieres;
+		var premieres:Array<PremiereData> = p != null ? p.premieres : null;
 
-		if (premieres == null) {
+		if (premieres == null)
+		{
 			trace('[ERROR] Failed to retrieve premiere list!');
 			return;
 		}
 
 		// Guarantee premieres are sorted by timestamp.
-		premieres.sort(function(a, b) {
+		premieres.sort(function(a, b)
+		{
 			return Std.int(a.timestamp) - Std.int(b.timestamp);
 		});
 
-		for (premiere in premieres) {
+		for (premiere in premieres)
+		{
 			var current_timestamp = Date.now().getTime();
-			var premiere_timestamp = Std.int(premiere.timestamp) * 1000;
+			var premiere_timestamp:Float = (premiere.timestamp * 1000.0); // Floats are 64bit, ints don't work good here
 			var current_date = Date.fromTime(current_timestamp);
 			var premiere_date = Date.fromTime(premiere_timestamp);
 
-			if (current_date.getDate() == premiere_date.getDate()) {
+			trace('$premiere_date, $premiere_timestamp');
+
+			if (current_date.getMonth() != premiere_date.getMonth())
+			{
+				continue;
+			}
+
+			if (current_date.getDate() == premiere_date.getDate())
+			{
 				// This premiere happens today!
 				trace('Premiere is today...');
 				current_premiere = premiere;
 
 				var delta = premiere_timestamp - current_timestamp;
 
-				if (delta <= 0) {
+				if (delta <= 0)
+				{
 					trace('TRIGGERING Premiere: ${premiere.name}');
 					enable_recheck = false;
-					if (recheck_timestamp == 0) recheck_timestamp = premiere_timestamp;
-					
+					if (recheck_timestamp == 0)
+						recheck_timestamp = premiere_timestamp;
+
 					try_premiere_release({name: premiere.name, url: premiere.url});
-				} else if (delta > 0) {
+				}
+				else
+				{
 					trace('QUEUING Premiere: ${premiere.name} (${premiere_timestamp})');
 					enable_recheck = true;
 					recheck_timestamp = premiere_timestamp;
 				}
 
 				break;
-			} else if (premiere_date.getDate() < current_date.getDate()) {
+			}
+			else if (premiere_date.getDate() < current_date.getDate())
+			{
 				// This premiere has already happened!
 				trace('Premiere is yesterday (${current_date.getDate()} == ${premiere_date.getDate()})...');
 				current_premiere = premiere;
-			} else {
+			}
+			else
+			{
 				// This premiere happens in the far future (>1 day)!
 				// No need to check anymore.
 				trace('Premiere is tomorrow (${current_date} == ${premiere_date} : ${premiere_timestamp})...');
@@ -104,15 +141,21 @@ class PremiereHandler
 			on_loaded();
 	}
 
-	function try_premiere_release(p:{name:String, url:String}) {
-		if (on_premiere_release != null) {
+	function try_premiere_release(p:{name:String, url:String})
+	{
+		if (on_premiere_release != null)
+		{
 			on_premiere_release({name: p.name, url: p.url});
-		} else {
-			var now = Date.now().getTime();
-			var new_timestamp = now + (10 * 1000);
-			trace('POSTPONING Premiere: ${p.name} (${new_timestamp})');
-			enable_recheck = true;
-			recheck_timestamp = new_timestamp;
 		}
+		/*
+			else
+			{
+				var now = Date.now().getTime();
+				var new_timestamp = now + (10 * 1000);
+				trace('POSTPONING Premiere: ${p.name} (${new_timestamp})');
+				enable_recheck = true;
+				recheck_timestamp = new_timestamp;
+			}
+		 */
 	}
 }

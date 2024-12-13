@@ -40,10 +40,15 @@ class TankmasLevel extends LDTKLevel
 	public var bg:FlxSpriteExt;
 	public var fg:FlxSpriteExt;
 
+	public var level_data:LdtkProject_Level;
+
 	var level_name:String;
 
-	public function new(level_name:String, ?tilesheet_graphic:String)
-		super(level_name, tilesheet_graphic);
+	public function new(level:LdtkProject_Level, ?tilesheet_graphic:String)
+	{
+		this.level_data = level;
+		super(level.identifier, tilesheet_graphic);
+	}
 
 	override function generate(LevelName:String, tilesheet_graphic:String)
 	{
@@ -60,9 +65,12 @@ class TankmasLevel extends LDTKLevel
 
 		setPosition(data.worldX, data.worldY);
 
-		var image:String = data.json.bgRelPath.split("/").last().replace_multiple(["-reference", "-background", "-foreground", ".png", ".jpg"], "");
-		PlayState.self.level_backgrounds.add(bg = new FlxSpriteExt(x, y, Paths.image_path('$image-background')));
-		PlayState.self.level_foregrounds.add(fg = new FlxSpriteExt(x, y, Paths.image_path('$image-foreground')));
+		if (data.json.bgRelPath != null)
+		{
+			var image:String = data.json.bgRelPath.split("/").last().replace_multiple(["-reference", "-background", "-foreground", ".png", ".jpg"], "");
+			PlayState.self.level_backgrounds.add(bg = new FlxSpriteExt(x, y, Paths.image_path('$image-background')));
+			PlayState.self.level_foregrounds.add(fg = new FlxSpriteExt(x, y, Paths.image_path('$image-foreground')));
+		}
 	}
 
 	public function place_entities()
@@ -152,7 +160,7 @@ class TankmasLevel extends LDTKLevel
 		for (world in Main.ldtk_project.worlds)
 			if (world.identifier == world_name)
 				for (level in world.levels)
-					array.push(new TankmasLevel(level.identifier));
+					array.push(new TankmasLevel(level));
 
 		return array;
 	}

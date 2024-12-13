@@ -57,7 +57,7 @@ class WebsocketClient
 	var session_id:String = null;
 
 	var connection_retries = 0;
-	var max_connection_retries = 5;
+	var max_connection_retries = 2;
 	var retry_connection = false;
 
 	var until_retry_s = 3.0;
@@ -155,6 +155,7 @@ class WebsocketClient
 		if (connection_retries > max_connection_retries)
 		{
 			trace('could not connect to socket after max retries');
+			retry_connection = false;
 			if (on_socket_timeout != null)
 				on_socket_timeout();
 		}
