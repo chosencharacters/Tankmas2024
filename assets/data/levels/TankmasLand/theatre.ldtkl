@@ -407,6 +407,32 @@
 					}] }],
 					"__worldX": 1040,
 					"__worldY": 272
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [132,204],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "eb25db00-9b00-11ef-aad8-59c33eb13285",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [2112,3264],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "day-13-art-thepsychosheep", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["day-13-art-thepsychosheep"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 13, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [13] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": "1734131700", "__tile": null, "defUid": 58, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["1734131700"]
+						}] }
+					],
+					"__worldX": 2112,
+					"__worldY": 3264
 				}
 			]
 		},

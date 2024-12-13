@@ -84,7 +84,7 @@ class TankmasLevel extends LDTKLevel
 			new NPC(x + entity.pixelX, y + entity.pixelY, entity.f_name, Std.parseInt(entity.f_timelock));
 
 		for (entity in level.l_Entities.all_Present.iterator())
-			new Present(x + entity.pixelX, y + entity.pixelY, entity.f_username);
+			new Present(x + entity.pixelX, y + entity.pixelY, entity.f_username, Std.parseInt(entity.f_timelock));
 
 		for (entity in level.l_Entities.all_Door.iterator())
 		{

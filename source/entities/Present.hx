@@ -29,6 +29,8 @@ class Present extends Interactable
 	var day:Int = 0;
 	var comic:Bool = false;
 
+	var timelock:Int = 0;
+
 	var def:PresentDef;
 
 	var time_activated(get, never):Bool;
@@ -43,7 +45,7 @@ class Present extends Interactable
 		return day == 1 || day == Main.time.day;
 	}
 
-	public function new(X:Float, Y:Float, username:String)
+	public function new(X:Float, Y:Float, username:String, timelock:Int)
 	{
 		super(X, Y);
 		detect_range = 300;
@@ -72,6 +74,8 @@ class Present extends Interactable
 		thumbnail.color = FlxColor.BLACK;
 		#end
 
+		this.timelock = timelock * 1000;
+
 		update_present_visibility();
 
 		// trace(Main.time.day >= def.day, Main.time.day, def.day, visible);
@@ -84,7 +88,11 @@ class Present extends Interactable
 	}
 
 	function get_time_activated():Bool
+	{
+		if (timelock != null && timelock > 0)
+			return Main.time.utc >= timelock;
 		return Main.time.day >= def.day;
+	}
 
 	override function kill()
 	{

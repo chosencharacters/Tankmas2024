@@ -199,7 +199,7 @@
             "name": "geometry-dash-cube",
             "display": "Cube",
             "desc": "No one knows their name, no one knows where they come from, but what everyone knows is that whatever happens, they ride. And give Audio Mods a headache when people really want them to ride to copyrighted music."
-        }, 
+        },
         {
             "name": "fancy-pants",
             "display": "Fancy Pants Man",
@@ -322,6 +322,13 @@
             "desc": "IT'S SPOOKY MONTH!!!",
             "unlock": "DATE",
             "data": 1734066000
+        },
+        {
+            "name": "jefvel",
+            "display": "Jefvel",
+            "desc": "The hero Tankmas needs",
+            "unlock": "USERNAME",
+            "data": "jefvel"
         }
     ]
 }

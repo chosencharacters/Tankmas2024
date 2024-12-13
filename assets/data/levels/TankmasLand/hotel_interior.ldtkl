@@ -1224,7 +1224,8 @@
 							"id": "V_String",
 							"params": ["karlestonchew"]
 						}] },
-						{ "__identifier": "day", "__type": "Int", "__value": 9, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [9] }] }
+						{ "__identifier": "day", "__type": "Int", "__value": 9, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [9] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
 					"__worldX": 1568,
 					"__worldY": 3424
@@ -1246,7 +1247,8 @@
 							"id": "V_String",
 							"params": ["bellvonartsy"]
 						}] },
-						{ "__identifier": "day", "__type": "Int", "__value": 8, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [8] }] }
+						{ "__identifier": "day", "__type": "Int", "__value": 8, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [8] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
 					"__worldX": 1328,
 					"__worldY": 3136
@@ -1268,7 +1270,8 @@
 							"id": "V_String",
 							"params": ["mkmaffo"]
 						}] },
-						{ "__identifier": "day", "__type": "Int", "__value": 7, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [7] }] }
+						{ "__identifier": "day", "__type": "Int", "__value": 7, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [7] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
 					"__worldX": 1792,
 					"__worldY": 3152
@@ -1312,7 +1315,8 @@
 							"id": "V_String",
 							"params": ["konansaurus"]
 						}] },
-						{ "__identifier": "day", "__type": "Int", "__value": 10, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [10] }] }
+						{ "__identifier": "day", "__type": "Int", "__value": 10, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [10] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
 					"__worldX": 1872,
 					"__worldY": 3008
@@ -1334,7 +1338,8 @@
 							"id": "V_String",
 							"params": ["ectosludge"]
 						}] },
-						{ "__identifier": "day", "__type": "Int", "__value": 11, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [11] }] }
+						{ "__identifier": "day", "__type": "Int", "__value": 11, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [11] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
 					"__worldX": 1184,
 					"__worldY": 3008
@@ -1356,7 +1361,8 @@
 							"id": "V_String",
 							"params": ["travsaus"]
 						}] },
-						{ "__identifier": "day", "__type": "Int", "__value": 12, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [12] }] }
+						{ "__identifier": "day", "__type": "Int", "__value": 12, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [12] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
 					"__worldX": 848,
 					"__worldY": 3792
@@ -1400,7 +1406,8 @@
 							"id": "V_String",
 							"params": ["dannydoods"]
 						}] },
-						{ "__identifier": "day", "__type": "Int", "__value": 13, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [13] }] }
+						{ "__identifier": "day", "__type": "Int", "__value": 13, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [13] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
 					"__worldX": 1552,
 					"__worldY": 2896
