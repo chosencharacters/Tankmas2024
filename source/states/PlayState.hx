@@ -1,6 +1,5 @@
 package states;
 
-import physics.CollisionResolver;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -20,6 +19,7 @@ import net.tankmas.NetDefs.NetEventType;
 import net.tankmas.NetDefs.NetUserDef;
 import net.tankmas.OnlineLoop;
 import net.tankmas.TankmasClient;
+import physics.CollisionResolver;
 import ui.DialogueBox;
 import ui.MainGameOverlay;
 import ui.TouchOverlay;
@@ -28,6 +28,7 @@ import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
 import video.PremiereHandler;
+import video.VideoSubstate;
 import zones.Door;
 
 class PlayState extends BaseState
@@ -91,6 +92,7 @@ class PlayState extends BaseState
 		else
 			current_world = SaveManager.savedRoom == null ? default_world : SaveManager.savedRoom;
 		Main.current_room_id = RoomId.from_string(current_world);
+
 		super();
 	}
 
@@ -104,6 +106,13 @@ class PlayState extends BaseState
 		self = this;
 
 		premieres = new PremiereHandler();
+		if (Main.current_room_id == Theatre) {
+			trace('Enabling premieres...');
+			premieres.on_premiere_release = on_premiere_release;
+		} else {
+			trace('Disabling premieres...');
+			premieres.on_premiere_release = null;
+		}
 
 		bgColor = FlxColor.BLACK;
 
@@ -172,7 +181,11 @@ class PlayState extends BaseState
 
 		OnlineLoop.init_room();
 
-		player.on_save_loaded();
+		if (player != null) {
+			player.on_save_loaded();
+		} else {
+			throw "Player not initialized! Did you add the entity to the level?";
+		}
 
 		if (OnlineLoop.is_offline)
 		{
@@ -234,6 +247,11 @@ class PlayState extends BaseState
 				}
 
 		handle_collisions();
+	}
+
+	function on_premiere_release(d:{name:String, url:String}) {
+		trace('Playing premiere: ${d.name}');
+		this.openSubState(new VideoSubstate(d.url));
 	}
 
 	function handle_collisions()

@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "hotel_interior",
@@ -2363,25 +2363,33 @@
 				},
 				{
 					"__identifier": "Door",
-					"__grid": [56,0],
+					"__grid": [71,39],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
 					"__smartColor": "#FFF100",
 					"iid": "99315cb0-9b00-11ef-967e-e1adc4478bbe",
-					"width": 256,
+					"width": 944,
 					"height": 48,
 					"defUid": 14,
-					"px": [896,0],
+					"px": [1136,624],
 					"fieldInstances": [
-						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 16, "realEditorValues": [] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 64, "cy": 21 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "73c0e2d0-9b00-11ef-9e47-f9d222a77fbb",
+							"layerIid": "3c9c37a3-9b00-11ef-9e47-3710d4c7b2b7",
+							"levelIid": "3c9c37a0-9b00-11ef-9e47-07e14d7172d2",
+							"worldIid": "3c9c1090-9b00-11ef-9e47-7f252c941ee6"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["64,21"]
+							"params": ["73c0e2d0-9b00-11ef-9e47-f9d222a77fbb"]
+						}] },
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 100, "cy": 55 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["100,55"]
 						}] }
 					],
-					"__worldX": 896,
-					"__worldY": 0
+					"__worldX": 1136,
+					"__worldY": 624
 				},
 				{
 					"__identifier": "Door",
@@ -2412,28 +2420,6 @@
 					],
 					"__worldX": 1408,
 					"__worldY": 4016
-				},
-				{
-					"__identifier": "NPC",
-					"__grid": [75,92],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#FF00D0",
-					"iid": "4b74df60-9b00-11ef-927c-95745215383f",
-					"width": 176,
-					"height": 192,
-					"defUid": 10,
-					"px": [1200,1472],
-					"fieldInstances": [
-						{ "__identifier": "name", "__type": "String", "__value": "concierge", "__tile": null, "defUid": 11, "realEditorValues": [{
-							"id": "V_String",
-							"params": ["concierge"]
-						}] },
-						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
-					],
-					"__worldX": 1200,
-					"__worldY": 1472
 				},
 				{
 					"__identifier": "NPC",
