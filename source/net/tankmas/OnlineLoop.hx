@@ -119,6 +119,7 @@ class OnlineLoop
 	public static function init_room()
 	{
 		force_send_full_user = true;
+		send_player_state(true);
 	}
 
 	public static function iterate(elapsed:Float = 0.0)
