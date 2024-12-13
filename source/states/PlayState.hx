@@ -1,5 +1,6 @@
 package states;
 
+import physics.CollisionResolver;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -106,10 +107,14 @@ class PlayState extends BaseState
 		self = this;
 
 		premieres = new PremiereHandler();
-		if (Main.current_room_id == Theatre) {
+		if (Main.current_room_id == Theatre)
+		{
 			trace('Enabling premieres...');
 			premieres.on_premiere_release = on_premiere_release;
-		} else {
+			premieres.refresh();
+		}
+		else
+		{
 			trace('Disabling premieres...');
 			premieres.on_premiere_release = null;
 		}
@@ -181,9 +186,12 @@ class PlayState extends BaseState
 
 		OnlineLoop.init_room();
 
-		if (player != null) {
+		if (player != null)
+		{
 			player.on_save_loaded();
-		} else {
+		}
+		else
+		{
 			throw "Player not initialized! Did you add the entity to the level?";
 		}
 
@@ -249,9 +257,45 @@ class PlayState extends BaseState
 		handle_collisions();
 	}
 
-	function on_premiere_release(d:{name:String, url:String}) {
+	var video_ui:VideoUi;
+
+	function on_premiere_release(d:{name:String, url:String})
+	{
 		trace('Playing premiere: ${d.name}');
-		this.openSubState(new VideoSubstate(d.url));
+		var screen = {
+			x: 0,
+			y: 0,
+			width: 0,
+			height: 0
+		}
+
+		// Find cinema screen (quick hack for now)
+		for (level in levels)
+		{
+			for (entity in level.level_data.l_Entities.all_Misc)
+			{
+				if (entity.f_name == "CinemaScreen")
+				{
+					screen.x = entity.worldPixelX;
+					screen.y = entity.worldPixelY;
+					screen.width = entity.width;
+					screen.height = entity.height;
+				}
+			}
+		}
+
+		// this.openSubState(new VideoSubstate(d.url));
+		video_ui = new VideoUi(d.url, screen.x, screen.y, screen.width, screen.height);
+		this.objects.add(video_ui);
+		video_ui.on_close_request = () ->
+		{
+			this.objects.remove(video_ui);
+			video_ui.destroy();
+			video_ui = null;
+		}
+
+		video_ui.on_enter_area = () -> ui_overlay.visible = false;
+		video_ui.on_leave_area = () -> ui_overlay.visible = true;
 	}
 
 	function handle_collisions()

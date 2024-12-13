@@ -59,6 +59,16 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 		super.update(elapsed);
 	}
 
+	override function draw()
+	{
+		super.draw();
+		var left_x = FlxG.camera.viewLeft;
+		var top_x = FlxG.camera.viewTop;
+
+		emote.x = 20;
+		emote.y = 20;
+	}
+
 	public function hide_top_ui(?on_complete:FlxTween->Void)
 	{
 		for (sprite in [emote, settings])

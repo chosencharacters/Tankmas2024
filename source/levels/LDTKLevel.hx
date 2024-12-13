@@ -44,8 +44,6 @@ class LDTKLevel extends FlxTilemap
 				{
 					case "Tiles":
 						data.l_Tiles.getTileStackAt(x, y);
-					case "Collision":
-						data.l_Collision.getTileStackAt(x, y);
 					default:
 						null;
 				}
@@ -66,5 +64,4 @@ class LDTKLevel extends FlxTilemap
 					return level;
 		throw "level does not exist by the name of '" + level_name + "'";
 	}
-
 }

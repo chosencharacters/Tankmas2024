@@ -25,3 +25,5 @@ ng-secrets.json
 .vscode
 /scripts/openssl
 /dump
+
+.DS_Store

@@ -1,5 +1,11 @@
 package states;
 
+import openfl.events.MouseEvent;
+import flixel.input.touch.FlxTouchManager;
+import flixel.input.mouse.FlxMouseEventManager;
+import flixel.input.mouse.FlxMouseEvent;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxEase.EaseFunction;
 import flixel.util.FlxSave;
 import net.tankmas.OnlineLoop;
 import data.SaveManager;
@@ -54,6 +60,19 @@ class LoadGameState extends BaseState
 		passport_text.alpha = 0;
 		FlxTween.tween(passport_text, {"alpha": 1.0}, 0.3);
 		add(passport_text);
+
+		// Setup the mouse events
+		FlxG.stage.addEventListener(MouseEvent.CLICK, login_clicked);
+	}
+
+	function login_clicked(e)
+	{
+		#if newgrounds
+		Main.ng_api.launch_newgrounds_passport();
+		loading_state = LoggingIn;
+		passport_text.scale.set(0.8, 0.8);
+		FlxTween.tween(passport_text, {"scale.x": 1.0, "scale.y": 1.0}, 0.3, {ease: FlxEase.elasticOut});
+		#end
 	}
 
 	function on_logged_in()
@@ -91,6 +110,10 @@ class LoadGameState extends BaseState
 		if (loading_state != Ready)
 			return;
 		loading_state = Started;
+		trace("bebe");
+
+		FlxG.stage.removeEventListener(MouseEvent.CLICK, login_clicked);
+
 		FlxG.switchState(() -> new PlayState());
 	}
 
@@ -105,13 +128,7 @@ class LoadGameState extends BaseState
 
 		if (loading_state == NgPassportRequested)
 		{
-			if (FlxG.mouse.justPressed)
-			{
-				#if newgrounds
-				Main.ng_api.launch_newgrounds_passport();
-				loading_state = LoggingIn;
-				#end
-			}
+			if (FlxG.mouse.justReleased) {}
 		}
 		if (loading_state == Ready)
 			start_game();
