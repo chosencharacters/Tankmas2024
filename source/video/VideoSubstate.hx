@@ -153,7 +153,6 @@ class VideoUi extends FlxSprite
 		});
 
 		netStream.play(video_url);
-		netStream.seek(40.0);
 		isPaused = false;
 	}
 
