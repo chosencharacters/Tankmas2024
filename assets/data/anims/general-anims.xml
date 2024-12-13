@@ -105,4 +105,9 @@
 	<animSet image="concierge-invisible">
 		<anim name="idle" fps="100ms" looping="false">0</anim>
 	</animSet>
+
+	<animSet image="gaming-device">
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+		<anim name="nearby" fps="100ms" looping="false">1t18</anim>
+	</animSet>
 </root>

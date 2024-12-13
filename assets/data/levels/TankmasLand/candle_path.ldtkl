@@ -1453,7 +1453,7 @@
 				},
 				{
 					"__identifier": "NPC",
-					"__grid": [75,14],
+					"__grid": [69,14],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1462,7 +1462,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 10,
-					"px": [1200,224],
+					"px": [1104,224],
 					"fieldInstances": [
 						{ "__identifier": "name", "__type": "String", "__value": "the-shape", "__tile": null, "defUid": 11, "realEditorValues": [{
 							"id": "V_String",
@@ -1470,7 +1470,7 @@
 						}] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
 					],
-					"__worldX": 5136,
+					"__worldX": 5040,
 					"__worldY": 1024
 				}
 			]

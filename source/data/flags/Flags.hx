@@ -153,11 +153,7 @@ class Flags
 			return null;
 		#if dev_trace
 		if (value != null)
-		{
 			trace('FLAG SET: \'${key}\': ${flags.get(key)} -> \'${value}\' from \'${iid}\' (${source_type})');
-			if (key == "MQ_null")
-				throw "tf";
-		}
 		#end
 		flags.set(key, value);
 
