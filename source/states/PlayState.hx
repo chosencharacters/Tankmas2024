@@ -106,20 +106,6 @@ class PlayState extends BaseState
 		trace('New Playstate');
 		self = this;
 
-		premieres = new PremiereHandler();
-		if (Main.current_room_id == Theatre)
-		{
-			trace('Enabling premieres...');
-			premieres.on_premiere_release = on_premiere_release;
-			premieres.refresh();
-			var premiere_countdown = new entities.misc.PremiereCountdown(premieres);
-		}
-		else
-		{
-			trace('Disabling premieres...');
-			premieres.on_premiere_release = null;
-		}
-
 		bgColor = FlxColor.BLACK;
 
 		make_world();
@@ -204,6 +190,20 @@ class PlayState extends BaseState
 		OnlineLoop.on_entered_offline_mode = () ->
 		{
 			ui_overlay.offline_indicator.show();
+		}
+
+		premieres = new PremiereHandler();
+		if (Main.current_room_id == Theatre)
+		{
+			trace('Enabling premieres...');
+			premieres.on_premiere_release = on_premiere_release;
+			premieres.refresh();
+			new entities.misc.PremiereCountdown(premieres);
+		}
+		else
+		{
+			trace('Disabling premieres...');
+			premieres.on_premiere_release = null;
 		}
 	}
 

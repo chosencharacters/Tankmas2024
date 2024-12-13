@@ -13,14 +13,13 @@ class PremiereCountdown extends FlxText
 		premieres = p;
 		color = FlxColor.RED;
 		setFormat(Paths.get('CharlieType-Heavy.otf'), 64, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
-		PlayState.self.objects.add(this);
-		// scrollFactor.set(0, 0);
+		PlayState.self.add(this);
 	}
 
 	override function kill()
 	{
 		super.kill();
-		PlayState.self.objects.remove(this);
+		PlayState.self.remove(this);
 	}
 
 	override function update(elapsed:Float)

@@ -190,7 +190,7 @@ class VideoUi extends FlxSprite
 		entered = true;
 		if (camera_tween != null)
 			camera_tween.cancel();
-		camera_tween = FlxTween.tween(FlxG.camera, {"targetOffset.y": -450, zoom: 0.7}, 1.0, {ease: FlxEase.smoothStepInOut});
+		camera_tween = FlxTween.tween(FlxG.camera, {"targetOffset.y": -590, zoom: 0.6}, 1.0, {ease: FlxEase.smoothStepInOut});
 
 		if (on_enter_area != null)
 			on_enter_area();
