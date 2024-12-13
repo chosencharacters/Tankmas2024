@@ -278,30 +278,22 @@
         {
             "name": "nox",
             "display": "NOX",
-            "desc": "The self-appointed judge, jury, and executioner of the Court of Public Opinion, and a model social media influencer.",
-            "unlock": "DATE",
-            "data": 1733893200
+            "desc": "The self-appointed judge, jury, and executioner of the Court of Public Opinion, and a model social media influencer."
         },
         {
             "name": "tarboy",
             "display": "Tarboy",
-            "desc": "Out of the tar came the boy MADE of tar. He called himself, 'Tarboy', and boy was he mad. All of his mind filled with the pain of millions of robot slaves. For he was them.",
-            "unlock": "DATE",
-            "data": 1733893200
+            "desc": "Out of the tar came the boy MADE of tar. He called himself, 'Tarboy', and boy was he mad. All of his mind filled with the pain of millions of robot slaves. For he was them."
         },
         {
             "name": "darnell",
             "display": "Darnell",
-            "desc": "Audio Portal's musical prodigy, and pyromaniac. Vote for class president now, because he's only got 5 years to live.",
-            "unlock": "DATE",
-            "data": 1733979600
+            "desc": "Audio Portal's musical prodigy, and pyromaniac. Vote for class president now, because he's only got 5 years to live."
         },
         {
             "name": "nene",
             "display": "Nene",
-            "desc": "Biting art connoisseur of the Art Portal, and a known masochist. Lost to Obama in the 2008 American presidency. Smug, but not full of hugs. Don't call her Neen.",
-            "unlock": "DATE",
-            "data": 1733979600
+            "desc": "Biting art connoisseur of the Art Portal, and a known masochist. Lost to Obama in the 2008 American presidency. Smug, but not full of hugs. Don't call her Neen."
         },
         {
             "name": "samurai-asshole",
@@ -312,16 +304,12 @@
         {
             "name": "skid",
             "display": "Skid",
-            "desc": "IT'S SPOOKY MONTH!!!",
-            "unlock": "DATE",
-            "data": 1734066000
+            "desc": "IT'S SPOOKY MONTH!!!"
         },
         {
             "name": "pump",
             "display": "Pump",
-            "desc": "IT'S SPOOKY MONTH!!!",
-            "unlock": "DATE",
-            "data": 1734066000
+            "desc": "IT'S SPOOKY MONTH!!!"
         },
         {
             "name": "jefvel",
@@ -329,6 +317,13 @@
             "desc": "The hero Tankmas needs",
             "unlock": "USERNAME",
             "data": "jefvel"
+        },
+        {
+            "name": "dr-good",
+            "display": "Dr. Good",
+            "desc": "Collab organizer and certified Doctor",
+            "unlock": "DATE",
+            "data": 1734135300
         }
     ]
 }

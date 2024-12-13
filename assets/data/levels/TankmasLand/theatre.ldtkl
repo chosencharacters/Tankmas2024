@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.3",
+		"appVersion": "1.5.4",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "theatre",
@@ -214,18 +214,18 @@
 				},
 				{
 					"__identifier": "CollisionSquare",
-					"__grid": [34,121],
+					"__grid": [55,121],
 					"__pivot": [0,0],
 					"__tags": ["Collision"],
 					"__tile": null,
 					"__smartColor": "#FF0808",
 					"iid": "aecefab0-9b00-11ef-b7e6-27e692531df9",
-					"width": 2480,
+					"width": 2144,
 					"height": 16,
 					"defUid": 44,
-					"px": [544,1936],
+					"px": [880,1936],
 					"fieldInstances": [],
-					"__worldX": 544,
+					"__worldX": 880,
 					"__worldY": 1936
 				},
 				{
@@ -236,7 +236,7 @@
 					"__tile": null,
 					"__smartColor": "#FF0808",
 					"iid": "deddfd00-9b00-11ef-b7e6-6de387348e14",
-					"width": 256,
+					"width": 288,
 					"height": 16,
 					"defUid": 44,
 					"px": [3200,1920],
@@ -291,6 +291,38 @@
 					"fieldInstances": [],
 					"__worldX": 3024,
 					"__worldY": 1872
+				},
+				{
+					"__identifier": "SlopeSW",
+					"__grid": [53,121],
+					"__pivot": [0,0],
+					"__tags": ["Collision"],
+					"__tile": { "tilesetUid": 19, "x": 96, "y": 32, "w": 32, "h": 32 },
+					"__smartColor": "#FF0808",
+					"iid": "efc0f4b0-9b00-11ef-b7e6-ab16b8548bea",
+					"width": 32,
+					"height": 16,
+					"defUid": 56,
+					"px": [848,1936],
+					"fieldInstances": [],
+					"__worldX": 848,
+					"__worldY": 1936
+				},
+				{
+					"__identifier": "CollisionSquare",
+					"__grid": [34,121],
+					"__pivot": [0,0],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0808",
+					"iid": "fa2887b0-9b00-11ef-b7e6-0b863bb4214b",
+					"width": 304,
+					"height": 16,
+					"defUid": 44,
+					"px": [544,1936],
+					"fieldInstances": [],
+					"__worldX": 544,
+					"__worldY": 1936
 				},
 				{
 					"__identifier": "SlopeSW",
@@ -402,13 +434,13 @@
 					"width": 1920,
 					"height": 1080,
 					"defUid": 49,
-					"px": [1050,582],
+					"px": [1050,584],
 					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "CinemaScreen", "__tile": null, "defUid": 50, "realEditorValues": [{
 						"id": "V_String",
 						"params": ["CinemaScreen"]
 					}] }],
 					"__worldX": 1050,
-					"__worldY": 582
+					"__worldY": 584
 				},
 				{
 					"__identifier": "Present",
@@ -428,9 +460,9 @@
 							"params": ["thepsychosheep"]
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 13, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [13] }] },
-						{ "__identifier": "timelock", "__type": "String", "__value": "1734133500", "__tile": null, "defUid": 58, "realEditorValues": [{
+						{ "__identifier": "timelock", "__type": "String", "__value": "1734135300", "__tile": null, "defUid": 58, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["1734133500"]
+							"params": ["1734135300"]
 						}] }
 					],
 					"__worldX": 3344,
