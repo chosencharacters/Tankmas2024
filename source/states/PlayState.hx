@@ -112,6 +112,7 @@ class PlayState extends BaseState
 			trace('Enabling premieres...');
 			premieres.on_premiere_release = on_premiere_release;
 			premieres.refresh();
+			var premiere_countdown = new entities.misc.PremiereCountdown(premieres);
 		}
 		else
 		{
@@ -259,7 +260,7 @@ class PlayState extends BaseState
 
 	var video_ui:VideoUi;
 
-	function on_premiere_release(d:{name:String, url:String})
+	function on_premiere_release(d:PremiereData)
 	{
 		trace('Playing premiere: ${d.name}');
 		var screen = {
@@ -284,8 +285,16 @@ class PlayState extends BaseState
 			}
 		}
 
-		// this.openSubState(new VideoSubstate(d.url));
-		video_ui = new VideoUi(d.url, screen.x, screen.y, screen.width, screen.height);
+		var time_since_premiere = Main.time.utc / 1000.0 - (d.timestamp);
+
+		var max_time_replaying = 3600.0;
+		if (time_since_premiere > max_time_replaying)
+		{
+			trace('Premiere has been looping for an hour, stop it now.');
+			return;
+		}
+
+		video_ui = new VideoUi(d.url, screen.x, screen.y, screen.width, screen.height, time_since_premiere);
 		this.objects.add(video_ui);
 		video_ui.on_close_request = () ->
 		{

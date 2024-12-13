@@ -6,7 +6,7 @@ import net.tankmas.TankmasClient;
 typedef PremiereData =
 {
 	var name:String;
-	var timestamp:Int;
+	var timestamp:Float;
 	var url:String;
 	var released:Bool;
 }
@@ -26,7 +26,7 @@ class PremiereHandler
 	/**
 	 * Called when a new premiere starts or if it has started today.
 	 */
-	public var on_premiere_release:(d:{name:String, url:String}) -> Void = null;
+	public var on_premiere_release:(d:PremiereData) -> Void = null;
 
 	var current_premiere:PremiereData = null;
 
@@ -45,7 +45,7 @@ class PremiereHandler
 		if (current_premiere == null)
 			return -1.0;
 
-		return Math.max(0, (current_premiere.timestamp - Main.time.utc) / 1000.0);
+		return Math.max(0, current_premiere.timestamp - (Main.time.utc / 1000.0));
 	}
 
 	public function update(elapsed:Float)
@@ -111,7 +111,7 @@ class PremiereHandler
 					if (recheck_timestamp == 0)
 						recheck_timestamp = premiere_timestamp;
 
-					try_premiere_release({name: premiere.name, url: premiere.url});
+					try_premiere_release(premiere);
 				}
 				else
 				{
@@ -141,11 +141,11 @@ class PremiereHandler
 			on_loaded();
 	}
 
-	function try_premiere_release(p:{name:String, url:String})
+	function try_premiere_release(p:PremiereData)
 	{
 		if (on_premiere_release != null)
 		{
-			on_premiere_release({name: p.name, url: p.url});
+			on_premiere_release(p);
 		}
 		/*
 			else
