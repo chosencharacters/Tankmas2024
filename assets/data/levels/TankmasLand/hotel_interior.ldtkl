@@ -1471,6 +1471,25 @@
 					],
 					"__worldX": 1392,
 					"__worldY": 544
+				},
+				{
+					"__identifier": "Misc",
+					"__grid": [79,46],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFE600",
+					"iid": "027d4370-9b00-11ef-b7e6-49d6a03b34af",
+					"width": 64,
+					"height": 64,
+					"defUid": 49,
+					"px": [1264,736],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "dr-good", "__tile": null, "defUid": 50, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["dr-good"]
+					}] }],
+					"__worldX": 1264,
+					"__worldY": 736
 				}
 			]
 		},
