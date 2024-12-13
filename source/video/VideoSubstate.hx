@@ -109,10 +109,14 @@ class VideoUi extends FlxSprite
 	public var on_enter_area:() -> Void = null;
 	public var on_leave_area:() -> Void = null;
 
-	public function new(video_url:String, x:Float = 0, y:Float = 0, width:Float = 100, height:Float = 50)
+	var start_time:Float = 0.0;
+
+	public function new(video_url:String, x:Float = 0, y:Float = 0, width:Float = 100, height:Float = 50, start_time:Float = 0.0)
 	{
 		this.video_url = video_url;
 		super();
+
+		this.start_time = Math.max(0.0, start_time);
 
 		this.x = x;
 		this.y = y;
@@ -244,6 +248,13 @@ class VideoUi extends FlxSprite
 		video.attachNetStream(netStream);
 		video.width = video.videoWidth;
 		video.height = video.videoHeight;
+
+		if (start_time > 2.0)
+		{
+			var position = start_time % data.duration;
+			trace('seeking to $position');
+			netStream.seek(position);
+		}
 
 		if (video.videoWidth / stage.stageWidth > video.videoHeight / stage.stageHeight)
 		{
