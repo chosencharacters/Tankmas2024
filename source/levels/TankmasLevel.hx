@@ -5,6 +5,7 @@ import entities.Minigame;
 import entities.NPC;
 import entities.Player;
 import entities.Present;
+import entities.misc.GamingDevice;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxDirectionFlags;
 import levels.LDTKLevel;
@@ -147,6 +148,16 @@ class TankmasLevel extends LDTKLevel
 			var wy = y + c.pixelY;
 			colls.add_rect(wx, wy, c.width, c.height);
 		}
+
+		for (c in level.l_Entities.all_Misc)
+		{
+			switch (c.f_name)
+			{
+				case "gaming-device":
+					new GamingDevice(x + c.pixelY, y + c.pixelY);
+			}
+		}
+
 		/**put entity iterators here**/
 		/* 
 			example:

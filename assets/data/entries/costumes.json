@@ -313,15 +313,15 @@
             "name": "skid",
             "display": "Skid",
             "desc": "IT'S SPOOKY MONTH!!!",
-            "unlock": "USERNAME",
-            "data": "tamag0"
+            "unlock": "DATE",
+            "data": 1734066000
         },
         {
             "name": "pump",
             "display": "Pump",
             "desc": "IT'S SPOOKY MONTH!!!",
-            "unlock": "USERNAME",
-            "data": "srpelo"
+            "unlock": "DATE",
+            "data": 1734066000
         }
     ]
 }
