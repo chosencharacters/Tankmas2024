@@ -1209,7 +1209,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [121,213],
+					"__grid": [99,218],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1218,7 +1218,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1936,3408],
+					"px": [1584,3488],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "karlestonchew", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1227,8 +1227,8 @@
 						{ "__identifier": "day", "__type": "Int", "__value": 9, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [9] }] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
-					"__worldX": 1936,
-					"__worldY": 3408
+					"__worldX": 1584,
+					"__worldY": 3488
 				},
 				{
 					"__identifier": "Present",
@@ -1300,7 +1300,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [117,188],
+					"__grid": [120,183],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1309,7 +1309,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1872,3008],
+					"px": [1920,2928],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "konansaurus", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1318,8 +1318,8 @@
 						{ "__identifier": "day", "__type": "Int", "__value": 10, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [10] }] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
-					"__worldX": 1872,
-					"__worldY": 3008
+					"__worldX": 1920,
+					"__worldY": 2928
 				},
 				{
 					"__identifier": "Present",
@@ -1346,7 +1346,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [53,237],
+					"__grid": [75,225],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1355,7 +1355,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [848,3792],
+					"px": [1200,3600],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "travsaus", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1364,8 +1364,8 @@
 						{ "__identifier": "day", "__type": "Int", "__value": 12, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [12] }] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
-					"__worldX": 848,
-					"__worldY": 3792
+					"__worldX": 1200,
+					"__worldY": 3600
 				},
 				{
 					"__identifier": "NPC",
@@ -1516,46 +1516,6 @@
 					],
 					"__worldX": 2384,
 					"__worldY": 3840
-				},
-				{
-					"__identifier": "Present",
-					"__grid": [99,220],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#D74343",
-					"iid": "cdb10b90-9b00-11ef-97b9-db56571ad5ec",
-					"width": 128,
-					"height": 128,
-					"defUid": 2,
-					"px": [1584,3520],
-					"fieldInstances": [
-						{ "__identifier": "username", "__type": "String", "__value": null, "__tile": null, "defUid": 5, "realEditorValues": [] },
-						{ "__identifier": "day", "__type": "Int", "__value": 1, "__tile": null, "defUid": 6, "realEditorValues": [] },
-						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
-					],
-					"__worldX": 1584,
-					"__worldY": 3520
-				},
-				{
-					"__identifier": "Present",
-					"__grid": [80,212],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#D74343",
-					"iid": "d637d0a0-9b00-11ef-97b9-f1758523e73a",
-					"width": 128,
-					"height": 128,
-					"defUid": 2,
-					"px": [1280,3392],
-					"fieldInstances": [
-						{ "__identifier": "username", "__type": "String", "__value": null, "__tile": null, "defUid": 5, "realEditorValues": [] },
-						{ "__identifier": "day", "__type": "Int", "__value": 1, "__tile": null, "defUid": 6, "realEditorValues": [] },
-						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
-					],
-					"__worldX": 1280,
-					"__worldY": 3392
 				}
 			]
 		},
