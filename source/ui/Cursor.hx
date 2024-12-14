@@ -5,11 +5,13 @@ import flixel.FlxState;
 class Cursor extends FlxSpriteExt
 {
 	var parent_state:FlxState;
+	var always_visible:Bool = false;
 
-	public function new(parent_state:FlxState)
+	public function new(parent_state:FlxState, always_visible = false)
 	{
 		super();
 
+		this.always_visible = always_visible;
 		this.parent_state = parent_state;
 
 		if (FlxG.mouse.enabled)
@@ -33,7 +35,9 @@ class Cursor extends FlxSpriteExt
 
 		super.update(elapsed);
 
-		if (PlayState.self != null && PlayState.self.input_manager != null)
+		if (always_visible)
+			visible = true;
+		else if (PlayState.self != null && PlayState.self.input_manager != null)
 			visible = PlayState.self.input_manager.mode == MouseOrTouch;
 	}
 

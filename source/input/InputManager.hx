@@ -14,9 +14,9 @@ class InputManager extends FlxObject
 
 	public var mode(default, set):InputMode = MouseOrTouch;
 
-	var play_state:PlayState;
+	var play_state:BaseState;
 
-	public function new(play_state:PlayState)
+	public function new(play_state:BaseState)
 	{
 		super();
 		this.play_state = play_state;

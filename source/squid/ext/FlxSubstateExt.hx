@@ -10,11 +10,13 @@ class FlxSubstateExt extends FlxSubState
 
 	var cursor:Cursor;
 
+	public var cursor_always_visible = true;
+
 	override function create()
 	{
 		super.create();
 
-		cursor = new Cursor(this);
+		cursor = new Cursor(this, cursor_always_visible);
 	}
 
 	/**
