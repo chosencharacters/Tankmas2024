@@ -1,5 +1,6 @@
 package ui;
 
+import ui.button.HoverButton;
 import ui.popups.OfflineIndicator;
 import data.JsonData;
 import data.SaveManager;
@@ -12,10 +13,12 @@ import ui.sheets.SheetMenu;
 
 class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 {
-	var emote:FlxSpriteExt;
-	var settings:FlxSpriteExt;
-	var sticker_menu:FlxSpriteExt;
-	var sticker_pack:FlxSpriteExt;
+	var emote:HoverButton;
+	var settings:HoverButton;
+	var sticker_menu:HoverButton;
+	var sticker_menu_y = 1010;
+
+	var sticker_pack:HoverButton;
 	var music_popup:MusicPopup;
 
 	public var offline_indicator:ui.popups.OfflineIndicator;
@@ -29,12 +32,16 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 	{
 		super();
 
-		add(emote = new FlxSpriteExt(20, 20, Paths.get('heart.png')));
-		add(settings = new FlxSpriteExt(1708, 20, Paths.get('settings.png')));
-		add(sticker_menu = new FlxSpriteExt(1520, 1030, Paths.get('charselect-mini-full.png')));
+		add(emote = new HoverButton(20, 20, Paths.get('heart.png'), do_emote));
+		add(settings = new HoverButton(1708, 20, Paths.get('settings.png'), open_settings));
+		add(sticker_menu = new HoverButton(1520, sticker_menu_y, Paths.get('charselect-mini-full.png'), open_sticker_menu));
+		sticker_menu.on_hover = on_sticker_menu_hover;
+		sticker_menu.on_neutral = on_sticker_menu_out;
+
 		add(offline_indicator = new OfflineIndicator());
 
-		sticker_pack = new FlxSpriteExt().one_line("sticker-pack-icon");
+		sticker_pack = new HoverButton(0, 0, null, open_sticker_pack);
+		sticker_pack.one_line("sticker-pack-icon");
 		// sticker_pack.setPosition(20, FlxG.height - sticker_pack.height - 20);
 		sticker_pack.setPosition(emote.x + emote.width + 20, 20);
 		add(sticker_pack);
@@ -55,7 +62,6 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 	override function update(elapsed:Float)
 	{
 		sticker_pack.visible = Player.has_sticker_pack;
-		hover_handler();
 		super.update(elapsed);
 	}
 
@@ -86,112 +92,83 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 		emote.tween.onComplete = on_complete;
 	}
 
-	public function hover_handler()
+	function open_sticker_pack(btn:HoverButton)
 	{
-		if (!Ctrl.mode.can_open_menus)
-			return;
+		Ctrl.mode = ControlModes.NONE;
 
-		if (sticker_pack.visible && FlxG.mouse.overlaps(sticker_pack) && FlxG.mouse.justReleased && Ctrl.mode.can_open_menus)
-		{
-			Ctrl.mode = ControlModes.NONE;
+		var limit_list:Array<String> = [
+			"toasty-warm",
+			"edd-sticker",
+			"mustard",
+			"pink-kight-mondo",
+			"tappy-sticker",
+			"son-christmas",
+			"sick-skull",
+			"slashe-wave",
+			"gimme-five",
+			"john-sticker",
+			"pico-sticker-swag"
+		];
 
-			var limit_list:Array<String> = [
-				"toasty-warm",
-				"edd-sticker",
-				"mustard",
-				"pink-kight-mondo",
-				"tappy-sticker",
-				"son-christmas",
-				"sick-skull",
-				"slashe-wave",
-				"gimme-five",
-				"john-sticker",
-				"pico-sticker-swag"
-			];
+		sticker_pack.tween = FlxTween.tween(sticker_pack, {y: FlxG.height + sticker_pack.height}, 0.25, {
+			onComplete: (t) -> FlxG.state.add(new StickerPackOpening(JsonData.random_draw_stickers(Main.daily_sticker_draw_amount, limit_list)))
+		});
+	}
 
-			sticker_pack.tween = FlxTween.tween(sticker_pack, {y: FlxG.height + sticker_pack.height}, 0.25, {
-				onComplete: (t) -> FlxG.state.add(new StickerPackOpening(JsonData.random_draw_stickers(Main.daily_sticker_draw_amount, limit_list)))
-			});
+	function open_settings(btn:HoverButton)
+		new BaseSettings();
 
-			return;
-		}
+	function do_emote(btn:HoverButton)
+		player.use_sticker(SaveManager.current_emote);
 
-		var twen:FlxTween = null;
-		if (FlxG.mouse.overlaps(sticker_menu))
-		{
-			if (sticker_menu.y == 1030 && twen == null)
-				twen = FlxTween.tween(sticker_menu, {y: 880}, 0.3, {
-					onComplete: function(twn:FlxTween)
-					{
-						twen = null;
-						sticker_menu.loadGraphic(Paths.get('charselect-mini-full.png'));
-					}
-				});
-			if (FlxG.mouse.justReleased)
+	var sticker_menu_tween:FlxTween = null;
+
+	function on_sticker_menu_hover(btn:HoverButton)
+	{
+		sticker_menu_tween = FlxTween.tween(sticker_menu, {y: 880}, 0.3, {
+			onComplete: function(twn:FlxTween)
 			{
-				hide_top_ui();
-				if (twen != null)
-					twen.cancel();
-				Ctrl.mode = ControlModes.NONE;
-				twen = FlxTween.tween(sticker_menu, {y: 1180}, 0.3, {
-					onComplete: (twn:FlxTween) ->
-					{
-						try
-						{
-							new SheetMenu();
-						}
-						catch (e)
-						{
-							trace(e, e.stack);
-						}
-						twen = null;
-					}
-				});
+				sticker_menu_tween = null;
+				sticker_menu.loadGraphic(Paths.get('charselect-mini-full.png'));
+			},
+			ease: FlxEase.smootherStepInOut
+		});
+	}
+
+	function on_sticker_menu_out(btn:HoverButton)
+	{
+		if (sticker_menu.scale.x != 1)
+			sticker_menu.scale.set(1, 1);
+		sticker_menu_tween = FlxTween.tween(sticker_menu, {y: sticker_menu_y}, 0.4, {
+			onComplete: function(twn:FlxTween)
+			{
+				sticker_menu_tween = null;
+				sticker_menu.loadGraphic(Paths.get('charselect-mini-full.png'));
+			},
+			ease: FlxEase.elasticOut
+		});
+	}
+
+	function open_sticker_menu(btn:HoverButton)
+	{
+		hide_top_ui();
+		if (sticker_menu_tween != null)
+			sticker_menu_tween.cancel();
+		Ctrl.mode = ControlModes.NONE;
+		sticker_menu_tween = FlxTween.tween(sticker_menu, {y: 1180}, 0.3, {
+			onComplete: (twn:FlxTween) ->
+			{
+				try
+				{
+					new SheetMenu();
+				}
+				catch (e)
+				{
+					trace(e, e.stack);
+				}
+				sticker_menu_tween = null;
 			}
-			if (FlxG.mouse.pressed && sticker_menu.scale.x != 0.8)
-				sticker_menu.scale.set(0.8, 0.8);
-		}
-		else
-		{
-			if (sticker_menu.scale.x != 1)
-				sticker_menu.scale.set(1, 1);
-			if ((sticker_menu.y == 880 || sticker_menu.y == 1180) && twen == null)
-				twen = FlxTween.tween(sticker_menu, {y: 1030}, 0.3, {
-					onComplete: function(twn:FlxTween)
-					{
-						twen = null;
-						sticker_menu.loadGraphic(Paths.get('charselect-mini-full.png'));
-					}
-				});
-		}
-
-		if (FlxG.mouse.overlaps(settings))
-		{
-			if (FlxG.mouse.justReleased)
-				new BaseSettings();
-			if (FlxG.mouse.pressed && settings.scale.x != 0.8)
-				settings.scale.set(0.8, 0.8)
-			else if (!FlxG.mouse.pressed && settings.scale.x != 1.1)
-				settings.scale.set(1.1, 1.1);
-		}
-		else if (settings.scale.x != 1)
-		{
-			settings.scale.set(1, 1);
-		}
-
-		if (FlxG.mouse.overlaps(emote))
-		{
-			if (FlxG.mouse.justReleased)
-				player.use_sticker(SaveManager.current_emote);
-			if (FlxG.mouse.pressed && emote.scale.x != 0.8)
-				emote.scale.set(0.8, 0.8)
-			else if (!FlxG.mouse.pressed && emote.scale.x != 1.1)
-				emote.scale.set(1.1, 1.1);
-		}
-		else if (emote.scale.x != 1)
-		{
-			emote.scale.set(1, 1);
-		}
+		});
 	}
 
 	function get_player():Player
