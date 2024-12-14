@@ -321,9 +321,28 @@
         {
             "name": "dr-good",
             "display": "Dr. Good",
-            "desc": "Collab organizer and certified Doctor",
+            "desc": "Collab organizer and certified Doctor"
+        },
+        {
+            "name": "isaac",
+            "display": "Isaac",
+            "desc": "Isaac and his mother lived alone in a small house on a hill. Isaac kept to himself - drawing pictures and playing with his toys as his mom watched Christian broadcasts on the television. Life was simple and they were both happy...",
             "unlock": "DATE",
-            "data": 1734135300
+            "data": 1734152400
+        },
+        {
+            "name": "meat-boy",
+            "display": "Meat Boy",
+            "desc": "It's Meat Boy! Are they a living block of meat? Or are they a fleshless boy? It's actually the second one. But no matter what, don't let them touch any salt!",
+            "unlock": "DATE",
+            "data": 1734152400
+        },
+        {
+            "name": "mella",
+            "display": "Mella Arrsh S'mora Sr.",
+            "desc": "The perfect marshmallow to have ever been made. She's a fusion of over 2000 of them with more to come... Now stop roasting marshmallows you bums.",
+            "unlock": "USERNAME",
+            "data": "kingcrowned"
         }
     ]
 }

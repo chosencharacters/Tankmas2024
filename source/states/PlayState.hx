@@ -1,6 +1,5 @@
 package states;
 
-import physics.CollisionResolver;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -20,6 +19,7 @@ import net.tankmas.NetDefs.NetEventType;
 import net.tankmas.NetDefs.NetUserDef;
 import net.tankmas.OnlineLoop;
 import net.tankmas.TankmasClient;
+import physics.CollisionResolver;
 import physics.CollisionResolver;
 import ui.DialogueBox;
 import ui.MainGameOverlay;
@@ -288,11 +288,13 @@ class PlayState extends BaseState
 		var time_since_premiere = Main.time.utc / 1000.0 - (d.timestamp);
 
 		var max_time_replaying = 3600.0;
-		if (time_since_premiere > max_time_replaying)
-		{
-			trace('Premiere has been looping for an hour, stop it now.');
-			return;
-		}
+		/*
+			if (time_since_premiere > max_time_replaying)
+			{
+				trace('Premiere has been looping for an hour, stop it now.');
+				return;
+			}
+		 */
 
 		video_ui = new VideoUi(d.url, screen.x, screen.y, screen.width, screen.height, time_since_premiere);
 		this.objects.add(video_ui);
