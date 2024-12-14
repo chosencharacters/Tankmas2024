@@ -76,11 +76,16 @@ class PremiereHandler
 			return;
 		}
 
+		if (on_loaded != null)
+			on_loaded();
+
 		// Guarantee premieres are sorted by timestamp.
 		premieres.sort(function(a, b)
 		{
 			return Std.int(a.timestamp) - Std.int(b.timestamp);
 		});
+
+		var fallback_premiere:PremiereData = null;
 
 		for (premiere in premieres)
 		{
@@ -120,13 +125,14 @@ class PremiereHandler
 					recheck_timestamp = premiere_timestamp;
 				}
 
-				break;
+				return;
 			}
 			else if (premiere_date.getDate() < current_date.getDate())
 			{
 				// This premiere has already happened!
 				trace('Premiere is yesterday (${current_date.getDate()} == ${premiere_date.getDate()})...');
 				current_premiere = premiere;
+				fallback_premiere = premiere;
 			}
 			else
 			{
@@ -137,8 +143,8 @@ class PremiereHandler
 			}
 		}
 
-		if (on_loaded != null)
-			on_loaded();
+		if (fallback_premiere != null)
+			try_premiere_release(fallback_premiere);
 	}
 
 	function try_premiere_release(p:PremiereData)
@@ -147,15 +153,5 @@ class PremiereHandler
 		{
 			on_premiere_release(p);
 		}
-		/*
-			else
-			{
-				var now = Date.now().getTime();
-				var new_timestamp = now + (10 * 1000);
-				trace('POSTPONING Premiere: ${p.name} (${new_timestamp})');
-				enable_recheck = true;
-				recheck_timestamp = new_timestamp;
-			}
-		 */
 	}
 }

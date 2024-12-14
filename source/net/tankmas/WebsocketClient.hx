@@ -57,7 +57,7 @@ class WebsocketClient
 	var session_id:String = null;
 
 	var connection_retries = 0;
-	var max_connection_retries = 2;
+	var max_connection_retries = 7;
 	var retry_connection = false;
 
 	var until_retry_s = 3.0;

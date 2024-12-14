@@ -1,5 +1,6 @@
 package states;
 
+import video.VideoSubstate.VideoUi;
 import input.InputManager;
 import input.InteractionHandler;
 import activities.ActivityArea;
@@ -31,7 +32,6 @@ import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
 import video.PremiereHandler;
-import video.VideoSubstate;
 import zones.Door;
 
 class PlayState extends BaseState
@@ -217,11 +217,6 @@ class PlayState extends BaseState
 			premieres.refresh();
 			new entities.misc.PremiereCountdown(premieres);
 		}
-		else
-		{
-			trace('Disabling premieres...');
-			premieres.on_premiere_release = null;
-		}
 	}
 
 	public function update_scroll_bounds()
@@ -317,9 +312,11 @@ class PlayState extends BaseState
 		this.objects.add(video_ui);
 		video_ui.on_close_request = () ->
 		{
-			this.objects.remove(video_ui);
-			video_ui.destroy();
-			video_ui = null;
+			if (this.video_ui == null)
+				return;
+			this.objects.remove(this.video_ui);
+			this.video_ui.kill();
+			this.video_ui = null;
 		}
 
 		video_ui.on_enter_area = () -> ui_overlay.visible = false;

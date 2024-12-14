@@ -50,7 +50,7 @@ class VideoSubstate extends flixel.FlxSubState
 
 		// FlxG.stage.addChild(ui);
 
-		ui.onComplete = close;
+		ui.on_complete = close;
 	}
 
 	override function update(elapsed:Float)
@@ -58,17 +58,6 @@ class VideoSubstate extends flixel.FlxSubState
 		super.update(elapsed);
 
 		ui.update(elapsed);
-
-		/*
-			if (Ctrl.pause[1])
-				ui.togglePause();
-
-			if (Ctrl.emote[1])
-				close();
-		 */
-
-		if (ui.requestedExit)
-			close();
 	}
 
 	override function close()
@@ -88,16 +77,12 @@ class VideoSubstate extends flixel.FlxSubState
 class VideoUi extends FlxSprite
 {
 	public var isPaused = false;
-	public var requestedExit = false;
-	public var onComplete:() -> Void;
-
+	public var on_complete:() -> Void;
 	public var on_close_request:() -> Void;
 
 	var netStream:NetStream;
 	var video:Video;
 	var video_url:String;
-	// var backBtn:OpenFlBackButton;
-	var moveTimer = 2.0;
 
 	var video_container:openfl.display.Sprite;
 
@@ -133,9 +118,6 @@ class VideoUi extends FlxSprite
 		FlxG.mouse.useSystemCursor = true;
 
 		video_container.addChild(video = new Video());
-
-		// backBtn = new OpenFlBackButton(close);
-		// video_container.addChild(backBtn);
 
 		var netConnection = new NetConnection();
 		netConnection.connect(null);
@@ -211,19 +193,6 @@ class VideoUi extends FlxSprite
 	public override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		// backBtn.update(elapsed);
-		if (moveTimer > 0)
-		{
-			moveTimer -= elapsed;
-			// if (moveTimer <= 0)
-			// backBtn.visible = false;
-		}
-
-		if (FlxG.mouse.justMoved || FlxG.mouse.pressed || isPaused)
-		{
-			// backBtn.visible = true;
-			moveTimer = 2.0;
-		}
 
 		if (PlayState.self.player.y < y + screen_height + 900)
 		{
@@ -237,7 +206,6 @@ class VideoUi extends FlxSprite
 
 	function close()
 	{
-		requestedExit = true;
 		if (on_close_request != null)
 			on_close_request();
 	}
@@ -279,8 +247,8 @@ class VideoUi extends FlxSprite
 	function onVideoComplete()
 	{
 		trace('Video complete!');
-		if (onComplete != null)
-			onComplete();
+		if (on_complete != null)
+			on_complete();
 
 		close();
 	}
@@ -302,15 +270,16 @@ class VideoUi extends FlxSprite
 		isPaused ? resume() : pause();
 	}
 
-	public override function destroy()
+	public override function kill()
 	{
+		super.kill();
+
 		on_leave_video_area();
 		FlxG.stage.removeChild(video_container);
 
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.resume();
 
-		super.destroy();
 		netStream.dispose();
 	}
 }
