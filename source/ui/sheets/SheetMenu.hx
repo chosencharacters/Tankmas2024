@@ -22,6 +22,10 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 	var costume_sheets:FlxTypedGroupExt<CostumeSelectSheet> = new FlxTypedGroupExt<CostumeSelectSheet>();
 	var emote_sheets:FlxTypedGroupExt<EmoteSelectSheet> = new FlxTypedGroupExt<EmoteSelectSheet>();
 
+	var tab_buttons:FlxTypedGroup<HoverButton> = new FlxTypedGroup<HoverButton>();
+
+	var sheet_groups:FlxTypedGroup<FlxTypedGroup<Dynamic>> = new FlxTypedGroup<FlxTypedGroup<Dynamic>>();
+
 	function get_current_group():FlxTypedGroupExt<Dynamic>
 	{
 		switch (tab)
@@ -63,8 +67,14 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 		select_sheet(tab, local_saves.get(COSTUMES));
 
-		add(costume_sheets);
-		add(emote_sheets);
+		add_tab_buttons();
+
+		add(tab_buttons);
+
+		sheet_groups.add(costume_sheets);
+		sheet_groups.add(emote_sheets);
+
+		add(sheet_groups);
 
 		cycle_tabs_until(open_on_tab);
 		substate.add(back_button = new HoverButton((b) -> back_button_activated()));
@@ -76,9 +86,25 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		update_tab_states();
 	}
 
-	public function select_sheet(tab:SheetType, sheet_position:SheetPosition)
+	public function add_tab_buttons()
+	{
+		for (tab in tabs)
+		{
+			var tab_x:Float = tab_buttons.length > 0 ? tab_buttons.members.last().x + tab_buttons.members.last().width - 64 : 48;
+			var tab_button:HoverButton = new HoverButton(tab_x, 130);
+
+			tab_button.loadAllFromAnimationSet('${tab}-tab');
+			tab_button.on_release = (b) -> select_sheet(tab, local_saves.get(tab));
+
+			tab_buttons.add(tab_button);
+		}
+	}
+
+	public function select_sheet(new_tab:SheetType, sheet_position:SheetPosition)
 	{
 		trace(tab, sheet_position);
+		cycle_tabs_until(new_tab);
+
 		switch (tab)
 		{
 			case COSTUMES:
@@ -150,23 +176,23 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		return this.visible = visible;
 
 	function cycle_tabs_until(new_tab:SheetType)
+	{
 		while (tab != new_tab)
 			next_tab();
+	}
 
 	public function next_tab()
 	{
 		tabs.push(tabs.shift());
-		members.push(members.shift());
+		sheet_groups.members.push(sheet_groups.members.shift());
+		tab_buttons.members.push(tab_buttons.members.shift());
 		update_tab_states();
+		trace(tab);
 	}
 
 	public function update_tab_states()
-	{
-		for (sheet in members)
-			sheet.visible = sheet == members[0];
-		for (sheet in members)
-			sheet.active = sheet == members[0];
-	}
+		for (n in 0...sheet_groups.length)
+			sheet_groups.members[n].active = sheet_groups.members[n].visible = n == 0;
 
 	function get_tab():SheetType
 		return tabs[0];

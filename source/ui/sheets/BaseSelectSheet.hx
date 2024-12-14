@@ -81,12 +81,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		description_text.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
 		description_group.add(description_text);
 
-		backTab = new FlxSpriteExt(66 + (sheet_type == COSTUMES ? 0 : 500), 130, Paths.get('${sheet_type == COSTUMES ? 'costume-tab' : 'emote-tab'}.png'));
-
 		add(notepad);
 		add(description_group);
-
-		add(backTab);
 
 		add(bg);
 
@@ -262,8 +258,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 enum abstract SheetType(String) from String to String
 {
-	final COSTUMES;
-	final EMOTES;
+	final COSTUMES = "costumes";
+	final EMOTES = "emotes";
 }
 
 private enum abstract State(String) from String to String
