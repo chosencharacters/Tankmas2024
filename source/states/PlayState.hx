@@ -1,5 +1,6 @@
 package states;
 
+import input.InteractionHandler;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -69,6 +70,10 @@ class PlayState extends BaseState
 
 	public var doors:FlxTypedGroup<Door> = new FlxTypedGroup<Door>();
 
+	public var debug_layer:FlxTypedGroup<FlxObject> = new FlxTypedGroup<FlxObject>();
+
+	public var in_world_ui_overlay:FlxTypedGroup<FlxObject> = new FlxTypedGroup<FlxObject>();
+
 	public var ui_overlay:MainGameOverlay;
 
 	public var sheet_menu:SheetMenu;
@@ -83,6 +88,8 @@ class PlayState extends BaseState
 	public var notification_message:ServerNotificationMessagePopup;
 
 	public var collisions:physics.CollisionResolver;
+
+	public var interaction_handler:input.InteractionHandler;
 
 	public function new(?world_to_load:String)
 	{
@@ -123,7 +130,6 @@ class PlayState extends BaseState
 
 		add(minigames);
 		add(npcs);
-		add(username_tags);
 		add(users);
 		add(objects);
 
@@ -135,6 +141,8 @@ class PlayState extends BaseState
 		add(presents);
 		add(thumbnails);
 
+		add(username_tags);
+
 		add(dialogues);
 
 		add(doors);
@@ -142,10 +150,16 @@ class PlayState extends BaseState
 		add(stickers);
 		add(sticker_fx);
 
+		add(in_world_ui_overlay);
+		add(debug_layer);
+
 		add(ui_overlay);
 
 		notification_message = new ServerNotificationMessagePopup();
 		add(notification_message);
+
+		interaction_handler = new InteractionHandler(this);
+		add(interaction_handler);
 
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 

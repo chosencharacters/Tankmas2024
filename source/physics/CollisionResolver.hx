@@ -13,40 +13,46 @@ import lime.math.Rectangle;
 
 class CollisionResolver
 {
+	final USE_DEBUG_SHAPES = false;
 	var shapes:Array<differ.shapes.Shape> = [];
 
-	// var col:FlxTileFrames;
+	var col:FlxTileFrames;
 
 	public function new()
 	{
-		// var g = FlxGraphic.fromAssetKey(AssetPaths.tile_collision__png);
-		// col = FlxTileFrames.fromGraphic(g, new FlxPoint(32, 32));
+		if (!USE_DEBUG_SHAPES)
+			return;
+
+		var g = FlxGraphic.fromAssetKey(AssetPaths.tile_collision__png);
+		col = FlxTileFrames.fromGraphic(g, new FlxPoint(32, 32));
 	}
 
 	public function add_circle(x:Float, y:Float, r:Float)
 	{
 		shapes.push(new Circle(x, y, r));
 
-		/*
-			var sp = new FlxSprite(x, y);
-			sp.setFrames(col);
-			sp.setGraphicSize(r * 2, r * 2);
-			sp.frame = col.getByTilePosition(0, 1);
-			PlayState.self.objects.add(sp);
-		 */
+		if (!USE_DEBUG_SHAPES)
+			return;
+
+		var sp = new FlxSprite(x, y);
+		sp.setFrames(col);
+		sp.setGraphicSize(r * 2, r * 2);
+		sp.frame = col.getByTilePosition(0, 1);
+		PlayState.self.debug_layer.add(sp);
 	}
 
 	public function add_rect(x:Float, y:Float, w:Float, h:Float)
 	{
 		shapes.push(Polygon.rectangle(x, y, w, h, false));
 
-		/*
-			var sp = new FlxSprite(x + w * 0.5, y + h * 0.5);
-			sp.setFrames(col);
-			sp.setGraphicSize(w, h);
-			sp.frame = col.getByTilePosition(1, 0);
-			PlayState.self.objects.add(sp);
-		 */
+		if (!USE_DEBUG_SHAPES)
+			return;
+
+		var sp = new FlxSprite(x + w * 0.5, y + h * 0.5);
+		sp.setFrames(col);
+		sp.setGraphicSize(w, h);
+		sp.frame = col.getByTilePosition(1, 0);
+		PlayState.self.debug_layer.add(sp);
 	}
 
 	public function add_slope_ne(x:Float, y:Float, w:Float, h:Float)

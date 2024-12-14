@@ -18,7 +18,7 @@ class Cursor extends FlxSpriteExt
 		loadAllFromAnimationSet("cursor");
 
 		setSize(1, 1);
-		offset.set(50, 50);
+		offset.set(12, 17);
 
 		sstate(NEUTRAL);
 
@@ -32,6 +32,9 @@ class Cursor extends FlxSpriteExt
 		fsm();
 
 		super.update(elapsed);
+
+		if (PlayState.self != null && PlayState.self.interaction_handler != null)
+			visible = PlayState.self.interaction_handler.input_mode == MouseOrTouch;
 	}
 
 	override function updateMotion(elapsed:Float)

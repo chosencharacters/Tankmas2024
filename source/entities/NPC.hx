@@ -50,9 +50,6 @@ class NPC extends Interactable
 				visible = interactable = spawn_condition_check();
 			case NEARBY:
 				conditional_animation("nearby", "idle");
-				// sprite_anim.anim(PresentAnimation.NEARBY);
-				if (Ctrl.mode.can_move && (Ctrl.jinteract[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased))
-					start_chat();
 			case CHATTING:
 				sprite_anim.anim(PresentAnimation.IDLE);
 		}

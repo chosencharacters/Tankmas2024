@@ -134,10 +134,19 @@ class Player extends BaseUser
 		super.update(elapsed);
 	}
 
+	public function get_feet_position(?p:FlxPoint):FlxPoint
+	{
+		p = p ?? new FlxPoint();
+		p.x = x + width * 0.5;
+		p.y = y + height - 20;
+		return p;
+	}
+
 	function resolve_collision(elapsed:Float)
 	{
-		collision_shape.x = x + width * 0.5 + velocity.x * elapsed;
-		collision_shape.y = y + height + velocity.y * elapsed - 20;
+		var feet_pos = get_feet_position();
+		collision_shape.x = feet_pos.x + velocity.x * elapsed;
+		collision_shape.y = feet_pos.y + velocity.y * elapsed;
 
 		dbug_sprite.x = collision_shape.x;
 		dbug_sprite.y = collision_shape.y;
@@ -324,38 +333,40 @@ class Player extends BaseUser
 			return;
 		}
 
-		var closest:Interactable = Interactable.find_closest_in_array(this, Interactable.find_in_detect_range(this, PlayState.self.interactables));
-		var target_changed = closest != active_interactable;
+		/*
+			var closest:Interactable = Interactable.find_closest_in_array(mp, Interactable.find_in_detect_range(mp, PlayState.self.interactables));
+			var target_changed = closest != active_interactable;
 
-		if (target_changed && active_interactable != null)
-		{
-			active_interactable.marked = false;
-		}
-
-		if (closest == null)
-		{
-			active_interactable = null;
-			return;
-		}
-
-		switch (cast(closest.type, InteractableType))
-		{
-			case InteractableType.NPC:
-				// nothin
-			case InteractableType.PRESENT:
-				// nothin
-			case InteractableType.MINIGAME:
-				// nothin
-		}
-
-		closest.marked = true;
-		active_interactable = closest;
-
-		if (Ctrl.mode.can_interact)
-			if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased)
+			if (target_changed && active_interactable != null)
 			{
-				active_interactable.on_interact();
+				active_interactable.marked = false;
 			}
+
+			if (closest == null)
+			{
+				active_interactable = null;
+				return;
+			}
+
+			switch (cast(closest.type, InteractableType))
+			{
+				case InteractableType.NPC:
+					// nothin
+				case InteractableType.PRESENT:
+					// nothin
+				case InteractableType.MINIGAME:
+					// nothin
+			}
+
+			closest.marked = true;
+			active_interactable = closest;
+
+			if (Ctrl.mode.can_interact)
+				if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased)
+				{
+					active_interactable.on_interact();
+				}
+		 */
 	}
 
 	override function kill()

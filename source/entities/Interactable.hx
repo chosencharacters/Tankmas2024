@@ -22,16 +22,17 @@ class Interactable extends NGSprite
 		PlayState.self.interactables.add(this);
 	}
 
-	public static function find_in_detect_range<T:Interactable>(player:Player, interactables:FlxTypedGroup<T>):Array<T>
+	public static function find_in_detect_range<T:Interactable>(p:FlxPoint, interactables:FlxTypedGroup<T>, extra_range:Float = 0.0):Array<T>
 		return interactables.members.filter((interactable:T) -> interactable.interactable
-			&& interactable.mp.distance(player.mp) < interactable.detect_range);
+			&& interactable.mp.distance(p) < interactable.detect_range
+				+ extra_range);
 
-	public static function find_closest_in_array<T:Interactable>(player:Player, interactables:Array<T>):T
+	public static function find_closest_in_array<T:Interactable>(p:FlxPoint, interactables:Array<T>):T
 	{
 		var interactables_with_distance:Array<{interactable:T, distance:Float}> = [];
 
 		for (interactable in interactables)
-			interactables_with_distance.push({interactable: interactable, distance: interactable.mp.distance(player.mp)});
+			interactables_with_distance.push({interactable: interactable, distance: interactable.mp.distance(p)});
 
 		if (interactables_with_distance.length > 0)
 		{

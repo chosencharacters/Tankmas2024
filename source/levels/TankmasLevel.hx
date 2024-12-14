@@ -112,21 +112,6 @@ class TankmasLevel extends LDTKLevel
 			}
 		}
 
-		var colls = PlayState.self.collisions;
-		for (c in level.l_Collision.all_CollisionCircle)
-		{
-			var wx = x + c.pixelX;
-			var wy = y + c.pixelY;
-			colls.add_circle(wx, wy, c.height * 0.5);
-		}
-
-		for (c in level.l_Collision.all_CollisionSquare)
-		{
-			var wx = x + c.pixelX;
-			var wy = y + c.pixelY;
-			colls.add_rect(wx, wy, c.width, c.height);
-		}
-
 		for (c in level.l_Entities.all_Misc)
 		{
 			switch (c.f_name)
@@ -136,14 +121,25 @@ class TankmasLevel extends LDTKLevel
 			}
 		}
 
+		var colls = PlayState.self.collisions;
+		for (c in level.l_Collision.all_CollisionCircle)
+		{
+			colls.add_circle(c.worldPixelX, c.worldPixelY, c.height * 0.5);
+		}
+
+		for (c in level.l_Collision.all_CollisionSquare)
+		{
+			colls.add_rect(c.worldPixelX, c.worldPixelY, c.width, c.height);
+		}
+
 		for (c in level.l_Collision.all_SlopeNE)
-			colls.add_slope_ne(x + c.pixelX, y + c.pixelY, c.width, c.height);
+			colls.add_slope_ne(c.worldPixelX, c.worldPixelY, c.width, c.height);
 		for (c in level.l_Collision.all_SlopeNW)
-			colls.add_slope_nw(x + c.pixelX, y + c.pixelY, c.width, c.height);
+			colls.add_slope_nw(c.worldPixelX, c.worldPixelY, c.width, c.height);
 		for (c in level.l_Collision.all_SlopeSE)
-			colls.add_slope_se(x + c.pixelX, y + c.pixelY, c.width, c.height);
+			colls.add_slope_se(c.worldPixelX, c.worldPixelY, c.width, c.height);
 		for (c in level.l_Collision.all_SlopeSW)
-			colls.add_slope_sw(x + c.pixelX, y + c.pixelY, c.width, c.height);
+			colls.add_slope_sw(c.worldPixelX, c.worldPixelY, c.width, c.height);
 
 		/**put entity iterators here**/
 		/* 

@@ -91,7 +91,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 		if (!Ctrl.mode.can_open_menus)
 			return;
 
-		if (sticker_pack.visible && FlxG.mouse.overlaps(sticker_pack) && FlxG.mouse.pressed && Ctrl.mode.can_open_menus)
+		if (sticker_pack.visible && FlxG.mouse.overlaps(sticker_pack) && FlxG.mouse.justReleased && Ctrl.mode.can_open_menus)
 		{
 			Ctrl.mode = ControlModes.NONE;
 
@@ -202,7 +202,15 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 	{
 		var mouse_over_no_no_zone:Bool = false;
 		for (member in members)
-			mouse_over_no_no_zone = mouse_over_no_no_zone || FlxG.mouse.overlaps(member);
+		{
+			if (!member.visible)
+				continue;
+			if (FlxG.mouse.overlaps(member))
+			{
+				mouse_over_no_no_zone = true;
+				break;
+			}
+		}
 		return mouse_over_no_no_zone;
 	}
 }

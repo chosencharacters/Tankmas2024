@@ -1,5 +1,6 @@
 package zones;
 
+import flixel.math.FlxRect;
 import entities.Player;
 import flixel.math.FlxVelocity;
 import fx.CircleTransition;
@@ -53,12 +54,35 @@ class Door extends FlxSpriteExt
 		super.update(elapsed);
 	}
 
+	function player_overlaps_door()
+	{
+		var player = PlayState.self.player;
+		if (player == null)
+			return false;
+
+		var p = player.get_feet_position();
+
+		var radius = 40.0; // distance from door rect to count
+
+		if (p.x < x - radius)
+			return false;
+		if (p.y < y - radius)
+			return false;
+
+		if (p.x > x + width + radius)
+			return false;
+		if (p.y > y + height + radius)
+			return false;
+
+		return true;
+	}
+
 	function fsm()
 		switch (cast(state, State))
 		{
 			default:
 			case IDLE:
-				if (PlayState.self.player.can_enter_doors && overlaps(PlayState.self.player))
+				if (PlayState.self.player.can_enter_doors && player_overlaps_door())
 					start_door_out(PlayState.self.player);
 			case DOOR_OUT:
 				// PUT TRANSITION HERE

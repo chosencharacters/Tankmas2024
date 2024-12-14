@@ -5,6 +5,7 @@ import squid.sprite.TempSprite;
 
 enum PressType
 {
+	None;
 	Tap;
 	Hold;
 }
@@ -14,9 +15,13 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 	final TAP_TIME_THRESHOLD = 0.3; // Time mouse button being held until it doesn't count as a tap anymore, but a hold
 	final TAP_DRAG_DISTANCE_THRESHOLD = 30.0; // Press and drag threshold to count a tap as a hold/drag
 
-	var press_type:PressType = Tap;
+	public var press_type:PressType = None;
+
 	var press_position:FlxPoint;
 	var press_duration = 0.0;
+
+	public var tap_just_released:Bool = false;
+	public var drag_just_released:Bool = false;
 
 	public function new(?X:Float, ?Y:Float)
 	{
@@ -26,7 +31,11 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 
 	override function update(elapsed:Float)
 	{
+		tap_just_released = false;
+		drag_just_released = false;
+
 		fsm(elapsed);
+
 		super.update(elapsed);
 	}
 
@@ -47,8 +56,8 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 
 	function start_touch_move()
 	{
-		if (distance_to_mouse() < 100)
-			return;
+		// if (distance_to_mouse() < 100)
+		// return;
 
 		sstate(PRESSING);
 
@@ -63,14 +72,26 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 
 		if (press_type == Tap)
 		{
+			tap_just_released = true;
+
+			if (distance_to_mouse() < 110)
+			{
+				return;
+			}
+
 			var move_fx = new TempSprite("move-circle", this);
 			move_fx.center_on(FlxG.mouse.getWorldPosition());
 			add(move_fx);
+
+			move_to_position();
 		}
 		else
 		{
 			PlayState.self.player.stop_auto_move();
+			drag_just_released = true;
 		}
+
+		press_type = None;
 	}
 
 	function distance_to_mouse()
@@ -91,7 +112,10 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 			}
 		}
 
-		move_to_position();
+		if (press_type == Hold)
+		{
+			move_to_position();
+		}
 
 		if (!FlxG.mouse.pressed)
 			end_touch_move();

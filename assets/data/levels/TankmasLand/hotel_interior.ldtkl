@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "hotel_interior",
@@ -1414,7 +1414,7 @@
 				},
 				{
 					"__identifier": "Door",
-					"__grid": [90,39],
+					"__grid": [90,41],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1423,7 +1423,7 @@
 					"width": 320,
 					"height": 64,
 					"defUid": 14,
-					"px": [1440,624],
+					"px": [1440,656],
 					"fieldInstances": [
 						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
 							"entityIid": "329d5990-9b00-11ef-b7e6-e5f86a35a52d",
@@ -1434,13 +1434,13 @@
 							"id": "V_String",
 							"params": ["329d5990-9b00-11ef-b7e6-e5f86a35a52d"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 100, "cy": 56 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 99, "cy": 52 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["100,56"]
+							"params": ["99,52"]
 						}] }
 					],
 					"__worldX": 1440,
-					"__worldY": 624
+					"__worldY": 656
 				},
 				{
 					"__identifier": "Door",
@@ -1464,9 +1464,9 @@
 							"id": "V_String",
 							"params": ["4475d4d0-9b00-11ef-b7e6-398af05520d3"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 100, "cy": 58 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 100, "cy": 52 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["100,58"]
+							"params": ["100,52"]
 						}] }
 					],
 					"__worldX": 1392,
