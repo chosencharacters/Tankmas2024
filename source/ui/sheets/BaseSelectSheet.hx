@@ -33,9 +33,6 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	public var backTab:FlxSpriteExt;
 	public var notepad:FlxSpriteExt;
 
-	var locked_sheet:Int = 0;
-	var locked_selection:Int = 0;
-
 	public var selection(default, set):Int = 0;
 
 	var current_button(get, default):SheetButton;
@@ -99,6 +96,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		update_cursor();
 
 		sstate(ACTIVE);
+
+		add(locked_selection_overlay = new FlxSpriteExt(Paths.get("locked-sheet-selection-overlay")));
 	}
 
 	public function update_unlocks()
