@@ -23,6 +23,9 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 	public var tap_just_released:Bool = false;
 	public var drag_just_released:Bool = false;
 
+	// If the user taps the player, it counts as an interaction
+	public var interact_just_released:Bool = false;
+
 	public function new(?X:Float, ?Y:Float)
 	{
 		super();
@@ -33,6 +36,7 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 	{
 		tap_just_released = false;
 		drag_just_released = false;
+		interact_just_released = false;
 
 		fsm(elapsed);
 
@@ -76,6 +80,7 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 
 			if (distance_to_mouse() < 110)
 			{
+				interact_just_released = true;
 				return;
 			}
 

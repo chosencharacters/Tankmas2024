@@ -23,7 +23,8 @@ class Player extends BaseUser
 
 	public static var has_sticker_pack:Bool = true;
 
-	var auto_moving:Bool = false;
+	public var auto_moving:Bool = false;
+
 	var auto_move_dest:FlxPoint;
 	final auto_move_deadzone:Int = 50;
 
@@ -180,7 +181,6 @@ class Player extends BaseUser
 		{
 			case NEUTRAL:
 				general_movement();
-				process_activity_area();
 				detect_interactables();
 			case JUMPING:
 			case EMOTING:
@@ -302,17 +302,6 @@ class Player extends BaseUser
 	{
 		final MOVING:Bool = velocity.x.abs() + velocity.y.abs() > 10;
 		sprite_anim.anim(MOVING ? PlayerAnimation.MOVING : PlayerAnimation.IDLE);
-	}
-
-	function process_activity_area()
-	{
-		if (active_activity_area == null)
-			return;
-		if (Ctrl.mode.can_interact)
-			if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(active_activity_area) && FlxG.mouse.justReleased)
-			{
-				active_activity_area.on_interact(this);
-			}
 	}
 
 	var active_interactable:Interactable;

@@ -33,8 +33,8 @@ class Cursor extends FlxSpriteExt
 
 		super.update(elapsed);
 
-		if (PlayState.self != null && PlayState.self.interaction_handler != null)
-			visible = PlayState.self.interaction_handler.input_mode == MouseOrTouch;
+		if (PlayState.self != null && PlayState.self.input_manager != null)
+			visible = PlayState.self.input_manager.mode == MouseOrTouch;
 	}
 
 	override function updateMotion(elapsed:Float)

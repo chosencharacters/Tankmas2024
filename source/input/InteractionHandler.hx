@@ -15,16 +15,8 @@ enum MouseInteractionState
 	Dragging;
 }
 
-enum InputMode
-{
-	Keyboard;
-	MouseOrTouch;
-}
-
 class InteractionHandler extends FlxObject
 {
-	public var input_mode(default, set):InputMode = MouseOrTouch;
-
 	var play_state:PlayState;
 
 	public var mouse_state:MouseInteractionState = Idle;
@@ -97,30 +89,20 @@ class InteractionHandler extends FlxObject
 		scale_x_tween = FlxTween.tween(interaction_arrow, {alpha: 0}, 0.1);
 	}
 
-	var last_cursor_pos:FlxPoint = new FlxPoint();
-
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 		time += elapsed;
 
-		var player = play_state.player;
+		var input_mode = play_state.input_manager.mode;
 
-		var UP:Bool = Ctrl.up[1];
-		var DOWN:Bool = Ctrl.down[1];
-		var LEFT:Bool = Ctrl.left[1];
-		var RIGHT:Bool = Ctrl.right[1];
-		if (UP || DOWN || LEFT || RIGHT || Ctrl.jinteract[1])
-		{
-			input_mode = Keyboard;
-		}
-		else if (FlxG.mouse.justPressed || last_cursor_pos.distance(FlxG.mouse.getScreenPosition()) > 20)
-		{
-			input_mode = MouseOrTouch;
-		}
+		var player = play_state.player;
 
 		var hovered_over_ui = play_state.ui_overlay.mouse_is_over_ui();
 		var can_interact = Ctrl.mode.can_interact && Ctrl.mode.can_move;
+
+		var untargeted_interact_tapped = Ctrl.mode.can_move && (Ctrl.jinteract[1] || play_state.touch.interact_just_released);
+		var interact_tapped = Ctrl.mode.can_move && (Ctrl.jinteract[1] || play_state.touch.tap_just_released);
 
 		if (active_interactable != null)
 		{
@@ -130,8 +112,16 @@ class InteractionHandler extends FlxObject
 				active_interactable.on_interact();
 				active_interactable = null;
 				unmark_interactable();
+				return;
 			}
-			return;
+
+			var movement_cancelled = !player.auto_moving;
+			if (movement_cancelled)
+			{
+				active_interactable = null;
+				unmark_interactable();
+				return;
+			}
 		}
 
 		if (hovered_over_ui || play_state.touch.press_type == Hold || !can_interact)
@@ -146,16 +136,17 @@ class InteractionHandler extends FlxObject
 		var player_pos = player.get_feet_position();
 
 		var interact_position = input_mode == Keyboard ? player_pos : mouse_pos;
-
 		var extra_distance = input_mode == MouseOrTouch ? -100. : 0;
 
 		var interactables = Interactable.find_in_detect_range(interact_position, play_state.interactables, extra_distance);
 		var i = Interactable.find_closest_in_array(interact_position, interactables);
 
-		var interact_tapped = Ctrl.mode.can_move && (Ctrl.jinteract[1] || play_state.touch.tap_just_released);
-
 		if (player.active_activity_area != null)
 		{
+			if (untargeted_interact_tapped)
+			{
+				player.active_activity_area.on_interact(player);
+			}
 			if (input_mode == Keyboard)
 			{
 				unmark_interactable();
@@ -191,17 +182,5 @@ class InteractionHandler extends FlxObject
 
 			active_interactable = hovered_interactable;
 		}
-	}
-
-	function set_input_mode(m)
-	{
-		if (this.input_mode == m)
-			return m;
-		if (m == Keyboard || last_cursor_pos == null)
-		{
-			last_cursor_pos = FlxG.mouse.getScreenPosition();
-		}
-
-		return this.input_mode = m;
 	}
 }

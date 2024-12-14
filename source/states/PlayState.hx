@@ -1,5 +1,6 @@
 package states;
 
+import input.InputManager;
 import input.InteractionHandler;
 import activities.ActivityArea;
 import data.SaveManager;
@@ -87,8 +88,8 @@ class PlayState extends BaseState
 	// No idea how I could get this into the overlay ui
 	public var notification_message:ServerNotificationMessagePopup;
 
+	public var input_manager:input.InputManager;
 	public var collisions:physics.CollisionResolver;
-
 	public var interaction_handler:input.InteractionHandler;
 
 	public function new(?world_to_load:String)
@@ -160,6 +161,8 @@ class PlayState extends BaseState
 
 		interaction_handler = new InteractionHandler(this);
 		add(interaction_handler);
+		input_manager = new InputManager(this);
+		add(input_manager);
 
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
