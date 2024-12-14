@@ -14,11 +14,11 @@ class SheetButton extends HoverButton
 	public var empty:Bool;
 	public var unlocked:Bool;
 
-	var def:SheetItemDef;
+	public var def:SheetItemDef;
 
 	public function new(X:Float, Y:Float, def:SheetItemDef, sheet_type:SheetType, ?on_release:HoverButton->Void)
 	{
-		super(X, Y);
+		super(X, Y, on_release);
 		this.sheet_type = sheet_type;
 
 		this.def = def;

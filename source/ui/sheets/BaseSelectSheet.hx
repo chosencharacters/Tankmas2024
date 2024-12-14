@@ -13,6 +13,7 @@ import flixel.tweens.misc.ColorTween;
 import flixel.util.FlxTimer;
 import squid.ext.FlxTypedGroupExt;
 import ui.button.HoverButton;
+import ui.sheets.SheetMenu.SheetPosition;
 import ui.sheets.buttons.SheetButton;
 import ui.sheets.defs.SheetDefs.SheetMenuDef;
 import ui.sheets.defs.SheetDefs;
@@ -25,6 +26,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	var outline:FlxSpriteExt;
 	var bg:FlxSpriteExt;
+	var bg_white:FlxSpriteExt;
 
 	var description_text:FlxText;
 	var title:FlxText;
@@ -70,20 +72,23 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		def = load_new_def(sheet_name);
 
 		bg = new FlxSpriteExt(66, 239, Paths.image_path(def.name));
+		bg_white = new FlxSpriteExt(46, 219).makeGraphicExt(1446, 852, FlxColor.WHITE);
 
-		notepad = new FlxSpriteExt(bg.x + bg.width, 300, Paths.image_path("notepad"));
+		notepad = new FlxSpriteExt(Paths.image_path("notepad"));
+		notepad.setPosition(bg_white.x + bg_white.width + notepad.width, 300);
 		description_group.add(notepad);
 
 		description_text = new FlxText(notepad.x, notepad.y, 420, '');
 		description_text.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
 		description_group.add(description_text);
 
-		add(notepad);
+		add(bg_white);
+
 		add(description_group);
 
 		add(bg);
 
-		add_sprites();
+		add_buttons();
 
 		title = new FlxText(70, 70, 1420, '');
 		title.setFormat(Paths.get('CharlieType-Heavy.otf'), 60, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
@@ -97,14 +102,17 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 		sstate(ACTIVE);
 
-		add(locked_selection_overlay = new FlxSpriteExt(Paths.get("locked-sheet-selection-overlay")));
+		add(locked_selection_overlay = new FlxSpriteExt(Paths.get("locked-sheet-selection-overlay.png")));
+
+		for (member in members)
+			member.y += 8;
 	}
 
 	public function update_unlocks()
 		for (button in def.grid_1D)
 			button.update_unlocked();
 
-	function add_sprites()
+	function add_buttons()
 	{
 		def.grid_1D = [
 			for (n in 0...(rows * cols))
@@ -119,7 +127,17 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		for (i in 0...def.src.items.length)
 		{
 			var item_def:SheetItemDef = def.src.items[i];
-			var button:SheetButton = new SheetButton(0, 0, item_def, sheet_type, (b) -> lock_choices());
+			var button:SheetButton = new SheetButton(0, 0, item_def, sheet_type, (b) -> if (visible)
+			{
+				selection = i;
+				lock_selection(b);
+			});
+
+			button.on_hover = (b) -> if (cast(b, SheetButton).unlocked)
+			{
+				selection = i;
+				update_cursor();
+			}
 
 			var row:Int = (i / cols).floor();
 			var col:Int = i % cols;
@@ -140,7 +158,29 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		}
 	}
 
-	function update_locked_selection_overlay() {}
+	public function update_locked_selection_overlay(locked_position:SheetPosition)
+	{
+		if (def.name == locked_position.sheet_name)
+		{
+			var selected_button:SheetButton = def.grid_1D[locked_position.selection];
+			locked_selection_overlay.setPosition(selected_button.x, selected_button.y);
+			locked_selection_overlay.angle = selected_button.angle;
+			locked_selection_overlay.offset.copyFrom(selected_button.offset);
+			locked_selection_overlay.visible = locked_position.sheet_name == def.name;
+			locked_selection_overlay.visible = true;
+		}
+		else
+		{
+			locked_selection_overlay.visible = false;
+		}
+	}
+
+	public function lock_selection(button:HoverButton)
+	{
+		Utils.shake("light");
+		menu.save_locked_selection(sheet_type, {sheet_name: def.name, selection: selection});
+		menu.update_locked_selection_overlays();
+	}
 
 	function load_new_def(name:String):SheetMenuDef
 		throw "not implemented";
@@ -159,7 +199,6 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	override function update(elapsed:Float)
 	{
-		update_locked_selection_overlay();
 		fsm();
 		super.update(elapsed);
 	}
@@ -168,7 +207,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	{
 		var any_button:Bool = Ctrl.cleft[1] || Ctrl.cright[1] || Ctrl.cup[1] || Ctrl.cdown[1];
 
-		control_cd--;
+		control_cd = any_button ? control_cd - 1 : 0;
 
 		if (control_cd > 0)
 			any_button = false;
@@ -214,21 +253,23 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 				selection = selection - cols;
 			if (Ctrl.cdown[1] && !on_max_down)
 				selection = selection + cols;
-
-			// trace('post: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
-
-			def.grid_1D[selection].manual_button_hover = true;
-
-			update_cursor();
 		}
-	}
 
-	function lock_choices(shake:Bool = true) {}
+		if (Ctrl.jinteract[1])
+			if (current_button.unlocked)
+				lock_selection(current_button);
+		// trace('post: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
+		update_cursor();
+	}
 
 	function update_sheet_graphics() {}
 
 	function update_cursor()
 	{
+		for (button in def.grid_1D)
+			button.manual_button_hover = false;
+
+		current_button.manual_button_hover = true;
 		cursor.center_on(current_button);
 		cursor.angle = current_button.angle;
 	}

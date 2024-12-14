@@ -26,24 +26,15 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	var sheet_groups:FlxTypedGroup<FlxTypedGroup<Dynamic>> = new FlxTypedGroup<FlxTypedGroup<Dynamic>>();
 
-	function get_current_group():FlxTypedGroupExt<Dynamic>
-	{
-		switch (tab)
-		{
-			case COSTUMES:
-				return costume_sheets;
-			case EMOTES:
-				return emote_sheets;
-		}
-		return null;
-	}
-
 	var tabs:Array<SheetType> = [COSTUMES, EMOTES];
-	var tab(get, never):SheetType;
+	var current_tab(get, never):SheetType;
 
 	var back_button:HoverButton;
 
 	var substate:SheetSubstate;
+
+	var front_tabs:FlxTypedGroup<HoverButton> = new FlxTypedGroup<HoverButton>();
+	var back_tabs:FlxTypedGroup<HoverButton> = new FlxTypedGroup<HoverButton>();
 
 	public static var local_saves:Map<SheetType, SheetPosition>;
 
@@ -65,16 +56,16 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 			local_saves.set(EMOTES, {sheet_name: "emotes-back-red", selection: 0});
 		}
 
-		select_sheet(tab, local_saves.get(COSTUMES));
-
 		add_tab_buttons();
-
-		add(tab_buttons);
 
 		sheet_groups.add(costume_sheets);
 		sheet_groups.add(emote_sheets);
 
+		add(back_tabs);
 		add(sheet_groups);
+		add(front_tabs);
+
+		select_sheet(current_tab, local_saves.get(COSTUMES));
 
 		cycle_tabs_until(open_on_tab);
 		substate.add(back_button = new HoverButton((b) -> back_button_activated()));
@@ -83,6 +74,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		back_button.setPosition(FlxG.width - back_button.width - 16, FlxG.height - back_button.height - 16);
 		back_button.offset.y = -back_button.height;
 		back_button.tween = FlxTween.tween(back_button.offset, {y: 0}, 0.25, {ease: FlxEase.cubeInOut});
+
 		update_tab_states();
 	}
 
@@ -102,10 +94,9 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	public function select_sheet(new_tab:SheetType, sheet_position:SheetPosition)
 	{
-		trace(tab, sheet_position);
+		trace(current_tab, new_tab, sheet_position);
 		cycle_tabs_until(new_tab);
-
-		switch (tab)
+		switch (current_tab)
 		{
 			case COSTUMES:
 				for (sheet in costume_sheets)
@@ -128,32 +119,45 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 				while (!emote_sheets.members[0].visible)
 					emote_sheets.members.push(emote_sheets.members.shift());
 		}
+		update_locked_selection_overlays();
+	}
+
+	public function save_locked_selection(tab:SheetType, position:SheetPosition):SheetPosition
+	{
+		local_saves.set(current_tab, position);
+		return local_saves.get(current_tab);
+	}
+
+	public function update_locked_selection_overlays()
+	{
+		for (sheet in get_current_sheets())
+			cast(sheet, BaseSelectSheet).update_locked_selection_overlay(local_saves.get(current_tab));
 	}
 
 	public function prev_page()
 	{
-		get_current_group().members.unshift(get_current_group().members.pop());
-		local_saves.get(tab).sheet_name = cast(get_current_group().members[0], BaseSelectSheet).def.name;
-		local_saves.get(tab).selection = 0;
+		get_current_sheets().members.unshift(get_current_sheets().members.pop());
+		local_saves.get(current_tab).sheet_name = cast(get_current_sheets().members[0], BaseSelectSheet).def.name;
+		local_saves.get(current_tab).selection = 0;
 
-		select_sheet(tab, local_saves.get(tab));
+		select_sheet(current_tab, local_saves.get(current_tab));
 
-		get_current_group().members[0].update_unlocks();
+		get_current_sheets().members[0].update_unlocks();
 	}
 
 	public function next_page()
 	{
-		get_current_group().members.push(get_current_group().members.shift());
-		local_saves.get(tab).sheet_name = cast(get_current_group().members[0], BaseSelectSheet).def.name;
-		local_saves.get(tab).selection = 0;
+		get_current_sheets().members.push(get_current_sheets().members.shift());
+		local_saves.get(current_tab).sheet_name = cast(get_current_sheets().members[0], BaseSelectSheet).def.name;
+		local_saves.get(current_tab).selection = 0;
 
-		select_sheet(tab, local_saves.get(tab));
+		select_sheet(current_tab, local_saves.get(current_tab));
 
-		get_current_group().members[0].update_unlocks();
+		get_current_sheets().members[0].update_unlocks();
 	}
 
 	function current_group_order():Array<String>
-		return get_current_group().members.map((member) -> cast(member, BaseSelectSheet).def.name.split("-").last());
+		return get_current_sheets().members.map((member) -> cast(member, BaseSelectSheet).def.name.split("-").last());
 
 	function back_button_activated()
 	{
@@ -172,30 +176,39 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		visible = true;
 	}
 
-	override function set_visible(visible:Bool):Bool
-		return this.visible = visible;
-
 	function cycle_tabs_until(new_tab:SheetType)
-	{
-		while (tab != new_tab)
+		while (current_tab != new_tab)
 			next_tab();
-	}
 
 	public function next_tab()
 	{
+		trace(tabs);
 		tabs.push(tabs.shift());
+		trace(tabs);
+
 		sheet_groups.members.push(sheet_groups.members.shift());
 		tab_buttons.members.push(tab_buttons.members.shift());
+
 		update_tab_states();
-		trace(tab);
 	}
 
 	public function update_tab_states()
+	{
 		for (n in 0...sheet_groups.length)
 			sheet_groups.members[n].active = sheet_groups.members[n].visible = n == 0;
 
-	function get_tab():SheetType
+		back_tabs.clear();
+		front_tabs.clear();
+
+		for (n in 0...tab_buttons.length)
+			n > 0 ? back_tabs.add(tab_buttons.members[n]) : front_tabs.add(tab_buttons.members[n]);
+	}
+
+	function get_current_tab():SheetType
 		return tabs[0];
+
+	function get_current_sheets():FlxTypedGroupExt<Dynamic>
+		return cast(sheet_groups.members[0], FlxTypedGroupExt<Dynamic>);
 
 	public function start_closing(?on_complete:Void->Void)
 	{
