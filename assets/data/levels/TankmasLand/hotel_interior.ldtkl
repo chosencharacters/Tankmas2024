@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.3",
+		"appVersion": "1.5.4",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "hotel_interior",
@@ -1516,6 +1516,29 @@
 					],
 					"__worldX": 2384,
 					"__worldY": 3840
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [30,141],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "b01f9180-9b00-11ef-89d7-b7887a778833",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [480,2256],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "mimny", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["mimny"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 15, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [15] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 480,
+					"__worldY": 2256
 				}
 			]
 		},

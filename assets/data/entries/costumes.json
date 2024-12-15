@@ -343,6 +343,27 @@
             "desc": "The perfect marshmallow to have ever been made. She's a fusion of over 2000 of them with more to come... Now stop roasting marshmallows you bums.",
             "unlock": "USERNAME",
             "data": "kingcrowned"
+        },
+        {
+            "name": "sublo",
+            "display": "Sublo",
+            "desc": "They're a sub-par fast-food mascot in a submarine. Go figure.",
+            "unlock": "DATE",
+            "data": 1734238800
+        },
+        {
+            "name": "tangy-mustard",
+            "display": "Tangy Mustard",
+            "desc": "BAH-BUH BAH-DOO DA DOO-DA BOO DOO DOO BAH-DOO. Fast Food.",
+            "unlock": "DATE",
+            "data": 1734238800
+        },
+        {
+            "name": "dads-home",
+            "display": "Dad",
+            "desc": "It's Dad! Sometimes they're home, and sometimes they're at work. But they're always good ol' dad! Head on fire and everything! Father has appeared.",
+            "unlock": "DATE",
+            "data": 1734238800
         }
     ]
 }
