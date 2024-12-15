@@ -1,8 +1,5 @@
 package states;
 
-import video.VideoSubstate.VideoUi;
-import input.InputManager;
-import input.InteractionHandler;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -15,6 +12,8 @@ import entities.base.NGSprite;
 import flixel.tile.FlxTilemap;
 import fx.StickerFX;
 import fx.Thumbnail;
+import input.InputManager;
+import input.InteractionHandler;
 import levels.TankmasLevel;
 import minigames.MinigameHandler;
 import net.tankmas.NetDefs.NetEventDef;
@@ -32,6 +31,7 @@ import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
 import video.PremiereHandler;
+import video.VideoSubstate.VideoUi;
 import zones.Door;
 
 class PlayState extends BaseState
@@ -49,7 +49,7 @@ class PlayState extends BaseState
 	public var objects:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 	public var thumbnails:FlxTypedGroup<Thumbnail> = new FlxTypedGroup<Thumbnail>();
 	public var shadows:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
-	public var stickers:FlxTypedGroup<StickerFX> = new FlxTypedGroup<StickerFX>();
+	public var emotes:FlxTypedGroup<StickerFX> = new FlxTypedGroup<StickerFX>();
 	public var sticker_fx:FlxTypedGroup<NGSprite> = new FlxTypedGroup<NGSprite>();
 	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
 	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
@@ -148,7 +148,7 @@ class PlayState extends BaseState
 
 		add(doors);
 
-		add(stickers);
+		add(emotes);
 		add(sticker_fx);
 
 		add(in_world_ui_overlay);
@@ -177,8 +177,7 @@ class PlayState extends BaseState
 		level_collision.visible = false;
 		#end
 
-		SaveManager.load_costumes();
-		SaveManager.load_emotes();
+		SaveManager.load_collections();
 
 		// FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
 
@@ -368,7 +367,7 @@ class PlayState extends BaseState
 	}
 
 	// Happens whenever a custom event is received from the server.
-	// Currently these include stickers and marshmallow drops
+	// Currently these include emotes and marshmallow drops
 	public function on_net_event_received(event:NetEventDef)
 	{
 		if (event.room_id != null && event.room_id != Main.current_room_id)

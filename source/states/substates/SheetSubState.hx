@@ -21,16 +21,20 @@ class SheetSubstate extends FlxSubstateExt
 
 		self = this;
 
-		add(this.sheet_menu = sheet_menu);
+		this.sheet_menu = sheet_menu;
+
+		add(sheet_menu);
 
 		sstate(ACTIVE);
 	}
 
 	override function update(elapsed:Float)
 	{
-		fsm();
+		sheet_menu.update(elapsed);
 
 		super.update(elapsed);
+
+		fsm();
 	}
 
 	function fsm()
@@ -38,32 +42,11 @@ class SheetSubstate extends FlxSubstateExt
 		{
 			default:
 			case ACTIVE:
-				Ctrl.update();
 				if (Ctrl.jmenu[1])
-					start_closing();
+					sheet_menu.back_button_activated();
 			case CLOSING:
 				return;
 		}
-
-	public function start_closing()
-	{
-		sheet_menu.start_closing(() -> close_and_close_substate());
-		sstate(CLOSING);
-	}
-
-	public function close_and_close_substate()
-	{
-		/*
-			var new_costume:CostumeDef = JsonData.get_costume(SaveManager.current_costume);
-			if (new_costume != null && new_costume.name != PlayState.self.player.costume.name)
-			{
-				PlayState.self.player.new_costume(JsonData.get_costume(SaveManager.current_costume));
-				FlxG.camera.flash(FlxColor.BLACK, 0.5);
-			}
-		 */
-		close();
-		FlxG.state.closeSubState();
-	}
 
 	override function close()
 	{

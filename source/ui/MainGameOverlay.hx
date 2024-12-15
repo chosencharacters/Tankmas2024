@@ -112,7 +112,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 		];
 
 		sticker_pack.tween = FlxTween.tween(sticker_pack, {y: FlxG.height + sticker_pack.height}, 0.25, {
-			onComplete: (t) -> FlxG.state.add(new StickerPackOpening(JsonData.random_draw_emotes(Main.daily_sticker_draw_amount, limit_list)))
+			onComplete: (t) -> FlxG.state.add(new StickerPackOpening(JsonData.random_draw_emotes(Main.daily_emote_draw_amount, limit_list)))
 		});
 	}
 
@@ -120,7 +120,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 		new BaseSettings();
 
 	function do_emote(btn:HoverButton)
-		player.use_sticker(SaveManager.current_emote);
+		player.use_emote(SaveManager.current_emote);
 
 	var sticker_menu_tween:FlxTween = null;
 

@@ -25,7 +25,7 @@ class StickerFX extends NGSprite
 
 		this.parent = parent;
 
-		PlayState.self.stickers.add(this);
+		PlayState.self.emotes.add(this);
 		PlayState.self.sticker_fx.add(cover);
 
 		sstate(IN);

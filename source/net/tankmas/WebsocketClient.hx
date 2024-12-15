@@ -1,10 +1,10 @@
 package net.tankmas;
 
-import net.tankmas.NetDefs.GenerateBasicAuthHeader;
 import haxe.Json;
 import hx.ws.Types.MessageType;
-import net.tankmas.NetDefs.NetEventType;
+import net.tankmas.NetDefs.GenerateBasicAuthHeader;
 import net.tankmas.NetDefs.NetEventDef;
+import net.tankmas.NetDefs.NetEventType;
 import net.tankmas.NetDefs.NetUserDef;
 #if websocket
 import haxe.io.Bytes;
@@ -17,7 +17,7 @@ enum abstract WebsocketEventType(Int)
 	// This can be the position / costume / room / data
 	var PlayerStateUpdate = 2;
 
-	// Custom events, such as using stickers or doing activities in minigames.
+	// Custom events, such as using emotes or doing activities in minigames.
 	var CustomEvent = 3;
 
 	// Called when player disconnects or leaves the room.

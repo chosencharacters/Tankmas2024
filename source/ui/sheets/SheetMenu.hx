@@ -1,12 +1,11 @@
 package ui.sheets;
 
-import cdb.Sheet;
 import data.JsonData;
+import data.SaveManager;
 import flixel.FlxBasic;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 import states.substates.SheetSubstate;
-import ui.Button.BackButton;
 import ui.button.HoverButton;
 import ui.sheets.BaseSelectSheet.SheetType;
 
@@ -90,6 +89,8 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		update_tab_states();
 
 		update_locked_selections_overlays();
+
+		intro();
 	}
 
 	function add_tab_buttons()
@@ -98,8 +99,9 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 			var tab_x:Float = tab_buttons.length > 0 ? tab_buttons.members.last().x + tab_buttons.members.last().width - 64 : 48;
 			var tab_button:HoverButton = new HoverButton(tab_x, 130);
 			tab_button.loadAllFromAnimationSet('${tab}-tab');
-			tab_button.on_release = (b) -> select_sheet(tab, saved_positions.get(tab));
+			tab_button.on_pressed = (b) -> select_sheet(tab, saved_positions.get(tab));
 			tab_buttons.add(tab_button);
+			tab_button.scrollFactor.set(0, 0);
 		}
 
 	public function select_sheet(new_tab:SheetType, sheet_position:SheetPosition)
@@ -173,11 +175,55 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 	function current_group_order():Array<String>
 		return get_current_sheets().members.map((member) -> cast(member, BaseSelectSheet).def.name.split("-").last());
 
-	function back_button_activated()
+	public function back_button_activated()
 	{
-		back_button.tween = FlxTween.tween(back_button, {y: FlxG.height + back_button.height}, 0.25, {ease: FlxEase.cubeInOut});
+		for (sheet_group in sheet_groups)
+			for (sheet in cast(sheet_group, FlxTypedGroup<Dynamic>))
+				for (member in cast(sheet, BaseSelectSheet))
+					FlxTween.tween(member, {y: FlxG.height + 128}, 0.25, {ease: FlxEase.cubeInOut});
+
+		for (tab in tab_buttons)
+			tab.tween = FlxTween.tween(tab, {y: FlxG.height + 128}, 0.25, {ease: FlxEase.cubeInOut});
+
+		back_button.tween = FlxTween.tween(back_button, {y: FlxG.height + 128}, 0.25, {
+			ease: FlxEase.cubeInOut,
+			onComplete: function(t)
+			{
+				FlxG.state.closeSubState();
+			}
+		});
+
+		closing = true;
+
 		back_button.disable();
-		substate.start_closing();
+
+		substate.sstate("CLOSING");
+
+		SaveManager.save_collections();
+	}
+
+	public function intro()
+	{
+		for (sheet_group in sheet_groups)
+			for (sheet in cast(sheet_group, FlxTypedGroup<Dynamic>))
+				for (member in cast(sheet, BaseSelectSheet))
+				{
+					member.offset.y = -FlxG.height;
+					FlxTween.tween(member.offset, {y: 0}, 0.25, {ease: FlxEase.cubeInOut});
+				}
+
+		for (tab in tab_buttons)
+		{
+			tab.offset.y = -FlxG.height;
+			tab.tween = FlxTween.tween(tab.offset, {y: 0}, 0.25, {ease: FlxEase.cubeInOut});
+		}
+
+		/*
+			back_button.y = back_button.y + (FlxG.height + 128);
+			back_button.tween = FlxTween.tween(back_button, {y: back_button.y - (FlxG.height + 128)}, 0.25, {
+				ease: FlxEase.cubeInOut
+			});
+		 */
 	}
 
 	override function update(elapsed:Float)
@@ -223,12 +269,4 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	function get_current_sheets():FlxTypedGroupExt<Dynamic>
 		return cast(sheet_groups.members[0], FlxTypedGroupExt<Dynamic>);
-
-	public function start_closing(?on_complete:Void->Void)
-	{
-		closing = true;
-
-		FlxG.sav
-		// current.start_closing(on_complete);
-	}
 }

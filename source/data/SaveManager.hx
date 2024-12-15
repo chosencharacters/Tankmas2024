@@ -39,11 +39,7 @@ class SaveManager
 		// opened presents
 		load_presents();
 
-		// unlocked costumes, as well as what the player is currently wearing
-		load_costumes();
-
-		// unlocked emotes, as well as what emote the player is currently using
-		load_emotes();
+		load_collections();
 
 		// if it's December 1st, reset it...?
 		// if(Date.now().getMonth() == 11 && Date.now().getDate() == 1) return;
@@ -71,8 +67,7 @@ class SaveManager
 
 	public static function load(on_complete:() -> Void = null, ?on_fail:() -> Void)
 	{
-		SaveManager.load_costumes();
-		SaveManager.load_emotes();
+		SaveManager.load_collections();
 
 		#if offline
 		finalize_load();
@@ -135,36 +130,16 @@ class SaveManager
 	public static function save_collections(force:Bool = false):Void
 	{
 		FlxG.save.data.locked_selections = SheetMenu.locked_selections;
-		FlxG.save.data.emote_collection = SheetMenu.emote_collection;
+		FlxG.save.data.emote_collection = saved_emote_collection;
 		if (force)
 			flush();
 	}
 
-	public static function save_emote_collection(force:Bool = false):Void
+	public static function load_collections(force:Bool = false):Void
 	{
-		FlxG.save.data.sticker_collection = saved_emote_collection;
-		if (force)
-			flush();
-	}
-
-	public static function load_costume_collection(force:Bool = false):Void
-	{
-		if (FlxG.save.data.saved_costume_collection == null)
-		{
-			trace("Error loading saved costumes (might be empty)");
-			save_costume_collection(true);
-		}
-		saved_costume_collection = FlxG.save.data.costume_collection;
-	}
-
-	public static function load_emote_collection(force:Bool = false):Void
-	{
-		if (FlxG.save.data.saved_emote_collection == null)
-		{
-			trace("Error loading saved stickers (might be empty)");
-			save_emote_collection(true);
-		}
-		saved_emote_collection = FlxG.save.data.sticker_collection;
+		// null cases are handled by SheetMenu
+		SheetMenu.locked_selections = FlxG.save.data.locked_selections;
+		saved_emote_collection = FlxG.save.data.emote_collection;
 	}
 
 	public static function load_presents(force:Bool = false):Void
@@ -177,20 +152,6 @@ class SaveManager
 		savedPresents = FlxG.save.data.savedPresents;
 	}
 
-	public static function load_costumes():Void
-	{
-		if (FlxG.save.data.savedCostumes == null)
-		{
-			trace("Error loading saved costumes (might be empty)");
-			save_costumes(true);
-		}
-		savedCostumes = FlxG.save.data.savedCostumes;
-		current_costume = FlxG.save.data.currentCostume;
-		// CostumeSelectSheet.saved_sheet = FlxG.save.data.savedCostumeSheet != null ? FlxG.save.data.savedCostumeSheet : 0;
-		// CostumeSelectSheet.saved_selection = FlxG.save.data.savedCostumeSelect != null ? FlxG.save.data.savedCostumeSelect : 0;
-		// CostumeSelectSheet.seenCostumes = FlxG.save.data.seenCostumes != null ? FlxG.save.data.seenCostumes : [];
-	}
-
 	public static function load_emotes():Void
 	{
 		if (FlxG.save.data.savedEmotes == null)
@@ -199,11 +160,6 @@ class SaveManager
 			save_emotes(true);
 		}
 		savedEmotes = FlxG.save.data.savedEmotes;
-		/*
-			EmoteSelectSheet.saved_sheet = FlxG.save.data.savedEmoteSheet != null ? FlxG.save.data.savedEmoteSheet : 0;
-			EmoteSelectSheet.saved_selection = FlxG.save.data.savedEmoteSelect != null ? FlxG.save.data.savedEmoteSelect : 0;
-			EmoteSelectSheet.seenStickers = FlxG.save.data.seenEmotes != null ? FlxG.save.data.seenEmotes : [];
-		 */
 	}
 
 	public static function load_room():Void

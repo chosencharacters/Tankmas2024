@@ -135,7 +135,9 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		if (locked_count == 0)
 			empty = dev_page && unlocked_count == 0 || total_count == 0;
 
-		update_locked_selection_overlay(SheetMenu.locked_selections.get(sheet_type));
+		update_locked_selections_overlay(SheetMenu.locked_selections.get(sheet_type));
+
+		Utils.for_all_members(members, (b) -> cast(b, FlxObject).scrollFactor.set(0, 0));
 	}
 
 	public function update_unlocks()
@@ -192,7 +194,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		}
 	}
 
-	public function update_locked_selection_overlay(locked_position:SheetPosition)
+	public function update_locked_selections_overlay(locked_position:SheetPosition)
 	{
 		if (def.name == locked_position.sheet_name)
 		{
@@ -211,8 +213,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	public function lock_selection(button:HoverButton)
 	{
 		Utils.shake("light");
-		menu.save_locked_selection(sheet_type, {sheet_name: def.name, selection: selection});
-		menu.update_locked_selection_overlays();
+		menu.save_locked_selections(sheet_type, {sheet_name: def.name, selection: selection});
+		menu.update_locked_selections_overlays();
 	}
 
 	function load_new_def(name:String):SheetMenuDef

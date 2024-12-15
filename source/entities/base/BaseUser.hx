@@ -87,7 +87,7 @@ class BaseUser extends NGSprite
 		super.update(elapsed);
 	}
 
-	public function use_sticker(sticker_name:String):Bool
+	public function use_emote(emote_name:String):Bool
 	{
 		if (this.emote_name == emote_name)
 			return false;

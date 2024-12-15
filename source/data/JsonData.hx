@@ -163,7 +163,7 @@ class JsonData
 		return costume_defs.map((def:CostumeDef) -> return def.name);
 
 	public static function get_present_names():Array<String>
-		return present_defs.map((def:PresentDef) -> return def.name);
+		return present_defs.map((def:PresentDef) -> return def.artist);
 
 	public static function get_emote_names():Array<String>
 		return emote_defs.map((def:EmoteDef) -> return def.name);
