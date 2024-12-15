@@ -37,8 +37,11 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 	var front_tabs:FlxTypedGroup<HoverButton> = new FlxTypedGroup<HoverButton>();
 	var back_tabs:FlxTypedGroup<HoverButton> = new FlxTypedGroup<HoverButton>();
 
-	public static var local_saves:Map<SheetType, SheetPosition>;
-	public static var locked_selection:Map<SheetType, SheetPosition>;
+	var saved_positions:Map<SheetType, SheetPosition>;
+
+	public static var locked_selections:Map<SheetType, SheetPosition>;
+
+	var closing:Bool = false;
 
 	public function new(open_on_tab:SheetType = COSTUMES)
 	{
@@ -46,18 +49,18 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 		FlxG.state.openSubState(substate = new SheetSubstate(this));
 
-		if (local_saves == null)
+		if (saved_positions == null)
 		{
-			local_saves = [];
-			local_saves.set(COSTUMES, {sheet_name: "costumes-series-1", selection: 0});
-			local_saves.set(EMOTES, {sheet_name: "emotes-back-red", selection: 0});
+			saved_positions = [];
+			saved_positions.set(COSTUMES, {sheet_name: "costumes-series-1", selection: 0});
+			saved_positions.set(EMOTES, {sheet_name: "emotes-back-red", selection: 0});
 		}
 
-		if (locked_selection == null)
+		if (locked_selections == null)
 		{
-			locked_selection = [];
+			locked_selections = [];
 			for (tab in tab_order)
-				locked_selection.set(tab, local_saves.get(tab));
+				locked_selections.set(tab, saved_positions.get(tab));
 		}
 
 		for (name in JsonData.costume_sheet_names)
@@ -74,7 +77,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		add(sheet_groups);
 		add(front_tabs);
 
-		select_sheet(current_tab, local_saves.get(COSTUMES));
+		select_sheet(current_tab, saved_positions.get(COSTUMES));
 
 		cycle_tabs_until(open_on_tab);
 		substate.add(back_button = new HoverButton((b) -> back_button_activated()));
@@ -86,22 +89,18 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 		update_tab_states();
 
-		update_locked_selection_overlays();
+		update_locked_selections_overlays();
 	}
 
-	public function add_tab_buttons()
-	{
+	function add_tab_buttons()
 		for (tab in tabs)
 		{
 			var tab_x:Float = tab_buttons.length > 0 ? tab_buttons.members.last().x + tab_buttons.members.last().width - 64 : 48;
 			var tab_button:HoverButton = new HoverButton(tab_x, 130);
-
 			tab_button.loadAllFromAnimationSet('${tab}-tab');
-			tab_button.on_release = (b) -> select_sheet(tab, local_saves.get(tab));
-
+			tab_button.on_release = (b) -> select_sheet(tab, saved_positions.get(tab));
 			tab_buttons.add(tab_button);
 		}
-	}
 
 	public function select_sheet(new_tab:SheetType, sheet_position:SheetPosition)
 	{
@@ -131,25 +130,25 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		}
 	}
 
-	public function save_locked_selection(tab:SheetType, position:SheetPosition):SheetPosition
+	public function save_locked_selections(tab:SheetType, position:SheetPosition):SheetPosition
 	{
-		locked_selection.set(current_tab, position);
-		return locked_selection.get(current_tab);
+		locked_selections.set(current_tab, position);
+		return locked_selections.get(current_tab);
 	}
 
-	public function update_locked_selection_overlays()
+	public function update_locked_selections_overlays()
 	{
 		for (sheet in get_current_sheets())
-			cast(sheet, BaseSelectSheet).update_locked_selection_overlay(locked_selection.get(current_tab));
+			cast(sheet, BaseSelectSheet).update_locked_selections_overlay(locked_selections.get(current_tab));
 	}
 
 	public function prev_page()
 	{
 		get_current_sheets().members.unshift(get_current_sheets().members.pop());
-		local_saves.get(current_tab).sheet_name = cast(get_current_sheets().members[0], BaseSelectSheet).def.name;
-		local_saves.get(current_tab).selection = 0;
+		saved_positions.get(current_tab).sheet_name = cast(get_current_sheets().members[0], BaseSelectSheet).def.name;
+		saved_positions.get(current_tab).selection = 0;
 
-		select_sheet(current_tab, local_saves.get(current_tab));
+		select_sheet(current_tab, saved_positions.get(current_tab));
 
 		get_current_sheets().members[0].update_unlocks();
 
@@ -160,10 +159,10 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 	public function next_page()
 	{
 		get_current_sheets().members.push(get_current_sheets().members.shift());
-		local_saves.get(current_tab).sheet_name = cast(get_current_sheets().members[0], BaseSelectSheet).def.name;
-		local_saves.get(current_tab).selection = 0;
+		saved_positions.get(current_tab).sheet_name = cast(get_current_sheets().members[0], BaseSelectSheet).def.name;
+		saved_positions.get(current_tab).selection = 0;
 
-		select_sheet(current_tab, local_saves.get(current_tab));
+		select_sheet(current_tab, saved_positions.get(current_tab));
 
 		get_current_sheets().members[0].update_unlocks();
 
@@ -183,6 +182,8 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	override function update(elapsed:Float)
 	{
+		if (closing)
+			return;
 		super.update(elapsed);
 	}
 
@@ -225,6 +226,9 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	public function start_closing(?on_complete:Void->Void)
 	{
+		closing = true;
+
+		FlxG.sav
 		// current.start_closing(on_complete);
 	}
 }

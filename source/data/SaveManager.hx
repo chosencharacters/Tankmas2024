@@ -4,6 +4,7 @@ import http.HttpError;
 import net.tankmas.TankmasClient;
 import ui.sheets.CostumeSelectSheet;
 import ui.sheets.EmoteSelectSheet;
+import ui.sheets.SheetMenu;
 
 class SaveManager
 {
@@ -133,13 +134,8 @@ class SaveManager
 
 	public static function save_collections(force:Bool = false):Void
 	{
-		save_costume_collection(force);
-		save_emote_collection(force);
-	}
-
-	public static function save_costume_collection(force:Bool = false):Void
-	{
-		FlxG.save.data.costume_collection = saved_costume_collection;
+		FlxG.save.data.locked_selections = SheetMenu.locked_selections;
+		FlxG.save.data.emote_collection = SheetMenu.emote_collection;
 		if (force)
 			flush();
 	}

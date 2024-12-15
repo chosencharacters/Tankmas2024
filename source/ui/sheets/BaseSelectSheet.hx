@@ -135,7 +135,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		if (locked_count == 0)
 			empty = dev_page && unlocked_count == 0 || total_count == 0;
 
-		update_locked_selection_overlay(SheetMenu.locked_selection.get(sheet_type));
+		update_locked_selection_overlay(SheetMenu.locked_selections.get(sheet_type));
 	}
 
 	public function update_unlocks()
