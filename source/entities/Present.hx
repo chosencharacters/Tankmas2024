@@ -185,14 +185,14 @@ class Present extends Interactable
 
 				medal_was_unlocked = is_medal_unlock_enabled();
 
-				SaveManager.open_present(username, def.day);
+				SaveManager.open_present(username, def.day, medal_was_unlocked);
 			});
 		}
 		else
 		{
 			first_time_opening = false;
 			// Always try to award medals (fixes an edge case where someone encounters a crash mid-gift)
-			SaveManager.open_present(username, def.day);
+			SaveManager.open_present(username, def.day, is_medal_unlock_enabled());
 
 			SoundPlayer.sound(Paths.get('present-open.ogg'));
 			PlayState.self.openSubState(comic ? new ComicSubstate(username, false) : new ArtSubstate(username));

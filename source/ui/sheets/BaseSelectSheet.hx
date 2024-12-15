@@ -100,7 +100,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 					continue;
 				final identity:SheetItemDef = sheet.items[i];
 				final sprite:HoverButton = new HoverButton(0, 0);
-				sprite.on_release = (b) -> lock_choices();
+				sprite.on_pressed = (b) -> lock_choices();
 				sprite.ID = i;
 				if (type == STICKER)
 				{

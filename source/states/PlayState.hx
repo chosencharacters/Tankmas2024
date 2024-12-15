@@ -1,5 +1,8 @@
 package states;
 
+import video.VideoSubstate.VideoUi;
+import input.InputManager;
+import input.InteractionHandler;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -29,7 +32,6 @@ import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
 import video.PremiereHandler;
-import video.VideoSubstate;
 import zones.Door;
 
 class PlayState extends BaseState
@@ -69,6 +71,10 @@ class PlayState extends BaseState
 
 	public var doors:FlxTypedGroup<Door> = new FlxTypedGroup<Door>();
 
+	public var debug_layer:FlxTypedGroup<FlxObject> = new FlxTypedGroup<FlxObject>();
+
+	public var in_world_ui_overlay:FlxTypedGroup<FlxObject> = new FlxTypedGroup<FlxObject>();
+
 	public var ui_overlay:MainGameOverlay;
 
 	public var sheet_menu:SheetMenu;
@@ -82,7 +88,9 @@ class PlayState extends BaseState
 	// No idea how I could get this into the overlay ui
 	public var notification_message:ServerNotificationMessagePopup;
 
+	public var input_manager:input.InputManager;
 	public var collisions:physics.CollisionResolver;
+	public var interaction_handler:input.InteractionHandler;
 
 	public function new(?world_to_load:String)
 	{
@@ -123,7 +131,6 @@ class PlayState extends BaseState
 
 		add(minigames);
 		add(npcs);
-		add(username_tags);
 		add(users);
 		add(objects);
 
@@ -135,6 +142,8 @@ class PlayState extends BaseState
 		add(presents);
 		add(thumbnails);
 
+		add(username_tags);
+
 		add(dialogues);
 
 		add(doors);
@@ -142,10 +151,18 @@ class PlayState extends BaseState
 		add(stickers);
 		add(sticker_fx);
 
+		add(in_world_ui_overlay);
+		add(debug_layer);
+
 		add(ui_overlay);
 
 		notification_message = new ServerNotificationMessagePopup();
 		add(notification_message);
+
+		interaction_handler = new InteractionHandler(this);
+		add(interaction_handler);
+		input_manager = new InputManager(this);
+		add(input_manager);
 
 		// add(new DialogueBox(Lists.npcs.get("thomas").get_state_dlg("default")));
 
@@ -199,11 +216,6 @@ class PlayState extends BaseState
 			premieres.on_premiere_release = on_premiere_release;
 			premieres.refresh();
 			new entities.misc.PremiereCountdown(premieres);
-		}
-		else
-		{
-			trace('Disabling premieres...');
-			premieres.on_premiere_release = null;
 		}
 	}
 
@@ -300,9 +312,11 @@ class PlayState extends BaseState
 		this.objects.add(video_ui);
 		video_ui.on_close_request = () ->
 		{
-			this.objects.remove(video_ui);
-			video_ui.destroy();
-			video_ui = null;
+			if (this.video_ui == null)
+				return;
+			this.objects.remove(this.video_ui);
+			this.video_ui.kill();
+			this.video_ui = null;
 		}
 
 		video_ui.on_enter_area = () -> ui_overlay.visible = false;

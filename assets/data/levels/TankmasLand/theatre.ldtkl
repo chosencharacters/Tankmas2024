@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "theatre",
@@ -470,16 +470,16 @@
 				},
 				{
 					"__identifier": "Door",
-					"__grid": [1,202],
+					"__grid": [1,196],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
 					"__smartColor": "#FFF100",
 					"iid": "329d5990-9b00-11ef-b7e6-e5f86a35a52d",
 					"width": 336,
-					"height": 48,
+					"height": 144,
 					"defUid": 14,
-					"px": [16,3232],
+					"px": [16,3136],
 					"fieldInstances": [
 						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
 							"entityIid": "bc455ee0-9b00-11ef-b7e6-21b93c92c6fa",
@@ -490,13 +490,13 @@
 							"id": "V_String",
 							"params": ["bc455ee0-9b00-11ef-b7e6-21b93c92c6fa"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 16, "cy": 191 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 17, "cy": 187 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["16,191"]
+							"params": ["17,187"]
 						}] }
 					],
 					"__worldX": 16,
-					"__worldY": 3232
+					"__worldY": 3136
 				},
 				{
 					"__identifier": "Door",
@@ -530,7 +530,7 @@
 				},
 				{
 					"__identifier": "Player",
-					"__grid": [14,186],
+					"__grid": [14,182],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -539,10 +539,10 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 1,
-					"px": [224,2976],
+					"px": [224,2912],
 					"fieldInstances": [],
 					"__worldX": 224,
-					"__worldY": 2976
+					"__worldY": 2912
 				}
 			]
 		},

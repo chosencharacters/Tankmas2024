@@ -218,7 +218,7 @@ class SaveManager
 		savedRoom = FlxG.save.data.savedRoom;
 	}
 
-	public static function open_present(username:String, present_day:Int)
+	public static function open_present(username:String, present_day:Int, got_medal:Bool)
 	{
 		if (!savedPresents.contains(username))
 		{
