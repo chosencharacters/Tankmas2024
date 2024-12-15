@@ -372,7 +372,7 @@ class Lists
 	public static function textStorageLoad(path:String):String
 	{
 		if (textStorage.get(path) == null)
-			textStorage.set(path, Assets.getText(path));
+			textStorage.set(path, sys.io.File.getContent(path));
 		return textStorage.get(path);
 	}
 

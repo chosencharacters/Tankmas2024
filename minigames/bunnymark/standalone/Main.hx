@@ -20,11 +20,11 @@ class BootState extends flixel.FlxState
 	{
 		super.create();
 	}
-	
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		
+
 		FlxG.switchState(new PlayState());
 	}
 }

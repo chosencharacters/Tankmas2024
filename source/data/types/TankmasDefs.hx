@@ -1,7 +1,6 @@
 package data.types;
 
 import data.types.TankmasEnums.UnlockCondition;
-import dn.achievements.AbstractAchievementPlatform;
 
 typedef CostumeDef =
 {
@@ -14,26 +13,6 @@ typedef CostumeDef =
 	var ?walk:String;
 }
 
-typedef TrackDef =
-{
-	var id:String;
-	var name:String;
-	var artist:String;
-	// Unlock condition
-	var ?unlock:UnlockCondition;
-	var ?data:Dynamic;
-}
-
-typedef StickerDef =
-{
-	var name:String;
-	var properName:String;
-	var artist:String;
-	var ?desc:String;
-	var ?unlock:UnlockCondition;
-	var ?data:Dynamic;
-}
-
 typedef PresentDef =
 {
 	var day:Int;
@@ -44,6 +23,26 @@ typedef PresentDef =
 	var ?comicProperties:ComicDef;
 	var ?costumeUnlock:String;
 	var ?timelock:Int;
+}
+
+typedef TrackDef =
+{
+	var id:String;
+	var name:String;
+	var artist:String;
+	// Unlock condition
+	var ?unlock:UnlockCondition;
+	var ?data:Dynamic;
+}
+
+typedef EmoteDef =
+{
+	var name:String;
+	var properName:String;
+	var artist:String;
+	var ?desc:String;
+	var ?unlock:UnlockCondition;
+	var ?data:Dynamic;
 }
 
 typedef ComicDef =

@@ -1,12 +1,12 @@
 package net.tankmas;
 
-import levels.TankmasLevel.RoomId;
 import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import entities.NetUser;
 import entities.Player;
 import entities.base.BaseUser;
+import levels.TankmasLevel.RoomId;
 import net.tankmas.NetDefs;
 import net.tankmas.TankmasClient;
 
@@ -160,9 +160,10 @@ class OnlineLoop
 		}
 	}
 
-	public static function post_sticker(sticker_name:String)
+	/**This is a post request**/
+	public static function post_emote(emote_name:String)
 	{
-		post_event({type: STICKER, data: {"name": sticker_name}});
+		post_event({type: STICKER, data: {"name": emote_name}});
 	}
 
 	public static function post_marshmallow_discard(marshmallow_level:Int)

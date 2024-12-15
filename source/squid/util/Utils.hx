@@ -410,7 +410,7 @@ class Utils
 	}
 
 	public static function file_to_xml(path:String):Xml
-		return Assets.getText(path).string_to_xml();
+		return sys.io.File.getContent(path).string_to_xml();
 
 	/**
 	 * Cleans and formats string to xml
@@ -425,7 +425,7 @@ class Utils
 	}
 
 	public static function load_file_string(file_name:String):String
-		return Assets.getText(Paths.get(file_name));
+		return sys.io.File.getContent(Paths.get(file_name));
 
 	/**Mask for Std.parseInt that also handles hex*/
 	inline public static function hex_safe_int(string:String):Int
@@ -1009,7 +1009,7 @@ class Inflect
 
 	public static function load_file_string(file_name:String):String
 	{
-		return Assets.getText(Paths.get(file_name));
+		return sys.io.File.getContent(Paths.get(file_name));
 	}
 
 	/**

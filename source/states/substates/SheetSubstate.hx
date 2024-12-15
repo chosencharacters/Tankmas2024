@@ -21,16 +21,20 @@ class SheetSubstate extends FlxSubstateExt
 
 		self = this;
 
-		add(this.sheet_menu = sheet_menu);
+		this.sheet_menu = sheet_menu;
+
+		add(sheet_menu);
 
 		sstate(ACTIVE);
 	}
 
 	override function update(elapsed:Float)
 	{
-		fsm();
+		sheet_menu.update(elapsed);
 
 		super.update(elapsed);
+
+		fsm();
 	}
 
 	function fsm()
@@ -38,7 +42,6 @@ class SheetSubstate extends FlxSubstateExt
 		{
 			default:
 			case ACTIVE:
-				Ctrl.update();
 				if (Ctrl.jmenu[1])
 					start_closing();
 			case CLOSING:

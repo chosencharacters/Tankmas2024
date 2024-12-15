@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="15.0.0.0.0.0" company="Glenside Helper Elf Society" />
+	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="15.0.0.0" company="Glenside Helper Elf Society" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -31,14 +31,6 @@
 
 	<set name="BUILD_DIR" value="export" />
 	<source path="source" />
-
-	<!-- Build with -Drelease to enable these flags -->
-	<section if="release">
-		<set name="newgrounds" unless="hl"/>
-		<haxedef name="no_radio" />
-		<haxedef name="trace_net" />
-		<haxedef name="websocket" />
-	</section>
 
 
 	<!-- When newgrounds is enabled, make sure ng-secrets.json is included -->
@@ -128,8 +120,16 @@
 	<haxedef name="FLX_NO_TOUCH" if="desktop" />
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
-	<haxedef name="FLX_NO_DEBUG" unless="debug"/>
+	<haxedef name="FLX_NO_DEBUG" if="final"/>
 	<haxedef name="message.reporting" value="pretty" />
+
+	<!-- Use -Dfinal when uploading to NG! -->
+	<section if="final">
+		<haxedef name="websocket" />
+		<haxedef name="newgrounds" />
+		<haxedef name="no_radio" />
+		<haxedef name="trace_net" />
+	</section>
 
 	<!-- Debugging -->
 	<section if="dev">
@@ -137,5 +137,14 @@
 		<haxedef name="HXCPP_STACK_LINE" />
 		<haxedef name="HXCPP_STACK_TRACE" />
 		<haxedef name="openfl-enable-handle-error" />
+	</section>
+
+	<section if="offline">
+		<haxedef name="ghost_town" />
+	</section>
+
+	<section if="debug_menu">
+		<haxedef name="offline" />
+		<haxedef name="no_radio" />
 	</section>
 </project>

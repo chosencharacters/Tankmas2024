@@ -29,7 +29,7 @@ class BaseUser extends NGSprite
 
 	public var username:String;
 
-	public var sticker_name:String;
+	public var emote_name:String;
 	public var active_activity_area:ActivityArea;
 
 	// Add custom values here. If you change the values of these
@@ -89,10 +89,10 @@ class BaseUser extends NGSprite
 
 	public function use_sticker(sticker_name:String):Bool
 	{
-		if (this.sticker_name == sticker_name)
+		if (this.emote_name == emote_name)
 			return false;
-		this.sticker_name = sticker_name;
-		new fx.StickerFX(this, sticker_name, () -> this.sticker_name = null);
+		this.emote_name = emote_name;
+		new fx.StickerFX(this, emote_name, () -> this.emote_name = null);
 		return true;
 	}
 
@@ -187,7 +187,7 @@ class BaseUser extends NGSprite
 		switch (event.type)
 		{
 			case NetEventType.STICKER:
-				use_sticker(event.data.name);
+				use_emote(event.data.name);
 			case NetEventType.DROP_MARSHMALLOW:
 				// Another user dropped a marshmallow
 			case OPEN_PRESENT:

@@ -1,16 +1,19 @@
 package;
 
-import levels.TankmasLevel.RoomId;
+import Paths;
 import data.SaveManager;
 import data.TimeManager;
-import Paths.Manifest;
 import data.loaders.NPCLoader;
 import flixel.FlxGame;
+import flixel.FlxState;
+import flixel.util.typeLimit.NextState.InitialState;
 import levels.LdtkProject;
+import levels.TankmasLevel.RoomId;
 import openfl.display.Sprite;
-import utils.CrashHandler;
-import data.TimeManager;
+import states.*;
+import states.debug.*;
 #if newgrounds import ng.NewgroundsHandler; #end
+import utils.CrashHandler;
 
 class Main extends Sprite
 {
@@ -27,8 +30,8 @@ class Main extends Sprite
 	public static var ng_api:NewgroundsHandler;
 	#end
 
-	public static var default_sticker_collection:Array<String> = ["common-tamago", "gimme-five", "john-sticker", "why-coal"];
-	public static var default_sticker:String = "common-tamago";
+	public static var default_emote_collection:Array<String> = ["common-tamago", "gimme-five", "john-sticker", "why-coal"];
+	public static var default_emote:String = "common-tamago";
 
 	public static var default_costume_collection:Array<String> = ["tankman", "paco"];
 	public static var default_costume:String = "tankman";
@@ -37,9 +40,11 @@ class Main extends Sprite
 
 	public static var ran:FlxRandom = new FlxRandom();
 
-	public static var daily_sticker_draw_amount:Int = 4;
+	public static var daily_emote_draw_amount:Int = 4;
 
 	public static var time:TimeManager = new TimeManager();
+
+	public static var initial_state(get, never):InitialState;
 
 	public static function main():Void
 	{
@@ -70,6 +75,14 @@ class Main extends Sprite
 	public function make_game()
 	{
 		Lists.init();
-		addChild(new FlxGame(1920, 1080, LoadGameState, true));
+		addChild(new FlxGame(1920, 1080, get_initial_state(), true));
+	}
+
+	static function get_initial_state():InitialState
+	{
+		#if debug_sheet_menu
+		return states.debug.DebugSheetMenuState;
+		#end
+		return LoadGameState;
 	}
 }

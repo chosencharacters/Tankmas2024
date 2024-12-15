@@ -9,7 +9,6 @@ import flixel.tweens.FlxEase.EaseFunction;
 import flixel.util.FlxSave;
 import net.tankmas.OnlineLoop;
 import data.SaveManager;
-import flixel.FlxState;
 #if newgrounds import ng.NewgroundsHandler; #end
 
 enum LoadStep

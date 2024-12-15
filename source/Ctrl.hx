@@ -86,7 +86,7 @@ class Ctrl
 		controls = [[""]];
 		for (c in 1...2)
 		{
-			controls.push(Assets.getText("assets/data/config/controls/plyrc" + c + ".txt").split("\n"));
+			controls.push(sys.io.File.getContent("assets/data/config/controls/plyrc" + c + ".txt").split("\n"));
 			for (f in 0...controls[c].length)
 			{
 				controls[c][f] = controls[c][f].trim();
@@ -227,7 +227,8 @@ class Ctrl
 	static function menuControl()
 	{
 		for (c in 1...3)
-		{ // for all players
+		{
+			// for all players
 			cup[c] = cdown[c] = cleft[c] = cright[c] = false;
 			if (up[c] || down[c] || left[c] || right[c])
 			{

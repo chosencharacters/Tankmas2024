@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <root>
-	<animSet image = "" path = "assets\images">
-		<anim name = ""></anim>
-	</animSet>
-
-	<animSet image="paco">
-		<anim name="idle" fps="100ms" looping="false">0</anim>
-		<anim name="start-stop" fps="100ms" looping="false">1t2</anim>
-		<anim name="moving" fps="50ms">3t9</anim>
-		<anim name="emote" fps="100ms" looping="false">10t11</anim>
-		<anim name="jump-start" fps="100ms" looping="false">12t13</anim>
-		<anim name="jump-land" fps="100ms" looping="false">18t19</anim>
-	</animSet>
-
-	<animSet image="player-shadow">
-		
-	</animSet>
-
 	<animSet image="present">
 		<anim name="idle" fps="100ms" looping="false">0</anim>
 		<anim name="nearby" fps="100ms">1t6</anim>
@@ -30,7 +13,7 @@
 		<anim name="shine" fps="50ms" looping="false">1t9</anim>
 	</animSet>
 
-	<animSet image="item-navigator">
+	<animSet image="sheet-selector">
 		<anim name="hover" fps="100ms">0t1</anim>
 		<anim name="idle" fps="100ms" looping="false">0</anim>
 	</animSet>

@@ -3,7 +3,8 @@ package data;
 import http.HttpError;
 import net.tankmas.TankmasClient;
 import ui.sheets.CostumeSelectSheet;
-import ui.sheets.StickerSelectSheet;
+import ui.sheets.EmoteSelectSheet;
+import ui.sheets.SheetMenu;
 
 class SaveManager
 {
@@ -12,7 +13,7 @@ class SaveManager
 	public static var savedEmotes:Array<String> = [];
 	public static var savedRoom:String;
 
-	public static var saved_sticker_collection:Array<String>;
+	public static var saved_emote_collection:Array<String>;
 	public static var saved_costume_collection:Array<String>;
 
 	public static var current_costume(default, default):String;
@@ -27,9 +28,9 @@ class SaveManager
 	public static function init()
 	{
 		savedRoom = Main.default_room;
-		saved_sticker_collection = Main.default_sticker_collection;
+		saved_emote_collection = Main.default_emote_collection;
 		saved_costume_collection = Main.default_costume_collection;
-		current_emote = Main.default_sticker;
+		current_emote = Main.default_emote;
 		current_costume = Main.default_costume;
 	}
 
@@ -133,20 +134,15 @@ class SaveManager
 
 	public static function save_collections(force:Bool = false):Void
 	{
-		save_costume_collection(force);
-		save_sticker_collection(force);
-	}
-
-	public static function save_costume_collection(force:Bool = false):Void
-	{
-		FlxG.save.data.costume_collection = saved_costume_collection;
+		FlxG.save.data.locked_selections = SheetMenu.locked_selections;
+		FlxG.save.data.emote_collection = SheetMenu.emote_collection;
 		if (force)
 			flush();
 	}
 
-	public static function save_sticker_collection(force:Bool = false):Void
+	public static function save_emote_collection(force:Bool = false):Void
 	{
-		FlxG.save.data.sticker_collection = saved_sticker_collection;
+		FlxG.save.data.sticker_collection = saved_emote_collection;
 		if (force)
 			flush();
 	}
@@ -161,14 +157,14 @@ class SaveManager
 		saved_costume_collection = FlxG.save.data.costume_collection;
 	}
 
-	public static function load_sticker_collection(force:Bool = false):Void
+	public static function load_emote_collection(force:Bool = false):Void
 	{
-		if (FlxG.save.data.saved_sticker_collection == null)
+		if (FlxG.save.data.saved_emote_collection == null)
 		{
 			trace("Error loading saved stickers (might be empty)");
-			save_sticker_collection(true);
+			save_emote_collection(true);
 		}
-		saved_sticker_collection = FlxG.save.data.sticker_collection;
+		saved_emote_collection = FlxG.save.data.sticker_collection;
 	}
 
 	public static function load_presents(force:Bool = false):Void
@@ -190,9 +186,9 @@ class SaveManager
 		}
 		savedCostumes = FlxG.save.data.savedCostumes;
 		current_costume = FlxG.save.data.currentCostume;
-		CostumeSelectSheet.saved_sheet = FlxG.save.data.savedCostumeSheet != null ? FlxG.save.data.savedCostumeSheet : 0;
-		CostumeSelectSheet.saved_selection = FlxG.save.data.savedCostumeSelect != null ? FlxG.save.data.savedCostumeSelect : 0;
-		CostumeSelectSheet.seenCostumes = FlxG.save.data.seenCostumes != null ? FlxG.save.data.seenCostumes : [];
+		// CostumeSelectSheet.saved_sheet = FlxG.save.data.savedCostumeSheet != null ? FlxG.save.data.savedCostumeSheet : 0;
+		// CostumeSelectSheet.saved_selection = FlxG.save.data.savedCostumeSelect != null ? FlxG.save.data.savedCostumeSelect : 0;
+		// CostumeSelectSheet.seenCostumes = FlxG.save.data.seenCostumes != null ? FlxG.save.data.seenCostumes : [];
 	}
 
 	public static function load_emotes():Void
@@ -203,9 +199,11 @@ class SaveManager
 			save_emotes(true);
 		}
 		savedEmotes = FlxG.save.data.savedEmotes;
-		StickerSelectSheet.saved_sheet = FlxG.save.data.savedEmoteSheet != null ? FlxG.save.data.savedEmoteSheet : 0;
-		StickerSelectSheet.saved_selection = FlxG.save.data.savedEmoteSelect != null ? FlxG.save.data.savedEmoteSelect : 0;
-		StickerSelectSheet.seenStickers = FlxG.save.data.seenEmotes != null ? FlxG.save.data.seenEmotes : [];
+		/*
+			EmoteSelectSheet.saved_sheet = FlxG.save.data.savedEmoteSheet != null ? FlxG.save.data.savedEmoteSheet : 0;
+			EmoteSelectSheet.saved_selection = FlxG.save.data.savedEmoteSelect != null ? FlxG.save.data.savedEmoteSelect : 0;
+			EmoteSelectSheet.seenStickers = FlxG.save.data.seenEmotes != null ? FlxG.save.data.seenEmotes : [];
+		 */
 	}
 
 	public static function load_room():Void
@@ -238,8 +236,8 @@ class SaveManager
 	{
 		FlxG.save.data.savedCostumes = savedCostumes;
 		FlxG.save.data.currentCostume = current_costume;
-		FlxG.save.data.savedCostumeSheet = CostumeSelectSheet.saved_sheet;
-		FlxG.save.data.savedCostumeSelect = CostumeSelectSheet.saved_selection;
+		// FlxG.save.data.savedCostumeSheet = CostumeSelectSheet.saved_sheet;
+		// FlxG.save.data.savedCostumeSelect = CostumeSelectSheet.saved_selection;
 		FlxG.save.data.seenCostumes = CostumeSelectSheet.seenCostumes;
 		/*trace(FlxG.save.data.savedCostumes, FlxG.save.data.currentCostume, FlxG.save.data.savedCostumeSheet, FlxG.save.data.savedCostumeSelect,
 			FlxG.save.data.seenCostumes); */
@@ -252,9 +250,8 @@ class SaveManager
 	{
 		FlxG.save.data.savedEmotes = savedEmotes;
 		FlxG.save.data.currentEmote = current_emote;
-		FlxG.save.data.savedEmoteSheet = StickerSelectSheet.saved_sheet;
-		FlxG.save.data.savedEmoteSelect = StickerSelectSheet.saved_selection;
-		FlxG.save.data.seenEmotes = StickerSelectSheet.seenStickers;
+		// FlxG.save.data.savedEmoteSheet = EmoteSelectSheet.saved_sheet;
+		// FlxG.save.data.savedEmoteSelect = EmoteSelectSheet.saved_selection;
 		if (force)
 			flush();
 	}

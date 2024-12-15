@@ -1,45 +1,46 @@
 package ui.sheets;
 
+import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
-import data.types.TankmasDefs.StickerDef;
+import data.types.TankmasDefs.EmoteDef;
+import dn.struct.Grid;
 import flixel.FlxBasic;
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
+import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
+import flixel.tweens.misc.ColorTween;
 import flixel.util.FlxTimer;
 import squid.ext.FlxTypedGroupExt;
 import ui.button.HoverButton;
+import ui.sheets.SheetMenu.SheetPosition;
+import ui.sheets.buttons.SheetButton;
+import ui.sheets.defs.SheetDefs.SheetMenuDef;
 import ui.sheets.defs.SheetDefs;
 
 class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 {
-	var type:SheetType;
+	var sheet_type:SheetType;
 
-	var stickerSheetOutline:FlxSpriteExt;
-	var base:FlxSpriteExt;
-	var effectSheet:FlxEffectSprite;
-	var description:FlxText;
+	public var def:SheetMenuDef;
+
+	var outline:FlxSpriteExt;
+	var bg:FlxSpriteExt;
+	var bg_white:FlxSpriteExt;
+
+	var description_text:FlxText;
 	var title:FlxText;
 
-	public var selector:FlxSpriteExt;
+	public var cursor:FlxSpriteExt;
 	public var backTab:FlxSpriteExt;
-	public var next_sheet_button:HoverButton;
+	public var notepad:FlxSpriteExt;
 
-	var sheet_collection:SheetFileDef;
-	final characterSpritesArray:Array<FlxTypedSpriteGroup<FlxSpriteExt>> = [];
-	final notSeenGroup:Array<FlxTypedSpriteGroup<FlxSpriteExt>> = [];
-	final characterNames:Array<Array<String>> = [];
+	public var selection(default, set):Int = 0;
 
-	var current_hover_sheet(default, set):Int = 0;
-	var current_hover_selection(default, set):Int = 0;
+	var current_button(get, default):SheetButton;
 
-	var locked_sheet:Int = 0;
-	var locked_selection:Int = 0;
-
-	final descGroup:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
-
-	var graphicSheet:Bool = false;
+	final description_group:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
 
 	public var seen:Array<String> = [];
 
@@ -49,191 +50,172 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	final close_speed:Float = 0.5;
 
+	var rows:Int = 3;
+	var cols:Int = 4;
+
+	var control_cd:Int = 0;
+	var control_cd_set:Int = 10;
+
+	var multi_page:Bool = true;
+
+	var prev_controller_selected_index:Int = 0;
+
+	public var empty:Bool = true;
+
+	public var unlocked_count:Int = 0;
+	public var locked_count:Int = 0;
+	public var total_count:Int = 0;
+
 	/**
 	 * This is private, should be only made through things that extend it
 	 * @param saved_sheet
 	 * @param saved_selection
 	 */
-	function new(menu:SheetMenu, saved_sheet:Int, saved_selection:Int, ?type:SheetType = COSTUME)
+	function new(sheet_name:String, menu:SheetMenu, ?sheet_type:SheetType = COSTUMES)
 	{
 		super();
 
 		this.menu = menu;
-		this.type = type;
+		this.sheet_type = sheet_type;
 
-		sstate(INACTIVE);
+		def = load_new_def(sheet_name);
 
-		add(descGroup);
+		bg = new FlxSpriteExt(66, 239, Paths.image_path(def.name));
+		bg_white = new FlxSpriteExt(46, 219).makeGraphicExt(1446, 852, FlxColor.WHITE);
 
-		final notepad:FlxSpriteExt = new FlxSpriteExt(1490, 300, Paths.get("sticker-sheet-note.png"));
-		descGroup.add(notepad);
+		notepad = new FlxSpriteExt(Paths.image_path("notepad"));
+		notepad.setPosition(bg_white.x + bg_white.width, 300);
+		// description_group.add(notepad);
 
-		description = new FlxText(1500, 325, 420, '');
-		description.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
-		descGroup.add(description);
+		description_text = new FlxText(notepad.x + 8, notepad.y + 12, 420);
+		description_text.setFormat(Paths.get('CharlieType.otf'), 38, FlxColor.BLACK, LEFT);
 
-		add(backTab = new FlxSpriteExt(66 + (type == COSTUME ? 500 : 0), 130, Paths.get('${type == COSTUME ? 'emote-tab' : 'costume-tab'}.png')));
-
-		add(stickerSheetOutline = new FlxSpriteExt(46, 219).makeGraphicExt(1446, 852, FlxColor.WHITE));
-		add(base = new FlxSpriteExt(66, 239));
-
-		title = new FlxText(70, 70, 1420, '');
+		title = new FlxText(notepad.x + 8, notepad.y - 64 - 16, notepad.width, '');
 		title.setFormat(Paths.get('CharlieType-Heavy.otf'), 60, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
 		title.borderSize = 6;
+		// description_group.add(description_text);
+
+		add(bg_white);
+
+		add(notepad);
+		add(description_text);
+
+		add(bg);
+
 		add(title);
 
-		sheet_collection = make_sheet_collection();
+		// add(description_group);
 
-		for (sheet in sheet_collection.sheets)
+		add_buttons();
+
+		cursor = new FlxSpriteExt().one_line("sheet-selector");
+		add(cursor);
+
+		update_cursor();
+
+		sstate(ACTIVE);
+
+		add(locked_selection_overlay = new FlxSpriteExt(Paths.get("locked-sheet-selection-overlay.png")));
+
+		for (member in members)
+			member.y += 8;
+
+		var dev_page:Bool = def.name == "costume-series-D";
+
+		for (button in def.grid_1D)
 		{
-			final characterSprites:FlxTypedSpriteGroup<FlxSpriteExt> = new FlxTypedSpriteGroup<FlxSpriteExt>();
-			add(characterSprites);
-
-			final notSeenSprites:FlxTypedSpriteGroup<FlxSpriteExt> = new FlxTypedSpriteGroup<FlxSpriteExt>();
-			add(notSeenSprites);
-
-			final daNames:Array<String> = [];
-
-			for (i in 0...sheet.items.length)
-			{
-				if (sheet.items[i].name == null)
-					continue;
-				final identity:SheetItemDef = sheet.items[i];
-				final sprite:HoverButton = new HoverButton(0, 0);
-				sprite.on_pressed = (b) -> lock_choices();
-				sprite.ID = i;
-				if (type == STICKER)
-				{
-					final sticker:StickerDef = data.JsonData.get_sticker(identity.name);
-
-					if (sticker == null)
-						continue;
-
-					if (!data.JsonData.check_for_unlock_sticker(sticker))
-						continue;
-
-					sprite.loadGraphic(Paths.get('${sticker.name}.png'));
-				}
-				else
-				{
-					final costume:CostumeDef = data.JsonData.get_costume(identity.name);
-
-					if (costume == null)
-						continue;
-
-					var unlocked:Bool = data.JsonData.check_for_unlock_costume(costume);
-
-					if (!unlocked)
-						continue;
-
-					// sprite.color=FlxColor.BLACK;
-
-					sprite.loadGraphic(Paths.get('${costume.name}.png'));
-				}
-				var sprite_position:FlxPoint = FlxPoint.weak();
-
-				// initial positions
-				sprite_position.x = 190 + (340 * (i % 4));
-				sprite_position.y = 320 + (270 * Math.floor(i / 4));
-
-				// add offsets
-				sprite_position.x += identity?.xOffset ?? 0;
-				sprite_position.y += identity?.yOffset ?? 0;
-
-				sprite.setPosition(sprite_position.x, sprite_position.y);
-
-				sprite.angle = identity?.angle ?? 0.0;
-				characterSprites.add(sprite);
-				daNames.push(identity.name);
-
-				if (!seen.contains(identity.name))
-				{
-					final newFrame:FlxSpriteExt = new FlxSpriteExt(sprite_position.x + (sprite.width / 2) - 141, sprite_position.y + (sprite.height / 2) - 163);
-					newFrame.loadAllFromAnimationSet('new-sticker-overlay');
-					newFrame.ID = i;
-					notSeenSprites.add(newFrame);
-					@:privateAccess
-					newFrame.anim('idle');
-					new FlxTimer().start(4.3, function(tmr:FlxTimer)
-					{
-						if (!newFrame.alive)
-							return;
-						newFrame.anim('shine');
-						new FlxTimer().start(0.5, function(tmr:FlxTimer)
-						{
-							newFrame.anim('idle');
-						});
-					}, 0);
-				}
-			}
-
-			if (characterSprites.members.length != 0)
-			{
-				characterSpritesArray.push(characterSprites);
-				if (sheet.graphic != null)
-					Paths.get(sheet.graphic + '.png');
-				characterNames.push(daNames);
-				notSeenGroup.push(notSeenSprites);
-			}
-			characterSprites.kill();
-			notSeenSprites.kill();
+			if (button.unlocked)
+				unlocked_count++;
+			if (!button.unlocked)
+				locked_count++;
+			if (!button.empty)
+				total_count++;
 		}
 
-		final curTab:FlxSpriteExt = new FlxSpriteExt(66 + (type == STICKER ? 500 : 0), 130,
-			Paths.get((type == STICKER ? 'emote-tab' : 'costume-tab') + '.png'));
-		curTab.scale.set(1.1, 1.1);
-		add(curTab);
+		if (locked_count == 0)
+			empty = dev_page && unlocked_count == 0 || total_count == 0;
 
-		add(locked_selection_overlay = new FlxSpriteExt().one_line("locked-sticker-selection-overlay"));
-		locked_selection_overlay.scrollFactor.set(0, 0);
-		update_locked_selection_overlay();
-
-		selector = new FlxSpriteExt(0, 0).one_line("item-navigator");
-		selector.anim("hover");
-		add(selector);
-
-		current_hover_selection = saved_selection;
-		current_hover_sheet = saved_sheet;
-		locked_sheet = saved_sheet;
-		locked_selection = saved_selection;
-
-		add(next_sheet_button = new HoverButton());
-		next_sheet_button.one_line("next-sticker-page");
-		next_sheet_button.setPosition(base.x + base.width - next_sheet_button.width, base.y - next_sheet_button.height / 2);
-
-		members.for_all_members((member:FlxBasic) ->
-		{
-			final daMem:FlxObject = cast(member, FlxObject);
-			daMem.y += 1300;
-			daMem.scrollFactor.set(0, 0);
-			FlxTween.tween(daMem, {y: daMem.y - 1300}, 0.8, {ease: FlxEase.cubeInOut});
-		});
-		new FlxTimer().start(0.8, function(tmr:FlxTimer)
-		{
-			sstate(ACTIVE);
-			FlxTween.tween(descGroup, {x: 0}, 0.5, {ease: FlxEase.cubeOut});
-		});
+		update_locked_selection_overlay(SheetMenu.locked_selections.get(sheet_type));
 	}
 
-	function update_locked_selection_overlay()
+	public function update_unlocks()
+		for (button in def.grid_1D)
+			button.update_unlocked();
+
+	function add_buttons()
 	{
-		var character_sprite = characterSpritesArray[locked_sheet];
-		if (character_sprite == null)
-			return;
-		var target:FlxSpriteExt = character_sprite.members[locked_selection];
+		def.grid_1D = [
+			for (n in 0...(rows * cols))
+				null
+		];
+		def.grid_2D = [
+			for (c in 0...cols) [
+				for (r in 0...rows)
+					null
+			]
+		];
+		for (i in 0...def.src.items.length)
+		{
+			var item_def:SheetItemDef = def.src.items[i];
+			var button:SheetButton = new SheetButton(0, 0, item_def, sheet_type, (b) -> if (visible)
+			{
+				selection = i;
+				lock_selection(b);
+			});
 
-		if (target == null)
-			return;
+			button.on_hover = (b) -> if (cast(b, SheetButton).unlocked)
+			{
+				if (i != prev_controller_selected_index)
+				{
+					prev_controller_selected_index = i;
+					selection = i;
+					update_cursor();
+				}
+			}
 
-		locked_selection_overlay.center_on(target);
-		locked_selection_overlay.angle = target.angle;
-		locked_selection_overlay.scale.copyFrom(target.scale);
+			var row:Int = (i / cols).floor();
+			var col:Int = i % cols;
 
-		// this is untested cause we only have one sheet
-		locked_selection_overlay.visible = locked_sheet == current_hover_sheet;
+			// initial positions
+			button.x = 190 + (340 * col);
+			button.y = 320 + (270 * row);
+
+			// button.setPosition(button.x + item_def?.xOffset ?? 0, button.y + item_def?.yOffset ?? 0);
+			button.angle = item_def?.angle ?? 0.0;
+
+			// trace(i, col, row, item_def.name, button.x, button.y, i / rows);
+
+			def.grid_1D[i] = button;
+			def.grid_2D[col][row] = button;
+
+			add(button);
+		}
 	}
 
-	function make_sheet_collection():SheetFileDef
+	public function update_locked_selection_overlay(locked_position:SheetPosition)
+	{
+		if (def.name == locked_position.sheet_name)
+		{
+			var selected_button:SheetButton = def.grid_1D[locked_position.selection];
+			locked_selection_overlay.setPosition(selected_button.x, selected_button.y);
+			locked_selection_overlay.angle = selected_button.angle;
+			locked_selection_overlay.offset.copyFrom(selected_button.offset);
+			locked_selection_overlay.visible = true;
+		}
+		else
+		{
+			locked_selection_overlay.visible = false;
+		}
+	}
+
+	public function lock_selection(button:HoverButton)
+	{
+		Utils.shake("light");
+		menu.save_locked_selection(sheet_type, {sheet_name: def.name, selection: selection});
+		menu.update_locked_selection_overlays();
+	}
+
+	function load_new_def(name:String):SheetMenuDef
 		throw "not implemented";
 
 	function fsm()
@@ -250,174 +232,84 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	override function update(elapsed:Float)
 	{
-		update_locked_selection_overlay();
 		fsm();
 		super.update(elapsed);
 	}
 
 	function control()
 	{
-		for (i in 0...characterSpritesArray[current_hover_sheet].length)
-		{
-			// TODO: make this mobile-friendly
-			if (FlxG.mouse.overlaps(characterSpritesArray[current_hover_sheet].members[i]))
-				current_hover_selection = i;
-		}
-		if (Ctrl.cleft[1])
-			current_hover_selection = current_hover_selection - 1;
-		if (Ctrl.cright[1])
-			current_hover_selection = current_hover_selection + 1;
-		if (Ctrl.cup[1])
-			current_hover_sheet = current_hover_sheet + 1;
-		if (Ctrl.cdown[1])
-			current_hover_sheet = current_hover_sheet - 1;
-		if (Ctrl.jinteract[1])
-			lock_choices();
+		var any_button:Bool = Ctrl.cleft[1] || Ctrl.cright[1] || Ctrl.cup[1] || Ctrl.cdown[1];
 
-		if (FlxG.mouse.overlaps(next_sheet_button) && FlxG.mouse.justPressed)
-			current_hover_sheet = current_hover_sheet + 1;
+		control_cd = any_button ? control_cd - 1 : 0;
 
-		if (FlxG.mouse.overlaps(backTab))
+		if (control_cd > 0)
+			any_button = false;
+
+		if (any_button)
 		{
-			if (backTab.y != 110)
-				backTab.y = 110;
-			if (FlxG.mouse.justPressed)
+			control_cd = control_cd_set;
+
+			def.grid_1D[selection].manual_button_hover = false;
+
+			var col:Int = selection % cols;
+			var row:Int = (selection / cols).floor();
+
+			var on_max_left:Bool = col == 0;
+			var on_max_right:Bool = col == cols - 1;
+			var on_max_up:Bool = row == 0;
+			var on_max_down:Bool = row == rows - 1;
+
+			// trace('pre: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
+
+			if (Ctrl.cleft[1])
 			{
-				if (backTab.scale.x != 0.8)
-					backTab.scale.set(0.8, 0.8);
-				menu.next_tab();
-			}
-			else if (!FlxG.mouse.pressed && backTab.scale.x != 1.1)
-				backTab.scale.set(1.1, 1.1);
-		}
-		else if (backTab.scale.x != 1)
-			backTab.scale.set(1, 1);
-	}
-
-	function lock_choices(shake:Bool = true)
-	{
-		if (shake)
-			Utils.shake(ShakePreset.LIGHT);
-		locked_selection = current_hover_selection;
-		locked_sheet = current_hover_sheet;
-		update_locked_selection_overlay();
-		save_selection();
-	}
-
-	function set_current_hover_sheet(val:Int):Int
-	{
-		if (characterSpritesArray.length > 1)
-		{
-			characterSpritesArray[current_hover_sheet].kill();
-			notSeenGroup[current_hover_sheet].kill();
-		}
-
-		if (val < 0)
-			current_hover_sheet = characterSpritesArray.length - 1;
-		else if (val > characterSpritesArray.length - 1)
-			current_hover_sheet = 0;
-		else
-			current_hover_sheet = val;
-
-		update_sheet_graphics();
-
-		return current_hover_sheet;
-	}
-
-	function set_current_hover_selection(val:Int):Int
-	{
-		// characterSpritesArray[current_hover_sheet].members[current_hover_selection].scale.set(1, 1);
-
-		if (val < 0)
-			current_hover_selection = characterSpritesArray[current_hover_sheet].members.length - 1;
-		else if (val > characterSpritesArray[current_hover_sheet].members.length - 1)
-			current_hover_selection = 0;
-		else
-			current_hover_selection = val;
-
-		if (notSeenGroup[current_hover_sheet].members.length > 0)
-		{
-			final matches:Array<FlxSpriteExt> = notSeenGroup[current_hover_sheet].members.filter(i ->
-				i.ID == characterSpritesArray[current_hover_sheet].members[current_hover_selection].ID);
-			if (matches.length > 0)
-			{
-				var character_name:String = characterNames[current_hover_sheet][current_hover_selection];
-				if (!seen.contains(character_name))
+				if (on_max_left)
 				{
-					seen.push(character_name);
+					menu.prev_page();
+					return;
 				}
-				notSeenGroup[current_hover_sheet].members.remove(matches[0]);
+				else
+					selection = selection - 1;
 			}
-		}
-		update_selection_graphics();
-
-		return current_hover_selection;
-	}
-
-	function update_sheet_graphics()
-	{
-		graphicSheet = sheet_collection.sheets[current_hover_sheet].graphic != null ? true : false;
-		if (graphicSheet)
-			base.loadGraphic(Paths.get(sheet_collection.sheets[current_hover_sheet].graphic + '.png'));
-		else
-			base.makeGraphic(1410, 845, FlxColor.BLACK);
-
-		characterSpritesArray[current_hover_sheet].revive();
-		notSeenGroup[current_hover_sheet].revive();
-
-		update_selection_graphics();
-	}
-
-	function update_selection_graphics()
-	{
-		try
-		{
-			if (type == STICKER)
+			if (Ctrl.cright[1])
 			{
-				final sticker:StickerDef = data.JsonData.get_sticker(characterNames[current_hover_sheet][current_hover_selection]);
-
-				title.text = sticker.properName.toUpperCase();
-				description.text = (sticker.desc != null ? (sticker.desc + ' ') : '') + 'Created by ${sticker.artist != null ? sticker.artist : "Unknown"}';
-				// selector.setPosition(characterSpritesArray[current_hover_sheet].members[current_hover_selection].x + (characterSpritesArray[current_hover_sheet].members[current_hover_selection].width / 2) - 175, characterSpritesArray[current_hover_sheet].members[current_hover_selection].y + (characterSpritesArray[current_hover_sheet].members[current_hover_selection].height / 2) - 177);
+				if (on_max_right)
+				{
+					menu.next_page();
+					return;
+				}
+				else
+					selection = selection + 1;
 			}
-			else
-			{
-				final costume:CostumeDef = data.JsonData.get_costume(characterNames[current_hover_sheet][current_hover_selection]);
 
-				title.text = costume.display.toUpperCase();
-				description.text = (costume.desc != null ? costume.desc : '');
-				// selector.setPosition(characterSpritesArray[current_hover_sheet].members[current_hover_selection].x - 110, characterSpritesArray[current_hover_sheet].members[current_hover_selection].y - 80);
-			}
-			var target:FlxSpriteExt = characterSpritesArray[current_hover_sheet].members[current_hover_selection];
+			if (Ctrl.cup[1] && !on_max_up)
+				selection = selection - cols;
+			if (Ctrl.cdown[1] && !on_max_down)
+				selection = selection + cols;
 
-			selector.setPosition(target.x + (target.width / 2) - 175, target.y + (target.height / 2) - 167);
-			selector.angle = target.angle;
-
-			// characterSpritesArray[current_hover_sheet].members[current_hover_selection].scale.set(1.1, 1.1);
+			prev_controller_selected_index = selection;
 		}
-		catch (e)
-		{
-			locked_selection_overlay.visible = false;
-		}
+
+		if (Ctrl.jinteract[1])
+			if (current_button.unlocked)
+				lock_selection(current_button);
+		// trace('post: $selection ($row , $col) $on_max_left $on_max_right $on_max_up $on_max_down');
+		update_cursor();
 	}
 
-	public function start_closing(?on_complete:Void->Void)
+	function update_sheet_graphics() {}
+
+	function update_cursor()
 	{
-		var dumb_on_complete_bool:Bool = true;
-		sstate(CLOSING);
-		FlxTween.tween(descGroup, {x: -440}, close_speed * 0.5, {ease: FlxEase.quintIn});
-		new FlxTimer().start(close_speed * .3, function(tmr:FlxTimer)
-		{
-			members.for_all_members((member:FlxBasic) ->
-			{
-				final daMem:FlxObject = cast(member, FlxObject);
-				var tween:FlxTween = FlxTween.tween(daMem, {y: daMem.y + 1300}, close_speed, {ease: FlxEase.cubeInOut});
-				if (dumb_on_complete_bool)
-					tween.onComplete = (t) -> on_complete();
-				dumb_on_complete_bool = false;
-			});
-		});
+		for (button in def.grid_1D)
+			button.manual_button_hover = false;
+
+		current_button.manual_button_hover = true;
+		cursor.center_on(current_button);
+		cursor.angle = current_button.angle;
 	}
+
+	public function start_closing(?on_complete:Void->Void) {}
 
 	override function kill()
 	{
@@ -427,12 +319,58 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	function save_selection()
 		throw "not implemented";
+
+	function get_current_button():SheetButton
+		return def.grid_1D[selection];
+
+	function set_selection(val:Int):Int
+	{
+		selection = val;
+
+		var selection_name:String = def.grid_1D[selection].def.name;
+
+		// Probably a better way of writing this but... oh well
+
+		if (current_button.unlocked)
+		{
+			switch (sheet_type)
+			{
+				case COSTUMES:
+					var costume_def:CostumeDef = JsonData.get_costume(selection_name);
+					description_text.text = costume_def.desc;
+					title.text = costume_def.display;
+				case EMOTES:
+					var emote_def:EmoteDef = JsonData.get_emote(selection_name);
+					description_text.text = 'Made by ${emote_def.artist}';
+					title.text = emote_def.properName;
+			}
+		}
+		else
+		{
+			if (current_button.empty)
+			{
+				title.text = "";
+				description_text.text = "";
+			}
+			else if (!current_button.unlocked)
+			{
+				title.text = "LOCKED";
+				description_text.text = "???";
+			}
+		}
+
+		title.offset.y = Math.abs(76 - title.height);
+
+		update_cursor();
+
+		return selection;
+	}
 }
 
 enum abstract SheetType(String) from String to String
 {
-	final COSTUME;
-	final STICKER;
+	final COSTUMES = "costumes";
+	final EMOTES = "emotes";
 }
 
 private enum abstract State(String) from String to String

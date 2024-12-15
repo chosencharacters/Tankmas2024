@@ -21,7 +21,7 @@ class Player extends BaseUser
 
 	static var debug_costume_rotation:Array<CostumeDef>;
 
-	public static var has_sticker_pack:Bool = true;
+	public static var has_emote_pack:Bool = true;
 
 	public var auto_moving:Bool = false;
 
@@ -45,7 +45,7 @@ class Player extends BaseUser
 		super(X, Y, Main.username);
 
 		/*
-			debug_costume_rotation = JsonData.all_costume_defs.copy();
+			debug_costume_rotation = JsonData.costume_defs.copy();
 			costume = debug_costume_rotation[0];
 
 			while (costume.name != "tankman")
@@ -204,7 +204,7 @@ class Player extends BaseUser
 			auto_moving = false;
 
 		if (Ctrl.jemote[1] && !MinigameHandler.instance.is_minigame_active())
-			use_sticker(SaveManager.current_emote);
+			use_emote(SaveManager.current_emote);
 
 		var moving = false;
 		if (auto_moving)
@@ -364,12 +364,12 @@ class Player extends BaseUser
 		super.kill();
 	}
 
-	override function use_sticker(sticker_name:String):Bool
+	override function use_emote(emote_name:String):Bool
 	{
-		var sticker_got_used:Bool = super.use_sticker(sticker_name);
+		var sticker_got_used:Bool = super.use_emote(emote_name);
 		#if !offline
 		if (sticker_got_used)
-			OnlineLoop.post_sticker(sticker_name);
+			OnlineLoop.post_emote(emote_name);
 		#end
 		return sticker_got_used;
 	}

@@ -12,7 +12,7 @@ class StickerFX extends NGSprite
 	var cover:NGSprite;
 
 	/*since offset is actually used by animations*/
-	var base_sticker_offset_y:Int = -16;
+	var base_emote_offset_y:Int = -16;
 
 	var on_complete:Void->Void;
 
@@ -36,10 +36,10 @@ class StickerFX extends NGSprite
 	override function updateMotion(elapsed:Float)
 	{
 		this.center_on_top(parent);
-		this.y = y + base_sticker_offset_y;
+		this.y = y + base_emote_offset_y;
 
 		cover.center_on(this);
-		
+
 		super.updateMotion(elapsed);
 	}
 
@@ -86,6 +86,7 @@ class StickerFX extends NGSprite
 				if (sprite_anim.finished)
 					kill();
 		}
+
 	override function kill()
 	{
 		super.kill();
