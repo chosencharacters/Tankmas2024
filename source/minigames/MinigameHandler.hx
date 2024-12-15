@@ -35,6 +35,11 @@ class MinigameHandler
 		destructors["bunnymark"] = null;
 		#end
 
+		#if !exclude_tripletriangle
+		constructors["tripletriangle"] = () -> new tripletriangle.PlayState();
+		destructors["tripletriangle"] = null;
+		#end
+
 		handleDefines();
 	}
 

@@ -85,6 +85,7 @@
 
 	<haxelib name="ase" />
 	<haxelib name="castle" />
+	<haxelib name="coroutine" />
 	<haxelib name="deepnightLibs"/>
 	<haxelib name="gif" if="gif"/>
 	<haxelib name="json2object" />
@@ -111,6 +112,14 @@
 		<source path="minigames/bunnymark/source" />
 		<library name="bunnymark" preload="false" />
 		<assets path="minigames/bunnymark/assets" rename="assets/minigames/bunnymark" library="bunnymark" exclude="*.ase|*.wav"/>
+
+	</section>
+
+	<section unless="exclude_tripletriangle">
+
+		<source path="minigames/tripletriangle/source" />
+		<library name="tripletriangle" preload="false" />
+		<assets path="minigames/tripletriangle/assets" rename="assets/minigames/tripletriangle" library="tripletriangle" exclude="*.ase|*.wav"/>
 
 	</section>
 
