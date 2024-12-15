@@ -67,7 +67,7 @@ class Present extends Interactable
 
 		loadAllFromAnimationSet("present-any", 'day-${def.day}-present-$username');
 
-		PlayState.self.presents.add(this);
+		PlayState.self.world_objects.add(this);
 		thumbnail = new Thumbnail(x, y - 200, Paths.image_path(def.file));
 
 		#if censor_presents
@@ -77,6 +77,9 @@ class Present extends Interactable
 		this.timelock = timelock * 1000;
 
 		update_present_visibility();
+
+		checkOpen();
+		this.y_bottom_offset = 16;
 
 		// trace(Main.time.day >= def.day, Main.time.day, def.day, visible);
 	}
@@ -96,7 +99,7 @@ class Present extends Interactable
 
 	override function kill()
 	{
-		PlayState.self.presents.remove(this, true);
+		PlayState.self.world_objects.remove(this, true);
 		super.kill();
 	}
 

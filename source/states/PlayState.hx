@@ -3,6 +3,9 @@ package states;
 import video.VideoSubstate.VideoUi;
 import input.InputManager;
 import input.InteractionHandler;
+import flixel.FlxBasic.IFlxBasic;
+import flixel.util.FlxSort;
+import physics.CollisionResolver;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -34,6 +37,11 @@ import ui.sheets.SheetMenu;
 import video.PremiereHandler;
 import zones.Door;
 
+class YSortable extends FlxSprite
+{
+	public var y_bottom_offset:Float;
+}
+
 class PlayState extends BaseState
 {
 	public static var self:PlayState;
@@ -43,9 +51,12 @@ class PlayState extends BaseState
 	public var current_world:String;
 
 	public var player:Player;
-	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
+
+	var users:Map<String, BaseUser> = new Map<String, BaseUser>();
+
+	public var world_objects:FlxTypedGroup<YSortable> = new FlxTypedGroup<YSortable>();
+
 	public var username_tags:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
-	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
 	public var objects:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 	public var thumbnails:FlxTypedGroup<Thumbnail> = new FlxTypedGroup<Thumbnail>();
 	public var shadows:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
@@ -131,7 +142,9 @@ class PlayState extends BaseState
 
 		add(minigames);
 		add(npcs);
-		add(users);
+
+		add(username_tags);
+		add(world_objects);
 		add(objects);
 
 		add(user_fx);
@@ -139,7 +152,6 @@ class PlayState extends BaseState
 		add(level_foregrounds);
 		add(props_foreground);
 
-		add(presents);
 		add(thumbnails);
 
 		add(username_tags);
@@ -181,10 +193,6 @@ class PlayState extends BaseState
 		SaveManager.load_emotes();
 
 		// FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
-
-		// runs nearby animation if not checked here
-		for (mem in presents.members)
-			mem.checkOpen();
 
 		SaveManager.save_room();
 
@@ -268,6 +276,10 @@ class PlayState extends BaseState
 				}
 
 		handle_collisions();
+		world_objects.sort((order, a, b) ->
+		{
+			return FlxSort.byValues(order, a.y + a.height - a.y_bottom_offset, b.y + b.height - b.y_bottom_offset);
+		});
 	}
 
 	var video_ui:VideoUi;
@@ -348,7 +360,11 @@ class PlayState extends BaseState
 		if (username == Main.username)
 			return;
 
-		var user:BaseUser = BaseUser.get_user(username);
+		var user:BaseUser = get_user(username);
+
+		users.remove(username);
+		world_objects.remove(user);
+
 		if (user != null)
 		{
 			user.on_user_left();
@@ -390,5 +406,16 @@ class PlayState extends BaseState
 		{
 			// Any player postede a sticker.
 		}
+	}
+
+	public function add_user(u:BaseUser)
+	{
+		world_objects.add(u);
+		users.set(u.username, u);
+	}
+
+	public function get_user(username:String)
+	{
+		return users.get(username);
 	}
 }
