@@ -1,5 +1,6 @@
 package ui.sheets;
 
+import cdb.Sheet;
 import data.JsonData;
 import flixel.FlxBasic;
 import flixel.tweens.FlxEase;
@@ -37,6 +38,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 	var back_tabs:FlxTypedGroup<HoverButton> = new FlxTypedGroup<HoverButton>();
 
 	public static var local_saves:Map<SheetType, SheetPosition>;
+	public static var locked_selection:Map<SheetType, SheetPosition>;
 
 	public function new(open_on_tab:SheetType = COSTUMES)
 	{
@@ -44,17 +46,24 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 		FlxG.state.openSubState(substate = new SheetSubstate(this));
 
-		for (name in JsonData.costume_sheet_names)
-			costume_sheets.add(new CostumeSelectSheet(name, this));
-		for (name in JsonData.emote_sheet_names)
-			emote_sheets.add(new EmoteSelectSheet(name, this));
-
 		if (local_saves == null)
 		{
 			local_saves = [];
 			local_saves.set(COSTUMES, {sheet_name: "costumes-series-1", selection: 0});
 			local_saves.set(EMOTES, {sheet_name: "emotes-back-red", selection: 0});
 		}
+
+		if (locked_selection == null)
+		{
+			locked_selection = [];
+			for (tab in tab_order)
+				locked_selection.set(tab, local_saves.get(tab));
+		}
+
+		for (name in JsonData.costume_sheet_names)
+			costume_sheets.add(new CostumeSelectSheet(name, this));
+		for (name in JsonData.emote_sheet_names)
+			emote_sheets.add(new EmoteSelectSheet(name, this));
 
 		add_tab_buttons();
 
@@ -76,6 +85,8 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		back_button.tween = FlxTween.tween(back_button.offset, {y: 0}, 0.25, {ease: FlxEase.cubeInOut});
 
 		update_tab_states();
+
+		update_locked_selection_overlays();
 	}
 
 	public function add_tab_buttons()
@@ -118,19 +129,18 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 				while (!emote_sheets.members[0].visible)
 					emote_sheets.members.push(emote_sheets.members.shift());
 		}
-		update_locked_selection_overlays();
 	}
 
 	public function save_locked_selection(tab:SheetType, position:SheetPosition):SheetPosition
 	{
-		local_saves.set(current_tab, position);
-		return local_saves.get(current_tab);
+		locked_selection.set(current_tab, position);
+		return locked_selection.get(current_tab);
 	}
 
 	public function update_locked_selection_overlays()
 	{
 		for (sheet in get_current_sheets())
-			cast(sheet, BaseSelectSheet).update_locked_selection_overlay(local_saves.get(current_tab));
+			cast(sheet, BaseSelectSheet).update_locked_selection_overlay(locked_selection.get(current_tab));
 	}
 
 	public function prev_page()
@@ -142,6 +152,9 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		select_sheet(current_tab, local_saves.get(current_tab));
 
 		get_current_sheets().members[0].update_unlocks();
+
+		if (get_current_sheets().members[0].empty)
+			prev_page();
 	}
 
 	public function next_page()
@@ -153,6 +166,9 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		select_sheet(current_tab, local_saves.get(current_tab));
 
 		get_current_sheets().members[0].update_unlocks();
+
+		if (get_current_sheets().members[0].empty)
+			next_page();
 	}
 
 	function current_group_order():Array<String>

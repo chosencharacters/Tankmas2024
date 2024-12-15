@@ -60,6 +60,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	var prev_controller_selected_index:Int = 0;
 
+	public var empty:Bool = true;
+
 	/**
 	 * This is private, should be only made through things that extend it
 	 * @param saved_sheet
@@ -113,6 +115,14 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 		for (member in members)
 			member.y += 8;
+
+		for (button in def.grid_1D)
+			if (!button.empty)
+				empty = false;
+
+		update_locked_selection_overlay(SheetMenu.locked_selection.get(sheet_type));
+
+		trace(locked_selection_overlay.visible);
 	}
 
 	public function update_unlocks()
@@ -177,7 +187,6 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			locked_selection_overlay.setPosition(selected_button.x, selected_button.y);
 			locked_selection_overlay.angle = selected_button.angle;
 			locked_selection_overlay.offset.copyFrom(selected_button.offset);
-			locked_selection_overlay.visible = locked_position.sheet_name == def.name;
 			locked_selection_overlay.visible = true;
 		}
 		else

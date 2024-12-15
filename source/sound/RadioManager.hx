@@ -23,12 +23,10 @@ class RadioManager
 	var sounds:Map<String, Array<String>> = [];
 	var next_music_followup:RadioSegmentType = AD;
 	var current_sound:FlxSound;
+
 	public static var volume:Float = 1.0;
 
-	var next_music_track:Map<Int, Array<String>> = [
-		1 => ["christmasohyeah", "stixdevs"],
-		3 => ["christmasjoy", "realtin3sn"]
-	];
+	var next_music_track:Map<Int, Array<String>> = [1 => ["christmasohyeah", "stixdevs"], 3 => ["christmasjoy", "realtin3sn"]];
 
 	final sound_categories:Array<String> = [
 		'ad-intro-',
@@ -51,7 +49,7 @@ class RadioManager
 		#if no_radio return; #end
 		ran = new FlxRandom();
 		current_segment = make_segment(NEWS);
-        update();
+		update();
 	}
 
 	public function update()
@@ -61,9 +59,10 @@ class RadioManager
 			if (current_segment == null || current_segment.parts.length == 0)
 				current_segment = make_segment(current_segment.follow_up);
 			var next_sound:String = current_segment.parts.shift();
-            #if trace_radio  trace("PLAYING ", next_sound); #end
+			#if trace_radio trace("PLAYING ", next_sound); #end
 			current_sound = SoundPlayer.sound(next_sound, volume);
-			if (current_sound != null) {
+			if (current_sound != null)
+			{
 				current_sound.persist = true;
 				current_sound.onComplete = end_sound;
 			}
@@ -86,12 +85,14 @@ class RadioManager
 				ran.shuffle(sounds.get(category));
 			}
 
-	function get_part(part_name:String){
-        #if trace_radio trace(part_name, sounds.get(part_name)); #end
+	function get_part(part_name:String)
+	{
+		#if trace_radio trace(part_name, sounds.get(part_name)); #end
 		var sound = sounds.get(part_name);
-		if (sound == null) return '';
+		if (sound == null)
+			return '';
 		return sound.pop();
-    }
+	}
 
 	function make_segment(type:RadioSegmentType):RadioSegment
 	{
@@ -154,7 +155,9 @@ class RadioManager
 	function get_random_track():Array<String>
 	{
 		final currentOps:Array<Array<String>> = [];
-		for(key in next_music_track.keys()) if(key <= 1) currentOps.push(next_music_track.get(key));
+		for (key in next_music_track.keys())
+			if (key <= 1)
+				currentOps.push(next_music_track.get(key));
 		return currentOps[FlxG.random.int(0, currentOps.length - 1)];
 	}
 }
