@@ -38,9 +38,6 @@ class SaveManager
 
 	static function finalize_load()
 	{
-		// opened presents
-		load_presents();
-
 		load_collections();
 
 		// if it's December 1st, reset it...?
@@ -69,8 +66,6 @@ class SaveManager
 
 	public static function load(on_complete:() -> Void = null, ?on_fail:() -> Void)
 	{
-		SaveManager.load_collections();
-
 		#if offline
 		finalize_load();
 		if (on_complete != null)
@@ -143,16 +138,15 @@ class SaveManager
 
 	public static function load_collections(force:Bool = false):Void
 	{
-		// null cases are handled by SheetMenu
-		SheetMenu.locked_selections = FlxG.save.data.locked_selections;
+		if (FlxG.save.data.locked_selections != null)
+		{
+			// null cases are handled by SheetMenu
+			SheetMenu.locked_selections = FlxG.save.data.locked_selections;
+			SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
+			SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+		}
 
-		saved_emote_collection = FlxG.save.data.emote_collection;
-
-		if (saved_emote_collection == null)
-			saved_emote_collection = Main.default_emote_collection;
-
-		SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
-		SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+		saved_emote_collection = FlxG.save.data.emote_collection ?? Main.default_emote_collection;
 	}
 
 	public static function load_presents(force:Bool = false):Void
