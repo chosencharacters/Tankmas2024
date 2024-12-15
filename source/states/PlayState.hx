@@ -275,7 +275,6 @@ class PlayState extends BaseState
 					trace(e);
 				}
 
-		handle_collisions();
 		world_objects.sort((order, a, b) ->
 		{
 			return FlxSort.byValues(order, a.y + a.height - a.y_bottom_offset, b.y + b.height - b.y_bottom_offset);
@@ -322,26 +321,24 @@ class PlayState extends BaseState
 
 		video_ui = new VideoUi(d.url, screen.x, screen.y, screen.width, screen.height, time_since_premiere);
 		this.objects.add(video_ui);
-		video_ui.on_close_request = () ->
-		{
-			if (this.video_ui == null)
-				return;
-			this.objects.remove(this.video_ui);
-			this.video_ui.kill();
-			this.video_ui = null;
-		}
+		video_ui.on_close_request = kill_video;
 
 		video_ui.on_enter_area = () -> ui_overlay.visible = false;
 		video_ui.on_leave_area = () -> ui_overlay.visible = true;
 	}
 
-	function handle_collisions()
+	function kill_video()
 	{
-		// FlxG.collide(level_collision, hitboxes);
+		if (this.video_ui == null)
+			return;
+		this.objects.remove(this.video_ui);
+		this.video_ui.kill();
+		this.video_ui = null;
 	}
 
 	override function destroy()
 	{
+		kill_video();
 		self = null;
 		super.destroy();
 	}
