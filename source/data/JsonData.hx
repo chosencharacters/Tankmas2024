@@ -70,7 +70,6 @@ class JsonData
 		for (emote_def in json.sheets)
 			try
 			{
-				trace(emote_def.name, emote_def.items.length);
 				emote_sheets.set(emote_def.name, emote_def);
 			}
 			catch (e)

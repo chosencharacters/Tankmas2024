@@ -94,7 +94,6 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	public function select_sheet(new_tab:SheetType, sheet_position:SheetPosition)
 	{
-		trace(current_tab, new_tab, sheet_position);
 		cycle_tabs_until(new_tab);
 		switch (current_tab)
 		{
@@ -182,9 +181,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	public function next_tab()
 	{
-		trace(tabs);
 		tabs.push(tabs.shift());
-		trace(tabs);
 
 		sheet_groups.members.push(sheet_groups.members.shift());
 		tab_buttons.members.push(tab_buttons.members.shift());

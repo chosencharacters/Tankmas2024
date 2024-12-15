@@ -1,5 +1,6 @@
 package ui.sheets;
 
+import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.EmoteDef;
@@ -57,6 +58,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	var multi_page:Bool = true;
 
+	var prev_controller_selected_index:Int = 0;
+
 	/**
 	 * This is private, should be only made through things that extend it
 	 * @param saved_sheet
@@ -75,25 +78,29 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		bg_white = new FlxSpriteExt(46, 219).makeGraphicExt(1446, 852, FlxColor.WHITE);
 
 		notepad = new FlxSpriteExt(Paths.image_path("notepad"));
-		notepad.setPosition(bg_white.x + bg_white.width + notepad.width, 300);
-		description_group.add(notepad);
+		notepad.setPosition(bg_white.x + bg_white.width, 300);
+		// description_group.add(notepad);
 
-		description_text = new FlxText(notepad.x, notepad.y, 420, '');
-		description_text.setFormat(Paths.get('CharlieType.otf'), 32, FlxColor.BLACK, LEFT);
-		description_group.add(description_text);
+		description_text = new FlxText(notepad.x + 8, notepad.y + 12, 420);
+		description_text.setFormat(Paths.get('CharlieType.otf'), 38, FlxColor.BLACK, LEFT);
+
+		title = new FlxText(notepad.x + 8, notepad.y - 64 - 16, notepad.width, '');
+		title.setFormat(Paths.get('CharlieType-Heavy.otf'), 60, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
+		title.borderSize = 6;
+		// description_group.add(description_text);
 
 		add(bg_white);
 
-		add(description_group);
+		add(notepad);
+		add(description_text);
 
 		add(bg);
 
-		add_buttons();
-
-		title = new FlxText(70, 70, 1420, '');
-		title.setFormat(Paths.get('CharlieType-Heavy.otf'), 60, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
-		title.borderSize = 6;
 		add(title);
+
+		// add(description_group);
+
+		add_buttons();
 
 		cursor = new FlxSpriteExt().one_line("sheet-selector");
 		add(cursor);
@@ -135,8 +142,12 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 			button.on_hover = (b) -> if (cast(b, SheetButton).unlocked)
 			{
-				selection = i;
-				update_cursor();
+				if (i != prev_controller_selected_index)
+				{
+					prev_controller_selected_index = i;
+					selection = i;
+					update_cursor();
+				}
 			}
 
 			var row:Int = (i / cols).floor();
@@ -253,6 +264,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 				selection = selection - cols;
 			if (Ctrl.cdown[1] && !on_max_down)
 				selection = selection + cols;
+
+			prev_controller_selected_index = selection;
 		}
 
 		if (Ctrl.jinteract[1])
@@ -291,7 +304,43 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 	function set_selection(val:Int):Int
 	{
 		selection = val;
+
+		var selection_name:String = def.grid_1D[selection].def.name;
+
+		// Probably a better way of writing this but... oh well
+
+		if (current_button.unlocked)
+		{
+			switch (sheet_type)
+			{
+				case COSTUMES:
+					var costume_def:CostumeDef = JsonData.get_costume(selection_name);
+					description_text.text = costume_def.desc;
+					title.text = costume_def.display;
+				case EMOTES:
+					var emote_def:EmoteDef = JsonData.get_emote(selection_name);
+					description_text.text = 'Made by ${emote_def.artist}';
+					title.text = emote_def.properName;
+			}
+		}
+		else
+		{
+			if (current_button.empty)
+			{
+				title.text = "";
+				description_text.text = "";
+			}
+			else if (!current_button.unlocked)
+			{
+				title.text = "LOCKED";
+				description_text.text = "???";
+			}
+		}
+
+		title.offset.y = Math.abs(76 - title.height);
+
 		update_cursor();
+
 		return selection;
 	}
 }
