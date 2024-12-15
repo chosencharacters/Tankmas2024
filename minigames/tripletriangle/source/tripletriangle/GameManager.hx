@@ -162,6 +162,7 @@ class GameManager extends GameManagerBase
 		score = 0;
         
         //SoundManager.Main.PlaySound("Countdown");
+        trace("TODO: Properly start a countdown.");
         var i = 3;
 		while(i > 0) {
 			trace(i--);
@@ -199,7 +200,6 @@ class GameManager extends GameManagerBase
                     //swCircleSpawn.Restart();
                     //swtCircleSpawnCurr = UnityEngine.Random.Range(swtCircleSpawnMin, swtCircleSpawnMax);
 				    swCircleSpawn_lastOccurrenceTimeInSeconds = currentTimeInSeconds;
-                    trace(9);
 				}
 			}
 
@@ -309,7 +309,6 @@ class GameManager extends GameManagerBase
             try
             {
                 AddToScore(1);
-			trace("Score: " + score);
                 // ComboManager.Main.AddToCombo(1);
                 // IngameCoinManager.Main.AddCoins(1);
 

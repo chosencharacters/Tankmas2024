@@ -224,7 +224,6 @@ class BasicCircle extends FlxSprite // importantly includes position.
 	{
 		if (!spike.visible)
 			return;
-		trace("POP!!");
 		GameManagerBase.Main.OnCirclePopped(this);
 		kill();
 	}
