@@ -2,6 +2,7 @@ package ui.sheets;
 
 import data.JsonData;
 import data.SaveManager;
+import entities.Player;
 import flixel.FlxBasic;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
@@ -13,6 +14,7 @@ typedef SheetPosition =
 {
 	var sheet_name:String;
 	var selection:Int;
+	var selection_name:String;
 }
 
 class SheetMenu extends FlxTypedGroupExt<FlxBasic>
@@ -30,6 +32,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 	var current_tab(get, never):SheetType;
 
 	var back_button:HoverButton;
+	var next_sheet_button:HoverButton;
 
 	var substate:SheetSubstate;
 
@@ -40,7 +43,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 	public static var locked_selections:Map<SheetType, SheetPosition>;
 
-	var closing:Bool = false;
+	public var closing:Bool = false;
 
 	public function new(open_on_tab:SheetType = COSTUMES)
 	{
@@ -51,8 +54,8 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		if (saved_positions == null)
 		{
 			saved_positions = [];
-			saved_positions.set(COSTUMES, {sheet_name: "costumes-series-1", selection: 0});
-			saved_positions.set(EMOTES, {sheet_name: "emotes-back-red", selection: 0});
+			saved_positions.set(COSTUMES, {sheet_name: "costumes-series-1", selection: 0, selection_name: Main.default_costume});
+			saved_positions.set(EMOTES, {sheet_name: "emotes-back-red", selection: 0, selection_name: Main.default_emote});
 		}
 
 		if (locked_selections == null)
@@ -60,6 +63,11 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 			locked_selections = [];
 			for (tab in tab_order)
 				locked_selections.set(tab, saved_positions.get(tab));
+		}
+
+		for (tab in tab_order)
+		{
+			saved_positions.set(tab, locked_selections.get(tab));
 		}
 
 		for (name in JsonData.costume_sheet_names)
@@ -76,7 +84,9 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		add(sheet_groups);
 		add(front_tabs);
 
-		select_sheet(current_tab, saved_positions.get(COSTUMES));
+		add(next_sheet_button = new HoverButton());
+
+		select_sheet(current_tab, locked_selections.get(COSTUMES));
 
 		cycle_tabs_until(open_on_tab);
 		substate.add(back_button = new HoverButton((b) -> back_button_activated()));
@@ -89,6 +99,12 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		update_tab_states();
 
 		update_locked_selections_overlays();
+
+		next_sheet_button.one_line("next-sticker-page");
+		next_sheet_button.setPosition(costume_sheets.members[0].bg.x + costume_sheets.members[0].bg.width - next_sheet_button.width,
+			costume_sheets.members[0].bg.y - next_sheet_button.height / 2);
+		next_sheet_button.scrollFactor.set(0, 0);
+		next_sheet_button.on_pressed = (b) -> next_page();
 
 		intro();
 	}
@@ -147,8 +163,11 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 	public function prev_page()
 	{
 		get_current_sheets().members.unshift(get_current_sheets().members.pop());
+
+		var row:Int = (saved_positions.get(current_tab).selection / BaseSelectSheet.rows).floor();
+
 		saved_positions.get(current_tab).sheet_name = cast(get_current_sheets().members[0], BaseSelectSheet).def.name;
-		saved_positions.get(current_tab).selection = 0;
+		saved_positions.get(current_tab).selection = BaseSelectSheet.cols - 1;
 
 		select_sheet(current_tab, saved_positions.get(current_tab));
 
@@ -161,6 +180,9 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 	public function next_page()
 	{
 		get_current_sheets().members.push(get_current_sheets().members.shift());
+
+		var row:Int = (saved_positions.get(current_tab).selection / BaseSelectSheet.rows).floor();
+
 		saved_positions.get(current_tab).sheet_name = cast(get_current_sheets().members[0], BaseSelectSheet).def.name;
 		saved_positions.get(current_tab).selection = 0;
 
@@ -189,6 +211,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 			ease: FlxEase.cubeInOut,
 			onComplete: function(t)
 			{
+				Ctrl.mode = ControlModes.OVERWORLD;
 				FlxG.state.closeSubState();
 			}
 		});
@@ -199,7 +222,11 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 		substate.sstate("CLOSING");
 
+		trace("yo");
+
 		SaveManager.save_collections();
+
+		PlayState.self.player.new_costume(JsonData.get_costume(SaveManager.current_costume));
 	}
 
 	public function intro()

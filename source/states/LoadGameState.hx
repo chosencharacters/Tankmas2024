@@ -109,7 +109,6 @@ class LoadGameState extends BaseState
 		if (loading_state != Ready)
 			return;
 		loading_state = Started;
-		trace("bebe");
 
 		FlxG.stage.removeEventListener(MouseEvent.CLICK, login_clicked);
 

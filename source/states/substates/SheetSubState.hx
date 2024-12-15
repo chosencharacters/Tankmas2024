@@ -32,6 +32,8 @@ class SheetSubstate extends FlxSubstateExt
 	{
 		sheet_menu.update(elapsed);
 
+		Ctrl.update();
+
 		super.update(elapsed);
 
 		fsm();

@@ -171,6 +171,8 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 
 	override function kill()
 	{
+		SaveManager.save_collections();
+
 		for (sticker in stickers)
 			sticker.kill();
 

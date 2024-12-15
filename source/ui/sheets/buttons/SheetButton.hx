@@ -1,6 +1,7 @@
 package ui.sheets.buttons;
 
 import data.JsonData;
+import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.EmoteDef;
 import ui.button.HoverButton;
@@ -49,9 +50,7 @@ class SheetButton extends HoverButton
 				if (costume.unlock != null)
 					return data.types.TankmasEnums.UnlockCondition.get_unlocked(costume.unlock, costume.data);
 			case SheetType.EMOTES:
-				var emote:EmoteDef = JsonData.get_emote(def.name);
-				if (emote.unlock != null)
-					return data.types.TankmasEnums.UnlockCondition.get_unlocked(emote.unlock, emote.data);
+				return SaveManager.saved_emote_collection.contains(def.name);
 		}
 		return true;
 	}

@@ -24,8 +24,8 @@ class HoverButton extends FlxSpriteExt
 	override function update(elapsed:Float)
 	{
 		var mouse_down = FlxG.mouse.pressed;
-		var hovering:Bool = FlxG.mouse.overlaps(this) && enabled || manual_button_hover;
-		var hover_scale:Float = (hovering && !mouse_down) ? 1.1 : 1;
+		var hovering:Bool = FlxG.mouse.overlaps(this) && enabled;
+		var hover_scale:Float = (hovering && !mouse_down || manual_button_hover) ? 1.1 : 1;
 
 		if (FlxG.mouse.justPressed && hovering)
 			is_pressed = true;

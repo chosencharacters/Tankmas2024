@@ -193,71 +193,72 @@
                     "name": "darnell",
                     "angle": -10
                 }
-            ]},
-            {
-                "graphic": "costumes-series-4",
-                "items": [
-                    {
-                        "name": "skid",
-                        "angle": 10
-                    },
-                    {
-                        "name": "pump",
-                        "angle": -10,
-                        "xOffset": -60,
-                        "yOffset": -30
-                    },
-                    {
-                        "name": "dr-good",
-                        "angle": 10,
-                        "xOffset": 60,
-                        "yOffset": -30
-                    },
-                    {
-                        "name": "mella",
-                        "angle": -10
-                    },
-                    {
-                        "name": "isaac",
-                        "angle": -10
-                    },
-                    {
-                        "name": "meat-boy",
-                        "angle": 10,
-                        "xOffset": -60,
-                        "yOffset": -30
-                    },
-                    {
-                        "name": null,
-                        "angle": -10,
-                        "xOffset": 60,
-                        "yOffset": -30
-                    },
-                    {
-                        "name": null,
-                        "angle": 10
-                    },
-                    {
-                        "name": "sublo",
-                        "angle": 10
-                    },
-                    {
-                        "name": "tangy-mustard",
-                        "angle": -10,
-                        "xOffset": -60,
-                        "yOffset": -30
-                    },
-                    {
-                        "name": "dads-home",
-                        "angle": 10,
-                        "xOffset": 60,
-                        "yOffset": -30
-                    },
-                    {
-                        "name": null,
-                        "angle": -10
-                    }
-                ]
+            ]
+        },
+        {
+            "name": "costumes-series-4",
+            "items": [
+                {
+                    "name": "skid",
+                    "angle": 10
+                },
+                {
+                    "name": "pump",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "dr-good",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "mella",
+                    "angle": -10
+                },
+                {
+                    "name": "isaac",
+                    "angle": -10
+                },
+                {
+                    "name": "meat-boy",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": "sublo",
+                    "angle": 10
+                },
+                {
+                    "name": "tangy-mustard",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "dads-home",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                }
+            ]
         },
         {
             "name": "costumes-series-D",

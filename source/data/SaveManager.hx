@@ -32,6 +32,8 @@ class SaveManager
 		saved_costume_collection = Main.default_costume_collection;
 		current_emote = Main.default_emote;
 		current_costume = Main.default_costume;
+
+		trace(saved_emote_collection);
 	}
 
 	static function finalize_load()
@@ -131,6 +133,10 @@ class SaveManager
 	{
 		FlxG.save.data.locked_selections = SheetMenu.locked_selections;
 		FlxG.save.data.emote_collection = saved_emote_collection;
+
+		SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
+		SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+
 		if (force)
 			flush();
 	}
@@ -139,7 +145,14 @@ class SaveManager
 	{
 		// null cases are handled by SheetMenu
 		SheetMenu.locked_selections = FlxG.save.data.locked_selections;
+
 		saved_emote_collection = FlxG.save.data.emote_collection;
+
+		if (saved_emote_collection == null)
+			saved_emote_collection = Main.default_emote_collection;
+
+		SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
+		SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
 	}
 
 	public static function load_presents(force:Bool = false):Void
