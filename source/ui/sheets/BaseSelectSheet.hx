@@ -62,6 +62,10 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	public var empty:Bool = true;
 
+	public var unlocked_count:Int = 0;
+	public var locked_count:Int = 0;
+	public var total_count:Int = 0;
+
 	/**
 	 * This is private, should be only made through things that extend it
 	 * @param saved_sheet
@@ -116,13 +120,22 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		for (member in members)
 			member.y += 8;
 
+		var dev_page:Bool = def.name == "costume-series-D";
+
 		for (button in def.grid_1D)
+		{
+			if (button.unlocked)
+				unlocked_count++;
+			if (!button.unlocked)
+				locked_count++;
 			if (!button.empty)
-				empty = false;
+				total_count++;
+		}
+
+		if (locked_count == 0)
+			empty = dev_page && unlocked_count == 0 || total_count == 0;
 
 		update_locked_selection_overlay(SheetMenu.locked_selection.get(sheet_type));
-
-		trace(locked_selection_overlay.visible);
 	}
 
 	public function update_unlocks()
