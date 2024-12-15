@@ -8,6 +8,7 @@ import flixel.graphics.frames.FlxBitmapFont;
 import flixel.group.FlxGroup;
 import flixel.text.FlxBitmapText;
 import flixel.text.FlxText;
+import flixel.ui.FlxButton;
 
 #if ADVENT
 import utils.OverlayGlobal as Global;
@@ -25,13 +26,16 @@ class PlayState extends FlxState
 
 	public static var textShopMoney:FlxBitmapText;
 	
+	var fontAngelCode:FlxBitmapFont;
+	var fontAngelCode_x4:FlxBitmapFont;
+
 	override public function create()
 	{
 		bgColor = 0xffcbdbfc;
 		FlxG.camera.antialiasing = false;
 		super.create();
-		var fontAngelCode = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_0.png"), Global.asset("assets/slkscrb.fnt"));
-		var fontAngelCode_x4 = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_x4_0.png"), Global.asset("assets/slkscrb_x4.fnt"));
+		fontAngelCode = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_0.png"), Global.asset("assets/slkscrb.fnt"));
+		fontAngelCode_x4 = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_x4_0.png"), Global.asset("assets/slkscrb_x4.fnt"));
 
 		var circle:BasicCircle = new BasicCircle(120, 160, Global.asset("assets/images/Circle Basic.png"));
 		var errorCauser:BasicCircle = new BasicCircle(5, 5, Global.asset("assets/images/Logo Triangles.png"));  // TODO: No. Initialize actual pick up circles.
@@ -61,7 +65,29 @@ class PlayState extends FlxState
 		add(_walls);
 
 
-		
+
+		initializeUI();
+
+		_circleList = new FlxTypedGroup();
+		add(_circleList);
+
+		_spikeList = new FlxTypedGroup();
+		add(_spikeList);
+		_spikeSpriteList = new FlxTypedGroup();
+		add(_spikeSpriteList);
+
+		var spikesController = new SpikesController(this);
+		add(spikesController);
+
+		FlxG.sound.playMusic(Global.asset("assets/music/Rob0ne - Press Start.ogg"), 1, true);
+
+		GameManagerBase.Main = new GameManager(circlePrefabArr, pickupCirclePrefabArr, _circleList);
+		add(GameManagerBase.Main);
+		var global = new GlobalMasterManager();
+		add(global);
+	}
+
+	function initializeUI(){
 		var creditsText = new FlxBitmapText(fontAngelCode);
 		creditsText.font = fontAngelCode;
 		creditsText.text = "Dev:\n Blawnode";
@@ -100,22 +126,42 @@ class PlayState extends FlxState
 			textShopMoney.y = 42 - (textShopMoney.height / 2);
 		});*/
 
-		_circleList = new FlxTypedGroup();
-		add(_circleList);
+		initializeShopButtons();
+	}
 
-		_spikeList = new FlxTypedGroup();
-		add(_spikeList);
-		_spikeSpriteList = new FlxTypedGroup();
-		add(_spikeSpriteList);
+	function initializeShopButtons(){
+		var buttonDatas = [
+			{
+				x: 250,
+				y: 100,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Angry Faic.png"
+			},
+			{
+				x: 270,
+				y: 100,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Nene.png"
+			}
+		];
 
-		var spikesController = new SpikesController(this);
-		add(spikesController);
+		var btnGroup:FlxTypedGroup<FlxButton> = new FlxTypedGroup<FlxButton>();
+		
+		var btn:FlxButton;
+		
+		for(buttonData in buttonDatas){
+			btn = new FlxButton(buttonData.x, buttonData.y, "", buttonData.callback);
+			// btn.loadGraphic("assets/images/Shop Circle Angry Faic.png");
+			btn.loadGraphic(Global.asset(buttonData.image));
+			btnGroup.add(btn);
+		}
+		
+		add(btnGroup);
+	}
 
-		FlxG.sound.playMusic(Global.asset("assets/music/Rob0ne - Press Start.ogg"), 1, true);
-
-		GameManagerBase.Main = new GameManager(circlePrefabArr, pickupCirclePrefabArr, _circleList);
-		add(GameManagerBase.Main);
-		var global = new GlobalMasterManager();
-		add(global);
+	function btnToBeImplementedCallback(){
+		trace("A locked button. (To be implemented!)");
 	}
 }
