@@ -131,11 +131,13 @@ class PlayState extends FlxState
 
 	function initializeShopButtons(){
 		var buttonDatas = [
+			// (Already unlocked)
 			{
 				x: 250,
 				y: 100,
 				callback: btnToBeImplementedCallback,
-				image: "assets/images/Shop Locked Unimplemented.png"
+				image: "assets/images/Shop Circle Madness Grunt.png",
+				unlockableName: "Grunt Circle",
 				// image: "assets/images/Shop Circle Angry Faic.png"
 			},
 			{
@@ -144,7 +146,85 @@ class PlayState extends FlxState
 				callback: btnToBeImplementedCallback,
 				image: "assets/images/Shop Locked Unimplemented.png"
 				// image: "assets/images/Shop Circle Nene.png"
-			}
+			},
+			{
+				x: 290,
+				y: 100,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Nene.png"
+			},
+			{
+				x: 250,
+				y: 130,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Nene.png"
+			},
+			{
+				x: 270,
+				y: 130,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Nene.png"
+			},
+			{
+				x: 290,
+				y: 130,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Nene.png"
+			},
+			
+
+			// Spike Skin Buttons
+			
+			/*{
+				x: 270,
+				y: 100,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Nene.png"
+			},
+			{
+				x: 270,
+				y: 100,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Nene.png"
+			},
+			{
+				x: 270,
+				y: 100,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Nene.png"
+			},*/
+			
+			
+			// BG Skin Buttons
+			
+			/*{
+				x: 270,
+				y: 100,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Nene.png"
+			},
+			{
+				x: 270,
+				y: 100,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Nene.png"
+			},
+			{
+				x: 270,
+				y: 100,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png"
+				// image: "assets/images/Shop Circle Nene.png"
+			},*/
 		];
 
 		var btnGroup:FlxTypedGroup<FlxButton> = new FlxTypedGroup<FlxButton>();
