@@ -372,7 +372,7 @@ class Lists
 	public static function textStorageLoad(path:String):String
 	{
 		if (textStorage.get(path) == null)
-			textStorage.set(path, sys.io.File.getContent(path));
+			textStorage.set(path, squid.util.Utils.load_file_string(path));
 		return textStorage.get(path);
 	}
 

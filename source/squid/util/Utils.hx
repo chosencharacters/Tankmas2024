@@ -369,8 +369,6 @@ class Utils
 			}
 	}
 
-
-
 	public static function traceMembers(members:Array<Dynamic>, t:Int = 0):Int
 	{
 		for (s in members)
@@ -410,7 +408,7 @@ class Utils
 	}
 
 	public static function file_to_xml(path:String):Xml
-		return sys.io.File.getContent(path).string_to_xml();
+		return load_file_string(path).string_to_xml();
 
 	/**
 	 * Cleans and formats string to xml
@@ -424,8 +422,8 @@ class Utils
 		return Xml.parse(string);
 	}
 
-	public static function load_file_string(file_name:String):String
-		return sys.io.File.getContent(Paths.get(file_name));
+	public static function load_file_string(file_name:String):String //
+		return Assets.getText(Paths.get(file_name));
 
 	/**Mask for Std.parseInt that also handles hex*/
 	inline public static function hex_safe_int(string:String):Int
@@ -1009,7 +1007,7 @@ class Inflect
 
 	public static function load_file_string(file_name:String):String
 	{
-		return sys.io.File.getContent(Paths.get(file_name));
+		return Utils.load_file_string(Paths.get(file_name));
 	}
 
 	/**
@@ -1099,6 +1097,7 @@ class Inflect
 		}
 		return similar_strings;
 	}
+
 	/**
 	 * Debug tool for offsets, call on update, only works with -Ddev flag
 	 */
