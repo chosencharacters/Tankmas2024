@@ -35,10 +35,10 @@ class Cursor extends FlxSpriteExt
 
 		super.update(elapsed);
 
-		if (always_visible)
+		if (always_visible && !FlxG.onMobile)
 			visible = true;
 		else if (PlayState.self != null && PlayState.self.input_manager != null)
-			visible = PlayState.self.input_manager.mode == MouseOrTouch;
+			visible = PlayState.self.input_manager.mode == MouseOrTouch && !FlxG.onMobile;
 	}
 
 	override function updateMotion(elapsed:Float)

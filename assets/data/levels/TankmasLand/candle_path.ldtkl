@@ -165,22 +165,6 @@
 					"__worldY": 800
 				},
 				{
-					"__identifier": "SlopeSE",
-					"__grid": [86,14],
-					"__pivot": [0,0],
-					"__tags": ["Collision"],
-					"__tile": { "tilesetUid": 19, "x": 64, "y": 32, "w": 32, "h": 32 },
-					"__smartColor": "#FF0808",
-					"iid": "807485a0-9b00-11ef-ac46-b3b176fdbae5",
-					"width": 96,
-					"height": 256,
-					"defUid": 55,
-					"px": [1376,224],
-					"fieldInstances": [],
-					"__worldX": 5312,
-					"__worldY": 1024
-				},
-				{
 					"__identifier": "SlopeNW",
 					"__grid": [83,18],
 					"__pivot": [0,0],
@@ -227,15 +211,31 @@
 					"fieldInstances": [],
 					"__worldX": 5792,
 					"__worldY": 1104
+				},
+				{
+					"__identifier": "SlopeSE",
+					"__grid": [86,14],
+					"__pivot": [0,0],
+					"__tags": ["Collision"],
+					"__tile": { "tilesetUid": 19, "x": 64, "y": 32, "w": 32, "h": 32 },
+					"__smartColor": "#FF0808",
+					"iid": "dcba2560-9b00-11ef-816f-e7e9c955c5ef",
+					"width": 96,
+					"height": 256,
+					"defUid": 55,
+					"px": [1376,224],
+					"fieldInstances": [],
+					"__worldX": 5312,
+					"__worldY": 1024
 				}
 			]
 		},
 		{
-			"__identifier": "Decorations",
+			"__identifier": "Decorations1",
 			"__type": "Entities",
-			"__cWid": 145,
-			"__cHei": 98,
-			"__gridSize": 16,
+			"__cWid": 2316,
+			"__cHei": 1559,
+			"__gridSize": 1,
 			"__opacity": 1,
 			"__pxTotalOffsetX": 0,
 			"__pxTotalOffsetY": 0,
@@ -251,6 +251,56 @@
 			"intGridCsv": [],
 			"autoLayerTiles": [],
 			"seed": 1896447,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": []
+		},
+		{
+			"__identifier": "Decorations2",
+			"__type": "Entities",
+			"__cWid": 2316,
+			"__cHei": 1559,
+			"__gridSize": 1,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "0e8c3471-9b00-11ef-816f-f739966e2ca9",
+			"levelId": 32,
+			"layerDefUid": 80,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 5320743,
+			"overrideTilesetUid": null,
+			"gridTiles": [],
+			"entityInstances": []
+		},
+		{
+			"__identifier": "Decorations3",
+			"__type": "Entities",
+			"__cWid": 2316,
+			"__cHei": 1559,
+			"__gridSize": 1,
+			"__opacity": 1,
+			"__pxTotalOffsetX": 0,
+			"__pxTotalOffsetY": 0,
+			"__tilesetDefUid": null,
+			"__tilesetRelPath": null,
+			"iid": "06b906f1-9b00-11ef-816f-55a490ca8bde",
+			"levelId": 32,
+			"layerDefUid": 87,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"visible": true,
+			"optionalRules": [],
+			"intGridCsv": [],
+			"autoLayerTiles": [],
+			"seed": 6350134,
 			"overrideTilesetUid": null,
 			"gridTiles": [],
 			"entityInstances": []
@@ -326,7 +376,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 4064,
 					"__worldY": 1808
@@ -348,7 +399,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 4336,
 					"__worldY": 1792
@@ -370,7 +422,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 4544,
 					"__worldY": 1792
@@ -392,7 +445,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 4800,
 					"__worldY": 1792
@@ -414,7 +468,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5056,
 					"__worldY": 1776
@@ -436,7 +491,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 4320,
 					"__worldY": 2032
@@ -458,7 +514,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 4544,
 					"__worldY": 2032
@@ -480,7 +537,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 4720,
 					"__worldY": 2032
@@ -502,7 +560,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 4944,
 					"__worldY": 2032
@@ -524,7 +583,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5216,
 					"__worldY": 2016
@@ -546,7 +606,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5440,
 					"__worldY": 2016
@@ -568,7 +629,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5280,
 					"__worldY": 1776
@@ -590,7 +652,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5376,
 					"__worldY": 1616
@@ -612,7 +675,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5328,
 					"__worldY": 1440
@@ -634,7 +698,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5312,
 					"__worldY": 1328
@@ -659,7 +724,8 @@
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Front", "__tile": null, "defUid": 34, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["Front"]
-						}] }
+						}] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5280,
 					"__worldY": 1216
@@ -684,7 +750,8 @@
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Front", "__tile": null, "defUid": 34, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["Front"]
-						}] }
+						}] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5264,
 					"__worldY": 1056
@@ -706,7 +773,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5328,
 					"__worldY": 912
@@ -731,7 +799,8 @@
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Front", "__tile": null, "defUid": 34, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["Front"]
-						}] }
+						}] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5408,
 					"__worldY": 992
@@ -756,7 +825,8 @@
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Front", "__tile": null, "defUid": 34, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["Front"]
-						}] }
+						}] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5632,
 					"__worldY": 992
@@ -781,7 +851,8 @@
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Front", "__tile": null, "defUid": 34, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["Front"]
-						}] }
+						}] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5712,
 					"__worldY": 896
@@ -806,7 +877,8 @@
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Front", "__tile": null, "defUid": 34, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["Front"]
-						}] }
+						}] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5760,
 					"__worldY": 1024
@@ -831,7 +903,8 @@
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Front", "__tile": null, "defUid": 34, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["Front"]
-						}] }
+						}] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5696,
 					"__worldY": 1152
@@ -856,7 +929,8 @@
 						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Front", "__tile": null, "defUid": 34, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["Front"]
-						}] }
+						}] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 5728,
 					"__worldY": 1264
@@ -878,7 +952,8 @@
 							"id": "V_String",
 							"params": ["candle"]
 						}] },
-						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] }
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
 					],
 					"__worldX": 4064,
 					"__worldY": 2048
@@ -933,14 +1008,14 @@
 		{
 			"__identifier": "Tiles",
 			"__type": "Tiles",
-			"__cWid": 145,
-			"__cHei": 98,
-			"__gridSize": 16,
+			"__cWid": 73,
+			"__cHei": 49,
+			"__gridSize": 32,
 			"__opacity": 1,
 			"__pxTotalOffsetX": 0,
 			"__pxTotalOffsetY": 0,
-			"__tilesetDefUid": 4,
-			"__tilesetRelPath": "../../images/props/decorations_lg.png",
+			"__tilesetDefUid": 19,
+			"__tilesetRelPath": "../../images/levels/tiles/tile-collision.png",
 			"iid": "b4b80d13-9b00-11ef-83c5-6b54f19ca75e",
 			"levelId": 32,
 			"layerDefUid": 9,

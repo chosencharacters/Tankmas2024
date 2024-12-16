@@ -9,10 +9,14 @@ import entities.Player;
 import entities.Present;
 import entities.base.BaseUser;
 import entities.base.NGSprite;
+import flixel.FlxBasic.IFlxBasic;
 import flixel.tile.FlxTilemap;
+import flixel.util.FlxSort;
 import fx.StickerFX;
 import fx.Thumbnail;
 import input.InputManager;
+import input.InputManager;
+import input.InteractionHandler;
 import input.InteractionHandler;
 import levels.TankmasLevel;
 import minigames.MinigameHandler;
@@ -21,6 +25,7 @@ import net.tankmas.NetDefs.NetEventType;
 import net.tankmas.NetDefs.NetUserDef;
 import net.tankmas.OnlineLoop;
 import net.tankmas.TankmasClient;
+import physics.CollisionResolver;
 import physics.CollisionResolver;
 import physics.CollisionResolver;
 import ui.DialogueBox;
@@ -32,7 +37,13 @@ import ui.sheets.*;
 import ui.sheets.SheetMenu;
 import video.PremiereHandler;
 import video.VideoSubstate.VideoUi;
+import video.VideoSubstate.VideoUi;
 import zones.Door;
+
+class YSortable extends FlxSprite
+{
+	public var y_bottom_offset:Float;
+}
 
 class PlayState extends BaseState
 {
@@ -43,9 +54,12 @@ class PlayState extends BaseState
 	public var current_world:String;
 
 	public var player:Player;
-	public var users:FlxTypedGroup<BaseUser> = new FlxTypedGroup<BaseUser>();
+
+	var users:Map<String, BaseUser> = new Map<String, BaseUser>();
+
+	public var world_objects:FlxTypedGroup<YSortable> = new FlxTypedGroup<YSortable>();
+
 	public var username_tags:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
-	public var presents:FlxTypedGroup<Present> = new FlxTypedGroup<Present>();
 	public var objects:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 	public var thumbnails:FlxTypedGroup<Thumbnail> = new FlxTypedGroup<Thumbnail>();
 	public var shadows:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
@@ -131,7 +145,9 @@ class PlayState extends BaseState
 
 		add(minigames);
 		add(npcs);
-		add(users);
+
+		add(username_tags);
+		add(world_objects);
 		add(objects);
 
 		add(user_fx);
@@ -139,7 +155,6 @@ class PlayState extends BaseState
 		add(level_foregrounds);
 		add(props_foreground);
 
-		add(presents);
 		add(thumbnails);
 
 		add(username_tags);
@@ -180,10 +195,6 @@ class PlayState extends BaseState
 		SaveManager.load_collections();
 
 		// FlxG.camera.setScrollBounds(bg.x, bg.width, bg.y, bg.height);
-
-		// runs nearby animation if not checked here
-		for (mem in presents.members)
-			mem.checkOpen();
 
 		SaveManager.save_room();
 
@@ -266,7 +277,10 @@ class PlayState extends BaseState
 					trace(e);
 				}
 
-		handle_collisions();
+		world_objects.sort((order, a, b) ->
+		{
+			return FlxSort.byValues(order, a.y + a.height - a.y_bottom_offset, b.y + b.height - b.y_bottom_offset);
+		});
 	}
 
 	var video_ui:VideoUi;
@@ -309,26 +323,24 @@ class PlayState extends BaseState
 
 		video_ui = new VideoUi(d.url, screen.x, screen.y, screen.width, screen.height, time_since_premiere);
 		this.objects.add(video_ui);
-		video_ui.on_close_request = () ->
-		{
-			if (this.video_ui == null)
-				return;
-			this.objects.remove(this.video_ui);
-			this.video_ui.kill();
-			this.video_ui = null;
-		}
+		video_ui.on_close_request = kill_video;
 
 		video_ui.on_enter_area = () -> ui_overlay.visible = false;
 		video_ui.on_leave_area = () -> ui_overlay.visible = true;
 	}
 
-	function handle_collisions()
+	function kill_video()
 	{
-		// FlxG.collide(level_collision, hitboxes);
+		if (this.video_ui == null)
+			return;
+		this.objects.remove(this.video_ui);
+		this.video_ui.kill();
+		this.video_ui = null;
 	}
 
 	override function destroy()
 	{
+		kill_video();
 		self = null;
 		super.destroy();
 	}
@@ -347,7 +359,11 @@ class PlayState extends BaseState
 		if (username == Main.username)
 			return;
 
-		var user:BaseUser = BaseUser.get_user(username);
+		var user:BaseUser = get_user(username);
+
+		users.remove(username);
+		world_objects.remove(user);
+
 		if (user != null)
 		{
 			user.on_user_left();
@@ -389,5 +405,16 @@ class PlayState extends BaseState
 		{
 			// Any player postede a sticker.
 		}
+	}
+
+	public function add_user(u:BaseUser)
+	{
+		world_objects.add(u);
+		users.set(u.username, u);
+	}
+
+	public function get_user(username:String)
+	{
+		return users.get(username);
 	}
 }

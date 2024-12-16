@@ -111,6 +111,7 @@ class InteractionHandler extends FlxObject
 			{
 				active_interactable.on_interact();
 				active_interactable = null;
+				player.stop_auto_move();
 				unmark_interactable();
 				return;
 			}
