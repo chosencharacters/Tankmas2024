@@ -116,7 +116,7 @@
                     "name": "samurai-asshole",
                     "angle": -10,
                     "xOffset": -60,
-                    "yOffset": -30
+                    "yOffset": -40
                 },
                 {
                     "name": "steve",
@@ -229,13 +229,13 @@
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "dr-schmuck",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "mark-pimento",
                     "angle": 10
                 },
                 {

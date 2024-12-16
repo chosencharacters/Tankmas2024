@@ -13,6 +13,12 @@ class GamingDevice extends Interactable
 		PlayState.self.props_foreground.add(this);
 
 		loadAllFromAnimationSet("gaming-device");
+		sstate(IDLE);
+		
+		detect_range = 300;
+
+
+		interactable = true;
 	}
 
 	override function update(elapsed:Float)
@@ -35,7 +41,8 @@ class GamingDevice extends Interactable
 
 	override public function mark_target(mark:Bool)
 	{
-		if (mark && interactable)
+		trace("!!!")
+;		if (mark && interactable)
 			sstate(NEARBY);
 		if (!mark && interactable)
 			sstate(IDLE);

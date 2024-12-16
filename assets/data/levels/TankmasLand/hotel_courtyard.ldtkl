@@ -752,6 +752,25 @@
 					}] }],
 					"__worldX": 546,
 					"__worldY": 2018
+				},
+				{
+					"__identifier": "Decorations_SM",
+					"__grid": [2411,2523],
+					"__pivot": [0,0],
+					"__tags": ["Decoration"],
+					"__tile": { "tilesetUid": 83, "x": 512, "y": 0, "w": 256, "h": 256 },
+					"__smartColor": "#733E39",
+					"iid": "3892a3c0-9b00-11ef-9329-0d436c212505",
+					"width": 256,
+					"height": 256,
+					"defUid": 81,
+					"px": [2411,2523],
+					"fieldInstances": [{ "__identifier": "Tile", "__type": "Tile", "__value": { "tilesetUid": 83, "x": 512, "y": 0, "w": 256, "h": 256 }, "__tile": { "tilesetUid": 83, "x": 512, "y": 0, "w": 256, "h": 256 }, "defUid": 82, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["512,0,256,256"]
+					}] }],
+					"__worldX": 2411,
+					"__worldY": 2523
 				}
 			]
 		},
