@@ -1,6 +1,5 @@
 package entities.base;
 
-import states.PlayState.YSortable;
 import activities.ActivityArea;
 import data.JsonData;
 import data.types.TankmasDefs.CostumeDef;
@@ -72,7 +71,7 @@ class BaseUser extends NGSprite
 		nameTag.offset.y = -46;
 		PlayState.self.username_tags.add(nameTag);
 
-		PlayState.self.world_objects.add(this);
+		PlayState.self.users.add(this);
 		PlayState.self.shadows.add(shadow = new FlxSpriteExt(Paths.get("player-shadow.png")));
 
 		maxVelocity.set(move_speed, move_speed);
@@ -193,7 +192,7 @@ class BaseUser extends NGSprite
 				// Another user dropped a marshmallow
 			case OPEN_PRESENT:
 				// Another user opened a present.
-				trace('${event.username} opened present ${event.data.day}. Get medal: ${event.data.medal}');
+				trace('${event.username} opened present ${event.data.name}. Get medal: ${event.data.medal}');
 		}
 
 		if (active_activity_area != null)
@@ -243,7 +242,7 @@ class BaseUser extends NGSprite
 		shadow.destroy();
 		nameTag.destroy();
 
-		PlayState.self.world_objects.remove(this, true);
+		PlayState.self.users.remove(this, true);
 		super.kill();
 	}
 
@@ -254,9 +253,9 @@ class BaseUser extends NGSprite
 
 	public static function get_user(username:String, ?make_user_function:Void->BaseUser):BaseUser
 	{
-		var existing_user = PlayState.self.get_user(username);
-		if (existing_user != null)
-			return existing_user;
+		for (user in PlayState.self.users)
+			if (user.username == username)
+				return user;
 		return make_user_function == null ? null : make_user_function();
 	}
 

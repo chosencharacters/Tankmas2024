@@ -1,6 +1,5 @@
 package squid.sprite;
 
-import states.PlayState.YSortable;
 import flixel.FlxBasic;
 import flixel.FlxSprite;
 import flixel.addons.tile.FlxTilemapExt;
@@ -19,7 +18,7 @@ using flixel.util.FlxArrayUtil;
  * Extends FlxSprite
  * @author
  */
-class FlxSpriteExt extends YSortable
+class FlxSpriteExt extends FlxSprite
 {
 	public var type:String = "";
 	public var typeMajor:String = "";

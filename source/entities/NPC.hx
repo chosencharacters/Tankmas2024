@@ -28,7 +28,7 @@ class NPC extends Interactable
 
 		this.name = name;
 
-		PlayState.self.world_objects.add(this);
+		PlayState.self.npcs.add(this);
 
 		loadAllFromAnimationSet(name);
 
@@ -110,7 +110,7 @@ class NPC extends Interactable
 
 	override function kill()
 	{
-		PlayState.self.world_objects.remove(this, true);
+		PlayState.self.npcs.remove(this, true);
 		super.kill();
 	}
 }

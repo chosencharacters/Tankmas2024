@@ -40,15 +40,11 @@ class SaveManager
 		current_emote = Main.default_emote;
 		current_costume = Main.default_costume;
 
-		Flags.generate();
-
 		trace(saved_emote_collection);
 	}
 
 	static function finalize_load()
 	{
-		load_flags();
-
 		load_collections();
 
 		// if it's December 1st, reset it...?
@@ -113,7 +109,6 @@ class SaveManager
 
 	public static function save()
 	{
-		save_flags();
 		save_presents();
 		save_costumes();
 		save_emotes();
@@ -134,17 +129,6 @@ class SaveManager
 		{
 			trace("SAVE ERROR: " + e);
 		}
-	}
-
-	public static function save_flags(force:Bool = false)
-	{
-		FlxG.save.data.flags = Flags.get_all();
-	}
-
-	public static function load_flags()
-	{
-		if (FlxG.save.data.flags != null)
-			Flags.load(FlxG.save.data.flags);
 	}
 
 	public static function save_collections(force:Bool = false):Void
@@ -173,15 +157,6 @@ class SaveManager
 		}
 
 		saved_emote_collection = FlxG.save.data.emote_collection ?? Main.default_emote_collection;
-
-		#if newgrounds
-		/*
-			for (emote_def in JsonData.emote_defs)
-				if (!saved_emote_collection.contains(emote_def.name))
-					if (emote_def.artist.toLowerCase() == Main.ng_api.NG_USERNAME.toLowerCase())
-						saved_emote_collection.push(emote_def.name);
-		 */
-		#end
 	}
 
 	public static function load_presents(force:Bool = false):Void

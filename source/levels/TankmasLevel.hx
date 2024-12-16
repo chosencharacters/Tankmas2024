@@ -1,6 +1,5 @@
 package levels;
 
-import states.PlayState.YSortable;
 import activities.ActivityArea;
 import entities.Minigame;
 import entities.NPC;
@@ -104,20 +103,12 @@ class TankmasLevel extends LDTKLevel
 			var sprite:FlxSpriteExt = new FlxSpriteExt(x + entity.pixelX, y + entity.pixelY);
 			sprite.loadAllFromAnimationSet(entity.f_name);
 
-			if (!entity.f_Is_YSortable)
+			switch (entity.f_layer.getName().toLowerCase())
 			{
-				switch (entity.f_layer.getName().toLowerCase())
-				{
-					case "back":
-						PlayState.self.props_background.add(sprite);
-					case "front":
-						PlayState.self.props_foreground.add(sprite);
-				}
-			}
-			else
-			{
-				sprite.y_bottom_offset = 64;
-				PlayState.self.world_objects.add(sprite);
+				case "back":
+					PlayState.self.props_background.add(sprite);
+				case "front":
+					PlayState.self.props_foreground.add(sprite);
 			}
 		}
 
@@ -130,9 +121,6 @@ class TankmasLevel extends LDTKLevel
 			}
 		}
 
-		/**
-		 * Add collision shapes
-		 */
 		var colls = PlayState.self.collisions;
 		for (c in level.l_Collision.all_CollisionCircle)
 		{
@@ -152,66 +140,6 @@ class TankmasLevel extends LDTKLevel
 			colls.add_slope_se(c.worldPixelX, c.worldPixelY, c.width, c.height);
 		for (c in level.l_Collision.all_SlopeSW)
 			colls.add_slope_sw(c.worldPixelX, c.worldPixelY, c.width, c.height);
-
-		/**
-		 * Place decorations
-		 */
-		var add_ysortable = (wx:Float, wy:Float, graphic:flixel.system.FlxAssets.FlxGraphicAsset, tile, bottom_offset = 0.0) ->
-		{
-			var f = new YSortable(wx, wy);
-			f.loadGraphic(graphic, true, tile.w, tile.h);
-			f.frame = f.frames.getByIndex(Std.int(tile.x / tile.w));
-			f.y_bottom_offset = bottom_offset;
-			PlayState.self.world_objects.add(f);
-		}
-
-		var add_layer = ( //
-			xl:Array<Entity_Decorations_XL>, //
-			md:Array<Entity_Decorations_MD>, //
-			sm:Array<Entity_Decorations_SM>, //
-			trees:Array<Entity_Decorations_Trees>, //
-		) ->
-		{
-			for (c in xl)
-			{
-				var tile = c.f_Tile_infos ?? c.tileInfos;
-				add_ysortable(c.worldPixelX, c.worldPixelY, AssetPaths.decorations_xl__png, tile, 150);
-			}
-			for (c in md)
-			{
-				var tile = c.f_Tile_infos ?? c.tileInfos;
-				add_ysortable(c.worldPixelX, c.worldPixelY, AssetPaths.decorations_md__png, tile, 150);
-			}
-			for (c in sm)
-			{
-				var tile = c.f_Tile_infos ?? c.tileInfos;
-				add_ysortable(c.worldPixelX, c.worldPixelY, AssetPaths.decorations_sm__png, tile, 56);
-			}
-			for (c in trees)
-			{
-				var tile = c.f_Tile_infos ?? c.tileInfos;
-				add_ysortable(c.worldPixelX, c.worldPixelY, AssetPaths.decorations_trees__png, tile, 96);
-			}
-		}
-
-		add_layer( //
-			level.l_Decorations1.all_Decorations_XL, //
-			level.l_Decorations1.all_Decorations_MD, //
-			level.l_Decorations1.all_Decorations_SM, //
-			level.l_Decorations1.all_Decorations_Trees //
-		);
-		add_layer( //
-			level.l_Decorations2.all_Decorations_XL, //
-			level.l_Decorations2.all_Decorations_MD, //
-			level.l_Decorations2.all_Decorations_SM, //
-			level.l_Decorations2.all_Decorations_Trees //
-		);
-		add_layer( //
-			level.l_Decorations3.all_Decorations_XL, //
-			level.l_Decorations3.all_Decorations_MD, //
-			level.l_Decorations3.all_Decorations_SM, //
-			level.l_Decorations3.all_Decorations_Trees //
-		);
 
 		/**put entity iterators here**/
 		/* 
