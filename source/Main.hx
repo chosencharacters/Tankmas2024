@@ -41,6 +41,7 @@ class Main extends Sprite
 	public static var ran:FlxRandom = new FlxRandom();
 
 	public static var daily_emote_draw_amount:Int = 4;
+	public static var rare_emote_draw_amount:Int = 16;
 
 	public static var time:TimeManager = new TimeManager();
 

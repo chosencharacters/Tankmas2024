@@ -187,7 +187,8 @@ class JsonData
 			var random_emote:String = null;
 			while (random_emote == null
 				|| SaveManager.saved_emote_collection.contains(random_emote)
-				|| drawn_emotes.contains(random_emote))
+				|| drawn_emotes.contains(random_emote)
+				|| ["rare-tamago-sticker"].contains(random_emote))
 				random_emote = Main.ran.getObject(limit_list == null ? emote_names : limit_list);
 			drawn_emotes.push(random_emote);
 		}

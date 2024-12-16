@@ -6,6 +6,7 @@ import entities.Player;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 import ui.button.HoverButton;
+import ui.button.StickerPackButton;
 import ui.popups.OfflineIndicator;
 import ui.popups.StickerPackOpening;
 import ui.settings.BaseSettings;
@@ -41,11 +42,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 
 		add(offline_indicator = new OfflineIndicator());
 
-		sticker_pack = new HoverButton(0, 0, null, open_sticker_pack);
-		sticker_pack.one_line("sticker-pack-icon");
-		// sticker_pack.setPosition(20, FlxG.height - sticker_pack.height - 20);
-		sticker_pack.setPosition(emote.x + emote.width + 20, 20);
-		add(sticker_pack);
+		add(sticker_pack = new StickerPackButton(emote.x + emote.width + 20, 20));
 
 		add(music_popup = MusicPopup.get_instance());
 
@@ -56,8 +53,6 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 
 		for (member in members)
 			member.scrollFactor.set(0, 0);
-
-		sticker_pack.visible = Player.has_emote_pack;
 	}
 
 	override function update(elapsed:Float)
@@ -91,29 +86,6 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 			sprite.offset.y = 0;
 		}
 		emote.tween.onComplete = on_complete;
-	}
-
-	function open_sticker_pack(btn:HoverButton)
-	{
-		Ctrl.mode = ControlModes.NONE;
-
-		var limit_list:Array<String> = [
-			"toasty-warm",
-			"edd-sticker",
-			"mustard",
-			"pink-knight-mondo",
-			"tappy-sticker",
-			"son-christmas",
-			"sick-skull",
-			"slashe-wave",
-			"gimme-five",
-			"john-sticker",
-			"pico-sticker-swag"
-		];
-
-		sticker_pack.tween = FlxTween.tween(sticker_pack, {y: FlxG.height + sticker_pack.height}, 0.25, {
-			onComplete: (t) -> FlxG.state.add(new StickerPackOpening(JsonData.random_draw_emotes(Main.daily_emote_draw_amount, limit_list)))
-		});
 	}
 
 	function open_settings(btn:HoverButton)

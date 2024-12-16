@@ -28,8 +28,22 @@
 		<variable name="shake" frames="1,4,7,10,16"/>
 	</animSet>
 
+	<animSet image="rare-sticker-pack-opening" width="784" height="839">
+		<anim name="idle" fps="500ms" looping="false">0</anim>
+		<anim name="1" looping="false">1t3</anim>
+		<anim name="2" looping="false">4t6</anim>
+		<anim name="3" looping="false">7t9</anim>
+		<anim name="4" looping="false">10t12</anim>
+		<anim name="pre-kaboom" fps="100ms" looping="false">13t15</anim>
+		<variable name="shake" frames="1,4,7,10,16"/>
+	</animSet>
+
 	<animSet image="sticker-pack-icon">
 		<anim name="idle" fps="100ms">0t14</anim>
+	</animSet>
+
+	<animSet image="rare-sticker-pack-icon">
+		<anim name="idle" fps="60ms">0t14</anim>
 	</animSet>
 
 	<animSet image="move-circle">

@@ -21,6 +21,13 @@ class SaveManager
 
 	public static var on_save_stored:() -> Void = null;
 
+	// will sort this out tomorrow
+	public static var has_emote_pack:Bool = false;
+	public static var has_rare_emote_pack(get, default):Bool;
+
+	static function get_has_rare_emote_pack():Bool
+		return saved_emote_collection.length < (Main.default_emote_collection.length * 2);
+
 	public static var data = {
 		saved_room: Main.default_room,
 	}
@@ -129,8 +136,11 @@ class SaveManager
 		FlxG.save.data.locked_selections = SheetMenu.locked_selections;
 		FlxG.save.data.emote_collection = saved_emote_collection;
 
-		SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
-		SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+		if (SheetMenu.locked_selections != null)
+		{
+			SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
+			SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+		}
 
 		if (force)
 			flush();

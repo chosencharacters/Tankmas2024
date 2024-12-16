@@ -34,7 +34,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 
 	var sticker_count:Int;
 
-	public function new(sticker_draw:Array<String>)
+	public function new(sticker_draw:Array<String>, rare:Bool)
 	{
 		super();
 
@@ -45,7 +45,7 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 		black.alpha = 0;
 		black.screenCenter();
 
-		sticker_pack = new FlxSpriteExt(0, 0).one_line("sticker-pack-opening");
+		sticker_pack = new FlxSpriteExt(0, 0).one_line(rare ? "rare-sticker-pack-opening" : "sticker-pack-opening");
 
 		add(black);
 		add(sticker_pack);
@@ -93,6 +93,9 @@ class StickerPackOpening extends FlxTypedGroupExt<FlxObject>
 				case 3:
 					sticker.setPosition(stickers[n - 1].x + 100, stickers[n - 1].y + 25 + 25);
 			}
+
+			if (n > 3)
+				sticker.setPosition(stickers[0].x + ran.int(-640, 640), stickers[0].y + ran.int(-128, 128));
 
 			sticker.visible = false;
 			stickers.push(sticker);
