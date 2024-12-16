@@ -117,7 +117,7 @@ class PlayState extends FlxSubState
 	}
 	override function update(elapsed:Float)
 	{
-		cursorPosition.text = cursor.getPosition().toString();
+		//cursorPosition.text = cursor.getPosition().toString();
 		super.update(elapsed);
 	}
 
@@ -128,12 +128,12 @@ class PlayState extends FlxSubState
 		creditsText.setPosition(8, 54);
 		add(creditsText);
 		
-		//TEMP
-		cursorPosition = new FlxBitmapText(fontAngelCode);
+		// CURSOR POSITION DEBUGGING
+		/*cursorPosition = new FlxBitmapText(fontAngelCode);
 		cursorPosition.font = fontAngelCode;
 		cursorPosition.text = "-";
 		cursorPosition.setPosition(8, 74);
-		add(cursorPosition);
+		add(cursorPosition);*/
 
 		/*var creditsText = new FlxText(8, 54, 0, "Dev:\n Blawnode", 8);
 		creditsText.font = "assets/slkscrb.ttf";
@@ -160,6 +160,12 @@ class PlayState extends FlxSubState
 		textShopMoney.setPosition(278 - (textShopMoney.width / 2), 57 - (textShopMoney.height / 2));
 		textShopMoney.alignment = FlxTextAlign.CENTER;
 		add(textShopMoney);
+
+		var tbaText = new FlxBitmapText(fontAngelCode);
+		tbaText.font = fontAngelCode;
+		tbaText.text = "TBA:\n Mo' enemies\n Medals\n\nUnlikely:\n Skins?\n Boss?";
+		tbaText.setPosition(242, 160);
+		add(tbaText);
 		
 		/*flixel.util.FlxTimer.wait(2, () ->
 		{
@@ -186,6 +192,61 @@ class PlayState extends FlxSubState
 				unlocked: true,
 			},
 			{
+				type: UIUnlockableType.circle,
+				x: 270,
+				y: 100,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png",
+				imageLocked: "assets/images/Shop Locked Unimplemented.png",
+				unlockableName: "2nd Circle",
+				price: 50,
+				unlocked: true,
+			},
+			{
+				type: UIUnlockableType.circle,
+				x: 290,
+				y: 100,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png",
+				imageLocked: "assets/images/Shop Locked Unimplemented.png",
+				unlockableName: "3rd Circle",
+				price: 50,
+				unlocked: true,
+			},
+			{
+				type: UIUnlockableType.circle,
+				x: 250,
+				y: 130,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png",
+				imageLocked: "assets/images/Shop Locked Unimplemented.png",
+				unlockableName: "4th Circle",
+				price: 50,
+				unlocked: true,
+			},
+			{
+				type: UIUnlockableType.circle,
+				x: 270,
+				y: 130,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png",
+				imageLocked: "assets/images/Shop Locked Unimplemented.png",
+				unlockableName: "5th Circle",
+				price: 50,
+				unlocked: true,
+			},
+			{
+				type: UIUnlockableType.circle,
+				x: 290,
+				y: 130,
+				callback: btnToBeImplementedCallback,
+				image: "assets/images/Shop Locked Unimplemented.png",
+				imageLocked: "assets/images/Shop Locked Unimplemented.png",
+				unlockableName: "6th Circle",
+				price: 50,
+				unlocked: true,
+			},
+			/*{
 				type: UIUnlockableType.circle,
 				x: 270,
 				y: 100,
@@ -244,7 +305,7 @@ class PlayState extends FlxSubState
 				unlockableName: "6th Circle",
 				price: 100,
 				unlocked: false,
-			},
+			},*/
 			
 
 			// Spike Skin Buttons
