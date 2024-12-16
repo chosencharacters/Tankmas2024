@@ -55,7 +55,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		{
 			saved_positions = [];
 			saved_positions.set(COSTUMES, {sheet_name: "costumes-series-1", selection: 0, selection_name: Main.default_costume});
-			saved_positions.set(EMOTES, {sheet_name: "emotes-back-red", selection: 0, selection_name: Main.default_emote});
+			saved_positions.set(EMOTES, {sheet_name: "emotes-1-back-red", selection: 0, selection_name: Main.default_emote});
 		}
 
 		if (locked_selections == null)

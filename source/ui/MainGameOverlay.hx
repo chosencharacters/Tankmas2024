@@ -101,7 +101,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 			"toasty-warm",
 			"edd-sticker",
 			"mustard",
-			"pink-kight-mondo",
+			"pink-knight-mondo",
 			"tappy-sticker",
 			"son-christmas",
 			"sick-skull",
