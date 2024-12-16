@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "hotel_courtyard",
@@ -467,6 +467,22 @@
 					"fieldInstances": [],
 					"__worldX": 2672,
 					"__worldY": 1200
+				},
+				{
+					"__identifier": "CollisionCircle",
+					"__grid": [160,172],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0044",
+					"iid": "8439fc00-9b00-11ef-b77b-f9718ddfbbb8",
+					"width": 96,
+					"height": 96,
+					"defUid": 45,
+					"px": [2568,2760],
+					"fieldInstances": [],
+					"__worldX": 2568,
+					"__worldY": 2760
 				}
 			]
 		},
