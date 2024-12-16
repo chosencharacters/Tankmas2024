@@ -72,7 +72,6 @@ class BaseUser extends NGSprite
 		nameTag.offset.y = -46;
 		PlayState.self.username_tags.add(nameTag);
 
-		PlayState.self.world_objects.add(this);
 		PlayState.self.shadows.add(shadow = new FlxSpriteExt(Paths.get("player-shadow.png")));
 
 		maxVelocity.set(move_speed, move_speed);
@@ -80,6 +79,8 @@ class BaseUser extends NGSprite
 		sprite_anim.anim(PlayerAnimation.IDLE);
 
 		drag.set(300, 300);
+
+		PlayState.self.add_user(this);
 	}
 
 	override function update(elapsed:Float)
@@ -238,12 +239,13 @@ class BaseUser extends NGSprite
 
 	override function kill()
 	{
+		PlayState.self.remove_user(this.username);
+
 		leave_activity_area();
 
 		shadow.destroy();
 		nameTag.destroy();
 
-		PlayState.self.world_objects.remove(this, true);
 		super.kill();
 	}
 
