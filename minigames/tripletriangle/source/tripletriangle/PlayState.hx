@@ -60,7 +60,8 @@ class PlayState extends FlxSubState
 		cursor.scale.x = 0.125;
 		cursor.scale.y = 0.125;
 		cursor.offset.set(58, 72);  // Some magic numbers manually selected until it looked currect.
-		
+		states.PlayState.self.input_manager.mode = input.InputManager.InputMode.MouseOrTouch;
+
 		super.create();
 		fontAngelCode = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_0.png"), Global.asset("assets/slkscrb.fnt"));
 		fontAngelCode_x4 = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_x4_0.png"), Global.asset("assets/slkscrb_x4.fnt"));
