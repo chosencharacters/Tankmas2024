@@ -126,7 +126,7 @@ class TankmasLevel extends LDTKLevel
 			switch (c.f_name)
 			{
 				case "gaming-device":
-					new GamingDevice(x + c.pixelY, y + c.pixelY);
+					new GamingDevice(c.worldPixelX, c.worldPixelY);
 			}
 		}
 
