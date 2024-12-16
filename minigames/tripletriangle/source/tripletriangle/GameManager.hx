@@ -374,6 +374,16 @@ class GameManager extends GameManagerBase
 		}
 	}
 
+    public function CanPurchase(price:Int):Bool{
+        return score > price;
+    }
+
+    public function Purchase(price:Int){
+        score -= price;
+		textShopMoney.text = StringTools.lpad(Std.string(score > 999 ? 999 : score), "0", 3);
+		textShopMoney.x = 278 - (textShopMoney.width / 2);
+    }
+
     public override function OnCircleEscaped(circle: BasicCircle)
     {
         /*if(GlobalMasterManager.Main.GameState != EGameState.RestartScreen)

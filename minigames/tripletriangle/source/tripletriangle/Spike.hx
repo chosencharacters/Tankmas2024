@@ -1,5 +1,6 @@
 package tripletriangle;
 
+import flixel.math.FlxPoint;
 import coroutine.CoroutineRunner;
 import coroutine.Routine;
 import flixel.FlxObject;
@@ -41,6 +42,8 @@ class Spike extends FlxObject
 		super(p_x, p_y);
 		popAngle = p_popAngle;
 		firstSpike = new FlxSprite(p_x, p_y, graphicAsset);
+		firstSpike.offset.x = 16;
+		firstSpike.offset.y = 16;
 
 		extraSpikes_dx = (p_popAngle == ESpikeAngle.down) ? 32 : 0;
 		extraSpikes_dy = (p_popAngle == ESpikeAngle.down) ? 0 : 32;
@@ -48,7 +51,11 @@ class Spike extends FlxObject
 		thirdSpike = new FlxSprite(p_x - extraSpikes_dx, p_y - extraSpikes_dy, graphicAsset);
 		secondSpike.visible = false;
 		thirdSpike.visible = false;
-
+		secondSpike.offset.x = 16;
+		secondSpike.offset.y = 16;
+		thirdSpike.offset.x = 16;
+		thirdSpike.offset.y = 16;
+		
 		// animator = GetComponent<Animator>();
 
 		var coInvisibilityRoutine = new CoroutineRunner();

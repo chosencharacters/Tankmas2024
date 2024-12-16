@@ -1,9 +1,11 @@
 package tripletriangle;
 
+import ui.Cursor;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.FlxSubState;
 import flixel.graphics.frames.FlxBitmapFont;
 import flixel.group.FlxGroup;
 import flixel.text.FlxBitmapText;
@@ -16,7 +18,25 @@ import utils.OverlayGlobal as Global;
 import utils.Global;
 #end
 
-class PlayState extends FlxState
+enum UIUnlockableType{
+	circle;  // With "active" status.
+	spikeSkin;  // With "locked" and "chosen" status.
+	backgroundSkin;  // With "locked" and "chosen" status.
+	achievement;  // With optional tooltip.
+}
+
+// Needs to be flexible, and preferably possible to initiate via anonymous JSON objects like {type: 1}
+/*class UIUnlockableButtonData {
+	public var type:UIUnlockableType;
+	public var x:Int;
+	public var y:Int;
+	public var callback:(btn:FlxButton) -> Void;
+	public var image:String;
+	public var unlockableName:String;
+	//public var active:Bool;
+}*/
+
+class PlayState extends FlxSubState
 {
 	var _walls:FlxGroup;
 
@@ -29,10 +49,18 @@ class PlayState extends FlxState
 	var fontAngelCode:FlxBitmapFont;
 	var fontAngelCode_x4:FlxBitmapFont;
 
+	var cursor:Cursor;  // Debugging
+	var cursorPosition:FlxBitmapText;  // Debugging
+
 	override public function create()
 	{
 		bgColor = 0xffcbdbfc;
 		FlxG.camera.antialiasing = false;
+		cursor = new Cursor(this);
+		cursor.scale.x = 0.125;
+		cursor.scale.y = 0.125;
+		cursor.offset.set(58, 72);  // Some magic numbers manually selected until it looked currect.
+		
 		super.create();
 		fontAngelCode = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_0.png"), Global.asset("assets/slkscrb.fnt"));
 		fontAngelCode_x4 = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_x4_0.png"), Global.asset("assets/slkscrb_x4.fnt"));
@@ -86,6 +114,11 @@ class PlayState extends FlxState
 		var global = new GlobalMasterManager();
 		add(global);
 	}
+	override function update(elapsed:Float)
+	{
+		cursorPosition.text = cursor.getPosition().toString();
+		super.update(elapsed);
+	}
 
 	function initializeUI(){
 		var creditsText = new FlxBitmapText(fontAngelCode);
@@ -93,6 +126,14 @@ class PlayState extends FlxState
 		creditsText.text = "Dev:\n Blawnode";
 		creditsText.setPosition(8, 54);
 		add(creditsText);
+		
+		//TEMP
+		cursorPosition = new FlxBitmapText(fontAngelCode);
+		cursorPosition.font = fontAngelCode;
+		cursorPosition.text = "-";
+		cursorPosition.setPosition(8, 74);
+		add(cursorPosition);
+
 		/*var creditsText = new FlxText(8, 54, 0, "Dev:\n Blawnode", 8);
 		creditsText.font = "assets/slkscrb.ttf";
 		creditsText.antialiasing = false;
@@ -130,56 +171,85 @@ class PlayState extends FlxState
 	}
 
 	function initializeShopButtons(){
-		var buttonDatas = [
+		var buttonDatas:Array<Dynamic> = [
 			// (Already unlocked)
 			{
+				type: UIUnlockableType.circle,
 				x: 250,
 				y: 100,
-				callback: btnToBeImplementedCallback,
+				callback: btnShopItemCallback,
 				image: "assets/images/Shop Circle Madness Grunt.png",
+				imageLocked: "assets/images/Shop Locked Unimplemented.png",
 				unlockableName: "Grunt Circle",
-				// image: "assets/images/Shop Circle Angry Faic.png"
+				price: 999,
+				unlocked: true,
 			},
 			{
+				type: UIUnlockableType.circle,
 				x: 270,
 				y: 100,
-				callback: btnToBeImplementedCallback,
-				image: "assets/images/Shop Locked Unimplemented.png"
-				// image: "assets/images/Shop Circle Nene.png"
+				callback: btnShopItemCallback,
+				image: "assets/images/Shop Locked Unimplemented.png",
+				imageLocked: "assets/images/Shop Locked 50.png",
+				// image: "assets/images/Shop Circle Angry Faic.png"
+				unlockableName: "2nd Circle",
+				price: 50,
+				unlocked: false,
 			},
 			{
+				type: UIUnlockableType.circle,
 				x: 290,
 				y: 100,
-				callback: btnToBeImplementedCallback,
-				image: "assets/images/Shop Locked Unimplemented.png"
+				callback: btnShopItemCallback,
+				image: "assets/images/Shop Locked Unimplemented.png",
+				imageLocked: "assets/images/Shop Locked 50.png",
 				// image: "assets/images/Shop Circle Nene.png"
+				unlockableName: "3rd Circle",
+				price: 50,
+				unlocked: false,
 			},
 			{
+				type: UIUnlockableType.circle,
 				x: 250,
 				y: 130,
-				callback: btnToBeImplementedCallback,
-				image: "assets/images/Shop Locked Unimplemented.png"
+				callback: btnShopItemCallback,
+				image: "assets/images/Shop Locked Unimplemented.png",
+				imageLocked: "assets/images/Shop Locked 100.png",
 				// image: "assets/images/Shop Circle Nene.png"
+				unlockableName: "4th Circle",
+				price: 100,
+				unlocked: false,
 			},
 			{
+				type: UIUnlockableType.circle,
 				x: 270,
 				y: 130,
-				callback: btnToBeImplementedCallback,
-				image: "assets/images/Shop Locked Unimplemented.png"
+				callback: btnShopItemCallback,
+				image: "assets/images/Shop Locked Unimplemented.png",
+				imageLocked: "assets/images/Shop Locked 100.png",
 				// image: "assets/images/Shop Circle Nene.png"
+				unlockableName: "5th Circle",
+				price: 100,
+				unlocked: false,
 			},
 			{
+				type: UIUnlockableType.circle,
 				x: 290,
 				y: 130,
-				callback: btnToBeImplementedCallback,
-				image: "assets/images/Shop Locked Unimplemented.png"
+				callback: btnShopItemCallback,
+				image: "assets/images/Shop Locked Unimplemented.png",
+				imageLocked: "assets/images/Shop Locked 100.png",
 				// image: "assets/images/Shop Circle Nene.png"
+				unlockableName: "6th Circle",
+				price: 100,
+				unlocked: false,
 			},
 			
 
 			// Spike Skin Buttons
 			
 			/*{
+				type: UIUnlockableType.spikeSkin,
 				x: 270,
 				y: 100,
 				callback: btnToBeImplementedCallback,
@@ -187,6 +257,7 @@ class PlayState extends FlxState
 				// image: "assets/images/Shop Circle Nene.png"
 			},
 			{
+				type: UIUnlockableType.spikeSkin,
 				x: 270,
 				y: 100,
 				callback: btnToBeImplementedCallback,
@@ -194,6 +265,7 @@ class PlayState extends FlxState
 				// image: "assets/images/Shop Circle Nene.png"
 			},
 			{
+				type: UIUnlockableType.spikeSkin,
 				x: 270,
 				y: 100,
 				callback: btnToBeImplementedCallback,
@@ -205,6 +277,7 @@ class PlayState extends FlxState
 			// BG Skin Buttons
 			
 			/*{
+				type: UIUnlockableType.backgroundSkin,,
 				x: 270,
 				y: 100,
 				callback: btnToBeImplementedCallback,
@@ -212,6 +285,7 @@ class PlayState extends FlxState
 				// image: "assets/images/Shop Circle Nene.png"
 			},
 			{
+				type: UIUnlockableType.backgroundSkin,
 				x: 270,
 				y: 100,
 				callback: btnToBeImplementedCallback,
@@ -219,6 +293,7 @@ class PlayState extends FlxState
 				// image: "assets/images/Shop Circle Nene.png"
 			},
 			{
+				type: UIUnlockableType.backgroundSkin,
 				x: 270,
 				y: 100,
 				callback: btnToBeImplementedCallback,
@@ -229,19 +304,53 @@ class PlayState extends FlxState
 
 		var btnGroup:FlxTypedGroup<FlxButton> = new FlxTypedGroup<FlxButton>();
 		
-		var btn:FlxButton;
-		
+		trace("(TEMP) Initializing buttons...");
 		for(buttonData in buttonDatas){
-			btn = new FlxButton(buttonData.x, buttonData.y, "", buttonData.callback);
+			var btn:FlxButton = new FlxButton(buttonData.x, buttonData.y, "");
 			// btn.loadGraphic("assets/images/Shop Circle Angry Faic.png");
-			btn.loadGraphic(Global.asset(buttonData.image));
+			btn.loadGraphic(Global.asset(buttonData.unlocked ? buttonData.image : buttonData.imageLocked));
+			trace(btn.origin);
+			btn.centerOrigin();
+			trace(btn.origin);
+			btn.onUp.callback = () -> {buttonData.callback(btn, buttonData);};
 			btnGroup.add(btn);
 		}
 		
 		add(btnGroup);
 	}
 
-	function btnToBeImplementedCallback(){
-		trace("A locked button. (To be implemented!)");
+	function btnShopItemCallback(btn:FlxButton, shopButtonData:Dynamic){
+		trace("Clicked shop item: " + shopButtonData.unlockableName);
+		if(shopButtonData.unlocked)
+		{
+			trace("But it is already unlocked!");
+			trace("TEST: " + btn.toString());
+			return;
+		}
+
+		// ASSUMPTION: There is only GameManager inheriting form GameManagerBase.
+		if(!GameManager.Main.CanPurchase(shopButtonData.price)){
+			trace("Insufficient funds.");
+			trace("TEST: " + btn.toString());
+			return;
+		}
+
+		GameManager.Main.Purchase(shopButtonData.price);
+		// btn.active = false;  // More efficient when the button is disabled. Better debugging when the button is enabled + Items can be re-enabled or re-disabled, like skins.
+		switch(shopButtonData.type){
+			case UIUnlockableType.circle:
+				trace("TODO: UNLOCK CIRCLE");
+			case UIUnlockableType.spikeSkin:
+				trace("TODO: UNLOCK SPIKE SKIN");
+			case UIUnlockableType.backgroundSkin:
+				trace("TODO: UNLOCK BACKGROUND SKIN");
+			default:
+				trace("UNSUPPORTED PURCHASE TYPE. MISTAKE IN PROGRAMMING EXPECTED.");
+		}
+		btn.loadGraphic(Global.asset(shopButtonData.image));
+	}
+
+	function btnToBeImplementedCallback(btn:FlxButton, shopButtonData:Dynamic){
+		trace("A locked button. (To be implemented!) " + btn.toString());
 	}
 }
