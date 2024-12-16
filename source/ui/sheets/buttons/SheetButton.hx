@@ -50,7 +50,11 @@ class SheetButton extends HoverButton
 				if (costume.unlock != null)
 					return data.types.TankmasEnums.UnlockCondition.get_unlocked(costume.unlock, costume.data);
 			case SheetType.EMOTES:
+				#if sticker_whatevey
+				return true;
+				#else
 				return SaveManager.saved_emote_collection.contains(def.name);
+				#end
 		}
 		return true;
 	}

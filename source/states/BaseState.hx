@@ -35,7 +35,7 @@ class BaseState extends FlxState
 
 			#if !no_radio
 			radio = new RadioManager();
-			#else
+			#elseif !no_music
 			var track:TrackDef = JsonData.get_track("HarktheAngel-Jumbs");
 			SoundPlayer.music(track).onComplete((_music) -> trace('Song started playing.'));
 			#end

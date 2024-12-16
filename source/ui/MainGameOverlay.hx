@@ -42,7 +42,9 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 
 		add(offline_indicator = new OfflineIndicator());
 
+		#if !sticker_whatevey
 		add(sticker_pack = new StickerPackButton(emote.x + emote.width + 20, 20));
+		#end
 
 		add(music_popup = MusicPopup.get_instance());
 
