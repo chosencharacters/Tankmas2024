@@ -127,6 +127,12 @@ class PlayState extends FlxSubState
 		creditsText.text = "Dev:\n Blawnode";
 		creditsText.setPosition(8, 54);
 		add(creditsText);
+
+		var exitText = new FlxBitmapText(fontAngelCode);
+		exitText.font = fontAngelCode;
+		exitText.text = "C - Exit";
+		exitText.setPosition(8, 200);
+		add(exitText);
 		
 		// CURSOR POSITION DEBUGGING
 		/*cursorPosition = new FlxBitmapText(fontAngelCode);
