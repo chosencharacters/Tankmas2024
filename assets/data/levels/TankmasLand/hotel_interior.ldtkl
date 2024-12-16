@@ -1592,7 +1592,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [152,138],
+					"__grid": [53,234],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1601,7 +1601,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [2432,2208],
+					"px": [848,3744],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "pukebomb", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1610,8 +1610,8 @@
 						{ "__identifier": "day", "__type": "Int", "__value": 16, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [16] }] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
-					"__worldX": 2432,
-					"__worldY": 2208
+					"__worldX": 848,
+					"__worldY": 3744
 				}
 			]
 		},
