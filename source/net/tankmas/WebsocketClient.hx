@@ -1,5 +1,6 @@
 package net.tankmas;
 
+#if !offline
 import haxe.Json;
 import hx.ws.Types.MessageType;
 import net.tankmas.NetDefs.GenerateBasicAuthHeader;
@@ -48,9 +49,7 @@ class WebsocketClient
 {
 	static final address:String = OnlineLoop.ws_address;
 
-	#if websocket
 	var socket:WebSocket;
-	#end
 
 	var connected = false;
 	var username:String = null;
@@ -70,9 +69,7 @@ class WebsocketClient
 
 	public function new()
 	{
-		#if offline
 		return;
-		#end
 	}
 
 	public function close()
@@ -336,3 +333,4 @@ class WebsocketClient
 		}, immediate);
 	}
 }
+#end

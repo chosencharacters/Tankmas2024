@@ -63,6 +63,7 @@ class SaveManager
 
 	public static function upload()
 	{
+		#if !offline
 		// Serialize data
 		var encodedData = haxe.Serializer.run(FlxG.save.data);
 
@@ -73,6 +74,7 @@ class SaveManager
 			if (on_save_stored != null)
 				on_save_stored();
 		});
+		#end
 	}
 
 	public static function load(on_complete:() -> Void = null, ?on_fail:() -> Void)

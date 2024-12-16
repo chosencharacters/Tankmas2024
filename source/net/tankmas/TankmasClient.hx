@@ -1,3 +1,4 @@
+#if !offline
 package net.tankmas;
 
 import http.HttpError;
@@ -65,3 +66,4 @@ class TankmasClient
 		Client.get(url, on_complete);
 	}
 }
+#end

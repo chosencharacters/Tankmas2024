@@ -1,3 +1,4 @@
+#if !offline
 package net.tankmas;
 
 import data.JsonData;
@@ -269,3 +270,4 @@ class OnlineLoop
 		#end
 	}
 }
+#end

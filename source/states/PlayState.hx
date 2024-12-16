@@ -97,7 +97,9 @@ class PlayState extends BaseState
 
 	public static var show_usernames(default, set):Bool = true;
 
+	#if !offline
 	public var premieres:PremiereHandler;
+	#end
 
 	// No idea how I could get this into the overlay ui
 	public var notification_message:ServerNotificationMessagePopup;
@@ -198,7 +200,9 @@ class PlayState extends BaseState
 
 		SaveManager.save_room();
 
+		#if !offline
 		OnlineLoop.init_room();
+		#end
 
 		if (player != null)
 		{
@@ -209,6 +213,7 @@ class PlayState extends BaseState
 			throw "Player not initialized! Did you add the entity to the level?";
 		}
 
+		#if !offline
 		if (OnlineLoop.is_offline)
 		{
 			ui_overlay.offline_indicator.show();
@@ -218,6 +223,7 @@ class PlayState extends BaseState
 		{
 			ui_overlay.offline_indicator.show();
 		}
+		#end
 
 		premieres = new PremiereHandler();
 		if (Main.current_room_id == Theatre)
@@ -241,7 +247,9 @@ class PlayState extends BaseState
 
 	override public function update(elapsed:Float)
 	{
+		#if !offline
 		OnlineLoop.iterate(elapsed);
+		#end
 
 		premieres.update(elapsed);
 
@@ -285,6 +293,7 @@ class PlayState extends BaseState
 
 	var video_ui:VideoUi;
 
+	#if !offline
 	function on_premiere_release(d:PremiereData)
 	{
 		trace('Playing premiere: ${d.name}');
@@ -328,6 +337,7 @@ class PlayState extends BaseState
 		video_ui.on_enter_area = () -> ui_overlay.visible = false;
 		video_ui.on_leave_area = () -> ui_overlay.visible = true;
 	}
+	#end
 
 	function kill_video()
 	{

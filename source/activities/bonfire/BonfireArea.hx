@@ -81,7 +81,7 @@ class BonfireArea extends ActivityAreaInstance
 
 			update_text();
 
-			OnlineLoop.post_marshmallow_discard(marshmallow.current_level);
+			#if !offline OnlineLoop.post_marshmallow_discard(marshmallow.current_level); #end
 		}
 		stick.shake_off();
 	}

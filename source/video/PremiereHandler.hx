@@ -1,3 +1,4 @@
+#if !offline
 package video;
 
 import haxe.io.Float32Array;
@@ -155,3 +156,4 @@ class PremiereHandler
 		}
 	}
 }
+#end
