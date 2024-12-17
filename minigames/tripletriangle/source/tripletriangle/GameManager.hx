@@ -132,7 +132,7 @@ class GameManager extends GameManagerBase
         var circleTypeCount: Int = circlePrefabArr.length;
         circleCountArr = [for(i in 0...circleTypeCount) 0];  // new uint[circleTypeCount]
         
-        //InitializeCircleToChance();
+        InitializeCircleToChance();
         circleChoicePool = new Array<CircleType>();
         //SkinManager.Main.SetupSkins(circlePrefabArr);
 
@@ -217,6 +217,10 @@ class GameManager extends GameManagerBase
 
         circleChoicePool = [ CircleType.Basic ];  // Reset to initial pool state
 
+        if (score >= TORPEDO_SCORE_TARGET && circleCountArr[cast CircleType.Torpedo] <= 1 && typeToSpawn != CircleType.Torpedo)
+        {
+            circleChoicePool.push(CircleType.Torpedo);
+        }
         if (score >= BLOON_SCORE_TARGET && circleCountArr[cast CircleType.Bloon] <= 1 && typeToSpawn != CircleType.Bloon)
         {
             circleChoicePool.push(CircleType.Bloon);
@@ -224,10 +228,6 @@ class GameManager extends GameManagerBase
         if (score >= BIG_SCORE_TARGET && circleCountArr[cast CircleType.Big] <= 1 && typeToSpawn != CircleType.Big)
         {
             circleChoicePool.push(CircleType.Big);
-        }
-        if (score >= TORPEDO_SCORE_TARGET && circleCountArr[cast CircleType.Torpedo] <= 1 && typeToSpawn != CircleType.Torpedo)
-        {
-            circleChoicePool.push(CircleType.Torpedo);
         }
         if (score >= MOLE_SCORE_TARGET && circleCountArr[cast CircleType.Mole] <= 1 && typeToSpawn != CircleType.Mole)
         {
@@ -269,22 +269,57 @@ class GameManager extends GameManagerBase
         // What's the next pickup going to be?
 
         pickupPrefabToSpawn = pickupCirclePrefabArr[UnityEngine.Random.Range(0, pickupCirclePrefabArr.Length)];
-    }
-
-    // TOEDIT (Circle): Need to edit this every time I add a new circle type.
-    private void InitializeCircleToChance()
-    {
-        circleToChance = new Dictionary<CircleType, float>
-        {
-            { CircleType.Basic, BASIC_WEIGHT },
-            { CircleType.Torpedo, TORPEDO_WEIGHT },
-            { CircleType.Big, BIG_WEIGHT },
-            { CircleType.Bloon, BLOON_WEIGHT },
-            { CircleType.Mole, MOLE_WEIGHT },
-        };
     }*/
 
-    private function ChooseCircle(){trace("TODO: ChooseCircle()");}
+    // TOEDIT (Circle): Need to edit this every time I add a new circle type.
+    private function InitializeCircleToChance()
+    {
+        circleToChance = 
+        [
+            CircleType.Basic => BASIC_WEIGHT,
+            CircleType.Torpedo => TORPEDO_WEIGHT,
+            CircleType.Big => BIG_WEIGHT,
+            CircleType.Bloon => BLOON_WEIGHT,
+            CircleType.Mole => MOLE_WEIGHT
+        ];
+    }
+
+    // Chooses the next circle to be spawned based on whether they're possible and on their weights
+    private function ChooseCircle(){
+
+        var choice: CircleType = CircleType.Basic;  // Initialization to prevent error.
+        var weightSum: Float = 0;
+        var randomNum: Float;
+        var currentFloorWeight: Float = 0;
+
+        for(type in circleChoicePool)
+        {
+            weightSum += circleToChance[type];
+        }
+        randomNum = FlxG.random.float(0, weightSum);
+
+        // Issue: The last circle type will be favored. Start the loop from a different circle each time!
+
+        for(type in circleChoicePool)
+        {
+            if(currentFloorWeight <= randomNum && randomNum <= currentFloorWeight + circleToChance[type])
+            {
+                // This condition should 100% be fulfilled.
+                // This is the chosen one!!
+                choice = type;
+                break;
+            }
+            currentFloorWeight += circleToChance[type];
+        }
+
+        // prefabToSpawn = circlePrefabArr[cast choice];  // Unneeded in Haxe version.
+        typeToSpawn = choice;
+        if (choice != CircleType.Basic)
+        {
+            trace("TODO: PlayAlert(choice)");
+            // PlayAlert(choice);
+        }
+    }
 
     private function IncrementCircleCount(circleType: CircleType)
     {
