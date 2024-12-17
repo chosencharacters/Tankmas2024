@@ -5,6 +5,7 @@ import data.SaveManager;
 import entities.Interactable;
 import entities.Minigame;
 import entities.NPC;
+import entities.Pet;
 import entities.Player;
 import entities.Present;
 import entities.base.BaseUser;
@@ -70,6 +71,7 @@ class PlayState extends BaseState
 	public var minigames:FlxTypedGroup<Minigame> = new FlxTypedGroup<Minigame>();
 	public var props_background:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 	public var props_foreground:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
+	public var pets:FlxTypedGroup<Pet> = new FlxTypedGroup<Pet>();
 
 	public var user_fx:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 

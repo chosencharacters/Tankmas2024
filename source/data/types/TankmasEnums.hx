@@ -657,3 +657,65 @@ enum abstract NPCAnimation(SpriteAnimationDef) from SpriteAnimationDef to Sprite
 		]
 	};
 }
+
+/**
+ * Enum of fixed pet animations, probably will be moved
+ */
+enum abstract PetAnimation(SpriteAnimationDef) from SpriteAnimationDef to SpriteAnimationDef
+{
+	public static final IDLE:SpriteAnimationDef = {
+		name: "idle",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: true,
+		frames: [
+			{
+				duration: 1,
+				x: 0,
+				y: 0,
+				angle: 0,
+				height: 1.0,
+				width: 1.0
+			}
+		]
+	};
+
+	public static final MOVING:SpriteAnimationDef = {
+		name: "moving",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: true,
+		frames: [
+			{
+				duration: 2,
+				x: -5,
+				y: -16 + 8,
+				angle: 7
+			},
+			{
+				duration: 2,
+				y: -20 + 8,
+			},
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				angle: 0
+			},
+			{
+				duration: 2,
+				x: 5,
+				y: -16 + 8,
+				angle: -7
+			},
+			{
+				duration: 2,
+				y: -20 + 8,
+			},
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				angle: 0
+			},
+		]
+	};
+}

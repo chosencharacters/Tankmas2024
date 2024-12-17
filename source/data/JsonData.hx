@@ -1,9 +1,7 @@
 package data;
 
-import data.types.TankmasDefs.CostumeDef;
-import data.types.TankmasDefs.EmoteDef;
-import data.types.TankmasDefs.PresentDef;
-import data.types.TankmasDefs.TrackDef;
+import data.types.TankmasDefs;
+import entities.Pet;
 import ui.sheets.defs.SheetDefs.SheetDef;
 import ui.sheets.defs.SheetDefs.SheetMenuDef;
 
@@ -19,6 +17,7 @@ class JsonData
 	static var emotes:Map<String, EmoteDef>;
 	static var presents:Map<String, PresentDef>;
 	static var tracks:Map<String, TrackDef>;
+	static var pets:Map<String, PetDef>;
 
 	public static var costume_sheet_defs(get, default):Array<SheetDef>;
 	public static var costume_sheet_names(get, default):Array<String>;
@@ -38,6 +37,9 @@ class JsonData
 	public static var track_defs(get, default):Array<TrackDef>;
 	public static var track_ids(get, default):Array<String>;
 
+	public static var pet_defs(get, default):Array<PetDef>;
+	public static var pet_names(get, default):Array<String>;
+
 	public static function init()
 	{
 		load_costumes();
@@ -45,6 +47,7 @@ class JsonData
 		load_emotes();
 		load_tracks();
 		load_sheets();
+		load_pets();
 	}
 
 	static function load_sheets()
@@ -114,6 +117,32 @@ class JsonData
 			tracks.set(track_def.id, track_def);
 	}
 
+	static function load_pets()
+	{
+		pets = [];
+		var json:{pets:Array<PetDef>} = haxe.Json.parse(Utils.load_file_string("pets.json"));
+
+		// yes I know this could be one for loop but for readability it's two
+
+		for (pet_def in json.pets)
+			if (pet_def.stats == null)
+				pet_def.stats = Reflect.copy(Pet.default_stats);
+			else
+			{
+				pet_def.stats.follow_speed = pet_def.stats.follow_speed == null ? Pet.default_stats.follow_speed : pet_def.stats.follow_speed;
+				pet_def.stats.follow_acl = pet_def.stats.follow_acl == null ? Pet.default_stats.follow_acl : pet_def.stats.follow_acl;
+				pet_def.stats.follow_accuracy = pet_def.stats.follow_accuracy == null ? Pet.default_stats.follow_accuracy : pet_def.stats.follow_accuracy;
+
+				pet_def.stats.deadzone = pet_def.stats.deadzone == null ? Pet.default_stats.deadzone : pet_def.stats.deadzone;
+
+				pet_def.stats.follow_offset_x = pet_def.stats.follow_offset_x == null ? Pet.default_stats.follow_offset_x : pet_def.stats.follow_offset_x;
+				pet_def.stats.follow_offset_y = pet_def.stats.follow_offset_y == null ? Pet.default_stats.follow_offset_y : pet_def.stats.follow_offset_y;
+			}
+
+		for (pet_def in json.pets)
+			pets.set(pet_def.name, pet_def);
+	}
+
 	///<defs singular>///
 	public static function get_costume_sheet(name:String):SheetDef
 		return costume_sheets.get(name);
@@ -129,6 +158,9 @@ class JsonData
 
 	public static function get_present(name:String):PresentDef
 		return presents.get(name);
+
+	public static function get_pet(name:String):PetDef
+		return pets.get(name);
 
 	public static function get_track(track_id:String):TrackDef
 		return tracks.get(track_id);
@@ -149,6 +181,9 @@ class JsonData
 	public static function get_costume_defs():Array<CostumeDef>
 		return map_to_array(costumes);
 
+	public static function get_pet_defs():Array<PetDef>
+		return map_to_array(pets);
+
 	public static function get_track_defs():Array<TrackDef>
 		return map_to_array(tracks);
 
@@ -167,6 +202,9 @@ class JsonData
 
 	public static function get_emote_names():Array<String>
 		return emote_defs.map((def:EmoteDef) -> return def.name);
+
+	public static function get_pet_names():Array<String>
+		return pet_defs.map((def:PetDef) -> return def.name);
 
 	public static function get_track_ids():Array<String>
 		return track_defs.map((def:TrackDef) -> return def.id);

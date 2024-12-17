@@ -72,3 +72,23 @@ typedef SpriteAnimationFrameDef =
 	var duration:Int;
 	var ?frameNum:Int;
 }
+
+typedef PetDef =
+{
+	var name:String;
+	var display:String;
+	var ?desc:String;
+	var ?unlock:UnlockCondition;
+	var ?data:Dynamic;
+	var ?stats:PetStats;
+}
+
+typedef PetStats =
+{
+	var ?follow_speed:Int;
+	var ?follow_acl:Int;
+	var ?deadzone:Int;
+	var ?follow_offset_x:Int;
+	var ?follow_offset_y:Int;
+	var ?follow_accuracy:Float;
+}
