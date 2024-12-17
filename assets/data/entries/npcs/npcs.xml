@@ -4,10 +4,22 @@
         <state name="default">
             <dlg>Hello fellow newgrounder I am the tom fulp of the new grounds dot com</dlg>
             <dlg>Are we talking about tom fulp? I love talking about tom fulp.</dlg>
-            <dlg if="SECRET_LOVE_OF_THE_TOM">btw I only say this to people I enjoy the company of.
-                But I love you.</dlg>
+            <option label="I love you Thomas">
+              <dlg>I love you too :)</dlg>
+              <flag set="SECRET_LOVE_OF_THE_TOM"/>
+            </option>
+            <option label="I hate you Thomas">
+              <dlg>You have made a grave error today.</dlg>
+              <dlg>Never talk to me again.</dlg>
+              <flag set="THE_IRE_OF_TOM"/>
+            </option>
         </state>
-        <state name="default" if="THE_IRE_OF_TOM">
+        <state name="love" if="SECRET_LOVE_OF_THE_TOM">
+            <dlg>Oh, it's you again, and what honor brings your company today?</dlg>
+            <dlg>btw I only say this to people I enjoy the company of But I love you.</dlg>
+        </state>
+        <state name="hatred" if="THE_IRE_OF_TOM">
+            <dlg>You.</dlg>
             <dlg>You disappoint me. Be gone from my sight.</dlg>
         </state>
     </npc>
@@ -108,8 +120,7 @@
         <state name="default">
             <dlg>Hmm? Sorry, were you trying to talk to me?</dlg>
             <dlg>You must have me confused for a commoner.</dlg>
-            <dlg>Allow me to correct you, let's call it a charity, to the lesser beings like
-                yourself.</dlg>
+            <dlg>Allow me to correct you, let's call it a charity, to the lesser beings like yourself.</dlg>
             <dlg>I am Joan. And YOU are not worth my efforts. Now begone.</dlg>
             <dlg>This premiere is far too exclusive for one such as yourself.</dlg>
             <dlg>Well... There's the door. So see yourself out the way you came.</dlg>
@@ -119,8 +130,7 @@
         <state name="default">
             <dlg>Grrch-gak...guh-</dlg>
             <dlg>AGH! YOU! PLEASE!</dlg>
-            <dlg>This bag is much too heavy for my brittle 23 year old body! Would you offer this
-                humble Mall Santa a hand?</dlg>
+            <dlg>This bag is much too heavy for my brittle 23 year old body! Would you offer this humble Mall Santa a hand?</dlg>
             <dlg>Here, just bend down and extend your arms like-</dlg>
             <dlg>...</dlg>
             <dlg>Where are you going?</dlg>
@@ -131,10 +141,8 @@
         <state name="default">
             <dlg>Hmmph? Do I owe you my time?</dlg>
             <dlg>No? I did not think so. But so many here owe ME.</dlg>
-            <dlg>It's not easy being so generous, you know. I collect and collect. But then they ask
-                ME for my worth.</dlg>
-            <dlg>And, ME, being such a generous being, give them with the small ask they pay me back
-                slightly more later.</dlg>
+            <dlg>It's not easy being so generous, you know. I collect and collect. But then they ask ME for my worth.</dlg>
+            <dlg>And, ME, being such a generous being, give them with the small ask they pay me back slightly more later.</dlg>
             <dlg>Of course... If they're late, well, then special arrangements will have to be made.</dlg>
             <dlg>And this hotel is *quite* late.</dlg>
         </state>
