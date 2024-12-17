@@ -59,7 +59,7 @@ class MainGameOverlay extends FlxTypedGroupExt<FlxSprite>
 
 	override function update(elapsed:Float)
 	{
-		sticker_pack.visible = Player.has_emote_pack;
+		#if !sticker_whatevey sticker_pack.visible = Player.has_emote_pack; #end
 		super.update(elapsed);
 	}
 
