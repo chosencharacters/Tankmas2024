@@ -1,15 +1,13 @@
 package net.tankmas;
 
 import haxe.Json;
+import haxe.io.Bytes;
 import hx.ws.Types.MessageType;
+import hx.ws.WebSocket;
 import net.tankmas.NetDefs.GenerateBasicAuthHeader;
 import net.tankmas.NetDefs.NetEventDef;
 import net.tankmas.NetDefs.NetEventType;
 import net.tankmas.NetDefs.NetUserDef;
-#if websocket
-import haxe.io.Bytes;
-import hx.ws.WebSocket;
-#end
 
 enum abstract WebsocketEventType(Int)
 {
@@ -48,9 +46,7 @@ class WebsocketClient
 {
 	static final address:String = OnlineLoop.ws_address;
 
-	#if websocket
 	var socket:WebSocket;
-	#end
 
 	var connected = false;
 	var username:String = null;
