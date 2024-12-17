@@ -110,8 +110,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		update_locked_selections_overlays();
 
 		next_sheet_button.one_line("next-sticker-page");
-		next_sheet_button.setPosition(costume_sheets.members[0].bg.x + costume_sheets.members[0].bg.width - next_sheet_button.width,
-			costume_sheets.members[0].bg.y - next_sheet_button.height / 2);
+		next_sheet_button.setPosition(back_button.x - next_sheet_button.width, back_button.y + back_button.height / 2 - next_sheet_button.height / 2);
 		next_sheet_button.scrollFactor.set(0, 0);
 		next_sheet_button.on_pressed = (b) -> next_page();
 
