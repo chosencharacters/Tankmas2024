@@ -1,3 +1,8 @@
+
+using Math;
+using StringTools;
+
+#if !macro
 import Ctrl;
 import data.Lists;
 import data.flags.Flags;
@@ -19,8 +24,6 @@ import squid.types.ListsTypes.AnimDef;
 import squid.types.ListsTypes.AnimSet;
 import states.*;
 
-using Math;
-using StringTools;
 using data.Lists;
 using flixel.util.FlxArrayUtil;
 using squid.ext.SysExt;
@@ -28,3 +31,4 @@ using squid.util.FlxSpriteUtils;
 using squid.util.SysUtils;
 using squid.util.Utils;
 using squid.util.XmlUtils;
+#end
