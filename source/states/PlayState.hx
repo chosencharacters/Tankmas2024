@@ -279,7 +279,10 @@ class PlayState extends BaseState
 
 		world_objects.sort((order, a, b) ->
 		{
-			return FlxSort.byValues(order, a.y + a.height - a.y_bottom_offset, b.y + b.height - b.y_bottom_offset);
+			var a_val:Float = a != null ? a.y + a.height - a.y_bottom_offset ?? 0 : 0;
+			var b_val:Float = b != null ? b.y + b.height - b.y_bottom_offset ?? 0 : 0;
+
+			return FlxSort.byValues(order, a_val, b_val);
 		});
 	}
 
