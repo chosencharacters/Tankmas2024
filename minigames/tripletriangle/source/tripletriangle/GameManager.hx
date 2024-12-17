@@ -182,23 +182,14 @@ class GameManager extends GameManagerBase
 
 		if (isSpawning)
 		{
-			/*if (swCircleSpawn.Elapsed.TotalSeconds >= swtCircleSpawnCurr)
-			{
-				if (currentAliveCircleCount < currentCircleCount)
-				{
-					SpawnCircle();
-                    //swCircleSpawn.Restart();
-                    //swtCircleSpawnCurr = UnityEngine.Random.Range(swtCircleSpawnMin, swtCircleSpawnMax);
-				}
-			}*/
-
 			if (currentTimeInSeconds > swCircleSpawn_lastOccurrenceTimeInSeconds + swtCircleSpawn_cooldownInSeconds)
 			{
 				if (currentAliveCircleCount < currentCircleCount)
 				{
-					SpawnCircle();
+                    // trace("Spawning circle at time: " + currentTimeInSeconds + " (" + currentAliveCircleCount + ")");  // Useful for debugging.
                     //swCircleSpawn.Restart();
                     //swtCircleSpawnCurr = UnityEngine.Random.Range(swtCircleSpawnMin, swtCircleSpawnMax);
+					SpawnCircle();
 				    swCircleSpawn_lastOccurrenceTimeInSeconds = currentTimeInSeconds;
 				}
 			}
@@ -304,6 +295,8 @@ class GameManager extends GameManagerBase
     // TOEDIT (Circle): Need to edit this every time I add a new circle type.
     public override function OnCirclePopped(circle: BasicCircle)
     {
+        // trace("KILLL: " + circle.ID);  // Useful for debugging.
+
         /*if(GlobalMasterManager.Main.GameState != EGameState.RestartScreen)
         {*/
             try
@@ -352,11 +345,7 @@ class GameManager extends GameManagerBase
 		textShopMoney.text = StringTools.lpad(Std.string(score > 999 ? 999 : score), "0", 3);
 		textShopMoney.x = 278 - (textShopMoney.width / 2);
 
-		if (score % 20 == 0)
-		{
-			// Every 20 points, the game gets harder.
-			currentCircleCount++;
-		}
+		UpdateMaxCircleCount();
 
 		if (score % 15 == 0 && score <= 300)
 		{
@@ -382,6 +371,20 @@ class GameManager extends GameManagerBase
         score -= price;
 		textShopMoney.text = StringTools.lpad(Std.string(score > 999 ? 999 : score), "0", 3);
 		textShopMoney.x = 278 - (textShopMoney.width / 2);
+
+        UpdateMaxCircleCount();
+    }
+
+    private function UpdateMaxCircleCount(){
+		// Every 20 points, the game gets harder - Up to a limit.
+        final MAX_CIRCLE_COUNT = 20;
+        var newCircleCount = (3 + Std.int(score / 20));
+        if(newCircleCount > MAX_CIRCLE_COUNT) newCircleCount = MAX_CIRCLE_COUNT;
+        if(newCircleCount != currentCircleCount)
+        {
+            currentCircleCount = newCircleCount;
+            trace("Max circle count set to " + currentCircleCount + "!");
+        }
     }
 
     public override function OnCircleEscaped(circle: BasicCircle)
