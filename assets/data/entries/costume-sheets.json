@@ -304,11 +304,11 @@
                     "angle": 10
                 },
                 {
-                    "name": "lils",
+                    "name": null,
                     "angle": 10
                 },
                 {
-                    "name": "captain-steve",
+                    "name": null,
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
@@ -320,7 +320,72 @@
                     "yOffset": -30
                 },
                 {
-                    "name": "dungeoncookiebun",
+                    "name": null,
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "costumes-series-5",
+            "items": [
+                {
+                    "name": "aine",
+                    "angle": 10
+                },
+                {
+                    "name": "henry-stick",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "ellie-stick",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "charles-stick",
+                    "angle": -10
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
                     "angle": -10
                 }
             ]

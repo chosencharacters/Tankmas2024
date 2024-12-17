@@ -1612,6 +1612,29 @@
 					],
 					"__worldX": 848,
 					"__worldY": 3744
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [79,133],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "f8ccfb10-9b00-11ef-b0c5-87eb61252fdb",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1264,2128],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "viathine", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["viathine"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 17, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [17] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 1264,
+					"__worldY": 2128
 				}
 			]
 		},
