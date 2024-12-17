@@ -1,5 +1,6 @@
 package entities;
 
+import data.JsonData;
 import data.types.TankmasDefs.PetDef;
 import data.types.TankmasDefs.PetStats;
 import data.types.TankmasEnums.PetAnimation;
@@ -26,14 +27,15 @@ class Pet extends NGSprite
 		follow_accuracy: 0.9
 	};
 
-	public function new(?X:Float, ?Y:Float, owner:BaseUser, def:PetDef)
+	var empty:Bool = false;
+
+	public function new(?X:Float, ?Y:Float, owner:BaseUser, pet_type:String)
 	{
 		super(X, Y);
 
 		this.owner = owner;
-		this.def = def;
 
-		loadAllFromAnimationSet(def.name);
+		change_pet(pet_type);
 
 		PlayState.self.pets.add(this);
 		PlayState.self.world_objects.add(this);
@@ -54,6 +56,7 @@ class Pet extends NGSprite
 
 	override function updateMotion(elapsed:Float)
 	{
+		visible = !empty;
 		super.updateMotion(elapsed);
 	}
 
@@ -91,6 +94,8 @@ class Pet extends NGSprite
 	override function kill()
 	{
 		PlayState.self.pets.remove(this, true);
+		PlayState.self.world_objects.remove(this, true);
+
 		super.kill();
 	}
 
@@ -154,6 +159,17 @@ class Pet extends NGSprite
 
 	function get_name():String
 		return def.name;
+
+	public function change_pet(pet_type:String)
+	{
+		if (pet_type == null || pet_type == "")
+			pet_type = "invisible";
+
+		def = JsonData.get_pet(pet_type);
+		loadAllFromAnimationSet(def.name);
+
+		updateMotion(0);
+	}
 }
 
 private enum abstract State(String) from String to String

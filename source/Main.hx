@@ -35,6 +35,7 @@ class Main extends Sprite
 
 	public static var default_costume_collection:Array<String> = ["tankman", "paco"];
 	public static var default_costume:String = "tankman";
+	public static var default_pet:String = "";
 
 	public static var default_room:String = "outside_hotel";
 

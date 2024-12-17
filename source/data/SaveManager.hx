@@ -18,6 +18,7 @@ class SaveManager
 
 	public static var current_costume(default, default):String;
 	public static var current_emote(default, default):String;
+	public static var current_pet(default, default):String;
 
 	public static var on_save_stored:() -> Void = null;
 
@@ -39,6 +40,7 @@ class SaveManager
 		saved_costume_collection = Main.default_costume_collection;
 		current_emote = Main.default_emote;
 		current_costume = Main.default_costume;
+		current_pet = Main.default_pet;
 
 		Flags.generate();
 

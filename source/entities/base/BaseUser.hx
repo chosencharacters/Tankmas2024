@@ -1,22 +1,16 @@
 package entities.base;
 
-import states.PlayState.YSortable;
 import activities.ActivityArea;
 import data.JsonData;
+import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasEnums.PlayerAnimation;
+import entities.Pet;
 import entities.base.NGSprite;
 import net.tankmas.NetDefs.NetEventDef;
 import net.tankmas.NetDefs.NetEventType;
 import squid.sprite.TempSprite;
-
-// TEst enum for pet types
-enum abstract PetType(String) from String to String
-{
-	var None;
-	var Dog = 'dog';
-	var Cat = 'cat';
-}
+import states.PlayState.YSortable;
 
 class BaseUser extends NGSprite
 {
@@ -37,7 +31,7 @@ class BaseUser extends NGSprite
 	// in Player.hx, it will be synced to every other user ingame.
 	// To Add more values, define them in BaseUserSharedData.hx
 	public var data:BaseUserSharedData = {
-		pet: PetType.Dog,
+		pet: "",
 		marshmallow_streak: 0,
 		scale: 1.0,
 	}
@@ -45,6 +39,8 @@ class BaseUser extends NGSprite
 	var sakura_fx_rate:Int = 20;
 
 	var move_anim_name(get, never):String;
+
+	public var pet:Pet;
 
 	function get_move_anim_name():String
 	{
@@ -81,6 +77,8 @@ class BaseUser extends NGSprite
 		drag.set(300, 300);
 
 		PlayState.self.add_user(this);
+
+		pet = new Pet(x, y, this, SaveManager.current_pet);
 	}
 
 	override function update(elapsed:Float)
@@ -240,6 +238,7 @@ class BaseUser extends NGSprite
 	override function kill()
 	{
 		PlayState.self.remove_user(this.username);
+		pet.kill();
 
 		leave_activity_area();
 
@@ -264,7 +263,10 @@ class BaseUser extends NGSprite
 
 	/// Override these how you want in NetUser/Player
 
-	public function pet_changed(pet_type:PetType) {}
+	public function pet_changed(pet_type:String)
+	{
+		pet.change_pet(pet_type);
+	}
 
 	public function scale_changed(scale:Float) {}
 
