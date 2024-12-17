@@ -1,7 +1,7 @@
 package tripletriangle;
 
 import tripletriangle.PickupCircle.PickupType;
-import tripletriangle.BasicCircle.CircleType;
+import tripletriangle.GenericCircle.CircleType;
 import coroutine.CoroutineRunner;
 import coroutine.Routine;
 import flixel.FlxG;
@@ -336,7 +336,7 @@ class GameManager extends GameManagerBase
         {*/
             try
             {
-                AddToScore(1);
+                AddToScore(circle.deathScore);
                 // ComboManager.Main.AddToCombo(1);
                 // IngameCoinManager.Main.AddCoins(1);
 

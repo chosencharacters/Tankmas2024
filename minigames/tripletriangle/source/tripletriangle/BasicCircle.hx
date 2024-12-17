@@ -1,11 +1,11 @@
 ﻿package tripletriangle;
 
+import flixel.FlxSprite;
+import tripletriangle.GenericCircle.CircleType;
 import flixel.FlxCamera;
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;
-import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.util.FlxCollision;
 
 #if ADVENT
@@ -20,50 +20,19 @@ class Rigidbody2D {}
 class CircleCollider2D {}
 class Stopwatch {}
 
-enum abstract CircleType(Int) {
-    var Inexistent = -1;
-    var Basic;
-    var Torpedo;
-    var Big;
-    var Bloon;
-    var Mole;
-}
-/*@:enum abstract CircleType(Int) {
-    var Inexistent = -1;
-    var Basic = 0;
-    var Torpedo = 1;
-    var Big = 2;
-    var Bloon = 3;
-    var Mole = 4;
-}*/
-/*enum CircleType
-{
-	Inexistent(-1);
-    Basic(0);
-    Torpedo(1);
-    Big(2);
-    Bloon(3);
-    Mole(4);
-}*/
-
 enum Circle_AngleAmount
 {
 	One;
 	Two;
 }
-class BasicCircle extends FlxSprite // importantly includes position.
+class BasicCircle extends GenericCircle
 {
-	public var type:CircleType = CircleType.Basic;
 	public var force:Float = 50;
 	public var angleAmount:Circle_AngleAmount; // Leave the second angle be if you chose one angle.
 	public var min_first_angle:Float = 30;
 	public var max_first_angle:Float = 80;
 	public var min_second_angle:Float = 100;
 	public var max_second_angle:Float = 150;
-	public var startHp:Int = 1;
-	public var radius:Float = 16; // New variable for Haxe version. Half width in pixels. Changes from circle to circle.
-
-	private var currHp:Int;
 
 	private var playgroundLeft:Float;
 	private var playgroundRight:Float;
