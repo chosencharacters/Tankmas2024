@@ -241,11 +241,9 @@ class GameManager extends GameManagerBase
             case CircleType.Basic:
                 return new BasicCircle();  // TODO: Be able to spawn without parameters.
             case CircleType.Torpedo:
-                trace("Torpedo? Not yet");
-                //return new EnemyB(x, y);
-                return null;
+                return new TorpedoCircle();
             default:
-                trace("What how");
+                trace("Unimplemented/impossible circle type: " + circleType);
                 return null;
         }
     }
