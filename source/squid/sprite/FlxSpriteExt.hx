@@ -1,6 +1,5 @@
 package squid.sprite;
 
-import states.PlayState.YSortable;
 import flixel.FlxBasic;
 import flixel.FlxSprite;
 import flixel.addons.tile.FlxTilemapExt;
@@ -11,6 +10,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import haxe.io.Float32Array;
 import openfl.filters.ShaderFilter;
+import states.PlayState.YSortable;
 
 using Math;
 using flixel.util.FlxArrayUtil;

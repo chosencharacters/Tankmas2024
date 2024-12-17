@@ -1,22 +1,20 @@
 package ui.sheets;
 
 import data.JsonData;
-import data.SaveManager;
-import entities.Player;
 import ui.sheets.BaseSelectSheet;
 import ui.sheets.defs.SheetDefs.SheetDef;
 import ui.sheets.defs.SheetDefs.SheetMenuDef;
 
-class CostumeSelectSheet extends BaseSelectSheet
+class PetSelectSheet extends BaseSelectSheet
 {
 	public function new(sheet_name:String, menu:SheetMenu, ?forceState:Bool = true)
 	{
-		super(sheet_name, menu, COSTUMES);
+		super(sheet_name, menu, PETS);
 	}
 
 	override function load_new_def(name:String):SheetMenuDef
 	{
-		var def:SheetDef = JsonData.get_costume_sheet(name);
+		var def:SheetDef = JsonData.get_pet_sheet(name);
 		return {
 			name: def.name,
 			src: def,

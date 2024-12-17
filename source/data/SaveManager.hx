@@ -18,6 +18,7 @@ class SaveManager
 
 	public static var current_costume(default, default):String;
 	public static var current_emote(default, default):String;
+	public static var current_pet(default, default):String;
 
 	public static var on_save_stored:() -> Void = null;
 
@@ -39,6 +40,7 @@ class SaveManager
 		saved_costume_collection = Main.default_costume_collection;
 		current_emote = Main.default_emote;
 		current_costume = Main.default_costume;
+		current_pet = Main.default_pet;
 
 		Flags.generate();
 
@@ -154,12 +156,21 @@ class SaveManager
 
 		if (SheetMenu.locked_selections != null)
 		{
-			SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
-			SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+			save_manager_set();
 		}
 
 		if (force)
 			flush();
+	}
+
+	static function save_manager_set()
+	{
+		if (SheetMenu.locked_selections.exists(COSTUMES))
+			SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
+		if (SheetMenu.locked_selections.exists(EMOTES))
+			SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+		if (SheetMenu.locked_selections.exists(PETS))
+			SaveManager.current_pet = SheetMenu.locked_selections.get(PETS).selection_name;
 	}
 
 	public static function load_collections(force:Bool = false):Void
@@ -168,8 +179,7 @@ class SaveManager
 		{
 			// null cases are handled by SheetMenu
 			SheetMenu.locked_selections = FlxG.save.data.locked_selections;
-			SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
-			SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+			save_manager_set();
 		}
 
 		saved_emote_collection = FlxG.save.data.emote_collection ?? Main.default_emote_collection;
@@ -236,7 +246,6 @@ class SaveManager
 		FlxG.save.data.currentCostume = current_costume;
 		// FlxG.save.data.savedCostumeSheet = CostumeSelectSheet.saved_sheet;
 		// FlxG.save.data.savedCostumeSelect = CostumeSelectSheet.saved_selection;
-		FlxG.save.data.seenCostumes = CostumeSelectSheet.seenCostumes;
 		/*trace(FlxG.save.data.savedCostumes, FlxG.save.data.currentCostume, FlxG.save.data.savedCostumeSheet, FlxG.save.data.savedCostumeSelect,
 			FlxG.save.data.seenCostumes); */
 

@@ -1,0 +1,19 @@
+{
+    "pets": [
+        {
+            "name": "invisible-pet",
+            "display": "Nothing",
+            "desc": "It's nothing! Absolutely nothing! For those that hate pets. Jerk."
+        },
+        {
+            "name": "tank-icon",
+            "display": "tank.ico",
+            "desc": "Your own personal tank! It's small, compact, and good for going right next to your URL! Notice: Only one tank per user, while supplies last."
+        },
+        {
+            "name": "chompy",
+            "display": "Chompy",
+            "desc": "It's Chompy! These adorable lil guys have been friends of Linerians for ages! They are as soft as marshmellows and like to dress up as their best friends if they're around them long enough! They also like to... yanno, chomp! They only eat fruits, though!"
+        }
+    ]
+}
