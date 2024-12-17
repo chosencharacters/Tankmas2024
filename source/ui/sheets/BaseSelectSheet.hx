@@ -163,7 +163,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			var button:SheetButton = new SheetButton(0, 0, item_def, sheet_type, (b) -> if (visible)
 			{
 				selection = i;
-				lock_selection(cast(b, SheetButton));
+				if (current_button.unlocked)
+					lock_selection(cast(b, SheetButton));
 			});
 
 			button.on_hover = (b) -> if (cast(b, SheetButton).unlocked)
@@ -213,7 +214,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	public function lock_selection(button:SheetButton)
 	{
-		if (menu.closing || !FlxG.mouse.overlaps(button) && FlxG.mouse.pressed)
+		if (menu.closing || !FlxG.mouse.overlaps(button) && FlxG.mouse.pressed || !button.unlocked)
 			return;
 		Utils.shake("light");
 		menu.save_locked_selections(sheet_type, {sheet_name: def.name, selection: selection, selection_name: button.def.name});

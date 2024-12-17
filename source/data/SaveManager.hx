@@ -165,9 +165,12 @@ class SaveManager
 
 	static function save_manager_set()
 	{
-		SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
-		SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
-		SaveManager.current_pet = SheetMenu.locked_selections.get(PETS).selection_name;
+		if (SheetMenu.locked_selections.exists(COSTUMES))
+			SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
+		if (SheetMenu.locked_selections.exists(EMOTES))
+			SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+		if (SheetMenu.locked_selections.exists(PETS))
+			SaveManager.current_pet = SheetMenu.locked_selections.get(PETS).selection_name;
 	}
 
 	public static function load_collections(force:Bool = false):Void
