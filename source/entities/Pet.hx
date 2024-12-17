@@ -24,7 +24,8 @@ class Pet extends NGSprite
 		deadzone: 125,
 		follow_offset_x: 32,
 		follow_offset_y: 32,
-		follow_accuracy: 0.9
+		follow_accuracy: 0.9,
+		drag: 0.975
 	};
 
 	var empty:Bool = false;
@@ -45,6 +46,7 @@ class Pet extends NGSprite
 
 		trace_new_state = true;
 
+		// not the same as actual pets stats drag
 		drag.set(200, 200);
 	}
 
@@ -65,13 +67,15 @@ class Pet extends NGSprite
 		{
 			default:
 			case FOLLOWING:
-				sprite_anim.anim(PetAnimation.MOVING);
+				if (ttick() > 15 && Math.abs(velocity.x) + Math.abs(velocity.y) > 30)
+					sprite_anim.anim(PetAnimation.MOVING);
 				follow_owner();
 			case IDLE:
-				if (ttick() > 30 && velocity.x == 0 && velocity.y == 0)
+				if (ttick() > 30 && Math.abs(velocity.x) + Math.abs(velocity.y) < 30)
 					sprite_anim.anim(PetAnimation.IDLE);
 				var within_x_deadzone:Bool = Math.abs(owner.mp.x - mp.x) <= stats.deadzone;
 				var within_y_deadzone:Bool = Math.abs(owner.mp.y - mp.y) <= stats.deadzone;
+				do_stats_drag(within_x_deadzone, within_y_deadzone);
 				if (!within_x_deadzone || !within_y_deadzone)
 					sstate(FOLLOWING);
 		}
@@ -103,10 +107,6 @@ class Pet extends NGSprite
 	{
 		var within_x_deadzone:Bool = Math.abs(dest.x - mp.x) <= stats.deadzone;
 		var within_y_deadzone:Bool = Math.abs(dest.y - mp.y) <= stats.deadzone;
-
-		// destination reached
-		if (within_x_deadzone && within_y_deadzone)
-			return true;
 
 		if (!within_x_deadzone)
 			if (dest.x > mp.x)
@@ -151,7 +151,25 @@ class Pet extends NGSprite
 		if (!within_x_deadzone)
 			flipX = dest.x > mp.x;
 
-		return false;
+		do_stats_drag(within_x_deadzone, within_y_deadzone);
+
+		// if both are true, destination is reached
+		// moved to the bottom so drag can apply
+		return within_x_deadzone && within_y_deadzone;
+	}
+
+	function do_stats_drag(drag_x:Bool, drag_y:Bool)
+	{
+		if (drag_x)
+		{
+			acceleration.x = acceleration.x * def.stats.drag;
+			velocity.x = velocity.x * def.stats.drag;
+		}
+		if (drag_y)
+		{
+			acceleration.y = acceleration.y * def.stats.drag;
+			velocity.y = velocity.y * def.stats.drag;
+		}
 	}
 
 	function get_stats():PetStats

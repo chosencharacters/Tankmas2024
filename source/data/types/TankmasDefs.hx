@@ -91,4 +91,5 @@ typedef PetStats =
 	var ?follow_offset_x:Int;
 	var ?follow_offset_y:Int;
 	var ?follow_accuracy:Float;
+	var ?drag:Float;
 }

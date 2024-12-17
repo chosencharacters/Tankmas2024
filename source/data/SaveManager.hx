@@ -43,8 +43,6 @@ class SaveManager
 		current_pet = Main.default_pet;
 
 		Flags.generate();
-
-		trace(saved_emote_collection);
 	}
 
 	static function finalize_load()
@@ -155,9 +153,7 @@ class SaveManager
 		FlxG.save.data.emote_collection = saved_emote_collection;
 
 		if (SheetMenu.locked_selections != null)
-		{
 			save_manager_set();
-		}
 
 		if (force)
 			flush();
@@ -171,6 +167,8 @@ class SaveManager
 			SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
 		if (SheetMenu.locked_selections.exists(PETS))
 			SaveManager.current_pet = SheetMenu.locked_selections.get(PETS).selection_name;
+
+		trace(current_costume, current_emote, current_pet);
 	}
 
 	public static function load_collections(force:Bool = false):Void
