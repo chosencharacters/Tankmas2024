@@ -1,55 +1,65 @@
 {
     "sheets": [
         {
-            "graphic": "costumes-series-1",
+            "name": "pets-series-1",
             "items": [
                 {
-                    "name":"tankman",
-                    "angle": 10
-                }, {
-                    "name":"paco",
+                    "name": "invisible-pet"
+                },
+                {
+                    "name": "tank-icon",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
-                }, {
-                    "name":"knight-red",
+                },
+                {
+                    "name": "chompy",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
-                }, {
-                    "name":"knight-blue",
+                },
+                {
+                    "name": null,
                     "angle": -10
-                }, {
-                    "name":"knight-green",
+                },
+                {
+                    "name": null,
                     "angle": -10
-                }, {
-                    "name":"knight-orange",
+                },
+                {
+                    "name": null,
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30
-                }, {
-                    "name":"knight-pink",
+                },
+                {
+                    "name": null,
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
-                }, {
-                    "name":"boyfriend",
+                },
+                {
+                    "name": null,
                     "angle": 10
-                }, {
-                    "name":"madness-grunt",
+                },
+                {
+                    "name": null,
                     "angle": 10
-                }, {
-                    "name":"alien-hominid",
+                },
+                {
+                    "name": null,
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
-                }, {
-                    "name":null,
+                },
+                {
+                    "name": null,
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
-                }, {
-                    "name":"thomas",
+                },
+                {
+                    "name": null,
                     "angle": -10
                 }
             ]

@@ -11,7 +11,7 @@ class Pet extends NGSprite
 {
 	var owner:BaseUser;
 
-	var def:PetDef;
+	public var def:PetDef;
 
 	public var stats(get, never):PetStats;
 	public var name(get, never):String;
@@ -162,10 +162,14 @@ class Pet extends NGSprite
 
 	public function change_pet(pet_type:String)
 	{
-		if (pet_type == null || pet_type == "")
-			pet_type = "invisible";
-
 		def = JsonData.get_pet(pet_type);
+
+		if (def == null)
+		{
+			change_pet("invisible-pet");
+			return;
+		}
+
 		loadAllFromAnimationSet(def.name);
 
 		updateMotion(0);

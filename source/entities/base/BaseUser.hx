@@ -83,6 +83,7 @@ class BaseUser extends NGSprite
 
 	override function update(elapsed:Float)
 	{
+		data.pet = pet.def.name;
 		ttick();
 		super.update(elapsed);
 	}

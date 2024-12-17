@@ -12,6 +12,7 @@ class JsonData
 {
 	static var emote_sheets:Map<String, SheetDef>;
 	static var costume_sheets:Map<String, SheetDef>;
+	static var pet_sheets:Map<String, SheetDef>;
 
 	static var costumes:Map<String, CostumeDef>;
 	static var emotes:Map<String, EmoteDef>;
@@ -24,6 +25,9 @@ class JsonData
 
 	public static var emote_sheet_defs(get, default):Array<SheetDef>;
 	public static var emote_sheet_names(get, default):Array<String>;
+
+	public static var pet_sheet_defs(get, default):Array<SheetDef>;
+	public static var pet_sheet_names(get, default):Array<String>;
 
 	public static var costume_defs(get, default):Array<CostumeDef>;
 	public static var costume_names(get, never):Array<String>;
@@ -78,6 +82,19 @@ class JsonData
 			catch (e)
 			{
 				trace('emote sheet load error @ $emote_def, error is: $e');
+			}
+
+		pet_sheets = [];
+		var json:{sheets:Array<SheetDef>} = haxe.Json.parse(Utils.load_file_string("pet-sheets.json"));
+
+		for (pet_def in json.sheets)
+			try
+			{
+				pet_sheets.set(pet_def.name, pet_def);
+			}
+			catch (e)
+			{
+				trace('emote sheet load error @ $pet_def, error is: $e');
 			}
 	}
 
@@ -150,6 +167,9 @@ class JsonData
 	public static function get_emote_sheet(name:String):SheetDef
 		return emote_sheets.get(name);
 
+	public static function get_pet_sheet(name:String):SheetDef
+		return pet_sheets.get(name);
+
 	public static function get_costume(name:String):CostumeDef
 		return costumes.get(name);
 
@@ -172,6 +192,9 @@ class JsonData
 	public static function get_emote_sheet_defs():Array<SheetDef>
 		return map_to_array(emote_sheets);
 
+	public static function get_pet_sheet_defs():Array<SheetDef>
+		return map_to_array(pet_sheets);
+
 	public static function get_emote_defs():Array<EmoteDef>
 		return map_to_array(emotes);
 
@@ -193,6 +216,9 @@ class JsonData
 
 	public static function get_emote_sheet_names():Array<String>
 		return emote_sheet_defs.map((def:SheetDef) -> return def.name);
+
+	public static function get_pet_sheet_names():Array<String>
+		return pet_sheet_defs.map((def:SheetDef) -> return def.name);
 
 	public static function get_costume_names():Array<String>
 		return costume_defs.map((def:CostumeDef) -> return def.name);

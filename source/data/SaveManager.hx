@@ -156,12 +156,18 @@ class SaveManager
 
 		if (SheetMenu.locked_selections != null)
 		{
-			SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
-			SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+			save_manager_set();
 		}
 
 		if (force)
 			flush();
+	}
+
+	static function save_manager_set()
+	{
+		SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
+		SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+		SaveManager.current_pet = SheetMenu.locked_selections.get(PETS).selection_name;
 	}
 
 	public static function load_collections(force:Bool = false):Void
@@ -170,8 +176,7 @@ class SaveManager
 		{
 			// null cases are handled by SheetMenu
 			SheetMenu.locked_selections = FlxG.save.data.locked_selections;
-			SaveManager.current_costume = SheetMenu.locked_selections.get(COSTUMES).selection_name;
-			SaveManager.current_emote = SheetMenu.locked_selections.get(EMOTES).selection_name;
+			save_manager_set();
 		}
 
 		saved_emote_collection = FlxG.save.data.emote_collection ?? Main.default_emote_collection;
@@ -238,7 +243,6 @@ class SaveManager
 		FlxG.save.data.currentCostume = current_costume;
 		// FlxG.save.data.savedCostumeSheet = CostumeSelectSheet.saved_sheet;
 		// FlxG.save.data.savedCostumeSelect = CostumeSelectSheet.saved_selection;
-		FlxG.save.data.seenCostumes = CostumeSelectSheet.seenCostumes;
 		/*trace(FlxG.save.data.savedCostumes, FlxG.save.data.currentCostume, FlxG.save.data.savedCostumeSheet, FlxG.save.data.savedCostumeSelect,
 			FlxG.save.data.seenCostumes); */
 

@@ -4,6 +4,7 @@ import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.EmoteDef;
+import data.types.TankmasDefs.PetDef;
 import dn.struct.Grid;
 import flixel.FlxBasic;
 import flixel.addons.effects.chainable.FlxEffectSprite;
@@ -347,6 +348,10 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 					var emote_def:EmoteDef = JsonData.get_emote(selection_name);
 					description_text.text = 'Made by ${emote_def.artist}';
 					title.text = emote_def.properName;
+				case PETS:
+					var pet_def:PetDef = JsonData.get_pet(selection_name);
+					description_text.text = pet_def.desc;
+					title.text = pet_def.display;
 			}
 		}
 		else
@@ -375,6 +380,7 @@ enum abstract SheetType(String) from String to String
 {
 	final COSTUMES = "costumes";
 	final EMOTES = "emotes";
+	final PETS = "pets";
 }
 
 private enum abstract State(String) from String to String

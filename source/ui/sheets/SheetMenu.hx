@@ -19,16 +19,17 @@ typedef SheetPosition =
 
 class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 {
-	var tab_order:Array<SheetType> = [COSTUMES, EMOTES];
+	var tab_order:Array<SheetType> = [COSTUMES, EMOTES, PETS];
 
 	var costume_sheets:FlxTypedGroupExt<CostumeSelectSheet> = new FlxTypedGroupExt<CostumeSelectSheet>();
 	var emote_sheets:FlxTypedGroupExt<EmoteSelectSheet> = new FlxTypedGroupExt<EmoteSelectSheet>();
+	var pet_sheets:FlxTypedGroupExt<PetSelectSheet> = new FlxTypedGroupExt<PetSelectSheet>();
 
 	var tab_buttons:FlxTypedGroup<HoverButton> = new FlxTypedGroup<HoverButton>();
 
 	var sheet_groups:FlxTypedGroup<FlxTypedGroup<Dynamic>> = new FlxTypedGroup<FlxTypedGroup<Dynamic>>();
 
-	var tabs:Array<SheetType> = [COSTUMES, EMOTES];
+	var tabs:Array<SheetType> = [COSTUMES, EMOTES, PETS];
 	var current_tab(get, never):SheetType;
 
 	var back_button:HoverButton;
@@ -52,18 +53,23 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		FlxG.state.openSubState(substate = new SheetSubstate(this));
 
 		if (saved_positions == null)
-		{
 			saved_positions = [];
+
+		if (saved_positions.get(COSTUMES) == null)
 			saved_positions.set(COSTUMES, {sheet_name: "costumes-series-1", selection: 0, selection_name: Main.default_costume});
+
+		if (saved_positions.get(EMOTES) == null)
 			saved_positions.set(EMOTES, {sheet_name: "emotes-1-back-red", selection: 0, selection_name: Main.default_emote});
-		}
+
+		if (saved_positions.get(PETS) == null)
+			saved_positions.set(PETS, {sheet_name: "pets-series-1", selection: 0, selection_name: Main.default_pet});
 
 		if (locked_selections == null)
-		{
 			locked_selections = [];
-			for (tab in tab_order)
+
+		for (tab in tab_order)
+			if (locked_selections.get(tab) == null)
 				locked_selections.set(tab, saved_positions.get(tab));
-		}
 
 		for (tab in tab_order)
 		{
@@ -74,11 +80,14 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 			costume_sheets.add(new CostumeSelectSheet(name, this));
 		for (name in JsonData.emote_sheet_names)
 			emote_sheets.add(new EmoteSelectSheet(name, this));
+		for (name in JsonData.pet_sheet_names)
+			pet_sheets.add(new PetSelectSheet(name, this));
 
 		add_tab_buttons();
 
 		sheet_groups.add(costume_sheets);
 		sheet_groups.add(emote_sheets);
+		sheet_groups.add(pet_sheets);
 
 		add(back_tabs);
 		add(sheet_groups);
@@ -145,6 +154,16 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 				}
 				while (!emote_sheets.members[0].visible)
 					emote_sheets.members.push(emote_sheets.members.shift());
+			case PETS:
+				for (sheet in pet_sheets)
+				{
+					sheet.visible = sheet_position.sheet_name == sheet.def.name;
+					if (sheet.visible)
+						sheet.selection = sheet_position.selection;
+					sheet.set_sheet_active(sheet.visible);
+				}
+				while (!emote_sheets.members[0].visible)
+					pet_sheets.members.push(pet_sheets.members.shift());
 		}
 	}
 
@@ -222,11 +241,11 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 		substate.sstate("CLOSING");
 
-		trace("yo");
-
 		SaveManager.save_collections();
 
 		PlayState.self.player.new_costume(JsonData.get_costume(SaveManager.current_costume));
+
+		PlayState.self.player.pet.change_pet(SaveManager.current_pet);
 	}
 
 	public function intro()
