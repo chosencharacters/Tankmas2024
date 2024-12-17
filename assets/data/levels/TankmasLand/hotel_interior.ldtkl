@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "hotel_interior",
@@ -1186,7 +1186,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 104, "cy": 247 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["104,247"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [null] }
 					],
 					"__worldX": 1408,
 					"__worldY": 4128
@@ -1487,7 +1488,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 99, "cy": 52 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["99,52"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 1440,
 					"__worldY": 656
@@ -1517,7 +1519,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 100, "cy": 52 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["100,52"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 1392,
 					"__worldY": 544
@@ -1635,6 +1638,40 @@
 					],
 					"__worldX": 1264,
 					"__worldY": 2128
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [162,242],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFF100",
+					"iid": "a25a27c0-9b00-11ef-8756-9149f1b37273",
+					"width": 336,
+					"height": 320,
+					"defUid": 14,
+					"px": [2592,3872],
+					"fieldInstances": [
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "86e77ba0-9b00-11ef-8756-f998823ae96a",
+							"layerIid": "3286d605-9b00-11ef-8756-dd984fe31fce",
+							"levelIid": "3286d600-9b00-11ef-8756-4da78190a937",
+							"worldIid": "0b13d4d0-9b00-11ef-9354-a71a8f29f283"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["86e77ba0-9b00-11ef-8756-f998823ae96a"]
+						}] },
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 143, "cy": 251 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["143,251"]
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": "DEV_MODE", "__tile": null, "defUid": 89, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["DEV_MODE"]
+						}] }
+					],
+					"__worldX": 2592,
+					"__worldY": 3872
 				}
 			]
 		},
@@ -1664,5 +1701,5 @@
 			"entityInstances": []
 		}
 	],
-	"__neighbours": []
+	"__neighbours": [{ "levelIid": "3286d600-9b00-11ef-8756-4da78190a937", "dir": "e" }]
 }

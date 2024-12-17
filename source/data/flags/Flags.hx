@@ -30,6 +30,12 @@ class Flags
 				for (flag in debug_flag.split(","))
 					set_bool(flag);
 		}
+
+		if (USE_COMPILER_DEBUG_FLAGS) {
+			set_bool("DEV_MODE", true);
+		} else {
+			set_bool("DEV_MODE", false);
+		}
 	}
 
 	public static function clear()
