@@ -23,6 +23,8 @@ typedef PresentDef =
 	var ?comicProperties:ComicDef;
 	var ?costumeUnlock:String;
 	var ?timelock:Int;
+	var ?unlocks_flag:String;
+	var ?requires_flag:String;
 }
 
 typedef TrackDef =

@@ -86,7 +86,13 @@ class Present extends Interactable
 
 	function update_present_visibility()
 	{
-		visible = time_activated;
+		var enabled = time_activated;
+		if (def.requires_flag != null)
+		{
+			enabled = enabled && Flags.get_bool(def.requires_flag);
+		}
+
+		visible = enabled;
 		interactable = visible;
 	}
 
@@ -175,6 +181,12 @@ class Present extends Interactable
 	{
 		var medal_was_unlocked = false;
 		var first_time_opening = true;
+
+		if (def.unlocks_flag != null)
+		{
+			Flags.set_bool(def.unlocks_flag);
+		}
+
 		if (state != "OPENED")
 		{
 			sstate(OPENING);
@@ -199,6 +211,8 @@ class Present extends Interactable
 
 			SoundPlayer.sound(Paths.get('present-open.ogg'));
 			PlayState.self.openSubState(comic ? new ComicSubstate(username, false) : new ArtSubstate(username));
+
+			SaveManager.save();
 		}
 
 		// Post present opened event to server (it's broadcasted to every other player, and also kept for stats).

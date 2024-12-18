@@ -1,5 +1,7 @@
 package video;
 
+import flixel.tweens.FlxEase;
+import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
 import openfl.display.Bitmap;
 import openfl.display.MovieClip;
@@ -37,11 +39,29 @@ class VideoSubstate extends flixel.FlxSubState
 	// Called if video was watched completely
 	public var on_completed:() -> Void = null;
 
+	var bg:FlxSprite;
+
 	public function new(path:String)
 	{
 		super();
 
-		ui = new VideoUi(path);
+		ui = new VideoUi(path, false);
+		bg = new FlxSprite(0, 0);
+		bg = bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(4, 4, 5));
+		bg.y = FlxG.height;
+		bg.alpha = 0.0;
+		bg.scrollFactor.set(0, 0);
+		bg.origin.set(0, 0);
+		add(bg);
+
+		trace('tweenin');
+
+		FlxTween.tween(bg, {alpha: 1, y: 0}, 0.4, {ease: FlxEase.smootherStepInOut, onComplete: on_fade_in});
+	}
+
+	function on_fade_in(t)
+	{
+		ui.play();
 	}
 
 	override function create()
@@ -60,7 +80,7 @@ class VideoSubstate extends flixel.FlxSubState
 	{
 		if (on_completed != null)
 			on_completed();
-		close();
+		close_video();
 	}
 
 	override function update(elapsed:Float)
@@ -68,7 +88,7 @@ class VideoSubstate extends flixel.FlxSubState
 		super.update(elapsed);
 
 		if (ui.requestedExit)
-			close();
+			close_video();
 
 		ui.update(elapsed);
 
@@ -76,10 +96,10 @@ class VideoSubstate extends flixel.FlxSubState
 			ui.togglePause();
 
 		if (Ctrl.emote[1])
-			close();
+			close_video();
 	}
 
-	override function close()
+	public function close_video()
 	{
 		if (closed)
 			return;
@@ -87,16 +107,23 @@ class VideoSubstate extends flixel.FlxSubState
 		closed = true;
 		FlxG.mouse.useSystemCursor = true;
 		FlxG.mouse.visible = true;
-		FlxG.stage.removeChild(ui);
-		ui.destroy();
 
-		super.close();
+		haxe.Timer.delay(() -> FlxTween.tween(bg, {alpha: 0}, 0.4, {
+			ease: FlxEase.smootherStepInOut,
+			onComplete: (t) ->
+			{
+				FlxG.stage.removeChild(ui);
+				ui.destroy();
 
-		if (FlxG.sound.music != null)
-			FlxG.sound.music.resume();
+				if (FlxG.sound.music != null)
+					FlxG.sound.music.resume();
 
-		if (on_close != null)
-			on_close();
+				if (on_close != null)
+					on_close();
+
+				close();
+			}
+		}), 500);
 	}
 }
 
@@ -112,14 +139,14 @@ class VideoUi extends openfl.display.Sprite
 	var backBtn:OpenFlBackButton;
 	var moveTimer = 2.0;
 
-	public function new(path:String)
+	public function new(path:String, auto_play = true)
 	{
 		this.path = path;
 		super();
 
 		FlxG.mouse.useSystemCursor = true;
 		addChild(video = new Video());
-		backBtn = new OpenFlBackButton(() -> requestedExit = true);
+		backBtn = new OpenFlBackButton(close_video);
 		backBtn.x = 20;
 		backBtn.y = 20;
 		addChild(backBtn);
@@ -140,6 +167,28 @@ class VideoUi extends openfl.display.Sprite
 				onVideoComplete();
 		});
 
+		if (auto_play)
+			play();
+	}
+
+	var closed = false;
+
+	function close_video()
+	{
+		if (closed)
+			return;
+		closed = true;
+		FlxTween.tween(video, {y: FlxG.stage.window.height * 0.5, scaleY: 0.0, alpha: 0}, 0.2, {
+			ease: FlxEase.smootherStepInOut,
+			onComplete: (t) ->
+			{
+				requestedExit = true;
+			}
+		});
+	}
+
+	public function play()
+	{
 		netStream.play(path);
 		isPaused = false;
 	}
@@ -184,6 +233,20 @@ class VideoUi extends openfl.display.Sprite
 
 		if (video.height < stage.stageHeight)
 			video.y = (stage.stageHeight - video.height) / 2;
+
+		video.scaleY = 0;
+
+		// netStream.pause();
+
+		haxe.Timer.delay(() ->
+		{
+			video.y = FlxG.stage.window.height * 0.5;
+			video.scaleY = 0.5;
+			FlxTween.tween(video, {y: 0, scaleY: 1.0}, 0.5, {
+				ease: FlxEase.elasticOut,
+				// onComplete: (t) -> netStream.resume()
+			});
+		}, 400);
 	}
 
 	function onPlayStatus(data:PlayStatusData) {}
@@ -193,6 +256,7 @@ class VideoUi extends openfl.display.Sprite
 		trace('Video complete!');
 		if (onComplete != null)
 			onComplete();
+		close_video();
 	}
 
 	public function pause()
