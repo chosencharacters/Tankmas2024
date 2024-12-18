@@ -36,6 +36,7 @@ import ui.popups.ServerNotificationMessagePopup;
 import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
+import ui.sheets.buttons.DialogueOptionBox;
 import video.PremiereHandler;
 import video.VideoSubstate.VideoUi;
 import video.VideoSubstate.VideoUi;
@@ -67,6 +68,8 @@ class PlayState extends BaseState
 	public var emotes:FlxTypedGroup<StickerFX> = new FlxTypedGroup<StickerFX>();
 	public var sticker_fx:FlxTypedGroup<NGSprite> = new FlxTypedGroup<NGSprite>();
 	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
+	public var dialogue_options:FlxTypedGroup<DialogueOptionBox> = new FlxTypedGroup<DialogueOptionBox>();
+
 	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
 	public var minigames:FlxTypedGroup<Minigame> = new FlxTypedGroup<Minigame>();
 	public var props_background:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
@@ -161,6 +164,7 @@ class PlayState extends BaseState
 
 		add(username_tags);
 
+		add(dialogue_options);
 		add(dialogues);
 
 		add(doors);
@@ -259,10 +263,6 @@ class PlayState extends BaseState
 
 		if (FlxG.keys.justPressed.N)
 			notification_message.show("I'm a test notification message and\n  I just want to say hi :)");
-
-		// Debug test change pet
-		if (FlxG.keys.justPressed.P)
-			player.data.pet = player.data.pet == None ? Dog : None;
 
 		if (FlxG.keys.justPressed.L)
 			player.data.scale = 1.0 + Math.random();

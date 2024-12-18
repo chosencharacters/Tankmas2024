@@ -4,9 +4,20 @@
         <state name="default">
             <dlg>Hello fellow newgrounder I am the tom fulp of the new grounds dot com</dlg>
             <dlg>Are we talking about tom fulp? I love talking about tom fulp.</dlg>
-            <dlg if="SECRET_LOVE_OF_THE_TOM">btw I only say this to people I enjoy the company of. But I love you.</dlg>
+            <option label="I love you Thomas">
+              <dlg set="SECRET_LOVE_OF_THE_TOM">I love you too :)</dlg>
+            </option>
+            <option label="I hate you Thomas" >
+              <dlg>You have made a grave error today.</dlg>
+              <dlg set="THE_REAL_IRE_OF_TOM">Never talk to me again.</dlg>
+            </option>
         </state>
-        <state name="default" if="THE_IRE_OF_TOM">
+        <state name="love" if="SECRET_LOVE_OF_THE_TOM">
+            <dlg>Oh, it's you again, and what honor brings your company today?</dlg>
+            <dlg>btw I only say this to people I enjoy the company of But I love you.</dlg>
+        </state>
+        <state name="hatred" if="THE_REAL_IRE_OF_TOM">
+            <dlg>You.</dlg>
             <dlg>You disappoint me. Be gone from my sight.</dlg>
         </state>
     </npc>
@@ -117,8 +128,7 @@
         <state name="default">
             <dlg>Grrch-gak...guh-</dlg>
             <dlg>AGH! YOU! PLEASE!</dlg>
-            <dlg>This bag is much too heavy for my brittle 23 year old body! Would you offer this
-                humble Mall Santa a hand?</dlg>
+            <dlg>This bag is much too heavy for my brittle 23 year old body! Would you offer this humble Mall Santa a hand?</dlg>
             <dlg>Here, just bend down and extend your arms like-</dlg>
             <dlg>...</dlg>
             <dlg>Where are you going?</dlg>

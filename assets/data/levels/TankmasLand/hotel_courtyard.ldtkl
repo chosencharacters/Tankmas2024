@@ -1219,6 +1219,28 @@
 					],
 					"__worldX": 1344,
 					"__worldY": 832
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [114,79],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "aded39b0-9b00-11ef-b0c5-2f9151f7e13c",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1824,1264],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "thomas", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["thomas"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
+					],
+					"__worldX": 1824,
+					"__worldY": 1264
 				}
 			]
 		},

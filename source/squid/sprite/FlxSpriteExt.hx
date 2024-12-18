@@ -93,11 +93,14 @@ class FlxSpriteExt extends YSortable
 
 	var quick_debug(default, set):Bool = false;
 
-	var bottom_y(get, never):Float;
-	var top_y(get, never):Float;
+	public var bottom_y(get, never):Float;
+	public var top_y(get, never):Float;
 
-	var left_x(get, never):Float;
-	var right_x(get, never):Float;
+	public var left_x(get, never):Float;
+	public var right_x(get, never):Float;
+
+	public var mp_x(get, never):Float;
+	public var mp_y(get, never):Float;
 
 	var trace_on_off_flags:Bool = false;
 
@@ -1001,6 +1004,12 @@ class FlxSpriteExt extends YSortable
 
 	function get_right_x():Float
 		return x + width;
+
+	function get_mp_x():Float
+		return x + width * .5;
+
+	function get_mp_y():Float
+		return y + height * .5;
 
 	function set_tween(new_tween:FlxTween):FlxTween
 	{

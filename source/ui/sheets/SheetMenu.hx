@@ -240,7 +240,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 
 		substate.sstate("CLOSING");
 
-		SaveManager.save_collections();
+		SaveManager.save();
 
 		PlayState.self.player.new_costume(JsonData.get_costume(SaveManager.current_costume));
 
