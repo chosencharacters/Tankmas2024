@@ -191,7 +191,7 @@
         {
             "name": "bitey",
             "display": "Bitey",
-            "desc": "...of Brackenwood!",
+            "desc": "...of Brackenwood!\n\nThe last Dashkin, they are as fast as they are elusive.",
             "unlock": "FLAG",
             "data": "BITEY_ENCOUNTERED"
         },

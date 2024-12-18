@@ -1002,6 +1002,59 @@
 					],
 					"__worldX": 5040,
 					"__worldY": 1024
+				},
+				{
+					"__identifier": "Graphic",
+					"__grid": [73,89],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#E4A672",
+					"iid": "4774d6c0-9b00-11ef-a8ec-4d06b791b2ce",
+					"width": 64,
+					"height": 64,
+					"defUid": 29,
+					"px": [1168,1424],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "candle", "__tile": null, "defUid": 31, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["candle"]
+						}] },
+						{ "__identifier": "layer", "__type": "LocalEnum.PropLayer", "__value": "Back", "__tile": null, "defUid": 34, "realEditorValues": [] },
+						{ "__identifier": "Is_YSortable", "__type": "Bool", "__value": false, "__tile": null, "defUid": 88, "realEditorValues": [] }
+					],
+					"__worldX": 5104,
+					"__worldY": 2224
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [69,94],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFF100",
+					"iid": "0bab3f20-9b00-11ef-a8ec-75e13178f26a",
+					"width": 288,
+					"height": 64,
+					"defUid": 14,
+					"px": [1104,1504],
+					"fieldInstances": [
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "fdf48120-9b00-11ef-a8ec-f32445d8828b",
+							"layerIid": "dcbcc800-9b00-11ef-a8ec-11674b7b6eea",
+							"levelIid": "dcbca0f0-9b00-11ef-a8ec-6bbd77162d35",
+							"worldIid": "95f97851-73f0-11ef-9983-cda8b61095c5"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["fdf48120-9b00-11ef-a8ec-f32445d8828b"]
+						}] },
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 75, "cy": 82 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["75,82"]
+						}] }
+					],
+					"__worldX": 5040,
+					"__worldY": 2304
 				}
 			]
 		},

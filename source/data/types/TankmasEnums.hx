@@ -45,7 +45,7 @@ enum abstract UnlockCondition(String) from String to String
 			case UnlockCondition.ACHIEVEMENT:
 				#if newgrounds return Main.ng_api.has_medal(Main.ng_api.medals.get(data)) #else return false #end; // where data is the name of a medal
 			case UnlockCondition.FLAG:
-				return Flags.get(data);
+				return Flags.get_bool(data);
 			case UnlockCondition.USERNAME:
 				return Main.username.toLowerCase() == cast(data, String).toLowerCase();
 			case UnlockCondition.SUPPORTER:

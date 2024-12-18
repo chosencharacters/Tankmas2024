@@ -91,8 +91,6 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 		text.lineSpacing = -28;
 		#end
 
-		sstate(SWIPE_IN);
-
 		bg.scrollFactor.set(0, 0);
 		text.scrollFactor.set(0, 0);
 
@@ -101,6 +99,8 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 		add(bg);
 		add(text);
 		load_dlg(dlgs[line_number]);
+
+		sstate(SWIPE_IN, fsm);
 	}
 
 	public function load_dlg(dlg:NPCDLG)
@@ -108,6 +108,8 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 		text.text = "";
 		char_index = 0;
 		sstate(SWIPE_IN);
+		if (hold_for_dialogue_options)
+			spawn_dlg_options();
 	}
 
 	public function next_dlg()
@@ -133,8 +135,6 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 		if (line_number < dlgs.length)
 		{
 			load_dlg(dlgs[line_number]);
-			if (hold_for_dialogue_options)
-				spawn_dlg_options();
 		}
 		else
 			close_dlg();
