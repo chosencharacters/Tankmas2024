@@ -40,7 +40,7 @@ class PlayState extends FlxSubState
 {
 	var _walls:FlxGroup;
 
-	var _circleList:FlxTypedGroup<BasicCircle>;  // Originally it's a List<GameObject>
+	var _circleList:FlxTypedGroup<GenericCircle>;  // Originally it's a List<GameObject>
 	public static var _spikeList:FlxTypedGroup<Spike>; // New to this Haxe version
 	public static var _spikeSpriteList:FlxTypedGroup<FlxSprite>; // For collisions. New to this Haxe version
 

@@ -29,7 +29,7 @@ class GameManager extends GameManagerBase
 
 	private var textShopMoney:FlxBitmapText;
 
-    private var circleGroup:FlxTypedGroup<BasicCircle>;
+    private var circleGroup:FlxTypedGroup<GenericCircle>;
 
     public var circlePrefabArr: Array<FlxObject>;  // Must have at least one circle.
     public var pickupCirclePrefabArr: Array<FlxObject>;  // Must have at least one circle.
@@ -112,7 +112,7 @@ class GameManager extends GameManagerBase
 
 	// #endregion
 
-	public override function new(p_circlePrefabArr: Array<FlxObject>, p_pickupCirclePrefabArr: Array<FlxObject>, p_circleGroup: FlxTypedGroup<BasicCircle>)
+	public override function new(p_circlePrefabArr: Array<FlxObject>, p_pickupCirclePrefabArr: Array<FlxObject>, p_circleGroup: FlxTypedGroup<GenericCircle>)
     {
         circlePrefabArr = p_circlePrefabArr;
         pickupCirclePrefabArr = p_pickupCirclePrefabArr;
@@ -236,12 +236,14 @@ class GameManager extends GameManagerBase
         ChooseCircle();
     }
 
-    private function CircleTypeToCircleInstance(circleType: CircleType): BasicCircle{
+    private function CircleTypeToCircleInstance(circleType: CircleType): GenericCircle{
         switch (circleType) {
             case CircleType.Basic:
                 return new BasicCircle();  // TODO: Be able to spawn without parameters.
             case CircleType.Torpedo:
                 return new TorpedoCircle();
+            case CircleType.Bloon:
+                return new BloonCircle();
             default:
                 trace("Unimplemented/impossible circle type: " + circleType);
                 return null;
@@ -326,7 +328,7 @@ class GameManager extends GameManagerBase
     }
 
     // TOEDIT (Circle): Need to edit this every time I add a new circle type.
-    public override function OnCirclePopped(circle: BasicCircle)
+    public override function OnCirclePopped(circle: GenericCircle)
     {
         // trace("KILLL: " + circle.ID);  // Useful for debugging.
 
@@ -420,7 +422,7 @@ class GameManager extends GameManagerBase
         }
     }
 
-    public override function OnCircleEscaped(circle: BasicCircle)
+    public override function OnCircleEscaped(circle: GenericCircle)
     {
         /*if(GlobalMasterManager.Main.GameState != EGameState.RestartScreen)
             {*/

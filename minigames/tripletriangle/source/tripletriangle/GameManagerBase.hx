@@ -66,28 +66,28 @@ abstract class GameManagerBase extends FlxObject
     // abstract function StartGame(): Routine;
 
     // Originally, circle was GameObject (AKA FlxObject).
-    public function OnCirclePopped(circle: BasicCircle)
+    public function OnCirclePopped(circle: GenericCircle)
     {
         var errorMessage = "BASE: Unimplemented (OnCirclePopped of GameManagerBase)";
         trace(errorMessage);
         //ErrorScreenManager.Main.ShowError(errorMessage);
     }
 
-    public function OnCircleEscaped(circle: BasicCircle)
+    public function OnCircleEscaped(circle: GenericCircle)
     {
         var errorMessage = "BASE: Unimplemented (OnCircleEscaped of GameManagerBase)";
         trace(errorMessage);
         //ErrorScreenManager.Main.ShowError(errorMessage);
     }
 
-    public function OnPickupPopped(circle: BasicCircle, pickupType: PickupCircle.PickupType)
+    public function OnPickupPopped(circle: GenericCircle, pickupType: PickupCircle.PickupType)
     {
         var errorMessage = "BASE: Unimplemented (OnPickupPopped of GameManagerBase)";
         trace(errorMessage);
         //ErrorScreenManager.Main.ShowError(errorMessage);
     }
 
-    public function OnPickupEscaped(circle: BasicCircle)
+    public function OnPickupEscaped(circle: GenericCircle)
     {
         var errorMessage = "BASE: Unimplemented (OnPickupEscaped of GameManagerBase)";
         trace(errorMessage);
