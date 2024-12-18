@@ -31,6 +31,7 @@ typedef NPCDLG =
 	var text:NPCText;
 	var ?if_flag:String;
 	var ?unless_flag:String;
+	var ?options:Array<NPCDLGOption>;
 }
 
 typedef NPCDLGOption =
@@ -61,12 +62,12 @@ abstract NPCDef(NPCDefJSON) from NPCDefJSON
 			if (state.name != "default" && !if_exists && !unless_exists)
 				continue;
 
-			var if_check:Bool = if_exists || Flags.get_bool(state.if_flag);
-			var unless_check:Bool = unless_exists || !Flags.get_bool(state.unless_flag);
+			var if_check:Bool = !if_exists || Flags.get_bool(state.if_flag);
+			var unless_check:Bool = !unless_exists || !Flags.get_bool(state.unless_flag);
 
 			if (if_check && unless_check)
 				if (state.name != "default" || default_ok)
-					return process_dlg(state.dlg);
+					return process_dlg(state);
 		}
 		// run it again with default on if default ok is false
 		// default ok == false is the most common starting point for NPC loading states
@@ -77,25 +78,28 @@ abstract NPCDef(NPCDefJSON) from NPCDefJSON
 	{
 		for (state in this.states)
 			if (state.name == state_name)
-				return process_dlg(state.dlg);
+				return process_dlg(state);
 		return null;
 	}
-}
 
-function process_dlg(dlgs:Array<NPCDLG>):Array<NPCDLG>
-{
-	var return_dlgs:Array<NPCDLG> = [];
-
-	for (dlg in dlgs)
+	function process_dlg(npc_state:NPCState):Array<NPCDLG>
 	{
-		var if_check:Bool = dlg.if_flag == null || Flags.get_bool(dlg.if_flag);
-		var unless_check:Bool = dlg.unless_flag == null || !Flags.get_bool(dlg.unless_flag);
+		var return_dlgs:Array<NPCDLG> = [];
 
-		if (if_check && unless_check)
-			return_dlgs.push(dlg);
+		for (dlg in npc_state.dlg)
+		{
+			var if_check:Bool = dlg.if_flag == null || Flags.get_bool(dlg.if_flag);
+			var unless_check:Bool = dlg.unless_flag == null || !Flags.get_bool(dlg.unless_flag);
+
+			if (if_check && unless_check)
+				return_dlgs.push(dlg);
+		}
+
+		if (npc_state.options != null)
+			return_dlgs.last().options = npc_state.options;
+
+		return return_dlgs;
 	}
-
-	return return_dlgs;
 }
 
 class NPCLoader

@@ -5,6 +5,7 @@ import data.types.TankmasFontTypes;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 import squid.ui.FlxTextBMP;
+import ui.sheets.buttons.DialogueOptionBox;
 
 class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 {
@@ -14,7 +15,7 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 	var text:FlxTextBMP;
 	#end
 
-	var bg:FlxSpriteExt;
+	public var bg:FlxSpriteExt;
 
 	var dlgs:Array<NPCDLG>;
 
@@ -28,7 +29,7 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 	public function get_dlg():NPCDLG
 		return dlgs[line_number];
 
-	var options:DialogueBoxOptions;
+	var defines:DialogueBoxDefines;
 
 	var line_finished(get, default):Bool;
 
@@ -37,12 +38,19 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 	public function get_line_finished()
 		return char_index >= dlg.text.str.length;
 
-	public function new(dlgs:Array<NPCDLG>, ?options:DialogueBoxOptions)
+	/**
+	 * Prevents this from closing
+	 */
+	var hold_for_dialogue_options(get, default):Bool;
+
+	var option_boxes:Array<DialogueOptionBox> = [];
+
+	public function new(dlgs:Array<NPCDLG>, ?defines:DialogueBoxDefines)
 	{
 		super();
 
 		this.dlgs = dlgs;
-		this.options = options == null ? {} : options;
+		this.defines = defines == null ? {} : defines;
 
 		PlayState.self.dialogues.add(this);
 
@@ -99,10 +107,16 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 
 	public function next_dlg()
 	{
+		if (hold_for_dialogue_options)
+		{
+			return;
+		}
 		line_number = line_number + 1;
 		if (line_number < dlgs.length)
 		{
 			load_dlg(dlgs[line_number]);
+			if (hold_for_dialogue_options)
+				spawn_dlg_options();
 		}
 		else
 			close_dlg();
@@ -151,16 +165,31 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 				if (line_finished)
 				{
 					if (Ctrl.jinteract[1] || FlxG.mouse.justPressed)
-						sstate(SWIPE_OUT);
+						if (!hold_for_dialogue_options)
+							swipe_out();
 				}
 		}
 
 	override function kill()
 	{
 		Ctrl.mode = Ctrl.ControlModes.OVERWORLD;
-		options.on_complete != null ? options.on_complete() : false;
+		defines.on_complete != null ? defines.on_complete() : false;
 		PlayState.self.dialogues.remove(this, true);
 		super.kill();
+	}
+
+	function get_hold_for_dialogue_options():Bool
+		return dlg.options != null && dlg.options.length > 0;
+
+	public function spawn_dlg_options()
+	{
+		for (n in 0...dlg.options.length)
+			option_boxes.push(new DialogueOptionBox(n, dlg.options[n], this));
+	}
+
+	public function swipe_out()
+	{
+		sstate(SWIPE_OUT);
 	}
 }
 
@@ -173,7 +202,8 @@ private enum abstract State(String) from String to String
 	var WAIT;
 }
 
-typedef DialogueBoxOptions =
+typedef DialogueBoxDefines =
 {
 	var ?on_complete:Void->Void;
+	var ?dialogue_options:Array<NPCDLGOption>;
 }

@@ -31,6 +31,8 @@ class FlxTextBMP extends FlxBitmapText
 
 		this.multiLine = true;
 		this.autoSize = false;
+		
+		this.alignment = format.alignment;
 
 		this.text = text;
 	}
@@ -44,10 +46,11 @@ class FlxTextBMP extends FlxBitmapText
 		if (format.outline != null)
 			text.setBorderStyle(OUTLINE, format.outline.color);
 
+		text.alignment = format.alignment;
+
 		return text;
-		
-		
-		//TODO: implement bitmap fonts?
+
+		// TODO: implement bitmap fonts?
 		// lineSpacing = 2;
 		// switch (format)
 		// {
@@ -64,4 +67,3 @@ class FlxTextBMP extends FlxBitmapText
 		// }
 	}
 }
-

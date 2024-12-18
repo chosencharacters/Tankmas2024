@@ -11,14 +11,14 @@
             <option label="I hate you Thomas">
               <dlg>You have made a grave error today.</dlg>
               <dlg>Never talk to me again.</dlg>
-              <flag set="THE_IRE_OF_TOM"/>
+              <flag set="THE_REAL_IRE_OF_TOM"/>
             </option>
         </state>
         <state name="love" if="SECRET_LOVE_OF_THE_TOM">
             <dlg>Oh, it's you again, and what honor brings your company today?</dlg>
             <dlg>btw I only say this to people I enjoy the company of But I love you.</dlg>
         </state>
-        <state name="hatred" if="THE_IRE_OF_TOM">
+        <state name="hatred" if="THE_REAL_IRE_OF_TOM">
             <dlg>You.</dlg>
             <dlg>You disappoint me. Be gone from my sight.</dlg>
         </state>
