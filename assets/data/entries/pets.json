@@ -25,6 +25,25 @@
                 "follow_accuracy":0.8,
                 "drag":0.99
             }
+        },
+        {
+            "name": "elephant-small",
+            "display": "Elephant",
+            "desc": "It's like an elephant, but small!"
+        },
+        {
+            "name": "elf-like-creature",
+            "display": "Elf Like Creature",
+            "desc": "This little Elf Like Creature (ELC) is festive. Okay? It's festive.",
+            "stats":{
+                "follow_accuracy":0.8,
+                "drag":0.95
+            }
+        },
+        {
+            "name": "angry-faic",
+            "display": "Angry Faic",
+            "desc": "What are you looking at? >:("
         }
     ]
 }
