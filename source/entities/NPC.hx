@@ -95,9 +95,8 @@ class NPC extends Interactable
 	{
 		PlayState.self.player.velocity.scale(0.25, 0.25);
 		Ctrl.allFalse();
-		new DialogueBox(Lists.npcs.get(name).get_current_state_dlg(), {on_complete: () -> interactable = true});
+		new DialogueBox(Lists.npcs.get(name).get_current_state_dlg());
 		sstate(CHATTING, fsm);
-		interactable = false;
 	}
 
 	override public function mark_target(mark:Bool)

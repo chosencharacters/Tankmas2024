@@ -67,11 +67,14 @@ class DialogueOptionBox extends FlxTypedGroupExt<FlxSprite>
 
 	public function dialogue_pressed(b:HoverButton)
 	{
+		dlg_box.swipe_out(true);
+		dlg_box.defines.on_complete = () -> new DialogueBox(Lists.npcs.get(def.npc_name).get_state_dlg(def.state));
 		trace(def);
 	}
 
 	override function kill()
 	{
+		trace("killing");
 		killMembers();
 		clear();
 		PlayState.self.dialogue_options.remove(this, true);

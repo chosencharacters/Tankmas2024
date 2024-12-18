@@ -29,7 +29,7 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 	public function get_dlg():NPCDLG
 		return dlgs[line_number];
 
-	var defines:DialogueBoxDefines;
+	public var defines:DialogueBoxDefines;
 
 	var line_finished(get, default):Bool;
 
@@ -44,6 +44,8 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 	var hold_for_dialogue_options(get, default):Bool;
 
 	var option_boxes:Array<DialogueOptionBox> = [];
+
+	var kill_option_boxes:Bool = false;
 
 	public function new(dlgs:Array<NPCDLG>, ?defines:DialogueBoxDefines)
 	{
@@ -107,9 +109,12 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 
 	public function next_dlg()
 	{
-		if (hold_for_dialogue_options)
+		if (kill_option_boxes)
 		{
-			return;
+			for (option in option_boxes)
+				option.kill();
+			option_boxes = [];
+			dlg.options = [];
 		}
 		line_number = line_number + 1;
 		if (line_number < dlgs.length)
@@ -187,9 +192,11 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 			option_boxes.push(new DialogueOptionBox(n, dlg.options[n], this));
 	}
 
-	public function swipe_out()
+	public function swipe_out(kill_option_boxes:Bool = false)
 	{
 		sstate(SWIPE_OUT);
+		if (kill_option_boxes)
+			this.kill_option_boxes = true;
 	}
 }
 

@@ -38,6 +38,7 @@ typedef NPCDLGOption =
 {
 	var label:String;
 	var state:String;
+	var npc_name:String;
 }
 
 /**Seems excessive until we start fucking with cutscenes just sayin*/
@@ -121,7 +122,7 @@ class NPCLoader
 		var def:NPCDefJSON = {
 			name: name,
 			image: image,
-			states: parse_npc_states(npc_xml.tags("state")),
+			states: parse_npc_states(name, npc_xml.tags("state")),
 			animations: parse_npc_anims(npc_xml.tags("animation"))
 		};
 
@@ -130,17 +131,17 @@ class NPCLoader
 		return new NPCDef(def);
 	}
 
-	static function parse_npc_states(state_xmls:Array<Xml>):Map<String, NPCState>
+	static function parse_npc_states(npc_name:String, state_xmls:Array<Xml>):Map<String, NPCState>
 	{
 		var npc_states:Map<String, NPCState> = [];
 
 		for (state_xml in state_xmls)
-			parse_npc_state(npc_states, state_xml);
+			parse_npc_state(npc_name, npc_states, state_xml);
 
 		return npc_states;
 	}
 
-	static function parse_npc_state(npc_states:Map<String, NPCState>, state_xml:Xml):NPCState
+	static function parse_npc_state(npc_name:String, npc_states:Map<String, NPCState>, state_xml:Xml):NPCState
 	{
 		var name:String = state_xml.get("name");
 
@@ -168,9 +169,13 @@ class NPCLoader
 			npc_state.options = [];
 			for (option_xml in state_xml.tags("option"))
 			{
-				npc_state.options.push({label: option_xml.get("label"), state: option_xml.exists("state") ? option_xml.get("state") : option_xml.get("label")});
+				npc_state.options.push({
+					label: option_xml.get("label"),
+					state: option_xml.exists("state") ? option_xml.get("state") : option_xml.get("label"),
+					npc_name: npc_name
+				});
 				if (!npc_states.exists(npc_state.options.last().state))
-					parse_npc_state(npc_states, option_xml);
+					parse_npc_state(npc_name, npc_states, option_xml);
 			}
 		}
 

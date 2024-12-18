@@ -31,7 +31,7 @@ class FlxTextBMP extends FlxBitmapText
 
 		this.multiLine = true;
 		this.autoSize = false;
-		
+
 		this.alignment = format.alignment;
 
 		this.text = text;
