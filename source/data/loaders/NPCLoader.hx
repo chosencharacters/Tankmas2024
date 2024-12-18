@@ -31,6 +31,8 @@ typedef NPCDLG =
 	var text:NPCText;
 	var ?if_flag:String;
 	var ?unless_flag:String;
+	var ?set_flag:String;
+	var ?del_flag:String;
 	var ?options:Array<NPCDLGOption>;
 }
 
@@ -151,7 +153,6 @@ class NPCLoader
 
 		var if_flag:String = state_xml.get("if");
 		var unless_flag:String = state_xml.get("unless");
-		var options:String = state_xml.get("unless");
 
 		var npc_state:NPCState = {
 			name: name,
@@ -206,6 +207,10 @@ class NPCLoader
 	{
 		var if_flag:String = dlg_xml.get("if");
 		var unless_flag:String = dlg_xml.get("unless");
+
+		var set_flag:String = dlg_xml.get("set");
+		var del_flag:String = dlg_xml.get("del");
+
 		var text:NPCText = {str: dlg_xml.firstChild().toString()};
 
 		var npc_dlg:NPCDLG = {text: text};
@@ -215,6 +220,12 @@ class NPCLoader
 
 		if (unless_flag != null)
 			npc_dlg.unless_flag = unless_flag;
+
+		if (set_flag != null)
+			npc_dlg.set_flag = set_flag;
+
+		if (del_flag != null)
+			npc_dlg.del_flag = del_flag;
 
 		return npc_dlg;
 	}

@@ -1,5 +1,6 @@
 package ui;
 
+import data.SaveManager;
 import data.loaders.NPCLoader;
 import data.types.TankmasFontTypes;
 import flixel.tweens.FlxEase;
@@ -46,6 +47,8 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 	var option_boxes:Array<DialogueOptionBox> = [];
 
 	var kill_option_boxes:Bool = false;
+
+	var flags_changed:Bool = false;
 
 	public function new(dlgs:Array<NPCDLG>, ?defines:DialogueBoxDefines)
 	{
@@ -116,7 +119,17 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 			option_boxes = [];
 			dlg.options = [];
 		}
+
+		if (dlg.del_flag != null)
+			Flags.destroy_bool(dlg.del_flag);
+		if (dlg.set_flag != null)
+			Flags.set_bool(dlg.set_flag);
+
+		if (dlg.set_flag != null || dlg.del_flag != null)
+			flags_changed = true;
+
 		line_number = line_number + 1;
+
 		if (line_number < dlgs.length)
 		{
 			load_dlg(dlgs[line_number]);
@@ -177,6 +190,9 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 
 	override function kill()
 	{
+		if (flags_changed)
+			SaveManager.save();
+
 		Ctrl.mode = Ctrl.ControlModes.OVERWORLD;
 		defines.on_complete != null ? defines.on_complete() : false;
 		PlayState.self.dialogues.remove(this, true);

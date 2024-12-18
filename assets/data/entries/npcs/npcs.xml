@@ -5,13 +5,11 @@
             <dlg>Hello fellow newgrounder I am the tom fulp of the new grounds dot com</dlg>
             <dlg>Are we talking about tom fulp? I love talking about tom fulp.</dlg>
             <option label="I love you Thomas">
-              <dlg>I love you too :)</dlg>
-              <flag set="SECRET_LOVE_OF_THE_TOM"/>
+              <dlg set="SECRET_LOVE_OF_THE_TOM">I love you too :)</dlg>
             </option>
-            <option label="I hate you Thomas">
+            <option label="I hate you Thomas" >
               <dlg>You have made a grave error today.</dlg>
-              <dlg>Never talk to me again.</dlg>
-              <flag set="THE_REAL_IRE_OF_TOM"/>
+              <dlg set="THE_REAL_IRE_OF_TOM">Never talk to me again.</dlg>
             </option>
         </state>
         <state name="love" if="SECRET_LOVE_OF_THE_TOM">
