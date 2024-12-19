@@ -1,7 +1,7 @@
 package video;
 
 import flixel.tweens.FlxEase;
-import openfl.display.Sprite;
+import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
 import openfl.display.Bitmap;
 import openfl.display.MovieClip;
@@ -33,12 +33,35 @@ class VideoSubstate extends flixel.FlxSubState
 {
 	var ui:VideoUi;
 	var aReleased = false;
+	var closed = false;
+
+	public var on_close:() -> Void = null;
+	// Called if video was watched completely
+	public var on_completed:() -> Void = null;
+
+	var bg:FlxSprite;
 
 	public function new(path:String)
 	{
 		super();
 
-		ui = new VideoUi(path);
+		ui = new VideoUi(path, false);
+		bg = new FlxSprite(0, 0);
+		bg = bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(4, 4, 5));
+		bg.y = FlxG.height;
+		bg.alpha = 0.0;
+		bg.scrollFactor.set(0, 0);
+		bg.origin.set(0, 0);
+		add(bg);
+
+		trace('tweenin');
+
+		FlxTween.tween(bg, {alpha: 1, y: 0}, 0.4, {ease: FlxEase.smootherStepInOut, onComplete: on_fade_in});
+	}
+
+	function on_fade_in(t)
+	{
+		ui.play();
 	}
 
 	override function create()
@@ -48,76 +71,85 @@ class VideoSubstate extends flixel.FlxSubState
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.pause();
 
-		// FlxG.stage.addChild(ui);
+		FlxG.stage.addChild(ui);
 
-		ui.on_complete = close;
+		ui.onComplete = video_completed;
+	}
+
+	function video_completed()
+	{
+		if (on_completed != null)
+			on_completed();
+		close_video();
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
+		if (ui.requestedExit)
+			close_video();
+
 		ui.update(elapsed);
+
+		if (Ctrl.pause[1])
+			ui.togglePause();
+
+		if (Ctrl.emote[1])
+			close_video();
 	}
 
-	override function close()
+	public function close_video()
 	{
+		if (closed)
+			return;
+
+		closed = true;
 		FlxG.mouse.useSystemCursor = true;
 		FlxG.mouse.visible = true;
-		// FlxG.stage.removeChild(ui);
-		ui.destroy();
 
-		super.close();
+		haxe.Timer.delay(() -> FlxTween.tween(bg, {alpha: 0}, 0.4, {
+			ease: FlxEase.smootherStepInOut,
+			onComplete: (t) ->
+			{
+				FlxG.stage.removeChild(ui);
+				ui.destroy();
 
-		if (FlxG.sound.music != null)
-			FlxG.sound.music.resume();
+				if (FlxG.sound.music != null)
+					FlxG.sound.music.resume();
+
+				if (on_close != null)
+					on_close();
+
+				close();
+			}
+		}), 500);
 	}
 }
 
-class VideoUi extends FlxSprite
+class VideoUi extends openfl.display.Sprite
 {
 	public var isPaused = false;
-	public var on_complete:() -> Void;
-	public var on_close_request:() -> Void;
+	public var requestedExit = false;
+	public var onComplete:() -> Void;
 
 	var netStream:NetStream;
 	var video:Video;
-	var video_url:String;
+	var path:String;
+	var backBtn:OpenFlBackButton;
+	var moveTimer = 2.0;
 
-	var video_container:openfl.display.Sprite;
-
-	var video_aspect_ratio = 1.0;
-
-	var screen_width = 100.0;
-	var screen_height = 100.0;
-
-	public var on_enter_area:() -> Void = null;
-	public var on_leave_area:() -> Void = null;
-
-	var start_time:Float = 0.0;
-
-	public function new(video_url:String, x:Float = 0, y:Float = 0, width:Float = 100, height:Float = 50, start_time:Float = 0.0)
+	public function new(path:String, auto_play = true)
 	{
-		this.video_url = video_url;
+		this.path = path;
 		super();
 
-		this.start_time = Math.max(0.0, start_time);
-
-		this.x = x;
-		this.y = y;
-		this.screen_height = height;
-		this.screen_width = width;
-		this.origin.set(0, 0);
-
-		video_container = new Sprite();
-		FlxG.stage.addChild(video_container);
-
-		if (FlxG.sound.music != null)
-			FlxG.sound.music.pause();
-
 		FlxG.mouse.useSystemCursor = true;
-
-		video_container.addChild(video = new Video());
+		addChild(video = new Video());
+		backBtn = new OpenFlBackButton(close_video);
+		backBtn.x = 20;
+		backBtn.y = 20;
+		addChild(backBtn);
 
 		var netConnection = new NetConnection();
 		netConnection.connect(null);
@@ -132,82 +164,50 @@ class VideoUi extends FlxSprite
 		{
 			trace("net status:" + haxe.Json.stringify(event.info));
 			if (event.info.code == "NetStream.Play.Complete")
-			{
-				close();
 				onVideoComplete();
-			}
 		});
 
-		netStream.play(video_url);
+		if (auto_play)
+			play();
+	}
+
+	var closed = false;
+
+	function close_video()
+	{
+		if (closed)
+			return;
+		closed = true;
+		FlxTween.tween(video, {y: FlxG.stage.window.height * 0.5, scaleY: 0.0, alpha: 0}, 0.2, {
+			ease: FlxEase.smootherStepInOut,
+			onComplete: (t) ->
+			{
+				requestedExit = true;
+			}
+		});
+	}
+
+	public function play()
+	{
+		netStream.play(path);
 		isPaused = false;
 	}
 
-	override function draw()
+	public function update(elapsed:Float)
 	{
-		super.draw();
-
-		var scl_x = (FlxG.stage.window.width / FlxG.width) * FlxG.camera.zoom;
-		var scl_y = FlxG.stage.window.height / FlxG.height * FlxG.camera.zoom;
-
-		var dy = y - FlxG.camera.viewTop;
-		var dx = x - FlxG.camera.viewLeft;
-
-		var pos = getScreenPosition();
-		video.x = dx * scl_x;
-		video.y = dy * scl_y;
-
-		var video_aspect_ratio = video.videoHeight / video.videoWidth;
-
-		video.width = screen_width * scl_x;
-		video.height = video.width * video_aspect_ratio;
-	}
-
-	var entered = false;
-	var camera_tween:FlxTween;
-
-	function on_enter_video_area()
-	{
-		if (entered)
-			return;
-		entered = true;
-		if (camera_tween != null)
-			camera_tween.cancel();
-		camera_tween = FlxTween.tween(FlxG.camera, {"targetOffset.y": -590, zoom: 0.6}, 1.0, {ease: FlxEase.smoothStepInOut});
-
-		if (on_enter_area != null)
-			on_enter_area();
-	}
-
-	function on_leave_video_area()
-	{
-		if (!entered)
-			return;
-		entered = false;
-		if (camera_tween != null)
-			camera_tween.cancel();
-		camera_tween = FlxTween.tween(FlxG.camera, {"targetOffset.y": 0, zoom: 1.0}, 1.0, {ease: FlxEase.smoothStepInOut});
-		if (on_leave_area != null)
-			on_leave_area();
-	}
-
-	public override function update(elapsed:Float)
-	{
-		super.update(elapsed);
-
-		if (PlayState.self.player.y < y + screen_height + 900)
+		backBtn.update(elapsed);
+		if (moveTimer > 0)
 		{
-			on_enter_video_area();
+			moveTimer -= elapsed;
+			if (moveTimer <= 0)
+				backBtn.visible = false;
 		}
-		else
-		{
-			on_leave_video_area();
-		}
-	}
 
-	function close()
-	{
-		if (on_close_request != null)
-			on_close_request();
+		if (FlxG.mouse.justMoved || FlxG.mouse.pressed || isPaused)
+		{
+			backBtn.visible = true;
+			moveTimer = 2.0;
+		}
 	}
 
 	function onMetaData(data:MetaData)
@@ -216,13 +216,6 @@ class VideoUi extends FlxSprite
 		video.attachNetStream(netStream);
 		video.width = video.videoWidth;
 		video.height = video.videoHeight;
-
-		if (start_time > 2.0)
-		{
-			var position = start_time % data.duration;
-			trace('seeking to $position');
-			netStream.seek(position);
-		}
 
 		if (video.videoWidth / stage.stageWidth > video.videoHeight / stage.stageHeight)
 		{
@@ -240,6 +233,20 @@ class VideoUi extends FlxSprite
 
 		if (video.height < stage.stageHeight)
 			video.y = (stage.stageHeight - video.height) / 2;
+
+		video.scaleY = 0;
+
+		// netStream.pause();
+
+		haxe.Timer.delay(() ->
+		{
+			video.y = FlxG.stage.window.height * 0.5;
+			video.scaleY = 0.5;
+			FlxTween.tween(video, {y: 0, scaleY: 1.0}, 0.5, {
+				ease: FlxEase.elasticOut,
+				// onComplete: (t) -> netStream.resume()
+			});
+		}, 400);
 	}
 
 	function onPlayStatus(data:PlayStatusData) {}
@@ -247,10 +254,9 @@ class VideoUi extends FlxSprite
 	function onVideoComplete()
 	{
 		trace('Video complete!');
-		if (on_complete != null)
-			on_complete();
-
-		close();
+		if (onComplete != null)
+			onComplete();
+		close_video();
 	}
 
 	public function pause()
@@ -270,16 +276,8 @@ class VideoUi extends FlxSprite
 		isPaused ? resume() : pause();
 	}
 
-	public override function kill()
+	public function destroy()
 	{
-		super.kill();
-
-		on_leave_video_area();
-		FlxG.stage.removeChild(video_container);
-
-		if (FlxG.sound.music != null)
-			FlxG.sound.music.resume();
-
 		netStream.dispose();
 	}
 }

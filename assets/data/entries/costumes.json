@@ -341,8 +341,8 @@
             "name": "mella",
             "display": "Mella Arrsh S'mora Sr.",
             "desc": "The perfect marshmallow to have ever been made. She's a fusion of over 2000 of them with more to come... Now stop roasting marshmallows you bums.",
-            "unlock": "USERNAME",
-            "data": "kingcrowned"
+            "unlock": "FLAG",
+            "data": "MELLA_UNLOCKED"
         },
         {
             "name": "sublo",

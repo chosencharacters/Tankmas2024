@@ -1,5 +1,6 @@
 package states;
 
+import video.InGameVideoUI;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -38,7 +39,6 @@ import ui.sheets.*;
 import ui.sheets.SheetMenu;
 import ui.sheets.buttons.DialogueOptionBox;
 import video.PremiereHandler;
-import video.VideoSubstate.VideoUi;
 import video.VideoSubstate.VideoUi;
 import zones.Door;
 
@@ -288,7 +288,7 @@ class PlayState extends BaseState
 		});
 	}
 
-	var video_ui:VideoUi;
+	var video_ui:InGameVideoUI;
 
 	function on_premiere_release(d:PremiereData)
 	{
@@ -326,7 +326,7 @@ class PlayState extends BaseState
 			}
 		 */
 
-		video_ui = new VideoUi(d.url, screen.x, screen.y, screen.width, screen.height, time_since_premiere);
+		video_ui = new InGameVideoUI(d.url, screen.x, screen.y, screen.width, screen.height, time_since_premiere);
 		this.objects.add(video_ui);
 		video_ui.on_close_request = kill_video;
 
