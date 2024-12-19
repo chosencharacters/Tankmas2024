@@ -22,7 +22,7 @@ class BaseSettings extends FlxTypedGroupExt<FlxSprite>
 		point = FlxPoint.weak(960, 540);
 
 		add(new FlxSpriteExt(point.x - 723, point.y - 436).makeGraphicExt(1446, 872));
-		add(new FlxSpriteExt(point.x - 703, point.y - 416, Paths.get('emotes-back-red.png')));
+		add(new FlxSpriteExt(point.x - 703, point.y - 416, Paths.get('emotes-1-back-red.png')));
 		add(new HoverButton(point.x - 683, point.y - 396, null, (b) -> substate.start_closing()).loadAllFromAnimationSet("back-arrow"));
 		add(new HoverButton(point.x - 424, point.y - 120, Paths.get('show-name-single.png'), (b) ->
 		{

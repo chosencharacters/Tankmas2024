@@ -428,6 +428,40 @@
             "desc": "A tough bunny who is protective of Doki, but warms up to Nabi eventually. He ends up being a useful ally in their quest to be accepted in the world.",
             "unlock": "DATE",
             "data": 1734498000
+        },
+        {
+            "name": "blade-the-hedgehog",
+            "display": "Blade the Hedgehog",
+            "desc": "It's Blade the Hedgehog! Wait, you don't know who that is? Come on dude. He's from the most popular game on Newgrounds until that funky one came around. Get cultured.",
+            "unlock": "FLAG",
+            "data": "BLADE_UNLOCKED"
+        },
+        {
+            "name": "skull-kid",
+            "display": "Skull Kid",
+            "desc": "They're a kid, with a chainsaw, and a skull head.",
+            "unlock": "DATE",
+            "data": 1734584400
+        },
+        {
+            "name": "zanta-claws",
+            "display": "Zanta Claws",
+            "desc": "He's just like Santa Claus! Except he eats the heads of naughty children. So you better watch out.",
+            "unlock": "DATE",
+            "data": 1734584400
+        },
+        {
+            "name": "bad-captain",
+            "display": "Bad Captain",
+            "desc": "The leader of the Henchmen, and so evil that only watching Titanic can halt their villainy.",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "mc-kun",
+            "display": "MC Kun",
+            "desc": "The only character to be loved by all of Newgrounds.",
+            "unlock": "DATE",
+            "data": 1734498000
         }
     ]
 }

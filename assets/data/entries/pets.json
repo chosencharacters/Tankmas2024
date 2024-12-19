@@ -44,6 +44,20 @@
             "name": "angry-faic",
             "display": "Angry Faic",
             "desc": "What are you looking at? >:("
+        },
+        {
+            "name": "cool-frog",
+            "display": "Cool Frog",
+            "desc": "That's one cool frog!\n\nNote: Cool Frog does not like bullies so do not say anything mean to him.",
+            "unlock": "DATE",
+            "data": 1734584400
+        },
+        {
+            "name": "sushi-cat",
+            "display": "Sushi Cat",
+            "desc": "Always starving, this cat needs their sushi!",
+            "unlock": "DATE",
+            "data": 1734584400
         }
     ]
 }

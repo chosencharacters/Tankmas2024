@@ -33,7 +33,7 @@
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "cool-frog",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
@@ -47,7 +47,7 @@
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "sushi-cat",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30

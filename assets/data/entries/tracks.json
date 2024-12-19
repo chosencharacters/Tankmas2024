@@ -34,6 +34,11 @@
             "id": "spiritus-albe",
             "name": "Spiritus",
             "artist": "Albe"
+        },
+        {
+            "id": "another-tankmas-snowday",
+            "name": "Another Tankmas Snowday",
+            "artist": "TeraVex"
         }
     ]
 }

@@ -304,23 +304,23 @@
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "blade-the-hedgehog",
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "skull-kid",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "zanta-claws",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "bad-captain",
                     "angle": -10
                 }
             ]

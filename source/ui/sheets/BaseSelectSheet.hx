@@ -5,6 +5,7 @@ import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.EmoteDef;
 import data.types.TankmasDefs.PetDef;
+import data.types.TankmasEnums.UnlockCondition;
 import dn.struct.Grid;
 import flixel.FlxBasic;
 import flixel.addons.effects.chainable.FlxEffectSprite;
@@ -42,7 +43,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	var current_button(get, default):SheetButton;
 
-	final description_group:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>(-440);
+	final description_group:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>();
+	final lock_overlay_group:FlxTypedSpriteGroup<FlxSprite> = new FlxTypedSpriteGroup<FlxSprite>();
 
 	public var seen:Array<String> = [];
 
@@ -93,6 +95,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 		title = new FlxText(notepad.x + 8, notepad.y - 64 - 16, notepad.width, '');
 		title.setFormat(Paths.get('CharlieType-Heavy.otf'), 60, FlxColor.BLACK, LEFT, OUTLINE, FlxColor.WHITE);
 		title.borderSize = 6;
+
 		// description_group.add(description_text);
 
 		add(bg_white);
@@ -151,12 +154,14 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			for (n in 0...(rows * cols))
 				null
 		];
+
 		def.grid_2D = [
 			for (c in 0...cols) [
 				for (r in 0...rows)
 					null
 			]
 		];
+
 		for (i in 0...def.src.items.length)
 		{
 			var item_def:SheetItemDef = def.src.items[i];
@@ -193,6 +198,39 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			def.grid_2D[col][row] = button;
 
 			add(button);
+		}
+
+		for (button in def.grid_1D)
+		{
+			button.eval_unlocked();
+			if (!button.unlocked && button.lock_condition != null)
+			{
+				switch (button.lock_condition)
+				{
+					default:
+					case UnlockCondition.FLAG | UnlockCondition.ACHIEVEMENT:
+						var overlay:FlxSpriteExt = new FlxSpriteExt(Paths.image_path("flag-locked-overlay"));
+						overlay.center_on(button);
+						overlay.angle = button.angle;
+						overlay.offset.set(button.offset.x, button.offset.y);
+						add(overlay);
+						lock_overlay_group.add(overlay);
+					case UnlockCondition.SUPPORTER:
+						var overlay:FlxSpriteExt = new FlxSpriteExt(Paths.image_path("supporter-locked-overlay"));
+						overlay.center_on(button);
+						overlay.angle = button.angle;
+						overlay.offset.set(button.offset.x, button.offset.y);
+						add(overlay);
+						lock_overlay_group.add(overlay);
+					case UnlockCondition.DATE:
+						var overlay:FlxSpriteExt = new FlxSpriteExt(Paths.image_path("date-locked-overlay"));
+						overlay.center_on(button);
+						overlay.angle = button.angle;
+						overlay.offset.set(button.offset.x, button.offset.y);
+						add(overlay);
+						lock_overlay_group.add(overlay);
+				}
+			}
 		}
 	}
 

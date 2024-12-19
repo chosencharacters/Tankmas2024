@@ -5,6 +5,7 @@ import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.EmoteDef;
 import data.types.TankmasDefs.PetDef;
+import data.types.TankmasEnums.UnlockCondition;
 import ui.button.HoverButton;
 import ui.sheets.BaseSelectSheet.SheetType;
 import ui.sheets.defs.SheetDefs.SheetItemDef;
@@ -17,6 +18,8 @@ class SheetButton extends HoverButton
 	public var unlocked:Bool;
 
 	public var def:SheetItemDef;
+
+	public var lock_condition:UnlockCondition;
 
 	public function new(X:Float, Y:Float, def:SheetItemDef, sheet_type:SheetType, ?on_pressed:HoverButton->Void)
 	{
@@ -48,6 +51,7 @@ class SheetButton extends HoverButton
 		{
 			case SheetType.COSTUMES:
 				var costume:CostumeDef = JsonData.get_costume(def.name);
+				lock_condition = costume.unlock != null ? costume.unlock : UnlockCondition.YOUR_A_SPECIAL_LITTLE_BOY;
 				if (costume.unlock != null)
 					return data.types.TankmasEnums.UnlockCondition.get_unlocked(costume.unlock, costume.data);
 			case SheetType.EMOTES:
@@ -58,6 +62,7 @@ class SheetButton extends HoverButton
 				#end
 			case SheetType.PETS:
 				var pet:PetDef = JsonData.get_pet(def.name);
+				lock_condition = pet.unlock != null ? pet.unlock : UnlockCondition.YOUR_A_SPECIAL_LITTLE_BOY;
 				if (pet.unlock != null)
 					return data.types.TankmasEnums.UnlockCondition.get_unlocked(pet.unlock, pet.data);
 		}

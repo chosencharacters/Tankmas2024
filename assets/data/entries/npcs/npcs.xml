@@ -268,4 +268,43 @@
             <dlg>*They look at you suspiciously*</dlg>
         </state>
     </npc>
+     <npc name="blade-the-hedgehog">
+        <state name="default">
+            <dlg>Hey duder, I came here to watch the new Shadow the Hedgehog 3 movie and they're not showing it.</dlg>
+            <dlg>Doctor what? Duder. I need to crush some Crush 40 into my system, okay? It's what electrifies my Blade.</dlg>
+            <option label="Maybe you just need to live and learn">
+                <dlg>No. Duder. I need to live and watch Shadow the Hedgehog 3 so I can learn from it.</dlg>
+                <dlg>I heard Maria might survive this time.</dlg>
+            </option>
+            <option label="I like your digs">
+                <dlg>Uh. Thanks I guess? Look. I know I'm something new. Something different.</dlg>
+                <dlg>But at the end of the day I'm just your friendly neighberhood hedgehog</dlg>
+                <option label="No, I REALLY like your digs">
+                    <dlg if="!BLADE_UNLOCKED" set="BLADE_UNLOCKED">Okay. Duder. Whatever. Just don't go copying me.</dlg>
+                </option>
+                <option label="Your sword's cool">
+                    <dlg>Yea it is. It was gonna be electric until they cut it from- nevermind.</dlg>
+                </option>
+            </option>
+        </state>
+        <state name="same-char" if="COSTUME_BLADE_THE_HEDGEHOG">
+            <dlg>Hey duder, you're sort of cramping my style here.</dlg>
+            <dlg>Can you go change? We don't need to have a blade off right here, okay?</dlg>
+            <option label="I would win">
+                <dlg>Okay duder do you wanna settle it in flash right now? I'll GET you.</dlg>
+            </option>
+            <option label="You're a cheap character anyways">
+                <dlg>Look duder. Everything's cheap when you're in a Flash game from 2006.</dlg>
+            </option>
+            <option label="OC don't steal?">
+                <dlg>Okay duder. I get you're the comedian here. Got any original jokes?</dlg>
+                <option label="Got any original character designs?">
+                    <dlg>I'll Blade you up. Duder. Don't try me.</dlg>
+                </option>
+                <option label="No not that one">
+                    <dlg>Whatever duder. You're lame anyways.</dlg>
+                </option>
+            </option>
+        </state>
+    </npc>
 </root>

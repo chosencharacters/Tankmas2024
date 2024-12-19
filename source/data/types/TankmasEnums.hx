@@ -1,7 +1,6 @@
 package data.types;
 
 import Main;
-import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.SpriteAnimationDef;
 
 enum abstract UnlockCondition(String) from String to String
