@@ -4,6 +4,7 @@ import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.EmoteDef;
+import data.types.TankmasDefs.PetDef;
 import dn.struct.Grid;
 import flixel.FlxBasic;
 import flixel.addons.effects.chainable.FlxEffectSprite;
@@ -162,7 +163,8 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 			var button:SheetButton = new SheetButton(0, 0, item_def, sheet_type, (b) -> if (visible)
 			{
 				selection = i;
-				lock_selection(cast(b, SheetButton));
+				if (current_button.unlocked)
+					lock_selection(cast(b, SheetButton));
 			});
 
 			button.on_hover = (b) -> if (cast(b, SheetButton).unlocked)
@@ -212,7 +214,7 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 	public function lock_selection(button:SheetButton)
 	{
-		if (menu.closing || !FlxG.mouse.overlaps(button) && FlxG.mouse.pressed)
+		if (menu.closing || !FlxG.mouse.overlaps(button) && FlxG.mouse.pressed || !button.unlocked)
 			return;
 		Utils.shake("light");
 		menu.save_locked_selections(sheet_type, {sheet_name: def.name, selection: selection, selection_name: button.def.name});
@@ -347,6 +349,10 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 					var emote_def:EmoteDef = JsonData.get_emote(selection_name);
 					description_text.text = 'Made by ${emote_def.artist}';
 					title.text = emote_def.properName;
+				case PETS:
+					var pet_def:PetDef = JsonData.get_pet(selection_name);
+					description_text.text = pet_def.desc;
+					title.text = pet_def.display;
 			}
 		}
 		else
@@ -375,6 +381,7 @@ enum abstract SheetType(String) from String to String
 {
 	final COSTUMES = "costumes";
 	final EMOTES = "emotes";
+	final PETS = "pets";
 }
 
 private enum abstract State(String) from String to String

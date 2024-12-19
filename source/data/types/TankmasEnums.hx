@@ -45,7 +45,7 @@ enum abstract UnlockCondition(String) from String to String
 			case UnlockCondition.ACHIEVEMENT:
 				#if newgrounds return Main.ng_api.has_medal(Main.ng_api.medals.get(data)) #else return false #end; // where data is the name of a medal
 			case UnlockCondition.FLAG:
-				return Flags.get(data);
+				return Flags.get_bool(data);
 			case UnlockCondition.USERNAME:
 				return Main.username.toLowerCase() == cast(data, String).toLowerCase();
 			case UnlockCondition.SUPPORTER:
@@ -653,6 +653,68 @@ enum abstract NPCAnimation(SpriteAnimationDef) from SpriteAnimationDef to Sprite
 				duration: 5,
 				height: 1,
 				y: 0
+			},
+		]
+	};
+}
+
+/**
+ * Enum of fixed pet animations, probably will be moved
+ */
+enum abstract PetAnimation(SpriteAnimationDef) from SpriteAnimationDef to SpriteAnimationDef
+{
+	public static final IDLE:SpriteAnimationDef = {
+		name: "idle",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: true,
+		frames: [
+			{
+				duration: 1,
+				x: 0,
+				y: 0,
+				angle: 0,
+				height: 1.0,
+				width: 1.0
+			}
+		]
+	};
+
+	public static final MOVING:SpriteAnimationDef = {
+		name: "moving",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: true,
+		frames: [
+			{
+				duration: 2,
+				x: -5,
+				y: -16 + 8,
+				angle: 7
+			},
+			{
+				duration: 2,
+				y: -20 + 8,
+			},
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				angle: 0
+			},
+			{
+				duration: 2,
+				x: 5,
+				y: -16 + 8,
+				angle: -7
+			},
+			{
+				duration: 2,
+				y: -20 + 8,
+			},
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				angle: 0
 			},
 		]
 	};

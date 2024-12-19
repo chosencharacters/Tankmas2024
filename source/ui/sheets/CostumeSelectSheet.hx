@@ -9,12 +9,9 @@ import ui.sheets.defs.SheetDefs.SheetMenuDef;
 
 class CostumeSelectSheet extends BaseSelectSheet
 {
-	public static var seenCostumes:Array<String> = [];
-
 	public function new(sheet_name:String, menu:SheetMenu, ?forceState:Bool = true)
 	{
 		super(sheet_name, menu, COSTUMES);
-		seen = seenCostumes.copy();
 	}
 
 	override function load_new_def(name:String):SheetMenuDef

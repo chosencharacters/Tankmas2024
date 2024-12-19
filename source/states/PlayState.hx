@@ -6,6 +6,7 @@ import data.SaveManager;
 import entities.Interactable;
 import entities.Minigame;
 import entities.NPC;
+import entities.Pet;
 import entities.Player;
 import entities.Present;
 import entities.base.BaseUser;
@@ -36,6 +37,7 @@ import ui.popups.ServerNotificationMessagePopup;
 import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
+import ui.sheets.buttons.DialogueOptionBox;
 import video.PremiereHandler;
 import video.VideoSubstate.VideoUi;
 import zones.Door;
@@ -66,10 +68,13 @@ class PlayState extends BaseState
 	public var emotes:FlxTypedGroup<StickerFX> = new FlxTypedGroup<StickerFX>();
 	public var sticker_fx:FlxTypedGroup<NGSprite> = new FlxTypedGroup<NGSprite>();
 	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
+	public var dialogue_options:FlxTypedGroup<DialogueOptionBox> = new FlxTypedGroup<DialogueOptionBox>();
+
 	public var npcs:FlxTypedGroup<NPC> = new FlxTypedGroup<NPC>();
 	public var minigames:FlxTypedGroup<Minigame> = new FlxTypedGroup<Minigame>();
 	public var props_background:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 	public var props_foreground:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
+	public var pets:FlxTypedGroup<Pet> = new FlxTypedGroup<Pet>();
 
 	public var user_fx:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 
@@ -159,6 +164,7 @@ class PlayState extends BaseState
 
 		add(username_tags);
 
+		add(dialogue_options);
 		add(dialogues);
 
 		add(doors);
@@ -258,10 +264,6 @@ class PlayState extends BaseState
 		if (FlxG.keys.justPressed.N)
 			notification_message.show("I'm a test notification message and\n  I just want to say hi :)");
 
-		// Debug test change pet
-		if (FlxG.keys.justPressed.P)
-			player.data.pet = player.data.pet == None ? Dog : None;
-
 		if (FlxG.keys.justPressed.L)
 			player.data.scale = 1.0 + Math.random();
 		#end
@@ -279,7 +281,10 @@ class PlayState extends BaseState
 
 		world_objects.sort((order, a, b) ->
 		{
-			return FlxSort.byValues(order, a.y + a.height - a.y_bottom_offset, b.y + b.height - b.y_bottom_offset);
+			var a_val:Float = a != null ? a.y + a.height - a.y_bottom_offset ?? 0 : 0;
+			var b_val:Float = b != null ? b.y + b.height - b.y_bottom_offset ?? 0 : 0;
+
+			return FlxSort.byValues(order, a_val, b_val);
 		});
 	}
 

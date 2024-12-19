@@ -191,7 +191,7 @@
         {
             "name": "bitey",
             "display": "Bitey",
-            "desc": "...of Brackenwood!",
+            "desc": "...of Brackenwood!\n\nThe last Dashkin, they are as fast as they are elusive.",
             "unlock": "FLAG",
             "data": "BITEY_ENCOUNTERED"
         },
@@ -341,8 +341,8 @@
             "name": "mella",
             "display": "Mella Arrsh S'mora Sr.",
             "desc": "The perfect marshmallow to have ever been made. She's a fusion of over 2000 of them with more to come... Now stop roasting marshmallows you bums.",
-            "unlock": "USERNAME",
-            "data": "kingcrowned"
+            "unlock": "FLAG",
+            "data": "MELLA_UNLOCKED"
         },
         {
             "name": "sublo",
@@ -372,6 +372,62 @@
             "desc": "Mark Pimento. He's the kind of guy that could possibly be working for the mob whilst also predicting your future. You know that one uncle of yours that shows up with a stained shirt and unkempt hair right at the most in-opportune time for a \"quick visit?\" Yeah, that's Mark.",
             "unlock": "DATE",
             "data": 1734325200
+        },
+        {
+            "name": "aine",
+            "display": "Aine",
+            "desc": "The fabled phoenix knight, her firey sword is as quick as her steps as she hops bops and rolls through Lineria to set things right. Always eager to help the strange people she meets, she may be silent, but her actions have a lot to say. She's also a Chompy's best friend!",
+            "unlock": "DATE",
+            "data": 1734411600
+        },
+        {
+            "name": "henry-stick",
+            "display": "Henry Stickmin",
+            "desc": "A career criminal and kleptomaniac, Henry has done everything from steal the famed Tunisian Diamond to escaping from The Wall. Henry's ultimate goals are up to your decisions, and his final fate can go many ways. That's an impressive rep sheet. He is also a stick figure.",
+            "unlock": "DATE",
+            "data": 1734411600
+        },
+        {
+            "name": "ellie-stick",
+            "display": "Ellie Rose",
+            "desc": "An outlaw with a past as murky as her hair is red, Ellie is anything from a faithful right hand stick to Henry or even an antagonist in one case. She is also a stick figure.",
+            "unlock": "DATE",
+            "data": 1734411600
+        },
+        {
+            "name": "charles-stick",
+            "display": "Charles Calvin",
+            "desc": "An expert vehicle crasher and an all around popular guy for his lovable tendency to smash helicopters into things. He's an experienced pilot so some wonder why he keeps doing that. But oh well. He is also a stick figure.",
+            "unlock": "DATE",
+            "data": 1734411600
+        },
+        {
+            "name": "elephant",
+            "display": "Elephant",
+            "desc": "Helloaphant! This little blue Elephant has been going through so many adventures and different game genres. From collecting achievements to full fledged open ended worlds! Where will they go next?",
+            "unlock": "DATE",
+            "data": 1734498000
+        },
+        {
+            "name": "doki",
+            "display": "Doki",
+            "desc": "A super excitable bunny who just wants nothing more than to be with her one true love - Nabi!",
+            "unlock": "DATE",
+            "data": 1734498000
+        },
+        {
+            "name": "nabi",
+            "display": "Nabi",
+            "desc": "A more mild cat who at first doesn't seem to match Nabi's energy, but eventually warms up to her and resolves to do anything for love.",
+            "unlock": "DATE",
+            "data": 1734498000
+        },
+        {
+            "name": "il-ho",
+            "display": "Il-ho",
+            "desc": "A tough bunny who is protective of Doki, but warms up to Nabi eventually. He ends up being a useful ally in their quest to be accepted in the world.",
+            "unlock": "DATE",
+            "data": 1734498000
         }
     ]
 }

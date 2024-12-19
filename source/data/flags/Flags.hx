@@ -129,8 +129,9 @@ class Flags
 
 	static function bool_key_exists(key:String):Bool
 	{
-		if (key.indexOf("KEY_") == 0)
-			return true;
+		for (special_prefix in ["COSTUME_"])
+			if (key.indexOf(special_prefix) == 0)
+				return true;
 
 		return flags.get(key) != null;
 	}
@@ -139,7 +140,24 @@ class Flags
 	 * To add support for special Flag names
 	 */
 	static function get_bool_singular_value(key:String):Bool
+	{
+		// key item flag support
+		for (special_prefix in ["COSTUME_"])
+			if (key.indexOf(special_prefix) == 0)
+			{
+				var search_flag:String = key.split(special_prefix)[1];
+				var search_flag_upper:String = search_flag.toUpperCase().replace("-", "_"); // this line may be a redundancy
+				var search_flag_kebab:String = search_flag.toLowerCase().replace("_", "-");
+
+				switch (special_prefix)
+				{
+					case "COSTUME_":
+						return SaveManager.current_costume == search_flag_kebab;
+				}
+			}
+
 		return cast(flags.get(key), Bool);
+	}
 
 	public static function get_string(key:String):String
 		return flags.get(key) != null ? cast(get(key), String) : "";

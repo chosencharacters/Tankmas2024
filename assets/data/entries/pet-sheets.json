@@ -1,0 +1,68 @@
+{
+    "sheets": [
+        {
+            "name": "pets-series-1",
+            "items": [
+                {
+                    "name": "invisible-pet"
+                },
+                {
+                    "name": "tank-icon",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "chompy",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "angry-faic",
+                    "angle": -10
+                },
+                {
+                    "name": "elf-like-creature",
+                    "angle": -10
+                },
+                {
+                    "name": "elephant-small",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                }
+            ]
+        }
+    ]
+}

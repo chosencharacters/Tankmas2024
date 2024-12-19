@@ -1,0 +1,49 @@
+{
+    "pets": [
+        {
+            "name": "invisible-pet",
+            "display": "Nothing",
+            "desc": "It's nothing! Absolutely nothing! For those that hate pets. Jerk."
+        },
+        {
+            "name": "tank-icon",
+            "display": "tank.ico",
+            "desc": "Your own personal tank! It's small, compact, and good for going right next to your URL! Notice: Only one tank per user, while supplies last.",
+            "stats":{
+                "follow_speed":250,
+                "follow_acl":60,
+                "follow_accuracy":0.9,
+                "deadzone":64,
+                "drag":0.65
+            }
+        },
+        {
+            "name": "chompy",
+            "display": "Chompy",
+            "desc": "It's Chompy! These adorable lil guys have been friends of Linerians for ages! They are as soft as marshmellows and like to dress up as their best friends if they're around them long enough! They also like to... yanno, chomp! They only eat fruits, though!",
+            "stats":{
+                "follow_accuracy":0.8,
+                "drag":0.99
+            }
+        },
+        {
+            "name": "elephant-small",
+            "display": "Elephant",
+            "desc": "It's like an elephant, but small!"
+        },
+        {
+            "name": "elf-like-creature",
+            "display": "Elf Like Creature",
+            "desc": "This little Elf Like Creature (ELC) is festive. Okay? It's festive.",
+            "stats":{
+                "follow_accuracy":0.8,
+                "drag":0.95
+            }
+        },
+        {
+            "name": "angry-faic",
+            "display": "Angry Faic",
+            "desc": "What are you looking at? >:("
+        }
+    ]
+}

@@ -28,4 +28,9 @@ enum abstract TextFormatPresets(TextFormatDef) from TextFormatDef to TextFormatD
 
 	public static final DIALOGUE:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color: FlxColor.BLACK};
 	public static final TITLE:TextFormatDef = {font: TankmasFonts.HANDWRITTEN, color: FlxColor.BLACK, alignment: FlxTextAlign.CENTER};
+	public static final DIALOGUE_OPTION:TextFormatDef = {
+		font: TankmasFonts.HANDWRITTEN,
+		color: FlxColor.BLACK,
+		alignment: CENTER
+	};
 }

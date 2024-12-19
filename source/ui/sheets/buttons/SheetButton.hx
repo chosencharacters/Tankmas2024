@@ -4,6 +4,7 @@ import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
 import data.types.TankmasDefs.EmoteDef;
+import data.types.TankmasDefs.PetDef;
 import ui.button.HoverButton;
 import ui.sheets.BaseSelectSheet.SheetType;
 import ui.sheets.defs.SheetDefs.SheetItemDef;
@@ -50,7 +51,15 @@ class SheetButton extends HoverButton
 				if (costume.unlock != null)
 					return data.types.TankmasEnums.UnlockCondition.get_unlocked(costume.unlock, costume.data);
 			case SheetType.EMOTES:
+				#if sticker_whatevey
+				return true;
+				#else
 				return SaveManager.saved_emote_collection.contains(def.name);
+				#end
+			case SheetType.PETS:
+				var pet:PetDef = JsonData.get_pet(def.name);
+				if (pet.unlock != null)
+					return data.types.TankmasEnums.UnlockCondition.get_unlocked(pet.unlock, pet.data);
 		}
 		return true;
 	}

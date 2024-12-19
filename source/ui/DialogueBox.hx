@@ -1,10 +1,12 @@
 package ui;
 
+import data.SaveManager;
 import data.loaders.NPCLoader;
 import data.types.TankmasFontTypes;
 import flixel.tweens.FlxEase;
 import squid.ext.FlxTypedGroupExt;
 import squid.ui.FlxTextBMP;
+import ui.sheets.buttons.DialogueOptionBox;
 
 class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 {
@@ -14,7 +16,7 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 	var text:FlxTextBMP;
 	#end
 
-	var bg:FlxSpriteExt;
+	public var bg:FlxSpriteExt;
 
 	var dlgs:Array<NPCDLG>;
 
@@ -22,27 +24,38 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 
 	var line_number:Int = 0;
 
-	var type_index:Int;
-	var type_rate:Int = 2;
+	var char_index:Int;
+	var typing_rate:Int = 2;
 
 	public function get_dlg():NPCDLG
 		return dlgs[line_number];
 
-	var options:DialogueBoxOptions;
+	public var defines:DialogueBoxDefines;
 
 	var line_finished(get, default):Bool;
 
 	var text_position:FlxPoint;
 
 	public function get_line_finished()
-		return type_index >= dlg.text.str.length;
+		return char_index >= dlg.text.str.length;
 
-	public function new(dlgs:Array<NPCDLG>, ?options:DialogueBoxOptions)
+	/**
+	 * Prevents this from closing
+	 */
+	var hold_for_dialogue_options(get, default):Bool;
+
+	var option_boxes:Array<DialogueOptionBox> = [];
+
+	var kill_option_boxes:Bool = false;
+
+	var flags_changed:Bool = false;
+
+	public function new(dlgs:Array<NPCDLG>, ?defines:DialogueBoxDefines)
 	{
 		super();
 
 		this.dlgs = dlgs;
-		this.options = options == null ? {} : options;
+		this.defines = defines == null ? {} : defines;
 
 		PlayState.self.dialogues.add(this);
 
@@ -78,8 +91,6 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 		text.lineSpacing = -28;
 		#end
 
-		sstate(SWIPE_IN);
-
 		bg.scrollFactor.set(0, 0);
 		text.scrollFactor.set(0, 0);
 
@@ -88,18 +99,39 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 		add(bg);
 		add(text);
 		load_dlg(dlgs[line_number]);
+
+		sstate(SWIPE_IN, fsm);
 	}
 
 	public function load_dlg(dlg:NPCDLG)
 	{
 		text.text = "";
-		type_index = 0;
+		char_index = 0;
 		sstate(SWIPE_IN);
+		if (hold_for_dialogue_options)
+			spawn_dlg_options();
 	}
 
 	public function next_dlg()
 	{
+		if (kill_option_boxes)
+		{
+			for (option in option_boxes)
+				option.kill();
+			option_boxes = [];
+			dlg.options = [];
+		}
+
+		if (dlg.del_flag != null)
+			Flags.destroy_bool(dlg.del_flag);
+		if (dlg.set_flag != null)
+			Flags.set_bool(dlg.set_flag);
+
+		if (dlg.set_flag != null || dlg.del_flag != null)
+			flags_changed = true;
+
 		line_number = line_number + 1;
+
 		if (line_number < dlgs.length)
 		{
 			load_dlg(dlgs[line_number]);
@@ -113,10 +145,10 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 		kill();
 	}
 
-	public function type()
+	public function type_char()
 	{
-		type_index = type_index + 1;
-		text.text = dlg.text.str.substr(0, type_index);
+		char_index = char_index + 1;
+		text.text = dlg.text.str.substr(0, char_index);
 		if (line_finished)
 			sstate(IDLE);
 	}
@@ -144,23 +176,43 @@ class DialogueBox extends FlxTypedGroupExt<FlxSprite>
 				sstate(WAIT);
 			case TYPING:
 				if (Ctrl.jinteract[1] || FlxG.mouse.justPressed)
-					type_index = dlg.text.str.length - 1;
-				if (ttick() % type_rate == 0)
-					type();
+					char_index = dlg.text.str.length - 1;
+				if (ttick() % typing_rate == 0)
+					type_char();
 			case IDLE:
 				if (line_finished)
 				{
 					if (Ctrl.jinteract[1] || FlxG.mouse.justPressed)
-						sstate(SWIPE_OUT);
+						if (!hold_for_dialogue_options)
+							swipe_out();
 				}
 		}
 
 	override function kill()
 	{
+		if (flags_changed)
+			SaveManager.save();
+
 		Ctrl.mode = Ctrl.ControlModes.OVERWORLD;
-		options.on_complete != null ? options.on_complete() : false;
+		defines.on_complete != null ? defines.on_complete() : false;
 		PlayState.self.dialogues.remove(this, true);
 		super.kill();
+	}
+
+	function get_hold_for_dialogue_options():Bool
+		return dlg.options != null && dlg.options.length > 0;
+
+	public function spawn_dlg_options()
+	{
+		for (n in 0...dlg.options.length)
+			option_boxes.push(new DialogueOptionBox(n, dlg.options[n], this));
+	}
+
+	public function swipe_out(kill_option_boxes:Bool = false)
+	{
+		sstate(SWIPE_OUT);
+		if (kill_option_boxes)
+			this.kill_option_boxes = true;
 	}
 }
 
@@ -173,7 +225,8 @@ private enum abstract State(String) from String to String
 	var WAIT;
 }
 
-typedef DialogueBoxOptions =
+typedef DialogueBoxDefines =
 {
 	var ?on_complete:Void->Void;
+	var ?dialogue_options:Array<NPCDLGOption>;
 }

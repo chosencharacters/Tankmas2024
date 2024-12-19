@@ -35,8 +35,8 @@ class BaseState extends FlxState
 
 			#if !no_radio
 			radio = new RadioManager();
-			#else
-			var track:TrackDef = JsonData.get_track("HarktheAngel-Jumbs");
+			#elseif !no_music
+			var track:TrackDef = JsonData.get_track("spiritus-albe");
 			SoundPlayer.music(track).onComplete((_music) -> trace('Song started playing.'));
 			#end
 
@@ -86,7 +86,7 @@ class BaseState extends FlxState
 	{
 		#if dev_trace
 		if (trace_new_state && state != new_state)
-			trace('[${type}] New State: ${state} -> ${new_state}');
+			trace('New State: ${state} -> ${new_state}');
 		#end
 		if (reset_tick)
 			tick = 0;

@@ -23,6 +23,8 @@ typedef PresentDef =
 	var ?comicProperties:ComicDef;
 	var ?costumeUnlock:String;
 	var ?timelock:Int;
+	var ?unlocks_flag:String;
+	var ?requires_flag:String;
 }
 
 typedef TrackDef =
@@ -71,4 +73,25 @@ typedef SpriteAnimationFrameDef =
 	var ?angle:Int;
 	var duration:Int;
 	var ?frameNum:Int;
+}
+
+typedef PetDef =
+{
+	var name:String;
+	var display:String;
+	var ?desc:String;
+	var ?unlock:UnlockCondition;
+	var ?data:Dynamic;
+	var ?stats:PetStats;
+}
+
+typedef PetStats =
+{
+	var ?follow_speed:Int;
+	var ?follow_acl:Int;
+	var ?deadzone:Int;
+	var ?follow_offset_x:Int;
+	var ?follow_offset_y:Int;
+	var ?follow_accuracy:Float;
+	var ?drag:Float;
 }

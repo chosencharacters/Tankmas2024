@@ -29,6 +29,11 @@
             "id": "HarktheAngel-Jumbs",
             "name": "Jumbs",
             "artist": "Hark the Angels"
+        },
+        {
+            "id": "spiritus-albe",
+            "name": "Spiritus",
+            "artist": "Albe"
         }
     ]
 }

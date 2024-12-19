@@ -103,10 +103,16 @@
             "artist": "PukeBomb"
         },
         {
-            "day": 16,
-            "file": "day-16-art-pukebomb",
-            "title": "\"Boston Tea Bombing\"",
-            "artist": "PukeBomb"
+            "day": 17,
+            "file": "day-17-art-viathine",
+            "title": "Merry Krampmas!",
+            "artist": "Viathine"
+        },
+        {
+            "day": 18,
+            "file": "day-18-art-oddlem",
+            "title": "Very good present",
+            "artist": "Oddlem"
         },
         {
             "day": 13,
@@ -146,6 +152,14 @@
                 "pages": 16,
                 "cover": true
             }
+        },
+        {
+            "day": 16,
+            "file": "special-art-kingcrowned",
+            "title": "Happy Roasting",
+            "artist": "KingCrowned",
+            "requires_flag": "MELLA_PRESENT_UNLOCKED",
+            "unlocks_flag": "MELLA_UNLOCKED"
         }
     ]
 }

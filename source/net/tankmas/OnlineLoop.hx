@@ -124,7 +124,8 @@ class OnlineLoop
 
 	public static function iterate(elapsed:Float = 0.0)
 	{
-		#if !offline
+		#if offline return; #end
+
 		if (websocket != null)
 			websocket.update(elapsed);
 
@@ -146,11 +147,12 @@ class OnlineLoop
 
 		send_player_state(force_send_full_user);
 		force_send_full_user = false;
-		#end
 	}
 
 	public static function send_player_state(do_full_update:Bool = false)
 	{
+		#if offline return; #end
+
 		if (PlayState.self == null)
 			return;
 		var json:NetUserDef = PlayState.self.player.get_user_update_json(do_full_update);
@@ -178,7 +180,8 @@ class OnlineLoop
 
 	public static function post_event(event:NetEventDef, immediate = false, force = false)
 	{
-		#if !offline
+		#if offline return; #end
+
 		// Check if event is not spammed too quickly
 		var now = current_timestamp;
 		var throttle_interval = event_throttle_delays.exists(event.type) ? event_throttle_delays[event.type] : default_throttle_delay;
@@ -196,7 +199,6 @@ class OnlineLoop
 		event_send_timestamps[event.type] = now;
 
 		websocket.send_event(event.type, event.data, immediate);
-		#end
 	}
 
 	public static function update_user_visual(username:String, def:NetUserDef)
@@ -204,7 +206,8 @@ class OnlineLoop
 		if (PlayState.self == null)
 			return;
 
-		#if !ghosttown
+		#if ghosttown return; #end
+
 		var is_local_player = username == Main.username;
 
 		if (is_local_player && !def.immediate)
@@ -266,6 +269,5 @@ class OnlineLoop
 				// trace('$username marshmallows: ${def.data.marshmallow_streak}');
 			}
 		}
-		#end
 	}
 }

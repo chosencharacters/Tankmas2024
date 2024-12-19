@@ -1,18 +1,20 @@
 package entities.misc;
 
+import data.SaveManager;
 import video.VideoSubstate;
 
 class GamingDevice extends Interactable
 {
-	// var url:String = "https://uploads.ungrounded.net/tmp/6257000/6257910/file/alternate/alternate_1.720p.mp4?f1733891286";
-	var url = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
+	var url:String = "https://uploads.ungrounded.net/tmp/6257000/6257910/file/alternate/alternate_1.720p.mp4?f1733891286";
+	// TEst video
+	// var url = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
 	var video_overlay:VideoSubstate;
 
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y);
 
-		// PlayState.self.props_foreground.add(this);
+		PlayState.self.world_objects.add(this);
 
 		loadAllFromAnimationSet("gaming-device");
 		sstate(IDLE);
@@ -20,7 +22,6 @@ class GamingDevice extends Interactable
 		detect_range = 300;
 
 		interactable = true;
-		trace("new gamin");
 	}
 
 	override function update(elapsed:Float)
@@ -43,12 +44,10 @@ class GamingDevice extends Interactable
 	{
 		super.on_interact();
 		start_video();
-		trace("piipe");
 	}
 
 	override public function mark_target(mark:Bool)
 	{
-		trace("!!!");
 		if (mark && interactable)
 			sstate(NEARBY);
 		if (!mark && interactable)
@@ -63,14 +62,15 @@ class GamingDevice extends Interactable
 		PlayState.self.openSubState(video_overlay);
 		video_overlay.on_close = () ->
 		{
-			trace('video was closed');
+			Flags.set_bool("MELLA_PRESENT_UNLOCKED", true);
+			SaveManager.save();
 			video_overlay = null;
 		}
 	}
 
 	override function kill()
 	{
-		// PlayState.self.props_foreground.remove(this, true);
+		PlayState.self.world_objects.remove(this, true);
 		super.kill();
 	}
 }
