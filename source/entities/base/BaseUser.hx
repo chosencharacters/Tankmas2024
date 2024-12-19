@@ -104,11 +104,17 @@ class BaseUser extends NGSprite
 			// default:
 			case "idle" | null:
 				if (moving)
+				{
 					sprite_anim.anim(get_move_animation());
+					anim('${flipX ? "left" : "right"}-move');
+				}
 			case move_anim_name:
 				walk_fx();
 				if (!moving)
+				{
 					sprite_anim.anim(PlayerAnimation.IDLE);
+					anim('${flipX ? "left" : "right"}-idle');
+				}
 		}
 	}
 
@@ -130,9 +136,44 @@ class BaseUser extends NGSprite
 
 	public function new_costume(costume:CostumeDef)
 	{
-		loadGraphic(Paths.get('${costume.name}.png'));
+		var costume_name:String = costume.name;
+		var anim_set_name:String = 'costume-${Lists.animSets.exists('costume-${costume_name}') ? costume_name : "default"}';
+
+		loadAllFromAnimationSet(anim_set_name, costume_name);
+		fill_missing_anims();
+
 		original_size.set(width, height);
 		this.costume = costume;
+	}
+
+	/**Note: This doesn't add it to the animSet, so on the off chance you need that, this function will need to be upgraded**/
+	public function fill_missing_anims()
+	{
+		if (!animSet.animations.exists("left-idle"))
+			load_anim_from_def(clone_anim_def("left", "left-idle"));
+		if (!animSet.animations.exists("right-idle"))
+			load_anim_from_def(clone_anim_def("right", "right-idle"));
+		if (!animSet.animations.exists("left-move"))
+			load_anim_from_def(clone_anim_def("left-idle", "left-move"));
+		if (!animSet.animations.exists("right-move"))
+			load_anim_from_def(clone_anim_def("right-idle", "right-move"));
+	}
+
+	// will move this later
+	function clone_anim_def(src_def_name:String, clone_def_name:String):AnimDef
+	{
+		final src_def:AnimDef = animSet.animations.get(src_def_name);
+		final clone_def:AnimDef = {
+			name: clone_def_name,
+			frames: src_def.frames,
+			frames_string: src_def.frames_string,
+			fps: src_def.fps,
+			looping: src_def.looping,
+			linked: src_def.linked
+		};
+
+		animSet.animations.set(clone_def_name, clone_def);
+		return clone_def;
 	}
 
 	override function updateMotion(elapsed:Float)

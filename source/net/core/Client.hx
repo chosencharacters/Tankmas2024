@@ -1,10 +1,10 @@
 package net.core;
 
-import net.tankmas.NetDefs.GenerateBasicAuthHeader;
 import haxe.Http;
 import haxe.http.HttpStatus;
 import http.HttpClient;
 import http.HttpError;
+import net.tankmas.NetDefs.GenerateBasicAuthHeader;
 
 class Client
 {

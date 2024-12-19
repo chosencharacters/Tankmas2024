@@ -112,8 +112,6 @@ class NPCLoader
 		var xml:Xml = Utils.file_to_xml(file_path);
 		for (npc_xml in xml.tags("npc"))
 			map.set(npc_xml.get("name"), xml_to_npc_def(npc_xml));
-		for (element in map.get("thomas").states)
-			trace(element);
 	}
 
 	static function xml_to_npc_def(npc_xml:Xml):NPCDef

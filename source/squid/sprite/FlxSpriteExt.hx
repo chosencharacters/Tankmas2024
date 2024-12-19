@@ -494,11 +494,11 @@ class FlxSpriteExt extends YSortable
 
 		animLoaded = true;
 
-		for (set in animSet.animations)
+		for (anim_def in animSet.animations)
 		{
-			animation.remove(set.name);
-			animAdd(set, set.name, set.frames, set.fps, set.looping, false, false, set.linked, frame_offset);
-			if (set.name == auto_play)
+			load_anim_from_def(anim_def);
+
+			if (anim_def.name == auto_play)
 				anim(auto_play);
 		}
 
@@ -507,6 +507,12 @@ class FlxSpriteExt extends YSortable
 		post_animation_set_load();
 
 		return this;
+	}
+
+	public function load_anim_from_def(anim_def:AnimDef, frame_offset:Int = 0)
+	{
+		animation.remove(anim_def.name);
+		animAdd(anim_def, anim_def.name, anim_def.frames, anim_def.fps, anim_def.looping, false, false, anim_def.linked, frame_offset);
 	}
 
 	public function post_animation_set_load()
