@@ -58,6 +58,19 @@
             "desc": "Always starving, this cat needs their sushi!",
             "unlock": "DATE",
             "data": 1734584400
+        },
+        {
+            "name": "swf",
+            "display": "SWF",
+            "desc": "It's an SWF! These guys contain so many different worlds in them. What could this one have?",
+            "unlock": "DATE",
+            "data": 1734584400
+        },
+        {
+            "name": "swf-blammed",
+            "display": "Blammed",
+            "desc": "Oh... This SWF doesn't look too good...",
+            "unlock": "SUPPORTER"
         }
     ]
 }

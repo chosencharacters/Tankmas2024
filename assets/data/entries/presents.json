@@ -158,6 +158,14 @@
                 "pages": 16,
                 "cover": true
             }
+        },
+        {
+            "day": 16,
+            "file": "special-art-kingcrowned",
+            "title": "Happy Roasting",
+            "artist": "KingCrowned",
+            "requires_flag": "MELLA_PRESENT_UNLOCKED",
+            "unlocks_flag": "MELLA_UNLOCKED"
         }
     ]
 }

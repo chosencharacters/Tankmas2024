@@ -139,6 +139,14 @@
         {
             "name": "golden-marshmallow",
             "id": 81788
+        },
+        {
+            "name": "bitey-unlocked",
+            "id": 81789
+        },
+        {
+            "name": "blade-unlocked",
+            "id": 81790
         }
     ]
 }

@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <root>
-	<animSet image="present">
+	<animSet image="present-old">
 		<anim name="idle" fps="100ms" looping="false">0</anim>
 		<anim name="nearby" fps="100ms">1t6</anim>
 		<anim name="open" fps="100ms" looping="false">7t9</anim>
 		<anim name="opened" fps="100ms" looping="false">9</anim>
+	</animSet>
+
+	<animSet image="present-default">
+		<anim name="closed">0</anim>
+		<anim name="open">1</anim>
+	</animSet>
+
+	<animSet image="move-circle">
+		<anim name="idle" fps="100ms" looping="false">0t4</anim>
+	</animSet>
+
+	<animSet image="dialogue-box" width="1610" height="407">
+		<anim name="idle">0</anim>
+		<anim name="has-next">1</anim>
+	</animSet>
+
+	<animSet image="cursor" width="132" height="164">
+		<anim name="neutral">0</anim>
+		<anim name="hold">1</anim>
+		<anim name="release" looping="false">2t4</anim>
+		<anim name="to-hold" looping="false">5t8</anim> 
 	</animSet>
 
 	<animSet image="new-sticker-overlay">
@@ -44,67 +65,5 @@
 
 	<animSet image="rare-sticker-pack-icon">
 		<anim name="idle" fps="60ms">0t14</anim>
-	</animSet>
-
-	<animSet image="move-circle">
-		<anim name="idle" fps="100ms" looping="false">0t4</anim>
-	</animSet>
-
-	<animSet image="outside-bonfire" width="919" height="1374">
-		<anim name="idle" fps="40ms">0t33</anim>
-	</animSet>
-
-	<animSet image="present-any">
-		<anim name="closed">0</anim>
-		<anim name="open">1</anim>
-	</animSet>
-
-	<animSet image="tombstone">
-		<anim name="idle">0</anim>
-	</animSet>
-
-	<animSet image="concierge">
-		<anim name="idle">0t17</anim>
-	</animSet>
-
-	<animSet image="dialogue-box" width="1610" height="407">
-		<anim name="idle">0</anim>
-		<anim name="has-next">1</anim>
-	</animSet>
-
-	<animSet image="javert">
-		<anim name="idle" fps="100ms">0t12</anim>
-	</animSet>
-
-	<animSet image="lil-jimby">
-		<anim name="idle" fps="100ms">0t10</anim>
-	</animSet>
-
-	<animSet image="mallow">
-		<anim name="idle" fps="100ms">0t1,0h20,0t1,2t8</anim>
-	</animSet>
-
-	<animSet image="cursor" width="132" height="164">
-		<anim name="neutral">0</anim>
-		<anim name="hold">1</anim>
-		<anim name="release" looping="false">2t4</anim>
-		<anim name="to-hold" looping="false">5t8</anim> 
-	</animSet>
-
-	<animSet image="sakura-small||sakura-medium">
-		<anim name="idle" fps="100ms" looping="false">0t17</anim>
-	</animSet>
-
-	<animSet image="sakura-small||sakura-medium">
-		<anim name="idle" fps="100ms" looping="false">0t17</anim>
-	</animSet>
-
-	<animSet image="concierge-invisible">
-		<anim name="idle" fps="100ms" looping="false">0</anim>
-	</animSet>
-
-	<animSet image="gaming-device">
-		<anim name="idle" fps="100ms" looping="false">0</anim>
-		<anim name="nearby" fps="100ms" looping="false">1t18</anim>
 	</animSet>
 </root>

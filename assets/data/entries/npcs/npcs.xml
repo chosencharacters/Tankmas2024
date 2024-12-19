@@ -159,6 +159,11 @@
                 <dlg>That's messed up, dude.</dlg>
             </option>
         </state>
+        <state name="same-char" if="COSTUME_MELLA">
+            <dlg>Mella! I'm so glad to see you!</dlg>
+            <dlg>...Get me out of here?</dlg>
+            <dlg>...Please?</dlg>
+        </state>
     </npc>
     <npc name="backpacker-jill">
         <animation type="idle" sprite_anim="float-fast" />

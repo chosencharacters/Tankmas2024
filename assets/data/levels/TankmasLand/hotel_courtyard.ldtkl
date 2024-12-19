@@ -1219,6 +1219,48 @@
 					],
 					"__worldX": 1344,
 					"__worldY": 832
+				},
+				{
+					"__identifier": "Misc",
+					"__grid": [178,69],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFE600",
+					"iid": "519a6f90-9b00-11ef-ad5d-c1076ca396ee",
+					"width": 64,
+					"height": 64,
+					"defUid": 49,
+					"px": [2848,1104],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "gaming-device", "__tile": null, "defUid": 50, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["gaming-device"]
+					}] }],
+					"__worldX": 2848,
+					"__worldY": 1104
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [52,183],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "567bfa60-9b00-11ef-ad5d-296b0df354e8",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [832,2928],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "kingcrowned", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["kingcrowned"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 16, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [16] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 832,
+					"__worldY": 2928
 				}
 			]
 		},

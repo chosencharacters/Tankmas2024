@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+	<animSet image="tombstone">
+		<anim name="idle">0</anim>
+	</animSet>
+
+	<animSet image="concierge">
+		<anim name="idle">0t17</anim>
+	</animSet>
+
+	<animSet image="javert">
+		<anim name="idle" fps="100ms">0t12</anim>
+	</animSet>
+
+	<animSet image="lil-jimby">
+		<anim name="idle" fps="100ms">0t10</anim>
+	</animSet>
+
+	<animSet image="mallow">
+		<anim name="idle" fps="100ms">0t1,0h20,0t1,2t8</anim>
+	</animSet>
+
+	<animSet image="concierge-invisible">
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+	</animSet>
+</root>

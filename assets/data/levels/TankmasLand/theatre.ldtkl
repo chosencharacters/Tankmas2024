@@ -611,7 +611,10 @@
 							"id": "V_String",
 							"params": ["blade-the-hedgehog"]
 						}] },
-						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
+						{ "__identifier": "timelock", "__type": "String", "__value": "1734584400", "__tile": null, "defUid": 38, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["1734584400"]
+						}] }
 					],
 					"__worldX": 2032,
 					"__worldY": 2768
