@@ -10,6 +10,8 @@ class GamingDevice extends Interactable
 	// var url = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
 	var video_overlay:VideoSubstate;
 
+	var sound_played:Bool = false;
+
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y);
@@ -38,6 +40,8 @@ class GamingDevice extends Interactable
 				anim("idle");
 			case NEARBY:
 				animProtect("nearby");
+				if (!sound_played)
+					SoundPlayer.sound("gaming-device-near", 0.5);
 		}
 
 	override public function on_interact()
