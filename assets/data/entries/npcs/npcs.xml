@@ -284,8 +284,8 @@
             <option label="I like your digs">
                 <dlg>Uh. Thanks I guess? Look. I know I'm something new. Something different.</dlg>
                 <dlg>But at the end of the day I'm just your friendly neighberhood hedgehog</dlg>
-                <option label="No, I REALLY like your digs">
-                    <dlg if="!BLADE_UNLOCKED" set="BLADE_UNLOCKED">Okay. Duder. Whatever. Just don't go copying me.</dlg>
+                <option label="No I REALLY like your digs">
+                    <dlg set="BLADE_UNLOCKED">Okay. Duder. Whatever. Just don't go copying me.</dlg>
                 </option>
                 <option label="Your sword's cool">
                     <dlg>Yea it is. It was gonna be electric until they cut it from- nevermind.</dlg>
