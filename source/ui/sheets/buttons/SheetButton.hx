@@ -28,8 +28,19 @@ class SheetButton extends HoverButton
 
 		this.def = def;
 
-		empty = def.name == null || def.name == "";
-		loadAllFromAnimationSet(!empty ? def.name : "thomas");
+		if (sheet_type != COSTUMES || def == null || def.name == null)
+		{
+			empty = def.name == null || def.name == "";
+			loadAllFromAnimationSet(!empty ? def.name : "thomas");
+		}
+		else
+		{
+			var costume_name:String = def.name;
+			var anim_set_name:String = 'costume-${Lists.animSets.exists('costume-${costume_name}') ? costume_name : "default"}';
+
+			loadAllFromAnimationSet(anim_set_name, costume_name);
+			animation.frameIndex = 0;
+		}
 
 		update_unlocked();
 	}

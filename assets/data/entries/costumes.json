@@ -482,6 +482,13 @@
             "desc": "It's Behemoth in both name and size!",
             "unlock": "DATE",
             "data": 1734670800
+        },
+        {
+            "name": "amogus-impostor",
+            "display": "Purple Imposter",
+            "desc": "sus.",
+            "unlock": "FLAG",
+            "data": "UNLOCK_IMPOSTOR"
         }
     ]
 }

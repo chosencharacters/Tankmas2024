@@ -1,6 +1,5 @@
 package levels;
 
-import states.PlayState.YSortable;
 import activities.ActivityArea;
 import entities.Minigame;
 import entities.NPC;
@@ -11,6 +10,7 @@ import flixel.tile.FlxTilemap;
 import flixel.util.FlxDirectionFlags;
 import levels.LDTKLevel;
 import levels.LdtkProject;
+import states.PlayState.YSortable;
 import zones.Door;
 
 enum abstract RoomId(Int) from Int from Int
@@ -82,7 +82,7 @@ class TankmasLevel extends LDTKLevel
 			new Player(x + entity.pixelX, y + entity.pixelY);
 
 		for (entity in level.l_Entities.all_NPC.iterator())
-			new NPC(x + entity.pixelX, y + entity.pixelY, entity.f_name, Std.parseInt(entity.f_timelock));
+			new NPC(x + entity.pixelX, y + entity.pixelY, entity.f_name, Std.parseInt(entity.f_timelock), entity.f_if_flag, entity.f_unless_flag);
 
 		for (entity in level.l_Entities.all_Present.iterator())
 			new Present(x + entity.pixelX, y + entity.pixelY, entity.f_username, Std.parseInt(entity.f_timelock));

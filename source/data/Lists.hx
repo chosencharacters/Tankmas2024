@@ -47,7 +47,10 @@ class Lists
 
 		JsonData.init();
 
-		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("npcs.xml"));
+		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("general-npc-dlgs.xml"));
+		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("amogus-npc-dlgs.xml"));
+
+		// recursive_file_operation(false, '${assets_path}', "npc-dlgs.xml", (path) -> NPCLoader.load_npc_defs_from_file(npcs, path));
 
 		animSets.clear();
 		textStorage.clear();
@@ -170,6 +173,8 @@ class Lists
 	}
 
 	public static function recursive_file_operation(?verboise:Bool = false, path:String, ext:String, file_operation:String->Void)
+	{
+		trace(find_all_files_by_name(verboise, path, ext));
 		for (file_path in find_all_files_by_name(verboise, path, ext))
 			try
 			{
@@ -177,10 +182,13 @@ class Lists
 			}
 			catch (e)
 			{
-				#if !demo_assets
+				#if dev
 				throw e;
+				#else
+				trace(e);
 				#end
 			}
+	}
 
 	public static function find_all_files_by_name(?verboise:Bool = false, path:String, ext:String):Array<String>
 	{

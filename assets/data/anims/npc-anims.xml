@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <root>
+	<animSet image="npc-default">
+		<anim name="idle">0</anim>
+		<anim name="nearby">0</anim>
+	</animSet>
+
 	<animSet image="tombstone">
 		<anim name="idle">0</anim>
 	</animSet>

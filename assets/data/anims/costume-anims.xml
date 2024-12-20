@@ -12,7 +12,7 @@
 	</animSet>
 
 	<animSet image="costume-mc-kun">
-		<anim name="left">0</anim>
-		<anim name="right">1</anim>
+		<anim name="left">1</anim>
+		<anim name="right">0</anim>
 	</animSet>
 </root>

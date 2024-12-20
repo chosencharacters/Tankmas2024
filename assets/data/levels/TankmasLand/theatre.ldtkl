@@ -614,10 +614,63 @@
 						{ "__identifier": "timelock", "__type": "String", "__value": "1734584400", "__tile": null, "defUid": 38, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["1734584400"]
-						}] }
+						}] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
 					],
 					"__worldX": 2032,
 					"__worldY": 2768
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [67,186],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "0cd697e0-9b00-11ef-8a0b-23e07aa075fb",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1072,2976],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "amogus-orange", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["amogus-orange"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": 1072,
+					"__worldY": 2976
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [85,180],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "1296c2e0-9b00-11ef-8a0b-998c7504b571",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1360,2880],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "amogus-purple", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["amogus-purple"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": "AMOGUS_QUEST_ACTIVE", "__tile": null, "defUid": 90, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["AMOGUS_QUEST_ACTIVE"]
+						}] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": 1360,
+					"__worldY": 2880
 				}
 			]
 		},

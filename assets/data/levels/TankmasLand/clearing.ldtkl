@@ -468,7 +468,9 @@
 							"id": "V_String",
 							"params": ["bitey"]
 						}] },
-						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] }
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
 					],
 					"__worldX": 5344,
 					"__worldY": 3712

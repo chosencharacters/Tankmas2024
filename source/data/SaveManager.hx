@@ -139,12 +139,36 @@ class SaveManager
 	public static function save_flags(force:Bool = false)
 	{
 		FlxG.save.data.flags = Flags.get_all();
+		medal_flags();
 	}
 
 	public static function load_flags()
 	{
 		if (FlxG.save.data.flags != null)
 			Flags.load(FlxG.save.data.flags);
+		medal_flags();
+	}
+
+	static function medal_flags()
+	{
+		trace(Flags.get_all().keys());
+		#if newgrounds
+		for (flag in Flags.get_all().keys())
+		{
+			trace(flag);
+			switch (flag)
+			{
+				case "BITEY_ENCOUNTERED":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("bitey-unlocked"));
+				case "BLADE_UNLOCKED":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("blade-unlocked"));
+				case "UNLOCK_IMPOSTOR":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("amogus-unlocked"));
+				case "MELLA_UNLOCKED":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("mella-unlocked"));
+			}
+		}
+		#end
 	}
 
 	public static function save_collections(force:Bool = false):Void

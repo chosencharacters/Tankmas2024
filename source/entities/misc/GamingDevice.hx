@@ -41,7 +41,10 @@ class GamingDevice extends Interactable
 			case NEARBY:
 				animProtect("nearby");
 				if (!sound_played)
+				{
 					SoundPlayer.sound("gaming-device-near", 0.5);
+					sound_played = true;
+				}
 		}
 
 	override public function on_interact()

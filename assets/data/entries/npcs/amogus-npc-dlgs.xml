@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <npc name="amogus-green">
+        <state name="default">
+            <dlg set="AMOGUS_GREEN">*Is green the imposter?*</dlg>
+        </state>
+        <state name="already-seen" if="AMOGUS_GREEN">
+            <dlg>*Looks like you've already found green*</dlg>
+        </state>
+    </npc>
+    <npc name="amogus-purple">
+        <state name="default">
+            <dlg set="AMOGUS_PURPLE">*Is purple the imposter?*</dlg>
+            <dlg>*Probably not, right? Everyone loves purple.*</dlg>
+        </state>
+        <state name="already-seen" if="AMOGUS_PURPLE">
+            <dlg>*Looks like you've already found this crewmate*</dlg>
+        </state>
+    </npc>
+    <npc name="amogus-blue">
+        <state name="default">
+            <dlg set="AMOGUS_BLUE">*Is blue the imposter?*</dlg>
+        </state>
+        <state name="already-seen" if="AMOGUS_BLUE">
+            <dlg>*Looks like you've already found this crewmate*</dlg>
+        </state>
+    </npc>
+    <npc name="amogus-red">
+        <state name="default">
+            <dlg set="AMOGUS_RED">*Is red the imposter?*</dlg>
+        </state>
+        <state name="already-seen" if="AMOGUS_RED">
+            <dlg>*Looks like you've already found this crewmate*</dlg>
+        </state>
+    </npc>
+    <npc name="amogus-orange">
+        <state name="default">
+            <dlg>*Poor orange... Who could've seen it coming?*</dlg>
+        </state>
+        <state name="quest-start" if="!UNLOCK_IMPOSTOR_and_!AMOGUS_QUEST_ACTIVE">
+            <dlg set="AMOGUS_ORANGE">*Orange doesn't look too good...*</dlg>
+            <dlg>*You better call an emergency meeting!*</dlg>
+        </state>
+        <state name="already-seen" if="AMOGUS_QUEST_ACTIVE">
+            <dlg>*Poor orange... Who could've seen it coming?*</dlg>
+        </state>
+        <state name="same-costume" if="COSTUME_AMOGUS_IMPOSTOR">
+            <dlg>*The results of your handiwork. Did it feel good?*</dlg>
+            <option label="Yea...">
+                <dlg>*Yes. It's the ultimate thrill, to kill an orange spaceman. Is it not?*</dlg>
+                <option label="I wouldn't say that">
+                    <dlg>*Lying gets you on the naughty list, you know*</dlg>
+                </option>
+                <option label="Someone gets it">
+                    <dlg>*Good... Good...*</dlg>
+                </option>
+            </option>
+            <option label="No">
+                <dlg>*You lie to yourself*</dlg>
+            </option>
+        </state>
+    </npc>
+    <npc name="emergency-button">
+        <state name="default">
+            <dlg>*This button looks big, red, and ready to be pressed at a moment's suspicion*</dlg>
+        </state>
+        <state name="quest-start" if="AMOGUS_ORANGE">
+            <dlg del="AMOGUS_ORANGE">Emergency Meeting! Crewmate orange has been found dead!*</dlg>
+            <dlg set="AMOGUS_QUEST_ACTIVE">*4 Crewmates are hiding around the area. Find all of them then report back here!*</dlg>
+        </state>
+        <state name="quest-complete" if="AMOGUS_RED_and_AMOGUS_BLUE_and_AMOGUS_PURPLE_and_AMOGUS_GREEN">
+            <dlg>*Alright, you've found all four crewmates, so who did it?*</dlg>
+            <option label="Better dead than Red">
+                <dlg>*That's... Not right. Try again.*</dlg>
+            </option>
+            <option label="Blue totally vented">
+                <dlg>*Lying gets you on the naughty list, you know*</dlg>
+            </option>
+            <option label="Green is mean">
+                <dlg>*That may be true, but you sit on a throne of lies*</dlg>
+            </option>
+            <option label="Purple!!!">
+                <dlg>*Purple? Are you sure? Sweet innocent purple?*</dlg>
+                <option label="Yea it was purple">
+                    <dlg>*Come on, it couldn't have been purple.*</dlg>
+                    <option label="Purple is sus">
+                        <dlg>*Woah. This is a family friendly holiday experience. Do not just throw words like that around.*</dlg>
+                        <option label="Purple. Is. Sus">
+                            <dlg del="AMOGUS_QUEST_ACTIVE" set="UNLOCK_IMPOSTOR">Well. If it was purple. Then you'll have them as an imposter costume.*</dlg>
+                            <dlg del="AMOGUS_RED,AMOGUS_BLUE,AMOGUS_PURPLE,AMOGUS_GREEN">If not. Then too bad.*</dlg>
+                        </option>
+                        <option label="Maybe I should watch my language...">
+                            <dlg>*Yea you should. Also. Try again.*</dlg>
+                        </option>
+                    </option>
+                    <option label="Maybe it wasn't purple">
+                        <dlg>*Yea. You should try again.*</dlg>
+                    </option>
+                </option>
+                <option label="Well now I'm not so sure">
+                    <dlg>*Yea. You should try again.*</dlg>
+                </option>
+            </option>
+        </state>
+        <state name="quest-active" if="AMOGUS_QUEST_ACTIVE" unless="AMOGUS_RED_and_AMOGUS_BLUE_and_AMOGUS_PURPLE_and_AMOGUS_GREEN">
+            <dlg>*4 Crewmates are hiding around the area. Find all of them then report back here!*</dlg>
+        </state>
+    </npc>
+</root>

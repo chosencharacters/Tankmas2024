@@ -13,9 +13,15 @@ class NPC extends Interactable
 
 	var def:NPCDef;
 
-	public function new(?X:Float, ?Y:Float, name:String, timelock:Int)
+	var if_flag:String;
+	var unless_flag:String;
+
+	public function new(?X:Float, ?Y:Float, name:String, timelock:Int, ?if_flag:String, ?unless_flag:String)
 	{
 		super(X, Y);
+
+		this.if_flag = if_flag;
+		this.unless_flag = unless_flag;
 
 		def = Lists.npcs.get(name);
 
@@ -30,7 +36,9 @@ class NPC extends Interactable
 
 		PlayState.self.world_objects.add(this);
 
-		loadAllFromAnimationSet(name);
+		var anim_set_name:String = Lists.animSets.exists(name) ? name : "npc-default";
+
+		loadAllFromAnimationSet(anim_set_name, name);
 
 		sstate(IDLE, fsm);
 	}
@@ -80,9 +88,11 @@ class NPC extends Interactable
 
 	function spawn_condition_check():Bool
 	{
-		if (timelock > 0 && Main.time.utc < timelock)
-			return false;
-		return true;
+		var TIMELOCKED:Bool = timelock > 0 && Main.time.utc < timelock;
+		var IF_FLAG_CHECK:Bool = if_flag == null || Flags.get_bool(if_flag);
+		var UNLESS_FLAG_BLOCKED:Bool = unless_flag != null && Flags.get_bool(unless_flag);
+
+		return !TIMELOCKED && IF_FLAG_CHECK && !UNLESS_FLAG_BLOCKED;
 	}
 
 	override function on_interact()
