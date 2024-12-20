@@ -66,4 +66,11 @@
 	<animSet image="rare-sticker-pack-icon">
 		<anim name="idle" fps="60ms">0t14</anim>
 	</animSet>
+
+	<animSet image="emote-fx" width="200" height="200">
+		<anim name="in" fps="60ms" looping="false">0t14</anim>
+		<anim name="idle" fps="60ms">15</anim>
+		<anim name="out" fps="60ms" looping="false">16t24</anim>
+		<variable name="visible" frames="4t20"/>
+	</animSet>
 </root>

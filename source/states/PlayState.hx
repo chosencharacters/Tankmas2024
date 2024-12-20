@@ -1,6 +1,5 @@
 package states;
 
-import video.InGameVideoUI;
 import activities.ActivityArea;
 import data.SaveManager;
 import entities.Interactable;
@@ -14,7 +13,7 @@ import entities.base.NGSprite;
 import flixel.FlxBasic.IFlxBasic;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxSort;
-import fx.StickerFX;
+import fx.EmoteFX;
 import fx.Thumbnail;
 import input.InputManager;
 import input.InputManager;
@@ -38,6 +37,7 @@ import ui.popups.StickerPackOpening;
 import ui.sheets.*;
 import ui.sheets.SheetMenu;
 import ui.sheets.buttons.DialogueOptionBox;
+import video.InGameVideoUI;
 import video.PremiereHandler;
 import video.VideoSubstate.VideoUi;
 import zones.Door;
@@ -65,8 +65,8 @@ class PlayState extends BaseState
 	public var objects:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 	public var thumbnails:FlxTypedGroup<Thumbnail> = new FlxTypedGroup<Thumbnail>();
 	public var shadows:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
-	public var emotes:FlxTypedGroup<StickerFX> = new FlxTypedGroup<StickerFX>();
-	public var sticker_fx:FlxTypedGroup<NGSprite> = new FlxTypedGroup<NGSprite>();
+	public var emotes:FlxTypedGroup<EmoteFX> = new FlxTypedGroup<EmoteFX>();
+	public var emote_fx:FlxTypedGroup<FlxSpriteExt> = new FlxTypedGroup<FlxSpriteExt>();
 	public var dialogues:FlxTypedGroup<DialogueBox> = new FlxTypedGroup<DialogueBox>();
 	public var dialogue_options:FlxTypedGroup<DialogueOptionBox> = new FlxTypedGroup<DialogueOptionBox>();
 
@@ -128,6 +128,8 @@ class PlayState extends BaseState
 	{
 		super.create();
 
+		new FlxSpriteExt().loadAllFromAnimationSet("emote-fx");
+
 		Ctrl.mode = ControlModes.OVERWORLD;
 
 		trace('New Playstate');
@@ -170,7 +172,7 @@ class PlayState extends BaseState
 		add(doors);
 
 		add(emotes);
-		add(sticker_fx);
+		add(emote_fx);
 
 		add(in_world_ui_overlay);
 		add(debug_layer);

@@ -93,7 +93,7 @@ class BaseUser extends NGSprite
 		if (this.emote_name == emote_name)
 			return false;
 		this.emote_name = emote_name;
-		new fx.StickerFX(this, emote_name, () -> this.emote_name = null);
+		new fx.EmoteFX(this, emote_name, () -> this.emote_name = null);
 		return true;
 	}
 

@@ -1,7 +1,7 @@
 package ui;
 
-import bunnymark.PlayState;
 import squid.sprite.TempSprite;
+import states.PlayState;
 
 enum PressType
 {
