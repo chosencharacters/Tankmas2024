@@ -7,8 +7,11 @@ typedef PremiereData =
 {
 	var name:String;
 	var timestamp:Float;
-	var url:String;
+	var ?url:String;
 	var released:Bool;
+	var length:Int;
+
+	var ?resume_time:Float;
 }
 
 typedef PremiereList =
@@ -18,6 +21,8 @@ typedef PremiereList =
 
 class PremiereHandler
 {
+	final PREMIERE_EXCLUSIVE_LOOP_DURATION = 60 * 60 * 24 * 1000;
+
 	/**
 	 * Called when the data has been retrieved and the next premiere has been selected.
 	 */
@@ -28,24 +33,29 @@ class PremiereHandler
 	 */
 	public var on_premiere_release:(d:PremiereData) -> Void = null;
 
-	var current_premiere:PremiereData = null;
+	var next_premiere:PremiereData = null;
 
 	var enable_recheck:Bool = false;
 	var recheck_timestamp:Float = 0;
 
+	// Total playlist length in milliseconds
+	public var total_playlist_length:Int = 0;
+
+	var available_premieres:Array<PremiereData> = [];
+
 	public function new() {}
 
-	public function get_active_premiere()
+	public function get_next_premiere()
 	{
-		return current_premiere;
+		return next_premiere;
 	}
 
-	public function get_time_until_next_premiere()
+	public function get_time_until_next_premiere():Null<Float>
 	{
-		if (current_premiere == null)
-			return -1.0;
+		if (next_premiere == null)
+			return null;
 
-		return Math.max(0, current_premiere.timestamp - (Main.time.utc / 1000.0));
+		return Math.max(0, next_premiere.timestamp - (Main.time.utc / 1000.0));
 	}
 
 	public function update(elapsed:Float)
@@ -54,9 +64,7 @@ class PremiereHandler
 		{
 			var now = Date.now().getTime();
 			if (now >= recheck_timestamp)
-			{
 				refresh();
-			}
 		}
 	}
 
@@ -76,82 +84,109 @@ class PremiereHandler
 			return;
 		}
 
-		if (on_loaded != null)
-			on_loaded();
-
 		// Guarantee premieres are sorted by timestamp.
-		premieres.sort(function(a, b)
-		{
-			return Std.int(a.timestamp) - Std.int(b.timestamp);
-		});
+		premieres.sort((a, b) -> Std.int(a.timestamp) - Std.int(b.timestamp));
 
-		var fallback_premiere:PremiereData = null;
+		var previous_premieres:Array<PremiereData> = [];
 
+		var current_timestamp = Date.now().getTime();
+
+		next_premiere = null;
 		for (premiere in premieres)
 		{
-			var current_timestamp = Date.now().getTime();
 			var premiere_timestamp:Float = (premiere.timestamp * 1000.0); // Floats are 64bit, ints don't work good here
-			var current_date = Date.fromTime(current_timestamp);
-			var premiere_date = Date.fromTime(premiere_timestamp);
 
-			trace('$premiere_date, $premiere_timestamp');
-
-			if (current_date.getMonth() != premiere_date.getMonth())
+			if (premiere_timestamp + premiere.length <= current_timestamp)
 			{
+				previous_premieres.push(premiere);
 				continue;
 			}
 
-			if (current_date.getDate() == premiere_date.getDate())
+			// Premiere is upcoming...
+			next_premiere = premiere;
+			if (next_premiere.url != null)
 			{
-				// This premiere happens today!
-				trace('Premiere is today...');
-				current_premiere = premiere;
-
-				var delta = premiere_timestamp - current_timestamp;
-
-				if (delta <= 0)
-				{
-					trace('TRIGGERING Premiere: ${premiere.name}');
-					enable_recheck = false;
-					if (recheck_timestamp == 0)
-						recheck_timestamp = premiere_timestamp;
-
-					try_premiere_release(premiere);
-				}
-				else
-				{
-					trace('QUEUING Premiere: ${premiere.name} (${premiere_timestamp})');
-					enable_recheck = true;
-					recheck_timestamp = premiere_timestamp;
-				}
-
-				return;
-			}
-			else if (premiere_date.getDate() < current_date.getDate())
-			{
-				// This premiere has already happened!
-				trace('Premiere is yesterday (${current_date.getDate()} == ${premiere_date.getDate()})...');
-				current_premiere = premiere;
-				fallback_premiere = premiere;
-			}
-			else
-			{
-				// This premiere happens in the far future (>1 day)!
-				// No need to check anymore.
-				trace('Premiere is tomorrow (${current_date} == ${premiere_date} : ${premiere_timestamp})...');
+				if (on_premiere_release != null)
+					on_premiere_release(next_premiere);
+				available_premieres.push(next_premiere);
 				break;
 			}
+
+			recheck_timestamp = premiere_timestamp;
+			enable_recheck = true;
+			break;
 		}
 
-		if (fallback_premiere != null)
-			try_premiere_release(fallback_premiere);
+		available_premieres = previous_premieres;
+
+		total_playlist_length = 0;
+		for (p in previous_premieres)
+			total_playlist_length += p.length;
+
+		if (on_loaded != null)
+			on_loaded();
 	}
 
-	function try_premiere_release(p:PremiereData)
+	public function get_currently_playing_premiere()
 	{
-		if (on_premiere_release != null)
+		var current_timestamp = Date.now().getTime();
+
+		if (next_premiere != null && next_premiere.url != null)
 		{
-			on_premiere_release(p);
+			var premiere_timestamp:Float = (next_premiere.timestamp * 1000.0);
+			next_premiere.resume_time = (current_timestamp - premiere_timestamp) / 1000.0;
+			return next_premiere;
 		}
+
+		// Check if latest premiere has been playing for the exclusive duration
+		var latest_premiere = available_premieres[available_premieres.length - 1];
+		if (latest_premiere != null)
+		{
+			trace(latest_premiere.name);
+			var premiere_timestamp:Float = (latest_premiere.timestamp * 1000.0); // Floats are 64bit, ints don't work good here
+			if (current_timestamp - premiere_timestamp < PREMIERE_EXCLUSIVE_LOOP_DURATION)
+			{
+				var p = latest_premiere;
+				var timestamp:Float = (1.0 * p.timestamp);
+				return {
+					url: p.url,
+					name: p.name,
+					timestamp: timestamp,
+					released: p.released,
+					length: p.length,
+					resume_time: (current_timestamp - premiere_timestamp) / 1000.0,
+				}
+			}
+		}
+
+		var playlist_time = current_timestamp % total_playlist_length;
+		var playlist_loop_start_time = current_timestamp - (total_playlist_length - (current_timestamp % total_playlist_length));
+		var active_premiere:PremiereData = null;
+		for (premiere in available_premieres)
+		{
+			if (playlist_time < premiere.length)
+			{
+				active_premiere = premiere;
+				break;
+			}
+
+			playlist_loop_start_time += premiere.length;
+			playlist_time -= premiere.length;
+		}
+
+		if (active_premiere != null)
+		{
+			var p = active_premiere;
+			return {
+				url: p.url,
+				name: p.name,
+				timestamp: playlist_loop_start_time / 1000.0,
+				released: p.released,
+				length: p.length,
+				resume_time: playlist_time / 1000.0,
+			}
+		}
+
+		return null;
 	}
 }
