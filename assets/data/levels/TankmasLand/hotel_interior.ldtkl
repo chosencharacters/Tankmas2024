@@ -1603,11 +1603,11 @@
 					"defUid": 2,
 					"px": [848,3744],
 					"fieldInstances": [
-						{ "__identifier": "username", "__type": "String", "__value": "pukebomb", "__tile": null, "defUid": 5, "realEditorValues": [{
+						{ "__identifier": "username", "__type": "String", "__value": "kinomoru", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["pukebomb"]
+							"params": ["kinomoru"]
 						}] },
-						{ "__identifier": "day", "__type": "Int", "__value": 16, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [16] }] },
+						{ "__identifier": "day", "__type": "Int", "__value": 20, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [20] }] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
 					"__worldX": 848,

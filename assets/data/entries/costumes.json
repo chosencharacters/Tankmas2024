@@ -453,13 +453,33 @@
         {
             "name": "bad-captain",
             "display": "Bad Captain",
-            "desc": "The leader of the Henchmen, and so evil that only watching Titanic can halt their villainy.",
+            "desc": "Enemy of the Tankmen. Nobody knows what they're fighting over, not even themselves.",
             "unlock": "SUPPORTER"
         },
         {
             "name": "mc-kun",
             "display": "MC Kun",
-            "desc": "The only character to be loved by all of Newgrounds.",
+            "desc": "This loser is you. Newgrounds finally loves you.\n\n...Thanks for being a supporter, though.",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "hatty",
+            "display": "Hatty Hattington",
+            "desc": "The Captain of the S.S. Friendship and best friend to one and all! He very much does not enjoy being the theater manager, though. Maybe it's the whole kidnapping thing.",
+            "unlock": "DATE",
+            "data": 1734670800
+        },
+        {
+            "name": "cat-guard",
+            "display": "Cat Guard",
+            "desc": "The insane rulers overs the BattleBlock Theatre. What horrible theatrics will they forcibly submit your innocent little shape headed person to next?",
+            "unlock": "DATE",
+            "data": 1734670800
+        },
+        {
+            "name": "behemoth-chicken",
+            "display": "Behemoth Chicken",
+            "desc": "It's Behemoth in both name and size!",
             "unlock": "DATE",
             "data": 1734670800
         }

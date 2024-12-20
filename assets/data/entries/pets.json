@@ -71,6 +71,13 @@
             "display": "Blammed",
             "desc": "Oh... This SWF doesn't look too good...",
             "unlock": "SUPPORTER"
+        },
+        {
+            "name": "rammy",
+            "display": "Rammy",
+            "desc": "This adorable ram will hit you really hard! Not here, though. Here they're just adorable!",
+            "unlock": "DATE",
+            "data": 1734584400
         }
     ]
 }

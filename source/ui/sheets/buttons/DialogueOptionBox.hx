@@ -74,7 +74,6 @@ class DialogueOptionBox extends FlxTypedGroupExt<FlxSprite>
 
 	override function kill()
 	{
-		trace("killing");
 		killMembers();
 		clear();
 		PlayState.self.dialogue_options.remove(this, true);

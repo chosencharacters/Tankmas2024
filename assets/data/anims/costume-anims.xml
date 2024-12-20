@@ -10,4 +10,9 @@
 		<anim name="left">0</anim>
 		<anim name="right">1</anim>
 	</animSet>
+
+	<animSet image="costume-mc-kun">
+		<anim name="left">0</anim>
+		<anim name="right">1</anim>
+	</animSet>
 </root>
