@@ -1,5 +1,6 @@
 package levels;
 
+import video.InGameVideoUI;
 import activities.ActivityArea;
 import entities.Minigame;
 import entities.NPC;
@@ -127,6 +128,8 @@ class TankmasLevel extends LDTKLevel
 			{
 				case "gaming-device":
 					new GamingDevice(c.worldPixelX, c.worldPixelY);
+				case "CinemaScreen":
+					new InGameVideoUI(c);
 			}
 		}
 
