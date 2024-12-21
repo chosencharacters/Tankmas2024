@@ -22,6 +22,7 @@ class Wombo extends FlxSpriteExt
 		{
 			default:
 		}
+
 	override function kill()
 	{
 		super.kill();
@@ -30,5 +31,5 @@ class Wombo extends FlxSpriteExt
 
 private enum abstract State(String) from String to String
 {
-	var IDLE;
+	final IDLE;
 }
