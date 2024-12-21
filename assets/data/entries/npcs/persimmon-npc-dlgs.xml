@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <npc name="persimmon-man">
+        <state name="default">
+            <dlg set="PERSIMMON_QUEST_ACTIVE">What truth befalls those who fall from the tree?</dlg>
+        </state>
+        <state name="never-met" if="!PERSIMMON_QUEST_ACITVE">
+            <dlg>Hello.</dlg>
+            <option label="Hello?">
+                <dlg>Yes. It is a day of conversation.</dlg>
+                <dlg>Hmm? You seem curious to my appearence.</dlg>
+                <dlg>I am a persimmon. And long have I lay in the company of these spirits.</dlg>
+                <dlg>The echoes of the branches below once harboured me. Yet here I am now.</dlg>
+                <dlg>Yet. I also am need of one to travel this world in my steed.</dlg>
+                <option label="Can't help ya there buddy">
+                    <dlg>You disappoint me.</dlg>
+                </option>
+                <option label="I shall be at your service">
+                    <dlg>It is appreciated. You must find those of my kind.</dlg>
+                    <dlg>They bare many faces.</dlg>
+                    <dlg>Approach them. And ask them about the world.</dlg>
+                    <dlg set="PERSIMMON_QUEST_ACITVE">Then, return, and you shall bear a final, more important, task.</dlg>
+                </option>
+            </option>
+        </state>
+    </npc>
+    <npc name="persimmon-anguish">
+        <state name="default">
+            <dlg set="P_ANGUISH">Do you see my face? Is it not one of pure anguish?</dlg>
+            <option label="Tragedy?">
+                <dlg>Tragedy? Tragedy??? No! Anguish! It is... anguish!</dlg>
+                <dlg>Learn from my ways! For I am in anguish!</dlg>
+                <dlg>Do not let you become yourself!</dlg>
+            </option>
+            <option label="Anguish?">
+                <dlg>Anguish! More than tragedy! Only anguish!</dlg>
+                <dlg>Learn from my ways! For I am in anguish!</dlg>
+                <dlg>Do not let you become yourself!</dlg>
+            </option>
+        </state>
+        <state name="already-seen" if="P_ANGUISH">
+            <dlg>Learn from me!</dlg>
+        </state>
+    </npc>
+</root>

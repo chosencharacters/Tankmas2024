@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <npc name="thomas">
+        <state name="default">
+            <dlg>Hello fellow newgrounder I am the tom fulp of the new grounds dot com</dlg>
+            <dlg>Are we talking about tom fulp? I love talking about tom fulp.</dlg>
+            <option label="I love you Thomas">
+              <dlg set="SECRET_LOVE_OF_THE_TOM">I love you too :)</dlg>
+            </option>
+            <option label="I hate you Thomas" >
+              <dlg>You have made a grave error today.</dlg>
+              <dlg set="THE_REAL_IRE_OF_TOM">Never talk to me again.</dlg>
+            </option>
+        </state>
+        <state name="love" if="SECRET_LOVE_OF_THE_TOM">
+            <dlg>Oh, it's you again, and what honor brings your company today?</dlg>
+            <dlg>btw I only say this to people I enjoy the company of But I love you.</dlg>
+        </state>
+        <state name="hatred" if="THE_REAL_IRE_OF_TOM">
+            <dlg>You.</dlg>
+            <dlg>You disappoint me. Be gone from my sight.</dlg>
+        </state>
+    </npc>
+    <npc name="tombstone">
+        <state name="default">
+            <dlg>Here lies Tankmas ADVENTure Calendar 2023's hopes and dreams.</dlg>
+            <dlg>"I died before I could live."</dlg>
+        </state>
+    </npc>
+    <npc name="concierge-invisible">
+        <state name="default">
+            <dlg>Yes. This is the concierge. Are you in need of something?</dlg>
+            <dlg>I am busy. You can make me busier.</dlg>
+            <option label="Who are you?">
+                <dlg>I am the appointed Concierge of this establishment.</dlg>
+                <dlg>(...is it so much to ask people to read my sign?)</dlg>
+            </option>
+            <option label="Pardon me, but is my room ready yet?">
+                <dlg>No. Next question.</dlg>
+            </option>
+            <option label="How are you doing?">
+                <dlg>I am in excellent health! What may be your status of being?</dlg>
+                <option label="Feeling fine">
+                    <dlg>Good.</dlg>
+                </option>
+                <option label="Feeling not so fine">
+                    <dlg>Bad.</dlg>
+                </option>
+            </option>
+        </state>
+        <state name="old">
+            <dlg>Yes. This is the concierge. Are you in need of something?</dlg>
+            <dlg>I am busy. You can make me busier.</dlg>
+            <dlg>As it is. Please move to the side for someone else to make me busy.</dlg>
+        </state>
+    </npc>
+    <npc name="concierge">
+        <state name="default">
+            <dlg>Hello... Hello... Dear guests...</dlg>
+            <dlg>Welcome... Welcome... It is now time...</dlg>
+            <dlg>Le Portél de Geist does welcome you... Yes...</dlg>
+            <dlg>If... Anything is of need... You can trust the concierge...</dlg>
+            <dlg>We shall... Be able to acquire it for you...</dlg>
+            <option label="You talk... strangely">
+                <dlg>Ah... My apologies... Or my condolences... However... Some things must be said... In certain tones...</dlg>
+            </option>
+            <option label="When is the current premier">
+                <dlg>The Operating Theatre... Of the one Good... Of a medical profession... It is running... Forever... Until... It is replaced...</dlg>
+            </option>
+        </state>
+    </npc>
+    <npc name="concierge-old-old">
+        <state name="default">
+            <dlg>Good tidings... Future guests.</dlg>
+            <dlg>Your patience will be rewarded... Shortly...</dlg>
+            <dlg>Hotel Check-ins will be commencing... Any moment now...</dlg>
+            <dlg>Warmth awaits you soon... Yes... Soon...</dlg>
+        </state>
+    </npc>
+    <npc name="concierge-old">
+        <state name="default">
+            <dlg>Good tidings... Future guests...</dlg>
+            <dlg>Do you desire... Accommodations of a warmer... Variety?</dlg>
+            <dlg>All this... Could be arranged... If one is to be... Patient...</dlg>
+            <dlg>For now... Consume golden morsels to your delight... For now...</dlg>
+            <dlg>...For now...</dlg>
+        </state>
+    </npc>
+    <npc name="lil-jimby">
+        <state name="default">
+            <dlg>Hey man whazz goin on</dlg>
+            <dlg>I was telling you man big things coming soon, right?</dlg>
+            <dlg>But I'm still thinking, like, there's even MORE coming</dlg>
+            <dlg>I can feel it in my BONES man... and I don't even HAVE those man</dlg>
+            <dlg>Stay tuned right here man big things comin soon</dlg>
+            <dlg>You heard it from me first man Lil Jimby @ GeistBeatz dot com</dlg>
+            <option label="Big things coming soon?">
+                <dlg>Yea, man, some big things behind the scenes right now.</dlg>
+            </option>
+            <option label="GeistBeatz?">
+                <dlg>GeistBeatz! The number one source for what's happenin'</dlg>
+                <dlg>You should check it out, man.</dlg>
+                <dlg>Lil Jimby @ GeistBeatz dot com</dlg>
+                <option label="Lil Jimby @ GeistBeatz dot com?">
+                    <dlg>Yea man.</dlg>
+                    <dlg>Lil Jimby @ GeistBeatz dot com</dlg>
+                </option>
+                <option label="I'll check it out, man">
+                    <dlg>Thanks man. Gotta support your homies who are all out there creating</dlg>
+                </option>
+            </option>
+        </state>
+    </npc>
+    <npc name="lil-jimby-old">
+        <state name="default">
+            <dlg>Hey man whazz goin on</dlg>
+            <dlg>Hey man I can feel it man big things comin soon man</dlg>
+            <dlg>I can feel it in my BONES man... and I don't even HAVE those man</dlg>
+            <dlg>Stay tuned right here man big things comin soon</dlg>
+            <dlg>You heard it from me first man Lil Jimby @ GeistBeatz dot com</dlg>
+        </state>
+    </npc>
+    <npc name="javert">
+        <state name="default">
+            <dlg>I see ze ringarde one has found their way in.</dlg>
+            <dlg>Had your fill of your puff peasent treats?</dlg>
+            <dlg>Or are you only here to get a whiff of ze superior culture? Hon hon hon!</dlg>
+            <option label="You are ringarde">
+                <dlg>Ze ringarde has no right to call me zat!</dlg>
+                <dlg>An imitation taking my words for zey have none of their own! Hon hon hon!</dlg>
+            </option>
+            <option label="Hon hon hon?">
+                <dlg>Hon hon hon!</dlg>
+            </option>
+        </state>
+    </npc>
+    <npc name="javert-old">
+        <state name="default">
+            <dlg>C'est how you say the staging of ze big reveal</dlg>
+            <dlg>O? You do not know what it iz I am talking about?</dlg>
+            <dlg>So ringarde! Ze living do not appreciate ze vibez of de metaphyizical world, yes?</dlg>
+            <dlg>Go on now to your little sweet puff peasent treats, hon hon hon!</dlg>
+        </state>
+    </npc>
+    <npc name="mallow">
+        <state name="default">
+            <dlg>Shh... Dude... Keep it down!</dlg>
+            <dlg>Did you see what's going on out there? They're absolutely crazy.</dlg>
+            <dlg>They're doing the same thing every single day! Thousands of times!</dlg>
+            <dlg>Impaling cute lil marshmallows just like me on wooden stakes! Then eating them!</dlg>
+            <dlg>It's sick! But you wouldn't do that, would you?</dlg>
+            <option label="Never!">
+                <dlg>Thanks, dude, I know I can count on you.</dlg>
+            </option>
+            <option label="Well...">
+                <dlg>Why are you looking at me like that?</dlg>
+            </option>
+            <option label="Mmm... Marshmallow">
+                <dlg>That's messed up, dude.</dlg>
+            </option>
+        </state>
+        <state name="same-char" if="COSTUME_MELLA">
+            <dlg>Mella! I'm so glad to see you!</dlg>
+            <dlg>...Get me out of here?</dlg>
+            <dlg>...Please?</dlg>
+        </state>
+    </npc>
+    <npc name="backpacker-jill">
+        <animation type="idle" sprite_anim="float-fast" />
+        <state name="default">
+            <dlg>Oh, hallo!</dlg>
+            <dlg>Did you happen upon this hotel too? Very fascinating, yes?</dlg>
+            <dlg>I was just hiking along, but then I saw it appear in the distance!</dlg>
+            <dlg>I feel myself drawn to it, so much excitement, as are you, yes?</dlg>
+            <dlg>Wunderbar! We will make this a home together, yes?</dlg>
+            <option label="Yes!">
+                <dlg>Yes!!!</dlg>
+            </option>
+            <option label="Wunderbar!">
+                <dlg>Wunderbar!!!</dlg>
+            </option>
+        </state>
+    </npc>
+    <npc name="pompous-joan">
+        <animation type="idle" sprite_anim="float-normal" />
+        <state name="default">
+            <dlg>Hmm? Sorry, were you trying to talk to me?</dlg>
+            <dlg>You must have me confused for a commoner.</dlg>
+            <dlg>Allow me to correct you, let's call it a charity, to the lesser beings like yourself.</dlg>
+            <dlg>I am Joan. And YOU are not worth my efforts. Now begone.</dlg>
+            <option label="Are you insulting me?">
+                <dlg>Why wouldn't I?</dlg>
+                <dlg>Perhaps you think you're worthy of some respect? Then allow me to correct you.</dlg>
+                <dlg>Well... There's the door. So see yourself out the way you came.</dlg>
+            </option>
+            <option label="You're not very friendly">
+                <dlg>Pleasentries are for those who deserve them. And you do not.</dlg>
+                <dlg>Well... There's the door. So see yourself out the way you came.</dlg>
+            </option>
+            <option label="Joan? Never heard of you.">
+                <dlg>I would not expect those not in the know to know.</dlg>
+                <dlg>Let's just say our circles would not be the kinds to interact.</dlg>
+                <dlg>Well... There's the door. So see yourself out the way you came.</dlg>
+            </option>
+        </state>
+        <state name="old">
+            <dlg>Hmm? Sorry, were you trying to talk to me?</dlg>
+            <dlg>You must have me confused for a commoner.</dlg>
+            <dlg>Allow me to correct you, let's call it a charity, to the lesser beings like yourself.</dlg>
+            <dlg>I am Joan. And YOU are not worth my efforts. Now begone.</dlg>
+            <dlg>This premiere is far too exclusive for one such as yourself.</dlg>
+            <dlg>Well... There's the door. So see yourself out the way you came.</dlg>
+        </state>
+    </npc>
+    <npc name="mall-santa">
+        <state name="default">
+            <dlg>Grrch-gak...guh-</dlg>
+            <dlg>AGH! YOU! PLEASE!</dlg>
+            <dlg>This bag is much too heavy for my brittle 23 year old body! Would you offer this humble Mall Santa a hand?</dlg>
+            <dlg>Here, just bend down and extend your arms like-</dlg>
+            <dlg>...</dlg>
+            <dlg>Where are you going?</dlg>
+        </state>
+    </npc>
+    <npc name="gold-miser-jacquez">
+        <animation type="idle" sprite_anim="float-slow" />
+        <state name="default">
+            <dlg>Hmmph? Do I owe you my time?</dlg>
+            <dlg>No? I did not think so. But so many here owe ME.</dlg>
+            <dlg>It's not easy being so generous, you know. I collect and collect. But then they ask ME for my worth.</dlg>
+            <dlg>And, ME, being such a generous being, give them with the small ask they pay me back slightly more later.</dlg>
+            <dlg>Of course... If they're late, well, then special arrangements will have to be made.</dlg>
+            <dlg>And this hotel is *quite* late.</dlg>
+            <option label="The hotel is late?">
+                <dlg>Do you even see the calendar? It is so very late indeed.</dlg>
+                <dlg>I, Jacquez, do appreciate timeliness, you know.</dlg>
+            </option>
+            <option label="Money on your mind?">
+                <dlg>Money is ALWAYS in the most esteemed part of my mind.</dlg>
+                <dlg>What else is there to think about?</dlg>
+                <option label="Love?">
+                    <dlg>Ah, you confuse me for someone who pursues a soul mate, yes?</dlg>
+                    <dlg>Time is money, and needless companionship is the great siphoner of time.</dlg>
+                </option>
+                <option label="Liberty?">
+                    <dlg>Yes. And financial security frees the soul.</dlg>
+                </option>
+                <option label="The pursuit of happiness?">
+                    <dlg>Nothing makes one happier than a accounting book in the black, yes?</dlg>
+                </option>
+            </option>
+        </state>
+    </npc>
+    <npc name="the-shape">
+        <state name="default">
+            <dlg>...</dlg>
+        </state>
+    </npc>
+    <npc name="dr-good">
+        <state name="default">
+            <dlg>Haha! Thank you so very much for coming to see my movie!</dlg>
+        </state>
+        <state name="same-char" if="COSTUME_DR_GOOD">
+            <dlg>Haha! It seems someone here has taste in their attire! Marvelous!</dlg>
+        </state>
+    </npc>
+    <npc name="bitey">
+        <state name="default">
+            <dlg>*It's a Dashkin. But what are they doing here?*</dlg>
+            <dlg if="!BITEY_ENCOUNTERED" set="BITEY_ENCOUNTERED">*You feel a strange connection*</dlg>
+        </state>
+        <state name="same-char" if="COSTUME_BITEY">
+            <dlg>*They look at you suspiciously*</dlg>
+        </state>
+    </npc>
+     <npc name="blade-the-hedgehog">
+        <state name="default">
+            <dlg>Hey duder, I came here to watch the new Shadow the Hedgehog 3 movie and they're not showing it.</dlg>
+            <dlg>Doctor what? Duder. I need to crush some Crush 40 into my system, okay? It's what electrifies my Blade.</dlg>
+            <option label="Maybe you just need to live and learn">
+                <dlg>No. Duder. I need to live and watch Shadow the Hedgehog 3 so I can learn from it.</dlg>
+                <dlg>I heard Maria might survive this time.</dlg>
+            </option>
+            <option label="I like your digs">
+                <dlg>Uh. Thanks I guess? Look. I know I'm something new. Something different.</dlg>
+                <dlg>But at the end of the day I'm just your friendly neighberhood hedgehog</dlg>
+                <option label="No I REALLY like your digs">
+                    <dlg set="BLADE_UNLOCKED">Okay. Duder. Whatever. Just don't go copying me.</dlg>
+                </option>
+                <option label="Your sword's cool">
+                    <dlg>Yea it is. It was gonna be electric until they cut it from- nevermind.</dlg>
+                </option>
+            </option>
+        </state>
+        <state name="same-char" if="COSTUME_BLADE_THE_HEDGEHOG">
+            <dlg>Hey duder, you're sort of cramping my style here.</dlg>
+            <dlg>Can you go change? We don't need to have a blade off right here, okay?</dlg>
+            <option label="I would win">
+                <dlg>Okay duder do you wanna settle it in flash right now? I'll GET you.</dlg>
+            </option>
+            <option label="You're a cheap character anyways">
+                <dlg>Look duder. Everything's cheap when you're in a Flash game from 2006.</dlg>
+            </option>
+            <option label="OC don't steal?">
+                <dlg>Okay duder. I get you're the comedian here. Got any original jokes?</dlg>
+                <option label="Got any original character designs?">
+                    <dlg>I'll Blade you up. Duder. Don't try me.</dlg>
+                </option>
+                <option label="No not that one">
+                    <dlg>Whatever duder. You're lame anyways.</dlg>
+                </option>
+            </option>
+        </state>
+    </npc>
+</root>
