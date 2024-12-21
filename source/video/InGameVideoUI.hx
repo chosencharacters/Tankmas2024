@@ -1,5 +1,7 @@
 package video;
 
+import bunnymark.PlayState;
+import video.PremiereHandler.PremiereData;
 import flixel.tweens.FlxEase;
 import openfl.display.Sprite;
 import flixel.FlxG;
@@ -27,6 +29,8 @@ private typedef MetaData =
 
 class InGameVideoUI extends FlxSprite
 {
+	var premieres:PremiereHandler;
+
 	public var isPaused = false;
 	public var on_complete:() -> Void;
 	public var on_close_request:() -> Void;
@@ -47,24 +51,38 @@ class InGameVideoUI extends FlxSprite
 
 	var start_time:Float = 0.0;
 
-	public function new(video_url:String, x:Float = 0, y:Float = 0, width:Float = 100, height:Float = 50, start_time:Float = 0.0)
+	var countdown_text:FlxText;
+
+	public function new(screen:levels.LdtkProject.Entity_Misc) // video_url:String, x:Float = 0, y:Float = 0, width:Float = 100, height:Float = 50, start_time:Float = 0.0)
 	{
-		this.video_url = video_url;
 		super();
+
+		premieres = new PremiereHandler();
+		premieres.on_premiere_release = on_premiere_release;
+		premieres.on_loaded = on_loaded;
+		premieres.refresh();
+
+		countdown_text = new FlxText();
+		PlayState.self.objects.add(countdown_text);
+		countdown_text.color = FlxColor.RED;
+		countdown_text.setFormat(Paths.get('CharlieType-Heavy.otf'), 64, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
+		countdown_text.visible = false;
+
+		PlayState.self.objects.add(this);
 
 		this.start_time = Math.max(0.0, start_time);
 
-		this.x = x;
-		this.y = y;
-		this.screen_height = height;
-		this.screen_width = width;
+		this.x = screen.worldPixelX;
+		this.y = screen.worldPixelY;
+		this.screen_height = screen.height;
+		this.screen_width = screen.width;
 		this.origin.set(0, 0);
+		makeGraphic(1, 1, FlxColor.TRANSPARENT);
+		this.width = screen.width;
+		this.height = screen.height;
 
 		video_container = new Sprite();
 		FlxG.stage.addChild(video_container);
-
-		if (FlxG.sound.music != null)
-			FlxG.sound.music.pause();
 
 		FlxG.mouse.useSystemCursor = true;
 
@@ -78,6 +96,7 @@ class InGameVideoUI extends FlxSprite
 			onMetaData: onMetaData,
 			onPlayStatus: onPlayStatus
 		};
+
 		netStream.addEventListener(AsyncErrorEvent.ASYNC_ERROR, (e) -> trace("error loading video"));
 		netConnection.addEventListener(NetStatusEvent.NET_STATUS, function onNetStatus(event)
 		{
@@ -86,11 +105,56 @@ class InGameVideoUI extends FlxSprite
 			{
 				close();
 				onVideoComplete();
+
+				premieres.refresh();
 			}
 		});
+	}
 
-		netStream.play(video_url);
+	function on_premiere_release(premiere:PremiereData)
+	{
+		trace('premiere release!!');
+	}
+
+	function stop_video()
+	{
+		netStream.pause();
+		video.visible = false;
+	}
+
+	function start_premiere_countdown()
+	{
+		countdown_text.visible = true;
+	}
+
+	function on_loaded()
+	{
+		var time_until_premiere = premieres.get_time_until_next_premiere();
+		if (time_until_premiere != null && time_until_premiere < 3600 && time_until_premiere > 0) // Start premiere countdown on an hour before premiere
+		{
+			start_premiere_countdown();
+			return;
+		}
+
+		var currently_playing = premieres.get_currently_playing_premiere();
+		if (currently_playing != null)
+		{
+			trace('resuming at ${currently_playing.resume_time}');
+			start_time = (Main.time.utc / 1000.0 - currently_playing.timestamp);
+			if (currently_playing.resume_time != null)
+				start_time = currently_playing.resume_time;
+			play_video(currently_playing.url);
+		}
+	}
+
+	function play_video(url:String)
+	{
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.pause();
+		netStream.play(url);
+		video.visible = true;
 		isPaused = false;
+		countdown_text.visible = false;
 	}
 
 	override function draw()
@@ -123,10 +187,11 @@ class InGameVideoUI extends FlxSprite
 		entered = true;
 		if (camera_tween != null)
 			camera_tween.cancel();
-		camera_tween = FlxTween.tween(FlxG.camera, {"targetOffset.y": -590, zoom: 0.6}, 1.0, {ease: FlxEase.smoothStepInOut});
+		camera_tween = FlxTween.tween(FlxG.camera, {"targetOffset.y": -590, zoom: 0.65}, 1.0, {ease: FlxEase.smoothStepInOut});
 
 		if (on_enter_area != null)
 			on_enter_area();
+		PlayState.self.ui_overlay.visible = false;
 	}
 
 	function on_leave_video_area()
@@ -139,11 +204,16 @@ class InGameVideoUI extends FlxSprite
 		camera_tween = FlxTween.tween(FlxG.camera, {"targetOffset.y": 0, zoom: 1.0}, 1.0, {ease: FlxEase.smoothStepInOut});
 		if (on_leave_area != null)
 			on_leave_area();
+
+		if (PlayState.self != null && PlayState.self.ui_overlay != null)
+			PlayState.self.ui_overlay.visible = true;
 	}
 
 	public override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		premieres.update(elapsed);
 
 		if (PlayState.self.player.y < y + screen_height + 900)
 		{
@@ -152,6 +222,21 @@ class InGameVideoUI extends FlxSprite
 		else
 		{
 			on_leave_video_area();
+		}
+
+		if (countdown_text.visible)
+		{
+			var t = Math.ceil(premieres.get_time_until_next_premiere());
+			var hours = Math.floor(t / 3600);
+			var minutes = Math.floor(t / 60) - hours * 60;
+			var seconds = t - minutes * 60 - hours * 3600;
+			var hours_str = hours > 0 ? '$hours:' : '';
+			if (hours < 10 && hours > 0)
+				hours_str = '0$hours_str';
+
+			countdown_text.text = '$hours_str${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}';
+			countdown_text.x = x + (width - countdown_text.width) * 0.5;
+			countdown_text.y = y + height * 0.5 - countdown_text.height * 0.5;
 		}
 	}
 
@@ -171,7 +256,7 @@ class InGameVideoUI extends FlxSprite
 		if (start_time > 2.0)
 		{
 			var position = start_time % data.duration;
-			trace('seeking to $position');
+			trace('seeking to $position (start time : $start_time)');
 			netStream.seek(position);
 		}
 
@@ -221,10 +306,8 @@ class InGameVideoUI extends FlxSprite
 		isPaused ? resume() : pause();
 	}
 
-	public override function kill()
+	public override function destroy()
 	{
-		super.kill();
-
 		on_leave_video_area();
 		FlxG.stage.removeChild(video_container);
 
@@ -232,5 +315,6 @@ class InGameVideoUI extends FlxSprite
 			FlxG.sound.music.resume();
 
 		netStream.dispose();
+		super.destroy();
 	}
 }
