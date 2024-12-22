@@ -37,8 +37,6 @@ class Main extends Sprite
 	public static var default_costume:String = "tankman";
 	public static var default_pet:String = "invisible-pet";
 
-	public static var default_room:String = "outside_hotel";
-
 	public static var ran:FlxRandom = new FlxRandom();
 
 	public static var daily_emote_draw_amount:Int = 4;

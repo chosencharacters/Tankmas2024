@@ -1147,7 +1147,7 @@
 			"entityInstances": [
 				{
 					"__identifier": "Player",
-					"__grid": [100,232],
+					"__grid": [146,138],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1156,10 +1156,10 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 1,
-					"px": [1600,3712],
+					"px": [2336,2208],
 					"fieldInstances": [],
-					"__worldX": 1600,
-					"__worldY": 3712
+					"__worldX": 2336,
+					"__worldY": 2208
 				},
 				{
 					"__identifier": "Door",
@@ -1186,7 +1186,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 104, "cy": 247 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["104,247"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 1408,
 					"__worldY": 4128
@@ -1497,7 +1498,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 99, "cy": 52 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["99,52"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 1440,
 					"__worldY": 656
@@ -1527,7 +1529,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 100, "cy": 52 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["100,52"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 1392,
 					"__worldY": 544
@@ -1743,6 +1746,37 @@
 					],
 					"__worldX": 1872,
 					"__worldY": 3584
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [173,142],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFF100",
+					"iid": "f9cc3e20-9b00-11ef-b112-f1340d1f9ff3",
+					"width": 48,
+					"height": 48,
+					"defUid": 14,
+					"px": [2768,2272],
+					"fieldInstances": [
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "47229770-9b00-11ef-b112-535de9d0599a",
+							"layerIid": "3286d605-9b00-11ef-8756-dd984fe31fce",
+							"levelIid": "3286d600-9b00-11ef-8756-4da78190a937",
+							"worldIid": "0b13d4d0-9b00-11ef-9354-a71a8f29f283"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["47229770-9b00-11ef-b112-535de9d0599a"]
+						}] },
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 156, "cy": 141 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["156,141"]
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
+					],
+					"__worldX": 2768,
+					"__worldY": 2272
 				}
 			]
 		},
@@ -1772,5 +1806,5 @@
 			"entityInstances": []
 		}
 	],
-	"__neighbours": []
+	"__neighbours": [{ "levelIid": "3286d600-9b00-11ef-8756-4da78190a937", "dir": "e" }]
 }
