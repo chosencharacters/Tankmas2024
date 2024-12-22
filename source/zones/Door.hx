@@ -1,7 +1,7 @@
 package zones;
 
-import flixel.math.FlxRect;
 import entities.Player;
+import flixel.math.FlxRect;
 import flixel.math.FlxVelocity;
 import fx.CircleTransition;
 import ldtk.Json.EntityReferenceInfos;
@@ -25,12 +25,15 @@ class Door extends FlxSpriteExt
 
 	var entering_player:Player;
 
-	public function new(?X:Float, ?Y:Float, width:Int, height:Int, linked_door_ref:EntityReferenceInfos, spawn:FlxPoint, iid:String)
+	var flag:Null<String> = null;
+
+	public function new(?X:Float, ?Y:Float, width:Int, height:Int, linked_door_ref:EntityReferenceInfos, spawn:FlxPoint, iid:String, ?flag:String)
 	{
 		super(X, Y);
 
 		this.linked_door_ref = linked_door_ref;
 		this.iid = iid;
+		this.flag = flag;
 
 		this.spawn = spawn;
 
@@ -77,12 +80,19 @@ class Door extends FlxSpriteExt
 		return true;
 	}
 
+	function is_door_unlocked():Bool {
+		if (flag != null)
+			return Flags.get_bool(flag);
+		
+		return true;
+	}
+
 	function fsm()
 		switch (cast(state, State))
 		{
 			default:
 			case IDLE:
-				if (PlayState.self.player.can_enter_doors && player_overlaps_door())
+				if (PlayState.self.player.can_enter_doors && is_door_unlocked() && player_overlaps_door())
 					start_door_out(PlayState.self.player);
 			case DOOR_OUT:
 				// PUT TRANSITION HERE

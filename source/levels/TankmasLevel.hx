@@ -1,6 +1,5 @@
 package levels;
 
-import video.InGameVideoUI;
 import activities.ActivityArea;
 import entities.Minigame;
 import entities.NPC;
@@ -12,6 +11,7 @@ import flixel.util.FlxDirectionFlags;
 import levels.LDTKLevel;
 import levels.LdtkProject;
 import states.PlayState.YSortable;
+import video.InGameVideoUI;
 import zones.Door;
 
 enum abstract RoomId(Int) from Int from Int
@@ -91,7 +91,7 @@ class TankmasLevel extends LDTKLevel
 		for (entity in level.l_Entities.all_Door.iterator())
 		{
 			var spawn:FlxPoint = new FlxPoint(x + entity.f_spawn.cx * 16, y + entity.f_spawn.cy * 16);
-			new Door(x + entity.pixelX, y + entity.pixelY, entity.width, entity.height, entity.f_linked_door, spawn, entity.iid);
+			new Door(x + entity.pixelX, y + entity.pixelY, entity.width, entity.height, entity.f_linked_door, spawn, entity.iid, entity.f_flag);
 		}
 
 		for (entity in level.l_Entities.all_Minigame.iterator())
