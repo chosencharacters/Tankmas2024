@@ -1146,22 +1146,6 @@
 			"gridTiles": [],
 			"entityInstances": [
 				{
-					"__identifier": "Player",
-					"__grid": [100,232],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#46BE2F",
-					"iid": "4f3f7600-9b00-11ef-9354-1359e3d6d97f",
-					"width": 128,
-					"height": 128,
-					"defUid": 1,
-					"px": [1600,3712],
-					"fieldInstances": [],
-					"__worldX": 1600,
-					"__worldY": 3712
-				},
-				{
 					"__identifier": "Door",
 					"__grid": [88,258],
 					"__pivot": [0,0],
@@ -1186,7 +1170,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 104, "cy": 247 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["104,247"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 1408,
 					"__worldY": 4128
@@ -1497,7 +1482,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 99, "cy": 52 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["99,52"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 1440,
 					"__worldY": 656
@@ -1527,7 +1513,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 100, "cy": 52 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["100,52"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 1392,
 					"__worldY": 544
@@ -1743,6 +1730,150 @@
 					],
 					"__worldX": 1872,
 					"__worldY": 3584
+				},
+				{
+					"__identifier": "Player",
+					"__grid": [102,243],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#46BE2F",
+					"iid": "4f3f7600-9b00-11ef-9354-1359e3d6d97f",
+					"width": 128,
+					"height": 128,
+					"defUid": 1,
+					"px": [1632,3888],
+					"fieldInstances": [],
+					"__worldX": 1632,
+					"__worldY": 3888
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [115,100],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "04969a80-9b00-11ef-b112-e1dc8a8b3c39",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1840,1600],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "persimmon-man", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["persimmon-man"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": 1840,
+					"__worldY": 1600
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [34,130],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "0ff75a90-9b00-11ef-b112-fdd7220ead2b",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [544,2080],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "persimmon-anguish", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["persimmon-anguish"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": "PERSIMMON_QUEST_ACTIVE", "__tile": null, "defUid": 90, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["PERSIMMON_QUEST_ACTIVE"]
+						}] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": 544,
+					"__worldY": 2080
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [167,248],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "1a518010-9b00-11ef-b112-89dc03c7166b",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [2672,3968],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "persimmon-comedy", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["persimmon-comedy"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": "PERSIMMON_QUEST_ACTIVE", "__tile": null, "defUid": 90, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["PERSIMMON_QUEST_ACTIVE"]
+						}] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": 2672,
+					"__worldY": 3968
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [24,249],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "2e08f480-9b00-11ef-b112-ad48bc82f765",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [384,3984],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "persimmon-despair", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["persimmon-despair"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": "PERSIMMON_QUEST_ACTIVE", "__tile": null, "defUid": 90, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["PERSIMMON_QUEST_ACTIVE"]
+						}] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": 384,
+					"__worldY": 3984
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [72,243],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "4e8382b0-9b00-11ef-b112-b3d0513e440e",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1152,3888],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "slimygoo", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["slimygoo"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 22, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [22] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [null] }
+					],
+					"__worldX": 1152,
+					"__worldY": 3888
 				}
 			]
 		},
@@ -1772,5 +1903,5 @@
 			"entityInstances": []
 		}
 	],
-	"__neighbours": []
+	"__neighbours": [{ "levelIid": "3286d600-9b00-11ef-8756-4da78190a937", "dir": "e" }]
 }

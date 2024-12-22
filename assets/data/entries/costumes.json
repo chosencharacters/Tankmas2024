@@ -496,6 +496,19 @@
             "desc": "Captain Carrion, commander of The SS Sky Burial, they venture the clouds in search of coffee beans, lost souls, and birds to befriend.",
             "unlock": "FLAG",
             "data": "UNLOCK_CARRION"
+        },
+        {
+            "name": "abundance",
+            "display": "What is this?",
+            "desc": "A. Ballet Bun\nB. Fairy Cake\nC. Abundance\nD. Crue!",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "dad",
+            "display": "Dad",
+            "desc": "Chainsawing children since 2002!\n\nNotice: Tom Fulp supports this video game and the content it promotes",
+            "unlock": "DATE",
+            "data": 1734843600
         }
     ]
 }
