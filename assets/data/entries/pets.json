@@ -97,6 +97,24 @@
                 "follow_accuracy":0.95,
                 "drag":0.8
             }
+        },
+        {
+            "name": "and-me",
+            "display": "and Me",
+            "desc": "The only child Dad won't chainsaw. Instead, it's family bonding for the whole family!",
+            "unlock": "DATE",
+            "data": 1734843600,
+            "stats":{
+                "follow_speed":200,
+                "follow_acl": 10
+            }
+        },
+        {
+            "name": "persimmon-innocence",
+            "display": "Innocence",
+            "desc": "The object of innocence, untainted by the cruel world. Bring it with you and show it the reality.",
+            "unlock": "FLAG",
+            "data": "UNLOCK_PERSIMMON"
         }
     ]
 }

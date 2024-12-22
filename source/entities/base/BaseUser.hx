@@ -83,6 +83,17 @@ class BaseUser extends NGSprite
 
 	override function update(elapsed:Float)
 	{
+		// hard coding this for now
+		if (costume.name == "abundance")
+		{
+			move_acl = 45;
+			move_speed = 700;
+		}
+		else
+		{
+			move_acl = 25;
+			move_speed = 500;
+		}
 		data.pet = pet.def.name;
 		ttick();
 		super.update(elapsed);

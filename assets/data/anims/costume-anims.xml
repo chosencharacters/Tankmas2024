@@ -15,4 +15,11 @@
 		<anim name="left">1</anim>
 		<anim name="right">0</anim>
 	</animSet>
+
+	<animSet image="costume-abundance">
+		<anim name="left-idle">0</anim>
+		<anim name="right-idle">0</anim>
+		<anim name="left-move">0t8r3,9t22</anim>
+		<anim name="right-move">23t31r3,32t45</anim>
+	</animSet>
 </root>

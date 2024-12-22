@@ -792,37 +792,6 @@
 					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "bunnymark", "__tile": null, "defUid": 22, "realEditorValues": [] }],
 					"__worldX": 5028,
 					"__worldY": 936
-				},
-				{
-					"__identifier": "Door",
-					"__grid": [0,88],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#FFF100",
-					"iid": "47229770-9b00-11ef-b112-535de9d0599a",
-					"width": 48,
-					"height": 384,
-					"defUid": 14,
-					"px": [0,1408],
-					"fieldInstances": [
-						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
-							"entityIid": "f9cc3e20-9b00-11ef-b112-f1340d1f9ff3",
-							"layerIid": "0b13d4d2-9b00-11ef-9354-9d2ed3d4a6a1",
-							"levelIid": "0b13d4d1-9b00-11ef-9354-cb54b317af20",
-							"worldIid": "0b13d4d0-9b00-11ef-9354-a71a8f29f283"
-						}, "__tile": null, "defUid": 16, "realEditorValues": [{
-							"id": "V_String",
-							"params": ["f9cc3e20-9b00-11ef-b112-f1340d1f9ff3"]
-						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 16, "cy": 110 }, "__tile": null, "defUid": 17, "realEditorValues": [{
-							"id": "V_String",
-							"params": ["16,110"]
-						}] },
-						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
-					],
-					"__worldX": 3188,
-					"__worldY": 1864
 				}
 			]
 		},

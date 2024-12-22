@@ -30,12 +30,12 @@ class SaveManager
 		return saved_emote_collection.length < (Main.default_emote_collection.length * 2);
 
 	public static var data = {
-		saved_room: Main.default_room,
+		saved_room: Main.default_world,
 	}
 
 	public static function init()
 	{
-		savedRoom = Main.default_room;
+		savedRoom = Main.default_world;
 		saved_emote_collection = Main.default_emote_collection;
 		saved_costume_collection = Main.default_costume_collection;
 		current_emote = Main.default_emote;
@@ -166,8 +166,10 @@ class SaveManager
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("amogus-unlocked"));
 				case "MELLA_UNLOCKED":
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("mella-unlocked"));
-				case "CARRION_UNLOCKED":
+				case "UNLOCK_CARRION":
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("carrion-unlocked"));
+				case "UNLOCK_PERSIMMON":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("persimmon-unlocked"));
 			}
 		}
 		#end

@@ -50,8 +50,6 @@ class PlayState extends BaseState
 {
 	public static var self:PlayState;
 
-	static final default_world:String = "outside_hotel";
-
 	public var current_world:String;
 
 	public var player:Player;
@@ -115,7 +113,7 @@ class PlayState extends BaseState
 		if (world_to_load != null)
 			current_world = world_to_load
 		else
-			current_world = SaveManager.savedRoom == null ? default_world : SaveManager.savedRoom;
+			current_world = SaveManager.savedRoom == null ? Main.default_world : SaveManager.savedRoom;
 		Main.current_room_id = RoomId.from_string(current_world);
 
 		super();
