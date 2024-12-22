@@ -6,6 +6,7 @@ import data.TimeManager;
 import data.loaders.NPCLoader;
 import flixel.FlxGame;
 import flixel.FlxState;
+import flixel.system.debug.log.LogStyle;
 import flixel.util.typeLimit.NextState.InitialState;
 import levels.LdtkProject;
 import levels.TankmasLevel.RoomId;
@@ -53,6 +54,9 @@ class Main extends Sprite
 		// We need to make the crash handler LITERALLY FIRST so nothing EVER gets past it.why-coal
 		CrashHandler.initialize();
 		CrashHandler.queryStatus();
+
+		LogStyle.ERROR.errorSound = null;
+		LogStyle.WARNING.errorSound = null;
 
 		openfl.Lib.current.addChild(new Main());
 	}

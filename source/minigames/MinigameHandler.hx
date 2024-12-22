@@ -35,6 +35,11 @@ class MinigameHandler
 		destructors["bunnymark"] = null;
 		#end
 
+		#if !exclude_fttt
+		constructors["fttt"] = () -> new minigames.fttt.source.FTTTSubState();
+		destructors["fttt"] = null;
+		#end
+
 		handleDefines();
 	}
 
