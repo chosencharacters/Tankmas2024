@@ -446,7 +446,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 9, "cy": 37 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["9,37"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 4256,
 					"__worldY": 3312

@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.3",
+		"appVersion": "1.5.4",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "candle_path",
@@ -1054,7 +1054,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 75, "cy": 82 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["75,82"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 5040,
 					"__worldY": 2304

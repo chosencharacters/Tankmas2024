@@ -37,7 +37,7 @@ class Main extends Sprite
 	public static var default_costume:String = "tankman";
 	public static var default_pet:String = "invisible-pet";
 
-	public static final default_world:String = "outside_hotel";
+	public static final default_world:String = #if test_arcade "hotel_interior" #else "outside_hotel" #end;
 
 	public static var ran:FlxRandom = new FlxRandom();
 

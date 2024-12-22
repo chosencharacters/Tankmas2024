@@ -1732,22 +1732,6 @@
 					"__worldY": 3584
 				},
 				{
-					"__identifier": "Player",
-					"__grid": [102,243],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#46BE2F",
-					"iid": "4f3f7600-9b00-11ef-9354-1359e3d6d97f",
-					"width": 128,
-					"height": 128,
-					"defUid": 1,
-					"px": [1632,3888],
-					"fieldInstances": [],
-					"__worldX": 1632,
-					"__worldY": 3888
-				},
-				{
 					"__identifier": "NPC",
 					"__grid": [115,100],
 					"__pivot": [0,0],
