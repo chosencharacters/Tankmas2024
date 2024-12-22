@@ -1356,6 +1356,25 @@
 					],
 					"__worldX": 1728,
 					"__worldY": 992
+				},
+				{
+					"__identifier": "Minigame",
+					"__grid": [91,78],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#1B3A4D",
+					"iid": "b0b2b640-9b00-11ef-b112-f3c11996edad",
+					"width": 208,
+					"height": 256,
+					"defUid": 21,
+					"px": [1456,1248],
+					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "fttt", "__tile": null, "defUid": 22, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["fttt"]
+					}] }],
+					"__worldX": 1456,
+					"__worldY": 1248
 				}
 			]
 		},

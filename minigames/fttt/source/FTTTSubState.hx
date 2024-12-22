@@ -2,6 +2,7 @@ package minigames.fttt.source;
 
 import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.math.FlxPoint;
 import flixel.math.FlxRandom;
 import flixel.math.FlxRect;
 import squid.ext.FlxSubstateExt;
@@ -9,6 +10,7 @@ import squid.sprite.FlxSpriteExt;
 import ui.button.HoverButton;
 
 using Math;
+using squid.util.FlxSpriteUtils;
 
 class FTTTSubState extends FlxSubstateExt
 {
@@ -28,8 +30,8 @@ class FTTTSubState extends FlxSubstateExt
 		super.create();
 
 		bounds = new FlxRect(0, 0, 320, 240);
-		bounds.x = FlxG.width / 2 - bounds.width / 2;
-		bounds.y = FlxG.height / 2 - bounds.height / 2;
+		// bounds.x = FlxG.width / 2 - bounds.width / 2;
+		// bounds.y = FlxG.height / 2 - bounds.height / 2;
 
 		bg = new FlxSpriteExt(0, 0).makeGraphicExt(FlxG.width, FlxG.height, 0xffa8a8a8);
 
@@ -37,6 +39,15 @@ class FTTTSubState extends FlxSubstateExt
 		add(things = new FlxTypedGroup<FTTTThing>());
 
 		sstate(INTRO, fsm);
+
+		cursor.kill();
+		remove(cursor, true);
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+		fsm();
 	}
 
 	function fsm()
@@ -65,7 +76,11 @@ class FTTTSubState extends FlxSubstateExt
 			remove(menu, true);
 			menu.kill();
 		}
-		add(menu = new HoverButton('assets/minigames/fttt/$name.png', (b) -> sstate(next_state, fsm)));
+		add(menu = new HoverButton('minigames/fttt/assets/$name.png', (b) -> sstate(next_state, fsm)));
+
+		menu.center_on(FlxPoint.weak(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2));
+
+		trace(menu.getPosition());
 	}
 
 	override function kill()
