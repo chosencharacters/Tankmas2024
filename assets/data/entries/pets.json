@@ -81,8 +81,21 @@
             "stats":{
                 "follow_speed":325,
                 "follow_acl": 60,
-                "follow_accuracy":0.95,
+                "follow_accuracy":0.9,
                 "drag":0.95
+            }
+        },
+        {
+            "name": "carrion-bird",
+            "display": "Davinky",
+            "desc": "It may be a pigeon covered in soot, but this loyal bird follows Captain Carrion wherever they go.",
+            "unlock": "FLAG",
+            "data": "UNLOCK_CARRION",
+            "stats":{
+                "follow_speed":325,
+                "follow_acl": 45,
+                "follow_accuracy":0.95,
+                "drag":0.8
             }
         }
     ]

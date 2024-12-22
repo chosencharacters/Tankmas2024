@@ -489,6 +489,13 @@
             "desc": "sus.",
             "unlock": "FLAG",
             "data": "UNLOCK_IMPOSTOR"
+        },
+        {
+            "name": "captain-carrion",
+            "display": "Captain Carrion",
+            "desc": "Captain Carrion, commander of The SS Sky Burial, they venture the clouds in search of coffee beans, lost souls, and birds to befriend.",
+            "unlock": "FLAG",
+            "data": "UNLOCK_CARRION"
         }
     ]
 }

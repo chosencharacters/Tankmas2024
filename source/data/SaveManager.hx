@@ -166,6 +166,8 @@ class SaveManager
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("amogus-unlocked"));
 				case "MELLA_UNLOCKED":
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("mella-unlocked"));
+				case "CARRION_UNLOCKED":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("carrion-unlocked"));
 			}
 		}
 		#end

@@ -31,6 +31,6 @@ enum abstract TextFormatPresets(TextFormatDef) from TextFormatDef to TextFormatD
 	public static final DIALOGUE_OPTION:TextFormatDef = {
 		font: TankmasFonts.HANDWRITTEN,
 		color: FlxColor.BLACK,
-		alignment: CENTER
+		alignment: FlxTextAlign.CENTER
 	};
 }

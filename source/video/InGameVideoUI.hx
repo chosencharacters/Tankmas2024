@@ -1,16 +1,16 @@
 package video;
 
-import bunnymark.PlayState;
-import video.PremiereHandler.PremiereData;
+import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import openfl.display.Sprite;
-import flixel.FlxG;
 import openfl.events.AsyncErrorEvent;
 import openfl.events.NetStatusEvent;
 import openfl.media.Video;
 import openfl.net.NetConnection;
 import openfl.net.NetStream;
 import openfl.utils.Assets;
+import states.PlayState;
+import video.PremiereHandler.PremiereData;
 
 private typedef PlayStatusData =
 {

@@ -49,6 +49,8 @@ class Lists
 
 		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("general-npc-dlgs.xml"));
 		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("amogus-npc-dlgs.xml"));
+		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("cameo-npc-dlgs.xml"));
+		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("persimmon-npc-dlgs.xml"));
 
 		// recursive_file_operation(false, '${assets_path}', "npc-dlgs.xml", (path) -> NPCLoader.load_npc_defs_from_file(npcs, path));
 

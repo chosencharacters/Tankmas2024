@@ -42,6 +42,9 @@ class SheetButton extends HoverButton
 			animation.frameIndex = 0;
 		}
 
+		if (sheet_type == PETS)
+			base_scale = 1.15;
+
 		update_unlocked();
 	}
 
