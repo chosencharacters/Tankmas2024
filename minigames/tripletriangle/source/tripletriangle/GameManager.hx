@@ -57,6 +57,7 @@ class GameManager extends GameManagerBase
     
     //#region Non-Serialized properties
     var score:Int;
+    var money:Int;
 
     var circleCountArr:Array<UInt>;
 
@@ -168,6 +169,7 @@ class GameManager extends GameManagerBase
         currentAliveCircleCount = 0;
         currentAlivePickupCircleCount = 0;
 		score = 0;
+		money = 0;
         
         //SoundManager.Main.PlaySound("Countdown");
         trace("TODO: Properly start a countdown.");
@@ -389,11 +391,13 @@ class GameManager extends GameManagerBase
 	public override function AddToScore(toAdd:Int)
 	{
 		score += toAdd;
-		textShopMoney.text = StringTools.lpad(Std.string(score > 999 ? 999 : score), "0", 3);
+		money += toAdd;
+		textShopMoney.text = StringTools.lpad(Std.string(money > 999 ? 999 : money), "0", 3);
 		textShopMoney.x = 278 - (textShopMoney.width / 2);
 
 		UpdateMaxCircleCount();
 
+        // TODO: IMPERFECT PROGRAMMING. What about getting 3 points, F.E?
 		if (score % 15 == 0 && score <= 300)
 		{
 			// Will happen only 20 times.
@@ -411,12 +415,12 @@ class GameManager extends GameManagerBase
 	}
 
     public function CanPurchase(price:Int):Bool{
-        return score > price;
+        return money > price;
     }
 
     public function Purchase(price:Int){
-        score -= price;
-		textShopMoney.text = StringTools.lpad(Std.string(score > 999 ? 999 : score), "0", 3);
+        money -= price;
+		textShopMoney.text = StringTools.lpad(Std.string(money > 999 ? 999 : money), "0", 3);
 		textShopMoney.x = 278 - (textShopMoney.width / 2);
 
         UpdateMaxCircleCount();
