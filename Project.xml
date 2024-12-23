@@ -105,13 +105,8 @@
 		<assets path="minigames/bunnymark/assets" rename="assets/minigames/bunnymark" library="bunnymark" exclude="*.ase|*.wav"/>
 
 	</section>
-	<section unless="exclude_fttt">
 
-		<source path="minigames/fttt/source" />
-		<library name="fttt" preload="false" />
-		<assets path="minigames/fttt/assets" exclude="*.ase|*.wav"/>
-		
-	</section>
+	<assets path="assets/images/minigames" library="minigames" exclude="*.ase|*.wav"/>
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

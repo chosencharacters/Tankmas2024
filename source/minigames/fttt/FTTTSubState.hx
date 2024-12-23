@@ -1,4 +1,4 @@
-package minigames.fttt.source;
+package minigames.fttt;
 
 import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -29,6 +29,8 @@ class FTTTSubState extends FlxSubstateExt
 	{
 		super.create();
 
+		trace("yo");
+		
 		bounds = new FlxRect(0, 0, 320, 240);
 		// bounds.x = FlxG.width / 2 - bounds.width / 2;
 		// bounds.y = FlxG.height / 2 - bounds.height / 2;
@@ -77,7 +79,9 @@ class FTTTSubState extends FlxSubstateExt
 			menu.kill();
 		}
 
-		add(menu = new HoverButton('minigames/fttt/assets/$name.png', function(b)
+		trace(name);
+
+		add(menu = new HoverButton(Paths.get('$name.png'), function(b)
 		{
 			menu.kill();
 			sstate(next_state, fsm);

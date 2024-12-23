@@ -1,6 +1,6 @@
-package minigames.fttt.source;
+package minigames.fttt;
 
-import minigames.fttt.source.FTTTSubState;
+import minigames.fttt.FTTTSubState;
 import ui.button.HoverButton;
 
 class FTTTThing extends HoverButton
@@ -13,6 +13,8 @@ class FTTTThing extends HoverButton
 		this.is_thing_thing = is_thing_thing;
 		on_pressed = (b) -> is_thing_thing ? good_outcome : bad_outcome;
 		sstate(MOVE);
+
+		loadAllFromAnimationSet(is_thing_thing ? 'fttt-thing-thing' : 'fttt-grunt');
 	}
 
 	override function update(elapsed:Float)
