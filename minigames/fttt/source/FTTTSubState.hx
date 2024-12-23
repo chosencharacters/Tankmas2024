@@ -76,7 +76,12 @@ class FTTTSubState extends FlxSubstateExt
 			remove(menu, true);
 			menu.kill();
 		}
-		add(menu = new HoverButton('minigames/fttt/assets/$name.png', (b) -> sstate(next_state, fsm)));
+
+		add(menu = new HoverButton('minigames/fttt/assets/$name.png', function(b)
+		{
+			menu.kill();
+			sstate(next_state, fsm);
+		}));
 
 		menu.center_on(FlxPoint.weak(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2));
 
