@@ -333,7 +333,7 @@
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "dad",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
@@ -369,11 +369,11 @@
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "captain-carrion",
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "abundance",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
@@ -434,7 +434,7 @@
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "beatrice",
                     "angle": 10
                 },
                 {

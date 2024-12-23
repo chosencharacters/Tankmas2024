@@ -30,6 +30,15 @@ class Flags
 				for (flag in debug_flag.split(","))
 					set_bool(flag);
 		}
+
+		if (USE_COMPILER_DEBUG_FLAGS)
+		{
+			set_bool("DEV_MODE", true);
+		}
+		else
+		{
+			set_bool("DEV_MODE", false);
+		}
 	}
 
 	public static function clear()
@@ -129,7 +138,7 @@ class Flags
 
 	static function bool_key_exists(key:String):Bool
 	{
-		for (special_prefix in ["COSTUME_"])
+		for (special_prefix in ["COSTUME_", "PET_"])
 			if (key.indexOf(special_prefix) == 0)
 				return true;
 
@@ -142,7 +151,7 @@ class Flags
 	static function get_bool_singular_value(key:String):Bool
 	{
 		// key item flag support
-		for (special_prefix in ["COSTUME_"])
+		for (special_prefix in ["COSTUME_", "PET_"])
 			if (key.indexOf(special_prefix) == 0)
 			{
 				var search_flag:String = key.split(special_prefix)[1];
@@ -153,6 +162,8 @@ class Flags
 				{
 					case "COSTUME_":
 						return SaveManager.current_costume == search_flag_kebab;
+					case "PET_":
+						return SaveManager.current_pet == search_flag_kebab;
 				}
 			}
 

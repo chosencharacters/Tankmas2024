@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "candle_path",
@@ -354,7 +354,8 @@
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 25, "cy": 70 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["25,70"]
-						}] }
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 3936,
 					"__worldY": 1648
@@ -1081,6 +1082,30 @@
 					],
 					"__worldX": 6096,
 					"__worldY": 1776
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [38,53],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "89407b30-9b00-11ef-b112-7372433c52cd",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [608,848],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "captain-carrion", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["captain-carrion"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": 4544,
+					"__worldY": 1648
 				}
 			]
 		},

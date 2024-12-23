@@ -39,7 +39,6 @@ import ui.sheets.SheetMenu;
 import ui.sheets.buttons.DialogueOptionBox;
 import video.InGameVideoUI;
 import video.PremiereHandler;
-import video.VideoSubstate.VideoUi;
 import zones.Door;
 
 class YSortable extends FlxSprite
@@ -50,8 +49,6 @@ class YSortable extends FlxSprite
 class PlayState extends BaseState
 {
 	public static var self:PlayState;
-
-	static final default_world:String = "outside_hotel";
 
 	public var current_world:String;
 
@@ -102,8 +99,6 @@ class PlayState extends BaseState
 
 	public static var show_usernames(default, set):Bool = true;
 
-	public var premieres:PremiereHandler;
-
 	// No idea how I could get this into the overlay ui
 	public var notification_message:ServerNotificationMessagePopup;
 
@@ -118,7 +113,7 @@ class PlayState extends BaseState
 		if (world_to_load != null)
 			current_world = world_to_load
 		else
-			current_world = SaveManager.savedRoom == null ? default_world : SaveManager.savedRoom;
+			current_world = SaveManager.savedRoom == null ? Main.default_world : SaveManager.savedRoom;
 		Main.current_room_id = RoomId.from_string(current_world);
 
 		super();
@@ -226,15 +221,6 @@ class PlayState extends BaseState
 		{
 			ui_overlay.offline_indicator.show();
 		}
-
-		premieres = new PremiereHandler();
-		if (Main.current_room_id == Theatre)
-		{
-			trace('Enabling premieres...');
-			premieres.on_premiere_release = on_premiere_release;
-			premieres.refresh();
-			new entities.misc.PremiereCountdown(premieres);
-		}
 	}
 
 	public function update_scroll_bounds()
@@ -250,8 +236,6 @@ class PlayState extends BaseState
 	override public function update(elapsed:Float)
 	{
 		OnlineLoop.iterate(elapsed);
-
-		premieres.update(elapsed);
 
 		super.update(elapsed);
 		// Ctrl.update();
@@ -290,64 +274,8 @@ class PlayState extends BaseState
 		});
 	}
 
-	var video_ui:InGameVideoUI;
-
-	function on_premiere_release(d:PremiereData)
-	{
-		trace('Playing premiere: ${d.name}');
-		var screen = {
-			x: 0,
-			y: 0,
-			width: 0,
-			height: 0
-		}
-
-		// Find cinema screen (quick hack for now)
-		for (level in levels)
-		{
-			for (entity in level.level_data.l_Entities.all_Misc)
-			{
-				if (entity.f_name == "CinemaScreen")
-				{
-					screen.x = entity.worldPixelX;
-					screen.y = entity.worldPixelY;
-					screen.width = entity.width;
-					screen.height = entity.height;
-				}
-			}
-		}
-
-		var time_since_premiere = Main.time.utc / 1000.0 - (d.timestamp);
-
-		var max_time_replaying = 3600.0;
-		/*
-			if (time_since_premiere > max_time_replaying)
-			{
-				trace('Premiere has been looping for an hour, stop it now.');
-				return;
-			}
-		 */
-
-		video_ui = new InGameVideoUI(d.url, screen.x, screen.y, screen.width, screen.height, time_since_premiere);
-		this.objects.add(video_ui);
-		video_ui.on_close_request = kill_video;
-
-		video_ui.on_enter_area = () -> ui_overlay.visible = false;
-		video_ui.on_leave_area = () -> ui_overlay.visible = true;
-	}
-
-	function kill_video()
-	{
-		if (this.video_ui == null)
-			return;
-		this.objects.remove(this.video_ui);
-		this.video_ui.kill();
-		this.video_ui = null;
-	}
-
 	override function destroy()
 	{
-		kill_video();
 		self = null;
 		super.destroy();
 	}

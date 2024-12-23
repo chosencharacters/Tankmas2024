@@ -34,6 +34,19 @@ class LoadGameState extends BaseState
 	{
 		super();
 
+		trace('Welcome to Tankmas 2024!');
+
+		#if FLX_OPENGL_AVAILABLE
+		trace('[OPENGL] Max texture size: ${FlxG.bitmap.maxTextureSize}');
+		#else
+		var getMaxTextureSize = function():Int {
+			if (FlxG.stage.window.context.attributes.hardware)
+				return cast lime.graphics.opengl.GL.getParameter(lime.graphics.opengl.GL.MAX_TEXTURE_SIZE);
+			return -1;
+		}
+		trace('[OPENGL] Max texture size: ${getMaxTextureSize()}');
+		#end
+
 		saved_session_id = new FlxSave();
 		saved_session_id.bind('ng_session_id');
 

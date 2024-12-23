@@ -25,6 +25,9 @@ class NPC extends Interactable
 
 		def = Lists.npcs.get(name);
 
+		if (def == null || def.animations == null)
+			def = Lists.npcs.get("default-npc");
+
 		this.timelock = timelock * 1000;
 
 		detect_range = 300;
@@ -64,6 +67,8 @@ class NPC extends Interactable
 
 	function conditional_animation(animation:String, ?fallback:String)
 	{
+		if (def == null || def.animations == null)
+			return;
 		if (def.animations.exists(animation))
 		{
 			if (def.animations.get(animation).sprite_anim != null)

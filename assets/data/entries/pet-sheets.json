@@ -59,6 +59,70 @@
                     "yOffset": -30
                 },
                 {
+                    "name": "carrion-bird",
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "pets-series-2",
+            "items": [
+                {
+                    "name": "and-me"
+                },
+                {
+                    "name": "persimmon-innocence",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
                     "name": null,
                     "angle": -10
                 }
