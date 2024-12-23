@@ -180,11 +180,11 @@ class PlayState extends FlxSubState
 		textShopMoney.alignment = FlxTextAlign.CENTER;
 		add(textShopMoney);
 
-		/*var tbaText = new FlxBitmapText(fontAngelCode);
-		tbaText.font = fontAngelCode;
-		tbaText.text = "TBA:\n Mo' enemies\n Medals\n\nUnlikely:\n Skins?\n Boss?";
-		tbaText.setPosition(242, 160);
-		add(tbaText);*/
+		var mouseOnlyText = new FlxBitmapText(fontAngelCode);
+		mouseOnlyText.font = fontAngelCode;
+		mouseOnlyText.text = "Warning:\n This is a\n Mouse-only\n Game!";
+		mouseOnlyText.setPosition(242, 160);
+		add(mouseOnlyText);
 		
 		/*flixel.util.FlxTimer.wait(2, () ->
 		{
