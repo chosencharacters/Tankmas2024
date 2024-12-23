@@ -328,21 +328,42 @@ class PlayState extends FlxSubState
 			},*/
 		];
 
+		var achievementSpriteDatas:Array<Dynamic> = [
+			// (Already unlocked)
+			{
+				type: UIUnlockableType.achievement,
+				x: 10,
+				y: 100,
+				image: "assets/images/Achievement Combo 3.png",
+				imageLocked: "assets/images/Achievement Locked.png",
+				unlockableName: "Combo 3 Achievement",
+				unlocked: false,
+				achievement: "Achievement.COMBO_3",
+			},
+		];
+
 		var btnGroup:FlxTypedGroup<FlxButton> = new FlxTypedGroup<FlxButton>();
+		var achievementGroup:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
 		
-		trace("(TEMP) Initializing buttons...");
 		for(buttonData in buttonDatas){
 			var btn:FlxButton = new FlxButton(buttonData.x, buttonData.y, "");
-			// btn.loadGraphic("assets/images/Shop Circle Angry Faic.png");
 			btn.loadGraphic(Global.asset(buttonData.unlocked ? buttonData.image : buttonData.imageLocked));
-			trace(btn.origin);
 			btn.centerOrigin();
-			trace(btn.origin);
 			btn.onUp.callback = () -> {buttonData.callback(btn, buttonData);};
 			btnGroup.add(btn);
 		}
 		
 		add(btnGroup);
+		
+		for(achievementSpriteData in achievementSpriteDatas){
+			var achievementSprite:FlxSprite = new FlxSprite(achievementSpriteData.x, achievementSpriteData.y);
+			achievementSprite.loadGraphic(Global.asset(achievementSpriteData.imageLocked));
+			// achievementSprite.loadGraphic(Global.asset(achievementSpriteData.unlocked ? achievementSpriteData.image : achievementSpriteData.imageLocked));
+			achievementSprite.centerOrigin();
+			achievementGroup.add(achievementSprite);
+		}
+		
+		add(achievementGroup);
 	}
 
 	function btnShopItemCallback(btn:FlxButton, shopButtonData:Dynamic){
