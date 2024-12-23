@@ -1389,7 +1389,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [75,225],
+					"__grid": [78,227],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1398,7 +1398,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1200,3600],
+					"px": [1248,3632],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "travsaus", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1407,8 +1407,8 @@
 						{ "__identifier": "day", "__type": "Int", "__value": 12, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [12] }] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
-					"__worldX": 1200,
-					"__worldY": 3600
+					"__worldX": 1248,
+					"__worldY": 3632
 				},
 				{
 					"__identifier": "NPC",
@@ -1710,7 +1710,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [117,224],
+					"__grid": [114,226],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1719,7 +1719,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1872,3584],
+					"px": [1824,3616],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "mudhutgrug", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1728,8 +1728,8 @@
 						{ "__identifier": "day", "__type": "Int", "__value": 21, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [21] }] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
-					"__worldX": 1872,
-					"__worldY": 3584
+					"__worldX": 1824,
+					"__worldY": 3616
 				},
 				{
 					"__identifier": "Player",
@@ -1854,7 +1854,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [72,243],
+					"__grid": [76,241],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1863,7 +1863,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1152,3888],
+					"px": [1216,3856],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "slimygoo", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1872,8 +1872,31 @@
 						{ "__identifier": "day", "__type": "Int", "__value": 22, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [22] }] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [null] }
 					],
-					"__worldX": 1152,
-					"__worldY": 3888
+					"__worldX": 1216,
+					"__worldY": 3856
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [73,212],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "106e8980-9b00-11ef-a31d-db1082ab0726",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1168,3392],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "mantis", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["mantis"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 23, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [23] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 1168,
+					"__worldY": 3392
 				}
 			]
 		},

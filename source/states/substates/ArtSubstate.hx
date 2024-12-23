@@ -4,12 +4,13 @@ import data.JsonData;
 import entities.Present;
 import flixel.tweens.FlxEase;
 import openfl.Assets;
+import openfl.display.BitmapData;
 import squid.ext.FlxSubstateExt;
 import ui.button.HoverButton;
 
 class ArtSubstate extends FlxSubstateExt
 {
-	var art:FlxSprite;
+	var art:FlxSpriteExt;
 	var data:data.types.TankmasDefs.PresentDef;
 	var display_text:FlxText;
 
@@ -22,14 +23,16 @@ class ArtSubstate extends FlxSubstateExt
 		trace(present_name);
 		trace(data);
 
-		art = new FlxSprite(0, 0);
+		art = new FlxSpriteExt(0, 0);
 
-		var image_url = #if censor_presents Paths.image_path('art-censored') #else Paths.image_path(data.file) #end;
-		Assets.loadBitmapData(image_url).onComplete(on_image_loaded);
+		var image_name:String = #if censor_presents 'art-censored' #else data.file #end;
+		var image_url:String = Paths.image_path(image_name);
+
+		Assets.loadBitmapData(image_url).onComplete((bitmap) -> on_image_loaded(bitmap, image_name));
 
 		add(art);
 
-		final backBox:FlxSprite = new FlxSprite(0, 960).makeGraphic(1920, 120, FlxColor.BLACK);
+		final backBox:FlxSpriteExt = new FlxSpriteExt(0, 960).makeGraphicExt(1920, 120, FlxColor.BLACK);
 		backBox.alpha = 0.3;
 		add(backBox);
 
@@ -57,9 +60,9 @@ class ArtSubstate extends FlxSubstateExt
 		members.for_all_members((member:flixel.FlxBasic) -> cast(member, FlxObject).scrollFactor.set(0, 0));
 	}
 
-	function on_image_loaded(image)
+	function on_image_loaded(bitmap:BitmapData, image_name:String)
 	{
-		art.loadGraphic(image);
+		art.loadAllFromAnimationSet(image_name);
 		art.setGraphicSize(art.width > art.height ? 1920 : 0, art.height >= art.width ? 1080 : 0);
 		art.updateHitbox();
 		art.screenCenter();

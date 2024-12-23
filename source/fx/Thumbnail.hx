@@ -4,6 +4,7 @@ import flixel.math.FlxMath;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.tweens.FlxEase;
 import openfl.Assets;
+import openfl.display.BitmapData;
 
 enum ImageState
 {
@@ -28,24 +29,33 @@ class Thumbnail extends FlxSpriteExt
 	private var graphic_path:String;
 	private var image_state:ImageState = Initial;
 
-	public function new(X:Float, Y:Float, graphic_path:String)
+	public var file_name:String;
+
+	public function new(X:Float, Y:Float, graphic_path:String, file_name:String)
 	{
 		super(X, Y);
 		theY = Y;
+		this.file_name = file_name;
 		this.graphic_path = graphic_path;
 		PlayState.self.thumbnails.add(this);
 		visible = false;
 		start_loading_image();
 	}
 
-	function image_loaded(image)
+	function on_image_loaded(bitmap:BitmapData, file_name:String)
 	{
-		if (image == null)
+		if (bitmap == null)
 			return;
 		visible = true;
 		image_state = Ready;
-		loadGraphic(image);
-		scale.set(0.07, 0.07);
+		loadAllFromAnimationSet(file_name);
+		switch (file_name)
+		{
+			default:
+				scale.set(0.07, 0.07);
+			case "day-23-art-mantis":
+				scale.set(0.2, 0.2);
+		}
 		updateHitbox();
 		scaleX = scale.x;
 		scaleY = scale.y;
@@ -59,7 +69,7 @@ class Thumbnail extends FlxSpriteExt
 			return;
 		#if trace_image trace('started fetching ${graphic_path}'); #end
 		image_state = Loading;
-		Assets.loadBitmapData(graphic_path, true).onComplete(image_loaded);
+		Assets.loadBitmapData(graphic_path, true).onComplete((bitmap) -> on_image_loaded(bitmap, file_name));
 	}
 
 	override function kill()

@@ -68,7 +68,7 @@ class Present extends Interactable
 		loadAllFromAnimationSet("present-default", 'day-${def.day}-present-$username');
 
 		PlayState.self.world_objects.add(this);
-		thumbnail = new Thumbnail(x, y - 200, Paths.image_path(def.file));
+		thumbnail = new Thumbnail(x, y - 200, Paths.image_path(def.file), def.file);
 
 		#if censor_presents
 		thumbnail.color = FlxColor.BLACK;

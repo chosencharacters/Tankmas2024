@@ -73,4 +73,8 @@
 		<anim name="out" fps="60ms" looping="false">16t24</anim>
 		<variable name="visible" frames="4t20"/>
 	</animSet>
+
+	<animSet image="day-23-art-mantis" width="800" height="500">
+		<anim name="idle" fps="50ms">0t19</anim>
+	</animSet>
 </root>

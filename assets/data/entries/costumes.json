@@ -516,6 +516,33 @@
             "desc": "A busy Bee girl who just can't seem to find a Honey.\nShe's also allergic to flowers and can't fly...",
             "unlock": "USERNAME",
             "data": "gr1mp"
+        },
+        {
+            "name": "alloy",
+            "display": "Alloy",
+            "desc": "Originally a boy named Justin Case, Alloy battles countless foes as he tries to save Mason City from SumoCorp in his high powered alien suit.",
+            "unlock": "DATE",
+            "data": 1734930000
+        },
+        {
+            "name": "alloy",
+            "display": "Alloy",
+            "desc": "Originally a boy named Justin Case, Alloy battles countless foes as he tries to save Mason City from SumoCorp in his high powered alien suit.",
+            "unlock": "DATE",
+            "data": 1734930000
+        },
+        {
+            "name": "cathode-raybots",
+            "display": "Cathode Raybots",
+            "desc": "These robots are out of this world, and in your TV. Actually, they are your TV. And they're here for revenge!",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "inner-sloth",
+            "display": "Inner Sloth",
+            "desc": "Yanno. We were really expecting the sloth. But might as well go all out.",
+            "unlock": "DATE",
+            "data": 1734930000
         }
     ]
 }

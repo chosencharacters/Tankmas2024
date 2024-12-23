@@ -115,6 +115,26 @@
             "desc": "The object of innocence, untainted by the cruel world. Bring it with you and show it the reality.",
             "unlock": "FLAG",
             "data": "UNLOCK_PERSIMMON"
+        },
+        {
+            "name": "persimmon-innocence",
+            "display": "Innocence",
+            "desc": "The object of innocence, untainted by the cruel world. Bring it with you and show it the reality.",
+            "unlock": "FLAG",
+            "data": "UNLOCK_PERSIMMON"
+        },
+        {
+            "name": "clubby-the-seal",
+            "display": "Clubby the Seal",
+            "desc": "Not to be confused with that other seal clubbing game.",
+            "unlock": "DATE",
+            "data": 1734930000,
+            "stats":{
+                "follow_speed": 200,
+                "follow_acl": 60,
+                "follow_accuracy":0.3,
+                "drag":0.99
+            }
         }
     ]
 }

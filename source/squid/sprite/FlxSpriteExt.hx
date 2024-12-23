@@ -415,11 +415,11 @@ class FlxSpriteExt extends YSortable
 		// No animSet found, check if aseprite exists
 		if (animSet == null)
 		{
-			var file_path:String = Paths.get('${anim_set_name}.png');
+			var file_path:String = Paths.image_path('${anim_set_name}');
 			if (file_path == null)
-				Paths.get('${anim_set_name}.png');
+				Paths.image_path('${anim_set_name}');
 
-			loadGraphic(Paths.get('${anim_set_name}.png'), false, unique);
+			loadGraphic(Paths.image_path('${anim_set_name}'), false, unique);
 			animAdd("idle", "0");
 			return this;
 		}
@@ -430,8 +430,8 @@ class FlxSpriteExt extends YSortable
 		// No animSet found, load as a basic .png
 		if (animSet == null)
 		{
-			var file_path:String = Paths.get('${anim_set_name}.png');
-			loadGraphic(Paths.get('${anim_set_name}.png'), false, unique);
+			var file_path:String = Paths.image_path('${anim_set_name}');
+			loadGraphic(Paths.image_path('${anim_set_name}'), false, unique);
 			animAdd("idle", "0");
 			return this;
 		}
