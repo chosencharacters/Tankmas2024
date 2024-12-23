@@ -3,6 +3,7 @@ package tripletriangle;
 import tripletriangle.BasicCircle.Circle_AngleAmount;
 import tripletriangle.GenericCircle.CircleType;
 
+// TODO: Remove the parameters graphicAssetPath, p_type, p_angleAmount in favour of constants. I guess. Not really important.
 class TorpedoCircle extends BasicCircle
 {
 	override public function new(p_x:Float = 120, p_y:Float = 160, graphicAssetPath:String = "assets/images/Circle Nene.png", p_type:CircleType = CircleType.Torpedo,
