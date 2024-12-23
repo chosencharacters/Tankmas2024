@@ -163,6 +163,10 @@
         {
             "name": "persimmon-unlocked",
             "id": 81794
-        }
+        },
+		{
+			"name": "Watch a movie!",
+            "id": 81795
+		}
     ]
 }
