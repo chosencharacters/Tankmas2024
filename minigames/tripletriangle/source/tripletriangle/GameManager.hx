@@ -423,7 +423,7 @@ class GameManager extends GameManagerBase
 	}
 
     public function CanPurchase(price:Int):Bool{
-        return money > price;
+        return money >= price;
     }
 
     public function Purchase(price:Int){
