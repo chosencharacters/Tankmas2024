@@ -26,6 +26,13 @@ enum UIUnlockableType{
 	achievement;  // With optional tooltip.
 }
 
+enum AchievementID{
+	combo3;
+	combo4;
+	combo5;
+	shopper;
+}
+
 // Needs to be flexible, and preferably possible to initiate via anonymous JSON objects like {type: 1}
 /*class UIUnlockableButtonData {
 	public var type:UIUnlockableType;
@@ -49,6 +56,11 @@ class PlayState extends FlxSubState
 	
 	var fontAngelCode:FlxBitmapFont;
 	var fontAngelCode_x4:FlxBitmapFont;
+
+	var achievementGroup:FlxTypedGroup<FlxSprite>;
+	var achievementSpriteDatas:Array<Dynamic>;
+	var purchaseCounter = 0;
+	final MAX_PURCHASE_AMOUNT = 4;  // 4 circles + 0 spike skins + 0 background skins.
 
 	var cursor:Cursor;  // Debugging
 	var cursorPosition:FlxBitmapText;  // Debugging
@@ -218,7 +230,7 @@ class PlayState extends FlxSubState
 				image: "assets/images/Shop Circle Nene.png",
 				imageLocked: "assets/images/Shop Locked 50.png",
 				unlockableName: "Nene Circle",
-				price: 50,
+				price: 5,
 				unlocked: false,
 				circleType: CircleType.Torpedo,
 			},
@@ -230,7 +242,7 @@ class PlayState extends FlxSubState
 				image: "assets/images/Shop Circle Moony.png",
 				imageLocked: "assets/images/Shop Locked 50.png",
 				unlockableName: "Moony Circle",
-				price: 50,
+				price: 5,
 				unlocked: false,
 				circleType: CircleType.Bloon,
 			},
@@ -242,7 +254,7 @@ class PlayState extends FlxSubState
 				image: "assets/images/Shop Circle P-Bot.png",
 				imageLocked: "assets/images/Shop Locked 100.png",
 				unlockableName: "P-Bot Circle",
-				price: 100,
+				price: 10,
 				unlocked: false,
 				circleType: CircleType.Big,
 			},
@@ -254,7 +266,7 @@ class PlayState extends FlxSubState
 				image: "assets/images/Shop Circle Angry Faic.png",
 				imageLocked: "assets/images/Shop Locked 100.png",
 				unlockableName: "Angry Faic Circle",
-				price: 100,
+				price: 10,
 				unlocked: false,
 				circleType: CircleType.Mole,
 			},
@@ -328,7 +340,7 @@ class PlayState extends FlxSubState
 			},*/
 		];
 
-		var achievementSpriteDatas:Array<Dynamic> = [
+		achievementSpriteDatas = [
 			// (Already unlocked)
 			{
 				type: UIUnlockableType.achievement,
@@ -338,12 +350,42 @@ class PlayState extends FlxSubState
 				imageLocked: "assets/images/Achievement Locked.png",
 				unlockableName: "Combo 3 Achievement",
 				unlocked: false,
-				achievement: "Achievement.COMBO_3",
+				achievement: AchievementID.combo3,
+			},
+			{
+				type: UIUnlockableType.achievement,
+				x: 30,
+				y: 100,
+				image: "assets/images/Achievement Combo 4.png",
+				imageLocked: "assets/images/Achievement Locked.png",
+				unlockableName: "Combo 4 Achievement",
+				unlocked: false,
+				achievement: AchievementID.combo4,
+			},
+			{
+				type: UIUnlockableType.achievement,
+				x: 50,
+				y: 100,
+				image: "assets/images/Achievement Combo 5.png",
+				imageLocked: "assets/images/Achievement Locked.png",
+				unlockableName: "Combo 5 Achievement",
+				unlocked: false,
+				achievement: AchievementID.combo5,
+			},
+			{
+				type: UIUnlockableType.achievement,
+				x: 10,
+				y: 130,
+				image: "assets/images/Achievement Shopper.png",
+				imageLocked: "assets/images/Achievement Locked.png",
+				unlockableName: "Shopper Achievement",
+				unlocked: false,
+				achievement: AchievementID.shopper,
 			},
 		];
 
 		var btnGroup:FlxTypedGroup<FlxButton> = new FlxTypedGroup<FlxButton>();
-		var achievementGroup:FlxTypedGroup<FlxSprite> = new FlxTypedGroup<FlxSprite>();
+		achievementGroup = new FlxTypedGroup<FlxSprite>();
 		
 		for(buttonData in buttonDatas){
 			var btn:FlxButton = new FlxButton(buttonData.x, buttonData.y, "");
@@ -384,6 +426,7 @@ class PlayState extends FlxSubState
 
 		shopButtonData.unlocked = true;
 		GameManager.Main.Purchase(shopButtonData.price);
+		FlxG.sound.play(Global.asset("assets/sounds/JSFXR Buy Thing.ogg"), 0.9);
 		// btn.active = false;  // More efficient when the button is disabled. Better debugging when the button is enabled + Items can be re-enabled or re-disabled, like skins.
 		switch(shopButtonData.type){
 			case UIUnlockableType.circle:
@@ -397,6 +440,31 @@ class PlayState extends FlxSubState
 				trace("UNSUPPORTED PURCHASE TYPE. MISTAKE IN PROGRAMMING EXPECTED.");
 		}
 		btn.loadGraphic(Global.asset(shopButtonData.image));
+
+		// Handle purchase achievement.
+		purchaseCounter++;
+		if(purchaseCounter == MAX_PURCHASE_AMOUNT) UnlockAchievement(AchievementID.shopper);
+	}
+
+	function UnlockAchievement(achievement:AchievementID){
+		trace("Attempting to unlock achievement with ID: " + achievement);
+		
+		var achievementIndexInArrays:Int = -1;
+		for(i in 0...achievementSpriteDatas.length){
+			if(achievementSpriteDatas[i].achievement == achievement){
+				achievementIndexInArrays = i;
+				break;
+			}
+		}
+		if(achievementIndexInArrays == -1) {
+			trace("Couldn't find achievement: " + achievement);
+			return;
+		}
+
+		trace("Unlocked achievement: " + achievementSpriteDatas[achievementIndexInArrays].unlockableName);
+		achievementGroup.members[achievementIndexInArrays].loadGraphic(Global.asset(achievementSpriteDatas[achievementIndexInArrays].image));
+		achievementSpriteDatas[achievementIndexInArrays].unlocked = true;
+		FlxG.sound.play(Global.asset("assets/sounds/Echoes of the Void.ftm (Threeangle version)/Mixed SFX T17 - Note Pick Up.ogg"), 1);
 	}
 
 	function btnToBeImplementedCallback(btn:FlxButton, shopButtonData:Dynamic){
