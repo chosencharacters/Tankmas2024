@@ -34,6 +34,7 @@ class GameManager extends GameManagerBase
     }
 
 	private var textShopMoney:FlxBitmapText;
+	private var countdownText:FlxBitmapText;
 
     private var circleGroup:FlxTypedGroup<GenericCircle>;
 
@@ -43,7 +44,6 @@ class GameManager extends GameManagerBase
     public var scoreText:TextMeshProUGUI;
     public var newRecordText:Animator;
     public var heartBar:HeartBar;
-    public var countdownText:FlxObject;
     public var restartScreen:Animator;
     public var highScoreText:TextMeshProUGUI;
 
@@ -164,6 +164,7 @@ class GameManager extends GameManagerBase
             processor.updateExitFrame();
         }
 		textShopMoney = PlayState.textShopMoney;
+		countdownText = PlayState.countdownText;
     }
 
 	public function StartGame():Routine {
@@ -180,17 +181,21 @@ class GameManager extends GameManagerBase
         //SoundManager.Main.PlaySound("Countdown");
         
 		FlxG.sound.play(Global.asset("assets/sounds/Threeangle SFX.ftm/Threeangle SFX - Track 01 (Countdown).ogg"), 0.9);
-        trace("TODO: Visually start a countdown.");
         var i = 3;
 		while(i > 0) {
-			trace(i--);
-			@yield return WaitDelay(1);
+			countdownText.text = "" + i;
+		    countdownText.x = 160 - (countdownText.width / 2);
+            i--;
+		    @yield return WaitDelay(1);
 		}
-		trace("GO!");
-        
+        countdownText.text = "GO!";
+        countdownText.x = 160 - (countdownText.width / 2);
 
         isSpawning = true;
         typeToSpawn = CircleType.Basic;
+
+        @yield return WaitDelay(1);
+        countdownText.text = "";
 	}
 
 	override public function update(elapsed:Float)

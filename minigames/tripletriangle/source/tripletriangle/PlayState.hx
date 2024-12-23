@@ -52,6 +52,7 @@ class PlayState extends FlxSubState
 	public static var _spikeList:FlxTypedGroup<Spike>; // New to this Haxe version
 	public static var _spikeSpriteList:FlxTypedGroup<FlxSprite>; // For collisions. New to this Haxe version
 
+	public static var countdownText:FlxBitmapText;
 	public static var textShopMoney:FlxBitmapText;
 	
 	var fontAngelCode:FlxBitmapFont;
@@ -135,6 +136,11 @@ class PlayState extends FlxSubState
 	}
 
 	function initializeUI(){
+		countdownText = new FlxBitmapText(fontAngelCode);
+		countdownText.font = fontAngelCode_x4;
+		countdownText.setPosition(160, 104);
+		add(countdownText);
+
 		var creditsText = new FlxBitmapText(fontAngelCode);
 		creditsText.font = fontAngelCode;
 		creditsText.text = "Dev:\n Blawnode";
