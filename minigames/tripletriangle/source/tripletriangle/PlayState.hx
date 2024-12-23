@@ -180,11 +180,11 @@ class PlayState extends FlxSubState
 		textShopMoney.alignment = FlxTextAlign.CENTER;
 		add(textShopMoney);
 
-		var tbaText = new FlxBitmapText(fontAngelCode);
+		/*var tbaText = new FlxBitmapText(fontAngelCode);
 		tbaText.font = fontAngelCode;
 		tbaText.text = "TBA:\n Mo' enemies\n Medals\n\nUnlikely:\n Skins?\n Boss?";
 		tbaText.setPosition(242, 160);
-		add(tbaText);
+		add(tbaText);*/
 		
 		/*flixel.util.FlxTimer.wait(2, () ->
 		{
