@@ -152,6 +152,8 @@ class BasicCircle extends GenericCircle
 	{
 		velocityWoRotation = new FlxPoint(Math.abs(velocityWoRotation.x) * xDirection, velocityWoRotation.y);
 		// Play SFX
+		var flxSound = FlxG.sound.play(Global.asset("assets/sounds/JSFXR Bounce.ogg"), 0.9);
+		flxSound.pitch = FlxG.random.float(0.8, 1.2);
 		// var snd:String = FlxG.random.getObject(["assets/alien_die0.wav", "assets/alien_die1.wav"]);
 		// FlxG.sound.play(snd, 0.9);
 		// SoundManager.Main.PlaySound("Bounce", true);

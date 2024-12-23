@@ -10,6 +10,12 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxBitmapText;
 import haxe.Exception;
 
+#if ADVENT
+import utils.OverlayGlobal as Global;
+#else
+import utils.Global;
+#end
+
 private class Animator{}
 private class CameraShake{}
 private class HeartBar{}
@@ -172,7 +178,9 @@ class GameManager extends GameManagerBase
 		money = 0;
         
         //SoundManager.Main.PlaySound("Countdown");
-        trace("TODO: Properly start a countdown.");
+        
+		FlxG.sound.play(Global.asset("assets/sounds/Threeangle SFX.ftm/Threeangle SFX - Track 01 (Countdown).ogg"), 0.9);
+        trace("TODO: Visually start a countdown.");
         var i = 3;
 		while(i > 0) {
 			trace(i--);
@@ -511,7 +519,39 @@ class GameManager extends GameManagerBase
 
     // public void Revive()
 
-    // private void PlayAlert(CircleType type)
+    // TOEDIT (Circle): Need to edit this every time I add a new circle type.
+    private function PlayAlert(type:CircleType)
+    {
+        try
+        {
+            switch (type)
+            {
+                case CircleType.Torpedo:
+                    // alert.GetComponent<Animator>().Play("Torpedo");
+                    // var flxSound = FlxG.sound.play(Global.asset("assets/sounds/.ogg"), 0.9);
+				    // flxSound.pitch = FlxG.random.float(0.95, 1.05);
+                    // SoundManager.Main.PlaySound("Torpedo Alert");
+                case CircleType.Big:
+                    // alert.GetComponent<Animator>().Play("Big");
+                    // var flxSound = FlxG.sound.play(Global.asset("assets/sounds/.ogg"), 0.9);
+				    // flxSound.pitch = FlxG.random.float(0.95, 1.05);
+                    // SoundManager.Main.PlaySound("Big Alert");
+                case CircleType.Bloon:
+                    // var flxSound = FlxG.sound.play(Global.asset("assets/sounds/.ogg"), 0.9);
+				    // flxSound.pitch = FlxG.random.float(0.95, 1.05);
+                    // SoundManager.Main.PlaySound("Bloon Inflation");
+                case CircleType.Mole:
+                    // Called later, in MoleCircle.cs.
+                default:
+                    throw new Exception("Circle doesn't have an alert!!");
+            }
+        }
+        catch (e:Exception)
+        {
+            trace(e.toString());
+            // ErrorScreenManager.Main.ShowError(e.ToString());
+        }
+    }
 
     // #region Helper Functions
     // private CircleType PrefabNameToCircleType(string prefabName)

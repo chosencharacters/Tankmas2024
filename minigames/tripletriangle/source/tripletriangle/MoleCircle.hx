@@ -48,6 +48,8 @@ class MoleCircle extends BasicCircle
 		
     	//Instantiate(_psMoleEffect, transform.position, Quaternion.identity);
     	//SoundManager.Main.PlaySound("Mole Burrow");
+		var flxSound = FlxG.sound.play(Global.asset("assets/sounds/JSFXR Mole Burrow.ogg"), 0.9);
+		flxSound.pitch = FlxG.random.float(0.8, 1.2);
 		
         // haxe.Timer.delay(function () { LaunchToWall(); }, 1);  // Doesn't wait
         // new FlxTimer().start(1, LaunchToWall);  // Error
