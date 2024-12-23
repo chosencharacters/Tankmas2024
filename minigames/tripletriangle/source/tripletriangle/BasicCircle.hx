@@ -196,8 +196,27 @@ class BasicCircle extends GenericCircle
 	{
 		if (!spike.visible)
 			return;
-		GameManagerBase.Main.OnCirclePopped(this);
-		kill();
+		var damage = GameManagerBase.Main._damage;
+		// CameraShake.Main.TriggerShake(0.25f, 0.2f);
+
+		if (currHp - damage <= 0 && !wasPopped)
+			{
+				wasPopped = true;
+				GameManagerBase.Main.OnCirclePopped(this);
+				var flxSound = FlxG.sound.play(Global.asset("assets/sounds/FS circle_squish.ogg"), 0.9);
+				flxSound.pitch = FlxG.random.float(0.8, 1.2);
+				// SoundManager.Main.PlaySound("Circle Squish", true);
+				// ParticleManager.Main.SpawnPop((transform.position + collision.transform.position) / 2, collision.GetComponentInParent<Spike>().GetPopAngle(), _type);
+				// ParticleManager.Main.SpawnSplat(transform.position, _type);
+				kill();
+			}
+			else
+			{
+				currHp -= damage;
+				// SoundManager.Main.PlaySound("Circle Squish (Small)", true);
+				var flxSound = FlxG.sound.play(Global.asset("assets/sounds/FS Small Squish.ogg"), 0.9);
+				flxSound.pitch = FlxG.random.float(0.8, 1.2);
+			}
 	}
 	/*
 		private void OnTriggerEnter2D(Collider2D collision)

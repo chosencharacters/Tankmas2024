@@ -35,7 +35,7 @@ abstract class GameManagerBase extends FlxObject
 
     //private var coStartRoutine:Routine;
     private var coStartRoutine:CoroutineRunner;
-    private var _damage(default, default):Int = 1;
+    public var _damage(default, default):Int = 1;
 
 
     /*virtual*/ function new()
