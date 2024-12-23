@@ -246,6 +246,8 @@ class GameManager extends GameManagerBase
                 return new BloonCircle();
             case CircleType.Big:
                 return new BigCircle();
+            case CircleType.Mole:
+                return new MoleCircle();
             default:
                 trace("Unimplemented/impossible circle type: " + circleType);
                 return null;
@@ -318,7 +320,7 @@ class GameManager extends GameManagerBase
         typeToSpawn = choice;
         if (choice != CircleType.Basic)
         {
-            trace("TODO: PlayAlert(choice)");
+            trace("TODO: PlayAlert(" + choice + ")");
             // PlayAlert(choice);
         }
     }

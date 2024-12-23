@@ -37,6 +37,7 @@ class BasicCircle extends GenericCircle
 	private var playgroundLeft:Float;
 	private var playgroundRight:Float;
 	private var playgroundWidth:Float;
+	private var playgroundHeight:Float;
 	private var playgroundTop:Float;
 	private var playgroundBottom:Float;
 
@@ -75,7 +76,7 @@ class BasicCircle extends GenericCircle
 		swCollision_lastOccurrenceTimeInSeconds = -999;
 
 		var camera:FlxCamera = FlxG.camera;
-		var playgroundHeight:Float = 240; // camera.orthographicSize * 2 -> camera.height * 2 -> 240
+		playgroundHeight = 240; // camera.orthographicSize * 2 -> camera.height * 2 -> 240
 		playgroundWidth = 160; // cameraHeight * camera.aspect -> camera.width -> 160
 		playgroundLeft = 80; // camera.transform.position.x - cameraWidth / 2 -> 80
 		playgroundRight = 240; // playgroundLeft + playgroundWidth -> 240
@@ -160,21 +161,21 @@ class BasicCircle extends GenericCircle
 		BounceStatic(this, xDirection);
 	}
 
-	public function AddForceAtAngleStatic(circle:BasicCircle, force:Float, angle:Float)
+	public function AddForceAtAngleStatic(circle:BasicCircle, force:Float, angle:Float, forceYMovement:Bool=true)
 	{
 		var angle_radians:Float = angle * FlxAngle.TO_RAD;
 		var xcomponent:Float = Math.cos(angle_radians) * force;
 		var ycomponent:Float = Math.sin(angle_radians) * force;
-		if (ycomponent < 30)
+		if (forceYMovement && ycomponent < 30)
 		{
 			ycomponent = 30;
 		}
 		circle.velocityWoRotation += new FlxPoint(xcomponent, ycomponent);
 	}
 	
-	public function AddForceAtAngle(force:Float, angle:Float)
+	public function AddForceAtAngle(force:Float, angle:Float, forceYMovement:Bool=true)
 	{
-		AddForceAtAngleStatic(this, force, angle);
+		AddForceAtAngleStatic(this, force, angle, forceYMovement);
 	}
 	private function HandleCollisions()
 	{
