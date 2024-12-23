@@ -509,6 +509,13 @@
             "desc": "Chainsawing children since 2002!\n\nNotice: Tom Fulp supports this video game and the content it promotes",
             "unlock": "DATE",
             "data": 1734843600
+        },
+        {
+            "name": "beatrice",
+            "display": "Beatrice",
+            "desc": "A busy Bee girl who just can't seem to find a Honey.\nShe's also allergic to flowers and can't fly...",
+            "unlock": "USERNAME",
+            "data": "gr1mp"
         }
     ]
 }
