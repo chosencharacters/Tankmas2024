@@ -244,6 +244,8 @@ class GameManager extends GameManagerBase
                 return new TorpedoCircle();
             case CircleType.Bloon:
                 return new BloonCircle();
+            case CircleType.Big:
+                return new BigCircle();
             default:
                 trace("Unimplemented/impossible circle type: " + circleType);
                 return null;
