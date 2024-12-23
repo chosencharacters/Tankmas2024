@@ -1,5 +1,6 @@
 package tripletriangle;
 
+import tripletriangle.GenericCircle.CircleType;
 import ui.Cursor;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -196,52 +197,9 @@ class PlayState extends FlxSubState
 				unlockableName: "Grunt Circle",
 				price: 999,
 				unlocked: true,
+				circleType: CircleType.Basic,
 			},
-			{
-				type: UIUnlockableType.circle,
-				x: 270,
-				y: 100,
-				callback: btnToBeImplementedCallback,
-				image: "assets/images/Shop Locked Unimplemented.png",
-				imageLocked: "assets/images/Shop Locked Unimplemented.png",
-				unlockableName: "2nd Circle",
-				price: 50,
-				unlocked: true,
-			},
-			{
-				type: UIUnlockableType.circle,
-				x: 290,
-				y: 100,
-				callback: btnToBeImplementedCallback,
-				image: "assets/images/Shop Locked Unimplemented.png",
-				imageLocked: "assets/images/Shop Locked Unimplemented.png",
-				unlockableName: "3rd Circle",
-				price: 50,
-				unlocked: true,
-			},
-			{
-				type: UIUnlockableType.circle,
-				x: 250,
-				y: 130,
-				callback: btnToBeImplementedCallback,
-				image: "assets/images/Shop Locked Unimplemented.png",
-				imageLocked: "assets/images/Shop Locked Unimplemented.png",
-				unlockableName: "4th Circle",
-				price: 50,
-				unlocked: true,
-			},
-			{
-				type: UIUnlockableType.circle,
-				x: 270,
-				y: 130,
-				callback: btnToBeImplementedCallback,
-				image: "assets/images/Shop Locked Unimplemented.png",
-				imageLocked: "assets/images/Shop Locked Unimplemented.png",
-				unlockableName: "5th Circle",
-				price: 50,
-				unlocked: true,
-			},
-			{
+			/*{
 				type: UIUnlockableType.circle,
 				x: 290,
 				y: 130,
@@ -251,56 +209,58 @@ class PlayState extends FlxSubState
 				unlockableName: "6th Circle",
 				price: 50,
 				unlocked: true,
-			},
-			/*{
+			},*/
+			{
 				type: UIUnlockableType.circle,
 				x: 270,
 				y: 100,
 				callback: btnShopItemCallback,
-				image: "assets/images/Shop Locked Unimplemented.png",
+				image: "assets/images/Shop Circle Nene.png",
 				imageLocked: "assets/images/Shop Locked 50.png",
-				// image: "assets/images/Shop Circle Angry Faic.png"
-				unlockableName: "2nd Circle",
+				unlockableName: "Nene Circle",
 				price: 50,
 				unlocked: false,
+				circleType: CircleType.Torpedo,
 			},
 			{
 				type: UIUnlockableType.circle,
 				x: 290,
 				y: 100,
 				callback: btnShopItemCallback,
-				image: "assets/images/Shop Locked Unimplemented.png",
+				image: "assets/images/Shop Circle Nene.png",
+				// image: "assets/images/Shop Circle Moony.png",
 				imageLocked: "assets/images/Shop Locked 50.png",
-				// image: "assets/images/Shop Circle Nene.png"
-				unlockableName: "3rd Circle",
+				unlockableName: "Moony Circle",
 				price: 50,
 				unlocked: false,
+				circleType: CircleType.Bloon,
 			},
 			{
 				type: UIUnlockableType.circle,
 				x: 250,
 				y: 130,
 				callback: btnShopItemCallback,
-				image: "assets/images/Shop Locked Unimplemented.png",
+				image: "assets/images/Shop Circle Nene.png",
+				// image: "assets/images/Shop Circle P-Bot.png",
 				imageLocked: "assets/images/Shop Locked 100.png",
-				// image: "assets/images/Shop Circle Nene.png"
-				unlockableName: "4th Circle",
+				unlockableName: "P-Bot Circle",
 				price: 100,
 				unlocked: false,
+				circleType: CircleType.Big,
 			},
 			{
 				type: UIUnlockableType.circle,
 				x: 270,
 				y: 130,
 				callback: btnShopItemCallback,
-				image: "assets/images/Shop Locked Unimplemented.png",
+				image: "assets/images/Shop Circle Angry Faic.png",
 				imageLocked: "assets/images/Shop Locked 100.png",
-				// image: "assets/images/Shop Circle Nene.png"
-				unlockableName: "5th Circle",
+				unlockableName: "Angry Faic Circle",
 				price: 100,
 				unlocked: false,
+				circleType: CircleType.Mole,
 			},
-			{
+			/*{
 				type: UIUnlockableType.circle,
 				x: 290,
 				y: 130,
@@ -403,11 +363,13 @@ class PlayState extends FlxSubState
 			return;
 		}
 
+		shopButtonData.unlocked = true;
 		GameManager.Main.Purchase(shopButtonData.price);
 		// btn.active = false;  // More efficient when the button is disabled. Better debugging when the button is enabled + Items can be re-enabled or re-disabled, like skins.
 		switch(shopButtonData.type){
 			case UIUnlockableType.circle:
 				trace("TODO: UNLOCK CIRCLE");
+				GameManager.Main.UnlockCircle(shopButtonData.circleType);
 			case UIUnlockableType.spikeSkin:
 				trace("TODO: UNLOCK SPIKE SKIN");
 			case UIUnlockableType.backgroundSkin:

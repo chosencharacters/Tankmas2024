@@ -107,6 +107,7 @@ class GameManager extends GameManagerBase
 	// #endregion
 
     var circleToChance:Map<CircleType, Float>;
+    var circleToPurchased:Map<CircleType, Bool>;
     var circleChoicePool:Array<CircleType>;  // List
 	// #endregion
 
@@ -133,6 +134,13 @@ class GameManager extends GameManagerBase
         circleCountArr = [for(i in 0...circleTypeCount) 0];  // new uint[circleTypeCount]
         
         InitializeCircleToChance();
+        circleToPurchased = [
+            CircleType.Basic => true,
+            CircleType.Torpedo => false,
+            CircleType.Big => false,
+            CircleType.Bloon => false,
+            CircleType.Mole => false
+        ];
         circleChoicePool = new Array<CircleType>();
         //SkinManager.Main.SetupSkins(circlePrefabArr);
 
@@ -217,19 +225,19 @@ class GameManager extends GameManagerBase
 
         circleChoicePool = [ CircleType.Basic ];  // Reset to initial pool state
 
-        if (score >= TORPEDO_SCORE_TARGET && circleCountArr[cast CircleType.Torpedo] <= 1 && typeToSpawn != CircleType.Torpedo)
+        if (circleToPurchased[CircleType.Torpedo] && circleCountArr[cast CircleType.Torpedo] <= 1 && typeToSpawn != CircleType.Torpedo)
         {
             circleChoicePool.push(CircleType.Torpedo);
         }
-        if (score >= BLOON_SCORE_TARGET && circleCountArr[cast CircleType.Bloon] <= 1 && typeToSpawn != CircleType.Bloon)
+        if (circleToPurchased[CircleType.Bloon] && circleCountArr[cast CircleType.Bloon] <= 1 && typeToSpawn != CircleType.Bloon)
         {
             circleChoicePool.push(CircleType.Bloon);
         }
-        if (score >= BIG_SCORE_TARGET && circleCountArr[cast CircleType.Big] <= 1 && typeToSpawn != CircleType.Big)
+        if (circleToPurchased[CircleType.Big] && circleCountArr[cast CircleType.Big] <= 1 && typeToSpawn != CircleType.Big)
         {
             circleChoicePool.push(CircleType.Big);
         }
-        if (score >= MOLE_SCORE_TARGET && circleCountArr[cast CircleType.Mole] <= 1 && typeToSpawn != CircleType.Mole)
+        if (circleToPurchased[CircleType.Mole] && circleCountArr[cast CircleType.Mole] <= 1 && typeToSpawn != CircleType.Mole)
         {
             circleChoicePool.push(CircleType.Mole);
         }
@@ -467,6 +475,10 @@ class GameManager extends GameManagerBase
                     // SoundManager.Main.PlaySound("HP Loss");
                 }
             /*}*/
+    }
+
+    public function UnlockCircle(circleType: CircleType){
+        circleToPurchased[circleType] = true;
     }
 
     // public override void OnPickupEscaped(GameObject pickupCircle)
