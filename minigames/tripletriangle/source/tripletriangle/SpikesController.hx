@@ -164,7 +164,7 @@ class SpikesController extends FlxObject // importantly includes position.
 		//topSpike.GetComponentInChildren<Spike>().Launch();
 		//rightSpike.GetComponentInChildren<Spike>().Launch();
 		//leftSpike.GetComponentInChildren<Spike>().Launch();
-		var flxSound = FlxG.sound.play(Global.asset("assets/sounds/FS spike_merged.ogg"), 0.9);
+		var flxSound = FlxG.sound.play(Global.asset("assets/sounds/FS spike_merged.ogg"), 0.6);
 		flxSound.pitch = FlxG.random.float(0.95, 1.05);
 		// SoundManager.Main.PlaySound("Spike Launch");
 		//StartCoroutine(FinishCombo());
