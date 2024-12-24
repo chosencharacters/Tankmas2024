@@ -117,13 +117,6 @@
             "data": "UNLOCK_PERSIMMON"
         },
         {
-            "name": "persimmon-innocence",
-            "display": "Innocence",
-            "desc": "The object of innocence, untainted by the cruel world. Bring it with you and show it the reality.",
-            "unlock": "FLAG",
-            "data": "UNLOCK_PERSIMMON"
-        },
-        {
             "name": "clubby-the-seal",
             "display": "Clubby the Seal",
             "desc": "Not to be confused with that other seal clubbing game.",
@@ -135,6 +128,13 @@
                 "follow_accuracy":0.3,
                 "drag":0.99
             }
+        },
+        {
+            "name": "lemmy",
+            "display": "Lemmy",
+            "desc": "A friend with benefits, always willing to lend a helping hand (or several.)",
+            "unlock": "DATE",
+            "data": 1735016400
         }
     ]
 }

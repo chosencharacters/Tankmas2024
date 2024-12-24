@@ -522,14 +522,7 @@
             "display": "Alloy",
             "desc": "Originally a boy named Justin Case, Alloy battles countless foes as he tries to save Mason City from SumoCorp in his high powered alien suit.",
             "unlock": "DATE",
-            "data": 1734930000
-        },
-        {
-            "name": "alloy",
-            "display": "Alloy",
-            "desc": "Originally a boy named Justin Case, Alloy battles countless foes as he tries to save Mason City from SumoCorp in his high powered alien suit.",
-            "unlock": "DATE",
-            "data": 1734930000
+            "data": 1735016400
         },
         {
             "name": "cathode-raybots",
@@ -543,6 +536,19 @@
             "desc": "Yanno. We were really expecting the sloth. But might as well go all out.",
             "unlock": "DATE",
             "data": 1734930000
+        },
+        {
+            "name": "zone-tan",
+            "display": "Zone-tan",
+            "desc": "When she's not threading the needle, she's watching you CENSORED.",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "cynthia",
+            "display": "Cynthia",
+            "desc": "It's time to rush through those contracts!",
+            "unlock": "DATE",
+            "data": 1735016400
         }
     ]
 }

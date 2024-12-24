@@ -16,6 +16,11 @@
 			"artist": "dankwoomy"
 		},
 		{
+			"name": "pink-kight-mondo",
+			"properName": "Pink Knight Mondo",
+			"artist": "BellvonArtsy"
+		},
+		{
 			"name": "bellvonartsy-sticker",
 			"properName": "Xmas Ghost",
 			"artist": "BellvonArtsy"
@@ -56,9 +61,19 @@
 			"artist": "MOHD5aqer"
 		},
 		{
+			"name": "mc-emote",
+			"properName": "Mistletoe Magic",
+			"artist": "Tamag0"
+		},
+		{
 			"name": "lobster-lols",
 			"properName": "Christmas Lobster",
 			"artist": "Chuw-Croissantier"
+		},
+		{
+			"name": "sticker-mr-peanutbudder",
+			"properName": "Too Much Peanutbudder",
+			"artist": "guri-gure"
 		},
 		{
 			"name": "son-christmas",
@@ -96,9 +111,19 @@
 			"artist": "Bingowaders"
 		},
 		{
-			"name": "pink-knight-mondo",
+			"name": "two-devs-kissing",
+			"properName": "Lovers Grounds",
+			"artist": "MOHD5aqer"
+		},
+		{
+			"name": "pink-kight-mondo",
 			"properName": "Pretty in Pink",
 			"artist": "MondoBilby"
+		},
+		{
+			"name": "locked-in",
+			"properName": "Locking In",
+			"artist": "blawnode"
 		},
 		{
 			"name": "pico-sticker-swag",
@@ -114,6 +139,11 @@
 			"name": "amaze-balls",
 			"properName": "Look at that!",
 			"artist": "Kunaigirl"
+		},
+		{
+			"name": "nene-lovey",
+			"properName": "Lovely",
+			"artist": "SloppyStinko"
 		},
 		{
 			"name": "questioning-you",
@@ -199,6 +229,11 @@
 			"name": "meat",
 			"properName": "I'm Fine!",
 			"artist": "donpeppi"
+		},
+		{
+			"name": "bitey-not-krampus",
+			"properName": "I'm not Krampus",
+			"artist": "guri-gure"
 		},
 		{
 			"name": "smug-bastard",

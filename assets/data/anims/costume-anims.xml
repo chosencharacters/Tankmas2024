@@ -22,4 +22,11 @@
 		<anim name="left-move">0t8r3,9t22</anim>
 		<anim name="right-move">23t31r3,32t45</anim>
 	</animSet>
+
+	<animSet image="costume-zone-tan">
+		<anim name="left-idle">0</anim>
+		<anim name="right-idle">0</anim>
+		<anim name="left-move">1</anim>
+		<anim name="right-move">1</anim>
+	</animSet>
 </root>

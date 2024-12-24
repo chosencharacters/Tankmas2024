@@ -339,13 +339,13 @@
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "alloy",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "zone-tan",
                     "angle": -10
                 },
                 {
@@ -380,6 +380,71 @@
                 },
                 {
                     "name": "inner-sloth",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "cynthia",
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "costumes-series-7",
+            "items": [
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30

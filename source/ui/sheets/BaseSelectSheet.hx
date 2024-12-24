@@ -14,6 +14,7 @@ import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
 import flixel.tweens.misc.ColorTween;
 import flixel.util.FlxTimer;
+import haxe.macro.Expr.Catch;
 import squid.ext.FlxTypedGroupExt;
 import ui.button.HoverButton;
 import ui.sheets.SheetMenu.SheetPosition;
@@ -384,9 +385,13 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 					description_text.text = costume_def.desc;
 					title.text = costume_def.display;
 				case EMOTES:
-					var emote_def:EmoteDef = JsonData.get_emote(selection_name);
-					description_text.text = 'Made by ${emote_def.artist}';
-					title.text = emote_def.properName;
+					try
+					{
+						var emote_def:EmoteDef = JsonData.get_emote(selection_name);
+						description_text.text = 'Made by ${emote_def.artist}';
+						title.text = emote_def.properName;
+					}
+					catch (e) {}
 				case PETS:
 					var pet_def:PetDef = JsonData.get_pet(selection_name);
 					description_text.text = pet_def.desc;
