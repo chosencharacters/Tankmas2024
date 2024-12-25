@@ -91,7 +91,7 @@ class Present extends Interactable
 		{
 			enabled = enabled && Flags.get_bool(def.requires_flag);
 		}
-		
+
 		#if all_presents
 		enabled = true;
 		#end

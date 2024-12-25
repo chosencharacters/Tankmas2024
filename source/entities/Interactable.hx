@@ -44,7 +44,11 @@ class Interactable extends NGSprite
 	}
 
 	// Called when in range and player presses interact button
-	public function on_interact() {}
+	public function on_interact()
+	{
+		PlayState.self.player.velocity.set(0, 0);
+		PlayState.self.player.stop_auto_move();
+	}
 
 	function mark_target(mark:Bool) {}
 

@@ -402,10 +402,13 @@ class FlxSpriteExt extends YSortable
 
 		if (animSet == null)
 		{
+			// trace(Paths.find_nearest(anim_set_name, ".aseprite", true));
+			// trace(Paths.get('${anim_set_name}.aseprite', true));
 			if (Paths.get('${anim_set_name}.aseprite', true) != null)
 			{
 				trace("running aseprite_to_xml for " + anim_set_name);
 				#if sys
+				trace("yo");
 				data.loaders.AsepriteLoader.load_anim_set_from_xml(anim_set_name, true);
 				animSet = Lists.getAnimationSet(anim_set_name);
 				#end

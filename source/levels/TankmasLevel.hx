@@ -6,6 +6,7 @@ import entities.NPC;
 import entities.Player;
 import entities.Present;
 import entities.misc.GamingDevice;
+import entities.misc.PianoMan;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxDirectionFlags;
 import levels.LDTKLevel;
@@ -128,6 +129,8 @@ class TankmasLevel extends LDTKLevel
 			{
 				case "gaming-device":
 					new GamingDevice(c.worldPixelX, c.worldPixelY);
+				case "piano-man":
+					new PianoMan(c.worldPixelX, c.worldPixelY, c.width, c.height);
 				case "CinemaScreen":
 					new InGameVideoUI(c);
 			}

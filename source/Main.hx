@@ -14,6 +14,7 @@ import states.*;
 import states.debug.*;
 #if newgrounds import ng.NewgroundsHandler; #end
 import utils.CrashHandler;
+import flixel.system.debug.log.LogStyle;
 
 class Main extends Sprite
 {
@@ -48,11 +49,17 @@ class Main extends Sprite
 
 	public static var initial_state(get, never):InitialState;
 
+	public static var default_song:String = "christmaseve-alltogethernow";
+
+	public static var current_song:String;
+
 	public static function main():Void
 	{
 		// We need to make the crash handler LITERALLY FIRST so nothing EVER gets past it.why-coal
 		CrashHandler.initialize();
 		CrashHandler.queryStatus();
+
+		current_song = default_song;
 
 		openfl.Lib.current.addChild(new Main());
 	}
@@ -76,6 +83,10 @@ class Main extends Sprite
 
 	public function make_game()
 	{
+		#if sys
+		LogStyle.ERROR.errorSound = Paths.get("error.ogg");
+		LogStyle.WARNING.errorSound = Paths.get("error.ogg");
+		#end
 		Lists.init();
 		addChild(new FlxGame(1920, 1080, get_initial_state(), true));
 	}

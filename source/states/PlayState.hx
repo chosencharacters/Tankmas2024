@@ -123,8 +123,6 @@ class PlayState extends BaseState
 	{
 		super.create();
 
-		new FlxSpriteExt().loadAllFromAnimationSet("emote-fx");
-
 		Ctrl.mode = ControlModes.OVERWORLD;
 
 		trace('New Playstate');

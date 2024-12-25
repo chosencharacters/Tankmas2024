@@ -36,7 +36,7 @@ class BaseState extends FlxState
 			#if !no_radio
 			radio = new RadioManager();
 			#elseif !no_music
-			var track:TrackDef = JsonData.get_track("christmaseve-alltogethernow");
+			var track:TrackDef = JsonData.get_track(Main.current_song);
 			SoundPlayer.music(track).onComplete((_music) -> trace('Song started playing.'));
 			#end
 

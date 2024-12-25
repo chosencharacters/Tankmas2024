@@ -77,4 +77,21 @@
 	<animSet image="day-23-art-mantis" width="800" height="500">
 		<anim name="idle" fps="50ms">0t19</anim>
 	</animSet>
+
+	<animSet image="song-book-ui" width="309" height="299">
+		<anim name="christmasohyeah-stixdevs">0</anim>
+		<anim name="christmasjoy-realtin3sn">1</anim>
+		<anim name="thewanderer-everratic">2</anim>
+		<anim name="dancinginthesnow-twistedfw">3</anim>
+		<anim name="odetosnow-leavesz">4</anim>
+		<anim name="HolidayMelody-Irish-Soul">5</anim>
+		<anim name="santasgone-druoxtheshredder">6</anim>
+		<anim name="HarktheAngel-Jumbs">7</anim>
+		<anim name="spiritus-albe">8</anim>
+		<anim name="another-tankmas-snowday">9</anim>
+		<anim name="towardsanewyear-teffyd">10</anim>
+		<anim name="snowflakes-droid">11</anim>
+		<anim name="christmaseve-alltogethernow">12</anim>
+		<anim name="alotlikechristmas-connorgrail">13</anim>
+	</animSet>
 </root>

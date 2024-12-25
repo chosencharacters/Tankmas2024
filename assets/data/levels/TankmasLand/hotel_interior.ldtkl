@@ -2219,6 +2219,25 @@
 					],
 					"__worldX": 1776,
 					"__worldY": 3104
+				},
+				{
+					"__identifier": "Misc",
+					"__grid": [41,174],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFE600",
+					"iid": "5a72ead0-c210-11ef-b20b-3b4cc9adda46",
+					"width": 352,
+					"height": 336,
+					"defUid": 49,
+					"px": [656,2784],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "piano-man", "__tile": null, "defUid": 50, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["piano-man"]
+					}] }],
+					"__worldX": 656,
+					"__worldY": 2784
 				}
 			]
 		},
