@@ -549,6 +549,18 @@
             "desc": "It's time to rush through those contracts!",
             "unlock": "DATE",
             "data": 1735016400
+        },
+        {
+            "name": "lucky",
+            "display": "Lucky",
+            "desc": "A sock named Lucky wants the girl, the guitar, the glory. Maybe he can do this. Maybe he doesn't suck.",
+            "unlock": "DATE"
+        },
+        {
+            "name": "jeb",
+            "display": "Dr. Jebidiah Christoff",
+            "desc": "Student of the improbable, and vanquisher of the wicked. His enemies purged of sin. A savior has risen! And his name is... Jeb?",
+            "unlock": "DATE"
         }
     ]
 }
