@@ -22,8 +22,8 @@ class TankmasTree extends YSortable
 
 		if (alpha > 1)
 			alpha = 1;
-		if (alpha < 0.25)
-			alpha = 0.25;
+		if (alpha < 0.35)
+			alpha = 0.35;
 
 		super.update(elapsed);
 	}
