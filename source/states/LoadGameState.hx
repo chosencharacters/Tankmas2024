@@ -38,13 +38,16 @@ class LoadGameState extends BaseState
 
 		#if FLX_OPENGL_AVAILABLE
 		trace('[OPENGL] Max texture size: ${FlxG.bitmap.maxTextureSize}');
+		Main.use_small_assets = FlxG.bitmap.maxTextureSize <= 5000;
 		#else
-		var getMaxTextureSize = function():Int {
+		var getMaxTextureSize = function():Int
+		{
 			if (FlxG.stage.window.context.attributes.hardware)
 				return cast lime.graphics.opengl.GL.getParameter(lime.graphics.opengl.GL.MAX_TEXTURE_SIZE);
 			return -1;
 		}
 		trace('[OPENGL] Max texture size: ${getMaxTextureSize()}');
+		Main.use_small_assets = FlxG.bitmap.maxTextureSize <= getMaxTextureSize();
 		#end
 
 		saved_session_id = new FlxSave();

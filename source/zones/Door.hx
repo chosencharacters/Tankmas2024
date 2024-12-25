@@ -21,7 +21,7 @@ class Door extends FlxSpriteExt
 
 	var same_world_door:Bool = false;
 
-	var door_travel_dist:Int = 100;
+	var door_travel_dist:Int = 32;
 
 	var entering_player:Player;
 
@@ -80,10 +80,11 @@ class Door extends FlxSpriteExt
 		return true;
 	}
 
-	function is_door_unlocked():Bool {
+	function is_door_unlocked():Bool
+	{
 		if (flag != null)
 			return Flags.get_bool(flag);
-		
+
 		return true;
 	}
 
@@ -142,12 +143,13 @@ class Door extends FlxSpriteExt
 		var player:Player = PlayState.self.player;
 
 		player.immovable = true;
+		player.moves = false;
 		player.enter_door();
 
 		var destination:FlxPoint = player.getPosition().copy();
 		destination.add(player.mp.x > mp.x ? -door_travel_dist : door_travel_dist);
 
-		player.tween = FlxTween.tween(player, {x: destination.x, y: destination.y}, 0.8);
+		//player.tween = FlxTween.tween(player, {x: destination.x, y: destination.y}, 0.4);
 	}
 
 	function player_exit_door_anim()

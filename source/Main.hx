@@ -53,6 +53,8 @@ class Main extends Sprite
 
 	public static var current_song:String;
 
+	public static var use_small_assets:Bool = false;
+
 	public static function main():Void
 	{
 		// We need to make the crash handler LITERALLY FIRST so nothing EVER gets past it.why-coal

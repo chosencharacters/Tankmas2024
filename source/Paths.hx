@@ -148,6 +148,19 @@ class Paths
 	 */
 	public static function image_path(name:String, starting_path:String = "assets", safe:Bool = false):String
 	{
+		if (Main.use_small_assets)
+		{
+			var small_image:String = '$name-small';
+
+			var jpg_path:String = Paths.get('$small_image.jpg', starting_path, true);
+			if (jpg_path != null)
+				return jpg_path;
+
+			var png_path:String = Paths.get('$small_image.png', starting_path, true);
+			if (png_path != null)
+				return png_path;
+		}
+
 		name = name.split(".")[0];
 
 		var jpg_path:String = Paths.get('$name.jpg', starting_path, true);

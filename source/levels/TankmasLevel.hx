@@ -82,9 +82,23 @@ class TankmasLevel extends LDTKLevel
 		}
 
 		for (bg in bgs)
+		{
+			if (bg.loaded_image.contains("-small"))
+			{
+				bg.scale.set(2, 2);
+				bg.updateHitbox();
+			}
 			PlayState.self.level_backgrounds.add(bg);
+		}
 		for (fg in fgs)
-			PlayState.self.level_backgrounds.add(fg);
+		{
+			if (fg.loaded_image.contains("-small"))
+			{
+				fg.scale.set(2, 2);
+				fg.updateHitbox();
+			}
+			PlayState.self.level_foregrounds.add(fg);
+		}
 	}
 
 	public function place_entities()
