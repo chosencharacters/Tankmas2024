@@ -2238,6 +2238,41 @@
 					}] }],
 					"__worldX": 656,
 					"__worldY": 2784
+				},
+				{
+					"__identifier": "Misc",
+					"__grid": [59,77],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFE600",
+					"iid": "37bd29f0-c210-11ef-b20b-d579f234162c",
+					"width": 1377,
+					"height": 2322,
+					"defUid": 49,
+					"px": [945,1234],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "tankmas-tree", "__tile": null, "defUid": 50, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["tankmas-tree"]
+					}] }],
+					"__worldX": 945,
+					"__worldY": 1234
+				},
+				{
+					"__identifier": "Misc",
+					"__grid": [126,206],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFE600",
+					"iid": "4ce8c7d0-c210-11ef-b20b-119c270127c1",
+					"width": 64,
+					"height": 64,
+					"defUid": 49,
+					"px": [2016,3296],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": null, "__tile": null, "defUid": 50, "realEditorValues": [] }],
+					"__worldX": 2016,
+					"__worldY": 3296
 				}
 			]
 		},

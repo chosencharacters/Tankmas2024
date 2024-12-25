@@ -5,6 +5,7 @@ import entities.Minigame;
 import entities.NPC;
 import entities.Player;
 import entities.Present;
+import entities.TankmasTree;
 import entities.misc.GamingDevice;
 import entities.misc.PianoMan;
 import flixel.tile.FlxTilemap;
@@ -133,6 +134,8 @@ class TankmasLevel extends LDTKLevel
 					new PianoMan(c.worldPixelX, c.worldPixelY, c.width, c.height);
 				case "CinemaScreen":
 					new InGameVideoUI(c);
+				case "tankmas-tree":
+					new TankmasTree(c.worldPixelX, c.worldPixelY);
 			}
 		}
 
