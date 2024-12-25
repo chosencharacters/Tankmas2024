@@ -351,7 +351,5 @@ class PlayState extends BaseState
 		return users.get(username);
 	}
 
-	public function special_level_elements(){
-		
-	}
+	public function special_level_elements() {}
 }

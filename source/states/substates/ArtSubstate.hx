@@ -85,7 +85,7 @@ class ArtSubstate extends FlxSubstateExt
 			art.x += 5;
 		if (Ctrl.menuConfirm[1])
 			close();
-		if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(display_text) && !FlxG.mouse.overlaps(back_button))
+		if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(display_text) && !FlxG.mouse.overlaps(back_button) && FlxG.mouse.x < FlxG.width * .9)
 			FlxG.openURL(data.link != null ? data.link : 'https://${data.artist.toLowerCase()}.newgrounds.com');
 	}
 }

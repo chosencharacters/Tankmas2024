@@ -8,7 +8,7 @@ class HoverButton extends FlxSpriteExt
 	public var on_hover:HoverButton->Void;
 	public var on_neutral:HoverButton->Void;
 
-	var enabled:Bool = true;
+	public var enabled:Bool = true;
 
 	var is_pressed = false;
 	var is_hovered = false;

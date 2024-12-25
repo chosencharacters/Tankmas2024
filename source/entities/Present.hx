@@ -64,6 +64,9 @@ class Present extends Interactable
 
 		comic = def.comicProperties != null ? true : false;
 
+		if (username == "dragonmiracles")
+			comic = true;
+
 		openable = true;
 
 		type = Interactable.InteractableType.PRESENT;
@@ -215,7 +218,7 @@ class Present extends Interactable
 			{
 				sstate(OPENED);
 				thumbnail.sstate("OPEN");
-				PlayState.self.openSubState(comic ? new ComicSubstate(username, true) : new ArtSubstate(username));
+				PlayState.self.openSubState(comic ? new ComicSubstate(username) : new ArtSubstate(username));
 				opened = true;
 
 				medal_was_unlocked = is_medal_unlock_enabled();
@@ -230,7 +233,7 @@ class Present extends Interactable
 			SaveManager.open_present(username, def.day, is_medal_unlock_enabled());
 
 			SoundPlayer.sound(Paths.get('present-open.ogg'));
-			PlayState.self.openSubState(comic ? new ComicSubstate(username, false) : new ArtSubstate(username));
+			PlayState.self.openSubState(comic ? new ComicSubstate(username) : new ArtSubstate(username));
 
 			SaveManager.save();
 		}
