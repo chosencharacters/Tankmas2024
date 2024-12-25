@@ -1,165 +1,146 @@
 package states.substates;
 
-#if hl
-import hl.I64;
-#end
 import data.JsonData;
-import entities.Present;
-import flixel.util.FlxTimer;
-import sound.RadioManager;
+import flixel.tweens.FlxEase;
 import squid.ext.FlxSubstateExt;
+import ui.button.HoverButton;
 
 class ComicSubstate extends FlxSubstateExt
 {
-	var art:FlxSprite;
-	var backButton:FlxSprite;
-	var forwardButton:FlxSprite;
-	var exitButton:FlxSprite;
+	var comic:FlxSpriteExt;
 
-	var data:data.types.TankmasDefs.PresentDef;
-	var theText:FlxText;
-	var timings:Array<Float>;
-	var page(default, set):Int = -1;
-	var totalPages:Int = 0;
-	var keepButtonsOff:Bool = false;
-	var audio:FlxSound;
-	var hasCover:Bool = false;
-	var seenCover:Bool = false;
+	var substate:FlxSubstateExt;
 
-	override public function new(content:String, firstTime:Bool = false)
+	var page:Int = 1;
+	var pages:Int;
+
+	var left_arrow:HoverButton;
+	var right_arrow:HoverButton;
+	var back_arrow:HoverButton;
+
+	var comic_name:String;
+	var comic_base:String;
+
+	var black:FlxSpriteExt;
+
+	/**
+	 * This is private, should be only made through things that extend it
+	 * @param saved_sheet
+	 * @param saved_page
+	 */
+	public function new(comic_name:String)
 	{
 		super();
 
-		// sprite loading
-		art = new FlxSprite(0, 0);
-		add(art);
+		var black:FlxSpriteExt = new FlxSpriteExt(0, 0).makeGraphicExt(FlxG.width, FlxG.height, FlxColor.BLACK);
+		black.setPosition(0, 0);
+		black.alpha = 0.5;
+		add(black);
 
-		backButton = new FlxSprite(20, 470).loadGraphic(Paths.get('left-arrow.png'));
-		add(backButton);
-		backButton.kill();
+		this.comic_name = comic_name;
+		comic_base = 'comic-${comic_name}';
 
-		forwardButton = new FlxSprite(1755, 470).loadGraphic(Paths.get('right-arrow.png'));
-		add(forwardButton);
+		Ctrl.mode = ControlModes.TALKING;
 
-		exitButton = new FlxSprite(20, 20).loadGraphic(Paths.get('back-arrow.png'));
-		add(exitButton);
+		comic = new FlxSpriteExt();
 
-		members.for_all_members((member:flixel.FlxBasic) -> cast(member, FlxObject).scrollFactor.set(0, 0));
+		pages = Paths.get_every_file_of_type(".png", 'assets', 'comic-${comic_name}').length;
 
-		// getting present data
-		data = JsonData.get_present(content);
+		left_arrow = new HoverButton(Paths.image_path("left-arrow"), (b) -> prev_page());
+		right_arrow = new HoverButton(Paths.image_path("right-arrow"), (b) -> next_page());
+		back_arrow = new HoverButton(Paths.image_path("back-arrow"), (b) -> close_ui());
 
-		totalPages = data.comicProperties.pages;
+		add(comic);
 
-		// preloading pages, just in case
-		// for (i in 0...totalPages)
-		// Paths.get(content + '-$i' + '.png');
+		add(right_arrow);
+		add(left_arrow);
+		add(back_arrow);
 
-		// checking for audio/automation and for cover
-		if (data.comicProperties.audio != null)
+		sstate(OPEN);
+
+		switch_page();
+
+		members.for_all_members((member) -> cast(member, FlxSprite).scrollFactor.set(0, 0));
+
+		FlxG.state.openSubState(this);
+
+		members.for_all_members((member) -> cast(member, FlxSprite).offset.y = -FlxG.height);
+
+		members.for_all_members(function(member)
 		{
-			RadioManager.volume = 0.0;
-			keepButtonsOff = firstTime;
-			if (keepButtonsOff)
-				exitButton.kill();
-		}
+			FlxTween.tween(cast(member, FlxSprite).offset, {y: 0}, 0.25, {ease: FlxEase.cubeInOut});
+			sstate(IDLE);
+		});
 
-		if (data.comicProperties.cover)
-		{
-			hasCover = true;
-			page = 0;
-		}
-		if (data.comicProperties.audio != null)
-		{
-			timings = data.comicProperties.timing;
-			// the illusion of loading
-			new FlxTimer().start(3, function(tmr:FlxTimer)
-			{
-				audio = SoundPlayer.sound(Paths.get(data.comicProperties.audio + '.ogg'));
-				audio.onComplete = close;
-				page += 1;
-			});
-		}
+		black.offset.y = 0;
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		Ctrl.update();
-
-		// auto page turning if audio is on
-		if (audio != null && timings.length > (page - (hasCover ? 1 : 0)) && audio.time >= (timings[page - (hasCover ? 1 : 0)] * 1000))
-			page = (page + 1);
-
-		// button hovering logic
-		if (FlxG.mouse.overlaps(backButton) && !FlxG.mouse.pressed && backButton.scale.x == 1)
-			backButton.scale.set(1.1, 1.1)
-		else if (!FlxG.mouse.overlaps(backButton) && backButton.scale.x != 1)
-			backButton.scale.set(1, 1);
-		if (FlxG.mouse.overlaps(forwardButton) && !FlxG.mouse.pressed && forwardButton.scale.x == 1)
-			forwardButton.scale.set(1.1, 1.1)
-		else if (!FlxG.mouse.overlaps(forwardButton) && forwardButton.scale.x != 1)
-			forwardButton.scale.set(1, 1);
-		if (FlxG.mouse.overlaps(exitButton) && !FlxG.mouse.pressed && exitButton.scale.x == 1)
-			exitButton.scale.set(1.1, 1.1)
-		else if (!FlxG.mouse.overlaps(exitButton) && exitButton.scale.x != 1)
-			exitButton.scale.set(1, 1);
-
-		// button/key press logic
-		if ((Ctrl.left[1] || (FlxG.mouse.justPressed && FlxG.mouse.overlaps(backButton))) && !keepButtonsOff)
-			forceChangePage(-1);
-		if ((Ctrl.right[1] || (FlxG.mouse.justPressed && FlxG.mouse.overlaps(forwardButton))) && !keepButtonsOff)
-			forceChangePage(1);
-		if (Ctrl.menuConfirm[1] || (FlxG.mouse.justPressed && FlxG.mouse.overlaps(exitButton)))
-			close();
 	}
 
-	function forceChangePage(int:Int)
+	override function kill()
 	{
-		page = (page + int);
-		if (audio != null)
-			audio.time = (timings[page - (hasCover ? 1 : 0)] * 1000);
+		Ctrl.mode = ControlModes.OVERWORLD;
+		super.kill();
 	}
 
-	function set_page(num:Int):Int
+	public function next_page()
 	{
-		// making sure the number's legit
-		if ((num <= 0 && seenCover) || num <= -1)
-			return page = (hasCover ? 1 : 0);
-		if (num > totalPages - (hasCover ? 0 : 1))
-			return page = (hasCover ? totalPages : (totalPages - 1));
-
-		// if it's the cover, we don't want players going back to the cover
-		if (num == 0 && hasCover)
-			seenCover = true;
-
-		// reviving/killing buttons as needed
-		if (((num == 1 && hasCover) || (num == 0)) && backButton.alive)
-			backButton.kill()
-		else if (!backButton.alive && !keepButtonsOff && (num != 1 && hasCover) && num != 0)
-			backButton.revive();
-		if ((num == (totalPages - 1) || keepButtonsOff) && forwardButton.alive)
-			forwardButton.kill()
-		else if (!forwardButton.alive && !keepButtonsOff)
-			forwardButton.revive();
-
-		// creating the page of art
-		art.loadGraphic(Paths.get('${data.file}-$num' + '.png'));
-		art.setGraphicSize(art.width > art.height ? 1920 : 0, art.height >= art.width ? 1080 : 0);
-		art.updateHitbox();
-		art.screenCenter();
-
-		return page = num;
+		page++;
+		if (page > pages)
+			page = 1;
+		switch_page();
 	}
 
-	override function close()
+	public function prev_page()
 	{
-		art.kill();
-		if (audio != null)
-		{
-			audio.stop();
-			RadioManager.volume = 1.0;
-		}
-		super.close();
+		page--;
+		if (page < 1)
+			page = pages;
+		switch_page();
 	}
+
+	public function close_ui()
+	{
+		if (state != IDLE)
+			return;
+		sstate(CLOSE);
+		// members.for_all_members(function(member)
+		// {
+		// 	FlxTween.tween(cast(member, FlxSpriteExt).offset, {y: -FlxG.height}, 0.25, {ease: FlxEase.cubeInOut});
+		// 	if (member == members[0])
+		// 		cast(member, FlxSpriteExt).tween();
+		// });
+
+		// black.offset.y = 0;
+
+		Ctrl.mode = ControlModes.OVERWORLD;
+		close();
+	}
+
+	public function switch_page()
+	{
+		comic.loadGraphic(Paths.image_path('$comic_base-$page'));
+		comic.setGraphicSize(comic.width > comic.height ? 1920 : 0, comic.height >= comic.width ? 1080 : 0);
+
+		comic.screenCenter();
+		left_arrow.screenCenter();
+		right_arrow.screenCenter();
+		back_arrow.setPosition(FlxG.width - back_arrow.width, FlxG.height - back_arrow.height);
+
+		right_arrow.x = comic.x + comic.width;
+		left_arrow.x = comic.x - left_arrow.width;
+
+		left_arrow.visible = left_arrow.enabled = page > 1;
+		right_arrow.visible = right_arrow.enabled = page < pages;
+	}
+}
+
+private enum abstract State(String) from String to String
+{
+	var IDLE;
+	var OPEN;
+	var CLOSE;
 }

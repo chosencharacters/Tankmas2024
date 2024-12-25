@@ -244,6 +244,12 @@
             "artist": "KingCrowned",
             "requires_flag": "MELLA_PRESENT_UNLOCKED",
             "unlocks_flag": "MELLA_UNLOCKED"
+        },
+        {
+            "day": 25,
+            "file": "comic-dragonmiracles-1",
+            "title": "",
+            "artist": "DragonMiracles"
         }
     ]
 }
