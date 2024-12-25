@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <npc name="captain-carrion">
+        <state name="default">
+			<dlg if="UNLOCK_CARRION">Once more we meet, fellow traveler.</dlg>
+            <dlg set="UNLOCK_CARRION" if="!UNLOCK_CARRION">Hello, fellow traveler.</dlg>
+			<dlg>Captain Carrion is my name, and I come bearing greetings from the skies.</dlg>
+			<dlg>However, I do not know the current whearabouts of my ship, the SS Sky Burial.</dlg>
+			<option label="You are Captain Carrion?">
+                <dlg>Ah, you have heard of me?</dlg>
+                <dlg>I have always hoped my tales would reach others.</dlg>
+				<dlg>Is it not the goal of all captains to be known one day as legends?</dlg>
+				<option label="A legend?">
+                	<dlg>Yes. A legend. I wish to be known among the skies.</dlg>
+           		</option>
+				<option label="I've never heard of you">
+                	<dlg>:(</dlg>
+           		</option>
+            </option>
+			<option label="The SS Sky Burial?">
+                <dlg>A marvelous ship it is. Capable of flying the skies.</dlg>
+				<option label="That sounds wonderful">
+                	<dlg>Ah, it is. However, I cannot find it.</dlg>
+					<option label="You lost your ship?">
+						<dlg>I'm sure it will turn up eventually.</dlg>
+						<dlg>A cup of coffee and a quick hike and I shall see to its recovery once again soon.</dlg>
+					</option>
+					<option label="Did you try calling its name?">
+						<dlg>The ship is not alive, you know. Some even call it The Flying Carcass.</dlg>
+					</option>
+           		</option>
+            </option>
+        </state>
+        <state name="same-costume" if="COSTUME_CAPTAIN_CARRION">
+            <dlg>I am flattered to have inspired you to take upon my visage. Are you looking to be my protégé?</dlg>
+			<option label="It's just a costume, bro">
+				<dlg>Ah. Well. I fine costume, at least.</dlg>
+			</option>
+			<option label="Yes, but I cannot fly">
+				<dlg>Good news for you, then, as I am the captain. Not you.</dlg>
+			</option>
+			<option label="Can we duel for the title?">
+				<dlg>Unfortunately, this area does not seem to have combat mechanics. But I would win.</dlg>
+			</option>
+        </state>
+		<state name="not-same-costume-but-pet" if="PET_CARRION_BIRD">
+            <dlg>Ah, Davinky, following a new friend? Just be back before we set off.</dlg>
+        </state>
+    </npc>
+</root>
