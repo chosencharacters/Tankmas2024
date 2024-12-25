@@ -135,6 +135,11 @@
             "desc": "A friend with benefits, always willing to lend a helping hand (or several.)",
             "unlock": "DATE",
             "data": 1735016400
+        },
+        {
+            "name": "wreath-of-wrath",
+            "display": "Wreath of Wrath",
+            "desc": "AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!"
         }
     ]
 }

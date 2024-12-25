@@ -394,11 +394,11 @@
             "name": "costumes-series-7",
             "items": [
                 {
-                    "name": null,
+                    "name": "lucky",
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "jeb",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
