@@ -240,6 +240,7 @@ class Present extends Interactable
 		{
 			if (num_25_opened >= req_num_25_opened)
 				Main.ng_api.medal_popup(Main.ng_api.medals.get('day-25'));
+			trace(num_25_opened + "/" + req_num_25_opened);
 		}
 		#end
 	}

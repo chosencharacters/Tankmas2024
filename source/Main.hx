@@ -49,7 +49,7 @@ class Main extends Sprite
 
 	public static var initial_state(get, never):InitialState;
 
-	public static var default_song:String = "christmaseve-alltogethernow";
+	public static var default_song:String = "alotlikechristmas-connorgrail";
 
 	public static var current_song:String;
 
