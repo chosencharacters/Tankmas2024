@@ -123,6 +123,11 @@ class JsonData
 
 		for (present_def in json.presents)
 			presents.set(present_def.artist.toLowerCase(), present_def);
+
+		var json:{presents:Array<PresentDef>} = haxe.Json.parse(Utils.load_file_string("presents-25.json"));
+
+		for (present_def in json.presents)
+			presents.set(present_def.artist.toLowerCase(), present_def);
 	}
 
 	static function load_tracks()
