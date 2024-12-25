@@ -29,8 +29,8 @@ enum UIUnlockableType
 enum AchievementID
 {
 	combo3;
-	combo4;
 	combo5;
+	combo10;
 	shopper;
 }
 
@@ -124,7 +124,7 @@ class PlayState extends FlxSubState
 		initializeUI();
 
 		FlxG.sound.playMusic(Global.asset("assets/music/Rob0ne - Press Start.ogg"), 1, true);
-		ComboManager.Main = new ComboManager();
+		ComboManager.Main = new ComboManager(this);
 		add(ComboManager.Main);
 		GameManagerBase.Main = new GameManager(circlePrefabArr, pickupCirclePrefabArr, _circleList);
 		add(GameManagerBase.Main);
@@ -375,16 +375,6 @@ class PlayState extends FlxSubState
 				type: UIUnlockableType.achievement,
 				x: 30,
 				y: 100,
-				image: "assets/images/Achievement Combo 4.png",
-				imageLocked: "assets/images/Achievement Locked.png",
-				unlockableName: "Combo 4 Achievement",
-				unlocked: false,
-				achievement: AchievementID.combo4,
-			},
-			{
-				type: UIUnlockableType.achievement,
-				x: 50,
-				y: 100,
 				image: "assets/images/Achievement Combo 5.png",
 				imageLocked: "assets/images/Achievement Locked.png",
 				unlockableName: "Combo 5 Achievement",
@@ -393,8 +383,18 @@ class PlayState extends FlxSubState
 			},
 			{
 				type: UIUnlockableType.achievement,
+				x: 50,
+				y: 100,
+				image: "assets/images/Achievement Combo 10.png",
+				imageLocked: "assets/images/Achievement Locked.png",
+				unlockableName: "Combo 10 Achievement",
+				unlocked: false,
+				achievement: AchievementID.combo10,
+			},
+			{
+				type: UIUnlockableType.achievement,
 				x: 10,
-				y: 130,
+				y: 150,
 				image: "assets/images/Achievement Shopper.png",
 				imageLocked: "assets/images/Achievement Locked.png",
 				unlockableName: "Shopper Achievement",
@@ -474,7 +474,7 @@ class PlayState extends FlxSubState
 			UnlockAchievement(AchievementID.shopper);
 	}
 
-	function UnlockAchievement(achievement:AchievementID)
+	public function UnlockAchievement(achievement:AchievementID)
 	{
 		trace("Attempting to unlock achievement with ID: " + achievement);
 

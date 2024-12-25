@@ -5,6 +5,7 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.text.FlxBitmapText;
 import flixel.text.FlxText.FlxTextAlign;
+import tripletriangle.PlayState.AchievementID;
 #if ADVENT
 import utils.OverlayGlobal as Global;
 #else
@@ -16,12 +17,15 @@ class ComboManager extends FlxObject
 	public static var Main:ComboManager;
 
 	private var comboCounter:Int = 0;
+	private var playState:PlayState;
 
-	override public function new()
+	override public function new(p_playState:PlayState)
 	{
 		super();
 		if (Main == null)
 			Main = this;
+
+		playState = p_playState;
 	}
 
 	public function AddToCombo(toAdd:Int)
@@ -30,9 +34,13 @@ class ComboManager extends FlxObject
 		// GameManagerBase.Main.OnCombo(comboCounter);  // Redundant RN.
 	}
 
+	var gotComboAbove3 = false;
+	var gotComboAbove5 = false;
+	var gotComboAbove10 = false;
+
 	public function FinishCombo():Routine
 	{
-		trace("DOING: FinishCombo()");
+		trace("Did: FinishCombo() - " + comboCounter);
 
 		// Combo and coin pop-up text
 		// GameManagerBase.Main.OnFinishCombo();  // Redundant RN.
@@ -64,6 +72,8 @@ class ComboManager extends FlxObject
 			coinComboText.setPosition(160 - (coinComboText.width / 2), 140 - (coinComboText.height / 2));
 			coinComboText.alignment = FlxTextAlign.CENTER;
 
+			HandleAchievements(comboCounter);
+
 			comboCounter = 0;
 
 			final textDisplayDeltaTime:Float = 1.075;
@@ -73,6 +83,25 @@ class ComboManager extends FlxObject
 			comboText.visible = false;
 			coinComboText.visible = false;
 		}
-		comboCounter = 0;
+		else
+		{
+			comboCounter = 0;
+		}
+	}
+
+	private function HandleAchievements(combo:Int)
+	{
+		if (!gotComboAbove3 && combo >= 3)
+		{
+			playState.UnlockAchievement(AchievementID.combo3);
+		}
+		if (!gotComboAbove5 && combo >= 5)
+		{
+			playState.UnlockAchievement(AchievementID.combo5);
+		}
+		if (!gotComboAbove10 && combo >= 10)
+		{
+			playState.UnlockAchievement(AchievementID.combo10);
+		}
 	}
 }

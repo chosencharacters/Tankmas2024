@@ -1,20 +1,18 @@
 package tripletriangle;
 
-import flixel.FlxSprite;
-import tripletriangle.GenericCircle.CircleType;
 import flixel.FlxCamera;
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;
 import flixel.util.FlxCollision;
-
+import tripletriangle.GenericCircle.CircleType;
+// using static GameManagerBase;
 #if ADVENT
 import utils.OverlayGlobal as Global;
 #else
 import utils.Global;
 #end
-
-// using static GameManagerBase;
 
 private class Rigidbody2D {}
 private class CircleCollider2D {}
@@ -24,7 +22,7 @@ class BloonCircle extends GenericCircle
 {
 	public var currentVelocity:Float = 0;
 	public var bloonAcceleration:Float;
-	
+
 	private var playgroundLeft:Float;
 	private var playgroundRight:Float;
 	private var playgroundWidth:Float;
@@ -35,6 +33,7 @@ class BloonCircle extends GenericCircle
 	private var bouncebox:CircleCollider2D;
 	private var swCollision_lastOccurrenceTimeInSeconds:Float; // System.Diagnostics.Stopwatch
 	private final swCollision_cooldownInSeconds:Float = 0.15; // const
+
 	public var velocityWoRotation:FlxPoint;
 
 	private var damage:Int;
@@ -43,8 +42,7 @@ class BloonCircle extends GenericCircle
 	private var previousElapsed:Float = 0;
 
 	override public function new(p_x:Float = 120, p_y:Float = 160, graphicAssetPath:String = "assets/images/Circle Ena.png",
-			p_type:CircleType = CircleType.Bloon,
-			p_bloonAcceleration:Float = 25, p_startHp:Int = 1)
+			p_type:CircleType = CircleType.Bloon, p_bloonAcceleration:Float = 25, p_startHp:Int = 1)
 	{
 		var graphicAsset = Global.asset(graphicAssetPath);
 		super(p_x, p_y, graphicAsset);
@@ -66,11 +64,12 @@ class BloonCircle extends GenericCircle
 		playgroundBottom = 240; // camera.transform.position.y - playgroundHeight / 2; -> 240
 
 		setPosition(playgroundLeft + FlxG.random.float(0 + playgroundWidth * 0.1, playgroundWidth * 0.9), playgroundTop - 2);
-		
+
 		currHp = startHp;
 	}
 
-	private function HandleMovement(elapsed:Float){
+	private function HandleMovement(elapsed:Float)
+	{
 		currentVelocity += bloonAcceleration * elapsed;
 		y += currentVelocity * elapsed;
 	}
@@ -90,7 +89,7 @@ class BloonCircle extends GenericCircle
 		HandleMovement(elapsed);
 		HandleOutOfScreen();
 		HandleCollisions();
-		
+
 		super.update(elapsed);
 	}
 

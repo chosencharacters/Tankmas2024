@@ -114,7 +114,11 @@ class Spike extends FlxObject
 		var elapsedTime:Float = 0;
 		var elapsedTimeNormalized:Float = 0;
 
-		visible = true; // Also affects physics.
+		firstSpike.visible = true;
+		/*for (spike in [firstSpike, secondSpike, thirdSpike])
+			{
+				spike.visible = true; // Also affects physics.
+		}*/
 
 		while (elapsedTimeNormalized < 1)
 		{
@@ -140,7 +144,10 @@ class Spike extends FlxObject
 		}
 		setPosition(idlePosition.x, idlePosition.y);
 
-		visible = false;
+		for (spike in [firstSpike, secondSpike, thirdSpike])
+		{
+			spike.visible = false; // Also affects physics.
+		}
 	}
 
 	// This might be useless.

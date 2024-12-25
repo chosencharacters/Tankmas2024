@@ -1,20 +1,18 @@
 ﻿package tripletriangle;
 
-import flixel.FlxSprite;
-import tripletriangle.GenericCircle.CircleType;
 import flixel.FlxCamera;
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;
 import flixel.util.FlxCollision;
-
+import tripletriangle.GenericCircle.CircleType;
+// using static GameManagerBase;
 #if ADVENT
 import utils.OverlayGlobal as Global;
 #else
 import utils.Global;
 #end
-
-// using static GameManagerBase;
 
 class Rigidbody2D {}
 class CircleCollider2D {}
@@ -25,6 +23,7 @@ enum Circle_AngleAmount
 	One;
 	Two;
 }
+
 class BasicCircle extends GenericCircle
 {
 	public var force:Float = 50;
@@ -45,6 +44,7 @@ class BasicCircle extends GenericCircle
 	private var bouncebox:CircleCollider2D;
 	private var swCollision_lastOccurrenceTimeInSeconds:Float; // System.Diagnostics.Stopwatch
 	private final swCollision_cooldownInSeconds:Float = 0.15; // const
+
 	public var velocityWoRotation:FlxPoint;
 
 	private var damage:Int;
@@ -53,9 +53,8 @@ class BasicCircle extends GenericCircle
 	private var previousElapsed:Float = 0;
 
 	override public function new(p_x:Float = 120, p_y:Float = 160, graphicAssetPath:String = "assets/images/Circle Madness.png",
-			p_type:CircleType = CircleType.Basic,
-			p_angleAmount:Circle_AngleAmount = Circle_AngleAmount.Two, p_force:Float = 50, p_min_first_angle:Float = 30, p_max_first_angle:Float = 80,
-			p_min_second_angle:Float = 100, p_max_second_angle:Float = 150, p_startHp:Int = 1)
+			p_type:CircleType = CircleType.Basic, p_angleAmount:Circle_AngleAmount = Circle_AngleAmount.Two, p_force:Float = 50, p_min_first_angle:Float = 30,
+			p_max_first_angle:Float = 80, p_min_second_angle:Float = 100, p_max_second_angle:Float = 150, p_startHp:Int = 1)
 	{
 		var graphicAsset = Global.asset(graphicAssetPath);
 		super(p_x, p_y, graphicAsset);
@@ -97,14 +96,16 @@ class BasicCircle extends GenericCircle
 		}
 		else
 		{
-			circleAngle = FlxG.random.float(0, 2) == 1 ? FlxG.random.float(min_first_angle, max_first_angle) : FlxG.random.float(min_second_angle, max_second_angle);
+			circleAngle = FlxG.random.float(0,
+				2) == 1 ? FlxG.random.float(min_first_angle, max_first_angle) : FlxG.random.float(min_second_angle, max_second_angle);
 		}
 		AddForceAtAngle(force, circleAngle); // force depends on size?
 
 		currHp = startHp;
 	}
 
-	private function HandleBounce(elapsed:Float){
+	private function HandleBounce(elapsed:Float)
+	{
 		var currentTimeInSeconds = haxe.Timer.stamp();
 		if (currentTimeInSeconds > swCollision_lastOccurrenceTimeInSeconds + swCollision_cooldownInSeconds)
 		{
@@ -123,7 +124,8 @@ class BasicCircle extends GenericCircle
 		}
 	}
 
-	private function HandleMovement(elapsed:Float){
+	private function HandleMovement(elapsed:Float)
+	{
 		x += velocityWoRotation.x * elapsed;
 		y += velocityWoRotation.y * elapsed;
 	}
@@ -144,11 +146,11 @@ class BasicCircle extends GenericCircle
 		HandleMovement(elapsed);
 		HandleOutOfScreen();
 		HandleCollisions();
-		
+
 		super.update(elapsed);
 	}
 
-	public function BounceStatic(circle: BasicCircle, xDirection:Float)
+	public function BounceStatic(circle:BasicCircle, xDirection:Float)
 	{
 		velocityWoRotation = new FlxPoint(Math.abs(velocityWoRotation.x) * xDirection, velocityWoRotation.y);
 		// Play SFX
@@ -158,12 +160,13 @@ class BasicCircle extends GenericCircle
 		// FlxG.sound.play(snd, 0.9);
 		// SoundManager.Main.PlaySound("Bounce", true);
 	}
+
 	private function Bounce(xDirection:Float)
 	{
 		BounceStatic(this, xDirection);
 	}
 
-	public function AddForceAtAngleStatic(circle:BasicCircle, force:Float, angle:Float, forceYMovement:Bool=true)
+	public function AddForceAtAngleStatic(circle:BasicCircle, force:Float, angle:Float, forceYMovement:Bool = true)
 	{
 		var angle_radians:Float = angle * FlxAngle.TO_RAD;
 		var xcomponent:Float = Math.cos(angle_radians) * force;
@@ -174,11 +177,12 @@ class BasicCircle extends GenericCircle
 		}
 		circle.velocityWoRotation += new FlxPoint(xcomponent, ycomponent);
 	}
-	
-	public function AddForceAtAngle(force:Float, angle:Float, forceYMovement:Bool=true)
+
+	public function AddForceAtAngle(force:Float, angle:Float, forceYMovement:Bool = true)
 	{
 		AddForceAtAngleStatic(this, force, angle, forceYMovement);
 	}
+
 	private function HandleCollisions()
 	{
 		// Imperfectly inefficient implementation of the collision (circle to polygon would be efficient), but no biggie.
@@ -200,23 +204,23 @@ class BasicCircle extends GenericCircle
 		// CameraShake.Main.TriggerShake(0.25f, 0.2f);
 
 		if (currHp - damage <= 0 && !wasPopped)
-			{
-				wasPopped = true;
-				GameManagerBase.Main.OnCirclePopped(this);
-				var flxSound = FlxG.sound.play(Global.asset("assets/sounds/FS circle_squish.ogg"), 0.9);
-				flxSound.pitch = FlxG.random.float(0.8, 1.2);
-				// SoundManager.Main.PlaySound("Circle Squish", true);
-				// ParticleManager.Main.SpawnPop((transform.position + collision.transform.position) / 2, collision.GetComponentInParent<Spike>().GetPopAngle(), _type);
-				// ParticleManager.Main.SpawnSplat(transform.position, _type);
-				kill();
-			}
-			else
-			{
-				currHp -= damage;
-				// SoundManager.Main.PlaySound("Circle Squish (Small)", true);
-				var flxSound = FlxG.sound.play(Global.asset("assets/sounds/FS Small Squish.ogg"), 0.9);
-				flxSound.pitch = FlxG.random.float(0.8, 1.2);
-			}
+		{
+			wasPopped = true;
+			GameManagerBase.Main.OnCirclePopped(this);
+			var flxSound = FlxG.sound.play(Global.asset("assets/sounds/FS circle_squish.ogg"), 0.9);
+			flxSound.pitch = FlxG.random.float(0.8, 1.2);
+			// SoundManager.Main.PlaySound("Circle Squish", true);
+			// ParticleManager.Main.SpawnPop((transform.position + collision.transform.position) / 2, collision.GetComponentInParent<Spike>().GetPopAngle(), _type);
+			// ParticleManager.Main.SpawnSplat(transform.position, _type);
+			kill();
+		}
+		else
+		{
+			currHp -= damage;
+			// SoundManager.Main.PlaySound("Circle Squish (Small)", true);
+			var flxSound = FlxG.sound.play(Global.asset("assets/sounds/FS Small Squish.ogg"), 0.9);
+			flxSound.pitch = FlxG.random.float(0.8, 1.2);
+		}
 	}
 	/*
 		private void OnTriggerEnter2D(Collider2D collision)
@@ -253,5 +257,5 @@ class BasicCircle extends GenericCircle
 				ErrorScreenManager.Main.ShowError(e.ToString());
 			}
 			// If wall, do nothing??
-		}*/
+	}*/
 }

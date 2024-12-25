@@ -351,7 +351,7 @@ class GameManager extends GameManagerBase
 		typeToSpawn = choice;
 		if (choice != CircleType.Basic)
 		{
-			trace("TODO: PlayAlert(" + choice + ")");
+			// trace("TODO: PlayAlert(" + choice + ")");
 			// PlayAlert(choice);
 		}
 	}
