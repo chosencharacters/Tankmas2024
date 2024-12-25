@@ -45,8 +45,8 @@ class Present extends Interactable
 		return day == 1 || day == Main.time.day;
 	}
 
-	public var num_25_opened:Int = 0;
-	public var req_num_25_opened:Int = 14;
+	public static var num_25_opened:Int = 0;
+	public static final req_num_25_opened:Int = 14;
 
 	public function new(X:Float, Y:Float, username:String, timelock:Int)
 	{
@@ -83,6 +83,14 @@ class Present extends Interactable
 
 		checkOpen();
 		this.y_bottom_offset = 16;
+
+		var count:Int = 0;
+		for (present in SaveManager.savedPresents)
+		{
+			if (JsonData.get_present(present).day == 25)
+				count++;
+			num_25_opened = count;
+		}
 
 		// trace(Main.time.day >= def.day, Main.time.day, def.day, visible);
 	}

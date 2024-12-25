@@ -41,8 +41,8 @@ enum abstract RoomId(Int) from Int from Int
 
 class TankmasLevel extends LDTKLevel
 {
-	public var bg:FlxSpriteExt;
-	public var fg:FlxSpriteExt;
+	public var bgs:Array<FlxSpriteExt> = [];
+	public var fgs:Array<FlxSpriteExt> = [];
 
 	public var level_data:LdtkProject_Level;
 
@@ -72,9 +72,19 @@ class TankmasLevel extends LDTKLevel
 		if (data.json.bgRelPath != null)
 		{
 			var image:String = data.json.bgRelPath.split("/").last().replace_multiple(["-reference", "-background", "-foreground", ".png", ".jpg"], "");
-			PlayState.self.level_backgrounds.add(bg = new FlxSpriteExt(x, y, Paths.image_path('$image-background')));
-			PlayState.self.level_foregrounds.add(fg = new FlxSpriteExt(x, y, Paths.image_path('$image-foreground')));
+			bgs.push(new FlxSpriteExt(x, y, Paths.image_path('$image-background')));
+
+			if (level_name != "theatre")
+				fgs.push(new FlxSpriteExt(x, y, Paths.image_path('$image-foreground')));
+
+			if (level_name == "hotel_courtyard")
+				PlayState.self.level_foregrounds.add(new FlxSpriteExt(x, y, Paths.image_path('$image-lights')));
 		}
+
+		for (bg in bgs)
+			PlayState.self.level_backgrounds.add(bg);
+		for (fg in fgs)
+			PlayState.self.level_backgrounds.add(fg);
 	}
 
 	public function place_entities()
@@ -221,6 +231,24 @@ class TankmasLevel extends LDTKLevel
 			level.l_Decorations3.all_Decorations_SM, //
 			level.l_Decorations3.all_Decorations_Trees //
 		);
+
+		if (level_name == "theatre")
+			for (n in 1...5)
+			{
+				var row:YSortable = new YSortable(Paths.image_path('movie-theater-row-${n}'));
+				switch (n)
+				{
+					case 1:
+						row.setPosition(956, 1953);
+					case 2:
+						row.setPosition(888, 2104);
+					case 3:
+						row.setPosition(814, 2276);
+					case 4:
+						row.setPosition(725, 2496);
+				}
+				PlayState.self.world_objects.add(row);
+			}
 
 		/**put entity iterators here**/
 		/* 
