@@ -15,10 +15,10 @@ class TankmasTree extends YSortable
 
 	override function update(elapsed:Float)
 	{
-		if (PlayState.self.player.pixel_overlaps(this))
-			alpha -= 0.01;
-		else
-			alpha += 0.01;
+		alpha += 0.01;
+
+		if (PlayState.self.player.overlaps(this) && PlayState.self.player.bottom_y < y + height - 300)
+			alpha -= 0.02;
 
 		if (alpha > 1)
 			alpha = 1;
