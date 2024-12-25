@@ -1,13 +1,14 @@
 package tripletriangle;
 
-import flixel.math.FlxPoint;
 import coroutine.CoroutineRunner;
 import coroutine.Routine;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.math.FlxMath;
+import flixel.math.FlxPoint;
 import flixel.system.FlxAssets.FlxGraphicAsset;
-
+import lime.math.Vector2;
 #if ADVENT
 import utils.OverlayGlobal as Global;
 #else
@@ -26,8 +27,9 @@ enum abstract ESpikeAngle(Int)
 
 class Spike extends FlxObject
 {
-    private var animator: Animator;
-    public var popAngle: ESpikeAngle;
+	private var animator:Animator;
+
+	public var popAngle:ESpikeAngle;
 	public var firstSpike:FlxSprite;
 	public var secondSpike:FlxSprite; // For the Triple Triangle pickup
 	public var thirdSpike:FlxSprite; // For the Triple Triangle pickup
@@ -37,7 +39,7 @@ class Spike extends FlxObject
 
 	override public function new(p_x:Float = 120, p_y:Float = 160, graphicAssetPath:String = "assets/images/Triangle Left.png",
 			p_popAngle:ESpikeAngle = ESpikeAngle.left)
-    {
+	{
 		var graphicAsset = Global.asset(graphicAssetPath);
 		super(p_x, p_y);
 		popAngle = p_popAngle;
@@ -55,7 +57,7 @@ class Spike extends FlxObject
 		secondSpike.offset.y = 16;
 		thirdSpike.offset.x = 16;
 		thirdSpike.offset.y = 16;
-		
+
 		// animator = GetComponent<Animator>();
 
 		var coInvisibilityRoutine = new CoroutineRunner();
@@ -69,7 +71,7 @@ class Spike extends FlxObject
 			processor.updateTimer(haxe.Timer.stamp());
 			processor.updateExitFrame();
 		}
-    }
+	}
 
 	public function AddToState(state:FlxState):Void
 	{
@@ -90,36 +92,73 @@ class Spike extends FlxObject
 	}
 
 	private function SetInvisibility():Routine
-    {
+	{
 		@yield return WaitEndOfFrame;
 		trace("TO IMPLEMENT: SetInvisibility()");
 		// animator.SetBool("IsInvisible", SkinManager.Main.AreSpikesInvisible);
 		// animator.enabled = true;
 		// animator.Play("Idle");
-    }
+	}
 
-    public function Launch()
-    {
-		trace("TO IMPLEMENT: Launch()");
-		// animator.Play("Launch", -1, 0);
-    }
+	/*public function Launch()
+		{
+			trace("TO IMPLEMENT: Launch()");
+			// animator.Play("Launch", -1, 0);
+	}*/
+	public function Launch(idlePosition:Vector2, launchedPosition:Vector2):Routine
+	{
+		final launchDeltaTime:Float = 0.05;
+		final stayDeltaTime:Float = 0.9;
+		final retractDeltaTime:Float = 0.05;
+		var startTimeInSeconds:Float = haxe.Timer.stamp();
+		var elapsedTime:Float = 0;
+		var elapsedTimeNormalized:Float = 0;
 
-    // This might be useless.
-    public function GetPopAngleRaw(): ESpikeAngle
-    {
-        return popAngle;
-    }
+		visible = true; // Also affects physics.
 
-    // This value is set to the pop particle system.
+		while (elapsedTimeNormalized < 1)
+		{
+			setPosition(FlxMath.lerp(idlePosition.x, launchedPosition.x, elapsedTimeNormalized),
+				FlxMath.lerp(idlePosition.y, launchedPosition.y, elapsedTimeNormalized));
+			elapsedTime = haxe.Timer.stamp() - startTimeInSeconds;
+			elapsedTimeNormalized = elapsedTime / launchDeltaTime;
+			@yield return WaitEndOfFrame;
+		}
+		setPosition(launchedPosition.x, launchedPosition.y);
+
+		@yield return WaitDelay(stayDeltaTime);
+
+		startTimeInSeconds = haxe.Timer.stamp();
+		elapsedTimeNormalized = 0;
+		while (elapsedTimeNormalized < 1)
+		{
+			setPosition(FlxMath.lerp(launchedPosition.x, idlePosition.x, elapsedTimeNormalized),
+				FlxMath.lerp(launchedPosition.y, idlePosition.y, elapsedTimeNormalized));
+			elapsedTime = haxe.Timer.stamp() - startTimeInSeconds;
+			elapsedTimeNormalized = elapsedTime / retractDeltaTime;
+			@yield return WaitEndOfFrame;
+		}
+		setPosition(idlePosition.x, idlePosition.y);
+
+		visible = false;
+	}
+
+	// This might be useless.
+	public function GetPopAngleRaw():ESpikeAngle
+	{
+		return popAngle;
+	}
+
+	// This value is set to the pop particle system.
 	public function GetPopAngle():Int
-    {
+	{
 		return cast popAngle;
-    }
+	}
 
 	public function SetTripleSpikesActice(isActive:Bool)
-    {
+	{
 		trace("TO IMPLEMENT: SetTripleSpikesActice()");
 		// secondSpike.SetActive(isActive);
 		// thirdSpike.SetActive(isActive);
-    }
+	}
 }
