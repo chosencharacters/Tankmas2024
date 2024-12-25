@@ -1367,7 +1367,7 @@
 			"tileOpacity": 1,
 			"fillOpacity": 1,
 			"lineOpacity": 1,
-			"hollow": false,
+			"hollow": true,
 			"color": "#FFE600",
 			"renderMode": "Rectangle",
 			"showName": true,

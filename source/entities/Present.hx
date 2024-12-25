@@ -45,6 +45,9 @@ class Present extends Interactable
 		return day == 1 || day == Main.time.day;
 	}
 
+	public var num_25_opened:Int = 0;
+	public var req_num_25_opened:Int = 14;
+
 	public function new(X:Float, Y:Float, username:String, timelock:Int)
 	{
 		super(X, Y);
@@ -193,6 +196,11 @@ class Present extends Interactable
 
 		if (state != "OPENED")
 		{
+			if (first_time_opening && day == 25)
+			{
+				num_25_opened++;
+			}
+
 			sstate(OPENING);
 			new FlxTimer().start(0.24, (tmr:FlxTimer) -> SoundPlayer.sound(Paths.get('present-open.ogg')));
 			new FlxTimer().start(1.2, function(tmr:FlxTimer)
@@ -222,8 +230,18 @@ class Present extends Interactable
 		// Post present opened event to server (it's broadcasted to every other player, and also kept for stats).
 		OnlineLoop.post_present_open(day, medal_was_unlocked, first_time_opening);
 
-		if (is_medal_unlock_enabled())
-			give_opened_medal();
+		#if newgrounds
+		if (day != 25)
+		{
+			if (is_medal_unlock_enabled())
+				give_opened_medal();
+		}
+		else
+		{
+			if (num_25_opened >= req_num_25_opened)
+				Main.ng_api.medal_popup(Main.ng_api.medals.get('day-25'));
+		}
+		#end
 	}
 
 	function give_opened_medal()
