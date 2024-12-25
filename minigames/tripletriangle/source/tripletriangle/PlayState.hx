@@ -65,6 +65,9 @@ class PlayState extends FlxSubState
 	var purchaseCounter = 0;
 	final MAX_PURCHASE_AMOUNT = 4; // 4 circles + 0 spike skins + 0 background skins.
 
+	public static var comboText:FlxBitmapText;
+	public static var coinComboText:FlxBitmapText;
+
 	var cursor:Cursor; // Debugging
 	var cursorPosition:FlxBitmapText; // Debugging
 
@@ -121,7 +124,8 @@ class PlayState extends FlxSubState
 		initializeUI();
 
 		FlxG.sound.playMusic(Global.asset("assets/music/Rob0ne - Press Start.ogg"), 1, true);
-
+		ComboManager.Main = new ComboManager();
+		add(ComboManager.Main);
 		GameManagerBase.Main = new GameManager(circlePrefabArr, pickupCirclePrefabArr, _circleList);
 		add(GameManagerBase.Main);
 		var global = new GlobalMasterManager();
@@ -152,6 +156,19 @@ class PlayState extends FlxSubState
 		exitText.text = "C - Exit";
 		exitText.setPosition(8, 200);
 		add(exitText);
+
+		comboText = new FlxBitmapText(fontAngelCode);
+		comboText.font = fontAngelCode;
+		comboText.setPosition(160, 120);
+		comboText.visible = false;
+		add(comboText);
+
+		coinComboText = new FlxBitmapText(fontAngelCode);
+		coinComboText.font = fontAngelCode;
+		coinComboText.setPosition(160, 140);
+		coinComboText.visible = false;
+		coinComboText.color = 0xffe551;
+		add(coinComboText);
 
 		// CURSOR POSITION DEBUGGING
 		/*cursorPosition = new FlxBitmapText(fontAngelCode);

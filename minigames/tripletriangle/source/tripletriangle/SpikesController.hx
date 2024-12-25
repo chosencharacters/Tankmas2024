@@ -10,6 +10,8 @@ import flixel.FlxState;
 import flixel.input.FlxPointer;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
+import flixel.text.FlxBitmapText;
+import flixel.text.FlxText.FlxTextAlign;
 import lime.math.Vector2;
 #if ADVENT
 import utils.OverlayGlobal as Global;
@@ -166,7 +168,7 @@ class SpikesController extends FlxObject // importantly includes position.
 
 		var flxSound = FlxG.sound.play(Global.asset("assets/sounds/FS spike_merged.ogg"), 0.6);
 		flxSound.pitch = FlxG.random.float(0.95, 1.05);
-		// StartCoroutine(FinishCombo());
+		StartCoroutine(FinishCombo());
 	}
 
 	// TODO: Make this static, move to another class, and access it from anywhere you wanna start a routine.
@@ -186,6 +188,6 @@ class SpikesController extends FlxObject // importantly includes position.
 	private function FinishCombo():Routine
 	{
 		@yield return WaitDelay(spikeAnimationTime);
-		// ComboManager.Main.FinishCombo();
+		StartCoroutine(ComboManager.Main.FinishCombo());
 	}
 }
