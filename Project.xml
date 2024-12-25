@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="25.2.0" company="Glenside Helper Elf Society" />
+	<app title="Tankmas 2024" file="Tankmas 2024" main="Main" version="25.2.1" company="Glenside Helper Elf Society" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -26,6 +26,14 @@
 
 	<!--Mobile-specific-->
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
+
+	<!-- Use -Dfinal when uploading to NG! -->
+	<section if="final">
+		<haxedef name="websocket" />
+		<haxedef name="newgrounds" />
+		<haxedef name="no_radio" />
+		<haxedef name="trace_net" />
+	</section>
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -124,14 +132,6 @@
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 	<haxedef name="FLX_NO_DEBUG" if="final"/>
 	<haxedef name="message.reporting" value="pretty" />
-
-	<!-- Use -Dfinal when uploading to NG! -->
-	<section if="final">
-		<haxedef name="websocket" />
-		<haxedef name="newgrounds" />
-		<haxedef name="no_radio" />
-		<haxedef name="trace_net" />
-	</section>
 
 	<!-- Debugging -->
 	<section if="dev">
