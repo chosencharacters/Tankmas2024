@@ -630,19 +630,19 @@
 				},
 				{
 					"__identifier": "CollisionSquare",
-					"__grid": [59,34],
+					"__grid": [59,38],
 					"__pivot": [0,0],
 					"__tags": ["Collision"],
 					"__tile": null,
 					"__smartColor": "#FF0808",
 					"iid": "b0af0f50-9b00-11ef-ac46-557e07867152",
 					"width": 1328,
-					"height": 144,
+					"height": 64,
 					"defUid": 44,
-					"px": [944,544],
+					"px": [944,608],
 					"fieldInstances": [],
 					"__worldX": 944,
-					"__worldY": 544
+					"__worldY": 608
 				},
 				{
 					"__identifier": "CollisionSquare",
@@ -1459,16 +1459,16 @@
 				},
 				{
 					"__identifier": "Door",
-					"__grid": [90,41],
+					"__grid": [90,39],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
 					"__smartColor": "#FFF100",
 					"iid": "bc455ee0-9b00-11ef-b7e6-21b93c92c6fa",
 					"width": 320,
-					"height": 64,
+					"height": 80,
 					"defUid": 14,
-					"px": [1440,656],
+					"px": [1440,624],
 					"fieldInstances": [
 						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
 							"entityIid": "329d5990-9b00-11ef-b7e6-e5f86a35a52d",
@@ -1479,14 +1479,14 @@
 							"id": "V_String",
 							"params": ["329d5990-9b00-11ef-b7e6-e5f86a35a52d"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 99, "cy": 52 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 89, "cy": 60 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["99,52"]
+							"params": ["89,60"]
 						}] },
 						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 1440,
-					"__worldY": 656
+					"__worldY": 624
 				},
 				{
 					"__identifier": "Door",
@@ -1510,9 +1510,9 @@
 							"id": "V_String",
 							"params": ["4475d4d0-9b00-11ef-b7e6-398af05520d3"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 100, "cy": 52 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 111, "cy": 60 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["100,52"]
+							"params": ["111,60"]
 						}] },
 						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
@@ -2251,7 +2251,10 @@
 					"height": 2322,
 					"defUid": 49,
 					"px": [945,1234],
-					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": null, "__tile": null, "defUid": 50, "realEditorValues": [] }],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "tankmas-tree", "__tile": null, "defUid": 50, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["tankmas-tree"]
+					}] }],
 					"__worldX": 945,
 					"__worldY": 1234
 				},

@@ -16,6 +16,8 @@ class ArtSubstate extends FlxSubstateExt
 
 	var back_button:HoverButton;
 
+	var has_link:Bool = true;
+
 	override public function new(present_name:String)
 	{
 		super();
@@ -39,6 +41,12 @@ class ArtSubstate extends FlxSubstateExt
 		var title:String = data.title != null && data.title != "" ? data.title : "Untitled";
 		var artist:String = data.artist != null && data.artist != "" ? data.artist : "Unknown";
 		var link:String = 'Click here to view this ${data.link != null ? 'piece' : 'artist'} on NG!';
+
+		if (present_name == "ng-tv")
+		{
+			link = "";
+			has_link = false;
+		}
 
 		display_text = new FlxText(0, 980, 1920, '$title by $artist\n$link');
 
@@ -85,7 +93,8 @@ class ArtSubstate extends FlxSubstateExt
 			art.x += 5;
 		if (Ctrl.menuConfirm[1])
 			close();
-		if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(display_text) && !FlxG.mouse.overlaps(back_button) && FlxG.mouse.x < FlxG.width * .9)
-			FlxG.openURL(data.link != null ? data.link : 'https://${data.artist.toLowerCase()}.newgrounds.com');
+		if (has_link)
+			if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(display_text) && !FlxG.mouse.overlaps(back_button) && FlxG.mouse.x < FlxG.width * .9)
+				FlxG.openURL(data.link != null ? data.link : 'https://${data.artist.toLowerCase()}.newgrounds.com');
 	}
 }

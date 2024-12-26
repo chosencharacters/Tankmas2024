@@ -494,7 +494,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [209,189],
+					"__grid": [192,188],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -503,33 +503,30 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [3344,3024],
+					"px": [3072,3008],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "thepsychosheep", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["thepsychosheep"]
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 13, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [13] }] },
-						{ "__identifier": "timelock", "__type": "String", "__value": "1734135300", "__tile": null, "defUid": 58, "realEditorValues": [{
-							"id": "V_String",
-							"params": ["1734135300"]
-						}] }
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [null] }
 					],
-					"__worldX": 3344,
-					"__worldY": 3024
+					"__worldX": 3072,
+					"__worldY": 3008
 				},
 				{
 					"__identifier": "Door",
-					"__grid": [1,196],
+					"__grid": [1,195],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
 					"__smartColor": "#FFF100",
 					"iid": "329d5990-9b00-11ef-b7e6-e5f86a35a52d",
 					"width": 336,
-					"height": 144,
+					"height": 112,
 					"defUid": 14,
-					"px": [16,3136],
+					"px": [16,3120],
 					"fieldInstances": [
 						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
 							"entityIid": "bc455ee0-9b00-11ef-b7e6-21b93c92c6fa",
@@ -540,14 +537,14 @@
 							"id": "V_String",
 							"params": ["bc455ee0-9b00-11ef-b7e6-21b93c92c6fa"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 17, "cy": 187 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 24, "cy": 178 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["17,187"]
+							"params": ["24,178"]
 						}] },
 						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
 					"__worldX": 16,
-					"__worldY": 3136
+					"__worldY": 3120
 				},
 				{
 					"__identifier": "Door",
@@ -673,6 +670,29 @@
 					],
 					"__worldX": 1360,
 					"__worldY": 2880
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [210,188],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "ebf7acc0-c210-11ef-9e67-7bd723245f4e",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [3360,3008],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "ng-tv", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["ng-tv"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 25, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [25] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 3360,
+					"__worldY": 3008
 				}
 			]
 		},
