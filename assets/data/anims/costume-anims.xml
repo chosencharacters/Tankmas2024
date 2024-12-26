@@ -6,6 +6,11 @@
 		<anim name="right">0</anim>
 	</animSet>
 
+	<animSet image="pet-default">
+		<anim name="left">0</anim>
+		<anim name="right">0</anim>
+	</animSet>
+
 	<animSet image="costume-midgetsausage">
 		<anim name="left">0</anim>
 		<anim name="right">1</anim>
@@ -28,5 +33,12 @@
 		<anim name="right-idle">0</anim>
 		<anim name="left-move">1</anim>
 		<anim name="right-move">1</anim>
+	</animSet>
+	
+	<animSet image="pet-tamago-pet">
+		<anim name="left-idle">0</anim>
+		<anim name="right-idle">0</anim>
+		<anim name="left-move" fps="70">1t7</anim>
+		<anim name="right-move" fps="70">1t7</anim>
 	</animSet>
 </root>

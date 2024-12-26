@@ -8,6 +8,7 @@ import entities.Present;
 import entities.TankmasTree;
 import entities.misc.GamingDevice;
 import entities.misc.PianoMan;
+import entities.misc.TamagoEncounter;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxDirectionFlags;
 import levels.LDTKLevel;
@@ -160,6 +161,8 @@ class TankmasLevel extends LDTKLevel
 					new InGameVideoUI(c);
 				case "tankmas-tree":
 					new TankmasTree(c.worldPixelX, c.worldPixelY);
+				case "tamago-encounter":
+					new TamagoEncounter(c.worldPixelX, c.worldPixelY);
 			}
 		}
 
