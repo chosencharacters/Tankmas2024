@@ -69,11 +69,11 @@ class SheetButton extends HoverButton
 				if (costume.unlock != null)
 					return data.types.TankmasEnums.UnlockCondition.get_unlocked(costume.unlock, costume.data);
 			case SheetType.EMOTES:
-				#if sticker_whatevey
+				var emote:EmoteDef = JsonData.get_emote(def.name);
+				lock_condition = emote.unlock != null ? emote.unlock : UnlockCondition.YOUR_A_SPECIAL_LITTLE_BOY;
+				if (emote.unlock != null)
+					return data.types.TankmasEnums.UnlockCondition.get_unlocked(emote.unlock, emote.data);
 				return true;
-				#else
-				return SaveManager.saved_emote_collection.contains(def.name);
-				#end
 			case SheetType.PETS:
 				var pet:PetDef = JsonData.get_pet(def.name);
 				lock_condition = pet.unlock != null ? pet.unlock : UnlockCondition.YOUR_A_SPECIAL_LITTLE_BOY;

@@ -140,6 +140,13 @@
             "name": "wreath-of-wrath",
             "display": "Wreath of Wrath",
             "desc": "AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!"
+        },
+        {
+            "name": "tamago-pet",
+            "display": "Domestic Common Tamago",
+            "desc": "Proof of encountering a rare tamago, in a tiny lovable adorably anxious package!\nNote: Tankmas is not responsible for damages caused by prolonged exposure to the Tamago.",
+            "unlock": "FLAG",
+            "data": "TAMAGO_ENCOUNTERED"
         }
     ]
 }

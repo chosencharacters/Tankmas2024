@@ -91,7 +91,7 @@
                     "angle": -10
                 },
                 {
-                    "name": null,
+                    "name": "tamago-pet",
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30

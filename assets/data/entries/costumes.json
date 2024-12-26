@@ -559,6 +559,27 @@
             "name": "jeb",
             "display": "Dr. Jebidiah Christoff",
             "desc": "Student of the improbable, and vanquisher of the wicked. His enemies purged of sin. A savior has risen! And his name is... Jeb?"
+        },
+        {
+            "name": "chris",
+            "display": "Chris",
+            "desc": "1/2 of the Hellbenders duo. They live in a world of... not so normal things.",
+            "unlock": "DATE",
+            "data": 1735189200
+        },
+        {
+            "name": "zach",
+            "display": "Zach",
+            "desc": "1/2 of the Hellbenders duo. They live in a world of... not so normal things.",
+            "unlock": "DATE",
+            "data": 1735189200
+        },
+        {
+            "name": "ted-bear",
+            "display": "Ted Bear",
+            "desc": "If you wanna survive like Ted Bear, you've gotta have a sharp wit, endurance, good looks and a backpack full of ingenuity... Even when it comes to bacon trees",
+            "unlock": "DATE",
+            "data": 1735189200
         }
     ]
 }

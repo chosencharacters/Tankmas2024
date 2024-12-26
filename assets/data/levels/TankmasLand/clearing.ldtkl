@@ -475,6 +475,25 @@
 					],
 					"__worldX": 5344,
 					"__worldY": 3712
+				},
+				{
+					"__identifier": "Misc",
+					"__grid": [90,35],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFE600",
+					"iid": "e80253b0-c210-11ef-9e67-d5f25f5387d8",
+					"width": 64,
+					"height": 64,
+					"defUid": 49,
+					"px": [1440,560],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "tamago-encounter", "__tile": null, "defUid": 50, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["tamago-encounter"]
+					}] }],
+					"__worldX": 5696,
+					"__worldY": 3440
 				}
 			]
 		},

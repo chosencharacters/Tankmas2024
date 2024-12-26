@@ -78,6 +78,12 @@
 		<anim name="idle" fps="50ms">0t19</anim>
 	</animSet>
 
+	<animSet image="tamago-encounter">
+		<anim name="run" fps="100ms">0t1</anim>
+		<anim name="idle">2</anim>
+		<anim name="alert" looping="false">3</anim>
+	</animSet>
+
 	<animSet image="song-book-ui" width="309" height="299">
 		<anim name="christmasohyeah-stixdevs">0</anim>
 		<anim name="christmasjoy-realtin3sn">1</anim>

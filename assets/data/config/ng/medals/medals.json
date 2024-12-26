@@ -167,6 +167,10 @@
 		{
 			"name": "Watch a movie!",
             "id": 81795
+		},
+        {
+			"name": "tamago-encountered",
+            "id": 81796
 		}
     ]
 }

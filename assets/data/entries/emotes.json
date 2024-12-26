@@ -16,11 +16,6 @@
 			"artist": "dankwoomy"
 		},
 		{
-			"name": "pink-kight-mondo",
-			"properName": "Pink Knight Mondo",
-			"artist": "BellvonArtsy"
-		},
-		{
 			"name": "bellvonartsy-sticker",
 			"properName": "Xmas Ghost",
 			"artist": "BellvonArtsy"
@@ -116,7 +111,7 @@
 			"artist": "MOHD5aqer"
 		},
 		{
-			"name": "pink-kight-mondo",
+			"name": "pink-knight-mondo",
 			"properName": "Pretty in Pink",
 			"artist": "MondoBilby"
 		},
@@ -319,6 +314,13 @@
 			"name": "castle-crashers",
 			"properName": "Peppermint Clash",
 			"artist": "Mantis"
+		},
+		{
+			"name": "rare-tamago",
+			"properName": "Rare Tamago",
+			"artist": "tamag0",
+			"unlock": "FLAG",
+            "data": "TAMAGO_ENCOUNTERED"
 		}
 	]
 }

@@ -7,13 +7,13 @@
                     "name": "common-tamago"
                 },
                 {
+                    "name": "rare-tamago"
+                },
+                {
                     "name": "why-coal"
                 },
                 {
                     "name": "alien-sticker"
-                },
-                {
-                    "name": "bellvonartsy-sticker"
                 },
                 {
                     "name": "sticker-doodle"
@@ -195,7 +195,7 @@
                     "name": "two-devs-kissing"
                 },
                 {
-                    "name": null
+                    "name": "bellvonartsy-sticker"
                 },
                 {
                     "name": null

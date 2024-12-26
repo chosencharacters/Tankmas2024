@@ -155,7 +155,7 @@ class SaveManager
 		#if newgrounds
 		for (flag in Flags.get_all().keys())
 		{
-			trace(flag);
+			Main.ng_api.medal_popup(Main.ng_api.medals.get("test-medal"));
 			switch (flag)
 			{
 				case "BITEY_ENCOUNTERED":
@@ -170,6 +170,8 @@ class SaveManager
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("carrion-unlocked"));
 				case "UNLOCK_PERSIMMON":
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("persimmon-unlocked"));
+				case "TAMAGO_ENCOUNTERED":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("tamago-encountered"));
 			}
 		}
 		#end
