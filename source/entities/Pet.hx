@@ -70,6 +70,7 @@ class Pet extends NGSprite
 				if (ttick() > 15 && Math.abs(velocity.x) + Math.abs(velocity.y) > 30)
 					sprite_anim.anim(PetAnimation.MOVING);
 				follow_owner();
+				anim('${flipX ? "left" : "right"}-idle');
 			case IDLE:
 				if (ttick() > 30 && Math.abs(velocity.x) + Math.abs(velocity.y) < 30)
 					sprite_anim.anim(PetAnimation.IDLE);
@@ -78,6 +79,7 @@ class Pet extends NGSprite
 				do_stats_drag(within_x_deadzone, within_y_deadzone);
 				if (!within_x_deadzone || !within_y_deadzone)
 					sstate(FOLLOWING);
+				anim('${flipX ? "left" : "right"}-idle');
 		}
 
 	function follow_owner()
@@ -188,9 +190,44 @@ class Pet extends NGSprite
 			return;
 		}
 
+		var anim_set_name:String = 'pet-${Lists.animSets.exists('pet-${pet_type}') ? pet_type : "default"}';
+
+		loadAllFromAnimationSet(anim_set_name, pet_type);
+		fill_missing_anims();
+
 		loadAllFromAnimationSet(def.name);
 
 		updateMotion(0);
+	}
+
+	/**Note: This doesn't add it to the animSet, so on the off chance you need that, this function will need to be upgraded**/
+	public function fill_missing_anims()
+	{
+		if (!animSet.animations.exists("left-idle"))
+			load_anim_from_def(clone_anim_def("left", "left-idle"));
+		if (!animSet.animations.exists("right-idle"))
+			load_anim_from_def(clone_anim_def("right", "right-idle"));
+		if (!animSet.animations.exists("left-move"))
+			load_anim_from_def(clone_anim_def("left-idle", "left-move"));
+		if (!animSet.animations.exists("right-move"))
+			load_anim_from_def(clone_anim_def("right-idle", "right-move"));
+	}
+
+	// will move this later
+	function clone_anim_def(src_def_name:String, clone_def_name:String):AnimDef
+	{
+		final src_def:AnimDef = animSet.animations.get(src_def_name);
+		final clone_def:AnimDef = {
+			name: clone_def_name,
+			frames: src_def.frames,
+			frames_string: src_def.frames_string,
+			fps: src_def.fps,
+			looping: src_def.looping,
+			linked: src_def.linked
+		};
+
+		animSet.animations.set(clone_def_name, clone_def);
+		return clone_def;
 	}
 }
 
