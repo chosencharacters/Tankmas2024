@@ -20,7 +20,7 @@ class TamagoEncounter extends Interactable
 		detect_range = 150;
 		sstate(IDLE);
 
-		scale.set(2, 2);
+		scale.set(1.75, 1.75);
 
 		org = new FlxPoint(X, Y);
 
