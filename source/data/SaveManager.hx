@@ -176,6 +176,11 @@ class SaveManager
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("box"));
 			}
 		}
+		switch (current_pet)
+		{
+			case "penicorn":
+				Main.ng_api.medal_popup(Main.ng_api.medals.get("penicorn"));
+		}
 		#end
 	}
 

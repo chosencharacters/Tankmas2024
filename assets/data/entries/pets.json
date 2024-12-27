@@ -166,6 +166,11 @@
                 "follow_accuracy":0.1,
                 "drag":0.99
             }
+        },
+        {
+            "name": "penicorn",
+            "display": "Mystery Unicorn Plush",
+            "desc": "Don't worry about it."
         }
     ]
 }

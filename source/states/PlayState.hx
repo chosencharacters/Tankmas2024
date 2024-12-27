@@ -233,6 +233,11 @@ class PlayState extends BaseState
 
 	override public function update(elapsed:Float)
 	{
+		ttick();
+
+		if (tick % 60 == 1)
+			unique_costume_count();
+
 		OnlineLoop.iterate(elapsed);
 
 		super.update(elapsed);
@@ -349,6 +354,26 @@ class PlayState extends BaseState
 	public function get_user(username:String)
 	{
 		return users.get(username);
+	}
+
+	function unique_costume_count()
+	{
+		var unique_costumes:Int = 0;
+		var seen_costumes:Array<String> = [];
+		for (user in users)
+		{
+			if (user.isOnScreen())
+			{
+				if (!seen_costumes.contains(user.costume.name))
+					unique_costumes++;
+				seen_costumes.push(user.costume.name);
+			}
+		}
+		#if newgrounds
+		// if (unique_costumes >= 30)
+		// Main.ng_api.medal_popup(Main.ng_api.medals.get("costume-party"));
+		#end
+		trace(seen_costumes.length, unique_costumes);
 	}
 
 	public function special_level_elements() {}

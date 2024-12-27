@@ -1710,7 +1710,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [111,234],
+					"__grid": [133,194],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1719,7 +1719,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1776,3744],
+					"px": [2128,3104],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "mudhutgrug", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -1728,8 +1728,8 @@
 						{ "__identifier": "day", "__type": "Int", "__value": 21, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [21] }] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
-					"__worldX": 1776,
-					"__worldY": 3744
+					"__worldX": 2128,
+					"__worldY": 3104
 				},
 				{
 					"__identifier": "Player",
@@ -2302,7 +2302,7 @@
 				},
 				{
 					"__identifier": "Present",
-					"__grid": [101,232],
+					"__grid": [91,178],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -2311,7 +2311,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 2,
-					"px": [1616,3712],
+					"px": [1456,2848],
 					"fieldInstances": [
 						{ "__identifier": "username", "__type": "String", "__value": "tamag0", "__tile": null, "defUid": 5, "realEditorValues": [{
 							"id": "V_String",
@@ -2320,8 +2320,8 @@
 						{ "__identifier": "day", "__type": "Int", "__value": 26, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [26] }] },
 						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
 					],
-					"__worldX": 1616,
-					"__worldY": 3712
+					"__worldX": 1456,
+					"__worldY": 2848
 				},
 				{
 					"__identifier": "Present",
@@ -2345,6 +2345,29 @@
 					],
 					"__worldX": 2512,
 					"__worldY": 3632
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [105,178],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "e170b8c0-c210-11ef-8ba8-efd85d5a8c07",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1680,2848],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "srpelo", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["srpelo"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 27, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [27] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 1680,
+					"__worldY": 2848
 				}
 			]
 		},
