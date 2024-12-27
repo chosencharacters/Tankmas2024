@@ -137,6 +137,14 @@
             "id": 81787
         },
         {
+            "name": "comic-guri",
+            "id": 82240
+        },
+        {
+            "name": "comic-dragonmiracles",
+            "id": 82241
+        },
+        {
             "name": "golden-marshmallow",
             "id": 81788
         },
@@ -164,13 +172,13 @@
             "name": "persimmon-unlocked",
             "id": 81794
         },
-		{
-			"name": "Watch a movie!",
-            "id": 81795
-		},
         {
-			"name": "tamago-encountered",
+            "name": "Watch a movie!",
+            "id": 81795
+        },
+        {
+            "name": "tamago-encountered",
             "id": 81796
-		}
+        }
     ]
 }

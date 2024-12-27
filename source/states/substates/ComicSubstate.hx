@@ -23,6 +23,11 @@ class ComicSubstate extends FlxSubstateExt
 
 	var black:FlxSpriteExt;
 
+	var has_sound:Bool;
+	var sound:FlxSound;
+
+	var old_music_volume:Float = 0;
+
 	/**
 	 * This is private, should be only made through things that extend it
 	 * @param saved_sheet
@@ -31,6 +36,12 @@ class ComicSubstate extends FlxSubstateExt
 	public function new(comic_name:String)
 	{
 		super();
+
+		old_music_volume = FlxG.sound.music.volume;
+
+		has_sound = comic_name == "guri";
+
+		trace(has_sound, comic_name);
 
 		var black:FlxSpriteExt = new FlxSpriteExt(0, 0).makeGraphicExt(FlxG.width, FlxG.height, FlxColor.BLACK);
 		black.setPosition(0, 0);
@@ -82,6 +93,8 @@ class ComicSubstate extends FlxSubstateExt
 
 	override function kill()
 	{
+		if (has_sound)
+			FlxG.sound.music.volume = old_music_volume;
 		Ctrl.mode = ControlModes.OVERWORLD;
 		super.kill();
 	}
@@ -123,7 +136,8 @@ class ComicSubstate extends FlxSubstateExt
 	public function switch_page()
 	{
 		comic.loadGraphic(Paths.image_path('$comic_base-$page'));
-		comic.setGraphicSize(comic.width > comic.height ? 1920 : 0, comic.height >= comic.width ? 1080 : 0);
+		comic.setGraphicSize(comic.width >= comic.height ? 1920 : 0, comic.height >= comic.width ? 1080 : 0);
+		trace(comic.width, comic.height);
 
 		comic.screenCenter();
 		left_arrow.screenCenter();
@@ -133,8 +147,24 @@ class ComicSubstate extends FlxSubstateExt
 		right_arrow.x = comic.x + comic.width;
 		left_arrow.x = comic.x - left_arrow.width;
 
+		if (!left_arrow.isOnScreen())
+			left_arrow.setPosition(left_arrow.width * 1.5, FlxG.height / 2 - left_arrow.height / 2);
+		if (!right_arrow.isOnScreen())
+			right_arrow.setPosition(FlxG.width - right_arrow.width * 1.5, FlxG.height / 2 - left_arrow.height / 2);
+
 		left_arrow.visible = left_arrow.enabled = page > 1;
 		right_arrow.visible = right_arrow.enabled = page < pages;
+
+		if (sound != null)
+		{
+			sound.stop();
+			sound.kill();
+		}
+		if (has_sound)
+		{
+			sound = SoundPlayer.sound('$comic_base-$page', 2);
+			FlxG.sound.music.volume = 0.25;
+		}
 	}
 }
 
