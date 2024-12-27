@@ -7,6 +7,7 @@ import entities.Player;
 import entities.Present;
 import entities.TankmasTree;
 import entities.misc.GamingDevice;
+import entities.misc.Menorah;
 import entities.misc.PianoMan;
 import entities.misc.TamagoEncounter;
 import flixel.tile.FlxTilemap;
@@ -163,6 +164,8 @@ class TankmasLevel extends LDTKLevel
 					new TankmasTree(c.worldPixelX, c.worldPixelY);
 				case "tamago-encounter":
 					new TamagoEncounter(c.worldPixelX, c.worldPixelY);
+				case "menorah":
+					new Menorah(c.worldPixelX, c.worldPixelY);
 			}
 		}
 
