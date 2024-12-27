@@ -36,8 +36,8 @@
 	</animSet>
 
 	<animSet image="costume-cordelia">
-		<anim name="left-idle||right-idle">0h30,1t3</anim>
-		<anim name="left-move||right-move">1t3</anim>
+		<anim name="left-idle||right-idle">0</anim>
+		<anim name="left-move||right-move" fps="100ms">1t3</anim>
 	</animSet>
 	
 	<animSet image="pet-tamago-pet">
