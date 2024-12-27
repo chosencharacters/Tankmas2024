@@ -148,6 +148,12 @@
             "unlock": "FLAG",
             "data": "TAMAGO_ENCOUNTERED"
         },
+		{
+			"name": "shmigmar",
+            "display": "Shmigmar",
+            "desc": "Shmigmar loves his wife, Swiishii, very much. We need can aspire to be more like Shmigmar.",
+            "unlock": "FLAG"
+		},
         {
             "name": "pet-box",
             "display": "Box",
