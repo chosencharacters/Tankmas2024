@@ -585,8 +585,9 @@
             "name": "cordelia",
             "display": "Cordelia",
             "desc": "The bewitching shopkeep of the Dead Estate... Don't stare too long.",
-            "unlock": "DATE",
-            "data": 1735275600
+            "unlock": "DATE_AND_SUPPORTER",
+            "data": 1735275600,
+            "walk":"moving-small"
         },
         {
             "name": "chunks",

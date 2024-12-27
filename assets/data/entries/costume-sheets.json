@@ -418,13 +418,13 @@
                     "angle": -10
                 },
                 {
-                    "name": null,
+                    "name": "cordelia",
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "chunks",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30

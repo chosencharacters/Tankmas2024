@@ -331,6 +331,8 @@ class BaseUser extends NGSprite
 				return PlayerAnimation.MOVING;
 			case "hop":
 				return PlayerAnimation.HOPPING;
+			case "moving-small":
+				return PlayerAnimation.MOVING_SMALL;
 		}
 	}
 }

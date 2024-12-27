@@ -34,6 +34,11 @@
 		<anim name="left-move">1</anim>
 		<anim name="right-move">1</anim>
 	</animSet>
+
+	<animSet image="costume-cordelia">
+		<anim name="left-idle||right-idle">0h30,1t3</anim>
+		<anim name="left-move||right-move">1t3</anim>
+	</animSet>
 	
 	<animSet image="pet-tamago-pet">
 		<anim name="left-idle">0</anim>

@@ -26,6 +26,8 @@ enum abstract UnlockCondition(String) from String to String
 	/**Gotta pay the toll*/
 	final SUPPORTER;
 
+	final DATE_AND_SUPPORTER;
+
 	public static inline function get_unlocked(condition:UnlockCondition, data:Dynamic):Bool
 	{
 		#if all_unlocked
@@ -50,6 +52,12 @@ enum abstract UnlockCondition(String) from String to String
 			case UnlockCondition.SUPPORTER:
 				#if newgrounds
 				return Main.ng_api.NG_MR_MONEYBAGS_OVER_HERE;
+				#else
+				return false;
+				#end
+			case UnlockCondition.DATE_AND_SUPPORTER:
+				#if newgrounds
+				return Main.ng_api.NG_MR_MONEYBAGS_OVER_HERE && Main.time.utc >= data * 1000;
 				#else
 				return false;
 				#end
@@ -146,6 +154,45 @@ enum abstract PlayerAnimation(SpriteAnimationDef) from SpriteAnimationDef to Spr
 			{
 				duration: 2,
 				y: -4
+			},
+		]
+	};
+	public static final MOVING_SMALL:SpriteAnimationDef = {
+		name: "moving-small",
+		fps: Utils.ms_to_frames_per_second("40ms"),
+		looping: true,
+		frames: [
+			{
+				duration: 2,
+				x: -3,
+				y: -8,
+				angle: 4
+			},
+			{
+				duration: 2,
+				y: -12,
+			},
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				angle: 0
+			},
+			{
+				duration: 2,
+				x: 3,
+				y: -8,
+				angle: -4
+			},
+			{
+				duration: 2,
+				y: -12,
+			},
+			{
+				duration: 3,
+				x: 0,
+				y: 0,
+				angle: 0
 			},
 		]
 	};
