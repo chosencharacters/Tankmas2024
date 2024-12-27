@@ -100,4 +100,15 @@
 		<anim name="christmaseve-alltogethernow">12</anim>
 		<anim name="alotlikechristmas-connorgrail">13</anim>
 	</animSet>
+
+	<animSet image="menorah" width="191" height="218">
+		<anim name="1" fps="100ms">0t19</anim>
+		<anim name="2" fps="100ms">20t39</anim>
+		<anim name="3" fps="100ms">40t59</anim>
+		<anim name="4" fps="100ms">60t79</anim>
+		<anim name="5" fps="100ms">80t99</anim>
+		<anim name="6" fps="100ms">100t119</anim>
+		<anim name="7" fps="100ms">120t139</anim>
+		<anim name="8" fps="100ms">140t159</anim>
+	</animSet>
 </root>
