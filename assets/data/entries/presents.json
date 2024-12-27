@@ -159,8 +159,14 @@
         {
             "day": 27,
             "file": "day-27-art-srpelo",
-            "title": "",
+            "title": "SrPelo",
             "artist": "SrPelo"
+        },
+		{
+            "day": 27,
+            "file": "day-27-art-onyxgalaria",
+            "title": "Sticker Situation",
+            "artist": "OnyxGalaria"
         },
         {
             "day": 28,

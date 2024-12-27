@@ -580,6 +580,17 @@
             "desc": "If you wanna survive like Ted Bear, you've gotta have a sharp wit, endurance, good looks and a backpack full of ingenuity... Even when it comes to bacon trees",
             "unlock": "DATE",
             "data": 1735189200
-        }
+        },  
+		{
+            "name": "chunks",
+            "display": "Chunks",
+            "desc": "Cordelia's cute pet rat!",
+            "unlock": "DATE"
+		},
+		{
+            "name": "cordelia",
+            "display": "Cordelia",
+            "desc": "The bewitching shopkeep of the Dead Estate... Don't stare too long.",
+            "unlock": "DATE"
     ]
 }
