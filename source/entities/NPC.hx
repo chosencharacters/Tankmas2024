@@ -41,6 +41,8 @@ class NPC extends Interactable
 
 		var anim_set_name:String = Lists.animSets.exists(name) ? name : "npc-default";
 
+		trace(name, anim_set_name);
+
 		loadAllFromAnimationSet(anim_set_name, name);
 
 		sstate(IDLE, fsm);
@@ -67,6 +69,11 @@ class NPC extends Interactable
 
 	function conditional_animation(animation:String, ?fallback:String)
 	{
+		if (this.animation.getNameList().contains(animation))
+			animProtect(animation);
+		else
+			animProtect(fallback);
+
 		if (def == null || def.animations == null)
 			return;
 		if (def.animations.exists(animation))

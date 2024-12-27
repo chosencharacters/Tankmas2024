@@ -179,6 +179,10 @@
         {
             "name": "tamago-encountered",
             "id": 81796
+        },
+        {
+            "name": "box",
+            "id": 81797
         }
     ]
 }

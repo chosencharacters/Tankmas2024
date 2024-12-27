@@ -147,6 +147,19 @@
             "desc": "Proof of encountering a rare tamago, in a tiny lovable adorably anxious package!\nNote: Tankmas is not responsible for damages caused by prolonged exposure to the Tamago.",
             "unlock": "FLAG",
             "data": "TAMAGO_ENCOUNTERED"
+        },
+        {
+            "name": "pet-box",
+            "display": "Box",
+            "desc": "Yea that's a box alright.",
+            "unlock": "FLAG",
+            "data": "A_LOT_OF_PATIENCE",
+            "stats":{
+                "follow_speed": 150,
+                "follow_acl": 60,
+                "follow_accuracy":0.1,
+                "drag":0.99
+            }
         }
     ]
 }

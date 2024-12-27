@@ -172,6 +172,8 @@ class SaveManager
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("persimmon-unlocked"));
 				case "TAMAGO_ENCOUNTERED":
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("tamago-encountered"));
+				case "A_LOT_OF_PATIENCE":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("box"));
 			}
 		}
 		#end

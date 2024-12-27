@@ -29,4 +29,9 @@
 	<animSet image="concierge-invisible">
 		<anim name="idle" fps="100ms" looping="false">0</anim>
 	</animSet>
+
+	<animSet image="box">
+		<anim name="idle">0</anim>
+		<anim name="nearby" looping="false">1t3</anim>	
+	</animSet>
 </root>
