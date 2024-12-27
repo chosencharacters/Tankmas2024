@@ -19,7 +19,10 @@ class Menorah extends FlxSpriteExt
 	{
 		#if newgrounds
 		if (!denominational && PlayState.self.player.distance_to_sprite(this) < 300)
+		{
+			denominational = true;
 			Main.ng_api.medal_popup(Main.ng_api.medals.get("denominational"));
+		}
 		#end
 		if (ttick() % 20 == 1)
 			anim(Std.string(Main.time.hanukkah_day));
