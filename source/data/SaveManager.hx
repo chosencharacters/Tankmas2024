@@ -174,6 +174,8 @@ class SaveManager
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("tamago-encountered"));
 				case "A_LOT_OF_PATIENCE":
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("box"));
+				case "GOT_SHMIGGED":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("comic-shmigmar"));
 			}
 		}
 		switch (current_pet)

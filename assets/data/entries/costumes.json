@@ -595,6 +595,27 @@
             "desc": "Cordelia's cute pet rat!",
             "unlock": "DATE",
             "data": 1735275600
+		},
+        {
+            "name": "spoople",
+            "display": "Spoople",
+            "desc": "He always knows, and know what many wish they couldn't know to know. That's why he knows for you, and explains what you need to know on his show: Spoopl Knows!",
+            "unlock": "DATE",
+            "data": 1735362000
+		},
+        {
+            "name": "project-154",
+            "display": "Project 154",
+            "desc": "Gamma class bio-weapon, Project no. 154. A fighter like no other, enhanced with superhuman strength, durability, and combat capabilities.",
+            "unlock": "FLAG",
+            "data": "THING_THINGED"
+		},
+        {
+            "name": "convict",
+            "display": "Convict",
+            "desc": "The shape-shifter and Pico's greatest foe.",
+            "unlock": "DATE",
+            "data": 1735448400
 		}
     ]
 }

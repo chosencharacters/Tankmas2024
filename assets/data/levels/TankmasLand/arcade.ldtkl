@@ -779,19 +779,69 @@
 			"entityInstances": [
 				{
 					"__identifier": "Minigame",
-					"__grid": [115,30],
+					"__grid": [139,66],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
 					"__smartColor": "#1B3A4D",
 					"iid": "93999ae0-9b00-11ef-8756-fb199de52701",
-					"width": 624,
-					"height": 432,
+					"width": 240,
+					"height": 384,
 					"defUid": 21,
-					"px": [1840,480],
-					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "bunnymark", "__tile": null, "defUid": 22, "realEditorValues": [] }],
-					"__worldX": 5028,
-					"__worldY": 936
+					"px": [2224,1056],
+					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "bunnymark", "__tile": null, "defUid": 22, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["bunnymark"]
+					}] }],
+					"__worldX": 5412,
+					"__worldY": 1512
+				},
+				{
+					"__identifier": "Player",
+					"__grid": [126,92],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#46BE2F",
+					"iid": "f16dc920-9b00-11ef-b112-098b44c67591",
+					"width": 128,
+					"height": 128,
+					"defUid": 1,
+					"px": [2016,1472],
+					"fieldInstances": [],
+					"__worldX": 5204,
+					"__worldY": 1928
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [145,125],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFF100",
+					"iid": "44604de0-9b00-11ef-b112-87907cc3bbfd",
+					"width": 144,
+					"height": 160,
+					"defUid": 14,
+					"px": [2320,2000],
+					"fieldInstances": [
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "543f8a70-c210-11ef-8580-056609789833",
+							"layerIid": "1f4bee20-73f0-11ef-9983-a7372464c4f6",
+							"levelIid": "95f99f60-73f0-11ef-9983-612730a885a0",
+							"worldIid": "95f97851-73f0-11ef-9983-cda8b61095c5"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["543f8a70-c210-11ef-8580-056609789833"]
+						}] },
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 123, "cy": 120 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["123,120"]
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
+					],
+					"__worldX": 5508,
+					"__worldY": 2456
 				}
 			]
 		},

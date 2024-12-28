@@ -1372,6 +1372,56 @@
 					],
 					"__worldX": 976,
 					"__worldY": 848
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [120,94],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFF100",
+					"iid": "543f8a70-c210-11ef-8580-056609789833",
+					"width": 96,
+					"height": 96,
+					"defUid": 14,
+					"px": [1920,1504],
+					"fieldInstances": [
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "44604de0-9b00-11ef-b112-87907cc3bbfd",
+							"layerIid": "3286d605-9b00-11ef-8756-dd984fe31fce",
+							"levelIid": "3286d600-9b00-11ef-8756-4da78190a937",
+							"worldIid": "0b13d4d0-9b00-11ef-9354-a71a8f29f283"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["44604de0-9b00-11ef-b112-87907cc3bbfd"]
+						}] },
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 108, "cy": 85 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["108,85"]
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
+					],
+					"__worldX": 1920,
+					"__worldY": 1504
+				},
+				{
+					"__identifier": "Minigame",
+					"__grid": [94,76],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#1B3A4D",
+					"iid": "cbdba110-c210-11ef-8580-9fafa23ab30c",
+					"width": 128,
+					"height": 128,
+					"defUid": 21,
+					"px": [1504,1216],
+					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "fttt", "__tile": null, "defUid": 22, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["fttt"]
+					}] }],
+					"__worldX": 1504,
+					"__worldY": 1216
 				}
 			]
 		},
