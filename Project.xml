@@ -85,6 +85,7 @@
 
 	<haxelib name="ase" />
 	<haxelib name="castle" />
+	<haxelib name="coroutine" />
 	<haxelib name="deepnightLibs"/>
 	<haxelib name="gif" if="gif"/>
 	<haxelib name="json2object" />
@@ -114,7 +115,13 @@
 
 	</section>
 
-	<assets path="assets/images/minigames" library="minigames" exclude="*.ase|*.wav"/>
+	<section unless="exclude_tripletriangle">
+
+		<source path="minigames/tripletriangle/source" />
+		<library name="tripletriangle" preload="false" />
+		<assets path="minigames/tripletriangle/assets" rename="assets/minigames/tripletriangle" library="tripletriangle" exclude="*.ase|*.wav"/>
+
+	</section>
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

@@ -11,6 +11,17 @@
                 "zoom": 1.5
             }
         },
+        "tripletriangle": {
+            "name": "Triple Triangle",
+            "description": "A minigame about popping circles",
+            "type": "overlay",
+            "crtShader": true,
+            "camera": {
+                "width": 320,
+                "height": 240,
+                "zoom": 1
+            }
+        },
         "crouton": {
             "name": "Crouton",
             "description": "For all your crouton needs",

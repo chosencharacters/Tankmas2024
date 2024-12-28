@@ -38,6 +38,11 @@ class MinigameHandler
 		constructors["fttt"] = () -> new minigames.fttt.FTTTSubState();
 		destructors["fttt"] = null;
 
+		#if !exclude_tripletriangle
+		constructors["tripletriangle"] = () -> new tripletriangle.PlayState();
+		destructors["tripletriangle"] = null;
+		#end
+
 		handleDefines();
 	}
 
