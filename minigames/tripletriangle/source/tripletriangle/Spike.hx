@@ -44,6 +44,7 @@ class Spike extends FlxObject
 		super(p_x, p_y);
 		popAngle = p_popAngle;
 		firstSpike = new FlxSprite(p_x, p_y, graphicAsset);
+		firstSpike.visible = false;
 		firstSpike.offset.x = 16;
 		firstSpike.offset.y = 16;
 
@@ -114,6 +115,7 @@ class Spike extends FlxObject
 		var elapsedTime:Float = 0;
 		var elapsedTimeNormalized:Float = 0;
 
+		// firstSpike.active = true;
 		firstSpike.visible = true;
 		/*for (spike in [firstSpike, secondSpike, thirdSpike])
 			{
