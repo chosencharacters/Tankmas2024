@@ -13,12 +13,14 @@ import flixel.text.FlxBitmapText;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import tripletriangle.GenericCircle.CircleType;
+import tripletriangle.Main as InnerMain;
 import ui.Cursor;
 #if ADVENT
 import utils.OverlayGlobal as Global;
 #else
 import utils.Global;
 #end
+#if newgrounds import ng.NewgroundsHandler; #end
 
 enum UIUnlockableType
 {
@@ -149,6 +151,17 @@ class PlayState extends FlxSubState
 		{
 			routine.stopAllCoroutines(); // IN THE PERFECT PROJECT, there's likely only one CoroutineRunner. Not important rn.
 		}
+
+		#if newgrounds
+		// 	public function post_score(score:Int, board_id:Int)
+
+		var ng_api:NewgroundsHandler = std.Main.ng_api;
+		final tripleTriangleBoardId:Int = 333; // TODO: wot? (I assume the number is arbitrary, so long as it isn't repeated in another call to post_score().)
+		trace("Posting combo high score...");
+		ng_api.post_score(ComboManager.highestCombo, tripleTriangleBoardId);
+		trace("Posted combo high score successfully!");
+		#end
+
 		super.close();
 	}
 
