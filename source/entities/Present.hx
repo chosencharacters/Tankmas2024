@@ -66,7 +66,7 @@ class Present extends Interactable
 
 		comic = def.comicProperties != null ? true : false;
 
-		if (["dragonmiracles", "guri"].contains(username))
+		if (["dragonmiracles", "guri", "marbardan82"].contains(username))
 			comic = true;
 
 		openable = true;
