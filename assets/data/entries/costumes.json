@@ -621,9 +621,7 @@
         {
             "name": "juby",
             "display": "Juby",
-            "desc": "",
-            "unlock": "DATE",
-            "data": 1735362000
+            "desc": "The loveable axolotl that loves to hang out with his strange friends."
 		}
     ]
 }
