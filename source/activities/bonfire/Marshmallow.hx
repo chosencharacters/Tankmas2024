@@ -121,7 +121,8 @@ class Marshmallow extends FlxSprite
 		set_level(current_level + 1);
 	}
 
-	public static function on_cooked_perfect():Void {
+	public static function on_cooked_perfect():Void
+	{
 		trace('Cooked a perfect marshmallow!');
 		#if newgrounds
 		trace('Awarding "Golden Marshmallow" medal...');
@@ -129,9 +130,7 @@ class Marshmallow extends FlxSprite
 		// Earn a medal, if applicable.
 		Main.ng_api.medal_popup(Main.ng_api.medals.get("golden-marshmallow"));
 
-		final GOLDEN_MARSHMALLOWS_SCOREBOARD:Int = 14324;
-
-		Main.ng_api.post_score(1, GOLDEN_MARSHMALLOWS_SCOREBOARD);
+		Main.ng_api.post_score(1, Main.GOLDEN_MARSHMALLOWS_SCOREBOARD);
 		#end
 	}
 

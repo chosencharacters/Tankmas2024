@@ -56,6 +56,10 @@ class Main extends Sprite
 
 	public static var use_small_assets:Bool = false;
 
+	public static final GOLDEN_MARSHMALLOWS_SCOREBOARD:Int = 14324;
+	public static final FIND_THE_THING_THING_SCOREBOARD:Int = 14324;
+	public static final TRIPLE_TRIANGLE_SCOREBOARD:Int = 14324;
+
 	public static function main():Void
 	{
 		// We need to make the crash handler LITERALLY FIRST so nothing EVER gets past it.why-coal

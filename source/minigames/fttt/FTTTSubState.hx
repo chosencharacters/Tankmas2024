@@ -37,6 +37,9 @@ class FTTTSubState extends FlxSubstateExt
 	var min_time:Int = 60;
 	var current_time:Int;
 
+	var streak:Int = 0;
+	var best_streak:Int = 0;
+
 	override function create()
 	{
 		super.create();
@@ -130,12 +133,18 @@ class FTTTSubState extends FlxSubstateExt
 
 	public function good_outcome()
 	{
+		streak++;
 		clear_things();
 		sstate(SUCCESS, fsm);
 	}
 
 	public function bad_outcome()
 	{
+		#if newgrounds
+		if (streak >= best_streak)
+			Main.ng_api.post_score(1, Main.FIND_THE_THING_THING_SCOREBOARD);
+		#end
+		streak = 0;
 		clear_things();
 		sstate(FAILURE, fsm);
 	}
