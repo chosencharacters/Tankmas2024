@@ -329,7 +329,7 @@ class BaseUser extends NGSprite
 		{
 			default:
 				return PlayerAnimation.MOVING;
-			case "hop":
+			case "hop" | "hopping":
 				return PlayerAnimation.HOPPING;
 			case "moving-small":
 				return PlayerAnimation.MOVING_SMALL;

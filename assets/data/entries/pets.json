@@ -171,6 +171,20 @@
             "name": "penicorn",
             "display": "Mystery Unicorn Plush",
             "desc": "Don't worry about it."
+        },
+        {
+            "name": "gooble",
+            "display": "Gooble",
+            "desc": "Gooble loves you. Convert to gooblism for eternal happiness and safety.",
+            "unlock": "DATE",
+            "data": 1735362000
+        },
+        {
+            "name": "shmigmar",
+            "display": "Shmigmar",
+            "desc": "Duty calls those who answer the duty. For some, we get heroes, for the fortunate, we get Shmigmar.",
+            "unlock": "FLAG",
+            "data": "GOT_SHMIGGED"
         }
     ]
 }
