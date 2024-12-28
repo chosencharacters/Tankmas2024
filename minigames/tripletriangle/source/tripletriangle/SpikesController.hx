@@ -55,7 +55,6 @@ class SpikesController extends FlxObject // importantly includes position.
 		topSpike = new Spike(120 + 16 + halfSpikeWidth, 240 + halfSpikeWidth, "assets/images/Triangle Bottom.png", Spike.ESpikeAngle.down);
 		rightSpike = new Spike(240 + halfSpikeWidth, 120 - 16 + halfSpikeWidth, "assets/images/Triangle Right.png", Spike.ESpikeAngle.right);
 		leftSpike = new Spike(80 - halfSpikeWidth, 120 - 16 + halfSpikeWidth);
-		topSpike.visible = false;
 		for (spike in [topSpike, rightSpike, leftSpike])
 		{
 			spike.AddToState(p_state);

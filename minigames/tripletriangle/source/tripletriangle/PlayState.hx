@@ -174,7 +174,7 @@ class PlayState extends FlxSubState
 
 		var creditsText = new FlxBitmapText(fontAngelCode);
 		creditsText.font = fontAngelCode;
-		creditsText.text = "Dev:\n Blawnode";
+		creditsText.text = " Dev:\nBlawnode\n Music:\nRob0ne";
 		creditsText.setPosition(8, 54);
 		add(creditsText);
 
@@ -503,7 +503,7 @@ class PlayState extends FlxSubState
 
 	public function UnlockAchievement(achievement:AchievementID)
 	{
-		trace("Attempting to unlock achievement with ID: " + achievement);
+		// trace("Attempting to unlock achievement with ID: " + achievement);
 
 		var achievementIndexInArrays:Int = -1;
 		for (i in 0...achievementSpriteDatas.length)
@@ -517,6 +517,11 @@ class PlayState extends FlxSubState
 		if (achievementIndexInArrays == -1)
 		{
 			trace("Couldn't find achievement: " + achievement);
+			return;
+		}
+		if (achievementSpriteDatas[achievementIndexInArrays].unlocked)
+		{
+			// trace("Achievement already unlocked: " + achievement);
 			return;
 		}
 

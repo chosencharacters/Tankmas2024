@@ -29,7 +29,7 @@ class GlobalMasterManager extends FlxObject
 	{
 		try
 		{
-			trace("TODO: ReadyManagers");
+			// trace("TODO: ReadyManagers");
 			// SettingsManager.Main.Initialize();
 			// MainMenuManager.Main.Initialize();
 			// CoinManager.Main.Initialize();

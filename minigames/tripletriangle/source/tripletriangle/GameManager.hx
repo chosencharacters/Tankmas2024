@@ -474,7 +474,7 @@ class GameManager extends GameManagerBase
 		if (newCircleCount != currentCircleCount)
 		{
 			currentCircleCount = newCircleCount;
-			trace("Max circle count set to " + currentCircleCount + "!");
+			// trace("Max circle count set to " + currentCircleCount + "!");
 		}
 	}
 
@@ -509,13 +509,13 @@ class GameManager extends GameManagerBase
 
 		if (currentLives == 0)
 		{
-			trace("DEATH");
+			// trace("DEATH");
 			// SoundManager.Main.PlaySound("Death");
 			// OnLose();
 		}
 		else
 		{
-			trace("HP LOSS");
+			// trace("HP LOSS");
 			// SoundManager.Main.PlaySound("HP Loss");
 		}
 		/*}*/

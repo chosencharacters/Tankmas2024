@@ -43,7 +43,7 @@ class ComboManager extends FlxObject
 
 	public function FinishCombo():Routine
 	{
-		trace("Did: FinishCombo() - " + comboCounter);
+		// trace("Did: FinishCombo() - " + comboCounter);
 
 		// Combo and coin pop-up text
 		// GameManagerBase.Main.OnFinishCombo();  // Redundant RN.
