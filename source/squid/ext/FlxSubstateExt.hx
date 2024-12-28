@@ -13,6 +13,7 @@ class FlxSubstateExt extends FlxSubState
 	public var cursor_always_visible = true;
 
 	var state_history:Array<String> = [];
+	var trace_new_state:Bool = false;
 
 	override function create()
 	{
@@ -42,7 +43,7 @@ class FlxSubstateExt extends FlxSubState
 
 		#if dev_trace
 		if (trace_new_state && state_changing)
-			trace('[${type}] New State: ${state} -> ${new_state}');
+			trace('New State: ${state} -> ${new_state}');
 		#end
 		if (!state_changing)
 			return false;

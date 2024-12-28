@@ -7,8 +7,8 @@ class FTTTThing extends HoverButton
 {
 	var is_thing_thing:Bool = false;
 
-	public var max_vel_x:Int = 200;
-	public var max_vel_y:Int = 200;
+	public var max_vel_x:Int = 100;
+	public var max_vel_y:Int = 100;
 
 	public var vel_x:Int = 200;
 	public var vel_y:Int = 200;
@@ -17,7 +17,7 @@ class FTTTThing extends HoverButton
 	{
 		super(X, Y);
 		this.is_thing_thing = is_thing_thing;
-		on_pressed = (b) -> is_thing_thing ? good_outcome : bad_outcome;
+		on_pressed = (b) -> is_thing_thing ? good_outcome() : bad_outcome();
 		sstate(MOVE);
 
 		loadAllFromAnimationSet(is_thing_thing ? 'fttt-thing-thing' : 'fttt-grunt');
@@ -28,6 +28,8 @@ class FTTTThing extends HoverButton
 		vel_y = ran.int(50, max_vel_y);
 
 		velocity.set(vel_x, vel_y);
+
+		velocity.scale(ran.bool() ? -1 : 1, ran.bool() ? -1 : 1);
 	}
 
 	override function update(elapsed:Float)
@@ -47,11 +49,12 @@ class FTTTThing extends HoverButton
 			velocity.y = vel_y;
 			y = FTTTSubState.bounds.y;
 		}
-		if (y + width >= FTTTSubState.bounds.height + FTTTSubState.bounds.y)
+		if (y + height >= FTTTSubState.bounds.height + FTTTSubState.bounds.y)
 		{
 			velocity.y = -vel_y;
 			y = FTTTSubState.bounds.height + FTTTSubState.bounds.y - height;
 		}
+
 		fsm();
 		super.update(elapsed);
 	}
