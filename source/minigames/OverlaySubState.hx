@@ -190,6 +190,8 @@ class LoadingState extends FlxState
 		super();
 		this.nextState = nextState;
 		this.libraryName = libraryName;
+
+		trace(nextState, libraryName);
 	}
 
 	override function create()

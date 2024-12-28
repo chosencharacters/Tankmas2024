@@ -35,6 +35,9 @@ class MinigameHandler
 		destructors["bunnymark"] = null;
 		#end
 
+		constructors["fttt"] = () -> new minigames.fttt.FTTTSubState();
+		destructors["fttt"] = null;
+
 		handleDefines();
 	}
 
@@ -153,6 +156,7 @@ class MinigameHandler
 
 	function playMinigame_overlay(minigame_id:String, data:MinigameEntry):Void
 	{
+		trace("ok");
 		var constructor = constructors[minigame_id];
 		if (constructor == null)
 			throw "Minigame constructor not found for minigame: " + minigame_id;

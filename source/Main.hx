@@ -6,6 +6,7 @@ import data.TimeManager;
 import data.loaders.NPCLoader;
 import flixel.FlxGame;
 import flixel.FlxState;
+import flixel.system.debug.log.LogStyle;
 import flixel.util.typeLimit.NextState.InitialState;
 import levels.LdtkProject;
 import levels.TankmasLevel.RoomId;
@@ -38,7 +39,7 @@ class Main extends Sprite
 	public static var default_costume:String = "tankman";
 	public static var default_pet:String = "invisible-pet";
 
-	public static final default_world:String = "outside_hotel";
+	public static final default_world:String = #if test_arcade "hotel_interior" #else "outside_hotel" #end;
 
 	public static var ran:FlxRandom = new FlxRandom();
 
@@ -62,6 +63,9 @@ class Main extends Sprite
 		CrashHandler.queryStatus();
 
 		current_song = default_song;
+
+		LogStyle.ERROR.errorSound = null;
+		LogStyle.WARNING.errorSound = null;
 
 		openfl.Lib.current.addChild(new Main());
 	}
