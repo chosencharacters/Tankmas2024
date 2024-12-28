@@ -175,6 +175,7 @@ class SpikesController extends FlxObject // importantly includes position.
 	private function StartCoroutine(routine:Routine)
 	{
 		var routineRunner = new CoroutineRunner();
+		PlayState.initiatedRoutinesToStopOnClose.add(routineRunner);
 		routineRunner.startCoroutine(routine);
 		new haxe.Timer(16).run = function()
 		{

@@ -1,5 +1,7 @@
 package tripletriangle;
 
+import coroutine.CoroutineRunner;
+import coroutine.Routine;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -68,6 +70,8 @@ class PlayState extends FlxSubState
 	public static var comboText:FlxBitmapText;
 	public static var coinComboText:FlxBitmapText;
 
+	public static var initiatedRoutinesToStopOnClose:List<CoroutineRunner>;
+
 	var cursor:Cursor; // Debugging
 	var cursorPosition:FlxBitmapText; // Debugging
 
@@ -82,6 +86,7 @@ class PlayState extends FlxSubState
 		states.PlayState.self.input_manager.mode = input.InputManager.InputMode.MouseOrTouch;
 
 		super.create();
+		initiatedRoutinesToStopOnClose = new List<CoroutineRunner>();
 		fontAngelCode = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_0.png"), Global.asset("assets/slkscrb.fnt"));
 		fontAngelCode_x4 = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_x4_0.png"), Global.asset("assets/slkscrb_x4.fnt"));
 
@@ -136,6 +141,15 @@ class PlayState extends FlxSubState
 	{
 		// cursorPosition.text = cursor.getPosition().toString();
 		super.update(elapsed);
+	}
+
+	override function close()
+	{
+		for (routine in initiatedRoutinesToStopOnClose)
+		{
+			routine.stopAllCoroutines(); // IN THE PERFECT PROJECT, there's likely only one CoroutineRunner. Not important rn.
+		}
+		super.close();
 	}
 
 	function initializeUI()

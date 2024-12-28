@@ -7,11 +7,12 @@ import haxe.Exception;
 
 class GlobalMasterManager extends FlxObject
 {
-    override public function new()
-    {
-        super();
+	override public function new()
+	{
+		super();
 
-        var routine = new CoroutineRunner();
+		var routine = new CoroutineRunner();
+		PlayState.initiatedRoutinesToStopOnClose.add(routine);
 		routine.startCoroutine(IReadyManagers());
 		new haxe.Timer(16).run = function()
 		{
@@ -22,27 +23,27 @@ class GlobalMasterManager extends FlxObject
 			processor.updateTimer(haxe.Timer.stamp());
 			processor.updateExitFrame();
 		}
-    }
+	}
 
-    private function ReadyManagers()
-    {
-        try
-        {
-            trace("TODO: ReadyManagers");
-            //SettingsManager.Main.Initialize();
-            //MainMenuManager.Main.Initialize();
-            //CoinManager.Main.Initialize();
-        }
-        catch(e: Exception)
-        {
-            trace(e.message);
-        }
-    }
+	private function ReadyManagers()
+	{
+		try
+		{
+			trace("TODO: ReadyManagers");
+			// SettingsManager.Main.Initialize();
+			// MainMenuManager.Main.Initialize();
+			// CoinManager.Main.Initialize();
+		}
+		catch (e:Exception)
+		{
+			trace(e.message);
+		}
+	}
 
-    // It's a coroutine because I want the Class.Main's to be initialized first, via their Class.Start()'s.
-    private function IReadyManagers(): Routine
-    {
-        @yield return WaitEndOfFrame;
-        ReadyManagers();
-    }
+	// It's a coroutine because I want the Class.Main's to be initialized first, via their Class.Start()'s.
+	private function IReadyManagers():Routine
+	{
+		@yield return WaitEndOfFrame;
+		ReadyManagers();
+	}
 }

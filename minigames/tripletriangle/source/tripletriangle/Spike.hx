@@ -61,6 +61,7 @@ class Spike extends FlxObject
 		// animator = GetComponent<Animator>();
 
 		var coInvisibilityRoutine = new CoroutineRunner();
+		PlayState.initiatedRoutinesToStopOnClose.add(coInvisibilityRoutine);
 		coInvisibilityRoutine.startCoroutine(SetInvisibility());
 		new haxe.Timer(16).run = function()
 		{
