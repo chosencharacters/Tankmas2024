@@ -601,7 +601,8 @@
             "display": "Spoople",
             "desc": "He always knows, and know what many wish they couldn't know to know. That's why he knows for you, and explains what you need to know on his show: Spoopl Knows!",
             "unlock": "DATE",
-            "data": 1735362000
+            "data": 1735362000,
+            "walk":"hop"
 		},
         {
             "name": "project-154",
@@ -616,6 +617,13 @@
             "desc": "The shape-shifter and Pico's greatest foe.",
             "unlock": "DATE",
             "data": 1735448400
+		},
+        {
+            "name": "juby",
+            "display": "Juby",
+            "desc": "",
+            "unlock": "DATE",
+            "data": 1735362000
 		}
     ]
 }
