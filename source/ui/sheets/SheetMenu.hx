@@ -112,7 +112,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 		next_sheet_button.one_line("next-sticker-page");
 		next_sheet_button.setPosition(back_button.x - next_sheet_button.width, back_button.y + back_button.height / 2 - next_sheet_button.height / 2);
 		next_sheet_button.scrollFactor.set(0, 0);
-		next_sheet_button.on_pressed = (b) -> next_page();
+		next_sheet_button.on_released = (b) -> next_page();
 
 		intro();
 	}
@@ -123,7 +123,7 @@ class SheetMenu extends FlxTypedGroupExt<FlxBasic>
 			var tab_x:Float = tab_buttons.length > 0 ? tab_buttons.members.last().x + tab_buttons.members.last().width - 64 : 48;
 			var tab_button:HoverButton = new HoverButton(tab_x, 130);
 			tab_button.loadAllFromAnimationSet('${tab}-tab');
-			tab_button.on_pressed = (b) -> select_sheet(tab, saved_positions.get(tab));
+			tab_button.on_released = (b) -> select_sheet(tab, saved_positions.get(tab));
 			tab_buttons.add(tab_button);
 			tab_button.scrollFactor.set(0, 0);
 		}

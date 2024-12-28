@@ -7,16 +7,15 @@ class FTTTThing extends HoverButton
 {
 	var is_thing_thing:Bool = false;
 
-	public var max_vel_x:Int = 100;
-	public var max_vel_y:Int = 100;
-
 	public var vel_x:Int = 200;
 	public var vel_y:Int = 200;
 
-	public function new(?X:Float, ?Y:Float, good_outcome:Void->Void, bad_outcome:Void->Void, is_thing_thing:Bool = false)
+	public function new(?X:Float, ?Y:Float, max_vel:Int, good_outcome:Void->Void, bad_outcome:Void->Void, is_thing_thing:Bool = false)
 	{
 		super(X, Y);
+
 		this.is_thing_thing = is_thing_thing;
+
 		on_pressed = (b) -> is_thing_thing ? good_outcome() : bad_outcome();
 		sstate(MOVE);
 
@@ -24,8 +23,8 @@ class FTTTThing extends HoverButton
 
 		animation.frameIndex = (Math.random() * animation.numFrames).floor();
 
-		vel_x = ran.int(50, max_vel_x);
-		vel_y = ran.int(50, max_vel_y);
+		vel_x = ran.int(50, max_vel);
+		vel_y = ran.int(50, max_vel);
 
 		velocity.set(vel_x, vel_y);
 

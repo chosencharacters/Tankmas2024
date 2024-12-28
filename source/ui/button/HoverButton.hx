@@ -5,6 +5,7 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 class HoverButton extends FlxSpriteExt
 {
 	public var on_pressed:HoverButton->Void;
+	public var on_released:HoverButton->Void;
 	public var on_hover:HoverButton->Void;
 	public var on_neutral:HoverButton->Void;
 
@@ -17,10 +18,10 @@ class HoverButton extends FlxSpriteExt
 
 	public var base_scale:Float = 1;
 
-	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset, ?on_pressed:HoverButton->Void)
+	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset, ?on_released:HoverButton->Void)
 	{
 		super(X, Y, SimpleGraphic);
-		this.on_pressed = on_pressed;
+		this.on_released = on_released;
 	}
 
 	override function update(elapsed:Float)
@@ -48,10 +49,14 @@ class HoverButton extends FlxSpriteExt
 
 		scale.set(hover_scale, hover_scale);
 
+		if (hovering && FlxG.mouse.justPressed)
+			if (on_pressed != null)
+				on_pressed(this);
+
 		if (hovering && FlxG.mouse.justReleased)
 		{
-			if (is_pressed && on_pressed != null)
-				on_pressed(this);
+			if (is_pressed && on_released != null)
+				on_released(this);
 
 			is_pressed = false;
 		}
