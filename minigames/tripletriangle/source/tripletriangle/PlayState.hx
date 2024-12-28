@@ -147,14 +147,29 @@ class PlayState extends FlxSubState
 
 		var creditsText = new FlxBitmapText(fontAngelCode);
 		creditsText.font = fontAngelCode;
-		creditsText.text = "Dev:\n Blawnode";
+		creditsText.text = " Dev:\nBlawnode\n Music:\nRob0ne";
 		creditsText.setPosition(8, 54);
 		add(creditsText);
+
+		var highscoresText = new FlxBitmapText(fontAngelCode);
+		highscoresText.font = fontAngelCode;
+		var highscores = [{name: "BWND", score: 15}, {name: "SBMB", score: 4},];
+		var highscoresTextified = " Highscores\n";
+		for (highscore in highscores)
+		{
+			highscoresTextified += highscore.name + " - " + StringTools.lpad(Std.string(highscore.score > 999 ? 999 : highscore.score), "0", 3) + "\n";
+		};
+		highscoresTextified = highscoresTextified.substr(0, highscoresTextified.length - 1); // Remove new line.
+
+		highscoresText.text = highscoresTextified;
+		// highscoresText.text = "-Highscores\nBWND - 015\nSBMB - 012\n???? - ???\n???? - ???\n???? - ???";
+		highscoresText.setPosition(4, 160);
+		add(highscoresText);
 
 		var exitText = new FlxBitmapText(fontAngelCode);
 		exitText.font = fontAngelCode;
 		exitText.text = "C - Exit";
-		exitText.setPosition(8, 200);
+		exitText.setPosition(8, 220);
 		add(exitText);
 
 		comboText = new FlxBitmapText(fontAngelCode);
@@ -394,7 +409,7 @@ class PlayState extends FlxSubState
 			{
 				type: UIUnlockableType.achievement,
 				x: 10,
-				y: 150,
+				y: 130,
 				image: "assets/images/Achievement Shopper.png",
 				imageLocked: "assets/images/Achievement Locked.png",
 				unlockableName: "Shopper Achievement",
