@@ -29,8 +29,6 @@ class FTTTSubState extends FlxSubstateExt
 	{
 		super.create();
 
-		trace("yo");
-		
 		bounds = new FlxRect(0, 0, 320, 240);
 		// bounds.x = FlxG.width / 2 - bounds.width / 2;
 		// bounds.y = FlxG.height / 2 - bounds.height / 2;
@@ -79,8 +77,6 @@ class FTTTSubState extends FlxSubstateExt
 			menu.kill();
 		}
 
-		trace(name);
-
 		add(menu = new HoverButton(Paths.get('$name.png'), function(b)
 		{
 			menu.kill();
@@ -88,8 +84,6 @@ class FTTTSubState extends FlxSubstateExt
 		}));
 
 		menu.center_on(FlxPoint.weak(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2));
-
-		trace(menu.getPosition());
 	}
 
 	override function kill()

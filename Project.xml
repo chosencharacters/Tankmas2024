@@ -122,6 +122,14 @@
 		<assets path="minigames/tripletriangle/assets" rename="assets/minigames/tripletriangle" library="tripletriangle" exclude="*.ase|*.wav"/>
 
 	</section>
+	
+	<section unless="exclude_fttt">
+
+		<source path="minigames/fttt/source" />
+		<library name="fttt" preload="false" />		
+	</section>
+
+	<assets path="assets/images/minigames" library="minigames" exclude="*.ase|*.wav"/>
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
