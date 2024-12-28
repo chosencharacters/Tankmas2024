@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <npc name="captain-carrion">
+        <state name="default">
+			<dlg if="UNLOCK_CARRION">Once more we meet, fellow traveler.</dlg>
+            <dlg set="UNLOCK_CARRION" if="!UNLOCK_CARRION">Hello, fellow traveler.</dlg>
+			<dlg>Captain Carrion is my name, and I come bearing greetings from the skies.</dlg>
+			<dlg>However, I do not know the current whearabouts of my ship, the SS Sky Burial.</dlg>
+			<option label="You are Captain Carrion?">
+                <dlg>Ah, you have heard of me?</dlg>
+                <dlg>I have always hoped my tales would reach others.</dlg>
+				<dlg>Is it not the goal of all captains to be known one day as legends?</dlg>
+				<option label="A legend?">
+                	<dlg>Yes. A legend. I wish to be known among the skies.</dlg>
+           		</option>
+				<option label="I've never heard of you">
+                	<dlg>:(</dlg>
+           		</option>
+            </option>
+			<option label="The SS Sky Burial?">
+                <dlg>A marvelous ship it is. Capable of flying the skies.</dlg>
+				<option label="That sounds wonderful">
+                	<dlg>Ah, it is. However, I cannot find it.</dlg>
+					<option label="You lost your ship?">
+						<dlg>I'm sure it will turn up eventually.</dlg>
+						<dlg>A cup of coffee and a quick hike and I shall see to its recovery once again soon.</dlg>
+					</option>
+					<option label="Did you try calling its name?">
+						<dlg>The ship is not alive, you know. Some even call it The Flying Carcass.</dlg>
+					</option>
+           		</option>
+            </option>
+        </state>
+        <state name="same-costume" if="COSTUME_CAPTAIN_CARRION">
+            <dlg>I am flattered to have inspired you to take upon my visage. Are you looking to be my protégé?</dlg>
+			<option label="It's just a costume, bro">
+				<dlg>Ah. Well. I fine costume, at least.</dlg>
+			</option>
+			<option label="Yes, but I cannot fly">
+				<dlg>Good news for you, then, as I am the captain. Not you.</dlg>
+			</option>
+			<option label="Can we duel for the title?">
+				<dlg>Unfortunately, this area does not seem to have combat mechanics. But I would win.</dlg>
+			</option>
+        </state>
+		<state name="not-same-costume-but-pet" if="PET_CARRION_BIRD">
+            <dlg>Ah, Davinky, following a new friend? Just be back before we set off.</dlg>
+        </state>
+    </npc>
+	<npc name="box">
+        <state name="default">
+			<dlg>Hey, buddy, what ya lookin at?</dlg>
+			<dlg>You a big box looker, huh?</dlg>
+			<dlg>Like your packages currogated for her pleasure or somethin'?</dlg>
+			<option label="I love packaging">
+				<dlg>Hey, yanno, that's not half bad.</dlg>
+				<dlg>I know I come off a lil rigid but it's all about the show, yanno?</dlg>
+				<dlg>I was actually just thinkin, yanno, I got a lott on my mind.</dlg>
+				<dlg>You wanna hear this box out?</dlg>
+				<option label="I'll hear you out">
+					<dlg>Great, great, awesome. Ya won't regret it.</dlg>
+					<dlg>Ya really won't. Yanno. I had a cousin. He got a lotta styrofoam.</dlg>
+					<dlg>Now that ya would really regret. That stuff goes all pshsht pshat you know the sound?</dlg>
+					<dlg>Man I hate that stuff. And it never decomposes, yanno? It never goes back to nature!</dlg>
+					<dlg>I like to think I'll be goin back to nature or somethin', maybe a nice forest, mulch, the works.</dlg>
+					<dlg>Yanno I've held a couple things in my time. I was just thinkin' so many things, yanno?</dlg>
+					<dlg>Gifts. Goods. Long term storage. Ya name it. If it fits in six sides, then I'm the box for ya.</dlg>
+					<dlg>Sturdy too. Yanno how long a box can last in a warehouse?</dlg>
+					<dlg>Lotsa folks, they don't like waiting around, but a box? We love this stuff.</dlg>
+					<dlg>So anyways, what I was thinkin', yanno, and I've been doin' a lot of it.</dlg>
+					<dlg>You ever do thinkin'? It's a good way to pass the time.</dlg>
+					<dlg>And yanno, a box, we got a lot of time to pass. Tons of it.</dlg>
+					<dlg>Of course we can't hold time, that's some of that abstract stuff, can't be doin' that.</dlg>
+					<dlg>Nah we boxes? We like the real stuff. Give me some hard goods. Maybe some smaller boxes.</dlg>
+					<dlg>That's what I live for, yanno?</dlg>
+					<dlg>But yanno I was thinkin', like I was sayin' I was thinkin' earlier, I was thinkin'</dlg>
+					<dlg>Well, yanno, I was thinkin' maybe I put my packages in the wrong box, ya feel?</dlg>
+					<dlg>I'd say eggs in the wrong basket but I aint' a basket. I'm a box.</dlg>
+					<dlg>But I could've done a lot more, yanno?</dlg>
+					<dlg>Coulda been a contenda', a real pound for pound champion.</dlg>
+					<dlg>You catch what I'm sayin' here? I coulda been a... uh... a pugalist.</dlg>
+					<dlg>What do ya call that?</dlg>
+					<dlg>Oh, yea.</dlg>
+					<dlg>I coulda been a boxer.</dlg>
+					<dlg>Coulda seen it now - six sides of fury. A rumble in the warehouse.</dlg>
+					<dlg>Ya think they fly out the big time boxes to Manilla?</dlg>
+					<dlg>Yanno? Federal Express or somethin? I coulda been living good.</dlg>
+					<dlg>I'd been in a plane before, but yanno, cargo hold, well, I'd be cargo hold there too but.</dlg>
+					<dlg>It'd just be a bit different, yanoo? Change of scenery.</dlg>
+					<dlg>Coulda ended in the UK or somethin', met the Queen, wait, do they still have that?</dlg>
+					<dlg>Heard they got a whole day about boxes over there. Boxin' Day or somethin'</dlg>
+					<dlg>Sounds like my kinda place. Royal Post too.</dlg>
+					<dlg>Anyways like I was saying, that's my way of life.</dlg>
+					<dlg>Oh wait, I wasn't sayin' that? Ya sure? Well ya, so my way of life.</dlg>
+					<dlg>My way of life is simple - be a box, sit around, hold things. And yanno? Not had a sad day in my life.</dlg>
+					<dlg>Cause' when you holdin' it together, cause you gotta.</dlg>
+					<dlg>You can really appreciate how great it is you can show up every day and hold things.</dlg>
+					<dlg>Maybe it's not for everyone, but it sure is for me.</dlg>
+					<dlg>So at this point you probably thinkin' if I got a point.</dlg>
+					<dlg>Nah. I aint' got a point. Well. I got eight points technically. I'm a box.</dlg>
+					<dlg>Well, I guess my point is this - if you need somethin' held, I'm your box.</dlg>
+					<dlg>That's all I got, seeya round'</dlg>
+					<dlg>Well, not round, cause I'm a box. Seeya square. Or somethin. Cube.</dlg>
+					<dlg set="A_LOT_OF_PATIENCE">See ya buddy, and thanks for bein' a pal and hearin' me out</dlg>
+				</option>
+				<option label="Don't have the time">
+					<dlg>That's too bad, that's too bad, well, come back again.</dlg>
+					<dlg>I'll be right here, sitting around.</dlg>
+				</option>
+			</option>
+			<option label="Get lost, box">
+				<dlg>Who you callin' a box, buddy?</dlg>
+				<dlg>Yanno what? Go box yourself</dlg>
+			</option>
+        </state>
+		<state name="same-char" if="PET_BOX_PET">
+            <dlg>See, this guy gets it.</dlg>
+		</state>
+		<state name="talked-before" if="A_LOT_OF_PATIENCE_and_!PET_BOX_PET">
+            <dlg>Hey how ya doin'</dlg>
+		</state>
+    </npc>
+</root>

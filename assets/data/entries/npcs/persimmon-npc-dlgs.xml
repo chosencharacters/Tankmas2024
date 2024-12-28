@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <npc name="persimmon-man">
+        <state name="never-met" if="!PERSIMMON_QUEST_ACTIVE_and_!UNLOCK_PERSIMMON">
+            <dlg>Hello.</dlg>
+            <option label="Hello?">
+                <dlg>Yes. It is a day of conversation.</dlg>
+                <dlg>Hmm? You seem curious to my appearence.</dlg>
+                <dlg>I am a persimmon. And long have I lay in the company of these spirits.</dlg>
+                <dlg>The echoes of the branches below once harboured me. Yet here I am now.</dlg>
+                <dlg>Yet. I also am need of one to travel this world in my steed.</dlg>
+                <option label="Can't help ya there buddy">
+                    <dlg>You disappoint me.</dlg>
+                </option>
+                <option label="I shall be at your service">
+                    <dlg>It is appreciated. You must find those of my kind.</dlg>
+                    <dlg>They bare many faces.</dlg>
+                    <dlg>Approach them. And ask them about the world.</dlg>
+                    <dlg set="PERSIMMON_QUEST_ACTIVE">Then, return, and you shall bear a final, more important, task.</dlg>
+                </option>
+            </option>
+        </state>
+        <state name="quest-complete" if="PERSIMMON_QUEST_ACTIVE_and_P_COMEDY_and_P_ANGUISH_and_P_DESPAIR">
+            <dlg>You have done well. You have learned much of this world. Despair. Anguish. Comedy.</dlg>
+            <dlg>Yet all these are from fruit that has known the world.</dlg>
+            <dlg>But what is this? Innnocence? So pure. However. It too must learn of the world.</dlg>
+            <dlg>I entrust this task to you. You shall find you have Innocence in your company.</dlg>
+            <dlg del="PERSIMMON_QUEST_ACTIVE" set="UNLOCK_PERSIMMON">Please, show it the world.</dlg>
+        </state>
+        <state name="quest-active" if="PERSIMMON_QUEST_ACTIVE" unless="P_COMEDY_and_P_ANGUISH_and_P_DESPAIR">
+            <dlg>What truth befalls those who fall from the tree?</dlg>
+        </state>
+        <state name="same-costume" if="PET_PERSIMMON_INNOCENCE">
+            <dlg>Innocent child. What has the world taught you?</dlg>
+        </state>
+        <state name="default">
+            <dlg>Wander forth, friend.</dlg>
+        </state>
+    </npc>
+    <npc name="persimmon-anguish">
+        <state name="default">
+            <dlg set="P_ANGUISH">Do you see my face? Is it not one of pure anguish?</dlg>
+            <option label="Tragedy?">
+                <dlg>Tragedy? Tragedy??? No! Anguish! It is... anguish!</dlg>
+                <dlg>Learn from my ways! For I am in anguish!</dlg>
+                <dlg>Do not let you become yourself!</dlg>
+            </option>
+            <option label="Anguish?">
+                <dlg>Anguish! More than tragedy! Only anguish!</dlg>
+                <dlg>Learn from my ways! For I am in anguish!</dlg>
+                <dlg>Do not let you become yourself!</dlg>
+            </option>
+        </state>
+        <state name="already-seen" if="P_ANGUISH">
+            <dlg>Learn from me!</dlg>
+        </state>
+    </npc>
+    <npc name="persimmon-comedy">
+        <state name="default">
+            <dlg set="P_COMEDY">He he he! Ho ho ho! He he he!</dlg>
+            <option label="What's so funny?">
+                <dlg>Oh ho ho! It's all a comedy!</dlg>
+                <dlg>He he he! Ho ho ho!</dlg>
+            </option>
+            <option label="Are you laughing at me?">
+                <dlg>You? Me? Everybody! It's a comedy!</dlg>
+                <dlg>He he he! Ho ho ho!</dlg>
+            </option>
+        </state>
+        <state name="already-seen" if="P_COMEDY">
+            <dlg>He he he! Ho ho ho!</dlg>
+        </state>
+    </npc>
+    <npc name="persimmon-despair">
+        <state name="default">
+            <dlg set="P_DESPAIR">...</dlg>
+            <option label="Excuse me?">
+                <dlg>I have seen things... You wouldn't believe...</dlg>
+                <dlg>Tanks in desolate cities on fire... Bright as orange...</dlg>
+                <dlg>I have been under judgement... I have passed judgement...</dlg>
+                <dlg>I have witnessed the Daily Feature... I have been the turd of the week...</dlg>
+                <dlg>All these things will be lost... Like persimmons... Falling from the tree...</dlg>
+                <option label="I feel that">
+                    <dlg>So it goes...</dlg>
+                </option>
+                <option label="I don't feel that">
+                    <dlg>So it goes...</dlg>
+                </option>
+            </option>
+        </state>
+        <state name="already-seen" if="P_DESPAIR">
+            <dlg>All these things will be lost... Like persimmons... Falling from the tree...</dlg>
+        </state>
+    </npc>
+</root>

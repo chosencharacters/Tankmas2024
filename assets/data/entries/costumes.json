@@ -1,0 +1,606 @@
+{
+    "costumes": [
+        {
+            "name": "tankman",
+            "display": "Tankman",
+            "desc": "The problems of the future, today!"
+        },
+        {
+            "name": "steve",
+            "display": "Steve :)",
+            "desc": "The future has no problems when you can keep a sunny outlook!",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "paco",
+            "display": "Pico",
+            "desc": "They've been blasting through the Portal since 1999, it's Pico!"
+        },
+        {
+            "name": "g-bot",
+            "display": "G-Bot",
+            "desc": "Every month they send thousands of dedicated Newgrounders PMs telling them that it's time once again to support. Now you can pilot them as a massive mech and show off!",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "knight-red",
+            "display": "Red Knight",
+            "desc": "Castle Crasher video game but red"
+        },
+        {
+            "name": "knight-blue",
+            "display": "Blue Knight",
+            "desc": "Castle Crasher video game but blue"
+        },
+        {
+            "name": "knight-green",
+            "display": "Green Knight",
+            "desc": "Castle Crasher video game but green"
+        },
+        {
+            "name": "knight-orange",
+            "display": "Orange Knight",
+            "desc": "Castle Crasher video game but orange"
+        },
+        {
+            "name": "knight-pink",
+            "display": "Pink Knight UwU",
+            "desc": "Castle Crasher video game but pink UwU",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "madness-grunt",
+            "display": "Grunt",
+            "desc": "As seen on addicting games dot com"
+        },
+        {
+            "name": "alien-hominid",
+            "display": "Alien Hominid",
+            "desc": "It's an absolute invasion!"
+        },
+        {
+            "name": "thomas",
+            "display": "Thomas",
+            "desc": "Are we talking about Tom Fulp?",
+            "unlock": "USERNAME",
+            "data": "TomFulp"
+        },
+        {
+            "name": "santa",
+            "display": "Santa",
+            "unlock": "DATE",
+            "data": 1735102800000
+        },
+        {
+            "name": "sodaman",
+            "display": "Sodaman",
+            "desc": "STREAMING EVERY WEEKDAY MORNING TO AFTERNOON EST",
+            "unlock": "USERNAME",
+            "data": "squidly"
+        },
+        {
+            "name": "tamag0",
+            "display": "Tamag0",
+            "desc": "What, you egg?",
+            "unlock": "USERNAME",
+            "data": "Tamag0"
+        },
+        {
+            "name": "c-jay",
+            "display": "C-Jay",
+            "desc": "*electronic coughing noises*",
+            "unlock": "USERNAME",
+            "data": "OnyxGalaria"
+        },
+        {
+            "name": "splatter-dash",
+            "display": "SplatterDash",
+            "desc": "Shroomy",
+            "unlock": "USERNAME",
+            "data": "SplatterDash"
+        },
+        {
+            "name": "midgetsausage",
+            "display": "MidgetSausage",
+            "desc": "The correct term is little person wiener",
+            "unlock": "USERNAME",
+            "data": "midgetsausage"
+        },
+        {
+            "name": "boyfriend",
+            "display": "Boyfriend",
+            "desc": "BEEP BEEP BEEP BEEP BEEP BEEP?"
+        },
+        {
+            "name": "girlfriend",
+            "display": "Girlfriend",
+            "desc": "BEEP BOOP BEEP BEEP BEEP BOOP!"
+        },
+        {
+            "name": "ena",
+            "display": "ENA",
+            "desc": "Some weird stuff that doesn't make sense"
+        },
+        {
+            "name": "salad-fingers",
+            "display": "Salad Fingers",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "meat-boy",
+            "display": "Meat Boy",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "jimmy",
+            "display": "Jimmy",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "baby",
+            "display": "Baby",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "dadshome",
+            "display": "Dad",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "tarboy",
+            "display": "Tarboy",
+            "unlock": "ANGRY_FAIC"
+        },
+        {
+            "name": "rebutia",
+            "display": "Rebutia",
+            "desc": "As prickly as being a cactus would make her, Rebutia may come off as the grumpiest of her four piece cactus punk band, but rumors say she's actually quite sweet underneath. Probably. Or probably not."
+        },
+        {
+            "name": "strawberry-clock",
+            "display": "Strawberry Clock",
+            "desc": "B"
+        },
+        {
+            "name": "hank",
+            "display": "Hank J. Wimbleton",
+            "desc": "Somewhere in Nevada is a mercenary who lives by an unknown code. As ruthless as they are enigmatic, Hank's abilities are unmatched. He is neither good nor bad, but one thing is for sure - whatever his goals are, he will not stop at anything to reach them."
+        },
+        {
+            "name": "jimmy",
+            "display": "Jimmy",
+            "desc": "The only pixel frog you can count on for your diamond stealing needs... except Baby"
+        },
+        {
+            "name": "baby",
+            "display": "Baby",
+            "desc": "The only pixel frog you can count on for your diamond stealing needs... except Jimmy"
+        },
+        {
+            "name": "shmoods",
+            "display": "Mr. Shmoods",
+            "desc": "Shmoods loves Tankmas and White Castle. He has never done hard drugs, only soft drugs. Only the fluffiest drugs for shmoods. You can join him sometime. It's an open invitation.",
+            "unlock": "USERNAME",
+            "data": "MrShmoods"
+        },
+        {
+            "name": "satina",
+            "display": "Satina",
+            "desc": "That cute lil' devil girl from Hell who has a HUMAN for a father!"
+        },
+        {
+            "name": "bitey",
+            "display": "Bitey",
+            "desc": "...of Brackenwood!\n\nThe last Dashkin, they are as fast as they are elusive.",
+            "unlock": "FLAG",
+            "data": "BITEY_ENCOUNTERED"
+        },
+        {
+            "name": "geometry-dash-cube",
+            "display": "Cube",
+            "desc": "No one knows their name, no one knows where they come from, but what everyone knows is that whatever happens, they ride. And give Audio Mods a headache when people really want them to ride to copyrighted music."
+        },
+        {
+            "name": "fancy-pants",
+            "display": "Fancy Pants Man",
+            "desc": "They'll slide, jump, and break boundaries in how a Flash platformer can move all to get ice cream. There's never been a stick figure any fancier on Newgrounds, that's for sure!"
+        },
+        {
+            "name": "captain-steve",
+            "display": "Captain Steve",
+            "desc": "What's wrong with this Tankman? Is he autistic?",
+            "unlock": "USERNAME",
+            "data": "captainstevie"
+        },
+        {
+            "name": "lils",
+            "display": "Lils",
+            "desc": "The Tankdemon. Make sure to sacrifice a marshmallow to them!",
+            "unlock": "USERNAME",
+            "data": "cheddarexuberant"
+        },
+        {
+            "name": "mimny",
+            "display": "Mimny",
+            "desc": "Smug son of a-",
+            "unlock": "USERNAME",
+            "data": "mimny"
+        },
+        {
+            "name": "blockhead",
+            "display": "Blockhead",
+            "desc": "An idiot but a lovable idiot"
+        },
+        {
+            "name": "salad-fingers",
+            "display": "Salad Fingers",
+            "desc": "He likes the feeling of rust against his salad fingers"
+        },
+        {
+            "name": "duncan",
+            "display": "Duncan",
+            "desc": "1/2 of Duncan and Jones"
+        },
+        {
+            "name": "jones",
+            "display": "Jones",
+            "desc": "1/2 of Jones and Duncan"
+        },
+        {
+            "name": "ritz",
+            "display": "Ritz the Rat",
+            "desc": "They a rat, and they gotta get their cheese, lmao"
+        },
+        {
+            "name": "randy",
+            "display": "Randy da Mouse",
+            "desc": "When it's time to learn, Randy's your Concern!"
+        },
+        {
+            "name": "psycho-goldfish",
+            "display": "Psycho Goldfish",
+            "desc": "Here ya go Josh >:(",
+            "unlock": "USERNAME",
+            "data": "psychogoldfish"
+        },
+        {
+            "name": "go-go",
+            "display": "Gogo",
+            "desc": "An 11 year old martial arts prodigy, Gogo Matsumoto is as powerful as she is... not entirely there all the time. Is she the only one powerful enough to defeat the powerful demon lord Emperor Koro?"
+        },
+        {
+            "name": "dungeoncookiebun",
+            "display": "Dungeon the Cookiebunny",
+            "desc": "He loves chocolate chip cookies, the technically-cannibal that he is.",
+            "unlock": "USERNAME",
+            "data": "dungeonation"
+        },
+        {
+            "name": "nox",
+            "display": "NOX",
+            "desc": "The self-appointed judge, jury, and executioner of the Court of Public Opinion, and a model social media influencer."
+        },
+        {
+            "name": "tarboy",
+            "display": "Tarboy",
+            "desc": "Out of the tar came the boy MADE of tar. He called himself, 'Tarboy', and boy was he mad. All of his mind filled with the pain of millions of robot slaves. For he was them."
+        },
+        {
+            "name": "darnell",
+            "display": "Darnell",
+            "desc": "Audio Portal's musical prodigy, and pyromaniac. Vote for class president now, because he's only got 5 years to live."
+        },
+        {
+            "name": "nene",
+            "display": "Nene",
+            "desc": "Biting art connoisseur of the Art Portal, and a known masochist. Lost to Obama in the 2008 American presidency. Smug, but not full of hugs. Don't call her Neen."
+        },
+        {
+            "name": "samurai-asshole",
+            "display": "Samurai Asshole",
+            "desc": "The ronin samurai, lost in his perpetual search for honor, and guided by a burning vengeance for the one who destroyed his village. Fights peniliens and doesn't afraid of anything.",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "skid",
+            "display": "Skid",
+            "desc": "IT'S SPOOKY MONTH!!!"
+        },
+        {
+            "name": "pump",
+            "display": "Pump",
+            "desc": "IT'S SPOOKY MONTH!!!"
+        },
+        {
+            "name": "jefvel",
+            "display": "Jefvel",
+            "desc": "The hero Tankmas needs",
+            "unlock": "USERNAME",
+            "data": "jefvel"
+        },
+        {
+            "name": "dr-good",
+            "display": "Dr. Good",
+            "desc": "Collab organizer and certified Doctor"
+        },
+        {
+            "name": "isaac",
+            "display": "Isaac",
+            "desc": "Isaac and his mother lived alone in a small house on a hill. Isaac kept to himself - drawing pictures and playing with his toys as his mom watched Christian broadcasts on the television. Life was simple and they were both happy...",
+            "unlock": "DATE",
+            "data": 1734152400
+        },
+        {
+            "name": "meat-boy",
+            "display": "Meat Boy",
+            "desc": "It's Meat Boy! Are they a living block of meat? Or are they a fleshless boy? It's actually the second one. But no matter what, don't let them touch any salt!",
+            "unlock": "DATE",
+            "data": 1734152400
+        },
+        {
+            "name": "mella",
+            "display": "Mella Arrsh S'mora Sr.",
+            "desc": "The perfect marshmallow to have ever been made. She's a fusion of over 2000 of them with more to come... Now stop roasting marshmallows you bums.",
+            "unlock": "FLAG",
+            "data": "MELLA_UNLOCKED"
+        },
+        {
+            "name": "sublo",
+            "display": "Sublo",
+            "desc": "They're a sub-par fast-food mascot in a submarine. Go figure."
+        },
+        {
+            "name": "tangy-mustard",
+            "display": "Tangy Mustard",
+            "desc": "BAH-BUH BAH-DOO DA DOO-DA BOO DOO DOO BAH-DOO. Fast Food."
+        },
+        {
+            "name": "dads-home",
+            "display": "Dad",
+            "desc": "It's Dad! Sometimes they're home, and sometimes they're at work. But they're always good ol' dad! Head on fire and everything! Father has appeared."
+        },
+        {
+            "name": "dr-schmuck",
+            "display": "Dr. Shmuck",
+            "desc": "The neighborhood malpractitioner. His methods are questionable, but he's the only doc in town.",
+            "unlock": "DATE",
+            "data": 1734325200
+        },
+        {
+            "name": "mark-pimento",
+            "display": "Mark Pimento",
+            "desc": "Mark Pimento. He's the kind of guy that could possibly be working for the mob whilst also predicting your future. You know that one uncle of yours that shows up with a stained shirt and unkempt hair right at the most in-opportune time for a \"quick visit?\" Yeah, that's Mark.",
+            "unlock": "DATE",
+            "data": 1734325200
+        },
+        {
+            "name": "aine",
+            "display": "Aine",
+            "desc": "The fabled phoenix knight, her firey sword is as quick as her steps as she hops bops and rolls through Lineria to set things right. Always eager to help the strange people she meets, she may be silent, but her actions have a lot to say. She's also a Chompy's best friend!",
+            "unlock": "DATE",
+            "data": 1734411600
+        },
+        {
+            "name": "henry-stick",
+            "display": "Henry Stickmin",
+            "desc": "A career criminal and kleptomaniac, Henry has done everything from steal the famed Tunisian Diamond to escaping from The Wall. Henry's ultimate goals are up to your decisions, and his final fate can go many ways. That's an impressive rep sheet. He is also a stick figure.",
+            "unlock": "DATE",
+            "data": 1734411600
+        },
+        {
+            "name": "ellie-stick",
+            "display": "Ellie Rose",
+            "desc": "An outlaw with a past as murky as her hair is red, Ellie is anything from a faithful right hand stick to Henry or even an antagonist in one case. She is also a stick figure.",
+            "unlock": "DATE",
+            "data": 1734411600
+        },
+        {
+            "name": "charles-stick",
+            "display": "Charles Calvin",
+            "desc": "An expert vehicle crasher and an all around popular guy for his lovable tendency to smash helicopters into things. He's an experienced pilot so some wonder why he keeps doing that. But oh well. He is also a stick figure.",
+            "unlock": "DATE",
+            "data": 1734411600
+        },
+        {
+            "name": "elephant",
+            "display": "Elephant",
+            "desc": "Helloaphant! This little blue Elephant has been going through so many adventures and different game genres. From collecting achievements to full fledged open ended worlds! Where will they go next?",
+            "unlock": "DATE",
+            "data": 1734498000
+        },
+        {
+            "name": "doki",
+            "display": "Doki",
+            "desc": "A super excitable bunny who just wants nothing more than to be with her one true love - Nabi!",
+            "unlock": "DATE",
+            "data": 1734498000
+        },
+        {
+            "name": "nabi",
+            "display": "Nabi",
+            "desc": "A more mild cat who at first doesn't seem to match Nabi's energy, but eventually warms up to her and resolves to do anything for love.",
+            "unlock": "DATE",
+            "data": 1734498000
+        },
+        {
+            "name": "il-ho",
+            "display": "Il-ho",
+            "desc": "A tough bunny who is protective of Doki, but warms up to Nabi eventually. He ends up being a useful ally in their quest to be accepted in the world.",
+            "unlock": "DATE",
+            "data": 1734498000
+        },
+        {
+            "name": "blade-the-hedgehog",
+            "display": "Blade the Hedgehog",
+            "desc": "It's Blade the Hedgehog! Wait, you don't know who that is? Come on dude. He's from the most popular game on Newgrounds until that funky one came around. Get cultured.",
+            "unlock": "FLAG",
+            "data": "BLADE_UNLOCKED"
+        },
+        {
+            "name": "skull-kid",
+            "display": "Skull Kid",
+            "desc": "They're a kid, with a chainsaw, and a skull head.",
+            "unlock": "DATE",
+            "data": 1734584400
+        },
+        {
+            "name": "zanta-claws",
+            "display": "Zanta Claws",
+            "desc": "He's just like Santa Claus! Except he eats the heads of naughty children. So you better watch out.",
+            "unlock": "DATE",
+            "data": 1734584400
+        },
+        {
+            "name": "bad-captain",
+            "display": "Bad Captain",
+            "desc": "Enemy of the Tankmen. Nobody knows what they're fighting over, not even themselves.",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "mc-kun",
+            "display": "MC Kun",
+            "desc": "This loser is you. Newgrounds finally loves you.\n\n...Thanks for being a supporter, though.",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "hatty",
+            "display": "Hatty Hattington",
+            "desc": "The Captain of the S.S. Friendship and best friend to one and all! He very much does not enjoy being the theater manager, though. Maybe it's the whole kidnapping thing.",
+            "unlock": "DATE",
+            "data": 1734670800
+        },
+        {
+            "name": "cat-guard",
+            "display": "Cat Guard",
+            "desc": "The insane rulers overs the BattleBlock Theatre. What horrible theatrics will they forcibly submit your innocent little shape headed person to next?",
+            "unlock": "DATE",
+            "data": 1734670800
+        },
+        {
+            "name": "behemoth-chicken",
+            "display": "Behemoth Chicken",
+            "desc": "It's Behemoth in both name and size!",
+            "unlock": "DATE",
+            "data": 1734670800
+        },
+        {
+            "name": "amogus-impostor",
+            "display": "Purple Imposter",
+            "desc": "sus.",
+            "unlock": "FLAG",
+            "data": "UNLOCK_IMPOSTOR"
+        },
+        {
+            "name": "captain-carrion",
+            "display": "Captain Carrion",
+            "desc": "Captain Carrion, commander of The SS Sky Burial, they venture the clouds in search of coffee beans, lost souls, and birds to befriend.",
+            "unlock": "FLAG",
+            "data": "UNLOCK_CARRION"
+        },
+        {
+            "name": "abundance",
+            "display": "What is this?",
+            "desc": "A. Ballet Bun\nB. Fairy Cake\nC. Abundance\nD. Crue!",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "dad",
+            "display": "Dad",
+            "desc": "Chainsawing children since 2002!\n\nNotice: Tom Fulp supports this video game and the content it promotes",
+            "unlock": "DATE",
+            "data": 1734843600
+        },
+        {
+            "name": "beatrice",
+            "display": "Beatrice",
+            "desc": "A busy Bee girl who just can't seem to find a Honey.\nShe's also allergic to flowers and can't fly...",
+            "unlock": "USERNAME",
+            "data": "gr1mp"
+        },
+        {
+            "name": "alloy",
+            "display": "Alloy",
+            "desc": "Originally a boy named Justin Case, Alloy battles countless foes as he tries to save Mason City from SumoCorp in his high powered alien suit.",
+            "unlock": "DATE",
+            "data": 1735016400
+        },
+        {
+            "name": "cathode-raybots",
+            "display": "Cathode Raybots",
+            "desc": "These robots are out of this world, and in your TV. Actually, they are your TV. And they're here for revenge!",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "inner-sloth",
+            "display": "Inner Sloth",
+            "desc": "Yanno. We were really expecting the sloth. But might as well go all out.",
+            "unlock": "DATE",
+            "data": 1734930000
+        },
+        {
+            "name": "zone-tan",
+            "display": "Zone-tan",
+            "desc": "When she's not threading the needle, she's watching you CENSORED.",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "cynthia",
+            "display": "Cynthia",
+            "desc": "It's time to rush through those contracts!",
+            "unlock": "DATE",
+            "data": 1735016400
+        },
+        {
+            "name": "lucky",
+            "display": "Lucky",
+            "desc": "A sock named Lucky wants the girl, the guitar, the glory. Maybe he can do this. Maybe he doesn't suck."
+        },
+        {
+            "name": "jeb",
+            "display": "Dr. Jebidiah Christoff",
+            "desc": "Student of the improbable, and vanquisher of the wicked. His enemies purged of sin. A savior has risen! And his name is... Jeb?"
+        },
+        {
+            "name": "chris",
+            "display": "Chris",
+            "desc": "1/2 of the Hellbenders duo. They live in a world of... not so normal things.",
+            "unlock": "DATE",
+            "data": 1735189200
+        },
+        {
+            "name": "zach",
+            "display": "Zach",
+            "desc": "1/2 of the Hellbenders duo. They live in a world of... not so normal things.",
+            "unlock": "DATE",
+            "data": 1735189200
+        },
+        {
+            "name": "ted-bear",
+            "display": "Ted Bear",
+            "desc": "If you wanna survive like Ted Bear, you've gotta have a sharp wit, endurance, good looks and a backpack full of ingenuity... Even when it comes to bacon trees",
+            "unlock": "DATE",
+            "data": 1735189200
+        },  
+		{
+            "name": "cordelia",
+            "display": "Cordelia",
+            "desc": "The bewitching shopkeep of the Dead Estate... Don't stare too long.",
+            "unlock": "DATE_AND_SUPPORTER",
+            "data": 1735275600,
+            "walk":"moving-small"
+        },
+        {
+            "name": "chunks",
+            "display": "Chunks",
+            "desc": "Cordelia's cute pet rat!",
+            "unlock": "DATE",
+            "data": 1735275600
+		},        
+		{
+            "name": "juby",
+            "display": "Juby",
+            "desc": "The loveable axolotl that loves to hang out with his strange friends.",
+            "unlock": "DATE"
+		}
+    ]
+}

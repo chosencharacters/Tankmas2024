@@ -1,0 +1,132 @@
+{
+    "sheets": [
+        {
+            "name": "pets-series-1",
+            "items": [
+                {
+                    "name": "invisible-pet"
+                },
+                {
+                    "name": "tank-icon",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "chompy",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "angry-faic",
+                    "angle": -10
+                },
+                {
+                    "name": "elf-like-creature",
+                    "angle": -10
+                },
+                {
+                    "name": "elephant-small",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "cool-frog",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "swf",
+                    "angle": 10
+                },
+                {
+                    "name": "swf-blammed",
+                    "angle": 10
+                },
+                {
+                    "name": "sushi-cat",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "rammy",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "carrion-bird",
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "pets-series-2",
+            "items": [
+                {
+                    "name": "and-me"
+                },
+                {
+                    "name": "persimmon-innocence",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "clubby-the-seal",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "lemmy",
+                    "angle": -10
+                },
+                {
+                    "name": "wreath-of-wrath",
+                    "angle": -10
+                },
+                {
+                    "name": "tamago-pet",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "pet-box",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "penicorn",
+                    "angle": 10
+                },
+                {
+                    "name": "gooble",
+                    "angle": 10
+                },
+                {
+                    "name": "shmigmar",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                }
+            ]
+        }
+    ]
+}

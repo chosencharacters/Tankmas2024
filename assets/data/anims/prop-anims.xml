@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+	<animSet image="candle">
+		<anim name="idle" fps="100ms">0t19</anim>
+	</animSet>
+
+	<animSet image="gaming-device">
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+		<anim name="nearby" fps="100ms" looping="false">1t18</anim>
+	</animSet>
+</root>

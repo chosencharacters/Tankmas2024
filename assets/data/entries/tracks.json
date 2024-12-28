@@ -1,0 +1,80 @@
+{
+    "tracks": [
+        {
+            "id": "christmasohyeah-stixdevs",
+            "name": "StixDevs",
+            "artist": "Christmas? Oh yeah!"
+        },
+        {
+            "id": "christmasjoy-realtin3sn",
+            "name": "Christmas Joy",
+            "artist": "RealTin3Sn"
+        },
+        {
+            "id": "thewanderer-everratic",
+            "name": "The Wanderer",
+            "artist": "EVERRATIC!!!"
+        },
+        {
+            "id": "dancinginthesnow-twistedfw",
+            "name": "Dancing in the Snow",
+            "artist": "TwistedFW"
+        },
+        {
+            "id": "odetosnow-leavesz",
+            "name": "Ode to Snow",
+            "artist": "Leavesz"
+        },
+        {
+            "id": "HolidayMelody-Irish-Soul",
+            "name": "Holiday Melody",
+            "artist": "Irish Soul"
+        },
+        {
+            "id": "santasgone-druoxtheshredder",
+            "name": "Santa's Gone",
+            "artist": "DruoxTheShredder"
+        },
+        {
+            "id": "HarktheAngel-Jumbs",
+            "name": "Jumbs",
+            "artist": "Hark the Angels"
+        },
+        {
+            "id": "spiritus-albe",
+            "name": "Spiritus",
+            "artist": "Albe"
+        },
+        {
+            "id": "another-tankmas-snowday",
+            "name": "Another Tankmas Snowday",
+            "artist": "TeraVex"
+        },
+        {
+            "id": "towardsanewyear-teffyd",
+            "name": "Towards a New Year",
+            "artist": "TeffyD"
+        },
+        {
+            "id": "snowflakes-droid",
+            "name": "Snowflakes",
+            "artist": "Droid"
+        },
+        {
+            "id": "christmaseve-alltogethernow",
+            "name": "Christmas Eve",
+            "artist": "Jumbs, ConnorGrail, TeraVex"
+        },
+        {
+            "id": "alotlikechristmas-connorgrail",
+            "name": "A Lot Like Tankmas",
+            "artist": "ConnorGrail & Jumbs"
+        },
+        {
+            "id": "visualsnowredux-rappinawful",
+            "name": "Visual Snow Redux",
+            "artist": "rappinawful"
+        }
+
+    ]
+}

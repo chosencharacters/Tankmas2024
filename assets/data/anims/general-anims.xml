@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+	<animSet image="present-old">
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+		<anim name="nearby" fps="100ms">1t6</anim>
+		<anim name="open" fps="100ms" looping="false">7t9</anim>
+		<anim name="opened" fps="100ms" looping="false">9</anim>
+	</animSet>
+
+	<animSet image="present-default">
+		<anim name="closed">0</anim>
+		<anim name="open">1</anim>
+	</animSet>
+
+	<animSet image="move-circle">
+		<anim name="idle" fps="100ms" looping="false">0t4</anim>
+	</animSet>
+
+	<animSet image="dialogue-box" width="1610" height="407">
+		<anim name="idle">0</anim>
+		<anim name="has-next">1</anim>
+	</animSet>
+
+	<animSet image="cursor" width="132" height="164">
+		<anim name="neutral">0</anim>
+		<anim name="hold">1</anim>
+		<anim name="release" looping="false">2t4</anim>
+		<anim name="to-hold" looping="false">5t8</anim> 
+	</animSet>
+
+	<animSet image="new-sticker-overlay">
+		<anim name="idle" fps="100ms">0</anim>
+		<anim name="shine" fps="50ms" looping="false">1t9</anim>
+	</animSet>
+
+	<animSet image="sheet-selector">
+		<anim name="hover" fps="100ms">0t1</anim>
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+	</animSet>
+
+	<animSet image="sticker-pack-opening" width="784" height="839">
+		<anim name="idle" fps="500ms" looping="false">0</anim>
+		<anim name="1" looping="false">1t3</anim>
+		<anim name="2" looping="false">4t6</anim>
+		<anim name="3" looping="false">7t9</anim>
+		<anim name="4" looping="false">10t12</anim>
+		<anim name="pre-kaboom" fps="100ms" looping="false">13t15</anim>
+		<variable name="shake" frames="1,4,7,10,16"/>
+	</animSet>
+
+	<animSet image="rare-sticker-pack-opening" width="784" height="839">
+		<anim name="idle" fps="500ms" looping="false">0</anim>
+		<anim name="1" looping="false">1t3</anim>
+		<anim name="2" looping="false">4t6</anim>
+		<anim name="3" looping="false">7t9</anim>
+		<anim name="4" looping="false">10t12</anim>
+		<anim name="pre-kaboom" fps="100ms" looping="false">13t15</anim>
+		<variable name="shake" frames="1,4,7,10,16"/>
+	</animSet>
+
+	<animSet image="sticker-pack-icon">
+		<anim name="idle" fps="100ms">0t14</anim>
+	</animSet>
+
+	<animSet image="rare-sticker-pack-icon">
+		<anim name="idle" fps="60ms">0t14</anim>
+	</animSet>
+
+	<animSet image="emote-fx" width="200" height="200">
+		<anim name="in" fps="60ms" looping="false">0t14</anim>
+		<anim name="idle" fps="60ms">15</anim>
+		<anim name="out" fps="60ms" looping="false">16t24</anim>
+		<variable name="visible" frames="4t20"/>
+	</animSet>
+
+	<animSet image="day-23-art-mantis" width="800" height="500">
+		<anim name="idle" fps="50ms">0t19</anim>
+	</animSet>
+
+	<animSet image="tamago-encounter">
+		<anim name="run" fps="100ms">0t1</anim>
+		<anim name="idle">2</anim>
+		<anim name="alert" looping="false">3</anim>
+	</animSet>
+
+	<animSet image="song-book-ui" width="309" height="299">
+		<anim name="christmasohyeah-stixdevs">0</anim>
+		<anim name="christmasjoy-realtin3sn">1</anim>
+		<anim name="thewanderer-everratic">2</anim>
+		<anim name="dancinginthesnow-twistedfw">3</anim>
+		<anim name="odetosnow-leavesz">4</anim>
+		<anim name="HolidayMelody-Irish-Soul">5</anim>
+		<anim name="santasgone-druoxtheshredder">6</anim>
+		<anim name="HarktheAngel-Jumbs">7</anim>
+		<anim name="spiritus-albe">8</anim>
+		<anim name="another-tankmas-snowday">9</anim>
+		<anim name="towardsanewyear-teffyd">10</anim>
+		<anim name="snowflakes-droid">11</anim>
+		<anim name="christmaseve-alltogethernow">12</anim>
+		<anim name="alotlikechristmas-connorgrail">13</anim>
+		<anim name="visualsnowredux-rappinawful">13</anim>
+	</animSet>
+
+	<animSet image="menorah" width="191" height="218">
+		<anim name="1" fps="100ms">0t19</anim>
+		<anim name="2" fps="100ms">20t39</anim>
+		<anim name="3" fps="100ms">40t59</anim>
+		<anim name="4" fps="100ms">60t79</anim>
+		<anim name="5" fps="100ms">80t99</anim>
+		<anim name="6" fps="100ms">100t119</anim>
+		<anim name="7" fps="100ms">120t139</anim>
+		<anim name="8" fps="100ms">140t159</anim>
+	</animSet>
+</root>

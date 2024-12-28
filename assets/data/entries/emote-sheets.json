@@ -1,0 +1,209 @@
+{
+    "sheets": [
+        {
+            "name": "emotes-1-back-red",
+            "items": [
+                {
+                    "name": "common-tamago"
+                },
+                {
+                    "name": "rare-tamago"
+                },
+                {
+                    "name": "why-coal"
+                },
+                {
+                    "name": "alien-sticker"
+                },
+                {
+                    "name": "sticker-doodle"
+                },
+                {
+                    "name": "round-cat"
+                },
+                {
+                    "name": "rofl-alien"
+                },
+                {
+                    "name": "tappy-sticker"
+                },
+                {
+                    "name": "neon-small"
+                },
+                {
+                    "name": "mustard"
+                },
+                {
+                    "name": "chilly-trudy"
+                },
+                {
+                    "name": "lobster-lols"
+                }
+            ]
+        },
+        {
+            "name": "emotes-2-back-blue",
+            "items": [
+                {
+                    "name": "son-christmas"
+                },
+                {
+                    "name": "ena-blitzilla"
+                },
+                {
+                    "name": "eye-beamz"
+                },
+                {
+                    "name": "sticker-rolus"
+                },
+                {
+                    "name": "heart-hand-l"
+                },
+                {
+                    "name": "heart-hand-r"
+                },
+                {
+                    "name": "peck"
+                },
+                {
+                    "name": "pink-knight-mondo"
+                },
+                {
+                    "name": "pico-sticker-swag"
+                },
+                {
+                    "name": "slimy-tankmas-sticker"
+                },
+                {
+                    "name": "amaze-balls"
+                },
+                {
+                    "name": "questioning-you"
+                }
+            ]
+        },
+        {
+            "name": "emotes-3-back-green",
+            "items": [
+                {
+                    "name": "john-sticker"
+                },
+                {
+                    "name": "dwarf-energy"
+                },
+                {
+                    "name": "a-blender"
+                },
+                {
+                    "name": "gino-tankmas"
+                },
+                {
+                    "name": "sticker-psyca"
+                },
+                {
+                    "name": "office-photo"
+                },
+                {
+                    "name": "rat-gundam"
+                },
+                {
+                    "name": "shepherd-wat"
+                },
+                {
+                    "name": "warm-toasty"
+                },
+                {
+                    "name": "edd-sticker"
+                },
+                {
+                    "name": "liv-sticker"
+                },
+                {
+                    "name": "chunks-rawr"
+                }
+            ]
+        },
+        {
+            "name": "emotes-4-back-pink",
+            "items": [
+                {
+                    "name": "cashy-peace"
+                },
+                {
+                    "name": "meat"
+                },
+                {
+                    "name": "smug-bastard"
+                },
+                {
+                    "name": "gimme-five"
+                },
+                {
+                    "name": "sock-on-lemons"
+                },
+                {
+                    "name": "meme-me"
+                },
+                {
+                    "name": "olive-tankmas"
+                },
+                {
+                    "name": "snoozy-dragon"
+                },
+                {
+                    "name": "sick-skull"
+                },
+                {
+                    "name": "a-gift"
+                },
+                {
+                    "name": "the-creature"
+                },
+                {
+                    "name": "ilho-gift"
+                }
+            ]
+        },
+        {
+            "name": "emotes-5-back-purple",
+            "items": [
+                {
+                    "name": "izu-pog"
+                },
+                {
+                    "name": "slashe-wave"
+                },
+                {
+                    "name": "lils-tankmas"
+                },
+                {
+                    "name": "crazy-bugger"
+                },
+                {
+                    "name": "advent-collab-sticker"
+                },
+                {
+                    "name": "toasty-warm"
+                },
+                {
+                    "name": "castle-crashers"
+                },
+                {
+                    "name": "a-gift"
+                },
+                {
+                    "name": "two-devs-kissing"
+                },
+                {
+                    "name": "bellvonartsy-sticker"
+                },
+                {
+                    "name": null
+                },
+                {
+                    "name": null
+                }
+            ]
+        }
+    ]
+}

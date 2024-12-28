@@ -1,0 +1,190 @@
+{
+    "pets": [
+        {
+            "name": "invisible-pet",
+            "display": "Nothing",
+            "desc": "It's nothing! Absolutely nothing! For those that hate pets. Jerk."
+        },
+        {
+            "name": "tank-icon",
+            "display": "tank.ico",
+            "desc": "Your own personal tank! It's small, compact, and good for going right next to your URL! Notice: Only one tank per user, while supplies last.",
+            "stats":{
+                "follow_speed":250,
+                "follow_acl":60,
+                "follow_accuracy":0.9,
+                "deadzone":64,
+                "drag":0.65
+            }
+        },
+        {
+            "name": "chompy",
+            "display": "Chompy",
+            "desc": "It's Chompy! These adorable lil guys have been friends of Linerians for ages! They are as soft as marshmellows and like to dress up as their best friends if they're around them long enough! They also like to... yanno, chomp! They only eat fruits, though!",
+            "stats":{
+                "follow_accuracy":0.8,
+                "drag":0.99
+            }
+        },
+        {
+            "name": "elephant-small",
+            "display": "Elephant",
+            "desc": "It's like an elephant, but small!"
+        },
+        {
+            "name": "elf-like-creature",
+            "display": "Elf Like Creature",
+            "desc": "This little Elf Like Creature (ELC) is festive. Okay? It's festive.",
+            "stats":{
+                "follow_accuracy":0.8,
+                "drag":0.95
+            }
+        },
+        {
+            "name": "angry-faic",
+            "display": "Angry Faic",
+            "desc": "What are you looking at? >:("
+        },
+        {
+            "name": "cool-frog",
+            "display": "Cool Frog",
+            "desc": "That's one cool frog!\n\nNote: Cool Frog does not like bullies so do not say anything mean to him.",
+            "unlock": "DATE",
+            "data": 1734584400
+        },
+        {
+            "name": "sushi-cat",
+            "display": "Sushi Cat",
+            "desc": "Always starving, this cat needs their sushi!",
+            "unlock": "DATE",
+            "data": 1734584400
+        },
+        {
+            "name": "swf",
+            "display": "SWF",
+            "desc": "It's an SWF! These guys contain so many different worlds in them. What could this one have?",
+            "unlock": "DATE",
+            "data": 1734584400
+        },
+        {
+            "name": "swf-blammed",
+            "display": "Blammed",
+            "desc": "Oh... This SWF doesn't look too good...",
+            "unlock": "SUPPORTER"
+        },
+        {
+            "name": "rammy",
+            "display": "Rammy",
+            "desc": "This adorable ram will hit you really hard! Not here, though. Here they're just adorable!",
+            "unlock": "DATE",
+            "data": 1734670800,
+            "stats":{
+                "follow_speed":325,
+                "follow_acl": 60,
+                "follow_accuracy":0.9,
+                "drag":0.95
+            }
+        },
+        {
+            "name": "carrion-bird",
+            "display": "Davinky",
+            "desc": "It may be a pigeon covered in soot, but this loyal bird follows Captain Carrion wherever they go.",
+            "unlock": "FLAG",
+            "data": "UNLOCK_CARRION",
+            "stats":{
+                "follow_speed":325,
+                "follow_acl": 45,
+                "follow_accuracy":0.95,
+                "drag":0.8
+            }
+        },
+        {
+            "name": "and-me",
+            "display": "and Me",
+            "desc": "The only child Dad won't chainsaw. Instead, it's family bonding for the whole family!",
+            "unlock": "DATE",
+            "data": 1734843600,
+            "stats":{
+                "follow_speed":200,
+                "follow_acl": 10
+            }
+        },
+        {
+            "name": "persimmon-innocence",
+            "display": "Innocence",
+            "desc": "The object of innocence, untainted by the cruel world. Bring it with you and show it the reality.",
+            "unlock": "FLAG",
+            "data": "UNLOCK_PERSIMMON"
+        },
+        {
+            "name": "clubby-the-seal",
+            "display": "Clubby the Seal",
+            "desc": "Not to be confused with that other seal clubbing game.",
+            "unlock": "DATE",
+            "data": 1734930000,
+            "stats":{
+                "follow_speed": 200,
+                "follow_acl": 60,
+                "follow_accuracy":0.3,
+                "drag":0.99
+            }
+        },
+        {
+            "name": "lemmy",
+            "display": "Lemmy",
+            "desc": "A friend with benefits, always willing to lend a helping hand (or several.)",
+            "unlock": "DATE",
+            "data": 1735016400
+        },
+        {
+            "name": "wreath-of-wrath",
+            "display": "Wreath of Wrath",
+            "desc": "AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH!"
+        },
+        {
+            "name": "tamago-pet",
+            "display": "Domestic Common Tamago",
+            "desc": "Proof of encountering a rare tamago, in a tiny lovable adorably anxious package!\nNote: Tankmas is not responsible for damages caused by prolonged exposure to the Tamago.",
+            "unlock": "FLAG",
+            "data": "TAMAGO_ENCOUNTERED"
+        },
+		{
+			"name": "shmigmar",
+            "display": "Shmigmar",
+            "desc": "Shmigmar loves his wife, Swiishii, very much. We need can aspire to be more like Shmigmar.",
+            "unlock": "FLAG"
+		},
+        {
+            "name": "pet-box",
+            "display": "Box",
+            "desc": "Yea that's a box alright.",
+            "unlock": "FLAG",
+            "data": "A_LOT_OF_PATIENCE",
+            "stats":{
+                "follow_speed": 150,
+                "follow_acl": 60,
+                "follow_accuracy":0.1,
+                "drag":0.99
+            }
+        },
+        {
+            "name": "penicorn",
+            "display": "Mystery Unicorn Plush",
+            "desc": "Don't worry about it."
+        },
+        {
+            "name": "gooble",
+            "display": "Gooble",
+            "desc": "Gooble loves you. Convert to gooblism for eternal happiness and safety.",
+            "unlock": "DATE",
+            "data": 1735362000
+        },
+        {
+            "name": "shmigmar",
+            "display": "Shmigmar",
+            "desc": "Duty calls those who answer the duty. For some, we get heroes, for the fortunate, we get Shmigmar.",
+            "unlock": "FLAG",
+            "data": "GOT_SHMIGGED"
+        }
+    ]
+}

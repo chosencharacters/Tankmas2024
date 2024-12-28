@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+	<animSet image="costume-default">
+		<anim name="left">0</anim>
+		<anim name="right">0</anim>
+	</animSet>
+
+	<animSet image="pet-default">
+		<anim name="left">0</anim>
+		<anim name="right">0</anim>
+	</animSet>
+
+	<animSet image="costume-midgetsausage">
+		<anim name="left">0</anim>
+		<anim name="right">1</anim>
+	</animSet>
+
+	<animSet image="costume-mc-kun">
+		<anim name="left">1</anim>
+		<anim name="right">0</anim>
+	</animSet>
+
+	<animSet image="costume-abundance">
+		<anim name="left-idle">0</anim>
+		<anim name="right-idle">0</anim>
+		<anim name="left-move">0t8r3,9t22</anim>
+		<anim name="right-move">23t31r3,32t45</anim>
+	</animSet>
+
+	<animSet image="costume-zone-tan">
+		<anim name="left-idle">0</anim>
+		<anim name="right-idle">0</anim>
+		<anim name="left-move">1</anim>
+		<anim name="right-move">1</anim>
+	</animSet>
+
+	<animSet image="costume-cordelia">
+		<anim name="left-idle||right-idle">0</anim>
+		<anim name="left-move||right-move" fps="100ms">1t3</anim>
+	</animSet>
+	
+	<animSet image="pet-tamago-pet">
+		<anim name="left-idle">0</anim>
+		<anim name="right-idle">0</anim>
+		<anim name="left-move" fps="70">1t7</anim>
+		<anim name="right-move" fps="70">1t7</anim>
+	</animSet>
+</root>

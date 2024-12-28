@@ -1,0 +1,524 @@
+{
+    "sheets": [
+        {
+            "name": "costumes-series-1",
+            "items": [
+                {
+                    "name": "tankman",
+                    "angle": 10
+                },
+                {
+                    "name": "paco",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "alien-hominid",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "thomas",
+                    "angle": -10
+                },
+                {
+                    "name": "knight-red",
+                    "angle": -10
+                },
+                {
+                    "name": "knight-blue",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "knight-green",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "knight-orange",
+                    "angle": 10
+                },
+                {
+                    "name": "knight-pink",
+                    "angle": 10
+                },
+                {
+                    "name": "madness-grunt",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "boyfriend",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "girlfriend",
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "costumes-series-2",
+            "items": [
+                {
+                    "name": "bitey",
+                    "angle": 10
+                },
+                {
+                    "name": "satina",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "blockhead",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "salad-fingers",
+                    "angle": -10
+                },
+                {
+                    "name": "duncan",
+                    "angle": -10
+                },
+                {
+                    "name": "jones",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "go-go",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "ritz",
+                    "angle": 10
+                },
+                {
+                    "name": "randy",
+                    "angle": 10
+                },
+                {
+                    "name": "samurai-asshole",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -40
+                },
+                {
+                    "name": "steve",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "g-bot",
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "costumes-series-3",
+            "items": [
+                {
+                    "name": "rebutia",
+                    "angle": 10
+                },
+                {
+                    "name": "ena",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "strawberry-clock",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "hank",
+                    "angle": -10
+                },
+                {
+                    "name": "jimmy",
+                    "angle": -10
+                },
+                {
+                    "name": "baby",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "geometry-dash-cube",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "fancy-pants",
+                    "angle": 10
+                },
+                {
+                    "name": "nox",
+                    "angle": 10
+                },
+                {
+                    "name": "tarboy",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "nene",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "darnell",
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "costumes-series-4",
+            "items": [
+                {
+                    "name": "skid",
+                    "angle": 10
+                },
+                {
+                    "name": "pump",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "dr-good",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "mella",
+                    "angle": -10
+                },
+                {
+                    "name": "isaac",
+                    "angle": -10
+                },
+                {
+                    "name": "meat-boy",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "dr-schmuck",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "mark-pimento",
+                    "angle": 10
+                },
+                {
+                    "name": "sublo",
+                    "angle": 10
+                },
+                {
+                    "name": "tangy-mustard",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "dads-home",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "costumes-series-5",
+            "items": [
+                {
+                    "name": "aine",
+                    "angle": 10
+                },
+                {
+                    "name": "henry-stick",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "ellie-stick",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "charles-stick",
+                    "angle": -10
+                },
+                {
+                    "name": "elephant",
+                    "angle": -10
+                },
+                {
+                    "name": "doki",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "nabi",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "il-ho",
+                    "angle": 10
+                },
+                {
+                    "name": "blade-the-hedgehog",
+                    "angle": 10
+                },
+                {
+                    "name": "skull-kid",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "zanta-claws",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "bad-captain",
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "costumes-series-6",
+            "items": [
+                {
+                    "name": "mc-kun",
+                    "angle": 10
+                },
+                {
+                    "name": "dad",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "alloy",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "zone-tan",
+                    "angle": -10
+                },
+                {
+                    "name": "hatty",
+                    "angle": -10
+                },
+                {
+                    "name": "cat-guard",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "behemoth-chicken",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "amogus-impostor",
+                    "angle": 10
+                },
+                {
+                    "name": "captain-carrion",
+                    "angle": 10
+                },
+                {
+                    "name": "abundance",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "inner-sloth",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "cynthia",
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "costumes-series-7",
+            "items": [
+                {
+                    "name": "lucky",
+                    "angle": 10
+                },
+                {
+                    "name": "jeb",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "zach",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "chris",
+                    "angle": -10
+                },
+                {
+                    "name": "ted-bear",
+                    "angle": -10
+                },
+                {
+                    "name": "cordelia",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "chunks",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "spoople",
+                    "angle": 10
+                },
+                {
+                    "name": "juby",
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "costumes-series-D",
+            "items": [
+                {
+                    "name": "sodaman",
+                    "angle": 10
+                },
+                {
+                    "name": "shmoods",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "splatter-dash",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "midgetsausage",
+                    "angle": -10
+                },
+                {
+                    "name": "tamag0",
+                    "angle": -10
+                },
+                {
+                    "name": "psycho-goldfish",
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "c-jay",
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "jefvel",
+                    "angle": 10
+                },
+                {
+                    "name": "beatrice",
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "mimny",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                }
+            ]
+        }
+    ]
+}
