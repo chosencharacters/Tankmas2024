@@ -95,7 +95,7 @@ class Spike extends FlxObject
 	private function SetInvisibility():Routine
 	{
 		@yield return WaitEndOfFrame;
-		trace("TO IMPLEMENT: SetInvisibility()");
+		// trace("TO IMPLEMENT: SetInvisibility()");
 		// animator.SetBool("IsInvisible", SkinManager.Main.AreSpikesInvisible);
 		// animator.enabled = true;
 		// animator.Play("Idle");

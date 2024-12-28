@@ -492,13 +492,13 @@ class GameManager extends GameManagerBase
 
 		if (currentLives == 0)
 		{
-			trace("DEATH");
+			// trace("DEATH");
 			// SoundManager.Main.PlaySound("Death");
 			// OnLose();
 		}
 		else
 		{
-			trace("HP LOSS");
+			// trace("HP LOSS");
 			// SoundManager.Main.PlaySound("HP Loss");
 		}
 		/*}*/
