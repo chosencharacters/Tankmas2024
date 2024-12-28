@@ -148,28 +148,37 @@ class PlayState extends FlxSubState
 		var creditsText = new FlxBitmapText(fontAngelCode);
 		creditsText.font = fontAngelCode;
 		creditsText.text = " Dev:\nBlawnode\n Music:\nRob0ne";
-		creditsText.setPosition(8, 54);
+		creditsText.setPosition(8, 46);
 		add(creditsText);
 
 		var highscoresText = new FlxBitmapText(fontAngelCode);
 		highscoresText.font = fontAngelCode;
-		var highscores = [{name: "BWND", score: 15}, {name: "SBMB", score: 4},];
+		var highscores = [
+			{name: "BWND", score: 15},
+			{name: "SBMB", score: 4},
+			{name: "DUM", score: 0},
+			{name: "DU", score: 0},
+			{name: "M", score: 0},
+		];
 		var highscoresTextified = " Highscores\n";
 		for (highscore in highscores)
 		{
-			highscoresTextified += highscore.name + " - " + StringTools.lpad(Std.string(highscore.score > 999 ? 999 : highscore.score), "0", 3) + "\n";
+			highscoresTextified += highscore.name
+				+ /*"-"*/ "\n    "
+				+ StringTools.lpad(Std.string(highscore.score > 999 ? 999 : highscore.score), "0", 3)
+				+ "\n";
 		};
 		highscoresTextified = highscoresTextified.substr(0, highscoresTextified.length - 1); // Remove new line.
 
 		highscoresText.text = highscoresTextified;
 		// highscoresText.text = "-Highscores\nBWND - 015\nSBMB - 012\n???? - ???\n???? - ???\n???? - ???";
-		highscoresText.setPosition(4, 160);
+		highscoresText.setPosition(4, 140);
 		add(highscoresText);
 
 		var exitText = new FlxBitmapText(fontAngelCode);
 		exitText.font = fontAngelCode;
 		exitText.text = "C - Exit";
-		exitText.setPosition(8, 220);
+		exitText.setPosition(8, 230);
 		add(exitText);
 
 		comboText = new FlxBitmapText(fontAngelCode);
@@ -379,7 +388,7 @@ class PlayState extends FlxSubState
 			{
 				type: UIUnlockableType.achievement,
 				x: 10,
-				y: 100,
+				y: 85,
 				image: "assets/images/Achievement Combo 3.png",
 				imageLocked: "assets/images/Achievement Locked.png",
 				unlockableName: "Combo 3 Achievement",
@@ -389,7 +398,7 @@ class PlayState extends FlxSubState
 			{
 				type: UIUnlockableType.achievement,
 				x: 30,
-				y: 100,
+				y: 85,
 				image: "assets/images/Achievement Combo 5.png",
 				imageLocked: "assets/images/Achievement Locked.png",
 				unlockableName: "Combo 5 Achievement",
@@ -399,7 +408,7 @@ class PlayState extends FlxSubState
 			{
 				type: UIUnlockableType.achievement,
 				x: 50,
-				y: 100,
+				y: 85,
 				image: "assets/images/Achievement Combo 10.png",
 				imageLocked: "assets/images/Achievement Locked.png",
 				unlockableName: "Combo 10 Achievement",
@@ -409,7 +418,7 @@ class PlayState extends FlxSubState
 			{
 				type: UIUnlockableType.achievement,
 				x: 10,
-				y: 130,
+				y: 110,
 				image: "assets/images/Achievement Shopper.png",
 				imageLocked: "assets/images/Achievement Locked.png",
 				unlockableName: "Shopper Achievement",
