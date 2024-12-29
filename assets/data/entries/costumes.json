@@ -611,8 +611,6 @@
             "unlock": "DATE",
             "data": 1735275600
 		},
-            "unlock": "DATE"
-        },
         {
             "name": "peebs",
             "display": "Peebs",
@@ -620,8 +618,6 @@
             "unlock": "DATE",
             "data": 1735448400
 		},
-            "unlock": "DATE"
-        },
         {
             "name": "dax",
             "display": "Dax",
