@@ -42,6 +42,8 @@ class OverlaySubState extends flixel.FlxSubState
 	var oldBounds:FlxRect;
 	var bg:FlxSprite;
 
+	var back_graphic:FlxSpriteExt;
+
 	public function new(minigame_id:String, data:MinigameEntry, initialState:NextState)
 	{
 		super();
@@ -69,16 +71,21 @@ class OverlaySubState extends flixel.FlxSubState
 		super.create();
 
 		bg = new FlxSprite();
-		bg.makeGraphic(1, 1);
-		bg.color = 0x0;
+		bg.makeGraphic(1920, 1080);
+		bg.color = FlxColor.WHITE;
 		bg.setGraphicSize(FlxG.width << 1, FlxG.height << 1);
 		bg.scrollFactor.set(0, 0);
 		bg.camera = camera;
 		add(bg);
 
+		back_graphic = new FlxSpriteExt(Paths.image_path('arcade-machine-bg'));
+		back_graphic.scrollFactor.set(0, 0);
+		add(back_graphic);
+
 		var instructions = new FlxText(0, 0, 0, "Press C to exit");
 		instructions.color = 0xFFFFFF;
 		instructions.camera = camera;
+		instructions.scrollFactor.set(0, 0);
 		add(instructions);
 		instructions.y = 20;
 		instructions.x = 20; // FlxG.width - instructions.width - 20;

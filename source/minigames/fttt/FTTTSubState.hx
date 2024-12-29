@@ -202,6 +202,13 @@ class FTTTSubState extends FlxSubstateExt
 		clear_things();
 		sstate(FAILURE);
 	}
+
+	override function kill()
+	{
+		killMembers();
+		music.kill();
+		super.kill();
+	}
 }
 
 private enum abstract State(String) from String to String

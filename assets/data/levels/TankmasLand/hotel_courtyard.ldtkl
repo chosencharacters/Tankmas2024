@@ -1416,9 +1416,9 @@
 					"height": 128,
 					"defUid": 21,
 					"px": [1504,1216],
-					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "fttt", "__tile": null, "defUid": 22, "realEditorValues": [{
+					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "bunnymark", "__tile": null, "defUid": 22, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["fttt"]
+						"params": ["bunnymark"]
 					}] }],
 					"__worldX": 1504,
 					"__worldY": 1216
