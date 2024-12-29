@@ -1,5 +1,7 @@
 package tripletriangle;
 
+import coroutine.CoroutineRunner;
+import coroutine.Routine;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -11,12 +13,14 @@ import flixel.text.FlxBitmapText;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import tripletriangle.GenericCircle.CircleType;
+import tripletriangle.Main as InnerMain;
 import ui.Cursor;
 #if ADVENT
 import utils.OverlayGlobal as Global;
 #else
 import utils.Global;
 #end
+#if newgrounds import ng.NewgroundsHandler; #end
 
 enum UIUnlockableType
 {
@@ -68,6 +72,8 @@ class PlayState extends FlxSubState
 	public static var comboText:FlxBitmapText;
 	public static var coinComboText:FlxBitmapText;
 
+	public static var initiatedRoutinesToStopOnClose:List<CoroutineRunner>;
+
 	var cursor:Cursor; // Debugging
 	var cursorPosition:FlxBitmapText; // Debugging
 
@@ -82,6 +88,7 @@ class PlayState extends FlxSubState
 		states.PlayState.self.input_manager.mode = input.InputManager.InputMode.MouseOrTouch;
 
 		super.create();
+		initiatedRoutinesToStopOnClose = new List<CoroutineRunner>();
 		fontAngelCode = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_0.png"), Global.asset("assets/slkscrb.fnt"));
 		fontAngelCode_x4 = FlxBitmapFont.fromAngelCode(Global.asset("assets/slkscrb_x4_0.png"), Global.asset("assets/slkscrb_x4.fnt"));
 
@@ -138,6 +145,26 @@ class PlayState extends FlxSubState
 		super.update(elapsed);
 	}
 
+	override function close()
+	{
+		for (routine in initiatedRoutinesToStopOnClose)
+		{
+			routine.stopAllCoroutines(); // IN THE PERFECT PROJECT, there's likely only one CoroutineRunner. Not important rn.
+		}
+
+		#if newgrounds
+		// 	public function post_score(score:Int, board_id:Int)
+
+		var ng_api:NewgroundsHandler = std.Main.ng_api;
+		final tripleTriangleBoardId:Int = 333; // TODO: wot? (I assume the number is arbitrary, so long as it isn't repeated in another call to post_score().)
+		trace("Posting combo high score...");
+		ng_api.post_score(ComboManager.highestCombo, tripleTriangleBoardId);
+		trace("Posted combo high score successfully!");
+		#end
+
+		super.close();
+	}
+
 	function initializeUI()
 	{
 		countdownText = new FlxBitmapText(fontAngelCode);
@@ -147,7 +174,7 @@ class PlayState extends FlxSubState
 
 		var creditsText = new FlxBitmapText(fontAngelCode);
 		creditsText.font = fontAngelCode;
-		creditsText.text = "Dev:\n Blawnode";
+		creditsText.text = " Dev:\nBlawnode\n Music:\nRob0ne";
 		creditsText.setPosition(8, 54);
 		add(creditsText);
 
@@ -476,7 +503,7 @@ class PlayState extends FlxSubState
 
 	public function UnlockAchievement(achievement:AchievementID)
 	{
-		trace("Attempting to unlock achievement with ID: " + achievement);
+		// trace("Attempting to unlock achievement with ID: " + achievement);
 
 		var achievementIndexInArrays:Int = -1;
 		for (i in 0...achievementSpriteDatas.length)
@@ -490,6 +517,11 @@ class PlayState extends FlxSubState
 		if (achievementIndexInArrays == -1)
 		{
 			trace("Couldn't find achievement: " + achievement);
+			return;
+		}
+		if (achievementSpriteDatas[achievementIndexInArrays].unlocked)
+		{
+			// trace("Achievement already unlocked: " + achievement);
 			return;
 		}
 

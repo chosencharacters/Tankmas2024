@@ -44,6 +44,7 @@ class Spike extends FlxObject
 		super(p_x, p_y);
 		popAngle = p_popAngle;
 		firstSpike = new FlxSprite(p_x, p_y, graphicAsset);
+		firstSpike.visible = false;
 		firstSpike.offset.x = 16;
 		firstSpike.offset.y = 16;
 
@@ -61,6 +62,7 @@ class Spike extends FlxObject
 		// animator = GetComponent<Animator>();
 
 		var coInvisibilityRoutine = new CoroutineRunner();
+		PlayState.initiatedRoutinesToStopOnClose.add(coInvisibilityRoutine);
 		coInvisibilityRoutine.startCoroutine(SetInvisibility());
 		new haxe.Timer(16).run = function()
 		{
@@ -94,7 +96,7 @@ class Spike extends FlxObject
 	private function SetInvisibility():Routine
 	{
 		@yield return WaitEndOfFrame;
-		trace("TO IMPLEMENT: SetInvisibility()");
+		// trace("TO IMPLEMENT: SetInvisibility()");
 		// animator.SetBool("IsInvisible", SkinManager.Main.AreSpikesInvisible);
 		// animator.enabled = true;
 		// animator.Play("Idle");

@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "arcade",
@@ -842,6 +842,25 @@
 					],
 					"__worldX": 5508,
 					"__worldY": 2456
+				},
+				{
+					"__identifier": "Minigame",
+					"__grid": [159,66],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#1B3A4D",
+					"iid": "022a6160-c210-11ef-95a4-0196e4b42ad0",
+					"width": 224,
+					"height": 384,
+					"defUid": 21,
+					"px": [2544,1056],
+					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "tripletriangle", "__tile": null, "defUid": 22, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["tripletriangle"]
+					}] }],
+					"__worldX": 5732,
+					"__worldY": 1512
 				}
 			]
 		},

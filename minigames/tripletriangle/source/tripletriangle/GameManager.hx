@@ -159,6 +159,7 @@ class GameManager extends GameManagerBase
 		// CameraShake.Main._isCameraShakeEnabled = SettingsManager.Main._isCameraShakeEnabled;
 
 		coStartRoutine = new CoroutineRunner();
+		PlayState.initiatedRoutinesToStopOnClose.add(coStartRoutine);
 		coStartRoutine.startCoroutine(StartGame());
 		new haxe.Timer(16).run = function()
 		{
@@ -191,13 +192,29 @@ class GameManager extends GameManagerBase
 		var i = 3;
 		while (i > 0)
 		{
-			countdownText.text = "" + i;
-			countdownText.x = 160 - (countdownText.width / 2);
+			try
+			{
+				countdownText.text = "" + i;
+				countdownText.x = 160 - (countdownText.width / 2);
+			}
+			catch (e:Exception)
+			{
+				trace("Stopped an issue caused by Routine and FlxBitmapText: " + e.message);
+				@yield break;
+			}
 			i--;
 			@yield return WaitDelay(1);
 		}
-		countdownText.text = "GO!";
-		countdownText.x = 160 - (countdownText.width / 2);
+		try
+		{
+			countdownText.text = "GO!";
+			countdownText.x = 160 - (countdownText.width / 2);
+		}
+		catch (e:Exception)
+		{
+			trace("Stopped an issue caused by Routine and FlxBitmapText: " + e.message);
+			@yield break;
+		}
 
 		isSpawning = true;
 		typeToSpawn = CircleType.Basic;
@@ -457,7 +474,7 @@ class GameManager extends GameManagerBase
 		if (newCircleCount != currentCircleCount)
 		{
 			currentCircleCount = newCircleCount;
-			trace("Max circle count set to " + currentCircleCount + "!");
+			// trace("Max circle count set to " + currentCircleCount + "!");
 		}
 	}
 
@@ -492,13 +509,13 @@ class GameManager extends GameManagerBase
 
 		if (currentLives == 0)
 		{
-			trace("DEATH");
+			// trace("DEATH");
 			// SoundManager.Main.PlaySound("Death");
 			// OnLose();
 		}
 		else
 		{
-			trace("HP LOSS");
+			// trace("HP LOSS");
 			// SoundManager.Main.PlaySound("HP Loss");
 		}
 		/*}*/

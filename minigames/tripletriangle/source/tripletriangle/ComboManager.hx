@@ -17,6 +17,9 @@ class ComboManager extends FlxObject
 	public static var Main:ComboManager;
 
 	private var comboCounter:Int = 0;
+
+	public static var highestCombo:Int = 0;
+
 	private var playState:PlayState;
 
 	override public function new(p_playState:PlayState)
@@ -40,10 +43,13 @@ class ComboManager extends FlxObject
 
 	public function FinishCombo():Routine
 	{
-		trace("Did: FinishCombo() - " + comboCounter);
+		// trace("Did: FinishCombo() - " + comboCounter);
 
 		// Combo and coin pop-up text
 		// GameManagerBase.Main.OnFinishCombo();  // Redundant RN.
+
+		if (comboCounter > highestCombo)
+			highestCombo = comboCounter;
 
 		if (comboCounter >= 3)
 		{

@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "hotel_interior",
@@ -1043,6 +1043,22 @@
 					"fieldInstances": [],
 					"__worldX": 2800,
 					"__worldY": 2864
+				},
+				{
+					"__identifier": "CollisionSquare",
+					"__grid": [146,134],
+					"__pivot": [0,0],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0808",
+					"iid": "ee1c36e0-c210-11ef-95a4-63744f737fb6",
+					"width": 16,
+					"height": 16,
+					"defUid": 44,
+					"px": [2336,2144],
+					"fieldInstances": [],
+					"__worldX": 2336,
+					"__worldY": 2144
 				}
 			]
 		},
