@@ -595,6 +595,12 @@
             "desc": "Cordelia's cute pet rat!",
             "unlock": "DATE",
             "data": 1735275600
+		},        
+		{
+            "name": "juby",
+            "display": "Juby",
+            "desc": "The loveable axolotl that loves to hang out with his strange friends.",
+            "unlock": "DATE"
 		}
     ]
 }

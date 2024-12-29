@@ -47,6 +47,8 @@ class Present extends Interactable
 
 	public static var num_25_opened:Int = 0;
 	public static final req_num_25_opened:Int = 14;
+	public static var num_28_opened:Int = 0;
+	public static final req_num_28_opened:Int = 2;
 
 	public function new(X:Float, Y:Float, username:String, timelock:Int)
 	{
@@ -64,7 +66,7 @@ class Present extends Interactable
 
 		comic = def.comicProperties != null ? true : false;
 
-		if (["dragonmiracles", "guri"].contains(username))
+		if (["dragonmiracles", "guri", "marbardan82"].contains(username))
 			comic = true;
 
 		openable = true;
@@ -93,6 +95,13 @@ class Present extends Interactable
 			if (JsonData.get_present(present).day == 25)
 				count++;
 			num_25_opened = count;
+		}
+		count = 0;
+		for (present in SaveManager.savedPresents)
+		{
+			if (JsonData.get_present(present).day == 28)
+				count++;
+			num_28_opened = count;
 		}
 
 		// trace(Main.time.day >= def.day, Main.time.day, def.day, visible);
@@ -211,6 +220,10 @@ class Present extends Interactable
 			{
 				num_25_opened++;
 			}
+			if (first_time_opening && day == 28)
+			{
+				num_28_opened++;
+			}
 
 			sstate(OPENING);
 			new FlxTimer().start(0.24, (tmr:FlxTimer) -> SoundPlayer.sound(Paths.get('present-open.ogg')));
@@ -242,7 +255,7 @@ class Present extends Interactable
 		OnlineLoop.post_present_open(day, medal_was_unlocked, first_time_opening);
 
 		#if newgrounds
-		if (day != 25)
+		if (day != 25 && day != 28)
 		{
 			if (is_medal_unlock_enabled())
 				give_opened_medal();
@@ -251,11 +264,16 @@ class Present extends Interactable
 		{
 			if (num_25_opened >= req_num_25_opened)
 				Main.ng_api.medal_popup(Main.ng_api.medals.get('day-25'));
+			if (num_28_opened >= req_num_28_opened)
+				Main.ng_api.medal_popup(Main.ng_api.medals.get('day-28'));
 			trace(num_25_opened + "/" + req_num_25_opened);
+			trace(num_28_opened + "/" + req_num_28_opened);
 		}
 		if (comic && ["guri", "dragonmiracles"].contains(username))
 			Main.ng_api.medal_popup(Main.ng_api.medals.get('comic-${username}'));
 		#end
+		if (comic && username == "marbardan82")
+			Flags.set_bool("GOT_SHMIGGED");
 	}
 
 	function give_opened_medal()

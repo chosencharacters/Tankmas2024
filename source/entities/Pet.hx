@@ -199,6 +199,17 @@ class Pet extends NGSprite
 				loadAllFromAnimationSet("tamago-pet");
 			}
 		}
+		else if (def.name == "gooble")
+		{
+			if (ran.float() <= .01)
+			{
+				loadAllFromAnimationSet("goobluigi");
+			}
+			else
+			{
+				loadAllFromAnimationSet("gooble");
+			}
+		}
 		else
 		{
 			loadAllFromAnimationSet(def.name);
