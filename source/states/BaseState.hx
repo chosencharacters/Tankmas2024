@@ -20,7 +20,7 @@ class BaseState extends FlxState
 	var radio:RadioManager;
 
 	var cursor:Cursor;
-	
+
 	var trace_new_state:Bool = false;
 
 	public function new()
@@ -37,9 +37,11 @@ class BaseState extends FlxState
 
 			#if !no_radio
 			radio = new RadioManager();
-			#elseif !no_music
+			#end
 			var track:TrackDef = JsonData.get_track(Main.current_song);
 			SoundPlayer.music(track).onComplete((_music) -> trace('Song started playing.'));
+			#if no_music
+			FlxG.sound.music.volume = 0;
 			#end
 
 			#if !no_fade

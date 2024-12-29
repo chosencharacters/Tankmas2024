@@ -779,7 +779,7 @@
 			"entityInstances": [
 				{
 					"__identifier": "Minigame",
-					"__grid": [139,66],
+					"__grid": [140,66],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -788,29 +788,13 @@
 					"width": 240,
 					"height": 384,
 					"defUid": 21,
-					"px": [2224,1056],
-					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "bunnymark", "__tile": null, "defUid": 22, "realEditorValues": [{
+					"px": [2240,1056],
+					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "fttt", "__tile": null, "defUid": 22, "realEditorValues": [{
 						"id": "V_String",
-						"params": ["bunnymark"]
+						"params": ["fttt"]
 					}] }],
-					"__worldX": 5412,
+					"__worldX": 5428,
 					"__worldY": 1512
-				},
-				{
-					"__identifier": "Player",
-					"__grid": [126,92],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#46BE2F",
-					"iid": "f16dc920-9b00-11ef-b112-098b44c67591",
-					"width": 128,
-					"height": 128,
-					"defUid": 1,
-					"px": [2016,1472],
-					"fieldInstances": [],
-					"__worldX": 5204,
-					"__worldY": 1928
 				},
 				{
 					"__identifier": "Door",
@@ -834,6 +818,76 @@
 					],
 					"__worldX": 5508,
 					"__worldY": 2456
+				},
+				{
+					"__identifier": "Minigame",
+					"__grid": [198,65],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#1B3A4D",
+					"iid": "1f3ac1e0-c210-11ef-ab75-0bef7a3443ef",
+					"width": 224,
+					"height": 400,
+					"defUid": 21,
+					"px": [3168,1040],
+					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "tripletriangle", "__tile": null, "defUid": 22, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["tripletriangle"]
+					}] }],
+					"__worldX": 6356,
+					"__worldY": 1496
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [63,215],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "6d0723a0-c210-11ef-ab75-b95fb0ed9b7b",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1008,3440],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "project-154", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["project-154"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": "THING_THINGED", "__tile": null, "defUid": 90, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["THING_THINGED"]
+						}] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": 4196,
+					"__worldY": 3896
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [211,164],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "6e7f1da0-c210-11ef-ab75-374f06c48ebb",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [3376,2624],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "pony-boy", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["pony-boy"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": 6564,
+					"__worldY": 3080
 				}
 			]
 		},

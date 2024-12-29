@@ -580,14 +580,14 @@
             "desc": "If you wanna survive like Ted Bear, you've gotta have a sharp wit, endurance, good looks and a backpack full of ingenuity... Even when it comes to bacon trees",
             "unlock": "DATE",
             "data": 1735189200
-        },  
-		{
+        },
+        {
             "name": "cordelia",
             "display": "Cordelia",
             "desc": "The bewitching shopkeep of the Dead Estate... Don't stare too long.",
             "unlock": "DATE_AND_SUPPORTER",
             "data": 1735275600,
-            "walk":"moving-small"
+            "walk": "moving-small"
         },
         {
             "name": "chunks",
@@ -595,7 +595,7 @@
             "desc": "Cordelia's cute pet rat!",
             "unlock": "DATE",
             "data": 1735275600
-		},
+        },
         {
             "name": "spoople",
             "display": "Spoople",
@@ -609,18 +609,32 @@
             "display": "Juby",
             "desc": "The loveable axolotl that loves to hang out with his strange friends.",
             "unlock": "DATE"
-		},
+        },
         {
             "name": "peebs",
             "display": "Peebs",
             "desc": "Certified cool dude (in training)",
             "unlock": "DATE"
-		},
+        },
         {
             "name": "dax",
             "display": "Dax",
             "desc": "Not COOL enough? Call Dax, Master of all matters COOL! Sign up for his COOL lessons and you'll be as COOL as Dax in no time! HELL YEAH!!!",
             "unlock": "DATE"
-		}
+        },
+        {
+            "name": "project-154",
+            "display": "Project 154",
+            "desc": "The most powerful thing thing and a walking legend. Project 154 is an expert marksmen who has enhanced agility and healing factor. No thing gets in their way.",
+            "unlock": "FLAG",
+            "data": "THING_THINGED"
+        },
+        {
+            "name": "pony-boy",
+            "display": "Ponyboy",
+            "desc": "A happy go lucky robot.",
+            "unlock": "FLAG",
+            "data": "PONYABLE_CONTENT"
+        }
     ]
 }
