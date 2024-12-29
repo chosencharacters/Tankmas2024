@@ -190,7 +190,8 @@
             "name": "peanutbudder",
             "display": "Peanut Budder",
             "desc": "It's budder than ever!",
-            "unlock": "FLAG"
+            "unlock": "FLAG",
+            "data":"PEANUT_BUDDERED"
         }
     ]
 }
