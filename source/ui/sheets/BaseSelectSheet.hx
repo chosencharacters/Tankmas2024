@@ -203,34 +203,41 @@ class BaseSelectSheet extends FlxTypedGroupExt<FlxSprite>
 
 		for (button in def.grid_1D)
 		{
-			button.eval_unlocked();
-			if (!button.unlocked && button.lock_condition != null)
+			try
 			{
-				switch (button.lock_condition)
+				button.eval_unlocked();
+				if (!button.unlocked && button.lock_condition != null)
 				{
-					default:
-					case UnlockCondition.FLAG | UnlockCondition.ACHIEVEMENT:
-						var overlay:FlxSpriteExt = new FlxSpriteExt(Paths.image_path("flag-locked-overlay"));
-						overlay.center_on(button);
-						overlay.angle = button.angle;
-						overlay.offset.set(button.offset.x, button.offset.y);
-						add(overlay);
-						lock_overlay_group.add(overlay);
-					case UnlockCondition.SUPPORTER:
-						var overlay:FlxSpriteExt = new FlxSpriteExt(Paths.image_path("supporter-locked-overlay"));
-						overlay.center_on(button);
-						overlay.angle = button.angle;
-						overlay.offset.set(button.offset.x, button.offset.y);
-						add(overlay);
-						lock_overlay_group.add(overlay);
-					case UnlockCondition.DATE:
-						var overlay:FlxSpriteExt = new FlxSpriteExt(Paths.image_path("date-locked-overlay"));
-						overlay.center_on(button);
-						overlay.angle = button.angle;
-						overlay.offset.set(button.offset.x, button.offset.y);
-						add(overlay);
-						lock_overlay_group.add(overlay);
+					switch (button.lock_condition)
+					{
+						default:
+						case UnlockCondition.FLAG | UnlockCondition.ACHIEVEMENT:
+							var overlay:FlxSpriteExt = new FlxSpriteExt(Paths.image_path("flag-locked-overlay"));
+							overlay.center_on(button);
+							overlay.angle = button.angle;
+							overlay.offset.set(button.offset.x, button.offset.y);
+							add(overlay);
+							lock_overlay_group.add(overlay);
+						case UnlockCondition.SUPPORTER:
+							var overlay:FlxSpriteExt = new FlxSpriteExt(Paths.image_path("supporter-locked-overlay"));
+							overlay.center_on(button);
+							overlay.angle = button.angle;
+							overlay.offset.set(button.offset.x, button.offset.y);
+							add(overlay);
+							lock_overlay_group.add(overlay);
+						case UnlockCondition.DATE:
+							var overlay:FlxSpriteExt = new FlxSpriteExt(Paths.image_path("date-locked-overlay"));
+							overlay.center_on(button);
+							overlay.angle = button.angle;
+							overlay.offset.set(button.offset.x, button.offset.y);
+							add(overlay);
+							lock_overlay_group.add(overlay);
+					}
 				}
+			}
+			catch (e)
+			{
+				trace('Error loading: ${button.def}\n${e}');
 			}
 		}
 	}

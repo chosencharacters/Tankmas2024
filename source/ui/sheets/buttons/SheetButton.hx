@@ -50,7 +50,14 @@ class SheetButton extends HoverButton
 
 	public function update_unlocked()
 	{
-		unlocked = eval_unlocked();
+		try
+		{
+			unlocked = eval_unlocked();
+		}
+		catch (e)
+		{
+			trace('Error in button: ${def}\n${e}');
+		}
 
 		color = unlocked ? FlxColor.WHITE : FlxColor.BLACK;
 		if (empty)

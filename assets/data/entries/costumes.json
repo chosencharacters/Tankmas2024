@@ -595,8 +595,16 @@
             "desc": "Cordelia's cute pet rat!",
             "unlock": "DATE",
             "data": 1735275600
-		},        
-		{
+		},
+        {
+            "name": "spoople",
+            "display": "Spoople",
+            "desc": "He always knows, and know what many wish they couldn't know to know. That's why he knows for you, and explains what you need to know on his show: Spoople Knows!",
+            "unlock": "DATE",
+            "data": 1735275600,
+            "walk": "hop"
+        },
+        {
             "name": "juby",
             "display": "Juby",
             "desc": "The loveable axolotl that loves to hang out with his strange friends.",
