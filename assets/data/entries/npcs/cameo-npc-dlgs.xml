@@ -163,4 +163,23 @@
             </option>
         </state>
     </npc>
+	<npc name="pony-boy">
+        <state name="default">
+			<dlg set="PONYABLE_CONTENT">Oh, hey, what brings a cool robot like you down here?</dlg>
+			<dlg>I'm Ponyboy, nice to meet you!</dlg>
+			<dlg>Can I interest ya in a game? We got lots of games down here!</dlg>
+			<option label="Games?">
+                <dlg>Yea we got tons of games. Beeping kind. Booping kind.</dlg>
+				<dlg>Maybe a couple other kinds.</dlg>
+            </option>
+			<option label="Got any food?">
+				<dlg>Yea of course! Lemon Poppyseed pancakes, Cherry Chocolate milkshakes</dlg>
+				<dlg>But they didn't give me any ingredients down here so... maybe not</dlg>
+            </option>
+			<option label="Who's Sunny?">
+                <dlg>Sunny? Hardly know them.</dlg>
+				<dlg>But they seem awfully relevant to this whole arcade's theme.</dlg>
+            </option>
+        </state>
+    </npc>
 </root>

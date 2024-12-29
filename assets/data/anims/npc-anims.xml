@@ -34,4 +34,12 @@
 		<anim name="idle">0</anim>
 		<anim name="nearby" looping="false">1t3</anim>	
 	</animSet>
+
+	<animSet image="pony-boy">
+		<anim name="idle">0t10</anim>
+	</animSet>
+
+	<animSet image="project-154">
+		<anim name="idle">0</anim>
+	</animSet>
 </root>

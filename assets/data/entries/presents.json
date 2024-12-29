@@ -190,7 +190,7 @@
             "day": 30,
             "file": "day-30-art-donpeppi",
             "title": "You got mail!",
-            "artist": "leroyalmess"
+            "artist": "donpeppi"
         },
         {
             "day": 31,
@@ -268,6 +268,12 @@
             "file": "comic-guri-1",
             "title": "",
             "artist": "Guri"
+        },
+        {
+            "day": 28,
+            "file": "comic-marbardan82-1",
+            "title": "",
+            "artist": "marbardan82"
         }
     ]
 }
