@@ -192,6 +192,12 @@
             "desc": "It's budder than ever!",
             "unlock": "FLAG",
             "data":"PEANUT_BUDDERED"
+        },
+        {
+            "name": "interactive-buddy",
+            "display": "Interactive Buddy",
+            "unlock": "FLAG",
+            "data": 1735448400
         }
     ]
 }
