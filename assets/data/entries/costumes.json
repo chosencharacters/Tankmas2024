@@ -608,19 +608,22 @@
             "name": "juby",
             "display": "Juby",
             "desc": "The loveable axolotl that loves to hang out with his strange friends.",
-            "unlock": "DATE"
+            "unlock": "DATE",
+            "data": 1735275600
 		},
         {
             "name": "peebs",
             "display": "Peebs",
             "desc": "Certified cool dude (in training)",
-            "unlock": "DATE"
+            "unlock": "DATE",
+            "data": 1735448400
 		},
         {
             "name": "dax",
             "display": "Dax",
             "desc": "Not COOL enough? Call Dax, Master of all matters COOL! Sign up for his COOL lessons and you'll be as COOL as Dax in no time! HELL YEAH!!!",
-            "unlock": "DATE"
+            "unlock": "DATE",
+            "data": 1735448400
 		}
     ]
 }
