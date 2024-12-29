@@ -22,7 +22,9 @@ import minigames.CrtShader;
 import minigames.MinigameHandler.MinigameEntry;
 import openfl.filters.ShaderFilter;
 import openfl.utils.Assets;
+import ui.Button.BackButton;
 import ui.Font;
+import ui.button.HoverButton;
 import utils.OverlayGlobal;
 
 /**
@@ -43,6 +45,7 @@ class OverlaySubState extends flixel.FlxSubState
 	var bg:FlxSprite;
 
 	var back_graphic:FlxSpriteExt;
+	var back_button:HoverButton;
 
 	public function new(minigame_id:String, data:MinigameEntry, initialState:NextState)
 	{
@@ -80,7 +83,7 @@ class OverlaySubState extends flixel.FlxSubState
 
 		back_graphic = new FlxSpriteExt(Paths.image_path('arcade-machine-bg'));
 		back_graphic.scrollFactor.set(0, 0);
-		add(back_graphic);
+		FlxG.state.add(back_graphic);
 
 		var instructions = new FlxText(0, 0, 0, "Press C to exit");
 		instructions.color = 0xFFFFFF;
@@ -104,7 +107,7 @@ class OverlaySubState extends flixel.FlxSubState
 
 	override function update(elapsed:Float)
 	{
-		// trace('OverlaySubState.update');
+		trace('OverlaySubState.update');
 
 		// Propagate camera background color.
 		if (camera.bgColor != 0x0)
@@ -164,12 +167,24 @@ class OverlaySubState extends flixel.FlxSubState
 		requestedState = null;
 		add(state);
 
+		back_button = new HoverButton((b) -> close());
+		back_button.loadAllFromAnimationSet("back-arrow-but-smaller-for-present-art");
+		back_button.setPosition(0, 0);
+		add(back_button);
+
 		state.camera = camera;
 		state.create();
 	}
 
 	override function close()
 	{
+		if (state != null)
+		{
+			remove(state);
+			state.destroy();
+		}
+		
+		back_graphic.kill();
 		FlxG.cameras.remove(camera);
 		OverlayGlobal.container = null;
 		timers.clear();
