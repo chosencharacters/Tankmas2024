@@ -114,7 +114,16 @@ class TankmasLevel extends LDTKLevel
 			new NPC(x + entity.pixelX, y + entity.pixelY, entity.f_name, Std.parseInt(entity.f_timelock), entity.f_if_flag, entity.f_unless_flag);
 
 		for (entity in level.l_Entities.all_Present.iterator())
-			new Present(x + entity.pixelX, y + entity.pixelY, entity.f_username, Std.parseInt(entity.f_timelock));
+		{
+			try
+			{
+				new Present(x + entity.pixelX, y + entity.pixelY, entity.f_username, Std.parseInt(entity.f_timelock));
+			}
+			catch (e)
+			{
+				trace('ERROR LOADING PRESENT: ${entity.f_username}\n${e}');
+			}
+		}
 
 		for (entity in level.l_Entities.all_Door.iterator())
 		{
@@ -198,7 +207,7 @@ class TankmasLevel extends LDTKLevel
 		var add_ysortable = (wx:Float, wy:Float, graphic:flixel.system.FlxAssets.FlxGraphicAsset, tile, bottom_offset = 0.0) ->
 		{
 			var f = new YSortable(wx, wy);
-			
+
 			f.loadGraphic(graphic, true, tile.w, tile.h);
 			f.frame = f.frames.getByIndex(Std.int(tile.x / tile.w));
 			f.y_bottom_offset = bottom_offset;

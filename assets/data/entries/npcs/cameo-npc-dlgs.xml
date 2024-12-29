@@ -120,4 +120,47 @@
             <dlg>Hey how ya doin'</dlg>
 		</state>
     </npc>
+	<npc name="durooge">
+        <state name="default">
+			<dlg>*Oh, how unpleasent. It's Durooge.*</dlg>
+			<dlg>*Look at their spindly little arms. And their spindly little legs.*</dlg>
+			<option label="Inspect them further">
+                <dlg>*And their spindly little nose. And their spindly little cane.*</dlg>
+                <dlg>*Hold on. These are all quite long, actually.*</dlg>
+            </option>
+			<option label="What do they want?">
+                <dlg>*Probably money.*</dlg>
+				<dlg>*Do you have any money?*</dlg>
+				<dlg>*Probably not, considering Tankmas' target demographic*</dlg>
+            </option>
+			<option label="You mean scrooge?">
+                <dlg>*No.*</dlg>
+            </option>
+        </state>
+    </npc>
+	<npc name="peanutbudder-santa">
+        <state name="default">
+			<dlg>*Ah. What a wonderful surprise, it's Peantbudder Santa!*</dlg>
+			<dlg>*It's never a Tankmas without them!*</dlg>
+			<dlg>*What kind of treats do they have in store for us?*</dlg>
+			<option label="Peantbudder?">
+                <dlg set="PEANUT_BUDDERED">*They have loads of the stuff. More than one can ever imagine.*</dlg>
+                <dlg>*What life isn't improved with a bit of that good stuff?*</dlg>
+            </option>
+			<option label="What do they want?">
+                <dlg>*Probably peanutbudder.*</dlg>
+				<dlg>*Well, actually they already have that.*</dlg>
+				<dlg>*So maybe just a smile?*</dlg>
+            </option>
+			<option label="What about the previous Tankmases?">
+                <dlg>*There wasn't any peanutbudder involved, so it doesn't count.*</dlg>
+				<option label="That sounds harsh">
+					<dlg>*Yea well we don't make the rules here. And this is just a voice in your head anyways.*</dlg>
+				</option>
+				<option label="That sounds fair">
+					<dlg>*They aint' lenient rules but they the rules that keep us safe.*</dlg>
+				</option>
+            </option>
+        </state>
+    </npc>
 </root>
