@@ -632,7 +632,7 @@
         {
             "name": "pony-boy",
             "display": "Ponyboy",
-            "desc": "A happy go lucky robot.",
+            "desc": "A happy go lucky robot and faithful staff of Rick's Diner!",
             "unlock": "FLAG",
             "data": "PONYABLE_CONTENT"
         }
