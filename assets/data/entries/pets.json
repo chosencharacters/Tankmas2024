@@ -185,6 +185,12 @@
             "desc": "Duty calls those who answer the duty. For some, we get heroes, for the fortunate, we get Shmigmar.",
             "unlock": "FLAG",
             "data": "GOT_SHMIGGED"
+        },
+        {
+            "name": "peanutbudder",
+            "display": "Peanut Budder",
+            "desc": "It's budder than ever!",
+            "unlock": "FLAG"
         }
     ]
 }
