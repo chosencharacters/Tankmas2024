@@ -22,7 +22,6 @@ import minigames.CrtShader;
 import minigames.MinigameHandler.MinigameEntry;
 import openfl.filters.ShaderFilter;
 import openfl.utils.Assets;
-import ui.Button.BackButton;
 import ui.Font;
 import ui.button.HoverButton;
 import utils.OverlayGlobal;
@@ -75,7 +74,7 @@ class OverlaySubState extends flixel.FlxSubState
 
 		bg = new FlxSprite();
 		bg.makeGraphic(1920, 1080);
-		bg.color = FlxColor.WHITE;
+		bg.color = 0x0;
 		bg.setGraphicSize(FlxG.width << 1, FlxG.height << 1);
 		bg.scrollFactor.set(0, 0);
 		bg.camera = camera;
@@ -107,7 +106,7 @@ class OverlaySubState extends flixel.FlxSubState
 
 	override function update(elapsed:Float)
 	{
-		trace('OverlaySubState.update');
+		// trace('OverlaySubState.update');
 
 		// Propagate camera background color.
 		if (camera.bgColor != 0x0)
@@ -165,11 +164,12 @@ class OverlaySubState extends flixel.FlxSubState
 		// camera.update(0);
 		state = requestedState.createInstance();
 		requestedState = null;
-		add(state);
 
 		back_button = new HoverButton((b) -> close());
-		back_button.loadAllFromAnimationSet("back-arrow-but-smaller-for-present-art");
-		back_button.setPosition(0, 0);
+		back_button.loadAllFromAnimationSet("arcade-back-button");
+		back_button.setPosition(0, 240 - back_button.height);
+
+		add(state);
 		add(back_button);
 
 		state.camera = camera;
@@ -183,7 +183,7 @@ class OverlaySubState extends flixel.FlxSubState
 			remove(state);
 			state.destroy();
 		}
-		
+
 		back_graphic.kill();
 		FlxG.cameras.remove(camera);
 		OverlayGlobal.container = null;

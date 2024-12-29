@@ -182,7 +182,7 @@ class PlayState extends FlxSubState
 		exitText.font = fontAngelCode;
 		exitText.text = "C - Exit";
 		exitText.setPosition(8, 200);
-		add(exitText);
+		// add(exitText);
 
 		comboText = new FlxBitmapText(fontAngelCode);
 		comboText.font = fontAngelCode;

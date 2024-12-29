@@ -58,11 +58,16 @@ class FTTTSubState extends FlxSubstateExt
 	function get_time_percent():Float
 		return 1 - (tick / current_round_max_time);
 
+	var thing_flagged:Bool = false;
+
+	var ranted:Bool = false;
+	var failed_before:Bool = false;
+
 	override function create()
 	{
 		super.create();
 
-		bounds = new FlxRect(0, 0, 320, 240);
+		bounds = new FlxRect(0, 0, 320, 240 - 32);
 		// bounds.x = FlxG.width / 2 - bounds.width / 2;
 		// bounds.y = FlxG.height / 2 - bounds.height / 2;
 
@@ -103,6 +108,12 @@ class FTTTSubState extends FlxSubstateExt
 		streak_text.text = Std.string(streak);
 		time_bar.visible = false;
 
+		if (!thing_flagged && streak > 2)
+		{
+			thing_flagged = true;
+			Flags.set_bool("THING_THINGED");
+		}
+
 		fsm();
 		super.update(elapsed);
 	}
@@ -138,7 +149,11 @@ class FTTTSubState extends FlxSubstateExt
 				new_menu("fttt-success", GAME_START);
 				sstate(WAIT, fsm);
 			case FAILURE:
-				SoundPlayer.sound('fttt-announcer-fail-${ran.int(1, 6)}');
+				if (ran.float() > .05 || !failed_before)
+					SoundPlayer.sound('fttt-announcer-fail-${ran.int(1, 6)}');
+				else
+					SoundPlayer.sound('fttt-rant');
+				failed_before = true;
 				new_menu("fttt-failure", INTRO);
 				sstate(WAIT, fsm);
 		}
@@ -208,6 +223,12 @@ class FTTTSubState extends FlxSubstateExt
 		killMembers();
 		music.kill();
 		super.kill();
+	}
+
+	override function destroy()
+	{
+		kill();
+		super.destroy();
 	}
 }
 

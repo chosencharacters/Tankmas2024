@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.3",
+		"appVersion": "1.5.4",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "hotel_courtyard",
@@ -467,22 +467,6 @@
 					"fieldInstances": [],
 					"__worldX": 2672,
 					"__worldY": 1200
-				},
-				{
-					"__identifier": "CollisionSquare",
-					"__grid": [101,69],
-					"__pivot": [0,0],
-					"__tags": ["Collision"],
-					"__tile": null,
-					"__smartColor": "#FF0808",
-					"iid": "d5b444a0-c210-11ef-95a4-2f1a4d8ff926",
-					"width": 16,
-					"height": 16,
-					"defUid": 44,
-					"px": [1616,1104],
-					"fieldInstances": [],
-					"__worldX": 1616,
-					"__worldY": 1104
 				}
 			]
 		},
@@ -1419,25 +1403,6 @@
 					],
 					"__worldX": 1920,
 					"__worldY": 1504
-				},
-				{
-					"__identifier": "Minigame",
-					"__grid": [94,76],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#1B3A4D",
-					"iid": "cbdba110-c210-11ef-8580-9fafa23ab30c",
-					"width": 128,
-					"height": 128,
-					"defUid": 21,
-					"px": [1504,1216],
-					"fieldInstances": [{ "__identifier": "minigame_id", "__type": "String", "__value": "bunnymark", "__tile": null, "defUid": 22, "realEditorValues": [{
-						"id": "V_String",
-						"params": ["bunnymark"]
-					}] }],
-					"__worldX": 1504,
-					"__worldY": 1216
 				}
 			]
 		},
