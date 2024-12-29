@@ -23,6 +23,7 @@ import minigames.MinigameHandler.MinigameEntry;
 import openfl.filters.ShaderFilter;
 import openfl.utils.Assets;
 import ui.Font;
+import ui.button.HoverButton;
 import utils.OverlayGlobal;
 
 /**
@@ -41,6 +42,9 @@ class OverlaySubState extends flixel.FlxSubState
 	var oldCamera:FlxCamera;
 	var oldBounds:FlxRect;
 	var bg:FlxSprite;
+
+	var back_graphic:FlxSpriteExt;
+	var back_button:HoverButton;
 
 	public function new(minigame_id:String, data:MinigameEntry, initialState:NextState)
 	{
@@ -69,16 +73,21 @@ class OverlaySubState extends flixel.FlxSubState
 		super.create();
 
 		bg = new FlxSprite();
-		bg.makeGraphic(1, 1);
+		bg.makeGraphic(1920, 1080);
 		bg.color = 0x0;
 		bg.setGraphicSize(FlxG.width << 1, FlxG.height << 1);
 		bg.scrollFactor.set(0, 0);
 		bg.camera = camera;
 		add(bg);
 
+		back_graphic = new FlxSpriteExt(Paths.image_path('arcade-machine-bg'));
+		back_graphic.scrollFactor.set(0, 0);
+		FlxG.state.add(back_graphic);
+
 		var instructions = new FlxText(0, 0, 0, "Press C to exit");
 		instructions.color = 0xFFFFFF;
 		instructions.camera = camera;
+		instructions.scrollFactor.set(0, 0);
 		add(instructions);
 		instructions.y = 20;
 		instructions.x = 20; // FlxG.width - instructions.width - 20;
@@ -155,7 +164,13 @@ class OverlaySubState extends flixel.FlxSubState
 		// camera.update(0);
 		state = requestedState.createInstance();
 		requestedState = null;
+
+		back_button = new HoverButton((b) -> close());
+		back_button.loadAllFromAnimationSet("arcade-back-button");
+		back_button.setPosition(0, 240 - back_button.height);
+
 		add(state);
+		add(back_button);
 
 		state.camera = camera;
 		state.create();
@@ -163,6 +178,13 @@ class OverlaySubState extends flixel.FlxSubState
 
 	override function close()
 	{
+		if (state != null)
+		{
+			remove(state);
+			state.destroy();
+		}
+
+		back_graphic.kill();
 		FlxG.cameras.remove(camera);
 		OverlayGlobal.container = null;
 		timers.clear();
@@ -190,6 +212,8 @@ class LoadingState extends FlxState
 		super();
 		this.nextState = nextState;
 		this.libraryName = libraryName;
+
+		trace(nextState, libraryName);
 	}
 
 	override function create()

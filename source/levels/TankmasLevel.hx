@@ -198,6 +198,7 @@ class TankmasLevel extends LDTKLevel
 		var add_ysortable = (wx:Float, wy:Float, graphic:flixel.system.FlxAssets.FlxGraphicAsset, tile, bottom_offset = 0.0) ->
 		{
 			var f = new YSortable(wx, wy);
+			
 			f.loadGraphic(graphic, true, tile.w, tile.h);
 			f.frame = f.frames.getByIndex(Std.int(tile.x / tile.w));
 			f.y_bottom_offset = bottom_offset;

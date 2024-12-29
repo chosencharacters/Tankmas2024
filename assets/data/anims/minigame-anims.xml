@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+	<animSet image="fttt-grunt">
+		<anim name="max">3</anim>
+	</animSet>
+
+	<animSet image="fttt-thing-thing">
+		<anim name="max">0</anim>
+	</animSet>
+	
+	<animSet image="fttt-cursor">
+		<anim name="neutral">0</anim>
+		<anim name="hold">0</anim>
+		<anim name="release" looping="false">0</anim>
+		<anim name="to-hold" looping="false">0</anim> 
+	</animSet>
+</root>

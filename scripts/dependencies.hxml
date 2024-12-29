@@ -14,6 +14,7 @@
 --library newgrounds:2.0.3
 --library datetime
 --library differ:1.4.0
+--library coroutine
 
 --library deepnightLibs:git:https://github.com/EliteMasterEric/deepnightLibs#bugfix/achievement
 

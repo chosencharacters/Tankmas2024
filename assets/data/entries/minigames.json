@@ -11,6 +11,17 @@
                 "zoom": 1.5
             }
         },
+        "tripletriangle": {
+            "name": "Triple Triangle",
+            "description": "A minigame about popping circles",
+            "type": "overlay",
+            "crtShader": true,
+            "camera": {
+                "width": 320,
+                "height": 240,
+                "zoom": 1
+            }
+        },
         "crouton": {
             "name": "Crouton",
             "description": "For all your crouton needs",
@@ -63,6 +74,17 @@
             "external": {
                 "prompt": "Play Tankmas 2022!",
                 "url": "https://www.newgrounds.com/portal/view/865711"
+            }
+        },
+        "fttt": {
+            "name": "Find the Thing Thing",
+            "description": "Find the Thing Thing among the things that aren't the thing thing!",
+            "type": "overlay",
+            "crtShader": true,
+            "camera": {
+                "width": 320,
+                "height": 240,
+                "zoom": 1
             }
         }
     }
