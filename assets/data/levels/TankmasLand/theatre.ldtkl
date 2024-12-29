@@ -693,6 +693,54 @@
 					],
 					"__worldX": 3360,
 					"__worldY": 3008
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [207,153],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "f918adb0-c210-11ef-8580-b729359072b2",
+					"width": 150,
+					"height": 180,
+					"defUid": 10,
+					"px": [3312,2448],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "peanutbudder-santa", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["peanutbudder-santa"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": 3312,
+					"__worldY": 2448
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [219,145],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "1797fd90-c210-11ef-8580-cf27e5a5ead3",
+					"width": 128,
+					"height": 300,
+					"defUid": 10,
+					"px": [3504,2320],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "durooge", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["durooge"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": 3504,
+					"__worldY": 2320
 				}
 			]
 		},

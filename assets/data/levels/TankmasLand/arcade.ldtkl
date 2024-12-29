@@ -825,15 +825,7 @@
 					"defUid": 14,
 					"px": [2320,2000],
 					"fieldInstances": [
-						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
-							"entityIid": "543f8a70-c210-11ef-8580-056609789833",
-							"layerIid": "1f4bee20-73f0-11ef-9983-a7372464c4f6",
-							"levelIid": "95f99f60-73f0-11ef-9983-612730a885a0",
-							"worldIid": "95f97851-73f0-11ef-9983-cda8b61095c5"
-						}, "__tile": null, "defUid": 16, "realEditorValues": [{
-							"id": "V_String",
-							"params": ["543f8a70-c210-11ef-8580-056609789833"]
-						}] },
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 16, "realEditorValues": [] },
 						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 123, "cy": 120 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
 							"params": ["123,120"]
