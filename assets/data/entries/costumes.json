@@ -340,7 +340,7 @@
         {
             "name": "mella",
             "display": "Mella Arrsh S'mora Sr.",
-            "desc": "The perfect marshmallow to have ever been made. She's a fusion of over 2000 of them with more to come... Now stop roasting marshmallows you bums.",
+            "desc": "The most perfect marshmallow to have ever been made. She's a fusion of over 2000 golden marshmallows, with no end in sight... Now stop roasting marshmallows, you bums.",
             "unlock": "FLAG",
             "data": "MELLA_UNLOCKED"
         },
@@ -356,13 +356,13 @@
         },
         {
             "name": "dads-home",
-            "display": "Dad",
+            "display": "Dad's Home",
             "desc": "It's Dad! Sometimes they're home, and sometimes they're at work. But they're always good ol' dad! Head on fire and everything! Father has appeared."
         },
         {
             "name": "dr-schmuck",
-            "display": "Dr. Shmuck",
-            "desc": "The neighborhood malpractitioner. His methods are questionable, but he's the only doc in town.",
+            "display": "Dr. Schmuck",
+            "desc": "The neighborhood malpractitioner. His methods are questionable, and smells of balogna, but he's the only doc in town, and we're all outta apples... Hope you've got insurance!",
             "unlock": "DATE",
             "data": 1734325200
         },
