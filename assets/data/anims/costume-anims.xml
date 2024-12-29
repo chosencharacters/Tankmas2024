@@ -46,4 +46,14 @@
 		<anim name="left-move" fps="70">1t7</anim>
 		<anim name="right-move" fps="70">1t7</anim>
 	</animSet>
+
+	<animSet image="costume-pony-boy">
+		<anim name="left-idle" fps="100ms">0t10</anim>
+		<anim name="right-idle" fps="100ms">0t10</anim>
+	</animSet>
+
+	<!--animSet image="pet-interactive-buddy" width="99" height="114">
+		<anim name="left-idle||right-idle">0</anim>
+		<anim name="left-move||right-move">1</anim>
+	</animSet-->
 </root>

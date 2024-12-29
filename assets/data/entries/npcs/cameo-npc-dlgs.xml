@@ -165,21 +165,74 @@
     </npc>
 	<npc name="pony-boy">
         <state name="default">
-			<dlg set="PONYABLE_CONTENT">Oh, hey, what brings a cool robot like you down here?</dlg>
-			<dlg>I'm Ponyboy, nice to meet you!</dlg>
-			<dlg>Can I interest ya in a game? We got lots of games down here!</dlg>
-			<option label="Games?">
+            <dlg set="PONYABLE_CONTENT">Oh, hey, what brings a cool robot like you down here?</dlg>
+            <dlg>I'm Ponyboy, nice to meet you!</dlg>
+            <dlg>Can I interest ya in a game? We got lots of games down here!</dlg>
+            <option label="Games?">
                 <dlg>Yea we got tons of games. Beeping kind. Booping kind.</dlg>
-				<dlg>Maybe a couple other kinds.</dlg>
+                <dlg>Maybe a couple other kinds.</dlg>
+                <dlg>I don't have any paper for tic-tac-toe...</dlg>
+                <dlg>Usually Geo and I play it</dlg>
+                <dlg>Oh well! Come back around and let me know if you need anything else!</dlg>
             </option>
-			<option label="Got any food?">
-				<dlg>Yea of course! Lemon Poppyseed pancakes, Cherry Chocolate milkshakes</dlg>
-				<dlg>But they didn't give me any ingredients down here so... maybe not</dlg>
-            </option>
-			<option label="Who's Sunny?">
+            <option label="Who's Sunny?">
                 <dlg>Sunny? Hardly know them.</dlg>
-				<dlg>But they seem awfully relevant to this whole arcade's theme.</dlg>
+                <dlg>But they seem awfully relevant to this whole arcade's theme.</dlg>
+            </option>
+            <option label="I'm not a robot">
+                <dlg>You're not?</dlg>
+				<dlg if="COSTUME_G_BOT">I mean you're literally a big gold robot.</dlg>
+				<dlg if="COSTUME_P_BOT">Aren't you... P-Bot?</dlg>
+                <dlg>That's... impossible</dlg>
+                <dlg>Are you really human?</dlg>
+                    <option label="Yup!">
+                        <dlg>YOU ARE?!?!</dlg>
+                        <dlg>Would you like me to make you anything?</dlg>
+                        <option label="Sure">
+                            <dlg>Heck yeah! I can make Lemon Poppyseed pancakes, Cherry Chocolate milkshakes...</dlg>
+                            <dlg>But, uh, they didn't give me any ingredients down here so... maybe not</dlg>
+                        </option>
+                        <option label="Maybe not now">
+                            <dlg>Ok, no worries!</dlg>
+                            <dlg>I'm ready and excited to make something for you when you're ready!</dlg>
+                        </option>
+                    </option>
+                    <option label="Nah, I was just pulling your leg">
+                        <dlg>Oh...</dlg>
+                        <dlg>Well...</dlg>
+                        <dlg>Let me know if you need anything else!</dlg>
+                    </option>
             </option>
         </state>
+		<state name="same-char" if="COSTUME_PONY_BOY">
+			<dlg>I'm flattered. I guess you really are a robot now.</dlg>
+		</state>
+    </npc>
+	<npc name="project-154">
+        <state name="default">
+            <dlg set="UNLOCK_PROJECT_154">*You found the thing thing!*</dlg>
+            <dlg>*They seem very confused about being here*</dlg>
+			<option label="I really love your role in Madness Combat">
+				<dlg>*They seem rather insulted*</dlg>
+            </option>
+			<option label="So what's the new thing?">
+				<dlg>*It's always a new thing with thing thing*</dlg>
+            </option>
+			<option label="When's Thing Thing Arena 5?">
+				<dlg>*It seems like this thing's thing thing days are long past it*</dlg>
+            </option>
+		</state>
+		<state name="grunt" if="COSTUME_MADNESS_GRUNT">
+            <dlg>*Come on man you're really gonna dress like that in front of a thing thing?*</dlg>
+		</state>
+		<state name="hank" if="COSTUME_HANK">
+            <dlg>*They could totally beat you in a fight, Hank*</dlg>
+		</state>
+		<state name="jeb" if="COSTUME_JEB">
+            <dlg>*Don't be going after somebody for being called thing thing when your name is Jeb, Jeb.*</dlg>
+		</state>
+		<state name="auditor" if="COSTUME_AUDITOR">
+            <dlg>*They don't seem particularly phased by your ominous powers, Auditor*</dlg>
+		</state>
     </npc>
 </root>

@@ -27,6 +27,7 @@ class Minigame extends Interactable
 		// TODO: Make this look better.
 		makeGraphic(width, height, FlxColor.BLUE);
 		alpha = 0.5;
+		visible = false;
 	}
 
 	public override function mark_target(mark:Bool):Void

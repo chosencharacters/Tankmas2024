@@ -123,6 +123,70 @@
                     "yOffset": -30
                 },
                 {
+                    "name": "interactive-buddy",
+                    "angle": -10
+                }
+            ]
+        },
+        {
+            "name": "pets-series-3",
+            "items": [
+                {
+                    "name": "rated-e"
+                },
+                {
+                    "name": "rated-t",
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "rated-m",
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": "rated-a",
+                    "angle": -10
+                },
+                {
+                    "name": null,
+                    "angle": -10
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": 10
+                },
+                {
+                    "name": null,
+                    "angle": -10,
+                    "xOffset": -60,
+                    "yOffset": -30
+                },
+                {
+                    "name": null,
+                    "angle": 10,
+                    "xOffset": 60,
+                    "yOffset": -30
+                },
+                {
                     "name": null,
                     "angle": -10
                 }

@@ -630,7 +630,7 @@
             "display": "Project 154",
             "desc": "The most powerful thing thing and a walking legend. Project 154 is an expert marksmen who has enhanced agility and healing factor. No thing gets in their way.",
             "unlock": "FLAG",
-            "data": "THING_THINGED"
+            "data": "UNLOCK_PROJECT_154"
         },
         {
             "name": "pony-boy",

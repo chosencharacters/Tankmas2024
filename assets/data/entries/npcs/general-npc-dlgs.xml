@@ -281,10 +281,10 @@
                 <dlg>No. Duder. I need to live and watch Shadow the Hedgehog 3 so I can learn from it.</dlg>
                 <dlg>I heard Maria might survive this time.</dlg>
             </option>
-            <option label="I like your digs">
+            <option label="I like your dlgs">
                 <dlg>Uh. Thanks I guess? Look. I know I'm something new. Something different.</dlg>
                 <dlg>But at the end of the day I'm just your friendly neighberhood hedgehog</dlg>
-                <option label="No I REALLY like your digs">
+                <option label="No I REALLY like your dlgs">
                     <dlg set="BLADE_UNLOCKED">Okay. Duder. Whatever. Just don't go copying me.</dlg>
                 </option>
                 <option label="Your sword's cool">
@@ -315,12 +315,12 @@
     <npc name="connor-grail">
         <state name="default">
             <dlg>Good evening. My name is Connor, and I will be your host tonight. How may I be of service?</dlg>
-            <option label= "You work here?">
-                <dig>"Yeah! I kinda lost my way and stumbled on this hotel for shelter. The staff welcomed me in like I was their own!</dig>
-                <dig>"I found it kinda strange that they hired me on the spot though. Someone said I'd make for a great 'diversity hire'?</dig>
-                <dig>I personally don't see the connection."</dig>
-                <dig>But hey, I'm not complaining. I love working with people!"</dig>
-                <dig>"Now if only I knew what my job was..."</dig>
+            <option label="You work here?">
+                <dlg>"Yeah! I kinda lost my way and stumbled on this hotel for shelter. The staff welcomed me in like I was their own!</dlg>
+                <dlg>"I found it kinda strange that they hired me on the spot though. Someone said I'd make for a great 'diversity hire'?</dlg>
+                <dlg>I personally don't see the connection."</dlg>
+                <dlg>But hey, I'm not complaining. I love working with people!"</dlg>
+                <dlg>"Now if only I knew what my job was..."</dlg>
             </option>
         </state>
     </npc>

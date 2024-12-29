@@ -235,6 +235,8 @@ class PlayState extends BaseState
 	{
 		ttick();
 
+		Door.door_immunity--;
+
 		if (tick % 60 == 1)
 			unique_costume_count();
 

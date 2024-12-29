@@ -137,6 +137,9 @@ class PlayState extends FlxSubState
 		add(GameManagerBase.Main);
 		var global = new GlobalMasterManager();
 		add(global);
+		#if newgrounds
+		std.Main.ng_api.medal_popup(std.Main.ng_api.medals.get("triple-triangle"));
+		#end
 	}
 
 	override function update(elapsed:Float)
@@ -152,17 +155,30 @@ class PlayState extends FlxSubState
 			routine.stopAllCoroutines(); // IN THE PERFECT PROJECT, there's likely only one CoroutineRunner. Not important rn.
 		}
 
-		#if newgrounds
-		// 	public function post_score(score:Int, board_id:Int)
+		super.close();
+	}
 
+	override function kill()
+	{
+		post_score();
+		super.kill();
+	}
+
+	function post_score()
+	{
+		#if newgrounds
 		var ng_api:NewgroundsHandler = std.Main.ng_api;
-		final tripleTriangleBoardId:Int = 333; // TODO: wot? (I assume the number is arbitrary, so long as it isn't repeated in another call to post_score().)
 		trace("Posting combo high score...");
-		ng_api.post_score(ComboManager.highestCombo, tripleTriangleBoardId);
+		ng_api.post_score(ComboManager.highestCombo, std.Main.TRIPLE_TRIANGLE_SCOREBOARD);
 		trace("Posted combo high score successfully!");
 		#end
+	}
 
-		super.close();
+	override function destroy()
+	{
+		post_score();
+		kill();
+		super.destroy();
 	}
 
 	function initializeUI()

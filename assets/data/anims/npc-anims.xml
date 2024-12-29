@@ -36,7 +36,7 @@
 	</animSet>
 
 	<animSet image="pony-boy">
-		<anim name="idle">0t10</anim>
+		<anim name="idle" fps="100ms">0t10</anim>
 	</animSet>
 
 	<animSet image="project-154">

@@ -88,7 +88,7 @@ class OverlaySubState extends flixel.FlxSubState
 		instructions.color = 0xFFFFFF;
 		instructions.camera = camera;
 		instructions.scrollFactor.set(0, 0);
-		add(instructions);
+		// add(instructions);
 		instructions.y = 20;
 		instructions.x = 20; // FlxG.width - instructions.width - 20;
 

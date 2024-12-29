@@ -27,6 +27,8 @@ class Door extends FlxSpriteExt
 
 	var flag:Null<String> = null;
 
+	public static var door_immunity:Int = 60;
+
 	public function new(?X:Float, ?Y:Float, width:Int, height:Int, linked_door_ref:EntityReferenceInfos, spawn:FlxPoint, iid:String, ?flag:String)
 	{
 		super(X, Y);
@@ -59,6 +61,9 @@ class Door extends FlxSpriteExt
 
 	function player_overlaps_door()
 	{
+		if (door_immunity > 0)
+			return false;
+
 		var player = PlayState.self.player;
 		if (player == null)
 			return false;
@@ -96,6 +101,7 @@ class Door extends FlxSpriteExt
 				if (PlayState.self.player.can_enter_doors && is_door_unlocked() && player_overlaps_door())
 					start_door_out(PlayState.self.player);
 			case DOOR_OUT:
+				door_immunity = 60;
 				// PUT TRANSITION HERE
 				sstate(WAIT);
 				Ctrl.mode = ControlModes.NONE;
@@ -104,6 +110,7 @@ class Door extends FlxSpriteExt
 				player_enter_door_anim();
 				PlayState.self.player.immovable = true;
 			case DOOR_IN:
+				door_immunity = 60;
 				PlayState.self.player.center_on(spawn);
 				PlayState.self.update_scroll_bounds();
 				FlxG.camera.fade(FlxColor.BLACK, 0.8, true);

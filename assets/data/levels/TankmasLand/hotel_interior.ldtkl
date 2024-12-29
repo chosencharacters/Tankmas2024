@@ -636,7 +636,7 @@
 					"__tile": null,
 					"__smartColor": "#FF0808",
 					"iid": "b0af0f50-9b00-11ef-ac46-557e07867152",
-					"width": 1328,
+					"width": 1200,
 					"height": 64,
 					"defUid": 44,
 					"px": [944,608],
@@ -758,51 +758,19 @@
 				},
 				{
 					"__identifier": "SlopeSW",
-					"__grid": [130,43],
-					"__pivot": [0,0],
-					"__tags": ["Collision"],
-					"__tile": { "tilesetUid": 19, "x": 96, "y": 32, "w": 32, "h": 32 },
-					"__smartColor": "#FF0808",
-					"iid": "e1ee7b50-9b00-11ef-ac46-bfa9435198e9",
-					"width": 192,
-					"height": 144,
-					"defUid": 56,
-					"px": [2080,688],
-					"fieldInstances": [],
-					"__worldX": 2080,
-					"__worldY": 688
-				},
-				{
-					"__identifier": "CollisionSquare",
-					"__grid": [142,43],
-					"__pivot": [0,0],
-					"__tags": ["Collision"],
-					"__tile": null,
-					"__smartColor": "#FF0808",
-					"iid": "e72774f0-9b00-11ef-ac46-31a42f88a5eb",
-					"width": 80,
-					"height": 144,
-					"defUid": 44,
-					"px": [2272,688],
-					"fieldInstances": [],
-					"__worldX": 2272,
-					"__worldY": 688
-				},
-				{
-					"__identifier": "SlopeSW",
-					"__grid": [147,52],
+					"__grid": [138,48],
 					"__pivot": [0,0],
 					"__tags": ["Collision"],
 					"__tile": { "tilesetUid": 19, "x": 96, "y": 32, "w": 32, "h": 32 },
 					"__smartColor": "#FF0808",
 					"iid": "e9b63620-9b00-11ef-ac46-d93ed94b26f2",
-					"width": 336,
-					"height": 208,
+					"width": 480,
+					"height": 272,
 					"defUid": 56,
-					"px": [2352,832],
+					"px": [2208,768],
 					"fieldInstances": [],
-					"__worldX": 2352,
-					"__worldY": 832
+					"__worldX": 2208,
+					"__worldY": 768
 				},
 				{
 					"__identifier": "SlopeSW",
@@ -2460,6 +2428,83 @@
 					],
 					"__worldX": 1056,
 					"__worldY": 720
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [48,239],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "825be8d0-c210-11ef-ab75-c9cd795ba0bb",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [768,3824],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "donpeppi", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["donpeppi"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 30, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [30] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 768,
+					"__worldY": 3824
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [156,237],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "3a4c6bd0-c210-11ef-ab75-691ff80a38b8",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [2496,3792],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "oscarlors", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["oscarlors"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 29, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [29] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 2496,
+					"__worldY": 3792
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [134,41],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFF100",
+					"iid": "461e31a0-c210-11ef-ab75-15b447cae5a4",
+					"width": 64,
+					"height": 80,
+					"defUid": 14,
+					"px": [2144,656],
+					"fieldInstances": [
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "c34f4cf0-c210-11ef-ab75-fda754d467d5",
+							"layerIid": "3286d605-9b00-11ef-8756-dd984fe31fce",
+							"levelIid": "3286d600-9b00-11ef-8756-4da78190a937",
+							"worldIid": "0b13d4d0-9b00-11ef-9354-a71a8f29f283"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["c34f4cf0-c210-11ef-ab75-fda754d467d5"]
+						}] },
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 122, "cy": 52 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["122,52"]
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
+					],
+					"__worldX": 2144,
+					"__worldY": 656
 				}
 			]
 		},

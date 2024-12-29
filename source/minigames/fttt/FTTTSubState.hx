@@ -108,7 +108,7 @@ class FTTTSubState extends FlxSubstateExt
 		streak_text.text = Std.string(streak);
 		time_bar.visible = false;
 
-		if (!thing_flagged && streak > 2)
+		if (!thing_flagged && streak >= 2)
 		{
 			thing_flagged = true;
 			Flags.set_bool("THING_THINGED");
@@ -200,6 +200,13 @@ class FTTTSubState extends FlxSubstateExt
 
 	public function good_outcome()
 	{
+		#if newgrounds
+		if (streak >= best_streak)
+		{
+			Main.ng_api.post_score(1, Main.FIND_THE_THING_THING_SCOREBOARD);
+			best_streak = streak;
+		}
+		#end
 		SoundPlayer.sound('fttt-shoot');
 		streak++;
 		clear_things();
@@ -208,11 +215,14 @@ class FTTTSubState extends FlxSubstateExt
 
 	public function bad_outcome()
 	{
-		SoundPlayer.sound('fttt-shoot');
 		#if newgrounds
 		if (streak >= best_streak)
-			Main.ng_api.post_score(1, Main.FIND_THE_THING_THING_SCOREBOARD);
+		{
+			Main.ng_api.post_score(streak, Main.FIND_THE_THING_THING_SCOREBOARD);
+			best_streak = streak;
+		}
 		#end
+		SoundPlayer.sound('fttt-shoot');
 		streak = 0;
 		clear_things();
 		sstate(FAILURE);

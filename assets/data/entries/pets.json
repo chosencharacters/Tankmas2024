@@ -9,21 +9,21 @@
             "name": "tank-icon",
             "display": "tank.ico",
             "desc": "Your own personal tank! It's small, compact, and good for going right next to your URL! Notice: Only one tank per user, while supplies last.",
-            "stats":{
-                "follow_speed":250,
-                "follow_acl":60,
-                "follow_accuracy":0.9,
-                "deadzone":64,
-                "drag":0.65
+            "stats": {
+                "follow_speed": 250,
+                "follow_acl": 60,
+                "follow_accuracy": 0.9,
+                "deadzone": 64,
+                "drag": 0.65
             }
         },
         {
             "name": "chompy",
             "display": "Chompy",
             "desc": "It's Chompy! These adorable lil guys have been friends of Linerians for ages! They are as soft as marshmellows and like to dress up as their best friends if they're around them long enough! They also like to... yanno, chomp! They only eat fruits, though!",
-            "stats":{
-                "follow_accuracy":0.8,
-                "drag":0.99
+            "stats": {
+                "follow_accuracy": 0.8,
+                "drag": 0.99
             }
         },
         {
@@ -35,9 +35,9 @@
             "name": "elf-like-creature",
             "display": "Elf Like Creature",
             "desc": "This little Elf Like Creature (ELC) is festive. Okay? It's festive.",
-            "stats":{
-                "follow_accuracy":0.8,
-                "drag":0.95
+            "stats": {
+                "follow_accuracy": 0.8,
+                "drag": 0.95
             }
         },
         {
@@ -78,11 +78,11 @@
             "desc": "This adorable ram will hit you really hard! Not here, though. Here they're just adorable!",
             "unlock": "DATE",
             "data": 1734670800,
-            "stats":{
-                "follow_speed":325,
+            "stats": {
+                "follow_speed": 325,
                 "follow_acl": 60,
-                "follow_accuracy":0.9,
-                "drag":0.95
+                "follow_accuracy": 0.9,
+                "drag": 0.95
             }
         },
         {
@@ -91,11 +91,11 @@
             "desc": "It may be a pigeon covered in soot, but this loyal bird follows Captain Carrion wherever they go.",
             "unlock": "FLAG",
             "data": "UNLOCK_CARRION",
-            "stats":{
-                "follow_speed":325,
+            "stats": {
+                "follow_speed": 325,
                 "follow_acl": 45,
-                "follow_accuracy":0.95,
-                "drag":0.8
+                "follow_accuracy": 0.95,
+                "drag": 0.8
             }
         },
         {
@@ -104,8 +104,8 @@
             "desc": "The only child Dad won't chainsaw. Instead, it's family bonding for the whole family!",
             "unlock": "DATE",
             "data": 1734843600,
-            "stats":{
-                "follow_speed":200,
+            "stats": {
+                "follow_speed": 200,
                 "follow_acl": 10
             }
         },
@@ -122,11 +122,11 @@
             "desc": "Not to be confused with that other seal clubbing game.",
             "unlock": "DATE",
             "data": 1734930000,
-            "stats":{
+            "stats": {
                 "follow_speed": 200,
                 "follow_acl": 60,
-                "follow_accuracy":0.3,
-                "drag":0.99
+                "follow_accuracy": 0.3,
+                "drag": 0.99
             }
         },
         {
@@ -148,23 +148,23 @@
             "unlock": "FLAG",
             "data": "TAMAGO_ENCOUNTERED"
         },
-		{
-			"name": "shmigmar",
+        {
+            "name": "shmigmar",
             "display": "Shmigmar",
             "desc": "Shmigmar loves his wife, Swiishii, very much. We need can aspire to be more like Shmigmar.",
             "unlock": "FLAG"
-		},
+        },
         {
             "name": "pet-box",
             "display": "Box",
             "desc": "Yea that's a box alright.",
             "unlock": "FLAG",
             "data": "A_LOT_OF_PATIENCE",
-            "stats":{
+            "stats": {
                 "follow_speed": 150,
                 "follow_acl": 60,
-                "follow_accuracy":0.1,
-                "drag":0.99
+                "follow_accuracy": 0.1,
+                "drag": 0.99
             }
         },
         {
@@ -191,12 +191,41 @@
             "display": "Peanut Budder",
             "desc": "It's budder than ever!",
             "unlock": "FLAG",
-            "data":"PEANUT_BUDDERED"
+            "data": "PEANUT_BUDDERED"
         },
         {
             "name": "interactive-buddy",
             "display": "Interactive Buddy",
-            "unlock": "FLAG",
+            "desc": "It's your very own interactive buddy! Watch it careen itself around! Remember: It loves you, so please don't hurt it.",
+            "unlock": "DATE",
+            "data": 1735448400
+        },
+        {
+            "name": "rated-e",
+            "display": "Rated E",
+            "desc": "It's rated E! It's for everyone and it loves everyone back!",
+            "unlock": "DATE",
+            "data": 1735448400
+        },
+        {
+            "name": "rated-t",
+            "display": "Rated T",
+            "desc": "It's Rated T. It's like rated E except edgier. It swears a bit. Yea. What's it to you?",
+            "unlock": "DATE",
+            "data": 1735448400
+        },
+        {
+            "name": "rated-m",
+            "display": "Rated M",
+            "desc": "It's rated M for Mature. Watch out, this one's definitely not for kids!",
+            "unlock": "DATE",
+            "data": 1735448400
+        },
+        {
+            "name": "rated-a",
+            "display": "Rated A",
+            "desc": "It's rated A! Adults only past this point. Who knows what debauchery is behind this rating? It might even have some weird banner ads below it!",
+            "unlock": "DATE",
             "data": 1735448400
         }
     ]

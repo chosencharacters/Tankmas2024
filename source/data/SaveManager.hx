@@ -176,10 +176,15 @@ class SaveManager
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("box"));
 				case "GOT_SHMIGGED":
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("comic-shmigmar"));
+				case "PONYABLE_CONTENT":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("pony-boy"));
+				case "UNLOCK_PROJECT_154":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("thing-thing"));
 			}
 		}
 		switch (current_pet)
 		{
+			default:
 			case "penicorn":
 				Main.ng_api.medal_popup(Main.ng_api.medals.get("penicorn"));
 		}
