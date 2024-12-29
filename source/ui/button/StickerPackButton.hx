@@ -11,7 +11,7 @@ class StickerPackButton extends HoverButton
 	public function new(?X:Float, ?Y:Float)
 	{
 		super(X, Y);
-		on_pressed = open_sticker_pack;
+		on_released = open_sticker_pack;
 		// sticker_pack.setPosition(20, FlxG.height - sticker_pack.height - 20);
 
 		rare = SaveManager.has_rare_emote_pack;

@@ -20,6 +20,8 @@ class BaseState extends FlxState
 	var radio:RadioManager;
 
 	var cursor:Cursor;
+	
+	var trace_new_state:Bool = false;
 
 	public function new()
 	{

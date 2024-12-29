@@ -5,7 +5,8 @@ import flixel.FlxState;
 class Cursor extends FlxSpriteExt
 {
 	var parent_state:FlxState;
-	var always_visible:Bool = false;
+
+	public var always_visible:Bool = false;
 
 	public function new(parent_state:FlxState, always_visible = false)
 	{
