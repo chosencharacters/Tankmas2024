@@ -50,7 +50,7 @@ class Main extends Sprite
 
 	public static var initial_state(get, never):InitialState;
 
-	public static var default_song:String = "visual-snow-redux";
+	public static var default_song:String = "vericon-starcat";
 
 	public static var current_song:String;
 
