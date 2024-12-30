@@ -85,21 +85,21 @@
 	</animSet>
 
 	<animSet image="song-book-ui" width="309" height="299">
-		<anim name="christmasohyeah-stixdevs">0</anim>
-		<anim name="christmasjoy-realtin3sn">1</anim>
-		<anim name="thewanderer-everratic">2</anim>
-		<anim name="dancinginthesnow-twistedfw">3</anim>
-		<anim name="odetosnow-leavesz">4</anim>
-		<anim name="HolidayMelody-Irish-Soul">5</anim>
-		<anim name="santasgone-druoxtheshredder">6</anim>
-		<anim name="HarktheAngel-Jumbs">7</anim>
-		<anim name="spiritus-albe">8</anim>
-		<anim name="another-tankmas-snowday">9</anim>
-		<anim name="towardsanewyear-teffyd">10</anim>
-		<anim name="snowflakes-droid">11</anim>
+		<anim name="christmas-oh-yeah">0</anim>
+		<anim name="christmas-joy">1</anim>
+		<anim name="the-wanderer">2</anim>
+		<anim name="dancing-in-the-snow">3</anim>
+		<anim name="ode-to-snow">4</anim>
+		<anim name="holiday-memories">5</anim>
+		<anim name="santas-gone">6</anim>
+		<anim name="hark-the-herald-angel">7</anim>
+		<anim name="spiritus">8</anim>
+		<anim name="another-tankmas-snow-day">9</anim>
+		<anim name="towards-a-new-year">10</anim>
+		<anim name="snowflakes">11</anim>
 		<anim name="christmaseve-alltogethernow">12</anim>
-		<anim name="alotlikechristmas-connorgrail">13</anim>
-		<anim name="visualsnowredux-rappinawful">14</anim>
+		<anim name="its-beginning-to-look-a-lot-like-christmas">13</anim>
+		<anim name="visual-snow-redux">14</anim>
 	</animSet>
 
 	<animSet image="menorah" width="191" height="218">

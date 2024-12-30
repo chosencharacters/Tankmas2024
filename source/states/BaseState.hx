@@ -36,10 +36,14 @@ class BaseState extends FlxState
 			FIRST_RUN = false;
 
 			#if !no_radio
+			trace("Playing Radio");
 			radio = new RadioManager();
-			#end
+			#else
+			trace("Playing default track");
 			var track:TrackDef = JsonData.get_track(Main.current_song);
 			SoundPlayer.music(track).onComplete((_music) -> trace('Song started playing.'));
+			#end
+
 			#if no_music
 			FlxG.sound.music.volume = 0;
 			#end

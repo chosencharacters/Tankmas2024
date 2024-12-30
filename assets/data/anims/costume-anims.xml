@@ -43,8 +43,8 @@
 	<animSet image="pet-tamago-pet">
 		<anim name="left-idle">0</anim>
 		<anim name="right-idle">0</anim>
-		<anim name="left-move" fps="70">1t7</anim>
-		<anim name="right-move" fps="70">1t7</anim>
+		<anim name="left-move" fps="70ms">1t7</anim>
+		<anim name="right-move" fps="70ms">1t7</anim>
 	</animSet>
 
 	<animSet image="costume-pony-boy">

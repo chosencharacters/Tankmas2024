@@ -21,25 +21,30 @@ class RadioManager
 {
 	var current_segment:RadioSegment;
 	var sounds:Map<String, Array<String>> = [];
-	var next_music_followup:RadioSegmentType = AD;
+	var next_music_followup:RadioSegmentType = SHOTGUN;
 	var current_sound:FlxSound;
+
+	public static var first_play:Bool = true;
+
+	public static var prev_track:String = "";
 
 	public static var volume:Float = 1.0;
 
-	var next_music_track:Map<Int, Array<String>> = [1 => ["christmasohyeah", "stixdevs"], 3 => ["christmasjoy", "realtin3sn"]];
+	var sound_categories:Array<String> = ['ad-intro-', 'ad-main-', 'shotgun-'];
 
-	final sound_categories:Array<String> = [
-		'ad-intro-',
-		'ad-main-',
-		'ad-outro-',
-		'music-chaoz-fantasy-intro-',
-		'music-chaoz-fantasy-main-',
-		'music-chaoz-fantasy-outro-',
-		'news-intro-',
-		'news-outro-',
-		'news-A-main-',
-		'news-A-followup-',
-		'shotgun-'
+	var tracks:Array<String> = [
+		"another-tankmas-snow-day",
+		"christmas-eve-tatsuro-yamashi",
+		"hark-the-harold-angel-sing",
+		"holiday-memories",
+		"its-beginning-to-look-a-lot-like-christmas",
+		"ode-to-snow",
+		"snowflakes",
+		"spiritus",
+		"the-wanderer",
+		"this-is-christmas-oh-yeah",
+		"dancing-in-the-snow",
+		"santas-gone"
 	];
 
 	var ran:FlxRandom;
@@ -78,12 +83,19 @@ class RadioManager
 	}
 
 	public function manage_sounds_array()
+	{
+		for (track in tracks)
+			for (suffix in ["title", "intro", "outro"])
+				if (!sound_categories.contains('music-$track-$suffix'))
+					sound_categories.push('music-$track-$suffix');
+
 		for (category in sound_categories)
 			if (!sounds.exists(category) || sounds.get(category).length == 0)
 			{
 				sounds.set(category, Paths.get_every_file_of_type('.ogg', 'assets', category));
 				ran.shuffle(sounds.get(category));
 			}
+	}
 
 	function get_part(part_name:String)
 	{
@@ -123,15 +135,15 @@ class RadioManager
 
 	function make_music(segment:RadioSegment):RadioSegment
 	{
-		final n:Array<String> = get_random_track();
+		var track:String = get_random_track();
 		segment.parts = [
-			get_part('music-${n[0]}-intro-'),
-			get_part('music-${n[0]}-main-'),
-			n.join("_"),
-			get_part('music-${n[0]}-outro-')
+			get_part('music-${track}-intro-'),
+			get_part('music-${track}-main-'),
+			track,
+			get_part('music-${track}-outro-')
 		];
 		segment.follow_up = next_music_followup;
-		next_music_followup == AD ? NEWS : AD;
+		next_music_followup = next_music_followup == MUSIC ? AD : MUSIC;
 		return segment;
 	}
 
@@ -146,18 +158,23 @@ class RadioManager
 
 	function make_ad(segment:RadioSegment):RadioSegment
 	{
-		segment.parts = [get_part('ad-intro-'), get_part('ad-main-'), get_part('ad-outro-')];
+		segment.parts = [get_part('ad-intro-'), get_part('ad-main-')];
 		segment.follow_up = SHOTGUN;
 		MusicPopup.show_info("You're listening to Tankmas Radio!");
 		return segment;
 	}
 
-	function get_random_track():Array<String>
+	function get_random_track():String
 	{
-		final currentOps:Array<Array<String>> = [];
-		for (key in next_music_track.keys())
-			if (key <= 1)
-				currentOps.push(next_music_track.get(key));
-		return currentOps[FlxG.random.int(0, currentOps.length - 1)];
+		if (first_play)
+		{
+			first_play = false;
+			prev_track = Main.default_song;
+		}
+		else
+		{
+			prev_track = ran.getObject(tracks);
+		}
+		return prev_track;
 	}
 }

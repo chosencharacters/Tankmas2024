@@ -176,7 +176,6 @@ class Lists
 
 	public static function recursive_file_operation(?verboise:Bool = false, path:String, ext:String, file_operation:String->Void)
 	{
-		trace(find_all_files_by_name(verboise, path, ext));
 		for (file_path in find_all_files_by_name(verboise, path, ext))
 			try
 			{

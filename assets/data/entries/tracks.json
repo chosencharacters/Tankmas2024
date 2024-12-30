@@ -1,62 +1,62 @@
 {
     "tracks": [
         {
-            "id": "christmasohyeah-stixdevs",
+            "id": "christmas-oh-yeah",
             "name": "StixDevs",
             "artist": "Christmas? Oh yeah!"
         },
         {
-            "id": "christmasjoy-realtin3sn",
+            "id": "christmas-joy",
             "name": "Christmas Joy",
             "artist": "RealTin3Sn"
         },
         {
-            "id": "thewanderer-everratic",
+            "id": "the-wanderer",
             "name": "The Wanderer",
             "artist": "EVERRATIC!!!"
         },
         {
-            "id": "dancinginthesnow-twistedfw",
+            "id": "dancing-in-the-snow",
             "name": "Dancing in the Snow",
             "artist": "TwistedFW"
         },
         {
-            "id": "odetosnow-leavesz",
+            "id": "ode-to-snow",
             "name": "Ode to Snow",
             "artist": "Leavesz"
         },
         {
-            "id": "HolidayMelody-Irish-Soul",
-            "name": "Holiday Melody",
+            "id": "holiday-memories",
+            "name": "Holiday Memories",
             "artist": "Irish Soul"
         },
         {
-            "id": "santasgone-druoxtheshredder",
+            "id": "santas-gone",
             "name": "Santa's Gone",
             "artist": "DruoxTheShredder"
         },
         {
-            "id": "HarktheAngel-Jumbs",
+            "id": "hark-the-herald-angel",
             "name": "Jumbs",
-            "artist": "Hark the Angels"
+            "artist": "Hark the Herald Angels"
         },
         {
-            "id": "spiritus-albe",
+            "id": "spiritus",
             "name": "Spiritus",
             "artist": "Albe"
         },
         {
-            "id": "another-tankmas-snowday",
+            "id": "another-tankmas-snow-day",
             "name": "Another Tankmas Snowday",
             "artist": "TeraVex"
         },
         {
-            "id": "towardsanewyear-teffyd",
+            "id": "towards-a-new-year",
             "name": "Towards a New Year",
             "artist": "TeffyD"
         },
         {
-            "id": "snowflakes-droid",
+            "id": "snowflakes",
             "name": "Snowflakes",
             "artist": "Droid"
         },
@@ -66,12 +66,12 @@
             "artist": "Jumbs, ConnorGrail, TeraVex"
         },
         {
-            "id": "alotlikechristmas-connorgrail",
+            "id": "its-beginning-to-look-a-lot-like-christmas",
             "name": "A Lot Like Tankmas",
             "artist": "ConnorGrail & Jumbs"
         },
         {
-            "id": "visualsnowredux-rappinawful",
+            "id": "visual-snow-redux",
             "name": "Visual Snow Redux",
             "artist": "rappinawful"
         }
