@@ -113,10 +113,10 @@
 				<dlg>Yanno what? Go box yourself</dlg>
 			</option>
         </state>
-		<state name="same-char" if="PET_BOX_PET">
+		<state name="same-char" if="PET_BOX_BUDDY">
             <dlg>See, this guy gets it.</dlg>
 		</state>
-		<state name="talked-before" if="A_LOT_OF_PATIENCE_and_!PET_BOX_PET">
+		<state name="talked-before" if="A_LOT_OF_PATIENCE_and_!PET_BOX_BUDDY">
             <dlg>Hey how ya doin'</dlg>
 		</state>
     </npc>
@@ -233,6 +233,30 @@
 		</state>
 		<state name="auditor" if="COSTUME_AUDITOR">
             <dlg>*They don't seem particularly phased by your ominous powers, Auditor*</dlg>
+		</state>
+    </npc>
+	<npc name="awesome-snake">
+        <state name="default">
+            <dlg set="AWESOME_ENCOUNTERED">Man. I hate this suit.</dlg>
+			<dlg>I wanna take off this suit.</dlg>
+			<dlg>Hey, do you have something I could strip and hide under?</dlg>
+		</state>
+		<state name="has-box" if="AWESOME_ENCOUNTERED_and_PET_BOX_BUDDY_and_!PLAYER_IS_AWESOME">
+            <dlg>Hey, is that a box?</dlg>
+			<dlg>Can I borrow it?</dlg>
+			<dlg>I'll totally give you my suit for it</dlg>
+			<option label="Sure dude">
+				<dlg set="PLAYER_IS_AWESOME">Awesome.</dlg>
+            </option>
+			<option label="No way dude">
+				<dlg>Not awesome.</dlg>
+            </option>
+		</state>
+		<state name="same-char" if="COSTUME_AWESOME_SNAKE">
+            <dlg>You're awesome for letting me borrow that box, but, dude, can you wear that somewhere else.</dlg>
+		</state>
+		<state name="quest-done" if="!COSTUME_AWESOME_SNAKE_and_PLAYER_IS_AWESOME">
+            <dlg>You're awesome</dlg>
 		</state>
     </npc>
 </root>

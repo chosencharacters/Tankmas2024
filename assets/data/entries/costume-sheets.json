@@ -463,13 +463,13 @@
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "dr-bees",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "awesome-snake",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
@@ -515,7 +515,7 @@
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "convict",
                     "angle": -10
                 }
             ]

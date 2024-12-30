@@ -49,6 +49,7 @@ class ComicSubstate extends FlxSubstateExt
 		add(black);
 
 		this.comic_name = comic_name;
+
 		comic_base = 'comic-${comic_name}';
 
 		Ctrl.mode = ControlModes.TALKING;
@@ -56,6 +57,11 @@ class ComicSubstate extends FlxSubstateExt
 		comic = new FlxSpriteExt();
 
 		pages = Paths.get_every_file_of_type(".png", 'assets', 'comic-${comic_name}').length;
+
+		if (pages == 0)
+			pages = Paths.get_every_file_of_type(".jpg", 'assets', 'comic-${comic_name}').length;
+
+		trace(pages);
 
 		left_arrow = new HoverButton(Paths.image_path("left-arrow"), (b) -> prev_page());
 		right_arrow = new HoverButton(Paths.image_path("right-arrow"), (b) -> next_page());
@@ -137,7 +143,6 @@ class ComicSubstate extends FlxSubstateExt
 	{
 		comic.loadGraphic(Paths.image_path('$comic_base-$page'));
 		comic.setGraphicSize(comic.width >= comic.height ? 1920 : 0, comic.height >= comic.width ? 1080 : 0);
-		trace(comic.width, comic.height);
 
 		comic.screenCenter();
 		left_arrow.screenCenter();

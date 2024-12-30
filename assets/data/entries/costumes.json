@@ -638,6 +638,27 @@
             "desc": "A happy go lucky robot and faithful staff of Rick's Diner!",
             "unlock": "FLAG",
             "data": "PONYABLE_CONTENT"
+        },
+        {
+            "name": "convict",
+            "display": "Convict",
+            "desc": "A happy go lucky robot and faithful staff of Rick's Diner!",
+            "unlock": "DATE_AND_SUPPORTER",
+            "data": 1735534800
+        },
+        {
+            "name": "awesome-snake",
+            "display": "Snake",
+            "desc": "Oh my god hottness, I wanna bang you",
+            "unlock": "FLAG",
+            "data": "PLAYER_IS_AWESOME"
+        },
+        {
+            "name": "dr-bees",
+            "display": "Dr. Bees",
+            "desc": "Bees!",
+            "unlock": "DATE",
+            "data": 1735534800
         }
     ]
 }

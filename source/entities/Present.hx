@@ -66,7 +66,7 @@ class Present extends Interactable
 
 		comic = def.comicProperties != null ? true : false;
 
-		if (["dragonmiracles", "guri", "marbardan82", "oscarlors"].contains(username))
+		if (["dragonmiracles", "guri", "marbardan82", "oscarlors", "midgetsausage-2"].contains(username))
 			comic = true;
 
 		openable = true;
@@ -269,7 +269,7 @@ class Present extends Interactable
 			trace(num_25_opened + "/" + req_num_25_opened);
 			trace(num_28_opened + "/" + req_num_28_opened);
 		}
-		if (comic && ["guri", "dragonmiracles", "oscarlors"].contains(username))
+		if (comic && ["guri", "dragonmiracles", "oscarlors", "midgetsausage-2"].contains(username))
 			Main.ng_api.medal_popup(Main.ng_api.medals.get('comic-${username}'));
 		#end
 		if (comic && username == "marbardan82")

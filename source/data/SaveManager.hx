@@ -180,6 +180,8 @@ class SaveManager
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("pony-boy"));
 				case "UNLOCK_PROJECT_154":
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("thing-thing"));
+				case "PLAYER_IS_AWESOME":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("awesome-snake"));
 			}
 		}
 		switch (current_pet)

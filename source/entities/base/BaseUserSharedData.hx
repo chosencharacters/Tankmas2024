@@ -8,4 +8,5 @@ typedef BaseUserSharedData =
 	var ?pet:String;
 	var ?marshmallow_streak:Int;
 	var ?scale:Float;
+	var ?convict:String;
 }

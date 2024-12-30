@@ -52,6 +52,17 @@
 		<anim name="right-idle" fps="100ms">0t10</anim>
 	</animSet>
 
+	<animSet image="costume-convict">
+		<anim name="left-idle">0</anim>
+		<anim name="right-idle">1</anim>
+		<anim name="left-move||right-move" fps="500ms">2t4</anim>
+	</animSet>
+
+	<animSet image="costume-mella">
+		<anim name="left-idle||right-idle">0</anim>
+		<anim name="left-move||right-move" fps="70ms">1t10</anim>
+	</animSet>
+
 	<!--animSet image="pet-interactive-buddy" width="99" height="114">
 		<anim name="left-idle||right-idle">0</anim>
 		<anim name="left-move||right-move">1</anim>

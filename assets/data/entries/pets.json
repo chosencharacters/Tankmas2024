@@ -155,7 +155,7 @@
             "unlock": "FLAG"
         },
         {
-            "name": "pet-box",
+            "name": "box-buddy",
             "display": "Box",
             "desc": "Yea that's a box alright.",
             "unlock": "FLAG",
@@ -227,6 +227,20 @@
             "desc": "It's rated A! Adults only past this point. Who knows what debauchery is behind this rating? It might even have some weird banner ads below it!",
             "unlock": "DATE",
             "data": 1735448400
+        },
+        {
+            "name": "bee",
+            "display": "Bee",
+            "desc": "Bees are winged insects closely related to wasps and ants, known for their roles in pollination and, in the case of the best-known bee species, the western honey bee, for producing honey.",
+            "unlock": "DATE",
+            "data": 1735534800
+        },
+        {
+            "name": "guardian-angel",
+            "display": "Guardian Angel",
+            "desc": "Always looking out for you, and dealing contact damage to anyone that gets near you. What a true buddy!",
+            "unlock": "DATE",
+            "data": 1735534800
         }
     ]
 }

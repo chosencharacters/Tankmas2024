@@ -97,7 +97,7 @@
                     "yOffset": -30
                 },
                 {
-                    "name": "pet-box",
+                    "name": "box-buddy",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
@@ -151,11 +151,11 @@
                     "angle": -10
                 },
                 {
-                    "name": null,
+                    "name": "guardian-angel",
                     "angle": -10
                 },
                 {
-                    "name": null,
+                    "name": "bee",
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30
