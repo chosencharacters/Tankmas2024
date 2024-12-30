@@ -74,6 +74,11 @@
             "id": "visual-snow-redux",
             "name": "Visual Snow Redux",
             "artist": "rappinawful"
+        },
+        {
+            "id": "vericon-starcat",
+            "name": "Vericon",
+            "artist": "StarCat"
         }
 
     ]
