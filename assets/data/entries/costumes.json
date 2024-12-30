@@ -638,6 +638,13 @@
             "desc": "A happy go lucky robot and faithful staff of Rick's Diner!",
             "unlock": "FLAG",
             "data": "PONYABLE_CONTENT"
+        },
+        {
+            "name": "bbtopper",
+            "display": "General B.B. Topper",
+            "desc": "Reporting for Drop Cannon duty, B.B. Topper, Mom!... MA'AM!!!I MEAN MA'AM!!",
+            "unlock": "FLAG",
+            "data": 1735621200
         }
     ]
 }

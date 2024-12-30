@@ -106,7 +106,9 @@
             "data": 1734843600,
             "stats": {
                 "follow_speed": 200,
-                "follow_acl": 10
+                "follow_acl": 10,
+                "follow_accuracy": 0.5,
+                "drag": 0.7
             }
         },
         {
@@ -126,7 +128,7 @@
                 "follow_speed": 200,
                 "follow_acl": 60,
                 "follow_accuracy": 0.3,
-                "drag": 0.99
+                "drag": 0.8
             }
         },
         {
@@ -161,16 +163,22 @@
             "unlock": "FLAG",
             "data": "A_LOT_OF_PATIENCE",
             "stats": {
-                "follow_speed": 150,
-                "follow_acl": 60,
-                "follow_accuracy": 0.1,
-                "drag": 0.99
+                "follow_speed": 225,
+                "follow_acl": 100,
+                "follow_accuracy": 0.5,
+                "drag": 0.8
             }
         },
         {
             "name": "penicorn",
             "display": "Mystery Unicorn Plush",
-            "desc": "Don't worry about it."
+            "desc": "Don't worry about it.",
+            "stats": {
+                "follow_speed": 125,
+                "follow_acl": 60,
+                "follow_accuracy": 0.2,
+                "drag": 0.85
+            }
         },
         {
             "name": "gooble",
@@ -182,23 +190,39 @@
         {
             "name": "shmigmar",
             "display": "Shmigmar",
-            "desc": "Duty calls those who answer the duty. For some, we get heroes, for the fortunate, we get Shmigmar.",
-            "unlock": "FLAG",
-            "data": "GOT_SHMIGGED"
+            "desc": "For some, we get heroes, for the fortunate, we get Shmigmar.",
+            "stats": {
+                "follow_speed": 150,
+                "follow_acl": 60,
+                "follow_accuracy": 0.1,
+                "drag": 0.99
+            }
         },
         {
             "name": "peanutbudder",
             "display": "Peanut Budder",
             "desc": "It's budder than ever!",
             "unlock": "FLAG",
-            "data": "PEANUT_BUDDERED"
+            "data": "PEANUT_BUDDERED",
+            "stats": {
+                "follow_speed": 150,
+                "follow_acl": 60,
+                "follow_accuracy": 0.1,
+                "drag": 0.5
+            }
         },
         {
             "name": "interactive-buddy",
             "display": "Interactive Buddy",
             "desc": "It's your very own interactive buddy! Watch it careen itself around! Remember: It loves you, so please don't hurt it.",
             "unlock": "DATE",
-            "data": 1735448400
+            "data": 1735448400,
+            "stats": {
+                "follow_speed": 150,
+                "follow_acl": 60,
+                "follow_accuracy": 0.1,
+                "drag": 0.5
+            }
         },
         {
             "name": "rated-e",
