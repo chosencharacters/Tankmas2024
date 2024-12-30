@@ -3,7 +3,7 @@
         {
             "name": "invisible-pet",
             "display": "Nothing",
-            "desc": "It's nothing! Absolutely nothing! For those that hate pets. Jerk."
+            "desc": "It's nothing! Absolutely nothing! For those that hate pets >:("
         },
         {
             "name": "tank-icon",
@@ -251,6 +251,13 @@
             "desc": "It's rated A! Adults only past this point. Who knows what debauchery is behind this rating? It might even have some weird banner ads below it!",
             "unlock": "DATE",
             "data": 1735448400
+        },
+        {
+            "name": "guardian-angel",
+            "display": "Guardian Angel",
+            "desc": "This will protect you.",
+            "unlock": "DATE",
+            "data": 1735621200
         }
     ]
 }
