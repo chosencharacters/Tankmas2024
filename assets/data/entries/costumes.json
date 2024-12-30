@@ -610,21 +610,21 @@
             "desc": "The loveable axolotl that loves to hang out with his strange friends.",
             "unlock": "DATE",
             "data": 1735275600
-		},
+        },
         {
             "name": "peebs",
             "display": "Peebs",
             "desc": "Certified cool dude (in training)",
             "unlock": "DATE",
             "data": 1735448400
-		},
+        },
         {
             "name": "dax",
             "display": "Dax",
             "desc": "Not COOL enough? Call Dax, Master of all matters COOL! Sign up for his COOL lessons and you'll be as COOL as Dax in no time! HELL YEAH!!!",
             "unlock": "DATE",
             "data": 1735448400
-	    },
+        },
         {
             "name": "project-154",
             "display": "Project 154",
@@ -659,6 +659,13 @@
             "desc": "Bees!",
             "unlock": "DATE",
             "data": 1735534800
+        },
+        {
+            "name": "bb-topper",
+            "display": "General B.B. Topper",
+            "desc": "Reporting for Drop Cannon duty, B.B. Topper, Mom!... MA'AM!!!I MEAN MA'AM!!",
+            "unlock": "FLAG",
+            "data": 1735621200
         }
     ]
 }
