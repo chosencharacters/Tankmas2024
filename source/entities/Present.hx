@@ -10,6 +10,7 @@ import fx.Thumbnail;
 import net.tankmas.OnlineLoop;
 import states.substates.ArtSubstate;
 import states.substates.ComicSubstate;
+import states.substates.TankmasChroniclesSubstate;
 
 class Present extends Interactable
 {
@@ -66,7 +67,14 @@ class Present extends Interactable
 
 		comic = def.comicProperties != null ? true : false;
 
-		if (["dragonmiracles", "guri", "marbardan82", "oscarlors", "midgetsausage-2"].contains(username))
+		if ([
+			"dragonmiracles",
+			"guri",
+			"marbardan82",
+			"oscarlors",
+			"midgetsausage-2",
+			"tankmas-chronicles"
+		].contains(username))
 			comic = true;
 
 		openable = true;
@@ -231,7 +239,10 @@ class Present extends Interactable
 			{
 				sstate(OPENED);
 				thumbnail.sstate("OPEN");
-				PlayState.self.openSubState(comic ? new ComicSubstate(username) : new ArtSubstate(username));
+				if (username == "tankmas-chronicles")
+					PlayState.self.openSubState(new TankmasChroniclesSubstate("intro-page-1"));
+				else
+					PlayState.self.openSubState(comic ? new ComicSubstate(username) : new ArtSubstate(username));
 				opened = true;
 
 				medal_was_unlocked = is_medal_unlock_enabled();

@@ -30,6 +30,7 @@ import physics.CollisionResolver;
 import physics.CollisionResolver;
 import physics.CollisionResolver;
 import ui.DialogueBox;
+import ui.GachaSpawnUI;
 import ui.MainGameOverlay;
 import ui.TouchOverlay;
 import ui.popups.ServerNotificationMessagePopup;

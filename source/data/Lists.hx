@@ -53,10 +53,9 @@ class Lists
 		for (group in ["general", "amogus", "cameo", "persimmon"])
 			NPCLoader.load_npc_defs_from_file(npcs, Paths.get('$group-npc-dlgs.xml'));
 
-		for (route in ["intro", "pico"])
-			TankmasChroniclesLoader.load_tankmas_chronicles_from_file(tankmas_chronicles_passages, Paths.get('tankmas-chronicles-$route.xml'));
+		TankmasChroniclesLoader.load_tankmas_chronicles_from_file(tankmas_chronicles_passages, Paths.get('tankmas-chronicles.xml'));
 
-		trace(tankmas_chronicles_passages);
+		// trace(tankmas_chronicles_passages);
 
 		// recursive_file_operation(false, '${assets_path}', "npc-dlgs.xml", (path) -> NPCLoader.load_npc_defs_from_file(npcs, path));
 

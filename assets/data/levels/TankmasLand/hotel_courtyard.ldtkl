@@ -1372,6 +1372,44 @@
 					],
 					"__worldX": 976,
 					"__worldY": 848
+				},
+				{
+					"__identifier": "Misc",
+					"__grid": [36,44],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFE600",
+					"iid": "86f32fd0-c210-11ef-abae-9115854a9cc3",
+					"width": 208,
+					"height": 224,
+					"defUid": 49,
+					"px": [576,704],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "gachapon", "__tile": null, "defUid": 50, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["gachapon"]
+					}] }],
+					"__worldX": 576,
+					"__worldY": 704
+				},
+				{
+					"__identifier": "Misc",
+					"__grid": [45,44],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFE600",
+					"iid": "0b69dca0-c210-11ef-abae-5ffc94214520",
+					"width": 224,
+					"height": 224,
+					"defUid": 49,
+					"px": [720,704],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "gachapon", "__tile": null, "defUid": 50, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["gachapon"]
+					}] }],
+					"__worldX": 720,
+					"__worldY": 704
 				}
 			]
 		},

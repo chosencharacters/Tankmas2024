@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <passage name="intro-page-1" next="intro-page-2" sound="narrator-intro-page-1"/>
+    <passage name="intro-page-2" next="intro-page-3" sound="narrator-intro-page-2,pico-intro-page-1-file-1,narrator-intro-page-2-file-1,pico-intro-page-1-file-2,narrator-intro-page-2-file-2,pico-intro-page-1-file-3,narrator-intro-page-2-file-3"/>
+    <passage name="intro-page-3" next="intro-page-4" sound="pico-intro-page-2-file-1,pico-intro-page-2-file-1-2,concierge-intro-page-2-file-1,concierge-intro-page-2-file-2,concierge-intro-page-2-file-3,pico-intro-page-2-file-2,pico-intro-page-2-file-3"/>
+
+    <passage name="intro-page-4" choices="intro-page-4-dont-read,intro-page-4-read" sound="pico-intro-page-3-file-1,pico-intro-page-3-file-2"/>
+
+    <choice name="intro-page-4-dont-read" link="intro-page-1"/>
+    <choice name="intro-page-4-read" link="intro-page-5"/>
+
+    <passage name="intro-page-5" next="intro-page-6" sound="pico-intro-page-4-file-1,pico-intro-page-4-file-2"/>
+    <passage name="intro-page-6" next="intro-page-7" sound="pico-intro-page-5-file-1,pico-intro-page-5-file-2,pico-intro-page-5-file-3,pico-intro-page-5-file-4,pico-intro-page-5-file-5"/>
+    <passage name="intro-page-7" next="steveroute-page-8" sound="pico-intro-page-6-file-1"/>
+    <passage name="steveroute-page-8" next="steveroute-page-9" sound="pico-steveroute-page-1-file-1"/>
+    <passage name="steveroute-page-9" next="steveroute-page-10" sound="steve-steveroute-page-2-file-1"/>
+    <passage name="steveroute-page-10" next="steveroute-page-11" sound="pico-steveroute-page-3-file-1,steve-steveroute-page-3-file-1,steve-steveroute-page-3-file-2"/>
+    <passage name="steveroute-page-11" next="steveroute-page-12" sound="pico-steveroute-page-4-file-1,steve-steveroute-page-4-file-1"/>
+    <passage name="steveroute-page-12" next="steveroute-page-13" sound="pico-steveroute-page-5-file-1,steve-steveroute-page-5-file-1"/>
+
+    <passage name="steveroute-page-13" choices="steveroute-page-13-take-gun,steveroute-page-13-leave-gun"/>
+
+    <choice name="steveroute-page-13-leave-gun" link="steveroute-page-14"/>
+    <choice name="steveroute-page-13-take-gun" link="steveroute-page-15"/>
+
+    <passage name="steveroute-page-14" next="steveroute-page-13" sound="pico-steveroute-page-7-file-1,steve-steveroute-page-7-file-1"/>
+    <passage name="steveroute-page-15" next="steveroute-page-16" sound="pico-steveroute-page-8-file-1,steve-steveroute-page-8-file-1,steve-steveroute-page-8-file-2"/>
+    <passage name="steveroute-page-16" next="steveroute-page-17" sound="pico-steveroute-page-9-file-1"/>
+
+    <passage name="steveroute-page-17" choices="steveroute-page-17-left,steveroute-page-17-right" sound="pico-steveroute-page-10-file-1,steve-steveroute-page-10-file-1,pico-steveroute-page-10-file-2"/>
+
+    <choice name="steveroute-page-17-left" link="steveroute-page-18"/>
+    <choice name="steveroute-page-17-right" link="steveroute-page-21"/>
+
+    <passage name="steveroute-page-18" next="steveroute-page-19" sound="pico-steveroute-page-11-file-1"/>
+    <passage name="steveroute-page-19" next="steveroute-page-20" sound="pico-steveroute-page-12-file-1,steve-steveroute-page-12-file-1,pico-steveroute-page-12-file-2"/>
+    <passage name="steveroute-page-20" next="steveroute-page-17" sound="steve-steveroute-page-13-file-1"/>
+    <passage name="steveroute-page-21" next="steveroute-page-22" sound="pico-steveroute-page-14-file-1"/>
+    <passage name="steveroute-page-22" next="steveroute-page-23" sound="pico-steveroute-page-15-file-1,pico-steveroute-page-15-file-2,captain-steveroute-page-15-file-1"/>
+    <passage name="steveroute-page-23" next="steveroute-page-24" sound="pico-steveroute-page-16-file-1,captain-steveroute-page-16-file-1"/>
+    
+    <passage name="steveroute-page-24" choices="steveroute-page-24-punch-cap,steveroute-page-24-pull-cap" sound="pico-steveroute-page-17-file-1"/>
+    <choice name="steveroute-page-24-punch-cap" link="steveroute-page-25"/>
+    <choice name="steveroute-page-24-pull-cap" link="steveroute-page-27"/>
+
+    <passage name="steveroute-page-25" next="steveroute-page-26" sound="pico-steveroute-page-18-file-1,pico-steveroute-page-18-file-2"/>
+    <passage name="steveroute-page-26" next="steveroute-page-24" sound="pico-steveroute-page-19-file-1,pico-steveroute-page-19-file-2"/>
+    <passage name="steveroute-page-27" next="steveroute-page-28" sound="pico-steveroute-page-20-file-1"/>
+    <passage name="steveroute-page-28" next="steveroute-page-29" sound="pico-steveroute-page-21-file-1,captain-steveroute-page-21-file-1,pico-steveroute-page-21-file-2,pico-steveroute-page-21-file-3,pico-steveroute-page-21-file-4"/>
+    <passage name="steveroute-page-29" next="steveroute-page-30" sound="captain-steveroute-page-22-file-1"/>
+    <passage name="steveroute-page-30" next="outro-page-1" sound="pico-steveroute-page-23-file-1,pico-steveroute-page-23-file-2,steve-steveroute-page-23-file-1"/>
+    <passage name="outro-page-1" next="outro-page-2" sound="pico-outro-page-1-file-1,nyx-outro-page-1-file-1,pico-outro-page-1-file-2,nyx-outro-page-1-file-2"/>
+    <passage name="outro-page-2" next="outro-page-3" sound="pico-outro-page-2-file-1,nyx-outro-page-2-file-1,pico-outro-page-2-file-2,nyx-outro-page-2-file-2,pico-outro-page-2-file-3,pico-outro-page-2-file-4"/>
+    <passage name="outro-page-3" next="intro-page-1" sound="nyx-outro-page-3-file-1,pico-outro-page-3-file-1,narrator-outro-page-3-file-1"/>
+</root>

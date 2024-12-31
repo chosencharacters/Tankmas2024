@@ -100,6 +100,7 @@
 		<anim name="christmaseve-alltogethernow">12</anim>
 		<anim name="its-beginning-to-look-a-lot-like-christmas">13</anim>
 		<anim name="visual-snow-redux">14</anim>
+		<anim name="vericon-starcat">15</anim>
 	</animSet>
 
 	<animSet image="menorah" width="191" height="218">
@@ -111,5 +112,26 @@
 		<anim name="6" fps="100ms">100t119</anim>
 		<anim name="7" fps="100ms">120t139</anim>
 		<anim name="8" fps="100ms">140t159</anim>
+	</animSet>
+
+	<animSet image="gacha-spawn-ui" width="248" height="320">
+		<anim name="in" fps="30ms" looping="false">0t28</anim>
+		<anim name="out" fps="30ms" looping="false">29t44</anim>
+	</animSet>
+
+	<animSet image="gachapon-mascot" width="640" height="350">
+		<anim name="in" fps="100ms" looping="false">0t5</anim>
+		<anim name="out" fps="100ms" looping="false">6t9</anim>
+	</animSet>
+
+	<animSet image="gachapon" width="230" height="400">
+		<anim name="idle" fps="100ms" looping="false">0</anim>
+		<anim name="activate" fps="100ms" looping="false">1t12</anim>
+		<anim name="cd-1" fps="100ms" looping="false">13t14</anim>
+		<anim name="cd-2" fps="100ms" looping="false">15t16</anim>
+		<anim name="cd-3" fps="100ms" looping="false">17t18</anim>
+		<anim name="cd-4" fps="100ms" looping="false">19t20</anim>
+		<anim name="cd-5" fps="100ms" looping="false">21t22</anim>
+		<anim name="reset" fps="100ms" looping="false">23t27</anim>
 	</animSet>
 </root>
