@@ -220,6 +220,8 @@ class PlayState extends BaseState
 		{
 			ui_overlay.offline_indicator.show();
 		}
+
+		new states.substates.TankmasChroniclesSubstate("intro-page-1");
 	}
 
 	public function update_scroll_bounds()

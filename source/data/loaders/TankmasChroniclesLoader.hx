@@ -6,7 +6,7 @@ typedef TankmasChroniclesPassage =
 {
 	var passage_name:String;
 	var image_name:String;
-	var sound_name:String;
+	var sounds:Array<String>;
 	var ?next_passage:String;
 	var ?choices:Array<TankmasChroniclesChoice>;
 	var ?victory_royale:String;
@@ -29,6 +29,8 @@ class TankmasChroniclesLoader
 		for (choice_xml in xml.tags("choice"))
 			choices.set(choice_xml.get("name"), xml_to_tankmas_chronicles_choice(choice_xml));
 
+		trace(choices);
+
 		for (passage_xml in xml.tags("passage"))
 			passages.set(passage_xml.get("name"), xml_to_tankmas_chronicles_passage(passage_xml, choices));
 	}
@@ -37,12 +39,12 @@ class TankmasChroniclesLoader
 	{
 		var passage_name:String = passage_xml.get("name");
 		var image_name:String = passage_xml.exists("image") ? passage_xml.get("image") : passage_name;
-		var sound_name:String = passage_xml.exists("sound") ? passage_xml.get("sound") : passage_name;
+		var sounds:Array<String> = passage_xml.exists("sound") ? passage_xml.get("sound").replace(" ", "").split(",") : [passage_name];
 
 		var passage:TankmasChroniclesPassage = {
 			passage_name: passage_name,
-			image_name: sound_name,
-			sound_name: image_name,
+			image_name: image_name,
+			sounds: sounds,
 			choices: [],
 		};
 
@@ -58,6 +60,8 @@ class TankmasChroniclesLoader
 		if (passage_xml.exists("choices"))
 			for (choice_name in passage_xml.get("choices").split(","))
 				passage.choices.push(choices.get(choice_name));
+
+		trace(passage.image_name, passage.choices);
 
 		passage.victory_royale = passage_xml.get("victory");
 
