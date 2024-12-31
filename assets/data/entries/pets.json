@@ -265,6 +265,13 @@
             "desc": "Always looking out for you, and dealing contact damage to anyone that gets near you. What a true buddy!",
             "unlock": "DATE",
             "data": 1735534800
+        },
+        {
+            "name": "mumba",
+            "display": "Mumba",
+            "desc": "The Ugbiest Ugby Mumba in Ohio",
+            "unlock": "DATE",
+            "data": 1735621200
         }
     ]
 }

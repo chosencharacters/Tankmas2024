@@ -151,17 +151,17 @@
                     "angle": -10
                 },
                 {
-                    "name": "guardian-angel",
+                    "name": "bee",
                     "angle": -10
                 },
                 {
-                    "name": "bee",
+                    "name": "mumba",
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "guardian-angel",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
