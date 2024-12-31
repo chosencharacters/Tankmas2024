@@ -47,6 +47,8 @@ class TankmasChroniclesSubstate extends FlxSubstateExt
 
 		old_music_volume = FlxG.sound.music.volume;
 
+		FlxG.sound.music.volume = 0;
+
 		var black:FlxSpriteExt = new FlxSpriteExt(0, 0).makeGraphicExt(FlxG.width, FlxG.height, FlxColor.BLACK);
 		black.setPosition(0, 0);
 		black.alpha = 0.5;
@@ -126,6 +128,11 @@ class TankmasChroniclesSubstate extends FlxSubstateExt
 		if (sounds_to_play.length > 0)
 			next_sound();
 
+		#if newgrounds
+		if (final_passage)
+			Main.ng_api.medal_popup(Main.ng_api.medals.get('comic-tankmas-chronicles'));
+		#end
+
 		// right_arrow.visible = passage.next_passage != "" && passage.next_passage != null && !has_choices;
 	}
 
@@ -178,7 +185,6 @@ class TankmasChroniclesSubstate extends FlxSubstateExt
 			sstate(IDLE);
 		});
 
-		trace(passage.choices);
 		for (choice in passage.choices)
 		{
 			var button_linked_passage:TankmasChroniclesPassage = Lists.tankmas_chronicles_passages.get(choice.link_passage);
@@ -190,8 +196,6 @@ class TankmasChroniclesSubstate extends FlxSubstateExt
 
 			button.base_scale = scale_x;
 			button.no_scale = true;
-
-			trace(button.base_scale);
 
 			choice_buttons.push(button);
 

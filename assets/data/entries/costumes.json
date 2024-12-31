@@ -666,6 +666,13 @@
             "desc": "Reporting for Drop Cannon duty, B.B. Topper, Mom!... MA'AM!!! I MEAN MA'AM!!",
             "unlock": "DATE",
             "data": 1735621200
+        },
+        {
+            "name": "gacha-gal",
+            "display": "Gacha Gal",
+            "desc": "She needs to pay her rent to Landlord Duck, and she'll do it through the power of gacha! Gachapon!!!",
+            "unlock": "DATE",
+            "data": 1735621200
         }
     ]
 }
