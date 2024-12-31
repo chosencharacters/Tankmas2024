@@ -6,6 +6,7 @@ import entities.NPC;
 import entities.Player;
 import entities.Present;
 import entities.TankmasTree;
+import entities.misc.Gachapon;
 import entities.misc.GamingDevice;
 import entities.misc.Menorah;
 import entities.misc.PianoMan;
@@ -168,6 +169,8 @@ class TankmasLevel extends LDTKLevel
 					new TamagoEncounter(c.worldPixelX, c.worldPixelY);
 				case "menorah":
 					new Menorah(c.worldPixelX, c.worldPixelY);
+				case "gachapon":
+					new Gachapon(c.worldPixelX, c.worldPixelY);
 			}
 		}
 

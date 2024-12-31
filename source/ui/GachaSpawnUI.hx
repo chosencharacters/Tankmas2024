@@ -117,6 +117,8 @@ class GachaSpawnUI extends FlxSpriteExt
 
 		image.y -= 32;
 		image.tween = FlxTween.tween(image, {y: image.y + 32}, 0.25);
+
+		substate.add(new ui.GachaponMascot());
 	}
 
 	override function kill()

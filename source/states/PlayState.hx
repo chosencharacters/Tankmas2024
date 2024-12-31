@@ -220,8 +220,6 @@ class PlayState extends BaseState
 		{
 			ui_overlay.offline_indicator.show();
 		}
-
-		new GachaSpawnUI();
 	}
 
 	public function update_scroll_bounds()

@@ -1064,7 +1064,7 @@
 				},
 				{
 					"__identifier": "NPC",
-					"__grid": [69,14],
+					"__grid": [69,7],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1073,7 +1073,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 10,
-					"px": [1104,224],
+					"px": [1104,112],
 					"fieldInstances": [
 						{ "__identifier": "name", "__type": "String", "__value": "the-shape", "__tile": null, "defUid": 11, "realEditorValues": [{
 							"id": "V_String",
@@ -1084,7 +1084,7 @@
 						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
 					],
 					"__worldX": 5040,
-					"__worldY": 1024
+					"__worldY": 912
 				},
 				{
 					"__identifier": "Graphic",
@@ -1166,7 +1166,7 @@
 				},
 				{
 					"__identifier": "NPC",
-					"__grid": [38,53],
+					"__grid": [35,53],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1175,7 +1175,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 10,
-					"px": [608,848],
+					"px": [560,848],
 					"fieldInstances": [
 						{ "__identifier": "name", "__type": "String", "__value": "captain-carrion", "__tile": null, "defUid": 11, "realEditorValues": [{
 							"id": "V_String",
@@ -1185,12 +1185,12 @@
 						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
 						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
 					],
-					"__worldX": 4544,
+					"__worldX": 4496,
 					"__worldY": 1648
 				},
 				{
 					"__identifier": "NPC",
-					"__grid": [79,47],
+					"__grid": [77,53],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1199,7 +1199,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 10,
-					"px": [1264,752],
+					"px": [1232,848],
 					"fieldInstances": [
 						{ "__identifier": "name", "__type": "String", "__value": "awesome-snake", "__tile": null, "defUid": 11, "realEditorValues": [{
 							"id": "V_String",
@@ -1209,8 +1209,27 @@
 						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
 						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
 					],
-					"__worldX": 5200,
-					"__worldY": 1552
+					"__worldX": 5168,
+					"__worldY": 1648
+				},
+				{
+					"__identifier": "Misc",
+					"__grid": [73,31],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFE600",
+					"iid": "5a3d91b0-c210-11ef-abae-8f90f35ad174",
+					"width": 144,
+					"height": 176,
+					"defUid": 49,
+					"px": [1168,496],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "gachapon", "__tile": null, "defUid": 50, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["gachapon"]
+					}] }],
+					"__worldX": 5104,
+					"__worldY": 1296
 				}
 			]
 		},
