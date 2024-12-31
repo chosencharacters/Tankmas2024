@@ -30,6 +30,7 @@ import physics.CollisionResolver;
 import physics.CollisionResolver;
 import physics.CollisionResolver;
 import ui.DialogueBox;
+import ui.GachaSpawnUI;
 import ui.MainGameOverlay;
 import ui.TouchOverlay;
 import ui.popups.ServerNotificationMessagePopup;
@@ -219,6 +220,8 @@ class PlayState extends BaseState
 		{
 			ui_overlay.offline_indicator.show();
 		}
+
+		new GachaSpawnUI();
 	}
 
 	public function update_scroll_bounds()

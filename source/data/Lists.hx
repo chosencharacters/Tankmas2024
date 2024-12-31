@@ -56,7 +56,7 @@ class Lists
 		for (route in ["intro", "pico"])
 			TankmasChroniclesLoader.load_tankmas_chronicles_from_file(tankmas_chronicles_passages, Paths.get('tankmas-chronicles-$route.xml'));
 
-		trace(tankmas_chronicles_passages);
+		// trace(tankmas_chronicles_passages);
 
 		// recursive_file_operation(false, '${assets_path}', "npc-dlgs.xml", (path) -> NPCLoader.load_npc_defs_from_file(npcs, path));
 

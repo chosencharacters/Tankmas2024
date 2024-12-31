@@ -70,7 +70,7 @@ class Paths
 		{
 			var file_must_contain_req:Bool = file_must_contain == "" || file.contains(file_must_contain);
 
-			if (path_cache.get(file).contains(starting_path) && file.contains(extension) && file_must_contain_req)
+			if (path_cache.get(file).contains(starting_path) && (file.contains(extension) || extension == null) && file_must_contain_req)
 				return_files.push(file);
 		}
 
