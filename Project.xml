@@ -67,6 +67,7 @@
 		<assets path="assets/images" embed="true" exclude="*.gif|.*ini|*.aseprite|art"/>
 		<assets path="assets/preloader" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
 		<assets path="assets/videos" embed="true" exclude="*.gif|.*ini|*.aseprite"/>
+		<assets path="assets/tankmas-chronicles" embed="true" exclude="*.gif|.*ini|*.aseprite|*.ogg"/>
 
 		<assets path="assets/sounds" embed="true" exclude="*.ogg"/>
 
