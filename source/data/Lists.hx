@@ -1,6 +1,7 @@
 package data;
 
 import data.loaders.NPCLoader;
+import data.loaders.TankmasChroniclesLoader;
 import flixel.addons.text.FlxTextField;
 import flixel.system.FlxAssets;
 import flixel.system.FlxLinkedList;
@@ -34,6 +35,8 @@ class Lists
 
 	public static var npcs:Map<String, NPCDef> = [];
 
+	public static var tankmas_chronicles_passages:Map<String, TankmasChroniclesPassage> = [];
+
 	static var assets_path(get, never):String;
 
 	static function get_assets_path():String
@@ -47,10 +50,13 @@ class Lists
 
 		JsonData.init();
 
-		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("general-npc-dlgs.xml"));
-		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("amogus-npc-dlgs.xml"));
-		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("cameo-npc-dlgs.xml"));
-		NPCLoader.load_npc_defs_from_file(npcs, Paths.get("persimmon-npc-dlgs.xml"));
+		for (group in ["general", "amogus", "cameo", "persimmon"])
+			NPCLoader.load_npc_defs_from_file(npcs, Paths.get('$group-npc-dlgs.xml'));
+
+		for (route in ["intro", "pico"])
+			TankmasChroniclesLoader.load_tankmas_chronicles_from_file(tankmas_chronicles_passages, Paths.get('tankmas-chronicles-$route.xml'));
+
+		trace(tankmas_chronicles_passages);
 
 		// recursive_file_operation(false, '${assets_path}', "npc-dlgs.xml", (path) -> NPCLoader.load_npc_defs_from_file(npcs, path));
 

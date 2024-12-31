@@ -260,7 +260,7 @@
             <dlg>...Did they though?"</dlg>
         </state>
         <state name="same-char" if="COSTUME_DR_GOOD">
-            <dlg>"Haha! It seems someone here has taste in their attire!
+            <dlg>"Haha! It seems someone here has taste in their attire!</dlg>
             <dlg>Marvelous!"</dlg>
         </state>
     </npc>
