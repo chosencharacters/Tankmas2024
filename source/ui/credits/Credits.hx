@@ -14,8 +14,8 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 	var stars:FlxSpriteExt;
 	var aurora:FlxSpriteExt;
 
-	var words_x:Int = 0;
-	var words_width:Int = 1060;
+	var words_x:Int = 64;
+	var words_width:Int = 1060 - 64;
 	var line_y_padding:Int = 16;
 
 	var lvl_height:Int = 4000;
@@ -71,7 +71,8 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		for (text in data.split("\n"))
 			if (text != "\n" && text.length > 2)
 			{
-				var word:CreditsWord = new CreditsWord(0, line_y, words_width, text);
+				var word:CreditsWord = new CreditsWord(perch.x + words_x, perch.y + line_y, words_width, text);
+
 				words.push(word);
 				add(word);
 
@@ -108,11 +109,11 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 		members.push(mountains);
 
-		for (word in words)
-			word.scrollFactor.set(0, 0);
+		// for (word in words)
+		// word.scrollFactor.set(0, 0);
 
-		for (word in fireworks)
-			word.scrollFactor.set(0, 0);
+		// for (word in fireworks)
+		// word.scrollFactor.set(0, 0);
 
 		return return_me;
 	}
@@ -124,24 +125,36 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		super.update(elapsed);
 	}
 
+	var cam_scroll_rate:Int = 12;
+
 	function cam_manager()
 	{
 		var in_view_area:Bool = PlayState.self.player.y < perch.y + FlxG.height;
-		var cam_max_y:Float = perch.y + (in_view_area ? 1080 : perch.height);
 
-		if (cam_max_y == perch.bottom_y || cam_tween_target == cam_max_y)
+		var cam_max_y:Float = in_view_area ? perch.y + 1080 : perch.bottom_y;
+
+		if (FlxG.camera.maxScrollY == cam_max_y)
 			return;
 
-		if (cam_tween != null && cam_tween.finished)
-		{
-			cam_tween.destroy();
-			cam_tween = null;
-		}
+		var y_diff:Float = Math.abs(FlxG.camera.maxScrollY - cam_max_y) / 16;
+
+		if (FlxG.camera.maxScrollY > cam_max_y)
+			FlxG.camera.maxScrollY -= y_diff;
+
+		if (FlxG.camera.maxScrollY < cam_max_y)
+			FlxG.camera.maxScrollY += y_diff;
+
+		if (Math.abs(FlxG.camera.maxScrollY - cam_max_y) < 16)
+			FlxG.camera.maxScrollY = cam_max_y;
+
+		if (in_view_area)
+			if (FlxG.camera.scroll.y > FlxG.camera.maxScrollY)
+				FlxG.camera.scroll.y = FlxG.camera.maxScrollY;
+
+		// trace(in_view_area, FlxG.camera.maxScrollY, cam_max_y, "player", PlayState.self.player.y, "perch", perch.y + FlxG.height);
 
 		// cam_tween_target = cam_max_y;
 		// cam_tween = FlxTween.tween(FlxG.camera, {maxScrollY: cam_tween_target}, 0.5);
-
-		trace(cam_max_y);
 	}
 
 	function fsm()
