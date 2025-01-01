@@ -11,8 +11,8 @@
 	"identifier": "pinnacle",
 	"iid": "cfdd8c20-c210-11ef-9085-cd02a811e2b8",
 	"uid": 92,
-	"worldX": -2688,
-	"worldY": 0,
+	"worldX": -2560,
+	"worldY": -544,
 	"worldDepth": 0,
 	"pxWid": 1920,
 	"pxHei": 4000,
@@ -65,8 +65,8 @@
 					"defUid": 44,
 					"px": [0,1152],
 					"fieldInstances": [],
-					"__worldX": -2688,
-					"__worldY": 1152
+					"__worldX": -2560,
+					"__worldY": 608
 				},
 				{
 					"__identifier": "CollisionSquare",
@@ -81,8 +81,8 @@
 					"defUid": 44,
 					"px": [1904,1136],
 					"fieldInstances": [],
-					"__worldX": -784,
-					"__worldY": 1136
+					"__worldX": -656,
+					"__worldY": 592
 				},
 				{
 					"__identifier": "SlopeSE",
@@ -97,8 +97,8 @@
 					"defUid": 55,
 					"px": [-16,944],
 					"fieldInstances": [],
-					"__worldX": -2704,
-					"__worldY": 944
+					"__worldX": -2576,
+					"__worldY": 400
 				},
 				{
 					"__identifier": "CollisionSquare",
@@ -113,8 +113,8 @@
 					"defUid": 44,
 					"px": [688,944],
 					"fieldInstances": [],
-					"__worldX": -2000,
-					"__worldY": 944
+					"__worldX": -1872,
+					"__worldY": 400
 				},
 				{
 					"__identifier": "SlopeSE",
@@ -129,8 +129,8 @@
 					"defUid": 55,
 					"px": [1024,944],
 					"fieldInstances": [],
-					"__worldX": -1664,
-					"__worldY": 944
+					"__worldX": -1536,
+					"__worldY": 400
 				},
 				{
 					"__identifier": "CollisionSquare",
@@ -145,8 +145,8 @@
 					"defUid": 44,
 					"px": [1024,928],
 					"fieldInstances": [],
-					"__worldX": -1664,
-					"__worldY": 928
+					"__worldX": -1536,
+					"__worldY": 384
 				},
 				{
 					"__identifier": "SlopeSW",
@@ -161,8 +161,8 @@
 					"defUid": 56,
 					"px": [1280,928],
 					"fieldInstances": [],
-					"__worldX": -1408,
-					"__worldY": 928
+					"__worldX": -1280,
+					"__worldY": 384
 				},
 				{
 					"__identifier": "CollisionCircle",
@@ -177,8 +177,8 @@
 					"defUid": 45,
 					"px": [216,2408],
 					"fieldInstances": [],
-					"__worldX": -2472,
-					"__worldY": 2408
+					"__worldX": -2344,
+					"__worldY": 1864
 				},
 				{
 					"__identifier": "CollisionCircle",
@@ -193,8 +193,8 @@
 					"defUid": 45,
 					"px": [88,3128],
 					"fieldInstances": [],
-					"__worldX": -2600,
-					"__worldY": 3128
+					"__worldX": -2472,
+					"__worldY": 2584
 				},
 				{
 					"__identifier": "CollisionCircle",
@@ -209,8 +209,8 @@
 					"defUid": 45,
 					"px": [88,3976],
 					"fieldInstances": [],
-					"__worldX": -2600,
-					"__worldY": 3976
+					"__worldX": -2472,
+					"__worldY": 3432
 				},
 				{
 					"__identifier": "CollisionCircle",
@@ -225,8 +225,8 @@
 					"defUid": 45,
 					"px": [1816,3928],
 					"fieldInstances": [],
-					"__worldX": -872,
-					"__worldY": 3928
+					"__worldX": -744,
+					"__worldY": 3384
 				},
 				{
 					"__identifier": "CollisionCircle",
@@ -241,8 +241,8 @@
 					"defUid": 45,
 					"px": [1800,3160],
 					"fieldInstances": [],
-					"__worldX": -888,
-					"__worldY": 3160
+					"__worldX": -760,
+					"__worldY": 2616
 				},
 				{
 					"__identifier": "CollisionCircle",
@@ -257,8 +257,8 @@
 					"defUid": 45,
 					"px": [1720,2360],
 					"fieldInstances": [],
-					"__worldX": -968,
-					"__worldY": 2360
+					"__worldX": -840,
+					"__worldY": 1816
 				},
 				{
 					"__identifier": "CollisionCircle",
@@ -273,8 +273,8 @@
 					"defUid": 45,
 					"px": [1768,1896],
 					"fieldInstances": [],
-					"__worldX": -920,
-					"__worldY": 1896
+					"__worldX": -792,
+					"__worldY": 1352
 				}
 			]
 		},
@@ -340,8 +340,8 @@
 					"defUid": 85,
 					"px": [-185,798],
 					"fieldInstances": [{ "__identifier": "Tile", "__type": "Tile", "__value": null, "__tile": null, "defUid": 86, "realEditorValues": [] }],
-					"__worldX": -2873,
-					"__worldY": 798
+					"__worldX": -2745,
+					"__worldY": 254
 				},
 				{
 					"__identifier": "Decorations_Trees",
@@ -359,8 +359,8 @@
 						"id": "V_String",
 						"params": ["1240,0,620,1240"]
 					}] }],
-					"__worldX": -1233,
-					"__worldY": 757
+					"__worldX": -1105,
+					"__worldY": 213
 				},
 				{
 					"__identifier": "Decorations_Trees",
@@ -378,8 +378,8 @@
 						"id": "V_String",
 						"params": ["1240,0,620,1240"]
 					}] }],
-					"__worldX": -1189,
-					"__worldY": 2020
+					"__worldX": -1061,
+					"__worldY": 1476
 				},
 				{
 					"__identifier": "Decorations_Trees",
@@ -397,8 +397,8 @@
 						"id": "V_String",
 						"params": ["0,0,620,1240"]
 					}] }],
-					"__worldX": -2880,
-					"__worldY": 2012
+					"__worldX": -2752,
+					"__worldY": 1468
 				},
 				{
 					"__identifier": "Decorations_Trees",
@@ -416,8 +416,8 @@
 						"id": "V_String",
 						"params": ["1240,0,620,1240"]
 					}] }],
-					"__worldX": -2774,
-					"__worldY": 1252
+					"__worldX": -2646,
+					"__worldY": 708
 				},
 				{
 					"__identifier": "Decorations_Trees",
@@ -432,8 +432,8 @@
 					"defUid": 85,
 					"px": [1438,1228],
 					"fieldInstances": [{ "__identifier": "Tile", "__type": "Tile", "__value": null, "__tile": null, "defUid": 86, "realEditorValues": [] }],
-					"__worldX": -1250,
-					"__worldY": 1228
+					"__worldX": -1122,
+					"__worldY": 684
 				},
 				{
 					"__identifier": "Decorations_Trees",
@@ -448,8 +448,8 @@
 					"defUid": 85,
 					"px": [1530,2807],
 					"fieldInstances": [{ "__identifier": "Tile", "__type": "Tile", "__value": null, "__tile": null, "defUid": 86, "realEditorValues": [] }],
-					"__worldX": -1158,
-					"__worldY": 2807
+					"__worldX": -1030,
+					"__worldY": 2263
 				},
 				{
 					"__identifier": "Decorations_Trees",
@@ -464,8 +464,8 @@
 					"defUid": 85,
 					"px": [-197,2844],
 					"fieldInstances": [{ "__identifier": "Tile", "__type": "Tile", "__value": null, "__tile": null, "defUid": 86, "realEditorValues": [] }],
-					"__worldX": -2885,
-					"__worldY": 2844
+					"__worldX": -2757,
+					"__worldY": 2300
 				}
 			]
 		},
@@ -531,8 +531,8 @@
 					"defUid": 1,
 					"px": [928,880],
 					"fieldInstances": [],
-					"__worldX": -1760,
-					"__worldY": 880
+					"__worldX": -1632,
+					"__worldY": 336
 				},
 				{
 					"__identifier": "Door",
@@ -562,8 +562,8 @@
 						}] },
 						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
-					"__worldX": -2688,
-					"__worldY": 3952
+					"__worldX": -2560,
+					"__worldY": 3408
 				},
 				{
 					"__identifier": "Misc",
@@ -581,8 +581,8 @@
 						"id": "V_String",
 						"params": ["credits"]
 					}] }],
-					"__worldX": -2688,
-					"__worldY": 0
+					"__worldX": -2560,
+					"__worldY": -544
 				}
 			]
 		},

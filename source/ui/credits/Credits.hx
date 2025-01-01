@@ -1,6 +1,8 @@
 package ui.credits;
 
+import flixel.tweens.FlxEase;
 import levels.TankmasLevel;
+import tripletriangle.PlayState;
 import ui.credits.CreditsWord;
 
 class Credits extends FlxTypedGroupExt<FlxSprite>
@@ -16,34 +18,48 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 	var words_width:Int = 1060;
 	var line_y_padding:Int = 16;
 
+	var lvl_height:Int = 4000;
+
 	var credits_duration_in_seconds:Int = 60 * 2 + 30;
 
-	public function new(bg_x:Float, bg_y:Float)
+	var cam_tween:FlxTween;
+	var cam_tween_target:Float = -1;
+
+	var origin:FlxPoint;
+
+	var perch:FlxSpriteExt;
+
+	public function new(spawn_x:Float, spawn_y:Float)
 	{
 		super();
 
+		for (lvl in PlayState.self.levels)
+			if (lvl.level_name.contains("pinnacle"))
+				for (bg in lvl.bgs)
+					if (bg.loaded_image.contains("pinnacle-1-perch-background"))
+						perch = bg;
+
+		origin = new FlxPoint(perch.x, perch.y);
+
 		FlxG.state.add(this);
 
-		var bg_x:Float = FlxG.camera.minScrollX;
-		var by_y:Float = FlxG.camera.minScrollY;
-
-		aurora = new FlxSpriteExt(bg_x, bg_y);
-		stars = new FlxSpriteExt(bg_x, by_y);
-		mountains = new FlxSpriteExt(bg_x, bg_y);
+		aurora = new FlxSpriteExt(perch.x, perch.y);
+		stars = new FlxSpriteExt(perch.x, perch.y);
+		mountains = new FlxSpriteExt(perch.x, perch.y);
 
 		aurora.loadAllFromAnimationSet("pinnacle-4-aurora");
 		stars.loadAllFromAnimationSet("pinnacle-3-stars");
 		mountains.loadAllFromAnimationSet("pinnacle-2-mountains");
 
+		make_words();
+
 		add(aurora);
 		add(stars);
 		add(mountains);
 
-		make_words();
-
 		sstate(IDLE);
 
-		members.for_all_members((member) -> member.scrollFactor.set(0, 0));
+		cam_tween_target = FlxG.camera.maxScrollY;
 	}
 
 	function make_words()
@@ -92,13 +108,40 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 		members.push(mountains);
 
+		for (word in words)
+			word.scrollFactor.set(0, 0);
+
+		for (word in fireworks)
+			word.scrollFactor.set(0, 0);
+
 		return return_me;
 	}
 
 	override function update(elapsed:Float)
 	{
+		cam_manager();
 		fsm();
 		super.update(elapsed);
+	}
+
+	function cam_manager()
+	{
+		var in_view_area:Bool = PlayState.self.player.y < perch.y + FlxG.height;
+		var cam_max_y:Float = perch.y + (in_view_area ? 1080 : perch.height);
+
+		if (cam_max_y == perch.bottom_y || cam_tween_target == cam_max_y)
+			return;
+
+		if (cam_tween != null && cam_tween.finished)
+		{
+			cam_tween.destroy();
+			cam_tween = null;
+		}
+
+		// cam_tween_target = cam_max_y;
+		// cam_tween = FlxTween.tween(FlxG.camera, {maxScrollY: cam_tween_target}, 0.5);
+
+		trace(cam_max_y);
 	}
 
 	function fsm()
