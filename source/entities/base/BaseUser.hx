@@ -246,6 +246,10 @@ class BaseUser extends NGSprite
 			case OPEN_PRESENT:
 				// Another user opened a present.
 				trace('${event.username} opened present ${event.data.day}. Get medal: ${event.data.medal}');
+			case NetEventType.THROW_LINE:
+				// Player throws line
+			case NetEventType.REEL_IN:
+				// player reels in fish/nothing
 		}
 
 		if (active_activity_area != null)

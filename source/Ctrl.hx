@@ -376,6 +376,12 @@ enum abstract ControlModes(ControlMode) from ControlMode to ControlMode
 		can_open_menus: false,
 		can_interact: false
 	};
+	public static final FISHING:ControlMode = {
+		can_move: false,
+		can_emote: false,
+		can_open_menus: false,
+		can_interact: true
+	};
 
 	public function restrict_controls(mode:ControlMode)
 	{

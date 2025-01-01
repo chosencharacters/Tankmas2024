@@ -50,6 +50,10 @@ enum abstract NetEventType(String) from String to String
 	final STICKER = "sticker";
 	final DROP_MARSHMALLOW = "drop_marshmallow";
 	final OPEN_PRESENT = "open_present";
+
+	// Fishing
+	final THROW_LINE = "throw_line";
+	final REEL_IN = "reel_in"; // Can either reel in fish, or fail
 }
 
 function GenerateBasicAuthHeader(username:String, session_id:String)

@@ -40,6 +40,7 @@ class InteractionHandler extends FlxObject
 		this.play_state = play_state;
 
 		interaction_arrow = new FlxSprite(0, 0, AssetPaths.interact_arrow__png);
+		interaction_arrow.visible = false;
 		play_state.in_world_ui_overlay.add(interaction_arrow);
 	}
 
@@ -99,10 +100,10 @@ class InteractionHandler extends FlxObject
 		var player = play_state.player;
 
 		var hovered_over_ui = play_state.ui_overlay.mouse_is_over_ui();
-		var can_interact = Ctrl.mode.can_interact && Ctrl.mode.can_move;
+		var can_interact = Ctrl.mode.can_interact;
 
-		var untargeted_interact_tapped = Ctrl.mode.can_move && (Ctrl.jinteract[1] || play_state.touch.interact_just_released);
-		var interact_tapped = Ctrl.mode.can_move && (Ctrl.jinteract[1] || play_state.touch.tap_just_released);
+		var untargeted_interact_tapped = Ctrl.mode.can_interact && (Ctrl.jinteract[1] || play_state.touch.interact_just_released);
+		var interact_tapped = Ctrl.mode.can_interact && (Ctrl.jinteract[1] || play_state.touch.tap_just_released);
 
 		if (active_interactable != null)
 		{
@@ -144,6 +145,7 @@ class InteractionHandler extends FlxObject
 
 		if (player.active_activity_area != null)
 		{
+			trace('activity area, $untargeted_interact_tapped');
 			if (untargeted_interact_tapped)
 			{
 				player.active_activity_area.on_interact(player);

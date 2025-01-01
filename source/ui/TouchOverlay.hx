@@ -25,6 +25,7 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 
 	// If the user taps the player, it counts as an interaction
 	public var interact_just_released:Bool = false;
+	public var interact_just_pressed:Bool = false;
 
 	public function new(?X:Float, ?Y:Float)
 	{

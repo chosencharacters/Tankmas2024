@@ -1,0 +1,35 @@
+{ "frames": {
+   "FishingRodReel 0.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 298, "h": 298 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 298, "h": 298 },
+    "sourceSize": { "w": 298, "h": 298 },
+    "duration": 100
+   },
+   "FishingRodReel 1.aseprite": {
+    "frame": { "x": 298, "y": 0, "w": 298, "h": 298 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 298, "h": 298 },
+    "sourceSize": { "w": 298, "h": 298 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.9.2-arm64",
+  "image": "FishingRodReel.png",
+  "format": "RGBA8888",
+  "size": { "w": 596, "h": 298 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 2", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

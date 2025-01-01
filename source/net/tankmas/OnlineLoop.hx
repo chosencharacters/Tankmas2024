@@ -1,5 +1,6 @@
 package net.tankmas;
 
+import activities.fishing.Fish;
 import data.JsonData;
 import data.SaveManager;
 import data.types.TankmasDefs.CostumeDef;
@@ -55,6 +56,9 @@ class OnlineLoop
 		OPEN_PRESENT => 1.0,
 		DROP_MARSHMALLOW => 0.5,
 		STICKER => 0.8,
+		// FISH
+		THROW_LINE => 1.5,
+		REEL_IN => 1.5,
 	];
 
 	static var event_send_timestamps:Map<NetEventType, Float> = new Map();
@@ -201,6 +205,31 @@ class OnlineLoop
 		websocket.send_event(event.type, event.data, immediate);
 	}
 
+	// Fishing
+	public static function post_throw_line(zone:FishZone, x:Float, y:Float)
+	{
+		post_event({
+			type: THROW_LINE,
+			data: {
+				"zone": zone,
+				"x": x,
+				"y": y,
+			}
+		});
+	}
+
+	public static function post_reel_in(type:FishType, percentage:Float = 0.0)
+	{
+		post_event({
+			type: REEL_IN,
+			data: {
+				"type": type,
+				"percentage": percentage
+			}
+		});
+	}
+
+	// Update visuals
 	public static function update_user_visual(username:String, def:NetUserDef)
 	{
 		if (PlayState.self == null)

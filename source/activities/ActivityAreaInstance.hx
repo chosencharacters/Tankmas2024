@@ -6,7 +6,8 @@ import squid.sprite.FlxSpriteExt;
 
 class ActivityAreaInstance extends FlxSpriteExt
 {
-	var player:BaseUser;
+	public var player:BaseUser;
+
 	var activity_area:ActivityArea;
 
 	public function new(player:BaseUser, activity_area:ActivityArea)

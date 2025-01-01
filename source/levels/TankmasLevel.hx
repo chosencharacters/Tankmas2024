@@ -25,6 +25,8 @@ enum abstract RoomId(Int) from Int from Int
 	final HotelInterior = 2;
 	final Theatre = 3;
 
+	final FishingWorld = 9;
+
 	public static function from_string(world_identifier:String):RoomId
 	{
 		switch (world_identifier)
@@ -35,6 +37,8 @@ enum abstract RoomId(Int) from Int from Int
 				return HotelCourtyard;
 			case "theatre":
 				return Theatre;
+			case "fishing_world":
+				return FishingWorld;
 		}
 
 		throw 'Could not find room id by name ${world_identifier}, 
@@ -130,6 +134,8 @@ class TankmasLevel extends LDTKLevel
 
 		for (entity in level.l_Entities.all_Activity_Area.iterator())
 			new ActivityArea(entity.f_ActivityType, x + entity.pixelX, y + entity.pixelY, entity.width, entity.height);
+		for (entity in level.l_Entities.all_Activity_Area_Rect.iterator())
+			new ActivityArea(entity.f_ActivityType, entity.worldPixelX, entity.worldPixelY, entity.width, entity.height, Rectangle);
 
 		for (entity in level.l_Entities.all_Graphic)
 		{

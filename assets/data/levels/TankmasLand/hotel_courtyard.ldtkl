@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.4",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "hotel_courtyard",
@@ -1062,7 +1062,7 @@
 				},
 				{
 					"__identifier": "Player",
-					"__grid": [98,65],
+					"__grid": [32,156],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1071,10 +1071,10 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 1,
-					"px": [1568,1040],
+					"px": [512,2496],
 					"fieldInstances": [],
-					"__worldX": 1568,
-					"__worldY": 1040
+					"__worldX": 512,
+					"__worldY": 2496
 				},
 				{
 					"__identifier": "Graphic",

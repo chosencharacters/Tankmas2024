@@ -2,6 +2,7 @@ package activities;
 
 import activities.ActivityAreaInstance;
 import activities.bonfire.BonfireArea;
+import activities.fishing.FishingAreaInstance;
 import entities.Player;
 import entities.base.BaseUser;
 import haxe.Constraints;
@@ -58,12 +59,14 @@ class ActivityArea extends FlxSprite
 		return false;
 	}
 
-	function create_instance(player:BaseUser)
+	function create_instance(player:BaseUser):ActivityAreaInstance
 	{
 		switch (activity_type)
 		{
 			case Bonfire:
 				return new BonfireArea(player, this);
+			case Fishing:
+				return new FishingAreaInstance(player, this);
 		}
 	}
 

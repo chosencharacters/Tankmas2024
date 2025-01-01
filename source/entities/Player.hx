@@ -321,41 +321,6 @@ class Player extends BaseUser
 			Interactable.unmark_all(PlayState.self.interactables);
 			return;
 		}
-
-		/*
-			var closest:Interactable = Interactable.find_closest_in_array(mp, Interactable.find_in_detect_range(mp, PlayState.self.interactables));
-			var target_changed = closest != active_interactable;
-
-			if (target_changed && active_interactable != null)
-			{
-				active_interactable.marked = false;
-			}
-
-			if (closest == null)
-			{
-				active_interactable = null;
-				return;
-			}
-
-			switch (cast(closest.type, InteractableType))
-			{
-				case InteractableType.NPC:
-					// nothin
-				case InteractableType.PRESENT:
-					// nothin
-				case InteractableType.MINIGAME:
-					// nothin
-			}
-
-			closest.marked = true;
-			active_interactable = closest;
-
-			if (Ctrl.mode.can_interact)
-				if (Ctrl.jinteract[1] || FlxG.mouse.overlaps(this) && FlxG.mouse.justReleased)
-				{
-					active_interactable.on_interact();
-				}
-		 */
 	}
 
 	override function kill()
