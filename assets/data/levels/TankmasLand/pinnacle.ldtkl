@@ -520,7 +520,7 @@
 			"entityInstances": [
 				{
 					"__identifier": "Player",
-					"__grid": [59,71],
+					"__grid": [58,55],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -529,10 +529,10 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 1,
-					"px": [944,1136],
+					"px": [928,880],
 					"fieldInstances": [],
-					"__worldX": -1744,
-					"__worldY": 1136
+					"__worldX": -1760,
+					"__worldY": 880
 				},
 				{
 					"__identifier": "Door",
@@ -564,6 +564,25 @@
 					],
 					"__worldX": -2688,
 					"__worldY": 3952
+				},
+				{
+					"__identifier": "Misc",
+					"__grid": [0,0],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFE600",
+					"iid": "5920b4b0-c210-11ef-9981-7373d13ee675",
+					"width": 1920,
+					"height": 1080,
+					"defUid": 49,
+					"px": [0,0],
+					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "credits", "__tile": null, "defUid": 50, "realEditorValues": [{
+						"id": "V_String",
+						"params": ["credits"]
+					}] }],
+					"__worldX": -2688,
+					"__worldY": 0
 				}
 			]
 		},

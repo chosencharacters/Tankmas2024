@@ -33,6 +33,7 @@ import ui.DialogueBox;
 import ui.GachaSpawnUI;
 import ui.MainGameOverlay;
 import ui.TouchOverlay;
+import ui.credits.Credits;
 import ui.popups.ServerNotificationMessagePopup;
 import ui.popups.StickerPackOpening;
 import ui.sheets.*;

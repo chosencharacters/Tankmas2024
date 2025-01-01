@@ -16,6 +16,7 @@ import flixel.util.FlxDirectionFlags;
 import levels.LDTKLevel;
 import levels.LdtkProject;
 import states.PlayState.YSortable;
+import ui.credits.Credits;
 import video.InGameVideoUI;
 import zones.Door;
 
@@ -49,7 +50,7 @@ class TankmasLevel extends LDTKLevel
 
 	public var level_data:LdtkProject_Level;
 
-	var level_name:String;
+	public var level_name:String;
 
 	public function new(level:LdtkProject_Level, ?tilesheet_graphic:String)
 	{
@@ -171,6 +172,8 @@ class TankmasLevel extends LDTKLevel
 					new Menorah(c.worldPixelX, c.worldPixelY);
 				case "gachapon":
 					new Gachapon(c.worldPixelX, c.worldPixelY);
+				case "credits":
+					new Credits(c.worldPixelX, c.worldPixelY);
 			}
 		}
 

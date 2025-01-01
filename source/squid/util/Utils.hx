@@ -356,7 +356,7 @@ class Utils
 	 * @param t 
 	 * @return Int
 	 */
-	public static inline function for_all_members(members:Array<Dynamic>, function_to_do:FlxBasic->Void)
+	public static inline function for_all_members<T:FlxBasic>(members:Array<T>, function_to_do:T->Void)
 	{
 		for (member in members)
 			if (member != null)

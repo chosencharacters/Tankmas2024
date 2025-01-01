@@ -135,4 +135,12 @@
 		<anim name="cd-5" fps="100ms" looping="false">21t22</anim>
 		<anim name="reset" fps="100ms" looping="false">23t27</anim>
 	</animSet>
+
+	<animSet image="fireworks" width="96" height="119">
+		<anim name="mella" fps="100ms" looping="false">0t11</anim>
+		<anim name="gooble" fps="100ms" looping="false">12t23</anim>
+		<anim name="ghost" fps="100ms" looping="false">24t35</anim>
+		<anim name="boyfriend" fps="100ms" looping="false">36t47</anim>
+		<anim name="paco" fps="100ms" looping="false">48t59</anim>
+	</animSet>
 </root>
