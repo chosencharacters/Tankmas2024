@@ -11,8 +11,12 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 	var fireworks:Array<CreditsFirework> = [];
 
 	var mountains:FlxSpriteExt;
-	var stars:FlxSpriteExt;
+
 	var aurora:FlxSpriteExt;
+	var aurora_fx:FlxSpriteExt;
+
+	var stars:FlxSpriteExt;
+	var stars_fx:FlxSpriteExt;
 
 	var words_x:Int = 64;
 	var words_width:Int = 1060 - 64;
@@ -44,11 +48,29 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		FlxG.state.add(this);
 
 		aurora = new FlxSpriteExt(perch.x, perch.y);
+		aurora_fx = new FlxSpriteExt(perch.x, perch.y);
+
+		aurora_fx.alpha = 0.25;
+
 		stars = new FlxSpriteExt(perch.x, perch.y);
+		stars_fx = new FlxSpriteExt(perch.x, perch.y);
+
+		stars.visible = false;
+
 		mountains = new FlxSpriteExt(perch.x, perch.y);
 
 		aurora.loadAllFromAnimationSet("pinnacle-4-aurora");
+		aurora_fx.loadAllFromAnimationSet("pinnacle-4-aurora-fx");
+
 		stars.loadAllFromAnimationSet("pinnacle-3-stars");
+		stars_fx.loadAllFromAnimationSet("pinnacle-3-stars-fx");
+
+		aurora_fx.scale.set(2, 2);
+		stars_fx.scale.set(2, 2);
+
+		stars_fx.updateHitbox();
+		aurora_fx.updateHitbox();
+
 		mountains.loadAllFromAnimationSet("pinnacle-2-mountains");
 
 		make_words();
@@ -100,7 +122,9 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		members = [];
 
 		members.push(aurora);
+		members.push(aurora_fx);
 		members.push(stars);
+		members.push(stars_fx);
 
 		for (member in fireworks)
 			members.push(member);

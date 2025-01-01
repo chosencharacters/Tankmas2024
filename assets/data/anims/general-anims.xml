@@ -143,4 +143,12 @@
 		<anim name="boyfriend" fps="100ms" looping="false">36t47</anim>
 		<anim name="paco" fps="100ms" looping="false">48t59</anim>
 	</animSet>
+
+	<animSet image="pinnacle-4-aurora-fx" width="960" height="540">
+		<anim name="idle" fps="500ms">0t7</anim>
+	</animSet>
+
+	<animSet image="pinnacle-4-stars-fx" width="960" height="540">
+		<anim name="idle" fps="40ms">0t23</anim>
+	</animSet>
 </root>
