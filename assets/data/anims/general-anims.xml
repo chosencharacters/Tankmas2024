@@ -101,6 +101,7 @@
 		<anim name="its-beginning-to-look-a-lot-like-christmas">13</anim>
 		<anim name="visual-snow-redux">14</anim>
 		<anim name="vericon-starcat">15</anim>
+		<anim name="drift">16</anim>
 	</animSet>
 
 	<animSet image="menorah" width="191" height="218">

@@ -479,27 +479,27 @@
                     "angle": -10
                 },
                 {
-                    "name": "gacha-gal",
+                    "name": "charlie",
                     "angle": -10
                 },
                 {
-                    "name": "charlie",
+                    "name": "pim",
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": "pim",
+                    "name": "allen",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": "allen",
+                    "name": "glep",
                     "angle": 10
                 },
                 {
-                    "name": "glep",
+                    "name": "gacha-gal",
                     "angle": 10
                 },
                 {
