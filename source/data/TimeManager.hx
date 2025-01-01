@@ -23,7 +23,12 @@ class TimeManager
 		return #if sys Sys.time() * 1000.0 #else Date.now().getTime() #end;
 
 	function get_day():Int
-		return datetime.getDay();
+	{
+		var base_day:Int = datetime.getDay();
+		if (year > 2024 && month != 12)
+			base_day = base_day + 31;
+		return base_day;
+	}
 
 	function get_month():Int
 		return datetime.getMonth();

@@ -673,6 +673,41 @@
             "desc": "She needs to pay her rent to Landlord Duck, and she'll do it through the power of gacha! Gachapon!!!",
             "unlock": "DATE",
             "data": 1735621200
+        },
+        {
+            "name": "charlie",
+            "display": "Charlie",
+            "desc": "Can out party you any time, any day, and any where",
+            "unlock": "DATE",
+            "data": 1735621200
+        },
+        {
+            "name": "pim",
+            "display": "Pim",
+            "desc": "Loves kids",
+            "unlock": "DATE",
+            "data": 1735621200
+        },
+        {
+            "name": "allen",
+            "display": "Allen",
+            "desc": "Probably has a doctoral degree in... something... How else did he make those flying boots?",
+            "unlock": "DATE",
+            "data": 1735621200
+        },
+        {
+            "name": "glep",
+            "display": "Glep",
+            "desc": "Mr. Frog is BACK BABY!",
+            "unlock": "DATE",
+            "data": 1735707600
+        },
+        {
+            "name": "thomas-2",
+            "display": "Tommy",
+            "desc": "You will never be him.",
+            "unlock": "DATE",
+            "data": 1735768800
         }
     ]
 }

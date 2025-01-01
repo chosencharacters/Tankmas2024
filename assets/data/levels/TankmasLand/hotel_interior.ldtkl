@@ -1651,7 +1651,7 @@
 				},
 				{
 					"__identifier": "NPC",
-					"__grid": [115,125],
+					"__grid": [115,120],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1660,7 +1660,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 10,
-					"px": [1840,2000],
+					"px": [1840,1920],
 					"fieldInstances": [
 						{ "__identifier": "name", "__type": "String", "__value": "amogus-red", "__tile": null, "defUid": 11, "realEditorValues": [{
 							"id": "V_String",
@@ -1674,7 +1674,7 @@
 						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
 					],
 					"__worldX": 1840,
-					"__worldY": 2000
+					"__worldY": 1920
 				},
 				{
 					"__identifier": "Present",
@@ -2574,6 +2574,144 @@
 					],
 					"__worldX": 2128,
 					"__worldY": 3648
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [70,136],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "6c9b3380-c210-11ef-9085-3199caa7c5ed",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1120,2176],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "atoxbcc", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["atoxbcc"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 32, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [32] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 1120,
+					"__worldY": 2176
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [81,136],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "74cbc240-c210-11ef-9085-a7a9f9a9d7b9",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1296,2176],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "just-a-ng-dummy", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["just-a-ng-dummy"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 32, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [32] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 1296,
+					"__worldY": 2176
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [92,136],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "9f81e6e0-c210-11ef-9085-63757e8bce62",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1472,2176],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "nn-haste", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["nn-haste"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 32, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [32] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 1472,
+					"__worldY": 2176
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [102,136],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "a90d4ab0-c210-11ef-9085-c9a4f8d27b98",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1632,2176],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "onyxgalaria", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["onyxgalaria"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 32, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [32] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 1632,
+					"__worldY": 2176
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [112,136],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "af62fef0-c210-11ef-9085-39ef453117f8",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1792,2176],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "pitbullmutafucka", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["pitbullmutafucka"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 32, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [32] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 1792,
+					"__worldY": 2176
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [122,136],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "b50ff010-c210-11ef-9085-2d28b651e678",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [1952,2176],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "xielrssin", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["xielrssin"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 32, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [32] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": 1952,
+					"__worldY": 2176
 				}
 			]
 		},

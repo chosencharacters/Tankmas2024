@@ -61,8 +61,6 @@ class TankmasChroniclesLoader
 			for (choice_name in passage_xml.get("choices").split(","))
 				passage.choices.push(choices.get(choice_name));
 
-		trace(passage.image_name, passage.choices);
-
 		passage.victory_royale = passage_xml.get("victory");
 
 		// trace(haxe.Json.stringify(def, "\t"));

@@ -483,23 +483,23 @@
                     "angle": -10
                 },
                 {
-                    "name": null,
+                    "name": "charlie",
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "pim",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "allen",
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "glep",
                     "angle": 10
                 },
                 {
@@ -509,7 +509,7 @@
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "thomas-2",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30

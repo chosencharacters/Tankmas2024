@@ -119,15 +119,14 @@ class JsonData
 	static function load_presents()
 	{
 		presents = [];
-		var json:{presents:Array<PresentDef>} = haxe.Json.parse(Utils.load_file_string("presents.json"));
 
-		for (present_def in json.presents)
-			presents.set(present_def.artist.toLowerCase(), present_def);
+		for (file in ["presents.json", "presents-25.json", "presents-32.json"])
+		{
+			var json:{presents:Array<PresentDef>} = haxe.Json.parse(Utils.load_file_string(file));
 
-		var json:{presents:Array<PresentDef>} = haxe.Json.parse(Utils.load_file_string("presents-25.json"));
-
-		for (present_def in json.presents)
-			presents.set(present_def.artist.toLowerCase(), present_def);
+			for (present_def in json.presents)
+				presents.set(present_def.artist.toLowerCase(), present_def);
+		}
 	}
 
 	static function load_tracks()

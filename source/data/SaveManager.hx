@@ -182,6 +182,8 @@ class SaveManager
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("thing-thing"));
 				case "PLAYER_IS_AWESOME":
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("awesome-snake"));
+				case "PLUGGED_IN":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("fulp-ware"));
 			}
 		}
 		switch (current_pet)

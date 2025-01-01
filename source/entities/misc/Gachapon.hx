@@ -85,7 +85,7 @@ class Gachapon extends Interactable
 		TOTAL_PULLS++;
 		trace(TOTAL_PULLS);
 		#if newgrounds
-		if (TOTAL_PULLS == 36)
+		if (TOTAL_PULLS == 43)
 			Main.ng_api.medal_popup(Main.ng_api.medals.get("pull-all-pico-cross"));
 		#end
 		SoundPlayer.sound("gachapon-activate");

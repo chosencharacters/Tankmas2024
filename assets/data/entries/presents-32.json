@@ -4,49 +4,37 @@
             "day": 32,
             "artist": "ATOXBCC",
             "title": "Tankmen Fireplace",
-            "file": "day-32-art-atoxbcc",
-            "unlock": "DATE",
-            "data": 1735707600
+            "file": "day-32-art-atoxbcc"
         },
         {
             "day": 32,
             "artist": "XieLrssin",
             "title": "Snowball Fight",
-            "file": "day-32-art-xielrssin",
-            "unlock": "DATE",
-            "data": 1735707600
+            "file": "day-32-art-xielrssin"
         },
         {
             "day": 32,
             "artist": "PITBULLMUTAFUCKA",
             "title": "A dim dusk",
-            "file": "day-32-art-pitbullmutafucka",
-            "unlock": "DATE",
-            "data": 1735707600
+            "file": "day-32-art-pitbullmutafucka"
         },
         {
             "day": 32,
             "artist": "nn-haste",
             "title": "jungler.exe but jolly",
-            "file": "day-32-art-nn-haste",
-            "unlock": "DATE",
-            "data": 1735707600
+            "file": "day-32-art-nn-haste"
         },
         {
             "day": 32,
-            "artist": "Just-a-ng-dummy",
-            "title": "",
-            "file": "day-32-art-just-a-ng-dummy",
-            "unlock": "DATE",
-            "data": 1735707600
+            "artist": "just-a-ng-dummy",
+            "title": "Just Another Lovely Dinner",
+            "file": "day-32-art-just-a-ng-dummy"
         },
         {
             "day": 32,
             "artist": "OnyxGalaria",
             "title": "Sticker Situation",
-            "file": "day-32-art-onyxgalaria",
-            "unlock": "DATE",
-            "data": 1735707600
+            "file": "day-32-art-onyxgalaria"
         }
     ]
 }

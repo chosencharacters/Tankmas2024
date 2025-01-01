@@ -161,13 +161,13 @@
                     "yOffset": -30
                 },
                 {
-                    "name": "guardian-angel",
+                    "name": "bomb-faic",
                     "angle": -10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "guardian-angel",
                     "angle": 10
                 },
                 {

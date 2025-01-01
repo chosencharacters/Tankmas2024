@@ -272,6 +272,13 @@
             "desc": "The Ugbiest Ugby Mumba in Ohio",
             "unlock": "DATE",
             "data": 1735621200
+        },
+        {
+            "name": "bomb-faic",
+            "display": "Bomb Faic",
+            "desc": "The mascot of a cursed video game. No one know how it broke out of its confines and entered the mortal realm, but the general population seems content regardless.",
+            "unlock": "FLAG",
+            "data": "PLUGGED_IN"
         }
     ]
 }

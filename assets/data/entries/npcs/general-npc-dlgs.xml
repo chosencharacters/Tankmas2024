@@ -327,4 +327,11 @@
             </option>
         </state>
     </npc>
+    <npc name="tank-cartridge">
+        <state name="default">
+            <dlg>*Someone left a game cartridge here*</dlg>
+            <dlg if="!PLUGGED_IN">*Looks like it summoned a new buddy*</dlg>
+            <dlg set="PLUGGED_IN">*Best to leave stuff that isn't yours alone*</dlg>
+        </state>
+    </npc>
 </root>
