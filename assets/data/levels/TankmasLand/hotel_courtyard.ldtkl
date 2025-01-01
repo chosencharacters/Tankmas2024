@@ -1061,22 +1061,6 @@
 					"__worldY": 1696
 				},
 				{
-					"__identifier": "Player",
-					"__grid": [98,65],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#46BE2F",
-					"iid": "1134a0d0-9b00-11ef-83c5-874f90586fad",
-					"width": 128,
-					"height": 128,
-					"defUid": 1,
-					"px": [1568,1040],
-					"fieldInstances": [],
-					"__worldX": 1568,
-					"__worldY": 1040
-				},
-				{
 					"__identifier": "Graphic",
 					"__grid": [190,133],
 					"__pivot": [0,0],
@@ -1410,6 +1394,37 @@
 					}] }],
 					"__worldX": 720,
 					"__worldY": 704
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [0,150],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FFF100",
+					"iid": "e619e140-c210-11ef-9085-95115ce51b44",
+					"width": 48,
+					"height": 288,
+					"defUid": 14,
+					"px": [0,2400],
+					"fieldInstances": [
+						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
+							"entityIid": "92181290-c210-11ef-9085-4382a441a366",
+							"layerIid": "cfdd8c25-c210-11ef-9085-71eae4972b7a",
+							"levelIid": "cfdd8c20-c210-11ef-9085-cd02a811e2b8",
+							"worldIid": "95f97851-73f0-11ef-9983-cda8b61095c5"
+						}, "__tile": null, "defUid": 16, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["92181290-c210-11ef-9085-4382a441a366"]
+						}] },
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 19, "cy": 159 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["19,159"]
+						}] },
+						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
+					],
+					"__worldX": 0,
+					"__worldY": 2400
 				}
 			]
 		},
