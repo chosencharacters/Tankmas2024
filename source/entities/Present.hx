@@ -50,6 +50,8 @@ class Present extends Interactable
 	public static final req_num_25_opened:Int = 14;
 	public static var num_28_opened:Int = 0;
 	public static final req_num_28_opened:Int = 2;
+	public static var num_32_opened:Int = 0;
+	public static final req_num_32_opened:Int = 6;
 
 	public function new(X:Float, Y:Float, username:String, timelock:Int)
 	{
@@ -60,10 +62,10 @@ class Present extends Interactable
 		// trace(username, JsonData.get_present_names());
 		def = JsonData.get_present(this.username);
 
-		day = def.day;
-
 		if (def == null)
 			throw 'Error getting present JSON for username ${username}';
+
+		day = def.day;
 
 		comic = def.comicProperties != null ? true : false;
 
@@ -110,6 +112,13 @@ class Present extends Interactable
 			if (JsonData.get_present(present).day == 28)
 				count++;
 			num_28_opened = count;
+		}
+		count = 0;
+		for (present in SaveManager.savedPresents)
+		{
+			if (JsonData.get_present(present).day == 32)
+				count++;
+			num_32_opened = count;
 		}
 
 		// trace(Main.time.day >= def.day, Main.time.day, def.day, visible);
@@ -225,13 +234,13 @@ class Present extends Interactable
 		if (state != "OPENED")
 		{
 			if (first_time_opening && day == 25)
-			{
 				num_25_opened++;
-			}
+
 			if (first_time_opening && day == 28)
-			{
 				num_28_opened++;
-			}
+
+			if (first_time_opening && day == 32)
+				num_32_opened++;
 
 			sstate(OPENING);
 			new FlxTimer().start(0.24, (tmr:FlxTimer) -> SoundPlayer.sound(Paths.get('present-open.ogg')));
@@ -266,7 +275,7 @@ class Present extends Interactable
 		OnlineLoop.post_present_open(day, medal_was_unlocked, first_time_opening);
 
 		#if newgrounds
-		if (day != 25 && day != 28)
+		if (day != 25 && day != 28 && day != 32)
 		{
 			if (is_medal_unlock_enabled())
 				give_opened_medal();
@@ -277,8 +286,12 @@ class Present extends Interactable
 				Main.ng_api.medal_popup(Main.ng_api.medals.get('day-25'));
 			if (num_28_opened >= req_num_28_opened)
 				Main.ng_api.medal_popup(Main.ng_api.medals.get('day-28'));
+			if (num_32_opened >= req_num_32_opened)
+				Main.ng_api.medal_popup(Main.ng_api.medals.get('day-32'));
+
 			trace(num_25_opened + "/" + req_num_25_opened);
 			trace(num_28_opened + "/" + req_num_28_opened);
+			trace(num_32_opened + "/" + req_num_32_opened);
 		}
 		if (comic && ["guri", "dragonmiracles", "oscarlors", "midgetsausage-2"].contains(username))
 			Main.ng_api.medal_popup(Main.ng_api.medals.get('comic-${username}'));
