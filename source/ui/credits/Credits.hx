@@ -34,6 +34,8 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 	var cam_scroll_rate:Int = 12;
 
+	var start_time:Float = 1735767900;
+
 	public function new(spawn_x:Float, spawn_y:Float)
 	{
 		super();
@@ -92,11 +94,12 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		{
 			default:
 			case WAIT:
-				if (ttick() > 180)
+				trace(Main.time.utc, start_time * 1000);
+				if (Main.time.utc >= start_time * 1000)
 					sstate(START_DELAY, fsm);
 			case START_DELAY:
 				aurora_fx.alpha += 1 / 180;
-				if (ttick() == 1)
+				if (ttick() == 1 && FlxG.sound.music != null)
 					FlxG.sound.music.fadeOut(1, 0, function(t)
 					{
 						FlxG.sound.music.stop();
