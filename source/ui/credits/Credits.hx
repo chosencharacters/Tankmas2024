@@ -1,5 +1,6 @@
 package ui.credits;
 
+import data.JsonData;
 import flixel.tweens.FlxEase;
 import levels.TankmasLevel;
 import tripletriangle.PlayState;
@@ -72,6 +73,8 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		aurora_fx.scale.set(2, 2);
 		stars_fx.scale.set(2, 2);
 
+		aurora_fx.alpha = 0;
+
 		stars_fx.updateHitbox();
 		aurora_fx.updateHitbox();
 
@@ -89,11 +92,29 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		{
 			default:
 			case WAIT:
-				sstate(START, fsm);
+				if (ttick() > 180)
+					sstate(START_DELAY, fsm);
+			case START_DELAY:
+				aurora_fx.alpha += 1 / 180;
+				if (ttick() == 1)
+					FlxG.sound.music.fadeOut(1, 0, function(t)
+					{
+						FlxG.sound.music.stop();
+						FlxG.sound.music.setPosition();
+						SoundPlayer.music(JsonData.get_track("visual-snow-redux"));
+						FlxG.sound.volume = 1;
+					});
+				if (aurora_fx.alpha >= 1)
+				{
+					aurora_fx.alpha = 1;
+					tick = 0;
+					sstate(START);
+				}
 			case START:
 				make_words();
 				screenshots.start();
 				sstate(ACTIVE);
+			case ACTIVE:
 		}
 
 	function make_words()
@@ -146,12 +167,6 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 		members.push(screenshots);
 
-		// for (word in words)
-		// word.scrollFactor.set(0, 0);
-
-		// for (word in fireworks)
-		// word.scrollFactor.set(0, 0);
-
 		return return_me;
 	}
 
@@ -200,6 +215,8 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 private enum abstract State(String) from String to String
 {
 	final WAIT;
+	final START_DELAY;
 	final START;
 	final ACTIVE;
+	final END;
 }
