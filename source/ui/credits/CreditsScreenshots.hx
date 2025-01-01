@@ -8,7 +8,7 @@ class CreditsScreenshots extends FlxSpriteExt
 
 	var fade_in_time:Int = 30;
 	var fade_out_time:Int = 30;
-	var idle_time:Float = 6.25;
+	var idle_time:Float = 5.75;
 
 	var count:Int = 0;
 	var max:Int = 24;
