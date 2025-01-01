@@ -9,6 +9,7 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 {
 	var words:Array<CreditsWord> = [];
 	var fireworks:Array<CreditsFirework> = [];
+	var screenshots:CreditsScreenshots;
 
 	var mountains:FlxSpriteExt;
 
@@ -18,6 +19,8 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 	var stars:FlxSpriteExt;
 	var stars_fx:FlxSpriteExt;
 
+	var perch:FlxSpriteExt;
+
 	var words_x:Int = 64;
 	var words_width:Int = 1060 - 64;
 	var line_y_padding:Int = 16;
@@ -26,12 +29,9 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 	var credits_duration_in_seconds:Int = 60 * 2 + 30;
 
-	var cam_tween:FlxTween;
-	var cam_tween_target:Float = -1;
-
 	var origin:FlxPoint;
 
-	var perch:FlxSpriteExt;
+	var cam_scroll_rate:Int = 12;
 
 	public function new(spawn_x:Float, spawn_y:Float)
 	{
@@ -55,6 +55,10 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		stars = new FlxSpriteExt(perch.x, perch.y);
 		stars_fx = new FlxSpriteExt(perch.x, perch.y);
 
+		screenshots = new CreditsScreenshots();
+
+		screenshots.setPosition(perch.right_x - screenshots.width, perch.top_y + FlxG.height / 2 - screenshots.height / 2);
+
 		stars.visible = false;
 
 		mountains = new FlxSpriteExt(perch.x, perch.y);
@@ -73,16 +77,24 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 		mountains.loadAllFromAnimationSet("pinnacle-2-mountains");
 
-		make_words();
-
 		add(aurora);
 		add(stars);
 		add(mountains);
 
-		sstate(IDLE);
-
-		cam_tween_target = FlxG.camera.maxScrollY;
+		sstate(WAIT);
 	}
+
+	function fsm()
+		switch (cast(state, State))
+		{
+			default:
+			case WAIT:
+				sstate(START, fsm);
+			case START:
+				make_words();
+				screenshots.start();
+				sstate(ACTIVE);
+		}
 
 	function make_words()
 	{
@@ -125,13 +137,14 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		members.push(aurora_fx);
 		members.push(stars);
 		members.push(stars_fx);
+		members.push(mountains);
 
 		for (member in fireworks)
 			members.push(member);
 		for (member in words)
 			members.push(member);
 
-		members.push(mountains);
+		members.push(screenshots);
 
 		// for (word in words)
 		// word.scrollFactor.set(0, 0);
@@ -148,8 +161,6 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		fsm();
 		super.update(elapsed);
 	}
-
-	var cam_scroll_rate:Int = 12;
 
 	function cam_manager()
 	{
@@ -172,20 +183,13 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 			FlxG.camera.maxScrollY = cam_max_y;
 
 		if (in_view_area)
+		{
 			if (FlxG.camera.scroll.y > FlxG.camera.maxScrollY)
 				FlxG.camera.scroll.y = FlxG.camera.maxScrollY;
-
-		// trace(in_view_area, FlxG.camera.maxScrollY, cam_max_y, "player", PlayState.self.player.y, "perch", perch.y + FlxG.height);
-
-		// cam_tween_target = cam_max_y;
-		// cam_tween = FlxTween.tween(FlxG.camera, {maxScrollY: cam_tween_target}, 0.5);
-	}
-
-	function fsm()
-		switch (cast(state, State))
-		{
-			default:
+			if (FlxG.camera.scroll.y < FlxG.camera.maxScrollY)
+				FlxG.camera.scroll.y = FlxG.camera.maxScrollY;
 		}
+	}
 
 	override function kill()
 	{
@@ -195,5 +199,7 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 private enum abstract State(String) from String to String
 {
-	final IDLE;
+	final WAIT;
+	final START;
+	final ACTIVE;
 }
