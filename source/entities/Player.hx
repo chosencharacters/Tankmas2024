@@ -25,7 +25,8 @@ class Player extends BaseUser
 
 	public var auto_moving:Bool = false;
 
-	var auto_move_dest:FlxPoint;
+	public var auto_move_dest:FlxPoint;
+
 	final auto_move_deadzone:Int = 50;
 
 	var wavedash_cd:Int = 0;
@@ -107,6 +108,7 @@ class Player extends BaseUser
 	public function stop_auto_move()
 	{
 		auto_moving = false;
+		auto_move_dest = getPosition();
 	}
 
 	function debug_rotate_costumes()
@@ -117,7 +119,13 @@ class Player extends BaseUser
 	}
 
 	override public function new_costume(costume:CostumeDef)
+	{
+		#if newgrounds
+		if (costume != null && costume.name == "thomas-2")
+			Main.ng_api.medal_popup(Main.ng_api.medals.get('faker'));
+		#end
 		super.new_costume(costume);
+	}
 
 	override function update(elapsed:Float)
 	{

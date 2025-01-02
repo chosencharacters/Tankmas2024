@@ -41,8 +41,6 @@ class NPC extends Interactable
 
 		var anim_set_name:String = Lists.animSets.exists(name) ? name : "npc-default";
 
-		trace(name, anim_set_name);
-
 		loadAllFromAnimationSet(anim_set_name, name);
 
 		sstate(IDLE, fsm);

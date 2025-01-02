@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
     <npc name="captain-carrion">
+		<state name="pinnacle" if="PINNACLE">
+            <dlg>Fellow traveler, this is where we depart.</dlg>
+			<dlg>For me? The skies. For you? Wherever your mind dreams.</dlg>
+        </state>
         <state name="default">
 			<dlg if="UNLOCK_CARRION">Once more we meet, fellow traveler.</dlg>
             <dlg set="UNLOCK_CARRION" if="!UNLOCK_CARRION">Hello, fellow traveler.</dlg>
@@ -48,6 +52,13 @@
         </state>
     </npc>
 	<npc name="box">
+		<state name="pinnacle" if="PINNACLE">
+            <dlg>Hey buddy, look, I'm sorry I was ramblin' a bit back there</dlg>
+            <dlg>Eh who am I kiddin', I aint sorry.</dlg>
+			<dlg>But I was thinkin' I might as well stop wondering about' the past.</dlg>
+			<dlg>And start movin' forward, yea? Like a box oughtta.</dlg>
+			<dlg>Seeya around, bud</dlg>
+        </state>
         <state name="default">
 			<dlg>Hey, buddy, what ya lookin at?</dlg>
 			<dlg>You a big box looker, huh?</dlg>
@@ -139,6 +150,9 @@
         </state>
     </npc>
 	<npc name="peanutbudder-santa">
+		<state name="pinnacle" if="PINNACLE">
+            <dlg>*They seem satisfied with their handiwork*</dlg>
+        </state>
         <state name="default">
 			<dlg>*Ah. What a wonderful surprise, it's Peantbudder Santa!*</dlg>
 			<dlg>*It's never a Tankmas without them!*</dlg>
@@ -164,6 +178,10 @@
         </state>
     </npc>
 	<npc name="pony-boy">
+		<state name="pinnacle" if="PINNACLE">
+            <dlg>Oh, hey, you know, the show's over but the arcade's still going.</dlg>
+			<dlg>Stop on by sometime.</dlg>
+        </state>
         <state name="default">
             <dlg set="PONYABLE_CONTENT">Oh, hey, what brings a cool robot like you down here?</dlg>
             <dlg>I'm Ponyboy, nice to meet you!</dlg>
@@ -209,6 +227,10 @@
 		</state>
     </npc>
 	<npc name="project-154">
+		<state name="pinnacle" if="PINNACLE">
+            <dlg>*You found the Thing Thing!*</dlg>
+			<dlg>*Yep... They're still just as confused about this whole thing as before*</dlg>
+        </state>
         <state name="default">
             <dlg set="UNLOCK_PROJECT_154">*You found the thing thing!*</dlg>
             <dlg>*They seem very confused about being here*</dlg>

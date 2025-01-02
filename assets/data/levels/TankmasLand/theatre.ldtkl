@@ -24,7 +24,7 @@
 	"bgPivotX": 0,
 	"bgPivotY": 0,
 	"__smartColor": "#ADADB5",
-	"__bgPos": { "topLeftPx": [0,0], "scale": [1,1], "cropRect": [0,0,4018,3328] },
+	"__bgPos": null,
 	"externalRelPath": null,
 	"fieldInstances": [],
 	"layerInstances": [
