@@ -179,6 +179,22 @@
 					"fieldInstances": [],
 					"__worldX": -2560,
 					"__worldY": -544
+				},
+				{
+					"__identifier": "CollisionSquare",
+					"__grid": [1,249],
+					"__pivot": [0,0],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0808",
+					"iid": "d7e1ff90-c210-11ef-9981-13f20a2ef8ac",
+					"width": 1888,
+					"height": 16,
+					"defUid": 44,
+					"px": [16,3984],
+					"fieldInstances": [],
+					"__worldX": -2544,
+					"__worldY": 3440
 				}
 			]
 		},
@@ -283,16 +299,16 @@
 			"entityInstances": [
 				{
 					"__identifier": "Door",
-					"__grid": [0,247],
+					"__grid": [51,247],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
 					"__smartColor": "#FFF100",
 					"iid": "92181290-c210-11ef-9085-4382a441a366",
-					"width": 1920,
+					"width": 1104,
 					"height": 48,
 					"defUid": 14,
-					"px": [0,3952],
+					"px": [816,3952],
 					"fieldInstances": [
 						{ "__identifier": "linked_door", "__type": "EntityRef", "__value": {
 							"entityIid": "e619e140-c210-11ef-9085-95115ce51b44",
@@ -303,13 +319,13 @@
 							"id": "V_String",
 							"params": ["e619e140-c210-11ef-9085-95115ce51b44"]
 						}] },
-						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 59, "cy": 222 }, "__tile": null, "defUid": 17, "realEditorValues": [{
+						{ "__identifier": "spawn", "__type": "Point", "__value": { "cx": 88, "cy": 237 }, "__tile": null, "defUid": 17, "realEditorValues": [{
 							"id": "V_String",
-							"params": ["59,222"]
+							"params": ["88,237"]
 						}] },
 						{ "__identifier": "flag", "__type": "String", "__value": null, "__tile": null, "defUid": 89, "realEditorValues": [] }
 					],
-					"__worldX": -2560,
+					"__worldX": -1744,
 					"__worldY": 3408
 				},
 				{
@@ -397,26 +413,13 @@
 							"params": ["kingcrowned-2"]
 						}] },
 						{ "__identifier": "day", "__type": "Int", "__value": 32, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [32] }] },
-						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+						{ "__identifier": "timelock", "__type": "String", "__value": "1735786050", "__tile": null, "defUid": 58, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["1735786050"]
+						}] }
 					],
 					"__worldX": -1600,
 					"__worldY": 784
-				},
-				{
-					"__identifier": "Player",
-					"__grid": [59,229],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#46BE2F",
-					"iid": "8968ddf0-c210-11ef-9085-f180b5aba6b7",
-					"width": 128,
-					"height": 128,
-					"defUid": 1,
-					"px": [944,3664],
-					"fieldInstances": [],
-					"__worldX": -1616,
-					"__worldY": 3120
 				},
 				{
 					"__identifier": "NPC",

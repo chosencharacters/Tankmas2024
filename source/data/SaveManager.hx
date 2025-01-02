@@ -186,6 +186,8 @@ class SaveManager
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("fulp-ware"));
 				case "FINAL_PRESENT_OPENED":
 					Main.ng_api.medal_popup(Main.ng_api.medals.get("final-present"));
+				case "PINNACLE":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("pinnacle"));
 			}
 		}
 		switch (current_pet)
@@ -194,12 +196,13 @@ class SaveManager
 			case "penicorn":
 				Main.ng_api.medal_popup(Main.ng_api.medals.get("penicorn"));
 		}
-		switch (current_costume)
-		{
-			default:
-			case "thomas-2":
-				Main.ng_api.medal_popup(Main.ng_api.medals.get("faker"));
-		}
+		/*
+			switch (current_costume)
+			{
+				default:
+				case "thomas-2":
+					Main.ng_api.medal_popup(Main.ng_api.medals.get("faker"));
+		}*/
 		#end
 	}
 

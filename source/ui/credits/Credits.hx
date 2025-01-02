@@ -1,8 +1,6 @@
 package ui.credits;
 
 import data.JsonData;
-import flixel.tweens.FlxEase;
-import levels.TankmasLevel;
 import ui.credits.CreditsWord;
 
 class Credits extends FlxTypedGroupExt<FlxSprite>
@@ -37,7 +35,7 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 	var cam_scroll_rate:Int = 12;
 
-	var start_time:Float = 1735767900;
+	var start_time:Float = 1735785900;
 
 	public function new(spawn_x:Float, spawn_y:Float)
 	{
@@ -99,7 +97,6 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		{
 			default:
 			case WAIT:
-				trace(Main.time.utc, start_time * 1000);
 				if (Main.time.utc >= start_time * 1000 && PlayState.self.player.overlaps(mountains))
 					sstate(START_DELAY, fsm);
 			case START_DELAY:
@@ -141,7 +138,7 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 	public function mouse_is_over():Bool
 	{
-		if (FlxG.mouse.y > perch.y + FlxG.height - 300)
+		if (FlxG.mouse.getScreenPosition().y < FlxG.height - 300)
 			return true;
 		return false;
 	}
@@ -203,7 +200,12 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		if (PlayState.self.player.overlaps(perch))
 		{
 			if (!Flags.get_bool("PINNACLE"))
+			{
 				Flags.set_bool("PINNACLE");
+				#if newgrounds
+				Main.ng_api.medal_popup(Main.ng_api.medals.get("pinnacle"));
+				#end
+			}
 		}
 		else
 		{

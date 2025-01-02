@@ -710,7 +710,7 @@
 				},
 				{
 					"__identifier": "Decorations_MD",
-					"__grid": [311,2070],
+					"__grid": [234,2095],
 					"__pivot": [0,0],
 					"__tags": ["Decoration"],
 					"__tile": { "tilesetUid": 61, "x": 1024, "y": 0, "w": 512, "h": 512 },
@@ -719,13 +719,13 @@
 					"width": 512,
 					"height": 512,
 					"defUid": 59,
-					"px": [311,2070],
+					"px": [234,2095],
 					"fieldInstances": [{ "__identifier": "Tile", "__type": "Tile", "__value": { "tilesetUid": 61, "x": 1024, "y": 0, "w": 512, "h": 512 }, "__tile": { "tilesetUid": 61, "x": 1024, "y": 0, "w": 512, "h": 512 }, "defUid": 60, "realEditorValues": [{
 						"id": "V_String",
 						"params": ["1024,0,512,512"]
 					}] }],
-					"__worldX": 311,
-					"__worldY": 2070
+					"__worldX": 234,
+					"__worldY": 2095
 				},
 				{
 					"__identifier": "Decorations_MD",
@@ -1127,7 +1127,7 @@
 				},
 				{
 					"__identifier": "NPC",
-					"__grid": [32,139],
+					"__grid": [164,192],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
@@ -1136,7 +1136,7 @@
 					"width": 128,
 					"height": 128,
 					"defUid": 10,
-					"px": [512,2224],
+					"px": [2624,3072],
 					"fieldInstances": [
 						{ "__identifier": "name", "__type": "String", "__value": "mall-santa", "__tile": null, "defUid": 11, "realEditorValues": [{
 							"id": "V_String",
@@ -1149,8 +1149,8 @@
 						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
 						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
 					],
-					"__worldX": 512,
-					"__worldY": 2224
+					"__worldX": 2624,
+					"__worldY": 3072
 				},
 				{
 					"__identifier": "Door",
@@ -1394,6 +1394,22 @@
 					],
 					"__worldX": 0,
 					"__worldY": 2304
+				},
+				{
+					"__identifier": "Player",
+					"__grid": [100,100],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#46BE2F",
+					"iid": "676e0100-c210-11ef-9981-5578eb7fd8b5",
+					"width": 128,
+					"height": 128,
+					"defUid": 1,
+					"px": [1600,1600],
+					"fieldInstances": [],
+					"__worldX": 1600,
+					"__worldY": 1600
 				}
 			]
 		},
