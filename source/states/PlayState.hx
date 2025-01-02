@@ -374,8 +374,8 @@ class PlayState extends BaseState
 			}
 		}
 		#if newgrounds
-		// if (unique_costumes >= 30)
-		// Main.ng_api.medal_popup(Main.ng_api.medals.get("costume-party"));
+		if (unique_costumes >= 15)
+			Main.ng_api.medal_popup(Main.ng_api.medals.get("costume-party"));
 		#end
 		// trace(seen_costumes.length, unique_costumes);
 	}

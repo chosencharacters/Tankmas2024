@@ -321,6 +321,36 @@
 			"artist": "tamag0",
 			"unlock": "FLAG",
             "data": "TAMAGO_ENCOUNTERED"
+		},
+		{
+			"name": "smile-pim",
+			"properName": "Smile for the Pic",
+			"artist": "Alex-PhantomGlitch"
+		},
+		{
+			"name": "poppy",
+			"properName": "SweetmasPoppy!",
+			"artist": "RavioliBox"
+		},
+		{
+			"name": "cordelia-rofl",
+			"properName": "Cordelia ROFL",
+			"artist": "leroyalmess"
+		},
+		{
+			"name": "chatterbox",
+			"properName": "Chatter Box",
+			"artist": "RavioliBox"
+		},
+		{
+			"name": "mella-cuddle",
+			"properName": "Mella Cuddle",
+			"artist": "kingcrowned"
+		},
+		{
+			"name": "a-well-earned-rest",
+			"properName": "And that's a wrap",
+			"artist": "squidly"
 		}
 	]
 }

@@ -3,13 +3,16 @@ package ui.credits;
 import data.JsonData;
 import flixel.tweens.FlxEase;
 import levels.TankmasLevel;
-import tripletriangle.PlayState;
 import ui.credits.CreditsWord;
 
 class Credits extends FlxTypedGroupExt<FlxSprite>
 {
 	var words:Array<CreditsWord> = [];
-	var fireworks:Array<CreditsFirework> = [];
+
+	public static var self:Credits;
+
+	public var fireworks:Array<CreditsFirework> = [];
+
 	var screenshots:CreditsScreenshots;
 
 	var mountains:FlxSpriteExt;
@@ -28,7 +31,7 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 	var lvl_height:Int = 4000;
 
-	var credits_duration_in_seconds:Int = 60 * 2 + 30;
+	var credits_duration_in_seconds:Float = 60 * 2 + 30;
 
 	var origin:FlxPoint;
 
@@ -39,6 +42,8 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 	public function new(spawn_x:Float, spawn_y:Float)
 	{
 		super();
+
+		self = this;
 
 		for (lvl in PlayState.self.levels)
 			if (lvl.level_name.contains("pinnacle"))
@@ -95,7 +100,7 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 			default:
 			case WAIT:
 				trace(Main.time.utc, start_time * 1000);
-				if (Main.time.utc >= start_time * 1000)
+				if (Main.time.utc >= start_time * 1000 && PlayState.self.player.overlaps(mountains))
 					sstate(START_DELAY, fsm);
 			case START_DELAY:
 				aurora_fx.alpha += 1 / 180;
@@ -107,7 +112,7 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 						SoundPlayer.music(JsonData.get_track("visual-snow-redux"));
 						FlxG.sound.volume = 1;
 					});
-				if (aurora_fx.alpha >= 1)
+				if (aurora_fx.alpha >= 1 && tick >= 120)
 				{
 					aurora_fx.alpha = 1;
 					tick = 0;
@@ -117,8 +122,29 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 				make_words();
 				screenshots.start();
 				sstate(ACTIVE);
+				tick = 0;
 			case ACTIVE:
+				ttick();
+				if (tick > credits_duration_in_seconds * 60)
+				{
+					sstate(FINISHED);
+					if (FlxG.sound.music != null)
+						FlxG.sound.music.fadeOut(1, 0, function(t)
+						{
+							FlxG.sound.music.stop();
+							FlxG.sound.music.setPosition();
+							SoundPlayer.music(JsonData.get_track(Main.current_song));
+							FlxG.sound.volume = 1;
+						});
+				}
 		}
+
+	public function mouse_is_over():Bool
+	{
+		if (FlxG.mouse.y > perch.y + FlxG.height - 300)
+			return true;
+		return false;
+	}
 
 	function make_words()
 	{
@@ -129,8 +155,7 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		for (text in data.split("\n"))
 			if (text != "\n" && text.length > 2)
 			{
-				var word:CreditsWord = new CreditsWord(perch.x + words_x, perch.y + line_y, words_width, text);
-
+				var word:CreditsWord = new CreditsWord(perch.x + words_x, perch.y + line_y, words_width, text, this);
 				words.push(word);
 				add(word);
 
@@ -175,6 +200,17 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 	override function update(elapsed:Float)
 	{
+		if (PlayState.self.player.overlaps(perch))
+		{
+			if (!Flags.get_bool("PINNACLE"))
+				Flags.set_bool("PINNACLE");
+		}
+		else
+		{
+			if (Flags.get_bool("PINNACLE"))
+				Flags.set_bool("PINNACLE", false);
+		}
+
 		cam_manager();
 		fsm();
 		super.update(elapsed);
@@ -185,6 +221,11 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 		var in_view_area:Bool = PlayState.self.player.y < perch.y + FlxG.height;
 
 		var cam_max_y:Float = in_view_area ? perch.y + 1080 : perch.bottom_y;
+
+		if (in_view_area && FlxG.mouse.justPressed && FlxG.mouse.getScreenPosition().y < FlxG.height - 300)
+		{
+			PlayState.self.player.stop_auto_move();
+		}
 
 		if (FlxG.camera.maxScrollY == cam_max_y)
 			return;
@@ -211,6 +252,7 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 	override function kill()
 	{
+		self = null;
 		super.kill();
 	}
 }
@@ -221,5 +263,5 @@ private enum abstract State(String) from String to String
 	final START_DELAY;
 	final START;
 	final ACTIVE;
-	final END;
+	final FINISHED;
 }

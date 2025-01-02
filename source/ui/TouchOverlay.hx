@@ -2,6 +2,7 @@ package ui;
 
 import squid.sprite.TempSprite;
 import states.PlayState;
+import ui.credits.Credits;
 
 enum PressType
 {
@@ -26,6 +27,8 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 	// If the user taps the player, it counts as an interaction
 	public var interact_just_released:Bool = false;
 
+	public var touch_cd:Int = 0;
+
 	public function new(?X:Float, ?Y:Float)
 	{
 		super();
@@ -40,6 +43,8 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 
 		fsm(elapsed);
 
+		touch_cd--;
+
 		super.update(elapsed);
 	}
 
@@ -48,9 +53,9 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 		{
 			default:
 			case IDLE:
-				if (!Ctrl.mode.can_move)
+				if (!Ctrl.mode.can_move || touch_cd > 0)
 					return;
-				if (PlayState.self.ui_overlay.mouse_is_over_ui())
+				if (PlayState.self.ui_overlay.mouse_is_over_ui() || Credits.self != null && Credits.self.mouse_is_over())
 					return;
 				if (FlxG.mouse.justPressed)
 					start_touch_move();
@@ -83,6 +88,9 @@ class TouchOverlay extends FlxTypedGroupExt<FlxSpriteExt>
 				interact_just_released = true;
 				return;
 			}
+
+			/*if (FlxG.mouse.getScreenPosition().y > FlxG.height - 300 && PlayState.self.levels)
+				return; */
 
 			var move_fx = new TempSprite("move-circle", this);
 			move_fx.center_on(FlxG.mouse.getWorldPosition());

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
     <npc name="persimmon-man">
+        <state name="pinnacle" if="PINNACLE">
+            <dlg>Child... It seems our time together is passing at last.</dlg>
+            <dlg>Did you enjoy this world? Until we meet again in the next one.</dlg>
+        </state>
         <state name="never-met" if="!PERSIMMON_QUEST_ACTIVE_and_!UNLOCK_PERSIMMON">
             <dlg>Hello.</dlg>
             <option label="Hello?">

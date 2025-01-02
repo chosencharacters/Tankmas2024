@@ -141,7 +141,7 @@ class SoundPlayer
 
 	public static var prev_alt_sounds:Map<String, FlxSound> = [];
 
-	public static function alt_sound(slot:String, shuffle:Bool, sounds:Array<String>, ?wait_for_prev_sound:Bool = false)
+	public static function alt_sound(slot:String, shuffle:Bool, sounds:Array<String>, ?wait_for_prev_sound:Bool = false, ?volume:Float = 1)
 	{
 		ran = ran != null ? ran : new FlxRandom();
 
@@ -161,7 +161,7 @@ class SoundPlayer
 		}
 
 		var soundToPlay:String = alt_sounds.get(slot).pop();
-		var sound_played:FlxSound = sound(soundToPlay);
+		var sound_played:FlxSound = sound(soundToPlay, volume);
 
 		if (wait_for_prev_sound)
 		{

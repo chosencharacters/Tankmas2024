@@ -1759,13 +1759,13 @@
 			"cachedPixelData": { "opaqueTiles": "0", "averageColors": "7654" }
 		},
 		{
-			"__cWid": 2,
+			"__cWid": 3,
 			"__cHei": 1,
 			"identifier": "Decoration_MD",
 			"uid": 61,
 			"relPath": "../../images/props/decorations_md.png",
 			"embedAtlas": null,
-			"pxWid": 1024,
+			"pxWid": 1536,
 			"pxHei": 512,
 			"tileGridSize": 512,
 			"spacing": 0,
@@ -1775,7 +1775,7 @@
 			"enumTags": [],
 			"customData": [],
 			"savedSelections": [],
-			"cachedPixelData": { "opaqueTiles": "00", "averageColors": "6c962667" }
+			"cachedPixelData": { "opaqueTiles": "000", "averageColors": "6c9626677856" }
 		},
 		{
 			"__cWid": 3,

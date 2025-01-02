@@ -2,7 +2,7 @@ package ui.credits;
 
 class CreditsFirework extends FlxSpriteExt
 {
-	public var fireworks_remaining:Array<String> = [];
+	static var fireworks_remaining:Array<String> = [];
 
 	var on_complete:CreditsFirework->Void;
 
@@ -17,12 +17,18 @@ class CreditsFirework extends FlxSpriteExt
 
 		ran.shuffle(fireworks_remaining);
 
+		scale.set(6, 6);
+		updateHitbox();
+
 		loadAllFromAnimationSet("fireworks");
 
 		anim(fireworks_remaining.shift());
 
 		this.center_on(point);
 
+		trace(getPosition());
+
+		SoundPlayer.alt_sound("firework", true, ["firework-1", "firework-2", "firework-3"], 0.25);
 		sstate(FIRING);
 	}
 
@@ -44,6 +50,7 @@ class CreditsFirework extends FlxSpriteExt
 			case FIRING:
 				if (animation.finished)
 				{
+					trace("Yo");
 					on_complete(this);
 					kill();
 				}

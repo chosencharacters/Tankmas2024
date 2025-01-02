@@ -10,9 +10,13 @@ class CreditsWord extends FlxText
 	var trace_new_state:Bool = false;
 	var state_history:Array<String> = [];
 
-	public function new(?X:Float, ?Y:Float, fieldWidth:Int, input:String)
+	var credits:Credits;
+
+	public function new(?X:Float, ?Y:Float, fieldWidth:Int, input:String, credits:Credits)
 	{
 		super(X, Y);
+
+		this.credits = credits;
 
 		setFormat(Paths.get('CharlieType-Heavy.otf'), 48, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
 
@@ -41,6 +45,15 @@ class CreditsWord extends FlxText
 		switch (cast(state, State))
 		{
 			default:
+			case IDLE:
+				if (FlxG.mouse.overlaps(this) && FlxG.mouse.justPressed)
+				{
+					var firework:CreditsFirework = new CreditsFirework(getMidpoint(), (f) -> FlxG.state.remove(f, true));
+					FlxG.state.add(firework);
+					sstate(HIT);
+				}
+			case HIT:
+				color = FlxColor.GRAY;
 		}
 
 	/**
@@ -83,4 +96,5 @@ class CreditsWord extends FlxText
 private enum abstract State(String) from String to String
 {
 	final IDLE;
+	final HIT;
 }

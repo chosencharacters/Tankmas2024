@@ -163,6 +163,22 @@
 					"fieldInstances": [],
 					"__worldX": -1280,
 					"__worldY": 384
+				},
+				{
+					"__identifier": "CollisionSquare",
+					"__grid": [0,0],
+					"__pivot": [0,0],
+					"__tags": ["Collision"],
+					"__tile": null,
+					"__smartColor": "#FF0808",
+					"iid": "e51982d0-c210-11ef-9981-230dded8678c",
+					"width": 1920,
+					"height": 928,
+					"defUid": 44,
+					"px": [0,0],
+					"fieldInstances": [],
+					"__worldX": -2560,
+					"__worldY": -544
 				}
 			]
 		},
@@ -266,22 +282,6 @@
 			"gridTiles": [],
 			"entityInstances": [
 				{
-					"__identifier": "Player",
-					"__grid": [58,55],
-					"__pivot": [0,0],
-					"__tags": [],
-					"__tile": null,
-					"__smartColor": "#46BE2F",
-					"iid": "8968ddf0-c210-11ef-9085-f180b5aba6b7",
-					"width": 128,
-					"height": 128,
-					"defUid": 1,
-					"px": [928,880],
-					"fieldInstances": [],
-					"__worldX": -1632,
-					"__worldY": 336
-				},
-				{
 					"__identifier": "Door",
 					"__grid": [0,247],
 					"__pivot": [0,0],
@@ -330,6 +330,381 @@
 					}] }],
 					"__worldX": -2560,
 					"__worldY": -544
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [57,118],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "507da450-c210-11ef-9981-dd7ab68b42f4",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [912,1888],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "lil-jimby", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["lil-jimby"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -1648,
+					"__worldY": 1344
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [76,109],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "55652290-c210-11ef-9981-d53f2f5bb53b",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1216,1744],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "javert", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["javert"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -1344,
+					"__worldY": 1200
+				},
+				{
+					"__identifier": "Present",
+					"__grid": [60,83],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#D74343",
+					"iid": "5fd47dc0-c210-11ef-9981-856c3a3d5dfb",
+					"width": 128,
+					"height": 128,
+					"defUid": 2,
+					"px": [960,1328],
+					"fieldInstances": [
+						{ "__identifier": "username", "__type": "String", "__value": "kingcrowned-2", "__tile": null, "defUid": 5, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["kingcrowned-2"]
+						}] },
+						{ "__identifier": "day", "__type": "Int", "__value": 32, "__tile": null, "defUid": 6, "realEditorValues": [{ "id": "V_Int", "params": [32] }] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 58, "realEditorValues": [] }
+					],
+					"__worldX": -1600,
+					"__worldY": 784
+				},
+				{
+					"__identifier": "Player",
+					"__grid": [59,229],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#46BE2F",
+					"iid": "8968ddf0-c210-11ef-9085-f180b5aba6b7",
+					"width": 128,
+					"height": 128,
+					"defUid": 1,
+					"px": [944,3664],
+					"fieldInstances": [],
+					"__worldX": -1616,
+					"__worldY": 3120
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [14,194],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "76155b30-c210-11ef-9981-354d46f803b4",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [224,3104],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "peanutbudder-santa", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["peanutbudder-santa"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -2336,
+					"__worldY": 2560
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [15,124],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "807e4dc0-c210-11ef-9981-5bccfd36f57d",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [240,1984],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "project-154", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["project-154"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -2320,
+					"__worldY": 1440
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [50,218],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "857c3a30-c210-11ef-9981-ebe8840e64bc",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [800,3488],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "concierge", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["concierge"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -1760,
+					"__worldY": 2944
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [75,201],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "8d94fb30-c210-11ef-9981-db176eb75d82",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1200,3216],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "backpacker-jill", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["backpacker-jill"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -1360,
+					"__worldY": 2672
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [51,195],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "9c02ad20-c210-11ef-9981-87175c7853f1",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [816,3120],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "mallow", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["mallow"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -1744,
+					"__worldY": 2576
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [98,132],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "abbeff20-c210-11ef-9981-ed2e5a6e4b17",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1568,2112],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "pompous-joan", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["pompous-joan"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -992,
+					"__worldY": 1568
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [63,165],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "b2e10410-c210-11ef-9981-bb47194c2bf5",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1008,2640],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "gold-miser-jacquez", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["gold-miser-jacquez"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -1552,
+					"__worldY": 2096
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [30,184],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "bdf63c30-c210-11ef-9981-294e28509029",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [480,2944],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "blade-the-hedgehog", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["blade-the-hedgehog"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -2080,
+					"__worldY": 2400
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [29,149],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "c55941c0-c210-11ef-9981-d762466883e7",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [464,2384],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "persimmon-man", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["persimmon-man"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -2096,
+					"__worldY": 1840
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [99,110],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "e1b51560-c210-11ef-9981-87f561d51333",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1584,1760],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "pony-boy", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["pony-boy"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -976,
+					"__worldY": 1216
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [77,129],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "ecfa8540-c210-11ef-9981-f5c7e3f55697",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [1232,2064],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "box", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["box"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -1328,
+					"__worldY": 1520
+				},
+				{
+					"__identifier": "NPC",
+					"__grid": [10,167],
+					"__pivot": [0,0],
+					"__tags": [],
+					"__tile": null,
+					"__smartColor": "#FF00D0",
+					"iid": "ff588430-c210-11ef-9981-09fbb00a7411",
+					"width": 128,
+					"height": 128,
+					"defUid": 10,
+					"px": [160,2672],
+					"fieldInstances": [
+						{ "__identifier": "name", "__type": "String", "__value": "captain-carrion", "__tile": null, "defUid": 11, "realEditorValues": [{
+							"id": "V_String",
+							"params": ["captain-carrion"]
+						}] },
+						{ "__identifier": "timelock", "__type": "String", "__value": null, "__tile": null, "defUid": 38, "realEditorValues": [] },
+						{ "__identifier": "if_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 90, "realEditorValues": [] },
+						{ "__identifier": "unless_flag", "__type": "String", "__value": null, "__tile": null, "defUid": 91, "realEditorValues": [] }
+					],
+					"__worldX": -2400,
+					"__worldY": 2128
 				}
 			]
 		},

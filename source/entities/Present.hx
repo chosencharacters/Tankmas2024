@@ -53,11 +53,15 @@ class Present extends Interactable
 	public static var num_32_opened:Int = 0;
 	public static final req_num_32_opened:Int = 6;
 
+	public var final_gift:Bool = false;
+
 	public function new(X:Float, Y:Float, username:String, timelock:Int)
 	{
 		super(X, Y);
 		detect_range = 300;
 		this.username = username;
+
+		final_gift = username == "kingcrowned-2";
 
 		// trace(username, JsonData.get_present_names());
 		def = JsonData.get_present(this.username);
@@ -239,7 +243,7 @@ class Present extends Interactable
 			if (first_time_opening && day == 28)
 				num_28_opened++;
 
-			if (first_time_opening && day == 32)
+			if (first_time_opening && day == 32 && !def.artist.contains("kingcrowned"))
 				num_32_opened++;
 
 			sstate(OPENING);
@@ -298,6 +302,9 @@ class Present extends Interactable
 		#end
 		if (comic && username == "marbardan82")
 			Flags.set_bool("GOT_SHMIGGED");
+
+		if (username.contains("kingcrowned") && day == 32)
+			Flags.set_bool("FINAL_PRESENT_OPENED");
 	}
 
 	function give_opened_medal()

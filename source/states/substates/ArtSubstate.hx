@@ -14,6 +14,8 @@ class ArtSubstate extends FlxSubstateExt
 	var data:data.types.TankmasDefs.PresentDef;
 	var display_text:FlxText;
 
+	var artist_name:String;
+
 	var back_button:HoverButton;
 
 	var has_link:Bool = true;
@@ -38,9 +40,16 @@ class ArtSubstate extends FlxSubstateExt
 		backBox.alpha = 0.3;
 		add(backBox);
 
+		artist_name = data.artist != null && data.artist != "" ? data.artist : "Unknown";
+
 		var title:String = data.title != null && data.title != "" ? data.title : "Untitled";
-		var artist:String = data.artist != null && data.artist != "" ? data.artist : "Unknown";
 		var link:String = 'Click here to view this ${data.link != null ? 'piece' : 'artist'} on NG!';
+
+		if (artist_name == "kingcrowned-2")
+		{
+			artist_name = "kingcrowned";
+			link = "by KingCrowned";
+		}
 
 		if (present_name == "ng-tv")
 		{
@@ -48,7 +57,7 @@ class ArtSubstate extends FlxSubstateExt
 			has_link = false;
 		}
 
-		display_text = new FlxText(0, 980, 1920, '$title by $artist\n$link');
+		display_text = new FlxText(0, 980, 1920, '$title by $artist_name\n$link');
 
 		display_text.setFormat(Paths.get('CharlieType-Heavy.otf'), 32, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
 		add(display_text);
@@ -95,6 +104,6 @@ class ArtSubstate extends FlxSubstateExt
 			close();
 		if (has_link)
 			if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(display_text) && !FlxG.mouse.overlaps(back_button) && FlxG.mouse.x < FlxG.width * .9)
-				FlxG.openURL(data.link != null ? data.link : 'https://${data.artist.toLowerCase()}.newgrounds.com');
+				FlxG.openURL(data.link != null ? data.link : 'https://${artist_name.toLowerCase()}.newgrounds.com');
 	}
 }
