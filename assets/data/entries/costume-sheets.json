@@ -548,7 +548,7 @@
                     "angle": -10
                 },
                 {
-                    "name": "psycho-goldfish",
+                    "name": "dungeoncookiebun",
                     "angle": 10,
                     "xOffset": -60,
                     "yOffset": -30
@@ -568,19 +568,19 @@
                     "angle": 10
                 },
                 {
-                    "name": null,
+                    "name": "mimny",
                     "angle": -10,
                     "xOffset": -60,
                     "yOffset": -30
                 },
                 {
-                    "name": "mimny",
+                    "name": "lils",
                     "angle": 10,
                     "xOffset": 60,
                     "yOffset": -30
                 },
                 {
-                    "name": null,
+                    "name": "captain-steve",
                     "angle": -10
                 }
             ]
