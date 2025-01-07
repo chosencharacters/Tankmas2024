@@ -138,8 +138,8 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 	public function mouse_is_over():Bool
 	{
-		if (FlxG.mouse.getScreenPosition().y < FlxG.height - 300)
-			return true;
+		// if (FlxG.mouse.getScreenPosition().y < FlxG.height - 300)
+		// return true;
 		return false;
 	}
 
@@ -220,6 +220,9 @@ class Credits extends FlxTypedGroupExt<FlxSprite>
 
 	function cam_manager()
 	{
+		if (!perch.isOnScreen())
+			return;
+		
 		var in_view_area:Bool = PlayState.self.player.y < perch.y + FlxG.height;
 
 		var cam_max_y:Float = in_view_area ? perch.y + 1080 : perch.bottom_y;
