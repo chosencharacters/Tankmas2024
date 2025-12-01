@@ -20,8 +20,6 @@ class GachaponMascot extends FlxSpriteExt
 		y = FlxG.height - height;
 		x = 0;
 
-		SoundPlayer.sound("GACHAPON", 1);
-
 		sstate(IN);
 	}
 

@@ -43,7 +43,7 @@ class Present extends Interactable
 		if (day == 7 && username == "matthewlopz")
 			return true;
 
-		return day == 1 || day == Main.time.day;
+		return day == 1 || day == Main.time.day && Main.time.month == 12;
 	}
 
 	public static var num_25_opened:Int = 0;
@@ -148,7 +148,7 @@ class Present extends Interactable
 	{
 		if (timelock > 0)
 			return Main.time.utc >= timelock;
-		return Main.time.day >= def.day;
+		return Main.time.day >= def.day && Main.time.is_tankmas_month || Main.time.month < 12;
 	}
 
 	override function kill()

@@ -2209,22 +2209,22 @@
 				},
 				{
 					"__identifier": "Misc",
-					"__grid": [38,77],
+					"__grid": [38,70],
 					"__pivot": [0,0],
 					"__tags": [],
 					"__tile": null,
 					"__smartColor": "#FFE600",
 					"iid": "37bd29f0-c210-11ef-b20b-d579f234162c",
 					"width": 2000,
-					"height": 2500,
+					"height": 2260,
 					"defUid": 49,
-					"px": [609,1234],
+					"px": [609,1120],
 					"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "tankmas-tree", "__tile": null, "defUid": 50, "realEditorValues": [{
 						"id": "V_String",
 						"params": ["tankmas-tree"]
 					}] }],
 					"__worldX": 609,
-					"__worldY": 1234
+					"__worldY": 1120
 				},
 				{
 					"__identifier": "Misc",
