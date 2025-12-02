@@ -21,19 +21,12 @@ class OnlineLoop
 		#elseif test_local
 		'127.0.0.1:5000'
 		#elseif dev
-		"test.tankmas-adventure.com"
+		"2024.tankmas-adventure.com"
 		#else
-		"tankmas.kornesjo.se:25567"
+		"2024.tankmas-adventure.com"
 		#end;
 
-	static final use_tls:Bool =
-		#if use_tls
-		true
-		#elseif (test_local || host_address)
-		false
-		#else
-		true
-		#end;
+	static final use_tls:Bool = #if test_local false #else true #end;
 
 	public static final http_address = '${use_tls ? 'https://' : 'http://'}${host_uri}';
 	public static final ws_address = '${use_tls ? 'wss://' : 'ws://'}${host_uri}';
